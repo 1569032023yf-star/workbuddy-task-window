@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-07-28T17:51:43.159024",
+  "all_verified": true,
+  "settings": {
+    "BIOS Power-On Hour": {
+      "wanted": "14",
+      "actual": "14",
+      "verified": true
+    },
+    "BIOS Power-On Minute": {
+      "wanted": "40",
+      "actual": "40",
+      "verified": true
+    },
+    "Sunday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "Monday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "Tuesday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "Wednesday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "Thursday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "Friday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "Saturday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "verified": true
+    },
+    "After Power Loss": {
+      "wanted": "Power On",
+      "actual": "Power Off,*Power On,Previous State",
+      "verified": true
+    }
+  }
+}

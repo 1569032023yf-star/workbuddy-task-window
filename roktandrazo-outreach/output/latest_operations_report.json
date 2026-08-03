@@ -1,0 +1,17 @@
+{
+  "date": "2026-07-23",
+  "new_outreach_sent": 0,
+  "new_outreach_target": 40,
+  "new_outreach_gap": 40,
+  "followup_sent": 0,
+  "hard_bounces": 0,
+  "replies": 0,
+  "unsubscribes": 0,
+  "a0_sendable": 0,
+  "inventory_target": 120,
+  "inventory_gap": 120,
+  "total_leads": 616,
+  "total_sent_all": 326,
+  "risk_gate": "clear",
+  "generated_at": "2026-07-23T17:31:19.800325"
+}

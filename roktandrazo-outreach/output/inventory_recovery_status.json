@@ -1,0 +1,65 @@
+{
+  "stage": "inventory",
+  "date": "2026-07-23",
+  "status": "partial",
+  "started_at": "2026-07-23T14:57:02.216066+08:00",
+  "a0_before": 12,
+  "target": 60,
+  "send_enabled": false,
+  "generated_at": "2026-07-23T10:55:22.446170",
+  "updated_at": "2026-07-23T15:13:42.893496+08:00",
+  "a0_current": 15,
+  "current_lane": "none_available",
+  "loop_count": 6,
+  "candidates_discovered": 66,
+  "candidates_verified": 55,
+  "a0_added": 3,
+  "unique_auto_sendable": 15,
+  "ssl_timeout_count": 33,
+  "last_error": "SSL: https://memphistoyexchange.com/info",
+  "stop_reason": "all_lanes_exhausted_or_degraded",
+  "a0_initial": 12,
+  "a0_final": 15,
+  "custom_c_added": 55,
+  "ssl_error_count": 121,
+  "http_first_switched": false,
+  "degraded_lanes": [],
+  "lanes_executed": [
+    "Lane 1: Retail TN/AR/KY",
+    "Lane 2: Custom Institutions",
+    "Lane 3: Online Brands",
+    "Lane 4: HTTP-first Fallback"
+  ],
+  "loops": 6,
+  "runtime_minutes": 16.7,
+  "today_new_outreach": 6,
+  "today_target": 20,
+  "today_status": "underfilled",
+  "today_stop_reason": "send_window_closed_after_inventory_shortage",
+  "extra_emails_sent": false,
+  "lane_stats": {
+    "retail": {
+      "processed": 3,
+      "a0_added": 1,
+      "failed": 2
+    },
+    "institutions": {
+      "processed": 4,
+      "a0_added": 0,
+      "failed": 4
+    },
+    "online_brands": {
+      "processed": 35,
+      "a0_added": 1,
+      "failed": 34
+    },
+    "http_first_fallback": {
+      "processed": 24,
+      "a0_added": 1,
+      "failed": 23
+    }
+  },
+  "lane_degraded": "Lane 3: Online Brands",
+  "degrade_reason": "max_consecutive_failures",
+  "gap": 45
+}

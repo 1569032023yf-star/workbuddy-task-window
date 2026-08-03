@@ -1,0 +1,539 @@
+{
+  "timestamp": "2026-07-14T03:58:08.896495+00:00",
+  "cutoff_days": 14,
+  "raw_candidate_count": 86,
+  "hygiene_pass_count": 77,
+  "final_sendable_count": 64,
+  "exclusion_counts": {
+    "total_sent_log_entries": 254,
+    "time_parse_failed": 0,
+    "not_14d_yet": 145,
+    "already_replied": 0,
+    "hard_bounced": 8,
+    "unsubscribed": 0,
+    "suppressed": 2,
+    "already_followed_up": 0,
+    "bad_email": 0,
+    "test_placeholder": 2,
+    "status_blocked": 11,
+    "domain_mismatch": 9
+  },
+  "dedup_counts": {
+    "email_dedup_removed": 6,
+    "domain_dedup_removed": 7
+  },
+  "queue": [
+    {
+      "lead_id": 0,
+      "store_name": "__AUTH_INFO__",
+      "city": "",
+      "state": "",
+      "masked_email": "ian***@roktandrazo.com",
+      "days_since_sent": 33
+    },
+    {
+      "lead_id": 1,
+      "store_name": "Thinker Toys",
+      "city": "Portland",
+      "state": "OR",
+      "masked_email": "inf***@thinkertoystore.com",
+      "days_since_sent": 32
+    },
+    {
+      "lead_id": 2,
+      "store_name": "Cloud Cap Games and Puzzles",
+      "city": "Portland",
+      "state": "OR",
+      "masked_email": "inf***@cloudcapgames.com",
+      "days_since_sent": 32
+    },
+    {
+      "lead_id": 3,
+      "store_name": "Puddletown Games and Puzzles",
+      "city": "Portland",
+      "state": "OR",
+      "masked_email": "inf***@puddletowngames.com",
+      "days_since_sent": 32
+    },
+    {
+      "lead_id": 5,
+      "store_name": "Curio Asheville",
+      "city": "Asheville",
+      "state": "NC",
+      "masked_email": "fun***@curioasheville.com",
+      "days_since_sent": 32
+    },
+    {
+      "lead_id": 7,
+      "store_name": "Asheville Emporium",
+      "city": "Asheville",
+      "state": "NC",
+      "masked_email": "ope***@asheville-emporium.com",
+      "days_since_sent": 32
+    },
+    {
+      "lead_id": 48,
+      "store_name": "The Philly Game Shop",
+      "city": "Philadelphia",
+      "state": "PA",
+      "masked_email": "sta***@phillygameshop.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 40,
+      "store_name": "Vault of Midnight",
+      "city": "Ann Arbor",
+      "state": "MI",
+      "masked_email": "con***@vaultofmidnight.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 37,
+      "store_name": "Beyond the Blackboard",
+      "city": "Denver",
+      "state": "CO",
+      "masked_email": "pla***@beyondtheblackboard.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 38,
+      "store_name": "The Wizard's Chest",
+      "city": "Denver",
+      "state": "CO",
+      "masked_email": "the***@wizardschest.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 36,
+      "store_name": "Razzle Toys",
+      "city": "Denver",
+      "state": "CO",
+      "masked_email": "inf***@razzletoys.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 42,
+      "store_name": "Clothes Pony & Dandelion Toys",
+      "city": "Fort Collins",
+      "state": "CO",
+      "masked_email": "hel***@clothespony.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 39,
+      "store_name": "Eureka Puzzles & Games",
+      "city": "Brookline",
+      "state": "MA",
+      "masked_email": "inf***@eurekapuzzles.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 92,
+      "store_name": "Dreamers Vault Games",
+      "city": "Minneapolis",
+      "state": "MN",
+      "masked_email": "inf***@dreamersvault.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 57,
+      "store_name": "Game Haus",
+      "city": "Glendale",
+      "state": "CA",
+      "masked_email": "inf***@gamehaus.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 62,
+      "store_name": "Games of Berkeley",
+      "city": "Berkeley",
+      "state": "CA",
+      "masked_email": "inf***@gamesofberkeley.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 77,
+      "store_name": "Gamma Ray Games",
+      "city": "Seattle",
+      "state": "WA",
+      "masked_email": "inf***@gammaraygames.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 58,
+      "store_name": "Geeky Teas & Games",
+      "city": "Burbank",
+      "state": "CA",
+      "masked_email": "inf***@geekyteas.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 86,
+      "store_name": "Guardian Games",
+      "city": "Portland",
+      "state": "OR",
+      "masked_email": "inf***@guardian-games.com",
+      "days_since_sent": 27
+    },
+    {
+      "lead_id": 0,
+      "store_name": "__AUTH_INFO__",
+      "city": "",
+      "state": "",
+      "masked_email": "156***@gmail.com",
+      "days_since_sent": 20
+    },
+    {
+      "lead_id": 0,
+      "store_name": "__AUTH_INFO__",
+      "city": "",
+      "state": "",
+      "masked_email": "nik***@outlook.com",
+      "days_since_sent": 20
+    },
+    {
+      "lead_id": 0,
+      "store_name": "__AUTH_INFO__",
+      "city": "",
+      "state": "",
+      "masked_email": "inf***@moxboardinghouse.com",
+      "days_since_sent": 20
+    },
+    {
+      "lead_id": 235,
+      "store_name": "Armada Games",
+      "city": "Tampa",
+      "state": "FL",
+      "masked_email": "inf***@armadagames.com",
+      "days_since_sent": 20
+    },
+    {
+      "lead_id": 28,
+      "store_name": "Allison Wonderland",
+      "city": "Lake Geneva",
+      "state": "WI",
+      "masked_email": "sup***@allisonwonderland.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 52,
+      "store_name": "The Compleat Strategist",
+      "city": "New York",
+      "state": "NY",
+      "masked_email": "inf***@thecompleatstrategist.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 53,
+      "store_name": "Twenty Sided Store",
+      "city": "Brooklyn",
+      "state": "NY",
+      "masked_email": "inf***@twentysidedstore.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 71,
+      "store_name": "Happy Up Inc",
+      "city": "Clayton",
+      "state": "MO",
+      "masked_email": "hel***@happyupinc.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 73,
+      "store_name": "Pandemonium Books & Games",
+      "city": "Cambridge",
+      "state": "MA",
+      "masked_email": "gen***@pandemoniumbooks.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 90,
+      "store_name": "Source Comics and Games",
+      "city": "Minneapolis",
+      "state": "MN",
+      "masked_email": "sou***@sourcecomicsandgames.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 93,
+      "store_name": "kiddywampus",
+      "city": "Hopkins",
+      "state": "MN",
+      "masked_email": "amy***@kiddywampus.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 109,
+      "store_name": "Grandrabbit's Toy Shoppe",
+      "city": "Boulder",
+      "state": "CO",
+      "masked_email": "web***@grtoys.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 129,
+      "store_name": "Comic Asylum",
+      "city": "Nashville",
+      "state": "TN",
+      "masked_email": "sal***@comicasylum.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 143,
+      "store_name": "Snakes & Lattes",
+      "city": "Tempe",
+      "state": "AZ",
+      "masked_email": "joh***@snakesandlattes.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 154,
+      "store_name": "Bedrock City Comic Co",
+      "city": "Houston",
+      "state": "TX",
+      "masked_email": "bed***@bedrockcity.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 156,
+      "store_name": "Game Empire",
+      "city": "San Diego",
+      "state": "CA",
+      "masked_email": "gam***@gameempire.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 174,
+      "store_name": "Tate's Gaming Satellite",
+      "city": "Fort Lauderdale",
+      "state": "FL",
+      "masked_email": "con***@tatesgaming.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 187,
+      "store_name": "The Met Store",
+      "city": "New York",
+      "state": "NY",
+      "masked_email": "inf***@metmuseum.org",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 193,
+      "store_name": "BookPeople",
+      "city": "Austin",
+      "state": "TX",
+      "masked_email": "onl***@bookpeople.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 208,
+      "store_name": "Dog Eared Books",
+      "city": "San Francisco",
+      "state": "CA",
+      "masked_email": "val***@dogearedbooks.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 237,
+      "store_name": "Emerald City Comics",
+      "city": "Clearwater",
+      "state": "FL",
+      "masked_email": "cha***@emeraldcitycomics.com",
+      "days_since_sent": 19
+    },
+    {
+      "lead_id": 259,
+      "store_name": "Mugu Games",
+      "city": "Olympia",
+      "state": "WA",
+      "masked_email": "con***@mugugames.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 263,
+      "store_name": "Pair-a-Dice Games",
+      "city": "Raleigh",
+      "state": "NC",
+      "masked_email": "fun***@pairadicegames.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 279,
+      "store_name": "Reader's Books",
+      "city": "San Diego",
+      "state": "CA",
+      "masked_email": "sho***@readersbooks.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 289,
+      "store_name": "The Puzzle Warehouse",
+      "city": "St Louis",
+      "state": "MO",
+      "masked_email": "sup***@puzzlewarehouse.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 268,
+      "store_name": "Deseret Book",
+      "city": "Tempe",
+      "state": "AZ",
+      "masked_email": "dbw***@deseretbook.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 281,
+      "store_name": "Grand Canyon Conservancy Store",
+      "city": "Grand Canyon Village",
+      "state": "AZ",
+      "masked_email": "gcc***@grandcanyon.org",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 290,
+      "store_name": "Boing! Toys",
+      "city": "Minneapolis",
+      "state": "MN",
+      "masked_email": "inf***@boingtoys.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 304,
+      "store_name": "G. Willikers Toy Merchant",
+      "city": "Boise",
+      "state": "ID",
+      "masked_email": "toy***@ggwillikers.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 307,
+      "store_name": "Modern Games",
+      "city": "Bend",
+      "state": "OR",
+      "masked_email": "hel***@moderngamesbend.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 311,
+      "store_name": "Wishing Tree Books",
+      "city": "Spokane",
+      "state": "WA",
+      "masked_email": "boo***@wishingtreebookstore.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 317,
+      "store_name": "Misty Mountain Games",
+      "city": "Madison",
+      "state": "WI",
+      "masked_email": "onl***@mistymountaingames.com",
+      "days_since_sent": 18
+    },
+    {
+      "lead_id": 328,
+      "store_name": "Boardwalk",
+      "city": "Greenville",
+      "state": "SC",
+      "masked_email": "gam***@boardwalk-greenville.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 329,
+      "store_name": "Smart Toys and Books",
+      "city": "Knoxville",
+      "state": "TN",
+      "masked_email": "inf***@smarttoysandbooks.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 17,
+      "store_name": "Great Escape Adventures",
+      "city": "Ithaca",
+      "state": "NY",
+      "masked_email": "sal***@greatescapeadventures.net",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 51,
+      "store_name": "Mary Arnold Toys",
+      "city": "New York",
+      "state": "NY",
+      "masked_email": "cus***@maryarnoldtoys.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 66,
+      "store_name": "Versus Games",
+      "city": "San Francisco",
+      "state": "CA",
+      "masked_email": "inf***@versusgames.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 91,
+      "store_name": "Hub Hobby & Toy",
+      "city": "Richfield",
+      "state": "MN",
+      "masked_email": "inf***@hubhobby.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 113,
+      "store_name": "Game Masters",
+      "city": "Pittsburgh",
+      "state": "PA",
+      "masked_email": "phi***@gamemasterspgh.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 140,
+      "store_name": "Samurai Comics & Games",
+      "city": "Phoenix",
+      "state": "AZ",
+      "masked_email": "mes***@samuraicomics.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 253,
+      "store_name": "Hobby Bunker Games",
+      "city": "Malden",
+      "state": "MA",
+      "masked_email": "sal***@hobbybunker.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 254,
+      "store_name": "Lake Geneva Games",
+      "city": "Lake Geneva",
+      "state": "WI",
+      "masked_email": "jle***@lakegenevagames.com",
+      "days_since_sent": 15
+    },
+    {
+      "lead_id": 10,
+      "store_name": "Piccolo Mondo Toys",
+      "city": "Portland",
+      "state": "OR",
+      "masked_email": "cus***@piccolomondotoys.com",
+      "days_since_sent": 14
+    },
+    {
+      "lead_id": 41,
+      "store_name": "Sylvan Factory",
+      "city": "Ann Arbor",
+      "state": "MI",
+      "masked_email": "gen***@sylvanfactory.com",
+      "days_since_sent": 14
+    },
+    {
+      "lead_id": 45,
+      "store_name": "Snapdoodle Toys and Games",
+      "city": "Seattle",
+      "state": "WA",
+      "masked_email": "web***@snapdoodletoys.com",
+      "days_since_sent": 14
+    }
+  ]
+}

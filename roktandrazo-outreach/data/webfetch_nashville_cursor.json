@@ -1,0 +1,11 @@
+{
+  "query_index": 22,
+  "active_city": "Nashville",
+  "active_state": "TN",
+  "next_query": null,
+  "remaining_queries": [],
+  "unique_locations": 39,
+  "unique_organizations": 33,
+  "executed_queries": 22,
+  "updated_at": "2026-07-28T09:39:30.533078"
+}

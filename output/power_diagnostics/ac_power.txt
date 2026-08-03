@@ -1,0 +1,3 @@
+﻿AC Power check via BatteryStatus WMI:
+BatteryStatus WMI not available (desktop/all-in-one)
+

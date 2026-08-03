@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-07-30T17:54:23.822722+08:00",
+  "candidate_count": 100,
+  "mx_verified_count": 39,
+  "database_sha256": "838bc9bbd699a120",
+  "gate_version": "broad_outreach_gate_v1_p0_closed_loop",
+  "historical_101_to_100_difference_not_reconstructable": true,
+  "reason": "No prior candidate ID snapshot exists. 101 was from earlier audit session counting. Current Broad Ready = 100. 61 previously-sent leads excluded by evaluate_broad_outreach(). Difference of 1 is not reconstructable without historical snapshot."
+}

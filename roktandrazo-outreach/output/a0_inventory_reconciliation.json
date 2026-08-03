@@ -1,0 +1,326 @@
+{
+  "exact_leads_total": 589,
+  "raw_a0_rows": 30,
+  "display_only_legacy": 0,
+  "dedup_removed": 0,
+  "mature_enterprise_manual": 2,
+  "mature_contact_uncertain": 2,
+  "retail_qualified": 14,
+  "custom_qualified": 17,
+  "overlap": 5,
+  "manual_review_total": 4,
+  "final_auto_sendable": 26,
+  "safety_target": 30,
+  "real_gap": 4,
+  "auto_sendable": [
+    {
+      "lead_id": 35,
+      "store_name": "Vermont Christmas Company",
+      "masked_email": "inf***@vermontchristmasco.com",
+      "state": "VT",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Out-of-state gift/toy/game store",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 312,
+      "store_name": "From Here Spokane",
+      "masked_email": "sho***@terrainspokane.com",
+      "state": "WA",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Out-of-state gift/toy/game store",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 321,
+      "store_name": "The Boardroom VT",
+      "masked_email": "the***@gmail.com",
+      "state": "VT",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Out-of-state gift/toy/game store",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 322,
+      "store_name": "Gator Games and Books",
+      "masked_email": "gat***@gmail.com",
+      "state": "GA",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Out-of-state gift/toy/game store",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 325,
+      "store_name": "Galactic Toys & Collectibles",
+      "masked_email": "sup***@galactictoys.com",
+      "state": "MI",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Out-of-state gift/toy/game store",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 538,
+      "store_name": "Seasons The Museum Store",
+      "masked_email": "inf***@customshousemuseum.org",
+      "state": "TN",
+      "segment": "overlap",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution in target state — custom production",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 539,
+      "store_name": "Knoxville Museum of Art Shop",
+      "masked_email": "vwy***@knoxart.org",
+      "state": "TN",
+      "segment": "overlap",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution in target state — custom production",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 544,
+      "store_name": "Country Music Hall of Fame Store",
+      "masked_email": "eco***@countrymusichalloffame.org",
+      "state": "TN",
+      "segment": "overlap",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution in target state — custom production",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 545,
+      "store_name": "Tennessee Aquarium Gift Shop",
+      "masked_email": "sto***@eventnetwork.com",
+      "state": "TN",
+      "segment": "overlap",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution in target state — custom production",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 547,
+      "store_name": "Ozark Folk Center Gift Shop",
+      "masked_email": "oza***@arkansas.com",
+      "state": "AR",
+      "segment": "overlap",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution in target state — custom production",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 548,
+      "store_name": "Bricks & Minifigs Murfreesboro",
+      "masked_email": "mur***@bricksandminifigs.com",
+      "state": "TN",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Retail store in TN/AR/KY — hybrid wholesale+custom",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 553,
+      "store_name": "Trainer Js",
+      "masked_email": "tra***@gmail.com",
+      "state": "AR",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Retail store in TN/AR/KY — hybrid wholesale+custom",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 558,
+      "store_name": "Gear Gaming Fayetteville",
+      "masked_email": "fay***@geargamingstore.com",
+      "state": "AR",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Retail store in TN/AR/KY — hybrid wholesale+custom",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 562,
+      "store_name": "Rusty Scabbard",
+      "masked_email": "sca***@windstream.net",
+      "state": "KY",
+      "segment": "retail",
+      "template_id": "hybrid_wholesale_custom_v1",
+      "routing_reason": "Retail store in TN/AR/KY — hybrid wholesale+custom",
+      "source_platform": "",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 568,
+      "store_name": "GeoToys",
+      "masked_email": "hel***@geotoys.com",
+      "state": "CT",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Amazon",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 571,
+      "store_name": "Ten Hundred Art",
+      "masked_email": "ten***@tenhundredart.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Kickstarter",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 574,
+      "store_name": "Level 99 Games",
+      "masked_email": "ser***@level99games.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Kickstarter",
+      "mature_review": "fit_confirmed"
+    },
+    {
+      "lead_id": 575,
+      "store_name": "Limithron",
+      "masked_email": "luk***@limithron.com",
+      "state": "CO",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Kickstarter",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 577,
+      "store_name": "Skytear Games",
+      "masked_email": "hel***@skyteargames.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Gamefound",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 578,
+      "store_name": "Stone Blade Entertainment",
+      "masked_email": "mar***@stoneblade.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Gamefound",
+      "mature_review": "fit_confirmed"
+    },
+    {
+      "lead_id": 583,
+      "store_name": "Magic Puzzle Company",
+      "masked_email": "inf***@magicpuzzlecompany.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Kickstarter",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 585,
+      "store_name": "Chicken Challengers",
+      "masked_email": "sup***@chickenchallengers.com",
+      "state": "WA",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Amazon",
+      "mature_review": "not_reviewed"
+    },
+    {
+      "lead_id": 588,
+      "store_name": "CGE Czech Games",
+      "masked_email": "iva***@czechgames.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Amazon",
+      "mature_review": "fit_confirmed"
+    },
+    {
+      "lead_id": 589,
+      "store_name": "Bezier Games",
+      "masked_email": "inf***@beziergames.com",
+      "state": "",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Amazon",
+      "mature_review": "fit_confirmed"
+    },
+    {
+      "lead_id": 591,
+      "store_name": "Renegade Game Studios",
+      "masked_email": "cus***@renegadegames.com",
+      "state": "CA",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Kickstarter",
+      "mature_review": "fit_confirmed"
+    },
+    {
+      "lead_id": 592,
+      "store_name": "Dire Wolf Digital",
+      "masked_email": "inf***@direwolfdigital.com",
+      "state": "CO",
+      "segment": "custom",
+      "template_id": "custom_production_v1",
+      "routing_reason": "Institution or online brand — custom production",
+      "source_platform": "Kickstarter",
+      "mature_review": "fit_confirmed"
+    }
+  ],
+  "manual_review": [
+    {
+      "lead_id": 586,
+      "store_name": "Cards Against Humanity",
+      "reason": "enterprise_manual_review"
+    },
+    {
+      "lead_id": 587,
+      "store_name": "What Do You Meme",
+      "reason": "enterprise_manual_review"
+    },
+    {
+      "lead_id": 570,
+      "store_name": "Ridleys Games",
+      "reason": "contact_role_uncertain"
+    },
+    {
+      "lead_id": 590,
+      "store_name": "Ultra PRO",
+      "reason": "contact_role_uncertain"
+    }
+  ],
+  "display_only": []
+}

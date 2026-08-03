@@ -1,0 +1,2387 @@
+﻿
+
+TimeCreated : 2026/7/28 16:05:41
+Id          : 566
+Level       : 4
+Message     : 系统会话已从93转换为 95.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 16:05:41
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 16:05:41
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 16:05:41
+Id          : 566
+Level       : 4
+Message     : 系统会话已从92转换为 93.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 16:05:40
+Id          : 566
+Level       : 4
+Message     : 系统会话已从90转换为 92.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 16:05:40
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 16:05:39
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 16:05:39
+Id          : 566
+Level       : 4
+Message     : 系统会话已从89转换为 90.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 14:06:13
+Id          : 566
+Level       : 4
+Message     : 系统会话已从87转换为 89.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 14:06:13
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 14:03:54
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Idle Timeout。
+
+TimeCreated : 2026/7/28 14:03:54
+Id          : 566
+Level       : 4
+Message     : 系统会话已从86转换为 87.
+              
+              原因 SessionUnlock 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 14:03:23
+Id          : 566
+Level       : 4
+Message     : 系统会话已从84转换为 86.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 14:03:23
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 14:01:47
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Idle Timeout。
+
+TimeCreated : 2026/7/28 14:01:47
+Id          : 566
+Level       : 4
+Message     : 系统会话已从83转换为 84.
+              
+              原因 SessionUnlock 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 14:01:12
+Id          : 566
+Level       : 4
+Message     : 系统会话已从82转换为 83.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 14:01:12
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 13:04:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从81转换为 82.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 13:04:16
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 13:04:16
+Id          : 566
+Level       : 4
+Message     : 系统会话已从80转换为 81.
+              
+              原因 16777220 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 13:04:16
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 12:03:10
+Id          : 566
+Level       : 4
+Message     : 系统会话已从79转换为 80.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 12:03:10
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 12:03:10
+Id          : 566
+Level       : 4
+Message     : 系统会话已从78转换为 79.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 12:03:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从76转换为 78.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 12:03:00
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 12:03:00
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 12:03:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从75转换为 76.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 12:02:59
+Id          : 566
+Level       : 4
+Message     : 系统会话已从73转换为 75.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 12:02:59
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 12:02:58
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 12:02:58
+Id          : 566
+Level       : 4
+Message     : 系统会话已从72转换为 73.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 10:06:41
+Id          : 566
+Level       : 4
+Message     : 系统会话已从70转换为 72.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 10:06:41
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 10:06:40
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 10:06:40
+Id          : 566
+Level       : 4
+Message     : 系统会话已从69转换为 70.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 10:06:40
+Id          : 566
+Level       : 4
+Message     : 系统会话已从68转换为 69.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 10:06:40
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 10:06:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从67转换为 68.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 10:06:17
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 10:06:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从66转换为 67.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:15
+Id          : 566
+Level       : 4
+Message     : 系统会话已从64转换为 66.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:15
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:15
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:15
+Id          : 566
+Level       : 4
+Message     : 系统会话已从63转换为 64.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从61转换为 63.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:14
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:14
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从60转换为 61.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:12
+Id          : 566
+Level       : 4
+Message     : 系统会话已从58转换为 60.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:12
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:11
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:11
+Id          : 566
+Level       : 4
+Message     : 系统会话已从57转换为 58.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:11
+Id          : 566
+Level       : 4
+Message     : 系统会话已从55转换为 57.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:11
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:10
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:10
+Id          : 566
+Level       : 4
+Message     : 系统会话已从54转换为 55.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:09
+Id          : 566
+Level       : 4
+Message     : 系统会话已从52转换为 54.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:09
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:09
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:09
+Id          : 566
+Level       : 4
+Message     : 系统会话已从51转换为 52.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:08
+Id          : 566
+Level       : 4
+Message     : 系统会话已从49转换为 51.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:08
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:08
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:08
+Id          : 566
+Level       : 4
+Message     : 系统会话已从48转换为 49.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:07
+Id          : 566
+Level       : 4
+Message     : 系统会话已从46转换为 48.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:07
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:07
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:07
+Id          : 566
+Level       : 4
+Message     : 系统会话已从45转换为 46.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从43转换为 45.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:06
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:06
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从42转换为 43.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:05
+Id          : 566
+Level       : 4
+Message     : 系统会话已从41转换为 42.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:05
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:04
+Id          : 566
+Level       : 4
+Message     : 系统会话已从40转换为 41.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:04
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:04
+Id          : 566
+Level       : 4
+Message     : 系统会话已从39转换为 40.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:01
+Id          : 566
+Level       : 4
+Message     : 系统会话已从37转换为 39.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:01
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:59:01
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:59:01
+Id          : 566
+Level       : 4
+Message     : 系统会话已从36转换为 37.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从35转换为 36.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:59:00
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:58:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从34转换为 35.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:58:00
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:58:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从33转换为 34.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:55:13
+Id          : 566
+Level       : 4
+Message     : 系统会话已从32转换为 33.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:55:13
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:45:28
+Id          : 566
+Level       : 4
+Message     : 系统会话已从31转换为 32.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:45:27
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:45:27
+Id          : 566
+Level       : 4
+Message     : 系统会话已从30转换为 31.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:19:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从28转换为 30.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:19:17
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 9:19:16
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:19:16
+Id          : 566
+Level       : 4
+Message     : 系统会话已从27转换为 28.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:19:16
+Id          : 566
+Level       : 4
+Message     : 系统会话已从25转换为 27.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:19:16
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 9:19:15
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:19:15
+Id          : 566
+Level       : 4
+Message     : 系统会话已从24转换为 25.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:17:15
+Id          : 566
+Level       : 4
+Message     : 系统会话已从22转换为 24.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:17:15
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 9:17:15
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:17:15
+Id          : 566
+Level       : 4
+Message     : 系统会话已从21转换为 22.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:17:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从19转换为 21.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:17:14
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/28 9:17:14
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:17:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从18转换为 19.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:16:24
+Id          : 566
+Level       : 4
+Message     : 系统会话已从17转换为 18.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:16:24
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 9:14:33
+Id          : 566
+Level       : 4
+Message     : 系统会话已从16转换为 17.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 9:14:32
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/28 9:14:32
+Id          : 566
+Level       : 4
+Message     : 系统会话已从15转换为 16.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 8:41:29
+Id          : 566
+Level       : 4
+Message     : 系统会话已从14转换为 15.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 8:41:29
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/28 3:14:44
+Id          : 566
+Level       : 4
+Message     : 系统会话已从13转换为 14.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 3:14:26
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 3:14:26
+Id          : 566
+Level       : 4
+Message     : 系统会话已从12转换为 13.
+              
+              原因 16777220 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 3:14:26
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 3:00:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从11转换为 12.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 3:00:06
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 3:00:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从10转换为 11.
+              
+              原因 16777220 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 3:00:06
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 1:35:57
+Id          : 566
+Level       : 4
+Message     : 系统会话已从9转换为 10.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 1:35:54
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/28 1:35:54
+Id          : 566
+Level       : 4
+Message     : 系统会话已从8转换为 9.
+              
+              原因 16777220 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/28 1:35:54
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/27 18:11:10
+Id          : 566
+Level       : 4
+Message     : 系统会话已从7转换为 8.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 18:11:10
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/27 18:11:10
+Id          : 566
+Level       : 4
+Message     : 系统会话已从6转换为 7.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 14:26:04
+Id          : 566
+Level       : 4
+Message     : 系统会话已从5转换为 6.
+              
+              原因 InputHid 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 14:26:04
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Mouse。
+
+TimeCreated : 2026/7/27 14:26:04
+Id          : 566
+Level       : 4
+Message     : 系统会话已从4转换为 5.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 14:26:03
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/27 14:26:03
+Id          : 566
+Level       : 4
+Message     : 系统会话已从3转换为 4.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 14:26:03
+Id          : 566
+Level       : 4
+Message     : 系统会话已从1转换为 3.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 14:26:03
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/27 14:26:00
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: SC_MONITORPOWER。
+
+TimeCreated : 2026/7/27 14:26:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从0转换为 1.
+              
+              原因 SleepButton 
+              
+              BootId： 22
+
+TimeCreated : 2026/7/27 9:35:38
+Id          : 41
+Level       : 1
+Message     : 系统已在未先正常关机的情况下重新启动。如果系统停止响应、发生崩溃或意外断电，则可能会导致此错误。
+
+TimeCreated : 2026/7/27 9:35:38
+Id          : 125
+Level       : 4
+Message     : 已枚举高级配置和电源接口热区域 \_TZ.CPUZ。             
+              _PSV = 0K             
+              _TC1 = 0             
+              _TC2 = 0             
+              _TSP = 0ms             
+              _AC0 = 0K             
+              _AC1 = 0K             
+              _AC2 = 0K             
+              _AC3 = 0K             
+              _AC4 = 0K             
+              _AC5 = 0K             
+              _AC6 = 0K             
+              _AC7 = 0K             
+              _AC8 = 0K             
+              _AC9 = 0K             
+              _CRT = 401K             
+              _HOT = 0K             
+              最低限制 = 0             
+              _CR3 = 0K
+
+TimeCreated : 2026/7/27 8:41:52
+Id          : 566
+Level       : 4
+Message     : 系统会话已从100转换为 101.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 8:41:52
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/27 3:17:15
+Id          : 566
+Level       : 4
+Message     : 系统会话已从99转换为 100.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 3:17:08
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/27 3:17:08
+Id          : 566
+Level       : 4
+Message     : 系统会话已从98转换为 99.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 3:17:08
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/27 3:00:11
+Id          : 566
+Level       : 4
+Message     : 系统会话已从97转换为 98.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 3:00:06
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/27 3:00:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从96转换为 97.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 3:00:06
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/27 1:19:31
+Id          : 566
+Level       : 4
+Message     : 系统会话已从95转换为 96.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 1:19:17
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/27 1:19:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从94转换为 95.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/27 1:19:17
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 15:20:20
+Id          : 566
+Level       : 4
+Message     : 系统会话已从93转换为 94.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 15:19:14
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 15:19:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从92转换为 93.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 15:19:14
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 12:25:41
+Id          : 566
+Level       : 4
+Message     : 系统会话已从91转换为 92.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 12:25:41
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 12:25:41
+Id          : 566
+Level       : 4
+Message     : 系统会话已从90转换为 91.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 12:25:41
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 11:23:35
+Id          : 566
+Level       : 4
+Message     : 系统会话已从89转换为 90.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 11:22:32
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 11:22:32
+Id          : 566
+Level       : 4
+Message     : 系统会话已从88转换为 89.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 11:22:32
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 11:22:31
+Id          : 566
+Level       : 4
+Message     : 系统会话已从87转换为 88.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 11:21:26
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 11:21:26
+Id          : 566
+Level       : 4
+Message     : 系统会话已从86转换为 87.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 11:21:26
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 11:21:26
+Id          : 566
+Level       : 4
+Message     : 系统会话已从85转换为 86.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 11:19:14
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 11:19:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从84转换为 85.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 11:19:14
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 3:00:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从83转换为 84.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 3:00:01
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 3:00:01
+Id          : 566
+Level       : 4
+Message     : 系统会话已从82转换为 83.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 3:00:01
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 1:19:52
+Id          : 566
+Level       : 4
+Message     : 系统会话已从81转换为 82.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 1:19:42
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/26 1:19:42
+Id          : 566
+Level       : 4
+Message     : 系统会话已从80转换为 81.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/26 1:19:42
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 15:20:25
+Id          : 566
+Level       : 4
+Message     : 系统会话已从79转换为 80.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 15:19:24
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 15:19:24
+Id          : 566
+Level       : 4
+Message     : 系统会话已从78转换为 79.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 15:19:24
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 12:23:55
+Id          : 566
+Level       : 4
+Message     : 系统会话已从77转换为 78.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 12:23:55
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 12:23:55
+Id          : 566
+Level       : 4
+Message     : 系统会话已从76转换为 77.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 12:23:55
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 11:22:49
+Id          : 566
+Level       : 4
+Message     : 系统会话已从75转换为 76.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 11:21:45
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 11:21:45
+Id          : 566
+Level       : 4
+Message     : 系统会话已从74转换为 75.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 11:21:45
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 11:21:44
+Id          : 566
+Level       : 4
+Message     : 系统会话已从73转换为 74.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 11:19:38
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 11:19:38
+Id          : 566
+Level       : 4
+Message     : 系统会话已从72转换为 73.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 11:19:38
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 11:19:37
+Id          : 566
+Level       : 4
+Message     : 系统会话已从71转换为 72.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 11:19:17
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 11:19:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从70转换为 71.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 11:19:17
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 3:00:09
+Id          : 566
+Level       : 4
+Message     : 系统会话已从69转换为 70.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 3:00:06
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 3:00:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从68转换为 69.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 3:00:06
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 1:19:30
+Id          : 566
+Level       : 4
+Message     : 系统会话已从67转换为 68.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 1:19:17
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/25 1:19:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从66转换为 67.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/25 1:19:17
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 21:19:20
+Id          : 566
+Level       : 4
+Message     : 系统会话已从65转换为 66.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 21:19:17
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 21:19:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从64转换为 65.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 21:19:17
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 18:27:21
+Id          : 566
+Level       : 4
+Message     : 系统会话已从63转换为 64.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 18:27:20
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Power Button。
+
+TimeCreated : 2026/7/24 18:27:20
+Id          : 566
+Level       : 4
+Message     : 系统会话已从62转换为 63.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 14:05:07
+Id          : 566
+Level       : 4
+Message     : 系统会话已从60转换为 62.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 14:05:07
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/24 14:03:37
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Idle Timeout。
+
+TimeCreated : 2026/7/24 14:03:37
+Id          : 566
+Level       : 4
+Message     : 系统会话已从59转换为 60.
+              
+              原因 SessionUnlock 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 14:03:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从57转换为 59.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 14:03:06
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/24 12:20:44
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Idle Timeout。
+
+TimeCreated : 2026/7/24 12:20:44
+Id          : 566
+Level       : 4
+Message     : 系统会话已从56转换为 57.
+              
+              原因 SessionUnlock 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 8:37:38
+Id          : 566
+Level       : 4
+Message     : 系统会话已从55转换为 56.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 8:37:38
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/24 3:12:40
+Id          : 566
+Level       : 4
+Message     : 系统会话已从54转换为 55.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 3:12:30
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 3:12:30
+Id          : 566
+Level       : 4
+Message     : 系统会话已从53转换为 54.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 3:12:30
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 3:00:02
+Id          : 566
+Level       : 4
+Message     : 系统会话已从52转换为 53.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 3:00:01
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 3:00:01
+Id          : 566
+Level       : 4
+Message     : 系统会话已从51转换为 52.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 3:00:01
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 1:19:17
+Id          : 566
+Level       : 4
+Message     : 系统会话已从50转换为 51.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 1:19:16
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/24 1:19:16
+Id          : 566
+Level       : 4
+Message     : 系统会话已从49转换为 50.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/24 1:19:16
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/23 18:18:42
+Id          : 566
+Level       : 4
+Message     : 系统会话已从48转换为 49.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 18:18:41
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Power Button。
+
+TimeCreated : 2026/7/23 18:18:41
+Id          : 566
+Level       : 4
+Message     : 系统会话已从47转换为 48.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 18:15:25
+Id          : 566
+Level       : 4
+Message     : 系统会话已从46转换为 47.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 18:15:25
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/23 18:12:55
+Id          : 566
+Level       : 4
+Message     : 系统会话已从45转换为 46.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 18:12:55
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Power Button。
+
+TimeCreated : 2026/7/23 18:12:55
+Id          : 566
+Level       : 4
+Message     : 系统会话已从44转换为 45.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 14:03:00
+Id          : 566
+Level       : 4
+Message     : 系统会话已从42转换为 44.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 14:03:00
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/23 12:19:29
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: Idle Timeout。
+
+TimeCreated : 2026/7/23 12:19:29
+Id          : 566
+Level       : 4
+Message     : 系统会话已从41转换为 42.
+              
+              原因 SessionUnlock 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 8:36:25
+Id          : 566
+Level       : 4
+Message     : 系统会话已从40转换为 41.
+              
+              原因 InputAccelerometer 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 8:36:25
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: Input Keyboard。
+
+TimeCreated : 2026/7/23 3:07:38
+Id          : 566
+Level       : 4
+Message     : 系统会话已从39转换为 40.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 3:07:35
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/23 3:07:35
+Id          : 566
+Level       : 4
+Message     : 系统会话已从38转换为 39.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 3:07:35
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/23 3:00:14
+Id          : 566
+Level       : 4
+Message     : 系统会话已从37转换为 38.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 3:00:07
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/23 3:00:07
+Id          : 566
+Level       : 4
+Message     : 系统会话已从36转换为 37.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 3:00:07
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/23 1:19:23
+Id          : 566
+Level       : 4
+Message     : 系统会话已从35转换为 36.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 1:19:12
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/23 1:19:11
+Id          : 566
+Level       : 4
+Message     : 系统会话已从34转换为 35.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/23 1:19:11
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 15:20:28
+Id          : 566
+Level       : 4
+Message     : 系统会话已从33转换为 34.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 15:19:25
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 15:19:25
+Id          : 566
+Level       : 4
+Message     : 系统会话已从32转换为 33.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 15:19:25
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 12:22:11
+Id          : 566
+Level       : 4
+Message     : 系统会话已从31转换为 32.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 12:22:02
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 12:22:02
+Id          : 566
+Level       : 4
+Message     : 系统会话已从30转换为 31.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 12:22:02
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 11:21:31
+Id          : 566
+Level       : 4
+Message     : 系统会话已从29转换为 30.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 11:20:27
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 11:20:27
+Id          : 566
+Level       : 4
+Message     : 系统会话已从28转换为 29.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 11:20:27
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 11:20:26
+Id          : 566
+Level       : 4
+Message     : 系统会话已从27转换为 28.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 11:19:19
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 11:19:19
+Id          : 566
+Level       : 4
+Message     : 系统会话已从26转换为 27.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 11:19:19
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 3:04:34
+Id          : 566
+Level       : 4
+Message     : 系统会话已从25转换为 26.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 3:04:28
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 3:04:28
+Id          : 566
+Level       : 4
+Message     : 系统会话已从24转换为 25.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 3:04:28
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 3:00:06
+Id          : 566
+Level       : 4
+Message     : 系统会话已从23转换为 24.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 3:00:01
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 3:00:01
+Id          : 566
+Level       : 4
+Message     : 系统会话已从22转换为 23.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 3:00:01
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 1:19:31
+Id          : 566
+Level       : 4
+Message     : 系统会话已从21转换为 22.
+              
+              原因 Unknown 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 1:19:28
+Id          : 506
+Level       : 4
+Message     : 系统正在进入新型待机状态 
+              
+              原因: 16777220。
+
+TimeCreated : 2026/7/22 1:19:28
+Id          : 566
+Level       : 4
+Message     : 系统会话已从20转换为 21.
+              
+              原因 16777220 
+              
+              BootId： 21
+
+TimeCreated : 2026/7/22 1:19:28
+Id          : 507
+Level       : 4
+Message     : 系统正在退出新型待机状态 
+              
+              原因: 16777220。
+
+
+

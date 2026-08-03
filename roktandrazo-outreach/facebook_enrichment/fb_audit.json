@@ -1,0 +1,86 @@
+{
+  "summary": {
+    "total_scanned": 12,
+    "fb_found": 5,
+    "pages_opened": 5,
+    "websites_found": 0,
+    "emails_found": 1,
+    "counts": {
+      "B1_social_verified_low_match": 1,
+      "C_social_contact": 4
+    },
+    "avg_seconds": 5.702593500027433
+  },
+  "results": [
+    {
+      "lead_id": 397,
+      "store": "Bigfoot in the Smokies",
+      "website": "https://bigfootsmokies.com/",
+      "fb_url": "https://www.facebook.com/smokiesbigfoot",
+      "fb_name": "通知",
+      "match": 0.0,
+      "email": "big***",
+      "website_from_fb": "",
+      "classification": "B1_social_verified_low_match",
+      "reason": "FB email, low match (0.00)",
+      "error": "",
+      "elapsed": 6.89503200002946
+    },
+    {
+      "lead_id": 398,
+      "store": "Three Bears General Store",
+      "website": "https://threebearsgeneralstore.com/",
+      "fb_url": "https://www.facebook.com/ThreeBearsGeneralStore",
+      "fb_name": "通知",
+      "match": 0.0,
+      "email": "",
+      "website_from_fb": "",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website",
+      "error": "",
+      "elapsed": 5.921689200040419
+    },
+    {
+      "lead_id": 401,
+      "store": "Heart and Hands",
+      "website": "https://www.handmadefranklintn.com/",
+      "fb_url": "https://www.facebook.com/heartandhands",
+      "fb_name": "通知",
+      "match": 0.0,
+      "email": "",
+      "website_from_fb": "",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website",
+      "error": "",
+      "elapsed": 5.364898900035769
+    },
+    {
+      "lead_id": 402,
+      "store": "The Heirloom Shop",
+      "website": "https://theheirloomshop.com/",
+      "fb_url": "https://www.facebook.com/TheHeirloomShop",
+      "fb_name": "通知",
+      "match": 0.0,
+      "email": "",
+      "website_from_fb": "",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website",
+      "error": "",
+      "elapsed": 5.156024900032207
+    },
+    {
+      "lead_id": 403,
+      "store": "White s Mercantile",
+      "website": "https://whitesmercantile.com/",
+      "fb_url": "https://www.facebook.com/whitesmercantile",
+      "fb_name": "通知",
+      "match": 0.0,
+      "email": "",
+      "website_from_fb": "",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website",
+      "error": "",
+      "elapsed": 5.175322499999311
+    }
+  ]
+}

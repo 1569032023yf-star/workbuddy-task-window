@@ -1,0 +1,58 @@
+============================================================
+BD INVENTORY REPORT — 2026-08-02 14:59 (2026-08-02)
+============================================================
+
+STAGE EXECUTION
+  Orchestrator: v3.1 | stage=inventory | mode=live
+  Lane A (discovery): configuration_blocked (Google Places)
+  Lane B/C/D (staging): empty (no discovery_staging table)
+  5 inventory loops on Memphis → all SSL-blocked (Astrill VPN)
+
+STRICT A0 STATUS
+  Strict A0 (unsent): 4
+  All A0 (incl. sent): 24 | Sent & excluded: 20
+  Target: 120 | Gap: 116
+
+  Unsent A0 leads:
+    #691 Purple Butterfly Kids (Franklin,TN) ev_site=1
+    #695 Vintage to Modern Toys (Johnson City,TN) ev_site=0
+    #735 Steadfast Hobbies (Hot Springs,AR) ev_site=0
+    #739 The Game Piece (Alcoa,TN) ev_site=0
+
+ORGANIZATION OUTREACH OPPORTUNITIES
+  Broad Outreach Ready: 95 orgs (11 in allowed states)
+  A0 + Broad (unique union): 99
+  by allowed state: OR 6, NC 3, MN 2, +4 A0 in TN/AR
+
+REVIEW CENTER
+  Pending: 333 (260 manual_review_needed + 73 contact_form_pool)
+  Total leads: 714
+
+NEAR-A0 UPGRADE POOL
+  A-grade auto_sendable=0 w/ email: 19 total, 10 in allowed states
+    (6 bogus image/sentry/anthropic emails, 4 real but need evidence repair)
+  B-grade w/ email in allowed states: 20 (potential upgrades)
+
+CITY QUEUE
+  [search_matrix_exhausted] Nashville, TN
+    reason: discovery_blocked_lanes_exhausted
+  [search_matrix_exhausted] Memphis, TN
+    reason: all_candidates_ssl_blocked_5days
+  [active] Knoxville, TN → ACTIVE
+  [partial_collection_done] Little Rock, AR
+  [partial_collection_done] Fayetteville, AR
+  [pending] Louisville, KY
+  [pending] Lexington, KY
+
+CITY ADVANCEMENT
+  Memphis → search_matrix_exhausted (all 5 candidates SSL-blocked for 5+ days)
+  Knoxville → activated (19 leads, but 0 B+candidates with websites — all 5 B-grade
+    have no website URLs; 14 A-grade already sent)
+  Next actionable: Lexington, KY (4 B+candidates w/ websites)
+
+BLOCKERS (unchanged)
+  Google Places API not configured → Lane A discovery blocked
+  Astrill VPN HTTPS SSL EOF → all website-based verification fails
+  No discovery_staging table → no staging imports to process
+
+NO SMTP INVOKED, NO FINAL SEND PLAN CREATED (as required)

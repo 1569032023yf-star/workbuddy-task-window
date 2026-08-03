@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-07-27T11:03:53.459456",
+  "master_locations": 35,
+  "imported_to_staging": 35,
+  "crosscheck": {
+    "new_candidate": 33,
+    "exact_duplicate": 0,
+    "identity_duplicate_new_email": 0,
+    "previously_sent": 2,
+    "suppressed": 0,
+    "bounced": 0,
+    "related_location": 0,
+    "manual_review_required": 0
+  },
+  "classification": {
+    "strict_a0_candidate": 1,
+    "manual_review_needed": 15,
+    "low_priority_retail_review": 3,
+    "contact_form_pool": 0,
+    "website_lookup_required": 3,
+    "outside_active_city": 9,
+    "rejected_low_product_fit": 2,
+    "history_blocked": 2
+  },
+  "a0_candidates": [
+    "Tabla Rasa Toys (shop@tablarasatoys.com)"
+  ],
+  "manual_review_list": [
+    "Game Point - A Game Store",
+    "Game Point - A Board Game Cafe",
+    "Tabletops Hobbies & Games",
+    "The Game Cave",
+    "Nashville Toys and Books",
+    "Fairytales Bookstore & More",
+    "Market Street Mercantile",
+    "Made in TN",
+    "Gift Horse",
+    "Nashville Souvenirs (2nd Ave)",
+    "Nashville Souvenirs (McGavock)",
+    "The Museum Store (CMHOF)",
+    "Frist Art Museum",
+    "Rick's Comic City",
+    "The Great Escape (Charlotte)",
+    "Totally Rad Collectors Emporium",
+    "The Bookshop",
+    "Parnassus Books"
+  ],
+  "low_priority_list": [
+    "Miniature Cottage",
+    "Rhino Booksellers",
+    "Defunct Books"
+  ],
+  "test_db": "C:\\Users\\15690\\WorkBuddy\\2026-06-05-15-31-42\\roktandrazo-outreach\\data\\bd_leads_test_nashville_webfetch.db",
+  "production_db_untouched": true,
+  "send_pool_untouched": true,
+  "final_send_plan_rows": 0,
+  "send_log_rows": 329,
+  "new_test_leads": 0
+}

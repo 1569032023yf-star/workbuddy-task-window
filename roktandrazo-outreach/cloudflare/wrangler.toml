@@ -1,0 +1,13 @@
+name = "roktandrazo-email-tracker"
+main = "src/index.js"
+compatibility_date = "2026-07-28"
+
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "roktandrazo-email-tracking"
+database_id = "8517f572-fa56-4511-8109-abfbeac84f47"
+
+[observability]
+enabled = true

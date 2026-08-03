@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-08-03T09:09:07.510177",
+  "status": "partial",
+  "is_wired": true,
+  "ever_sent_live": true,
+  "raw_candidates": 408,
+  "hygiene_passed": 179,
+  "final_sendable": 179,
+  "suggested_daily": 5,
+  "daily_limit": 5,
+  "today_planned": 0,
+  "today_sent": 0,
+  "last_run": "never",
+  "next_planned": "tomorrow 09:00",
+  "oldest_waiting_days": 104,
+  "excluded_replied": 0,
+  "excluded_bounced": 8,
+  "excluded_unsubscribed": 0,
+  "excluded_suppressed": 4,
+  "excluded_already_followed": 4,
+  "excluded_domain_mismatch": 29
+}

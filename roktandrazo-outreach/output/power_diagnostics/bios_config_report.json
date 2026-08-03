@@ -1,0 +1,153 @@
+{
+  "timestamp": "2026-07-28T17:07:22.699610+08:00",
+  "snapshot_before": {
+    "BIOS Power-On Hour": {
+      "value": "14",
+      "is_readonly": true
+    },
+    "BIOS Power-On Minute": {
+      "value": "0",
+      "is_readonly": true
+    },
+    "Sunday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "Monday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "Tuesday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "Wednesday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "Thursday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "Friday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "Saturday": {
+      "value": "*Disable,Enable",
+      "is_readonly": true
+    },
+    "After Power Loss": {
+      "value": "*Power Off,Power On,Previous State",
+      "is_readonly": true
+    },
+    "_timestamp": "2026-07-28T17:07:07.689983+08:00"
+  },
+  "write_results": {
+    "BIOS Power-On Hour": {
+      "wanted": "14",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "BIOS Power-On Minute": {
+      "wanted": "40",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Sunday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Monday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Tuesday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Wednesday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Thursday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Friday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "Saturday": {
+      "wanted": "Enable",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    },
+    "After Power Loss": {
+      "wanted": "Power On",
+      "output": "OK:System.Management.ManagementBaseObject",
+      "ok": true
+    }
+  },
+  "verify_results": {
+    "BIOS Power-On Hour": {
+      "wanted": "14",
+      "actual": "14",
+      "match": true
+    },
+    "BIOS Power-On Minute": {
+      "wanted": "40",
+      "actual": "40",
+      "match": true
+    },
+    "Sunday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "Monday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "Tuesday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "Wednesday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "Thursday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "Friday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "Saturday": {
+      "wanted": "Enable",
+      "actual": "Disable,*Enable",
+      "match": false
+    },
+    "After Power Loss": {
+      "wanted": "Power On",
+      "actual": "Power Off,*Power On,Previous State",
+      "match": false
+    }
+  },
+  "any_write_failed": false,
+  "all_verified": false,
+  "conclusion": "bios_manual_confirmation_required"
+}

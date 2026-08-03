@@ -1,0 +1,96 @@
+{
+  "date": "2026-07-29",
+  "target_strict_a0": 120,
+  "actual_strict_a0": 3,
+  "gap": 117,
+  "strict_a0_organizations": [
+    {
+      "name": "B Side Games",
+      "city": "Spokane",
+      "state": "WA",
+      "email": "bsidegames.info@gmail.com"
+    },
+    {
+      "name": "Sunny Toys",
+      "city": "Memphis",
+      "state": "TN",
+      "email": "micah@micahrich.com"
+    },
+    {
+      "name": "The Great Escape (Charlotte)",
+      "city": "Nashville",
+      "state": "TN",
+      "email": "contactus@thegreatescapeonline.com"
+    }
+  ],
+  "organization_outreach_opportunities": 195,
+  "review_center_pending": 285,
+  "review_center_breakdown": {
+    "manual_review_needed": 213,
+    "contact_form_pool": 72
+  },
+  "city_queue": [
+    {
+      "city": "Nashville",
+      "state": "TN",
+      "priority": 1,
+      "status": "search_matrix_exhausted"
+    },
+    {
+      "city": "Memphis",
+      "state": "TN",
+      "priority": 2,
+      "status": "active"
+    },
+    {
+      "city": "Knoxville",
+      "state": "TN",
+      "priority": 3,
+      "status": "pending"
+    },
+    {
+      "city": "Little Rock",
+      "state": "AR",
+      "priority": 10,
+      "status": "pending"
+    },
+    {
+      "city": "Fayetteville",
+      "state": "AR",
+      "priority": 11,
+      "status": "pending"
+    },
+    {
+      "city": "Louisville",
+      "state": "KY",
+      "priority": 20,
+      "status": "pending"
+    },
+    {
+      "city": "Lexington",
+      "state": "KY",
+      "priority": 21,
+      "status": "pending"
+    }
+  ],
+  "total_leads": 644,
+  "status_distribution": {
+    "sent": 287,
+    "manual_review_needed": 213,
+    "contact_form_pool": 72,
+    "new": 44,
+    "bounced": 11,
+    "delivery_issue": 9,
+    "B": 2,
+    "failed": 2,
+    "A": 1,
+    "C": 1,
+    "approved_manual_send": 1,
+    "bounce_review": 1
+  },
+  "blocks": {
+    "discovery_google_places": "configuration_blocked",
+    "website_verification_https": "astrill_vpn_proxy_ssl_eof",
+    "staging_imports": "empty"
+  }
+}

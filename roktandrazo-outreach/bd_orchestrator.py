@@ -1,0 +1,646 @@
+#!/usr/bin/env python3
+"""
+BD Production Orchestrator v3.1 — Single Entry Point for All BD Automation.
+
+Scheduler authority: Windows Task Scheduler only.
+WorkBuddy Automations: DISABLED for production sends.
+
+Usage:
+  python bd_orchestrator.py --stage morning          # 08:30
+  python bd_orchestrator.py --stage outreach         # 09:00
+  python bd_orchestrator.py --stage post-send        # 00:10
+  python bd_orchestrator.py --stage inventory        # 15:00
+  python bd_orchestrator.py --stage end-of-day       # 17:30
+  python bd_orchestrator.py --stage status           # any time
+  python bd_orchestrator.py --stage outreach --dry-run
+
+All stages are dry-run by default. Pass --live to actually send.
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import signal
+import sqlite3
+import sys
+import time
+import uuid
+from datetime import datetime, timedelta
+from pathlib import Path
+
+# SIGPIPE-safe: prevent BrokenPipeError from skipping finally blocks
+if sys.platform != 'win32':
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+else:
+    # Windows: ignore broken pipe to ensure finally blocks execute
+    try:
+        signal.signal(signal.SIGBREAK, signal.SIG_IGN)
+    except Exception:
+        pass
+
+PROJECT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(PROJECT_DIR))
+
+from bd_db import (
+    get_db, get_config, set_config, set_state, get_state,
+    get_today_sent_asia_shanghai, get_daily_target, get_daily_gap, get_batch_send_counts,
+    get_sendable_leads, is_suppressed, add_to_suppression,
+    update_lead_status, log_send,
+    set_execution_mode, get_execution_mode,
+    get_standing_authorization, set_standing_authorization,
+    get_manual_pause, set_manual_pause,
+    get_scheduler_enabled,
+    get_risk_gate, set_risk_gate, clear_risk_gate, is_risk_gate_active, can_send_live,
+    check_run_lock, acquire_run_lock, release_run_lock,
+    get_scheduler_state,
+    start_job_run, update_job_run, finish_job_run,
+)
+
+OUT_DIR = PROJECT_DIR / 'output'
+OUT_DIR.mkdir(exist_ok=True)
+
+# ── Constants ──────────────────────────────────────────────
+from outreach_control import (
+    FOLLOW_UP_MAX, INVENTORY_CRITICAL_THRESHOLD, INVENTORY_TARGET,
+    INVENTORY_WARNING_THRESHOLD, NEW_OUTREACH_TARGET, outreach_batch_date,
+    may_start_smtp_request,
+)
+SEND_WINDOW_START = 23.0
+SEND_WINDOW_END = 24.0
+BATCH_SIZE = 5
+
+
+def now_cst() -> datetime:
+    """Current Asia/Shanghai time."""
+    return datetime.utcnow() + timedelta(hours=8)
+
+
+def today_cst() -> str:
+    return outreach_batch_date(now_cst())
+
+
+def is_in_send_window() -> bool:
+    return may_start_smtp_request(now_cst())
+
+
+def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
+    """22:30 stage: freeze the only recipients the 23:00 SMTP session may consume."""
+    header("STAGE: Pre-Send (22:30) — Final Send Plan")
+    if not dry_run:
+        update_job_run(run_id, current_step='freeze_final_send_plan', target=NEW_OUTREACH_TARGET)
+    from bd_template import apply_email_to_lead
+    from final_send_plan import create_plan
+    from lead_hygiene_gate import evaluate_a0
+    from production_adapter import build_candidate_from_db_row, build_context
+
+    conn = get_db()
+    context = build_context(conn)
+    eligible = []
+    for row in get_sendable_leads(limit=NEW_OUTREACH_TARGET):
+        candidate = build_candidate_from_db_row(row, context)
+        if evaluate_a0(candidate).a0_eligible:
+            lead = apply_email_to_lead(dict(row))
+            lead['hygiene_passed_at'] = now_cst().isoformat()
+            eligible.append(lead)
+    followups = []
+    try:
+        from workbuddy_candidate_modules.follow_up_queue_builder import build_followup_queue
+        from bd_template import get_email_for_lead
+        for item in build_followup_queue().get('queue', [])[:FOLLOW_UP_MAX]:
+            row = conn.execute("SELECT * FROM leads WHERE id=?", (item['lead_id'],)).fetchone()
+            if not row:
+                continue
+            lead = dict(row)
+            template = get_email_for_lead(lead)
+            lead.update(email_subject=template['subject'], email_body=template['body_text'],
+                        email_body_html=template.get('body_html', ''), hygiene_passed_at=now_cst().isoformat())
+            followups.append(lead)
+    except Exception as exc:
+        log(f"[WARN] Follow-up plan unavailable: {exc}")
+    if dry_run:
+        conn.close()
+        preview = {
+            'new_outreach': len(eligible),
+            'follow_up': len(followups),
+            'lead_ids': [lead['id'] for lead in eligible + followups],
+        }
+        log(f"[DRY RUN] Final Send Plan preview only: new={preview['new_outreach']}, follow-up={preview['follow_up']}")
+        return preview
+    with conn:
+        plan_id = create_plan(conn, eligible, business_date, 'new_outreach')
+        followup_plan_id = create_plan(conn, followups, business_date, 'follow_up')
+    conn.close()
+    log(f"Final plans frozen: new={plan_id} ({len(eligible)}), follow-up={followup_plan_id} ({len(followups)})")
+    finish_job_run(run_id, 'completed', actual=len(eligible), gap=max(0, NEW_OUTREACH_TARGET - len(eligible)))
+    return True
+
+
+def _stage_outreach_from_final_plan(run_id: str, business_date: str, dry_run: bool):
+    """23:00 stage: consume an existing plan; no candidate selection or inventory recovery."""
+    from daily_session import execute_final_send_plan
+    conn = get_db()
+    has_plan = conn.execute(
+        "SELECT 1 FROM final_send_plan WHERE outreach_batch_date=? AND status='planned' LIMIT 1",
+        (business_date,),
+    ).fetchone()
+    conn.close()
+    if not has_plan:
+        log('[BLOCKED] No Final Send Plan for this outreach batch')
+        if not dry_run:
+            finish_job_run(run_id, 'stopped', stop_reason='final_send_plan_missing')
+        return False
+    result = execute_final_send_plan(business_date, dry_run=dry_run)
+    if dry_run:
+        log(f"[DRY RUN] Final-plan preview: {len(result.get('preview', []))} entries")
+        return result
+    counts = get_batch_send_counts(business_date)
+    new_sent = counts.get('new_outreach', 0)
+    gap = max(0, NEW_OUTREACH_TARGET - new_sent)
+    finish_job_run(run_id, 'completed' if gap == 0 else 'underfilled', actual=new_sent, gap=gap,
+                   stop_reason='target_met' if gap == 0 else 'plan_exhausted_or_skipped')
+    log(f"Final-plan outreach complete: new={new_sent}/{NEW_OUTREACH_TARGET}; follow_up={counts.get('follow_up', 0)}/{FOLLOW_UP_MAX}")
+    return gap == 0
+
+
+def header(text: str):
+    print(f"\n{'='*60}\n  {text}\n{'='*60}")
+
+
+def log(*args):
+    ts = now_cst().strftime('%H:%M:%S')
+    print(f"[{ts}]", *args)
+
+
+# ═══════════════════════════════════════════════════════════
+# Stage: morning (08:30)
+# ═══════════════════════════════════════════════════════════
+def stage_morning(run_id: str, business_date: str, dry_run: bool):
+    header("STAGE: Morning (08:30) — Inbox + Risk Recovery + Follow-up Refresh")
+    if dry_run:
+        log('[DRY RUN] Morning preview only; risk gate and job state are unchanged')
+        return {'preview': 'morning_read_only'}
+    update_job_run(run_id, current_step='morning')
+
+    # 1. Run inbox risk recovery
+    log("Running inbox incremental scan...")
+    from bd_db import get_risk_gate, clear_risk_gate
+    gate = get_risk_gate()
+
+    try:
+        from agent_reply_monitor import scan_mailbox
+        scans = scan_mailbox('INBOX', since_days=1, dry_run=dry_run)
+        log(f"  Inbox scan: {len(scans)} messages found")
+    except Exception as e:
+        log(f"  [WARN] Inbox scan failed: {e}")
+        scans = []
+
+    # 2. Auto-clear expired risk gate
+    if not is_risk_gate_active() and gate['status'] == 'temporary_block':
+        log("[AUTO-RECOVERY] Risk gate cooldown expired — clearing")
+        clear_risk_gate()
+        set_config('send_pause', 'false')
+        set_config('pause_reason', '')
+
+    # 3. Refresh follow-up queue
+    log("Refreshing follow-up queue...")
+    try:
+        from workbuddy_candidate_modules.follow_up_queue_builder import build_followup_queue
+        fq = build_followup_queue()
+        log(f"  Follow-up queue: {fq['final_sendable_count']} sendable, suggested daily: {fq['suggested_daily_count']}")
+    except Exception as e:
+        log(f"  [WARN] Follow-up queue refresh failed: {e}")
+        fq = {'final_sendable_count': 0, 'queue': []}
+
+    update_job_run(run_id, current_step='morning_done', status='completed')
+    return True
+
+
+# ═══════════════════════════════════════════════════════════
+# Stage: outreach (09:00) — the main send loop
+# ═══════════════════════════════════════════════════════════
+def stage_outreach(run_id: str, business_date: str, dry_run: bool):
+    header("STAGE: Outreach (23:00) - Final Plan Only")
+
+    if dry_run:
+        return _stage_outreach_from_final_plan(run_id, business_date, dry_run=True)
+
+    if get_manual_pause():
+        log("[BLOCKED] manual_pause=true - cannot send")
+        finish_job_run(run_id, 'stopped', stop_reason='manual_pause')
+        return False
+
+    if not get_standing_authorization():
+        log("[BLOCKED] standing_authorization=false")
+        finish_job_run(run_id, 'stopped', stop_reason='no_authorization')
+        return False
+
+    if not is_in_send_window():
+        log("[SKIP] Outside send window (23:00-23:59:30 Asia/Shanghai)")
+        finish_job_run(run_id, 'stopped', stop_reason='outside_send_window')
+        return False
+
+    today = business_date
+    if not acquire_run_lock(f'outreach:{today}', run_id):
+        log(f"[LOCKED] outreach:{today} already running")
+        finish_job_run(run_id, 'stopped', stop_reason='lock_conflict')
+        return False
+
+    set_execution_mode('daily_outreach')
+    update_job_run(run_id, current_step='outreach_start', target=NEW_OUTREACH_TARGET)
+    try:
+        return _stage_outreach_from_final_plan(run_id, business_date, dry_run)
+    finally:
+        release_run_lock(f'outreach:{today}')
+
+
+def stage_post_send(run_id: str, business_date: str, dry_run: bool):
+    header("STAGE: Post-Send (00:10) — Inbox + Dashboard Update")
+    if dry_run:
+        log('[DRY RUN] Post-send preview only; dashboard and status files are unchanged')
+        return {'preview': 'post_send_read_only'}
+    update_job_run(run_id, current_step='post_send')
+
+    # 1. Incremental inbox scan
+    log("Incremental inbox scan...")
+    try:
+        from agent_reply_monitor import scan_mailbox
+        results = scan_mailbox('INBOX', since_days=0, dry_run=dry_run)
+        log(f"  Messages: {len(results)}")
+        for r in results[:5]:
+            log(f"    [{r['type']}] {r.get('subject', '')[:60]}")
+    except Exception as e:
+        log(f"  [WARN] Inbox scan error: {e}")
+
+    # 2. Reconcile send results
+    today_sent = get_today_sent_asia_shanghai()
+    gap = get_daily_gap()
+    log(f"  Today: {today_sent}/{NEW_OUTREACH_TARGET} (gap: {gap})")
+
+    # 3. Update dashboard
+    log("Generating dashboard...")
+    try:
+        from bd_operations_dashboard import main as generate_operations_dashboard
+        generate_operations_dashboard()
+        log("  Dashboard: bd_operations_dashboard.html")
+    except Exception as e:
+        log(f"  [WARN] Dashboard error: {e}")
+
+    finish_job_run(run_id, 'completed', actual=today_sent, gap=gap)
+    return True
+
+
+# ═══════════════════════════════════════════════════════════
+# Stage: inventory (15:00) — target Strict A0 >= 120
+# ═══════════════════════════════════════════════════════════
+def stage_inventory(run_id: str, business_date: str, dry_run: bool):
+    header("STAGE: Inventory — Target 30 Sendable Orgs, send_enabled=false")
+    if dry_run:
+        # A dry run is deliberately a read-only capacity preview. It never
+        # seeds/advances city cursors or invokes a Places/website provider.
+        conn = get_db()
+        try:
+            a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1, conn=conn))
+        finally:
+            conn.close()
+        preview = {'strict_a0': a0, 'target': INVENTORY_TARGET, 'gap': max(0, INVENTORY_TARGET - a0)}
+        log(f"[DRY RUN] Inventory preview: A0={a0}/{INVENTORY_TARGET}; no provider, website, cursor, or DB writes")
+        return preview
+    set_execution_mode('inventory_recovery')
+    update_job_run(run_id, current_step='inventory_start', target=INVENTORY_TARGET)
+
+    # Lock
+    if not acquire_run_lock(f'inventory:{business_date}', run_id):
+        log("[LOCKED] Inventory already running for today")
+        finish_job_run(run_id, 'stopped', stop_reason='lock_conflict')
+        return False
+
+    try:
+        from retail_city_queue import activate_next_city, seed_default_queue
+        city_conn = get_db()
+        with city_conn:
+            seed_default_queue(city_conn)
+            active_retail_city = activate_next_city(city_conn)
+        city_conn.close()
+        log(f"Active retail city: {active_retail_city['city']}, {active_retail_city['state']} (no city switching)")
+
+        # Lane A: new place discovery. Provider failures are fail-closed and checkpointed.
+        try:
+            from discovery.discovery_service import DiscoveryService
+
+            discovery_pages = int(os.getenv("WORKBUDDY_DISCOVERY_MAX_PAGES", "1"))
+            discovery_conn = get_db()
+            discovery_conn.row_factory = sqlite3.Row
+            with discovery_conn:
+                discovery_summary = DiscoveryService(discovery_conn).run_places_batch(
+                    active_retail_city,
+                    max_pages=max(1, discovery_pages),
+                )
+            discovery_conn.close()
+            log(
+                "  Lane A discovery: "
+                f"{discovery_summary.status} | provider={discovery_summary.provider} | "
+                f"query={discovery_summary.query_family or '-'} | seen={discovery_summary.results_seen} | "
+                f"new_unique={discovery_summary.new_unique_places} | leads_created={discovery_summary.leads_created}"
+            )
+            postprocess_limit = int(os.getenv("WORKBUDDY_STAGING_POSTPROCESS_MAX", "20"))
+            discovery_conn = get_db()
+            discovery_conn.row_factory = sqlite3.Row
+            with discovery_conn:
+                post_summary = DiscoveryService(discovery_conn).run_staging_postprocess(
+                    active_retail_city,
+                    max_results=max(1, postprocess_limit),
+                )
+            discovery_conn.close()
+            log(
+                "  Lane B/C/D staging: "
+                f"{post_summary.status} | processed={post_summary.results_seen} | "
+                f"leads_created={post_summary.leads_created} | statuses={post_summary.validation_statuses}"
+            )
+        except Exception as e:
+            log(f"  [WARN] Lane A discovery unavailable: {e}")
+
+        # Count current through the same gate used by Pre-Send.
+        a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1))
+
+        remaining = max(0, INVENTORY_TARGET - a0)
+        log(f"Current A0: {a0}/{INVENTORY_TARGET}, to collect: {remaining}")
+
+        if remaining == 0:
+            log("[DONE] Inventory target met")
+            finish_job_run(run_id, 'completed', actual=a0, gap=0)
+            return True
+
+        collected = 0
+        loop = 0
+        max_loops = 5
+
+        while remaining > 0 and loop < max_loops:
+            loop += 1
+            log(f"\n  Inventory loop {loop}/{max_loops}: need {remaining}")
+
+            # Try fast_lead_discovery from B2 pool first
+            try:
+                from fast_lead_discovery import process_lead, http_fast_scan, extract_emails
+                import httpx
+                client = httpx.Client(timeout=15, follow_redirects=True)
+
+                conn = get_db()
+                c = conn.cursor()
+                # Lane 1: B2 manual_review_needed
+                candidates = c.execute("""
+                    SELECT * FROM leads WHERE status='manual_review_needed' AND confidence_score='B'
+                    AND official_website IS NOT NULL AND official_website != ''
+                    AND email IS NULL
+                    AND city=? AND state=?
+                    LIMIT 20
+                """, (active_retail_city['city'], active_retail_city['state'])).fetchall()
+                conn.close()
+
+                if not candidates:
+                    # Lane 2: Contact form pool
+                    conn = get_db()
+                    c = conn.cursor()
+                    candidates = c.execute("""
+                        SELECT * FROM leads WHERE status='contact_form_pool'
+                        AND official_website IS NOT NULL AND official_website != ''
+                        AND city=? AND state=?
+                        LIMIT 20
+                    """, (active_retail_city['city'], active_retail_city['state'])).fetchall()
+                    conn.close()
+                    log(f"  Lane 2 (contact_form_pool): {len(candidates)} candidates")
+
+                log(f"  Processing {len(candidates)} candidates...")
+                for cand in candidates[:remaining]:
+                    cd = dict(cand)
+                    website = cd.get('official_website', '')
+                    if not website:
+                        continue
+                    try:
+                        resp = client.get(website)
+                        if resp.status_code == 200:
+                            emails = extract_emails(resp.text)
+                            if emails:
+                                email = emails[0][0]
+                                if not is_suppressed(email):
+                                    log(f"    Found: {cd['store_name']} → {email}")
+                                    if not dry_run:
+                                        conn2 = get_db()
+                                        try:
+                                            from manual_email_workflow import submit_manual_email
+
+                                            with conn2:
+                                                result = submit_manual_email(
+                                                    conn2,
+                                                    cd['id'],
+                                                    'inventory_lane',
+                                                    email=email,
+                                                    evidence_url=website,
+                                                    evidence_snippet=email,
+                                                    evidence_method='official_contact_page',
+                                                    contact_role='business_email',
+                                                    notes='Inventory Lane C official-site email extraction',
+                                                    page_text=resp.text,
+                                                )
+                                            log(f"      hygiene={result.get('final_status')} promoted={result.get('promoted')}")
+                                        finally:
+                                            conn2.close()
+                                    collected += 1
+                    except Exception as e:
+                        log(f"    Skip {cd['store_name']}: {e}")
+            except Exception as e:
+                log(f"  [WARN] Lane error: {e}")
+
+            # Recheck through the same gate used by Pre-Send.
+            a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1))
+            remaining = max(0, INVENTORY_TARGET - a0)
+            log(f"  After loop {loop}: A0={a0}, remaining={remaining}")
+
+        final_a0 = a0
+        final_gap = max(0, INVENTORY_TARGET - final_a0)
+
+        if final_gap == 0:
+            finish_job_run(run_id, 'completed', actual=final_a0, gap=0)
+        else:
+            finish_job_run(run_id, 'partial', actual=final_a0, gap=final_gap,
+                           stop_reason='max_loops_reached')
+
+        log(f"\nInventory done: A0={final_a0}/{INVENTORY_TARGET}")
+        return final_gap == 0
+
+    finally:
+        # ALWAYS release lock, even on crash
+        release_run_lock(f'inventory:{business_date}')
+
+
+# ═══════════════════════════════════════════════════════════
+# Stage: end-of-day (17:30) — Dashboard + Daily Summary
+# ═══════════════════════════════════════════════════════════
+def stage_end_of_day(run_id: str, business_date: str, dry_run: bool):
+    header("STAGE: End-of-Day (17:30) — Dashboard + Daily Summary")
+    if dry_run:
+        log('[DRY RUN] End-of-day preview only; production reports are unchanged')
+        return {'preview': 'end_of_day_read_only'}
+    update_job_run(run_id, current_step='eod_start')
+
+    # 1. Final inbox scan
+    log("Final inbox scan...")
+    try:
+        from agent_reply_monitor import scan_mailbox
+        scans = scan_mailbox('INBOX', since_days=1, dry_run=dry_run)
+        hard_bounces = len([s for s in scans if s['type'] == 'hard_bounce'])
+        replies = len([s for s in scans if s['type'] in ('reply', 'hot_reply', 'warm_reply')])
+        unsubs = len([s for s in scans if s['type'] == 'unsubscribe'])
+        log(f"  Hard bounces: {hard_bounces}, Replies: {replies}, Unsubs: {unsubs}")
+    except Exception as e:
+        log(f"  [WARN] Inbox scan error: {e}")
+        hard_bounces, replies, unsubs = 0, 0, 0
+
+    # 2. Collect stats
+    today_sent = get_today_sent_asia_shanghai()
+    conn = get_db()
+    c = conn.cursor()
+    a0_count = len(get_sendable_leads(limit=INVENTORY_TARGET + 1, conn=conn))
+    total_leads = c.execute("SELECT COUNT(*) FROM leads").fetchone()[0]
+    total_sent_all = c.execute("SELECT COUNT(*) FROM send_log WHERE status='sent'").fetchone()[0]
+    conn.close()
+
+    # 3. Generate dashboard
+    log("Generating dashboard...")
+    try:
+        from dashboard import generate_dashboard
+        dash_path = generate_dashboard(str(OUT_DIR / 'bd_operations_dashboard.html'))
+        log(f"  Dashboard: {dash_path}")
+    except Exception as e:
+        log(f"  [WARN] Dashboard error: {e}")
+        dash_path = ''
+
+    # 4. Generate daily summary report JSON
+    import json
+    summary = {
+        'date': business_date,
+        'new_outreach_sent': today_sent,
+        'new_outreach_target': NEW_OUTREACH_TARGET,
+        'new_outreach_gap': max(0, NEW_OUTREACH_TARGET - today_sent),
+        'followup_sent': 0,  # populated by outreach stage
+        'hard_bounces': hard_bounces,
+        'replies': replies,
+        'unsubscribes': unsubs,
+        'a0_sendable': a0_count,
+        'inventory_target': INVENTORY_TARGET,
+        'inventory_gap': max(0, INVENTORY_TARGET - a0_count),
+        'total_leads': total_leads,
+        'total_sent_all': total_sent_all,
+        'risk_gate': get_risk_gate()['status'],
+        'generated_at': now_cst().isoformat(),
+    }
+    json_path = OUT_DIR / 'latest_operations_report.json'
+    with open(json_path, 'w') as f:
+        json.dump(summary, f, indent=2, default=str)
+    log(f"  JSON report: {json_path}")
+
+    # Also write end_of_day_status.json for downstream consumers
+    eod_path = OUT_DIR / 'end_of_day_status.json'
+    with open(eod_path, 'w') as f:
+        json.dump(summary, f, indent=2, default=str)
+    log(f"  EOD status: {eod_path}")
+
+    # 5. Daily summary delivery is not routed through the outreach SMTP sender.
+    report_to = get_config('BD_REPORT_TO') or ''
+    if report_to:
+        log(f"  Report recipient configured: {report_to}")
+        log("  [INFO] Summary email delivery requires a controlled report channel; outreach SMTP is not used.")
+    else:
+        log("  [INFO] BD_REPORT_TO not configured - skipping summary email")
+
+    finish_job_run(run_id, 'completed', actual=today_sent)
+    return True
+
+
+# ═══════════════════════════════════════════════════════════
+# Stage: status — read-only query
+# ═══════════════════════════════════════════════════════════
+def stage_status():
+    """Read-only status. No model call, no collection, no send."""
+    header("STAGE: Status (read-only)")
+
+    today_sent = get_today_sent_asia_shanghai()
+    gap = get_daily_gap()
+    target = get_daily_target()
+
+    conn = get_db()
+    c = conn.cursor()
+    a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1, conn=conn))
+    total = c.execute("SELECT COUNT(*) FROM leads").fetchone()[0]
+    total_sent = c.execute("SELECT COUNT(*) FROM send_log WHERE status='sent'").fetchone()[0]
+    today_bounce = c.execute("SELECT COUNT(*) FROM bounce_log WHERE date(bounce_received_at)=?",
+                             (today_cst(),)).fetchone()[0]
+    conn.close()
+
+    gate = get_risk_gate()
+
+    print(f"  Today:          {today_sent}/{target} (gap: {gap})")
+    print(f"  Today bounces:  {today_bounce}")
+    print(f"  A0 sendable:    {a0}")
+    print(f"  Total inventory: {total} ({total_sent} sent)")
+    print(f"  Risk gate:      {gate['status']} ({gate['reason'] or 'N/A'})")
+    print(f"  Manual pause:   {get_manual_pause()}")
+    print(f"  Standing auth:  {get_standing_authorization()}")
+    print(f"  Scheduler:      {'ENABLED' if get_scheduler_enabled() else 'DISABLED'}")
+
+    return True
+
+
+# ═══════════════════════════════════════════════════════════
+# MAIN
+# ═══════════════════════════════════════════════════════════
+def main():
+    parser = argparse.ArgumentParser(description='BD Production Orchestrator v3.1')
+    parser.add_argument('--stage', required=True,
+                        choices=['morning', 'pre-send', 'outreach', 'post-send', 'inventory', 'end-of-day', 'status'])
+    parser.add_argument('--dry-run', action='store_true', default=True, help='Dry run (default)')
+    parser.add_argument('--live', action='store_true', help='Actually send emails')
+    args = parser.parse_args()
+
+    dry_run = not args.live
+    business_date = today_cst()
+    run_id = f"{args.stage}:{business_date}:{uuid.uuid4().hex[:8]}"
+
+    log(f"BD Orchestrator v3.1 | stage={args.stage} | dry_run={dry_run}")
+    log(f"Business date: {business_date} | run_id: {run_id}")
+
+    # Start job run record
+    target_map = {
+        'morning': 0, 'pre-send': NEW_OUTREACH_TARGET, 'outreach': NEW_OUTREACH_TARGET,
+        'post-send': 0, 'inventory': INVENTORY_TARGET, 'end-of-day': 0, 'status': 0,
+    }
+    job_run_started = args.stage != 'status' and not dry_run
+    if job_run_started:
+        start_job_run(run_id, args.stage, business_date, target=target_map.get(args.stage, 0), dry_run=dry_run)
+
+    try:
+        if args.stage == 'morning':
+            stage_morning(run_id, business_date, dry_run)
+        elif args.stage == 'pre-send':
+            stage_pre_send(run_id, business_date, dry_run)
+        elif args.stage == 'outreach':
+            stage_outreach(run_id, business_date, dry_run)
+        elif args.stage == 'post-send':
+            stage_post_send(run_id, business_date, dry_run)
+        elif args.stage == 'inventory':
+            stage_inventory(run_id, business_date, dry_run)
+        elif args.stage == 'end-of-day':
+            stage_end_of_day(run_id, business_date, dry_run)
+        elif args.stage == 'status':
+            stage_status()
+    except Exception as e:
+        import traceback
+        error_msg = f"{e}\n{traceback.format_exc()}"
+        log(f"[FATAL] {error_msg}")
+        if job_run_started:
+            finish_job_run(run_id, 'failed', error=error_msg[:500])
+        print(error_msg)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

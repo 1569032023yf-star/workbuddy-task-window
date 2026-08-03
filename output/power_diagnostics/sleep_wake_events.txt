@@ -1,0 +1,1255 @@
+﻿
+
+TimeCreated      : 2026/7/28 16:05:41
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 16:05:41
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 16:05:40
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 16:05:39
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 14:06:13
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 14:03:54
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Idle Timeout。
+
+TimeCreated      : 2026/7/28 14:03:23
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 14:01:47
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Idle Timeout。
+
+TimeCreated      : 2026/7/28 14:01:12
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 13:04:16
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 13:04:16
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 12:03:10
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 12:03:00
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 12:03:00
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 12:02:59
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 12:02:58
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 11:21:39
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎28T03:21:39.192539200Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎28T03:21:39.192671600Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 11944).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎28T11:21:39.192671600Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/28 10:06:41
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 10:06:40
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 10:06:40
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 10:06:17
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:15
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:15
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:14
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:14
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:12
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:11
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:11
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:10
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:09
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:09
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:08
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:08
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:07
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:07
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:06
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:06
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:05
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:04
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:01
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:59:01
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:59:00
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:58:00
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:55:13
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:45:27
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:19:17
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 9:19:16
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:19:16
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 9:19:15
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:17:15
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 9:17:15
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:17:14
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/28 9:17:14
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:16:24
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 9:14:32
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/28 9:10:59
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎28T01:10:59.026632200Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎28T01:10:59.026874000Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 5228).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎28T09:10:59.026874000Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/28 8:41:29
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/28 3:14:26
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 3:14:26
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 3:00:06
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎27T19:00:06.761402600Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎27T19:00:06.762002000Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 5228).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎28T03:00:06.762002000Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/28 3:00:06
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 3:00:06
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 1:35:54
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/28 1:35:54
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/27 18:11:10
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/27 14:26:04
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Mouse。
+
+TimeCreated      : 2026/7/27 14:26:03
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/27 14:26:03
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/27 14:26:00
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: SC_MONITORPOWER。
+
+TimeCreated      : 2026/7/27 9:35:53
+Id               : 1
+LevelDisplayName : 信息
+Message          : Secure Trustlet \??\C:\Windows\System32\NgcIso.exe Id 6 and Pid 5180 started with status STATUS_SUCCESS.
+
+TimeCreated      : 2026/7/27 9:35:52
+Id               : 1
+LevelDisplayName : 信息
+Message          : 文件系统筛选器“CldFlt”(版本 10.0，‎2090‎-‎09‎-‎14T23:16:11.000000000Z)已成功卸载。
+
+TimeCreated      : 2026/7/27 9:35:52
+Id               : 1
+LevelDisplayName : 信息
+Message          : Secure Trustlet \??\C:\Windows\system32\lsaiso.exe Id 1 and Pid 1756 started with status STATUS_SUCCESS.
+
+TimeCreated      : 2026/7/27 9:35:52
+Id               : 6008
+LevelDisplayName : 错误
+Message          : 上一次系统的 9:24:52 在 ‎2026/‎7/‎27 上的关闭是意外的。
+
+TimeCreated      : 2026/7/27 9:35:36
+Id               : 1
+LevelDisplayName : 信息
+Message          : 虚拟机监控程序已成功启动。
+
+TimeCreated      : 2026/7/27 8:41:52
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/27 3:17:08
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/27 3:17:08
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/27 3:00:06
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/27 3:00:06
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/27 1:19:17
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/27 1:19:17
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 15:19:14
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 15:19:14
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 12:25:41
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 12:25:41
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 11:22:32
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 11:22:32
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 11:21:26
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 11:21:26
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 11:20:15
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎26T03:20:15.110944000Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎26T03:20:15.111584600Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 68444).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎26T11:20:15.111584600Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/26 11:20:15
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎26T03:20:15.106976000Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎26T03:20:15.107502000Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 68444).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎26T11:20:15.107502000Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/26 11:20:15
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎26T03:20:18.031740100Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎26T03:20:15.103676900Z： -2928 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 68444).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎26T11:20:15.103676900Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/26 11:19:14
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 11:19:14
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 3:00:01
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎25T19:00:01.687881900Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎25T19:00:01.688081300Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 68444).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎26T03:00:01.688081300Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/26 3:00:01
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 3:00:01
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 1:19:42
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎25T17:19:42.698856900Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎25T17:19:42.698940100Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 68444).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎26T01:19:42.698940100Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/26 1:19:42
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/26 1:19:42
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 15:19:24
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 15:19:24
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 12:23:55
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 12:23:55
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 11:21:45
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 11:21:45
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 11:19:38
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 11:19:38
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 11:19:17
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 11:19:17
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 3:00:06
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 3:00:06
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 1:19:17
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/25 1:19:17
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 21:19:17
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 21:19:17
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 18:27:20
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Power Button。
+
+TimeCreated      : 2026/7/24 16:39:07
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎24T08:39:07.753315200Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎24T08:39:07.753188000Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 60300).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎24T16:39:07.753188000Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/24 14:05:07
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/24 14:03:37
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Idle Timeout。
+
+TimeCreated      : 2026/7/24 14:03:06
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/24 12:20:44
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Idle Timeout。
+
+TimeCreated      : 2026/7/24 8:37:38
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/24 3:12:30
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 3:12:30
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 3:00:01
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 3:00:01
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 1:19:16
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/24 1:19:16
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/23 18:18:41
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Power Button。
+
+TimeCreated      : 2026/7/23 18:15:25
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/23 18:12:55
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Power Button。
+
+TimeCreated      : 2026/7/23 14:03:00
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/23 12:19:29
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: Idle Timeout。
+
+TimeCreated      : 2026/7/23 12:00:06
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎23T04:00:06.163056700Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎23T04:00:06.163065600Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 55068).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎23T12:00:06.163065600Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/23 12:00:06
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎23T04:00:06.155909700Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎23T04:00:06.155877900Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 55068).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎23T12:00:06.155877900Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/23 12:00:06
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎23T04:00:07.590215200Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎23T04:00:06.151543700Z： -1438 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 55068).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎23T12:00:06.151543700Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/23 8:36:25
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: Input Keyboard。
+
+TimeCreated      : 2026/7/23 3:07:35
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/23 3:07:35
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/23 3:00:07
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/23 3:00:07
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/23 1:19:12
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/23 1:19:11
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 15:19:25
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 15:19:25
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 12:22:02
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 12:22:02
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 11:20:27
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 11:20:27
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 11:20:20
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎22T03:20:20.970828600Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎22T03:20:20.971690200Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 34876).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎22T11:20:20.971690200Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/22 11:20:20
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎22T03:20:20.969283000Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎22T03:20:20.969171800Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 34876).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎22T11:20:20.969171800Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/22 11:20:20
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎22T03:20:23.908121400Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎22T03:20:20.966248800Z： -2941 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 34876).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎22T11:20:20.966248800Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/22 11:19:19
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎22T03:19:19.129136800Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎22T03:19:19.129957300Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 34876).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎22T11:19:19.129957300Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/22 11:19:19
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 11:19:19
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 3:04:28
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 3:04:28
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 3:00:01
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 3:00:01
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 1:19:28
+Id               : 1
+LevelDisplayName : 信息
+Message          : 系统时间已从 ‎2026‎-‎07‎-‎21T17:19:28.337697300Z.
+                   时间增量更改为 ‎2026‎-‎07‎-‎21T17:19:28.337924900Z： 0 ms
+                   
+                   更改原因： An application or system component changed the time.
+                   进程： '\Device\HarddiskVolume3\Windows\System32\svchost.exe' (PID 34876).
+                   
+                   RTC 时间： ‎2026‎-‎07‎-‎22T01:19:28.337924900Z
+                   当前时区偏差 -480
+                   RTC 时间以 UTC： false
+                   系统时间基于 RTC 时间： false
+
+TimeCreated      : 2026/7/22 1:19:28
+Id               : 506
+LevelDisplayName : 信息
+Message          : 系统正在进入新型待机状态 
+                   
+                   原因: 16777220。
+
+TimeCreated      : 2026/7/22 1:19:28
+Id               : 507
+LevelDisplayName : 信息
+Message          : 系统正在退出新型待机状态 
+                   
+                   原因: 16777220。
+
+
+
+Found 163 sleep/wake events

@@ -1,0 +1,27 @@
+  [UNKNOWN_REPLY  ] From: TikTok Shop Seller Center <no-reply@mail | TikTok Shop商家验证码
+  [UNKNOWN_REPLY  ] From: TikTok Shop Seller Center <no-reply@mail | TikTok 小店账户新用户登录
+  [BOUNCE         ] From: "PostMaster" <PostMaster@roktandrazo.com | 来自roktandrazo.com的退信
+  [BOUNCE         ] From: "PostMaster" <PostMaster@roktandrazo.com | 来自roktandrazo.com的退信
+  Bounces total: 2 (hard: 0)
+  Replies: 0
+  Unsubscribes: 0
+  Auto-replies: 0
+  [RISK-DRY] Would pause for: Total bounce >= 2 (2)
+
+============================================================
+  STEP 7: Daily Report
+============================================================
+
+  Report saved: C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\output\auto_report_2026-07-14.md
+
+============================================================
+ORCHESTRATION COMPLETE
+============================================================
+  Sent today:     7
+  Hard bounces:   0
+  Replies:        0
+  A0 remaining:   18
+  AMS remaining:  0
+  [PAUSED] Total bounce >= 2 (2)
+  Report:         C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\output\auto_report_2026-07-14.md
+  send_pause:     false

@@ -1,0 +1,39 @@
+﻿
+
+TimeCreated : 2026/7/28 9:57:23
+Id          : 12
+Level       : 4
+Message     : 进程 C:\Windows\System32\powercfg.exe (进程 ID: 5828)将策略方案从 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673} 重置为 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673}
+
+TimeCreated : 2026/7/28 8:52:00
+Id          : 12
+Level       : 4
+Message     : 进程 C:\Windows\ImmersiveControlPanel\SystemSettings.exe (进程 ID: 41608)将策略方案从 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673} 重置为 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673}
+
+TimeCreated : 2026/7/28 8:51:55
+Id          : 12
+Level       : 4
+Message     : 进程 C:\Windows\ImmersiveControlPanel\SystemSettings.exe (进程 ID: 41608)将策略方案从 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673} 重置为 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673}
+
+TimeCreated : 2026/7/28 8:51:50
+Id          : 12
+Level       : 4
+Message     : 进程 C:\Windows\ImmersiveControlPanel\SystemSettings.exe (进程 ID: 41608)将策略方案从 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673} 重置为 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673}
+
+TimeCreated : 2026/7/28 8:45:37
+Id          : 51
+Level       : 4
+Message     : 进程 C:\Windows\ImmersiveControlPanel\SystemSettings.exe (进程 ID: 9924)将覆盖策略方案从 {00000000-0000-0000-0000-000000000000} 重置为 {ded574b5-45a0-4f42-8737-46345c09c238}
+
+TimeCreated : 2026/7/27 14:14:50
+Id          : 12
+Level       : 4
+Message     : 进程 C:\Windows\ImmersiveControlPanel\SystemSettings.exe (进程 ID: 29676)将策略方案从 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673} 重置为 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673}
+
+TimeCreated : 2026/7/27 9:35:53
+Id          : 12
+Level       : 4
+Message     : 进程 C:\Windows\System32\DriverStore\FileRepository\u0199853.inf_amd64_54011b271628ecaf\B025807\atieclxx.exe (进程 ID: 4060)将策略方案从 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673} 重置为 {fb5220ff-7e1a-47aa-9a42-50ffbf45c673}
+
+
+

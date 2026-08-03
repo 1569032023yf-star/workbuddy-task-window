@@ -1,0 +1,24 @@
+﻿Manufacturer: HP
+Model: HP ZHAN 99 Pro 23.8 inch G9 All-in-One Desktop PC
+SystemFamily: 103C_53307F HP ProOne
+SystemSKU: 69C00PC#AB2
+TotalPhysicalMemory: 15.7 GB
+
+BIOS Manufacturer: HP
+BIOS Version: U13 Ver. 02.22.01
+BIOS ReleaseDate: 05/14/2026 08:00:00
+BIOS SerialNumber (masked): 8CN***WDQ
+
+Windows: Microsoft Windows 11 家庭版 中文版
+Build: 26200
+Version: 10.0.26200
+Architecture: 64 位
+InstallDate: 06/02/2026 10:51:37
+LastBootUpTime: 07/27/2026 09:35:35
+
+BaseBoard: HP 8958
+
+IdentifyingNumber: 8CN3060WDQ
+ProductName: HP ZHAN 99 Pro 23.8 inch G9 All-in-One Desktop PC
+ProductVendor: HP
+ProductVersion: SBKPFV3

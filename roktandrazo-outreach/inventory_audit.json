@@ -1,0 +1,31 @@
+{
+  "mode": "morning",
+  "target": 60,
+  "loops": 2,
+  "total_a0": 0,
+  "total_b1": 3,
+  "total_c": 4,
+  "total_rejected": 11,
+  "final_pool": 2,
+  "reached": false,
+  "hard_stop": "Candidate queue exhausted",
+  "states": [
+    "AR",
+    "KY",
+    "TN"
+  ],
+  "cities": [
+    "Bentonville",
+    "Bowling Green",
+    "Clarksville",
+    "Franklin",
+    "Jackson",
+    "Johnson City",
+    "Kingsport",
+    "Lexington",
+    "Memphis",
+    "Morristown",
+    "Pigeon Forge"
+  ],
+  "write_enabled": true
+}

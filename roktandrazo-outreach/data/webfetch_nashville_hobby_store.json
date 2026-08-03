@@ -1,0 +1,90 @@
+{
+  "provider": "webfetch_google_maps",
+  "query_family": "hobby store", "query": "hobby store Nashville TN",
+  "city": "Nashville", "state": "TN",
+  "status": "partial_first_page_collected",
+  "raw_hits": 7,
+  "duplicate_location_hits": 2,
+  "new_locations_discovered": 5,
+  "new_kept_locations": 3,
+  "new_nashville_locations_discovered": 3,
+  "new_nashville_locations_kept": 2,
+  "new_outside_locations": 2,
+  "rejected_low_product_fit": 1,
+  "new_manual_review_candidate": 1,
+  "new_low_priority_retail_review": 1,
+  "new_contact_form_candidate": 0,
+  "new_official_email_verified_candidates": 1,
+  "new_search_only_email_candidates": 1,
+  "duplicate_details": [
+    {"business_name":"Tabletops Hobbies & Games","location_key":"tabletops_hobbies_games|nashville|tn"},
+    {"business_name":"Phillips Toy Mart","location_key":"phillips_toy_mart|nashville|tn"}
+  ],
+  "results": [
+    {
+      "business_name":"Miniature Cottage","location_key":"miniature_cottage|nashville|tn",
+      "formatted_address":"410 E Iris Dr, Nashville, TN 37204",
+      "city":"Nashville","state":"TN",
+      "phone":"(615) 298-2872",
+      "official_website":"https://miniaturecottage.com","normalized_domain":"miniaturecottage.com",
+      "candidate_email":"miniaturecottage@gmail.com",
+      "email_verification_status":"official_email_verified_candidate",
+      "email_evidence_url":"https://miniaturecottage.com/about-us",
+      "email_evidence_snippet":"\"Contact info: 615.298.2872 miniaturecottage@gmail.com\" — official website",
+      "email_role":"general_inquiry","domain_match":false,
+      "active_city_match":true,
+      "classification":"low_priority_retail_review",
+      "review_reason_code":"low_product_fit_public_email",
+      "official_email_verified":true,"auto_sendable":false,
+      "product_evidence":"Dollhouse miniatures specialty store. 45 years. No puzzles/board games/card games. NAICS 451120.",
+      "note":"Verified public email but product fit low. Not counted in first-outreach opportunities."
+    },
+    {
+      "business_name":"Family Hobbies","location_key":"family_hobbies|smyrna|tn",
+      "formatted_address":"215 S Lowry St, Smyrna, TN 37167",
+      "city":"Smyrna","state":"TN",
+      "phone":"(615) 355-0775",
+      "official_website":"https://familyhobbies.net","normalized_domain":"familyhobbies.net",
+      "candidate_email":"billy@familyhobbies.net",
+      "email_verification_status":"candidate_email_from_search",
+      "active_city_match":false,
+      "classification":"outside_active_city",
+      "product_evidence":"RC primary, but carries puzzles, children's toys, plastic models per business description.",
+      "note":"Smyrna, TN. Outside Nashville. Third-party directory email, not official-site-verified."
+    },
+    {
+      "business_name":"Totally Rad Collectors Emporium","location_key":"totally_rad_collectors|nashville|tn",
+      "formatted_address":"2416 Music Valley Dr Ste 118, Nashville, TN 37214",
+      "city":"Nashville","state":"TN",
+      "phone":"(615) 200-7109",
+      "official_website":"","normalized_domain":"",
+      "google_maps_url":"https://www.google.com/maps/place/Totally+Rad+Collectors+Emporium/",
+      "candidate_email":"",
+      "email_verification_status":"website_lookup_required",
+      "active_city_match":true,
+      "classification":"manual_review_candidate",
+      "review_reason_code":"website_lookup_required",
+      "note":"Toy store with collectibles. Same complex as Smart Art (Music Valley Dr). No website found. Phone only."
+    },
+    {
+      "business_name":"Smart Art + Craft Supplies","location_key":"smart_art_craft_supplies|nashville|tn",
+      "formatted_address":"2416 Music Valley Dr #106, Nashville, TN 37214",
+      "city":"Nashville","state":"TN",
+      "phone":"(615) 454-5808",
+      "active_city_match":true,
+      "classification":"rejected_low_product_fit",
+      "product_evidence":"Art supply store. No puzzle/game/toy products. Not relevant for puzzle wholesale.",
+      "note":"Discovered location, counted in total but rejected for product fit."
+    },
+    {
+      "business_name":"Extreme Hobby Shop","location_key":"extreme_hobby_shop|tn",
+      "formatted_address":"5311 Main St Ste B, Spring Hill, TN 37174",
+      "city":"Spring Hill","state":"TN",
+      "phone":"(931) 451-5500",
+      "active_city_match":false,
+      "classification":"outside_active_city",
+      "note":"931 area code, RC-focused. Outside Nashville metro."
+    }
+  ],
+  "_integrity":{"production_db_not_modified":true,"send_pool_not_touched":true}
+}

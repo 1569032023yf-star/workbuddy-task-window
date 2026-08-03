@@ -1,0 +1,54 @@
+﻿=== HP SERVICES ===
+
+Name                           DisplayName                             Status S
+                                                                              t
+                                                                              a
+                                                                              r
+                                                                              t
+                                                                              T
+                                                                              y
+                                                                              p
+                                                                              e
+----                           -----------                             ------ -
+HotKeyServiceDSU               HP DSU Service                         Running c
+HP Comm Recover                HP Comm Recovery                       Running c
+HPAppHelperCap                 HP App Helper HSA Service              Running c
+hpatchmon                      Hotpatch Monitoring Service            Stopped l
+HPDiagsCap                     HP Diagnostics HSA Service             Running c
+HPNetworkCap                   HP Network HSA Service                 Running c
+hpqcaslwmiex                   HP CASL Framework Service              Running l
+hpsvcsscan                     HP Services Scan                       Running c
+HPSysInfoCap                   HP System Info HSA Service             Running c
+HpTouchpointAnalyticsService   HP Insights Analytics                  Running c
+LanWlanWwanSwitchingServiceDSU HP DSU LAN/WLAN/WWAN Switching Service Running c
+SFUService                     HP SFU Service                         Running c
+
+
+
+=== HP INSTALLED APPS ===
+
+DisplayName      DisplayVersion Publisher
+-----------      -------------- ---------
+HP Documentation 1.0.0.1        HP Inc.  
+
+
+
+DisplayName                DisplayVersion Publisher
+-----------                -------------- ---------
+HP Connection Optimizer    2.0.19.0       HP       
+HP Notifications           1.1.28.1       HP       
+HP System Default Settings 1.4.16.6       HP Inc.  
+
+
+
+=== HP PRESENCE/AUTO LOCK CHECK ===
+HP Auto Lock and Awake : Service=False Running=False Installed=False
+HP Presence Aware : Service=False Running=False Installed=False
+HP Command Center : Service=False Running=False Installed=False
+HP GlamCam : Service=False Running=False Installed=False
+HP Display Control : Service=False Running=False Installed=False
+HP System Event Utility : Service=False Running=False Installed=False
+HP Power Manager : Service=False Running=False Installed=False
+HP Sure Sense : Service=False Running=False Installed=False
+HP Security : Service=False Running=False Installed=False
+HP Wolf : Service=False Running=False Installed=False

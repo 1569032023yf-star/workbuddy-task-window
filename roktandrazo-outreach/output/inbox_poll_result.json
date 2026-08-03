@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-07-14T11:58:28.689825",
+  "poll": {
+    "normal_reply": 0,
+    "hot_reply": 0,
+    "auto_reply": 0,
+    "hard_bounce": 0,
+    "soft_bounce": 0,
+    "unknown_bounce": 0,
+    "msgid_tech_bounce": 0,
+    "unsubscribe": 0,
+    "support_ticket": 0,
+    "ignored_platform": 0,
+    "self_sent": 0,
+    "unknown": 0,
+    "total_new": 0,
+    "has_more": false,
+    "stop_required": false,
+    "stop_reasons": [],
+    "baseline_only": false,
+    "poll_error": null
+  }
+}

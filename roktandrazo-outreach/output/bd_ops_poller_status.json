@@ -1,0 +1,36 @@
+{
+  "process_started_at": "2026-07-30T21:39:54.168608+08:00",
+  "last_heartbeat_at": "2026-07-30T21:39:54.179652+08:00",
+  "running": true,
+  "jobs": {
+    "tracking": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    },
+    "health": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    },
+    "reply": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    },
+    "bounce": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    }
+  },
+  "current_errors": []
+}

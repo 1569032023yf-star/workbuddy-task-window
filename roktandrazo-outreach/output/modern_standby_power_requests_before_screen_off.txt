@@ -1,0 +1,18 @@
+DISPLAY:
+�ޡ�
+
+SYSTEM:
+[PROCESS] \Device\HarddiskVolume3\Users\15690\.workbuddy\binaries\python\versions\3.13.12\python.exe
+
+AWAYMODE:
+�ޡ�
+
+ִ��:
+�ޡ�
+
+PERFBOOST:
+�ޡ�
+
+ACTIVELOCKSCREEN:
+�ޡ�
+

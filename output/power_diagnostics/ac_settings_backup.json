@@ -1,0 +1,11 @@
+﻿{
+    "scheme":  "fb5220ff-7e1a-47aa-9a42-50ffbf45c673",
+    "scheme_name":  "HP Optimized (Modern Standby)",
+    "ac_settings":  {
+                        "hibernate_after":  "0x00000000",
+                        "wake_timers":  "0x00000001",
+                        "display_off":  "0x000004b0",
+                        "hybrid_sleep":  "0x00000001",
+                        "sleep_after":  "0x00000000"
+                    }
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-14",
+  "daily_target": 20,
+  "today_sent": 0,
+  "this_batch": 0,
+  "remaining": 20,
+  "hybrid_template": 0,
+  "custom_template": 0,
+  "followup": 0,
+  "bounce": 0,
+  "unsubscribe": 0,
+  "reply": 0,
+  "region_summary": {
+    "states": {},
+    "cities": {},
+    "online_brands": 0,
+    "institutions": 0,
+    "unknown": 0
+  },
+  "send_details": [],
+  "unsent_details": []
+}

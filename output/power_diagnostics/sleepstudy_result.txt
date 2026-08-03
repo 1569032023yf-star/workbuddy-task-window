@@ -1,0 +1,8 @@
+﻿powercfg : 此命令需要管理员权限，并且必须从提升的命令提示符中执行。
+所在位置 行:466 字符: 1
++ powercfg /sleepstudy /duration 7 /output "$outDir\sleep_study.html" 2 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (此命令需要管理员权限，并且必须从提升的命令提示符中执行。:Stri 
+   ng) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

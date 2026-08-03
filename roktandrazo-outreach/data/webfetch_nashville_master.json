@@ -1,0 +1,792 @@
+{
+  "_schema_version": "7.0",
+  "provider": "webfetch_google_maps",
+  "city": "Nashville",
+  "state": "TN",
+  "city_status": "active_partial_webfetch_collection",
+  "generated_at": "2026-07-27T10:35:00+08:00",
+  "independent_bookstore_org_audit": {
+    "pre_bookstore_orgs": 24,
+    "bookstore_new_orgs": 5,
+    "post_bookstore_orgs": 29,
+    "math_check": "24 + 5 = 29 ✓",
+    "previous_report_error": "上一轮报告写 25→29，实际应为 24→29。pre-bookstore org count 计算错误（多算1个）。",
+    "org_breakdown": [
+      {
+        "business_name": "The Bookshop",
+        "organization_key": "the_bookshop",
+        "location_key": "the_bookshop|nashville|tn",
+        "official_website": "thebookshopnashville.com",
+        "normalized_domain": "thebookshopnashville.com",
+        "already_existed_in_master": false,
+        "matched_existing_organization_key": null,
+        "new_organization": true,
+        "classification": "retail_candidate"
+      },
+      {
+        "business_name": "Parnassus Books",
+        "organization_key": "parnassus_books",
+        "location_key": "parnassus_books|nashville|tn",
+        "official_website": "parnassusbooks.net",
+        "normalized_domain": "parnassusbooks.net",
+        "already_existed_in_master": false,
+        "matched_existing_organization_key": null,
+        "new_organization": true,
+        "classification": "retail_candidate"
+      },
+      {
+        "business_name": "Rhino Booksellers",
+        "organization_key": "rhino_booksellers",
+        "location_key": "rhino_booksellers|nashville|tn",
+        "official_website": "rhinobooksellers.com",
+        "normalized_domain": "rhinobooksellers.com",
+        "already_existed_in_master": false,
+        "matched_existing_organization_key": null,
+        "new_organization": true,
+        "classification": "low_priority_retail_review"
+      },
+      {
+        "business_name": "Defunct Books",
+        "organization_key": "defunct_books",
+        "location_key": "defunct_books|nashville|tn",
+        "official_website": "defunctbooks.com",
+        "normalized_domain": "defunctbooks.com",
+        "already_existed_in_master": false,
+        "matched_existing_organization_key": null,
+        "new_organization": true,
+        "classification": "low_priority_retail_review",
+        "note": "NOT closed. 'Defunct' = out-of-print books. Active business at 1108 Woodland St A."
+      },
+      {
+        "business_name": "McKay's Nashville",
+        "organization_key": "mckays_nashville",
+        "location_key": "mckays_nashville|nashville|tn",
+        "official_website": "",
+        "normalized_domain": "",
+        "already_existed_in_master": false,
+        "matched_existing_organization_key": null,
+        "new_organization": true,
+        "classification": "rejected_low_product_fit"
+      }
+    ],
+    "correct_answer": "B. new_organizations=5, resulting_unique_organizations=29"
+  },
+  "classification_change_log": [
+    {
+      "organization_key": "miniature_cottage",
+      "business_name": "Miniature Cottage",
+      "previous_primary_classification": "manual_review_candidate",
+      "new_primary_classification": "low_priority_retail_review",
+      "previous_secondary": [],
+      "new_secondary": [],
+      "change_reason": "Official email verified but dollhouse miniatures only — no puzzle/board game product fit. Excluded from Nashville first-outreach.",
+      "evidence_url": "https://miniaturecottage.com/about-us",
+      "changed_at": "2026-07-27T10:25:00+08:00"
+    },
+    {
+      "organization_key": "fairytales_bookstore",
+      "business_name": "Fairytales Bookstore & More",
+      "previous_primary_classification": "manual_review_candidate",
+      "new_primary_classification": "manual_review_candidate",
+      "previous_secondary": [],
+      "new_secondary": [],
+      "change_reason": "No change. Address+website still unconfirmed.",
+      "changed_at": "2026-07-27T10:25:00+08:00"
+    },
+    {
+      "organization_key": "nashville_souvenirs",
+      "business_name": "Nashville Souvenirs",
+      "previous_primary_classification": "manual_review_candidate",
+      "new_primary_classification": "manual_review_candidate",
+      "previous_secondary": [
+        "custom_production_candidate"
+      ],
+      "new_secondary": [
+        "custom_production_candidate"
+      ],
+      "change_reason": "No change. Still needs website lookup + manual review.",
+      "changed_at": "2026-07-27T10:25:00+08:00"
+    },
+    {
+      "organization_key": "totally_rad_collectors",
+      "business_name": "Totally Rad Collectors Emporium",
+      "previous_primary_classification": "not_classified",
+      "new_primary_classification": "manual_review_candidate",
+      "previous_secondary": [],
+      "new_secondary": [],
+      "change_reason": "New from hobby query. No website found. Needs manual review.",
+      "changed_at": "2026-07-27T10:25:00+08:00"
+    },
+    {
+      "organization_key": "rhino_booksellers",
+      "business_name": "Rhino Booksellers",
+      "previous_primary_classification": "not_classified",
+      "new_primary_classification": "low_priority_retail_review",
+      "change_reason": "New from bookstore query. Used books+vinyl only. No puzzle/game evidence.",
+      "changed_at": "2026-07-27T10:25:00+08:00"
+    },
+    {
+      "organization_key": "defunct_books",
+      "business_name": "Defunct Books",
+      "previous_primary_classification": "not_classified",
+      "new_primary_classification": "low_priority_retail_review",
+      "change_reason": "NOT closed business. 'Defunct' = out-of-print/used books. Active store at 1108 Woodland St A, Nashville, 46 reviews, defunctbooks.com. No puzzle/game evidence.",
+      "evidence_url": "https://wanderlog.com/zh/place/details/1051845/defunct-books",
+      "changed_at": "2026-07-27T10:30:00+08:00"
+    },
+    {
+      "organization_key": "tabla_rasa_toys",
+      "business_name": "Tabla Rasa Toys",
+      "previous_primary_classification": "candidate_email_from_search",
+      "new_primary_classification": "official_email_verified_candidate",
+      "change_reason": "shop@tablarasatoys.com found ON official website tablarasatoys.com/visit-us. Domain match=true. Not public mail provider. UPGRADED.",
+      "evidence_url": "https://tablarasatoys.com/visit-us",
+      "evidence_snippet": "shop@tablarasatoys.com — mailto link in page footer",
+      "changed_at": "2026-07-27T10:32:00+08:00"
+    },
+    {
+      "organization_key": "phillips_toy_mart",
+      "business_name": "Phillips Toy Mart",
+      "previous_primary_classification": "possible_historical_duplicate",
+      "new_primary_classification": "possible_historical_duplicate",
+      "secondary": "candidate_email_from_search",
+      "change_reason": "Website phillipstoymart.com has NO email. Only phone. support@phillipstoymart.com from new_lead_factory.py NOT verified on official site.",
+      "evidence_url": "https://www.phillipstoymart.com",
+      "changed_at": "2026-07-27T10:32:00+08:00"
+    }
+  ],
+  "evidence_recovery_results": {
+    "websites_attempted": 8,
+    "websites_accessible": 5,
+    "websites_unavailable": 2,
+    "websites_rate_limited": 1,
+    "new_official_emails_found": 1,
+    "search_emails_upgraded": 1,
+    "search_emails_not_upgraded": 2,
+    "new_contact_forms": 0,
+    "details": [
+      {
+        "organization_key": "tabla_rasa_toys",
+        "business_name": "Tabla Rasa Toys",
+        "official_website_status": "accessible",
+        "official_website_final_url": "https://tablarasatoys.com/visit-us",
+        "candidate_email": "shop@tablarasatoys.com",
+        "email_verification_status": "official_email_verified_candidate",
+        "email_evidence_url": "https://tablarasatoys.com/visit-us",
+        "email_evidence_snippet": "shop@tablarasatoys.com — mailto link in footer",
+        "email_role": "general_inquiry",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "auto_sendable_candidate": true,
+        "last_verified_at": "2026-07-27T10:32:00+08:00",
+        "status_change": "candidate_email_from_search → official_email_verified_candidate"
+      },
+      {
+        "organization_key": "phillips_toy_mart",
+        "business_name": "Phillips Toy Mart",
+        "official_website_status": "accessible",
+        "official_website_final_url": "https://www.phillipstoymart.com",
+        "candidate_email": "support@phillipstoymart.com",
+        "email_verification_status": "candidate_email_from_search",
+        "email_evidence_url": "",
+        "email_evidence_snippet": "",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "last_verified_at": "2026-07-27T10:32:00+08:00",
+        "note": "Website has NO email — only phone (615) 352-5363 and social media links. Email from new_lead_factory.py seed data not found on site."
+      },
+      {
+        "organization_key": "nashville_toys_books",
+        "business_name": "Nashville Toys and Books",
+        "official_website_status": "accessible_but_degraded",
+        "official_website_final_url": "https://www.nashvilletoysandbooks.com",
+        "candidate_email": "",
+        "email_verification_status": "website_lookup_required",
+        "last_verified_at": "2026-07-27T10:32:00+08:00",
+        "note": "Homepage returns minimal content. /contact returns 404. No email or contact form found."
+      },
+      {
+        "organization_key": "the_bookshop",
+        "business_name": "The Bookshop",
+        "official_website_status": "accessible_but_degraded",
+        "official_website_final_url": "https://thebookshopnashville.com",
+        "candidate_email": "",
+        "email_verification_status": "website_lookup_required",
+        "last_verified_at": "2026-07-27T10:32:00+08:00",
+        "note": "Website returns minimal content via WebFetch. Carries puzzles per third-party reviews."
+      },
+      {
+        "organization_key": "defunct_books",
+        "business_name": "Defunct Books",
+        "official_website_status": "not_checked",
+        "official_website_final_url": "https://defunctbooks.com",
+        "business_status": "OPERATIONAL",
+        "closed_verified_at": "2026-07-27T10:30:00+08:00",
+        "closure_evidence_url": "https://wanderlog.com/zh/place/details/1051845/defunct-books",
+        "closure_evidence_snippet": "46 Google reviews, open hours Mon/Thu-Sun 12-5PM, 1108 Woodland St A",
+        "note": "NOT closed. Name is misleading. Active used/rare bookstore."
+      },
+      {
+        "organization_key": "market_street_mercantile",
+        "business_name": "Market Street Mercantile",
+        "official_website_status": "unavailable",
+        "official_website_final_url": "https://marketstreetmercantile.com",
+        "candidate_email": "",
+        "email_verification_status": "website_lookup_required",
+        "last_verified_at": "2026-07-24T16:00:00+08:00",
+        "note": "Website fetch failed. Previously confirmed carries puzzles via TripAdvisor reviews."
+      },
+      {
+        "organization_key": "gift_horse",
+        "business_name": "Gift Horse",
+        "official_website_status": "rate_limited",
+        "official_website_final_url": "https://gifthorsenashville.com",
+        "candidate_email": "",
+        "email_verification_status": "website_lookup_required",
+        "last_verified_at": "2026-07-24T16:00:00+08:00",
+        "note": "Previously rate limited. Carries stationery/games/toys per reviews."
+      },
+      {
+        "organization_key": "ricks_comic_city",
+        "business_name": "Rick's Comic City",
+        "official_website_status": "accessible",
+        "official_website_final_url": "https://rickscomiccity.com",
+        "candidate_email": "",
+        "email_verification_status": "website_lookup_required",
+        "last_verified_at": "2026-07-27T10:33:00+08:00",
+        "note": "Website has online store + trading card events (One Piece, Star Wars Unlimited). No email on homepage."
+      }
+    ]
+  },
+  "review_classifications": {
+    "manual_review_unique_organizations": 6,
+    "manual_review_list": [
+      "tabletops_hobbies_games",
+      "the_game_cave",
+      "nashville_toys_books",
+      "fairytales_bookstore",
+      "market_street_mercantile",
+      "gift_horse",
+      "ricks_comic_city",
+      "totally_rad_collectors"
+    ],
+    "manual_review_location_count": 8,
+    "low_priority_review_unique_organizations": 3,
+    "low_priority_list": [
+      "miniature_cottage",
+      "rhino_booksellers",
+      "defunct_books"
+    ],
+    "contact_form_unique_organizations": 2,
+    "contact_form_list": [
+      "middle_tennessee_gaming",
+      "comix_city_too"
+    ],
+    "custom_production_unique_organizations": 4,
+    "custom_list": [
+      "made_in_tn",
+      "nashville_souvenirs",
+      "country_music_hof",
+      "frist_art_museum"
+    ],
+    "rejected_low_product_fit": 2,
+    "rejected_list": [
+      "smart_art_craft_supplies",
+      "mckays_nashville"
+    ],
+    "website_lookup_required_unique_organizations": 6,
+    "website_lookup_list": [
+      "tabletops_hobbies_games",
+      "the_game_cave",
+      "nashville_toys_books",
+      "fairytales_bookstore",
+      "market_street_mercantile",
+      "gift_horse",
+      "ricks_comic_city",
+      "totally_rad_collectors"
+    ],
+    "website_lookup_location_count": 8
+  },
+  "organization_outreach_candidates": {
+    "verified_email_locations": 3,
+    "verified_email_organizations": 2,
+    "unique_verified_emails": 2,
+    "nashville_organization_outreach_candidates": 2,
+    "nashville_candidates_list": [
+      {
+        "organization_key": "game_point_cafe",
+        "email": "info@gamepointcafe.com",
+        "locations": 2,
+        "first_outreach_limit": 1
+      },
+      {
+        "organization_key": "the_great_escape",
+        "email": "contactus@thegreatescapeonline.com",
+        "locations": 1,
+        "first_outreach_limit": 1
+      }
+    ],
+    "custom_organization_outreach_candidates": 0,
+    "unresolved_verified_public_email_candidates": 1,
+    "unresolved_list": [
+      {
+        "organization_key": "miniature_cottage",
+        "email": "miniaturecottage@gmail.com",
+        "reason": "public mail provider (Gmail) + low product fit"
+      }
+    ],
+    "pending_upgrade_candidates": [
+      {
+        "organization_key": "tabla_rasa_toys",
+        "email": "shop@tablarasatoys.com",
+        "domain_match": true,
+        "needs": "product fit confirmation to qualify as Nashville outreach"
+      }
+    ]
+  },
+  "unique_organizations": 29,
+  "unique_locations": 35,
+  "nashville_locations": 26,
+  "outside_locations": 9,
+  "location_identity": "26 + 9 + 0 = 35",
+  "query_summary": {
+    "queries_executed": 8,
+    "total_raw_hits": 51
+  },
+  "_integrity": {
+    "production_db_not_modified": true,
+    "send_pool_not_touched": true,
+    "no_query_completed": true,
+    "no_city_completed": true
+  },
+  "location_registry": [
+    {
+      "location_key": "game_point_a_game_store|nashville|tn",
+      "business_name": "Game Point - A Game Store",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "game_point_cafe",
+      "active": true,
+      "classification": "official_email_verified_candidate",
+      "query_hits": [
+        "board game store",
+        "game store"
+      ]
+    },
+    {
+      "location_key": "game_point_board_game_cafe|nashville|tn",
+      "business_name": "Game Point - A Board Game Cafe",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "game_point_cafe",
+      "active": true,
+      "classification": "official_email_verified_candidate",
+      "query_hits": [
+        "board game store",
+        "game store"
+      ]
+    },
+    {
+      "location_key": "tabletops_hobbies_games|nashville|tn",
+      "business_name": "Tabletops Hobbies & Games",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "tabletops_hobbies_games",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "board game store",
+        "game store",
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "the_game_cave|nashville|tn",
+      "business_name": "The Game Cave",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "the_game_cave",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "board game store",
+        "game store"
+      ]
+    },
+    {
+      "location_key": "middle_tennessee_gaming|nashville|tn",
+      "business_name": "Middle Tennessee Gaming",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "middle_tennessee_gaming",
+      "active": true,
+      "classification": "contact_form_candidate",
+      "query_hits": [
+        "board game store",
+        "game store"
+      ]
+    },
+    {
+      "location_key": "the_game_keep|hermitage|tn",
+      "business_name": "The Game Keep",
+      "city": "Hermitage",
+      "state": "TN",
+      "org": "the_game_keep",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "board game store",
+        "game store"
+      ]
+    },
+    {
+      "location_key": "tnlg_next_level_games|goodlettsville|tn",
+      "business_name": "TNLG",
+      "city": "Goodlettsville",
+      "state": "TN",
+      "org": "tnlg_next_level_games",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "board game store"
+      ]
+    },
+    {
+      "location_key": "phillips_toy_mart|nashville|tn",
+      "business_name": "Phillips Toy Mart",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "phillips_toy_mart",
+      "active": true,
+      "classification": "possible_historical_duplicate",
+      "query_hits": [
+        "toy store",
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "tabla_rasa_toys|nashville|tn",
+      "business_name": "Tabla Rasa Toys",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "tabla_rasa_toys",
+      "active": true,
+      "classification": "official_email_verified_candidate",
+      "query_hits": [
+        "toy store"
+      ]
+    },
+    {
+      "location_key": "nashville_toys_books|nashville|tn",
+      "business_name": "Nashville Toys and Books",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "nashville_toys_books",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "toy store"
+      ]
+    },
+    {
+      "location_key": "brilliant_sky_toys|brentwood|tn",
+      "business_name": "Brilliant Sky Toys & Books",
+      "city": "Brentwood",
+      "state": "TN",
+      "org": "brilliant_sky_toys",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "toy store"
+      ]
+    },
+    {
+      "location_key": "fairytales_bookstore|nashville|tn",
+      "business_name": "Fairytales Bookstore & More",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "fairytales_bookstore",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "toy store"
+      ]
+    },
+    {
+      "location_key": "game_trader|madison|tn",
+      "business_name": "Game Trader",
+      "city": "Madison",
+      "state": "TN",
+      "org": "game_trader",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "game store"
+      ]
+    },
+    {
+      "location_key": "market_street_mercantile|nashville|tn",
+      "business_name": "Market Street Mercantile",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "market_street_mercantile",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "gift shop"
+      ]
+    },
+    {
+      "location_key": "made_in_tn|nashville|tn",
+      "business_name": "Made in TN",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "made_in_tn",
+      "active": true,
+      "classification": "custom_production_candidate",
+      "query_hits": [
+        "gift shop"
+      ]
+    },
+    {
+      "location_key": "gift_horse|nashville|tn",
+      "business_name": "Gift Horse",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "gift_horse",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "gift shop"
+      ]
+    },
+    {
+      "location_key": "nashville_souvenirs_2nd_ave|nashville|tn",
+      "business_name": "Nashville Souvenirs (2nd Ave)",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "nashville_souvenirs",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "gift shop"
+      ]
+    },
+    {
+      "location_key": "nashville_souvenirs_mcgavock|nashville|tn",
+      "business_name": "Nashville Souvenirs (McGavock)",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "nashville_souvenirs",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "museum gift shop"
+      ]
+    },
+    {
+      "location_key": "museum_store_cmhof|nashville|tn",
+      "business_name": "The Museum Store (CMHOF)",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "country_music_hof",
+      "active": true,
+      "classification": "custom_production_candidate",
+      "query_hits": [
+        "museum gift shop"
+      ]
+    },
+    {
+      "location_key": "frist_art_museum|nashville|tn",
+      "business_name": "Frist Art Museum",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "frist_art_museum",
+      "active": true,
+      "classification": "custom_production_candidate",
+      "query_hits": [
+        "museum gift shop"
+      ]
+    },
+    {
+      "location_key": "ricks_comic_city|nashville|tn",
+      "business_name": "Rick's Comic City",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "ricks_comic_city",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "comic book store"
+      ]
+    },
+    {
+      "location_key": "the_great_escape_charlotte|nashville|tn",
+      "business_name": "The Great Escape (Charlotte)",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "the_great_escape",
+      "active": true,
+      "classification": "official_email_verified_candidate",
+      "query_hits": [
+        "comic book store"
+      ]
+    },
+    {
+      "location_key": "the_great_escape_madison|tn",
+      "business_name": "The Great Escape (Madison)",
+      "city": "Madison",
+      "state": "TN",
+      "org": "the_great_escape",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "comic book store"
+      ]
+    },
+    {
+      "location_key": "outer_limits_comics|franklin|tn",
+      "business_name": "Outer Limits Comics",
+      "city": "Franklin",
+      "state": "TN",
+      "org": "outer_limits_comics",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "comic book store"
+      ]
+    },
+    {
+      "location_key": "comix_city_too|madison|tn",
+      "business_name": "Comix City Too!",
+      "city": "Madison",
+      "state": "TN",
+      "org": "comix_city_too",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "comic book store"
+      ]
+    },
+    {
+      "location_key": "miniature_cottage|nashville|tn",
+      "business_name": "Miniature Cottage",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "miniature_cottage",
+      "active": true,
+      "classification": "low_priority_retail_review",
+      "query_hits": [
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "family_hobbies|smyrna|tn",
+      "business_name": "Family Hobbies",
+      "city": "Smyrna",
+      "state": "TN",
+      "org": "family_hobbies",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "totally_rad_collectors|nashville|tn",
+      "business_name": "Totally Rad Collectors Emporium",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "totally_rad_collectors",
+      "active": true,
+      "classification": "manual_review_candidate",
+      "query_hits": [
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "smart_art_craft_supplies|nashville|tn",
+      "business_name": "Smart Art + Craft Supplies",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "smart_art_craft_supplies",
+      "active": true,
+      "classification": "rejected_low_product_fit",
+      "query_hits": [
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "extreme_hobby_shop|tn",
+      "business_name": "Extreme Hobby Shop",
+      "city": "Spring Hill",
+      "state": "TN",
+      "org": "extreme_hobby_shop",
+      "active": false,
+      "classification": "outside_active_city",
+      "query_hits": [
+        "hobby store"
+      ]
+    },
+    {
+      "location_key": "the_bookshop|nashville|tn",
+      "business_name": "The Bookshop",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "the_bookshop",
+      "active": true,
+      "classification": "retail_candidate",
+      "query_hits": [
+        "independent bookstore"
+      ]
+    },
+    {
+      "location_key": "parnassus_books|nashville|tn",
+      "business_name": "Parnassus Books",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "parnassus_books",
+      "active": true,
+      "classification": "retail_candidate",
+      "query_hits": [
+        "independent bookstore"
+      ]
+    },
+    {
+      "location_key": "rhino_booksellers|nashville|tn",
+      "business_name": "Rhino Booksellers",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "rhino_booksellers",
+      "active": true,
+      "classification": "low_priority_retail_review",
+      "query_hits": [
+        "independent bookstore"
+      ]
+    },
+    {
+      "location_key": "defunct_books|nashville|tn",
+      "business_name": "Defunct Books",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "defunct_books",
+      "active": true,
+      "classification": "low_priority_retail_review",
+      "query_hits": [
+        "independent bookstore"
+      ]
+    },
+    {
+      "location_key": "mckays_nashville|nashville|tn",
+      "business_name": "McKay's Nashville",
+      "city": "Nashville",
+      "state": "TN",
+      "org": "mckays_nashville",
+      "active": true,
+      "classification": "rejected_low_product_fit",
+      "query_hits": [
+        "independent bookstore"
+      ]
+    }
+  ]
+}

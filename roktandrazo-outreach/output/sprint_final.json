@@ -1,0 +1,170 @@
+[
+  {
+    "lead_id": 127,
+    "email": "info@thegamekeep.com",
+    "name": "The Game Keep",
+    "city": "Nashville",
+    "state": "TN",
+    "org": "thegamekeep_com"
+  },
+  {
+    "lead_id": 184,
+    "email": "info@eastsidegamers.com",
+    "name": "Eastside Gamers",
+    "city": "Nashville",
+    "state": "TN",
+    "org": "eastsidegamers_com"
+  },
+  {
+    "lead_id": 183,
+    "email": "info@gamelairnashville.com",
+    "name": "Game Lair",
+    "city": "Nashville",
+    "state": "TN",
+    "org": "gamelairnashville_com"
+  },
+  {
+    "lead_id": 683,
+    "email": "901comicsmidtown@gmail.com",
+    "name": "901 Comics (Midtown)",
+    "city": "Memphis",
+    "state": "TN",
+    "org": "901_comics_midtown"
+  },
+  {
+    "lead_id": 690,
+    "email": "customercare@hollieray.com",
+    "name": "Hollie Ray",
+    "city": "Franklin",
+    "state": "TN",
+    "org": "hollie_ray_franklin"
+  },
+  {
+    "lead_id": 698,
+    "email": "learningexpresschatt@gmail.com",
+    "name": "Learning Express Toys",
+    "city": "Chattanooga",
+    "state": "TN",
+    "org": "learningexpress_chattanooga"
+  },
+  {
+    "lead_id": 701,
+    "email": "info@grandadventurescomics.com",
+    "name": "Grand Adventures Comics",
+    "city": "Murfreesboro",
+    "state": "TN",
+    "org": "grand_adventures_murfreesboro"
+  },
+  {
+    "lead_id": 740,
+    "email": "keepg@bellsouth.net",
+    "name": "The Game Keep",
+    "city": "Hermitage",
+    "state": "TN",
+    "org": "game_keep_hermitage"
+  },
+  {
+    "lead_id": 741,
+    "email": "secretcityexchange@gmail.com",
+    "name": "Secret City Exchange",
+    "city": "Oak Ridge",
+    "state": "TN",
+    "org": "secret_city_oak_ridge"
+  },
+  {
+    "lead_id": 731,
+    "email": "rollandplay501@gmail.com",
+    "name": "Roll & Play Conway",
+    "city": "Conway",
+    "state": "AR",
+    "org": "rollandplay_conway"
+  },
+  {
+    "lead_id": 732,
+    "email": "bearscardshop@yahoo.com",
+    "name": "Bears Games Fayetteville",
+    "city": "Fayetteville",
+    "state": "AR",
+    "org": "bears_games_fayetteville"
+  },
+  {
+    "lead_id": 733,
+    "email": "piechocki.moore.gaming@gmail.com",
+    "name": "P&M Gaming Fort Smith",
+    "city": "Fort Smith",
+    "state": "AR",
+    "org": "pm_gaming_fort_smith"
+  },
+  {
+    "lead_id": 734,
+    "email": "goldengoblingames@yahoo.com",
+    "name": "Golden Goblin Games",
+    "city": "Harrison",
+    "state": "AR",
+    "org": "golden_goblin_harrison"
+  },
+  {
+    "lead_id": 736,
+    "email": "gamershavenar@gmail.com",
+    "name": "Gamers Haven Jonesboro",
+    "city": "Jonesboro",
+    "state": "AR",
+    "org": "gamers_haven_jonesboro"
+  },
+  {
+    "lead_id": 737,
+    "email": "chaos@chaosgamesllc.com",
+    "name": "Chaos Games Lowell",
+    "city": "Lowell",
+    "state": "AR",
+    "org": "chaos_games_lowell"
+  },
+  {
+    "lead_id": 742,
+    "email": "thegeekyoasis@gmail.com",
+    "name": "The Geeky Oasis",
+    "city": "Sherwood",
+    "state": "AR",
+    "org": "geeky_oasis_sherwood"
+  },
+  {
+    "lead_id": 541,
+    "email": "customercare@easternnational.org",
+    "name": "Mammoth Cave NP Store",
+    "city": "Mammoth Cave",
+    "state": "KY",
+    "org": "shop_americasnationalparks_org"
+  },
+  {
+    "lead_id": 719,
+    "email": "goldenkeepgameco@gmail.com",
+    "name": "Golden Keep Game Co",
+    "city": "Louisville",
+    "state": "KY",
+    "org": "golden_keep_louisville"
+  },
+  {
+    "lead_id": 720,
+    "email": "gklex00@gmail.com",
+    "name": "Game King Lexington",
+    "city": "Lexington",
+    "state": "KY",
+    "org": "game_king_lexington"
+  },
+  {
+    "lead_id": 721,
+    "email": "legendarygameslexington@yahoo.com",
+    "name": "Legendary Games Lexington",
+    "city": "Lexington",
+    "state": "KY",
+    "org": "legendary_games_lexington"
+  },
+  {
+    "lead_id": 738,
+    "email": "john@appalachiatcg.com",
+    "name": "AppalachiaTCG",
+    "city": "Salyersville",
+    "state": "KY",
+    "org": "appalachia_tcg_salyersville"
+  }
+]

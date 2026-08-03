@@ -1,0 +1,14 @@
+{
+  "historical_a0_candidates": 25,
+  "primary_state_candidates": 1,
+  "matched_db": 1,
+  "already_strict_like": 0,
+  "eligible_for_http_verify": 0,
+  "http_verified_updates_possible": 0,
+  "reject": {
+    "non_primary_state": 24,
+    "already_sent": 1
+  },
+  "by_source": {},
+  "possible_updates": []
+}

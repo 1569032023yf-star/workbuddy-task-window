@@ -1,0 +1,40 @@
+{
+  "synced_at": "2026-07-30T11:25:40.031264+08:00",
+  "transport": "curl_subprocess",
+  "tracked_sent": 2,
+  "messages_with_open": 2,
+  "total_open_signals": 2,
+  "active_messages": [
+    {
+      "tracking_message_id": "tracking_test_v2",
+      "open_signal_count": 1,
+      "first_open_signal_at": "",
+      "last_open_signal_at": "2026-07-28T03:11:28.387Z",
+      "status": "active"
+    },
+    {
+      "tracking_message_id": "prod_530_test_prod_path_20260728",
+      "open_signal_count": 1,
+      "first_open_signal_at": "",
+      "last_open_signal_at": "2026-07-28T03:23:47.720Z",
+      "status": "active"
+    }
+  ],
+  "recent_events": [
+    {
+      "tracking_message_id": 4,
+      "msg_tid": "prod_530_test_prod_path_20260728",
+      "event_type": "open_signal",
+      "event_at": "2026-07-28T03:23:47.720Z",
+      "source_classification": "wechat_work_mail_client"
+    },
+    {
+      "tracking_message_id": 1,
+      "msg_tid": "tracking_test_v2",
+      "event_type": "open_signal",
+      "event_at": "2026-07-28T03:11:28.387Z",
+      "source_classification": "likely_apple_mpp"
+    }
+  ],
+  "available": true
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "store_name": "Level One Game Shop",
+    "city": "Kansas City",
+    "state": "MO",
+    "official_website": "https://levelonegameshop.com/",
+    "store_type": "board game store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 4.83
+  },
+  {
+    "store_name": "TableTop Game and Hobby",
+    "city": "Kansas City",
+    "state": "MO",
+    "official_website": "https://tabletopgameandhobby.com/",
+    "store_type": "board game store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 2.96
+  },
+  {
+    "store_name": "Warpstorm Games",
+    "city": "Greenfield",
+    "state": "WI",
+    "official_website": "https://www.warpstormmke.com/",
+    "store_type": "game store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 1,
+    "scan_method": "http",
+    "scan_time": 2.47
+  },
+  {
+    "store_name": "Board Game Barrister",
+    "city": "Milwaukee",
+    "state": "WI",
+    "official_website": "https://www.boardgamebarrister.com/",
+    "store_type": "board game store",
+    "classification": "A0",
+    "email": "fun@boardgamebarrister.com",
+    "all_emails": [
+      "fun@boardgamebarrister.com"
+    ],
+    "evidence_url": "https://www.boardgamebarrister.com/",
+    "evidence_snippet": "",
+    "confidence": "A",
+    "scan_method": "http",
+    "pages_checked": 1,
+    "scan_time": 1.73
+  },
+  {
+    "store_name": "Alpha Comics & Games",
+    "city": "Richmond",
+    "state": "VA",
+    "official_website": "https://alphacomics.com/",
+    "store_type": "comic/game store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 1,
+    "scan_method": "http",
+    "scan_time": 1.58
+  },
+  {
+    "store_name": "Little Richard's Toy Store",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "official_website": "https://littlerichardstoystore.com/",
+    "store_type": "toy store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 4.57
+  },
+  {
+    "store_name": "Poor Richard's Downtown",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "official_website": "https://poorrichardsdowntown.com/",
+    "store_type": "toy store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 2.77
+  },
+  {
+    "store_name": "Crowemag Toys",
+    "city": "Raleigh",
+    "state": "NC",
+    "official_website": "https://crowemagtoys.com/",
+    "store_type": "toy store",
+    "classification": "A0",
+    "email": "store@crowemagtoys.com",
+    "all_emails": [
+      "store@crowemagtoys.com"
+    ],
+    "evidence_url": "https://crowemagtoys.com/contact",
+    "evidence_snippet": "Contact us Contact us below: Phone:  1(919)719-9087 Email: store@crowemagtoys.com Facebook:  www.facebook.com/crowemagtoys Instagram:  crowem",
+    "confidence": "A",
+    "scan_method": "http",
+    "pages_checked": 2,
+    "scan_time": 5.1
+  },
+  {
+    "store_name": "Nick's Trains",
+    "city": "Raleigh",
+    "state": "NC",
+    "official_website": "https://www.nicks-trains.com/",
+    "store_type": "toy/hobby store",
+    "classification": "A0",
+    "email": "info@nicks-trains.com",
+    "all_emails": [
+      "info@nicks-trains.com"
+    ],
+    "evidence_url": "https://www.nicks-trains.com/",
+    "evidence_snippet": "| nicks-trains top of page Nick's Trains, Inc. 919.881.1010 info@nicks-trains.com Nick's Trains, Inc. is a family owned and operated business",
+    "confidence": "A",
+    "scan_method": "http",
+    "pages_checked": 1,
+    "scan_time": 2.28
+  },
+  {
+    "store_name": "ToyFusion",
+    "city": "Sacramento",
+    "state": "CA",
+    "official_website": "http://www.toyfusion.com/",
+    "store_type": "vintage toy store",
+    "classification": "A0",
+    "email": "store@toyfusion.com",
+    "all_emails": [
+      "store@toyfusion.com"
+    ],
+    "evidence_url": "http://www.toyfusion.com/",
+    "evidence_snippet": "us a list of what you have. ToyFusion Website Info e-mail: store@toyfusion.com for any questions regarding collectibles, or collections fo",
+    "confidence": "A",
+    "scan_method": "http",
+    "pages_checked": 1,
+    "scan_time": 0.99
+  },
+  {
+    "store_name": "Badger Games",
+    "city": "Milwaukee",
+    "state": "WI",
+    "official_website": "https://badgergames.com/",
+    "store_type": "game store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 5.08
+  },
+  {
+    "store_name": "Old Guard Games",
+    "city": "Milwaukee",
+    "state": "WI",
+    "official_website": "https://www.oldguardgames.com/",
+    "store_type": "game store",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 7.87
+  }
+]

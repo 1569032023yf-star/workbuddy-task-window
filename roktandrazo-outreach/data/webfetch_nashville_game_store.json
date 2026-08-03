@@ -1,0 +1,62 @@
+{
+  "provider": "webfetch_google_maps",
+  "execution_channel": "WebFetch + WebSearch",
+  "query_family": "game store",
+  "query": "game store Nashville TN",
+  "city": "Nashville",
+  "state": "TN",
+  "status": "partial_first_page_collected",
+  "city_status": "active_partial_webfetch_collection",
+  "started_at": "2026-07-24T16:05:00+08:00",
+  "finished_at": "2026-07-24T16:15:00+08:00",
+
+  "raw_hits": 7,
+  "unique_locations_in_query": 7,
+  "cross_query_duplicates_with_prior": 6,
+  "new_locations_added": 1,
+  "nashville_locations": 0,
+  "outside_active_city": 1,
+
+  "cross_query_duplicate_details": [
+    {"business": "The Game Cave", "matched_in": "board game store"},
+    {"business": "Game Point - A Game Store", "matched_in": "board game store"},
+    {"business": "Tabletops Hobbies & Games", "matched_in": "board game store"},
+    {"business": "Middle Tennessee Gaming", "matched_in": "board game store"},
+    {"business": "The Game Keep", "matched_in": "board game store"},
+    {"business": "Game Point - A Board Game Cafe", "matched_in": "board game store"}
+  ],
+
+  "results": [
+    {
+      "business_name": "Game Trader",
+      "formatted_address": "1767 Gallatin Pike N, Madison, TN 37115",
+      "city": "Madison",
+      "state": "TN",
+      "postal_code": "37115",
+      "phone": "(615) 612-0090",
+      "official_website": "https://gametradertn.com",
+      "normalized_domain": "gametradertn.com",
+      "google_maps_url": "https://www.google.com/maps/place/Game+Trader/",
+      "candidate_email": "",
+      "email_verification_status": "website_lookup_required",
+      "email_evidence_url": "https://gametradertn.com/contact",
+      "email_evidence_snippet": "Contact page has phone numbers only (Madison + Murfreesboro). No email visible on /about or /contact. Wix-hosted site.",
+      "contact_form_url": "",
+      "active_city_match": false,
+      "classification": "outside_active_city",
+      "organization_key": "game_trader",
+      "location_key": "game_trader|madison|tn",
+      "query_hits": ["game store"],
+      "note": "Video game store primarily. Carries action figures/merch. No board games/puzzles mentioned on website. Third-party: stevewells.tn@gmail.com (candidate_from_search). Second location in Murfreesboro, TN.",
+      "collected_at": "2026-07-24T16:10:00+08:00",
+      "last_verified_at": "2026-07-24T16:12:00+08:00"
+    }
+  ],
+
+  "_integrity": {
+    "not_browser_automation": true,
+    "no_pagination": true,
+    "production_db_not_modified": true,
+    "send_pool_not_touched": true
+  }
+}

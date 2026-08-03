@@ -1,0 +1,12 @@
+{
+  "verdict": "BLOCKED",
+  "pass": 21,
+  "fail": 3,
+  "warn": 2,
+  "blocks": [
+    "Guard heartbeat < 900s (idle/normal): age=17942s, mode=normal",
+    "Guard current_mode = critical: actual=normal",
+    "Guard display_required = true: actual=False"
+  ],
+  "time": "2026-07-29T22:57:17.865686+08:00"
+}

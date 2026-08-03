@@ -1,0 +1,65 @@
+[
+  {
+    "id": 569,
+    "email": "claudebot@anthropic.com",
+    "org": "wildkin_com",
+    "name": "Wildkin",
+    "score": "A",
+    "city": "Nashville",
+    "state": "TN"
+  },
+  {
+    "id": 683,
+    "email": "901comicsmidtown@gmail.com",
+    "org": "901_comics_midtown",
+    "name": "901 Comics (Midtown)",
+    "score": "A",
+    "city": "Memphis",
+    "state": "TN"
+  },
+  {
+    "id": 127,
+    "email": "info@thegamekeep.com",
+    "org": "thegamekeep_com",
+    "name": "The Game Keep",
+    "score": "C",
+    "city": "Nashville",
+    "state": "TN"
+  },
+  {
+    "id": 183,
+    "email": "info@gamelairnashville.com",
+    "org": "gamelairnashville_com",
+    "name": "Game Lair",
+    "score": "B",
+    "city": "Nashville",
+    "state": "TN"
+  },
+  {
+    "id": 184,
+    "email": "info@eastsidegamers.com",
+    "org": "eastsidegamers_com",
+    "name": "Eastside Gamers",
+    "score": "C",
+    "city": "Nashville",
+    "state": "TN"
+  },
+  {
+    "id": 31,
+    "email": "packratsparadisees@gmail.com",
+    "org": "packratsparadise_com",
+    "name": "Packrat's Paradise",
+    "score": "A",
+    "city": "Eureka Springs",
+    "state": "AR"
+  },
+  {
+    "id": 541,
+    "email": "customercare@easternnational.org",
+    "org": "shop_americasnationalparks_org",
+    "name": "Mammoth Cave NP Store",
+    "score": "A",
+    "city": "Mammoth Cave",
+    "state": "KY"
+  }
+]

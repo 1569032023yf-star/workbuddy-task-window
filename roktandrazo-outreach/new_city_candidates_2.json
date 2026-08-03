@@ -1,0 +1,11 @@
+[
+  {"store_name": "4 Kids Books & Toys", "city": "Zionsville", "state": "IN", "official_website": "https://4kidsbooks.indielite.org/", "store_type": "book/toy store"},
+  {"store_name": "Happy Hen Toys", "city": "Indianapolis", "state": "IN", "official_website": "https://www.happyhentoys.com/", "store_type": "toy store"},
+  {"store_name": "Kits and Kaboodle Classic Toys", "city": "Carmel", "state": "IN", "official_website": "https://www.kitsandkaboodletoys.com/", "store_type": "toy store"},
+  {"store_name": "Monon Toys and Crafts", "city": "Indianapolis", "state": "IN", "official_website": "https://www.monontoys.com/", "store_type": "toy store"},
+  {"store_name": "The Toy Drop", "city": "Indianapolis", "state": "IN", "official_website": "https://thetoydropindy.com/", "store_type": "vintage toy store"},
+  {"store_name": "The Toy Pit", "city": "Indianapolis", "state": "IN", "official_website": "https://www.yourtoypit.com/", "store_type": "collectible toy store"},
+  {"store_name": "Casablanca Comics", "city": "Portland", "state": "ME", "official_website": "https://casablancacomics.com/", "store_type": "comic/game store"},
+  {"store_name": "YesterToys", "city": "Virginia Beach", "state": "VA", "official_website": "https://www.yestertoysva.com/", "store_type": "vintage toy store"},
+  {"store_name": "It's a Block Party", "city": "Indianapolis", "state": "IN", "official_website": "http://www.itsablockparty.com/", "store_type": "LEGO specialty store"}
+]

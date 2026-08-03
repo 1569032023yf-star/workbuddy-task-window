@@ -1,0 +1,58 @@
+[
+  {
+    "id": 417,
+    "store_name": "The Toy Store Gifts and More",
+    "city": "Jonesboro",
+    "state": "AR",
+    "store_type": "toy store / gift shop",
+    "official_website": "https://www.jonesborotoystore.com/"
+  },
+  {
+    "id": 416,
+    "store_name": "Game X Change Bowling Green",
+    "city": "Bowling Green",
+    "state": "KY",
+    "store_type": "game store",
+    "official_website": "https://www.gogamexchange.com/stores/kentucky/bowling-green/"
+  },
+  {
+    "id": 422,
+    "store_name": "Go Toys Games Calendars",
+    "city": "Bowling Green",
+    "state": "KY",
+    "store_type": "toy store / gift shop",
+    "official_website": "https://www.gotoysgames.com/"
+  },
+  {
+    "id": 432,
+    "store_name": "Kentucky Fried Gaming",
+    "city": "Danville",
+    "state": "KY",
+    "store_type": "game store",
+    "official_website": "https://www.kentuckyfriedgamingco.com/"
+  },
+  {
+    "id": 433,
+    "store_name": "Derby Comics and Games",
+    "city": "Shelbyville",
+    "state": "KY",
+    "store_type": "game store",
+    "official_website": "https://derbycomicsandgames.com/"
+  },
+  {
+    "id": 388,
+    "store_name": "Puzzled Etc.",
+    "city": "Pigeon Forge",
+    "state": "TN",
+    "store_type": "puzzle / game store",
+    "official_website": "https://puzzledetc.com/"
+  },
+  {
+    "id": 397,
+    "store_name": "Bigfoot in the Smokies",
+    "city": "Pigeon Forge",
+    "state": "TN",
+    "store_type": "gift shop",
+    "official_website": "https://bigfootsmokies.com/"
+  }
+]

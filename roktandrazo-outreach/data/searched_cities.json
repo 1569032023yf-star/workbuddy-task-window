@@ -1,0 +1,107 @@
+{
+  "san francisco_ca": {
+    "city": "San Francisco",
+    "state": "CA",
+    "searched_at": "2026-06-15T14:47:28.625068",
+    "category": "cultural",
+    "reason": "文化多元，独立零售发达"
+  },
+  "portland_or": {
+    "city": "Portland",
+    "state": "OR",
+    "searched_at": "2026-06-15T14:47:28.625160",
+    "category": "independent_retail",
+    "reason": "独立零售密集，游戏文化"
+  },
+  "ann arbor_mi": {
+    "city": "Ann Arbor",
+    "state": "MI",
+    "searched_at": "2026-06-15T14:47:28.625162",
+    "category": "independent_retail",
+    "reason": "大学城，独立零售"
+  },
+  "ithaca_ny": {
+    "city": "Ithaca",
+    "state": "NY",
+    "searched_at": "2026-06-15T14:52:09.291140",
+    "category": "independent_retail",
+    "reason": "大学城，独立零售"
+  },
+  "eureka springs_ar": {
+    "city": "Eureka Springs",
+    "state": "AR",
+    "searched_at": "2026-06-15T14:52:09.291230",
+    "category": "tourist",
+    "reason": "维多利亚式小镇，礼品店"
+  },
+  "carmel-by-the-sea_ca": {
+    "city": "Carmel-by-the-Sea",
+    "state": "CA",
+    "searched_at": "2026-06-15T14:52:09.291232",
+    "category": "tourist",
+    "reason": "艺术村，精品店密集"
+  },
+  "chicago_il": {
+    "city": "Chicago",
+    "state": "IL",
+    "searched_at": "2026-06-15T14:52:09.291234",
+    "category": "cultural",
+    "reason": "文化多元，独立零售发达"
+  },
+  "burlington_vt": {
+    "city": "Burlington",
+    "state": "VT",
+    "searched_at": "2026-06-15T14:52:09.291235",
+    "category": "independent_retail",
+    "reason": "大学城，独立零售"
+  },
+  "lake geneva_wi": {
+    "city": "Lake Geneva",
+    "state": "WI",
+    "searched_at": "2026-06-15T14:52:09.291236",
+    "category": "tourist",
+    "reason": "度假胜地，礼品店"
+  },
+  "bar harbor_me": {
+    "city": "Bar Harbor",
+    "state": "ME",
+    "searched_at": "2026-06-15T14:52:09.291237",
+    "category": "tourist",
+    "reason": "Acadia国家公园门户，礼品店密集"
+  },
+  "charleston_sc": {
+    "city": "Charleston",
+    "state": "SC",
+    "searched_at": "2026-06-15T14:52:09.291238",
+    "category": "tourist",
+    "reason": "历史名城，精品店密集"
+  },
+  "madison_wi": {
+    "city": "Madison",
+    "state": "WI",
+    "searched_at": "2026-06-15T14:52:09.291239",
+    "category": "independent_retail",
+    "reason": "大学城，独立零售"
+  },
+  "santa fe_nm": {
+    "city": "Santa Fe",
+    "state": "NM",
+    "searched_at": "2026-06-15T14:52:09.291240",
+    "category": "tourist",
+    "reason": "艺术之都，博物馆商店"
+  },
+  "los angeles_ca": {
+    "city": "Los Angeles",
+    "state": "CA",
+    "searched_at": "2026-07-02T09:44:38.682061",
+    "category": "cultural",
+    "reason": "文化多元，独立零售发达"
+  },
+  "traverse city_mi": {
+    "city": "Traverse City",
+    "state": "MI",
+    "searched_at": "2026-07-02T09:44:38.682155",
+    "category": "tourist",
+    "reason": "五大湖旅游，独立零售"
+  }
+}

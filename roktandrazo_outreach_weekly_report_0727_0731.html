@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roktandrazo 外联周报 · 7.27–7.31</title>
+<style>
+  :root{ --bg:#0f1419; --card:#1a2029; --card2:#222b36; --line:#2c3744; --txt:#e6edf3; --muted:#8b98a5; --accent:#4fb6ff; --green:#3fb950; --amber:#d29922; --red:#f85149; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6}
+  .wrap{max-width:980px;margin:0 auto;padding:32px 22px 60px}
+  h1{font-size:26px;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:28px}
+  h2{font-size:18px;margin:34px 0 14px;padding-left:10px;border-left:3px solid var(--accent)}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .kpi .n{font-size:30px;font-weight:700;color:var(--accent)}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .kpi.g .n{color:var(--green)} .kpi.a .n{color:var(--amber)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:13.5px}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:var(--card2);color:var(--muted);font-weight:600}
+  tr:last-child td{border-bottom:none}
+  .bar{height:18px;border-radius:4px;background:linear-gradient(90deg,#2f81f7,#4fb6ff)}
+  .barwrap{display:flex;align-items:center;gap:8px}
+  .barwrap .v{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px;min-width:34px;text-align:right}
+  .tag{display:inline-block;padding:1px 8px;border-radius:20px;font-size:11px;background:var(--card2);color:var(--muted)}
+  .tag.ok{background:rgba(63,185,80,.15);color:var(--green)}
+  .tag.warn{background:rgba(210,153,34,.15);color:var(--amber)}
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:8px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  ul.sm{margin:8px 0;padding-left:18px;font-size:13.5px}
+  ul.sm li{margin:4px 0}
+  .foot{margin-top:36px;color:var(--muted);font-size:12px;text-align:center}
+  code{background:var(--card2);padding:1px 6px;border-radius:4px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Roktandrazo 外联周报</h1>
+  <div class="sub">发送 &amp; 采集情况总结 · 周期 2026-07-27 → 2026-07-31 (Asia/Shanghai) · 数据来源：<code>data/bd_leads.db</code></div>
+
+  <h2>一、发送总览</h2>
+  <div class="cards">
+    <div class="kpi"><div class="n">82</div><div class="l">本周发送邮件</div></div>
+    <div class="kpi g"><div class="n">82</div><div class="l">成功 (0 失败)</div></div>
+    <div class="kpi"><div class="n">3</div><div class="l">发送批次</div></div>
+    <div class="kpi a"><div class="n">408</div><div class="l">累计发送 (自 6/11)</div></div>
+  </div>
+
+  <p style="font-size:13.5px;color:var(--muted)">本周共执行 <b>3 个批次</b>，全部为 <span class="tag ok">new_outreach</span>（无 follow-up），82 封 <b>0 失败、0 硬退信</b>，触达 82 个不同机构。累计自 6/11 起已发 408 封（其中 326 封为早期历史发送，82 封落在本周窗口）。</p>
+
+  <table>
+    <thead><tr><th>批次</th><th>时间 (CST)</th><th>数量</th><th>策略 / 范围</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td><code>pilot_901_games</code></td><td>7/29 09:07</td><td>1</td><td>901 Games 试点 (Memphis TN)</td><td><span class="tag ok">sent</span></td></tr>
+      <tr><td><code>batch_20260729_60</code></td><td>7/29 23:30</td><td>60</td><td>Broad Outreach Ready 多州铺量</td><td><span class="tag ok">60/60 sent</span></td></tr>
+      <tr><td><code>tri_state_21_sprint</code></td><td>7/31 冲刺</td><td>21</td><td>三州 TN/AR/KY 深覆盖</td><td><span class="tag ok">21/21 sent</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:14px;margin:22px 0 10px;color:var(--muted)">本周发送按州分布（前 10）</h3>
+  <div class="barwrap"><div class="bar" style="width:160px"></div><div class="v">TN 16</div></div>
+  <div class="barwrap"><div class="bar" style="width:130px"></div><div class="v">TX 13</div></div>
+  <div class="barwrap"><div class="bar" style="width:90px"></div><div class="v">AR 9</div></div>
+  <div class="barwrap"><div class="bar" style="width:70px"></div><div class="v">GA 7</div></div>
+  <div class="barwrap"><div class="bar" style="width:60px"></div><div class="v">KY 6</div></div>
+  <div class="barwrap"><div class="bar" style="width:40px"></div><div class="v">NY 4 / MI 4</div></div>
+  <div class="barwrap"><div class="bar" style="width:30px"></div><div class="v">VA/NC/IL/CO 各 3</div></div>
+  <div class="barwrap"><div class="bar" style="width:20px"></div><div class="v">其余 11 州 各 1–2</div></div>
+  <p style="font-size:12.5px;color:var(--muted);margin-top:8px">注：7/29 的 60 封为多州铺量（含 TX 13、GA 7、CO 3、NY 4 等），并非主攻州；7/31 的 21 封则全部聚焦 TN/AR/KY（TN 9 / AR 7 / KY 5），与"农村包围城市"三州深覆盖策略对齐。</p>
+
+  <h2>二、采集总览</h2>
+  <div class="cards">
+    <div class="kpi g"><div class="n">93</div><div class="l">本周新增线索</div></div>
+    <div class="kpi"><div class="n">23</div><div class="l">Nashville 深挖 (7/29)</div></div>
+    <div class="kpi"><div class="n">70</div><div class="l">三州扩张 (7/30–31)</div></div>
+    <div class="kpi a"><div class="n">714</div><div class="l">线索库总量</div></div>
+  </div>
+
+  <p style="font-size:13.5px;color:var(--muted)">本周线索库从约 621 条增长至 <b>714 条</b>（+93）。新增全部落在目标三州（TN/AR/KY），分两波导入：</p>
+  <ul class="sm">
+    <li><b>7/29 Nashville 主城深挖</b>：23 条（collected_at 7/29 11:57），覆盖 Nashville 玩具/书店/博物馆商店/漫画店等，多数进入 <code>manual_review_needed</code>，其中 The Great Escape 升级为 A0。</li>
+    <li><b>7/30–7/31 三州（TN/AR/KY）扩张</b>：70 条（lead_id 680–749），覆盖 TN 35 / AR 17 / KY 18，含 Memphis、Knoxville、Chattanooga、Johnson City、Bentonville、Rogers、Fayetteville、Louisville、Lexington、Bowling Green 等中小城镇——正是"农村包围城市"策略的落地。</li>
+  </ul>
+
+  <table>
+    <thead><tr><th>波次</th><th>TN</th><th>AR</th><th>KY</th><th>合计</th></tr></thead>
+    <tbody>
+      <tr><td>Nashville 深挖</td><td>23</td><td>0</td><td>0</td><td>23</td></tr>
+      <tr><td>三州扩张</td><td>35</td><td>17</td><td>18</td><td>70</td></tr>
+      <tr><td><b>合计</b></td><td><b>58</b></td><td><b>17</b></td><td><b>18</b></td><td><b>93</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2>三、数据质量与风险</h2>
+  <div class="note">
+    <b>MX 校验暴露脏数据：</b>7/30 对 Broad Ready 池做 MX 复审时发现，100 条候选中有 <b>58 条域名 NXDOMAIN</b>（Astrill VPN 的 DNS 干扰曾造成误判，改用 Cloudflare Worker DoH 后确认真实缺失），可用池从 ~100 骤降至 27–39。说明历史采集中存在相当比例的失效域名，需在采集端加强实时 MX 校验。
+  </div>
+  <ul class="sm">
+    <li>本周发送 <b>0 硬退信</b>；历史 bounce_log 共 14 条（hard 7 / domain 4 / policy 3），其中 lead 406、411 两封落在本周批次内，已记入退信处理流程。</li>
+    <li>reply_log 仅 1 条（lead 237 自动 OOO 回复），本周无实质业务回复。</li>
+    <li>7/30 架构冻结：Manual A0 端点、发送授权闭环（fail-closed）、Email Hygiene 模块全部落地，旧版 SMTP 5 个文件已硬禁用。</li>
+    <li>Delivery Guard 上线并通过 41 分钟无人值守测试；但 Windows 服务因沙盒拦截提权未安装，冷启动可靠性待验证。</li>
+  </ul>
+
+  <h2>四、结论与下一步</h2>
+  <div class="grid2">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px">
+      <b style="color:var(--green)">本周亮点</b>
+      <ul class="sm">
+        <li>发送链路完全受控：授权闭环 + 0 失败 + 0 硬退信</li>
+        <li>三州线索池 +93，深覆盖策略实质推进</li>
+        <li>架构冻结，生产可审计、可复现</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px">
+      <b style="color:var(--amber)">待解决</b>
+      <ul class="sm">
+        <li>MX 失效域名占比高（~58%），采集端需实时校验</li>
+        <li>Daily 60 目标仍靠手动触发，自动化调度未恢复</li>
+        <li>Delivery Guard 服务未装，冷启动可靠性存疑</li>
+        <li>0 实质回复，需建立跟进（follow-up）流程</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">报告由 WorkBuddy 基于生产库 data/bd_leads.db 自动生成 · 2026-08-03</div>
+</div>
+</body>
+</html>

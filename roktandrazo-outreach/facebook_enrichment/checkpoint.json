@@ -1,0 +1,35 @@
+{
+  "done": "5/5",
+  "results": [
+    {
+      "id": 397,
+      "name": "Bigfoot in the Smokies",
+      "classification": "B1_social_verified_low_match",
+      "reason": "FB email, low match (0.00)"
+    },
+    {
+      "id": 398,
+      "name": "Three Bears General Store",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website"
+    },
+    {
+      "id": 401,
+      "name": "Heart and Hands",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website"
+    },
+    {
+      "id": 402,
+      "name": "The Heirloom Shop",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website"
+    },
+    {
+      "id": 403,
+      "name": "White s Mercantile",
+      "classification": "C_social_contact",
+      "reason": "page found, no public email/website"
+    }
+  ]
+}

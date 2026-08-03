@@ -1,0 +1,95 @@
+{
+  "provider": "webfetch_google_maps",
+  "execution_channel": "WebFetch + WebSearch",
+  "query_family": "museum gift shop",
+  "query": "museum gift shop Nashville TN",
+  "city": "Nashville", "state": "TN",
+  "status": "partial_first_page_collected",
+  "city_status": "active_partial_webfetch_collection",
+  "started_at": "2026-07-24T17:15:00+08:00",
+  "finished_at": "2026-07-24T17:30:00+08:00",
+
+  "raw_hits": 6,
+  "duplicate_location_hits": 1,
+  "same_org_collapsed": 1,
+  "new_unique_locations": 2,
+  "new_nashville_locations": 2,
+  "new_unique_organizations": 2,
+  "new_unique_domains": 1,
+  "new_retail_candidates": 2,
+  "new_custom_candidates": 2,
+  "new_official_verified_emails": 0,
+  "new_contact_form_candidates": 0,
+  "new_manual_review_candidates": 0,
+  "marginal_new_location_rate": "2/6 (33.3%)",
+  "marginal_new_nashville_rate": "2/6 (33.3%)",
+
+  "results": [
+    {
+      "business_name": "The Museum Store (Country Music Hall of Fame)",
+      "formatted_address": "222 Rep. John Lewis Way S, Nashville, TN 37203",
+      "city": "Nashville", "state": "TN",
+      "phone": "(615) 416-2001",
+      "official_website": "https://shop.countrymusichalloffame.org",
+      "normalized_domain": "countrymusichalloffame.org",
+      "google_maps_url": "https://www.google.com/maps/place/The+Museum+Store/",
+      "candidate_email": "",
+      "email_verification_status": "website_lookup_required",
+      "active_city_match": true,
+      "classification": "custom_production_candidate",
+      "organization_key": "country_music_hof",
+      "retail_potential": "Sells books, apparel, kids items, Dolly Parton merchandise. Retail puzzle/game potential needs verification.",
+      "custom_potential": "Country music legend puzzles, HOF commemorative card sets, custom museum souvenir puzzles",
+      "collected_at": "2026-07-24T17:20:00+08:00"
+    },
+    {
+      "business_name": "Frist Art Museum",
+      "formatted_address": "919 Broadway, Nashville, TN 37203",
+      "city": "Nashville", "state": "TN",
+      "phone": "(615) 244-3340",
+      "official_website": "https://fristartmuseum.org",
+      "normalized_domain": "fristartmuseum.org",
+      "google_maps_url": "https://www.google.com/maps/place/Frist+Art+Museum/",
+      "candidate_email": "",
+      "email_verification_status": "website_lookup_required",
+      "active_city_match": true,
+      "classification": "custom_production_candidate",
+      "organization_key": "frist_art_museum",
+      "retail_potential": "Museum gift shop likely carries art books, prints, educational items. Puzzles common in art museum stores.",
+      "custom_potential": "Art exhibition puzzles, museum collection card sets, educational art games",
+      "collected_at": "2026-07-24T17:20:00+08:00"
+    }
+  ],
+
+  "related_organizations_same_query": [
+    {
+      "business_name": "Tennessee State Museum Store",
+      "note": "Gift shop of Tennessee State Museum. Same organization as the museum. Combined under museum org. Address: 1038 Rosa L Parks Blvd. Phone: (615) 741-2692.",
+      "organization_key": "tennessee_state_museum",
+      "status": "identified_not_yet_processed"
+    },
+    {
+      "business_name": "Johnny Cash Museum",
+      "note": "Museum with gift shop. Address: 119 3rd Ave S. Phone: (615) 256-1777. Custom puzzle potential with Johnny Cash imagery.",
+      "organization_key": "johnny_cash_museum",
+      "status": "identified_not_yet_processed"
+    },
+    {
+      "business_name": "Legends of Country Music Museum",
+      "note": "Museum + souvenir shop combined. 2613A McGavock Pk, (615) 885-1515.",
+      "organization_key": "legends_country_music_museum",
+      "status": "identified_not_yet_processed"
+    }
+  ],
+
+  "cross_query_duplicates": [
+    {"business_name": "Nashville Souvenirs (McGavock Pk location)", "matched_in": "gift shop (2nd Ave location)", "note": "Second location of same business. Now reclassified as manual_review_candidate with game product evidence."}
+  ],
+
+  "_integrity": {
+    "not_browser_automation": true,
+    "no_pagination": true,
+    "production_db_not_modified": true,
+    "send_pool_not_touched": true
+  }
+}

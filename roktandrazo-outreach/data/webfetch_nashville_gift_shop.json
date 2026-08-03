@@ -1,0 +1,83 @@
+{
+  "provider": "webfetch_google_maps",
+  "execution_channel": "WebFetch + WebSearch",
+  "query_family": "gift shop",
+  "query": "gift shop Nashville TN",
+  "city": "Nashville",
+  "state": "TN",
+  "status": "partial_first_page_collected",
+  "city_status": "active_partial_webfetch_collection",
+  "started_at": "2026-07-24T16:55:00+08:00",
+  "finished_at": "2026-07-24T17:15:00+08:00",
+
+  "raw_hits": 7,
+  "kept_locations": 3,
+  "rejected_locations": 4,
+  "nashville_locations_kept": 3,
+  "outside_active_city": 0,
+
+  "results": [
+    {
+      "business_name": "Market Street Mercantile",
+      "formatted_address": "111 2nd Ave N, Nashville, TN 37201",
+      "city": "Nashville", "state": "TN",
+      "phone": "(615) 251-4092",
+      "official_website": "https://marketstreetmercantile.com",
+      "normalized_domain": "marketstreetmercantile.com",
+      "google_maps_url": "https://www.google.com/maps/place/Market+Street+Mercantile/",
+      "candidate_email": "",
+      "email_verification_status": "website_lookup_required",
+      "active_city_match": true,
+      "classification": "manual_review_candidate",
+      "organization_key": "market_street_mercantile",
+      "note": "Review confirms carries puzzles. Website fetch failed. Phone available for manual outreach.",
+      "collected_at": "2026-07-24T17:00:00+08:00"
+    },
+    {
+      "business_name": "Made in TN",
+      "formatted_address": "3820 Charlotte Ave #127, Nashville, TN 37209",
+      "city": "Nashville", "state": "TN",
+      "phone": "(615) 419-7761",
+      "official_website": "https://shopmadeintn.com",
+      "normalized_domain": "shopmadeintn.com",
+      "google_maps_url": "https://www.google.com/maps/place/Made+in+TN/",
+      "candidate_email": "",
+      "email_verification_status": "website_lookup_required",
+      "active_city_match": true,
+      "classification": "manual_review_candidate",
+      "organization_key": "made_in_tn",
+      "note": "Local TN artisan products. L&L Market location. Website rate limited.",
+      "collected_at": "2026-07-24T17:00:00+08:00"
+    },
+    {
+      "business_name": "Gift Horse",
+      "formatted_address": "1006 Fatherland St #301, Nashville, TN 37206",
+      "city": "Nashville", "state": "TN",
+      "phone": "(615) 727-4404",
+      "official_website": "https://gifthorsenashville.com",
+      "normalized_domain": "gifthorsenashville.com",
+      "google_maps_url": "https://www.google.com/maps/place/Gift+Horse/",
+      "candidate_email": "",
+      "email_verification_status": "website_lookup_required",
+      "active_city_match": true,
+      "classification": "manual_review_candidate",
+      "organization_key": "gift_horse",
+      "note": "Woman-owned, carries stationery/games/toys. Good puzzle fit. Website rate limited.",
+      "collected_at": "2026-07-24T17:00:00+08:00"
+    }
+  ],
+
+  "rejected": [
+    {"business_name": "Nashville Souvenirs", "reason": "Tourist souvenir store, no puzzle product fit"},
+    {"business_name": "Legends Gifts", "reason": "Broadway tourist gift shop"},
+    {"business_name": "Nashville Gifts", "reason": "Souvenir store, 325 Broadway"},
+    {"business_name": "The Nashville Store", "reason": "Opry Mills souvenir mall store"}
+  ],
+
+  "_integrity": {
+    "not_browser_automation": true,
+    "no_pagination": true,
+    "production_db_not_modified": true,
+    "send_pool_not_touched": true
+  }
+}

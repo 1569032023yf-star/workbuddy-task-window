@@ -1,0 +1,405 @@
+{
+  "generated_at": "2026-07-17T17:30:02.759941+00:00",
+  "today": "2026-07-17",
+  "timezone": "Asia/Shanghai",
+  "sent_today": 16,
+  "daily_target": 20,
+  "remaining": 4,
+  "hybrid_count": 0,
+  "custom_count": 0,
+  "legacy_count": 16,
+  "followup_sent": 0,
+  "followup_planned": 5,
+  "replies": 0,
+  "hard_bounce": 0,
+  "unsubscribe": 0,
+  "msg_id_present": 16,
+  "msg_id_missing": 0,
+  "retail_a0": 2,
+  "custom_a0": 1,
+  "total_a0": 3,
+  "afternoon_target": 60,
+  "afternoon_gap": 57,
+  "today_complete": false,
+  "inbox": {
+    "normal_reply": 0,
+    "hot_reply": 0,
+    "auto_reply": 0,
+    "ignored_platform": 0,
+    "hard_bounce": 0,
+    "soft_bounce": 0,
+    "unsubscribe": 0,
+    "stop_required": false,
+    "stop_reasons": [],
+    "source_ok": true
+  },
+  "followup": {
+    "raw": 86,
+    "hygiene": 77,
+    "final": 64,
+    "planned": 5,
+    "sent": 0
+  },
+  "coverage": {
+    "states_covered": 0,
+    "cities_searched": 0,
+    "cities_pending": 0,
+    "cities": [],
+    "platforms": [
+      {
+        "platform": "Amazon",
+        "category": "own_brand",
+        "search_keyword": "playing cards",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      },
+      {
+        "platform": "Etsy",
+        "category": "own_brand",
+        "search_keyword": "custom puzzle",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      },
+      {
+        "platform": "Kickstarter",
+        "category": "crowdfunding",
+        "search_keyword": "board game",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      }
+    ]
+  },
+  "source_health": {
+    "database": true,
+    "inbox": true,
+    "followup": true,
+    "coverage": true
+  },
+  "state_detail": {
+    "": 8,
+    "CO": 2,
+    "KY": 1,
+    "WA": 1,
+    "IL": 1,
+    "NY": 1,
+    "CA": 1,
+    "AR": 1
+  },
+  "city_detail": [
+    {
+      "key": "|Online",
+      "count": 7
+    },
+    {
+      "key": "CO|Denver",
+      "count": 2
+    },
+    {
+      "key": "KY|Louisville",
+      "count": 1
+    },
+    {
+      "key": "WA|Vancouver",
+      "count": 1
+    },
+    {
+      "key": "IL|Chicago",
+      "count": 1
+    },
+    {
+      "key": "NY|New York",
+      "count": 1
+    },
+    {
+      "key": "CA|Escondido",
+      "count": 1
+    },
+    {
+      "key": "|Toronto",
+      "count": 1
+    },
+    {
+      "key": "AR|Rogers",
+      "count": 1
+    }
+  ],
+  "ctype_detail": {
+    "museum_store": 1,
+    "online_brand": 14,
+    "toy_store": 1
+  },
+  "platform_detail": {
+    "Website": 2,
+    "Kickstarter": 4,
+    "Gamefound": 2,
+    "Amazon": 6,
+    "BackerKit": 2
+  },
+  "batch_detail": {
+    "—": 16
+  },
+  "send_list": [
+    {
+      "time": "01:00:19",
+      "store": "Kentucky Derby Museum Store",
+      "city": "Louisville",
+      "state": "KY",
+      "type": "museum_store",
+      "template": "legacy_template_unknown",
+      "email": "par***@derbymuseum.org",
+      "msg_id": "<178425000472.7820.2790901886173770937@r…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:03:08",
+      "store": "Limithron",
+      "city": "Denver",
+      "state": "CO",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "luk***@limithron.com",
+      "msg_id": "<178425018493.7820.1002483763518468142@r…",
+      "batch": "—",
+      "platform": "Kickstarter",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:05:19",
+      "store": "Skytear Games",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "hel***@skyteargames.com",
+      "msg_id": "<178425031508.7820.5343984191956197473@r…",
+      "batch": "—",
+      "platform": "Gamefound",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:07:44",
+      "store": "Stone Blade Entertainment",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "mar***@stoneblade.com",
+      "msg_id": "<178425046114.7820.8609507118021839268@r…",
+      "batch": "—",
+      "platform": "Gamefound",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:07:48",
+      "store": "Magic Puzzle Company",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "inf***@magicpuzzlecompany.com",
+      "msg_id": "<178425046471.7820.16700593557745082497@…",
+      "batch": "—",
+      "platform": "Kickstarter",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:10:23",
+      "store": "Chicken Challengers",
+      "city": "Vancouver",
+      "state": "WA",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "sup***@chickenchallengers.com",
+      "msg_id": "<178425062031.7820.11409909301314688697@…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:12:58",
+      "store": "Cards Against Humanity",
+      "city": "Chicago",
+      "state": "IL",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "mai***@cardsagainsthumanity.com",
+      "msg_id": "<178425077566.7820.12389222692344930722@…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:15:21",
+      "store": "What Do You Meme",
+      "city": "New York",
+      "state": "NY",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "cus***@relatable.com",
+      "msg_id": "<178425091787.7820.5593662765359749901@r…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:15:25",
+      "store": "CGE Czech Games",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "iva***@czechgames.com",
+      "msg_id": "<178425092188.7820.11920999812558717636@…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:17:42",
+      "store": "Bezier Games",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "inf***@beziergames.com",
+      "msg_id": "<178425105921.7820.5824450044975107082@r…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:19:59",
+      "store": "Ultra PRO",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "cs***@ultrapro.com",
+      "msg_id": "<178425119571.7820.14576307088486171347@…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:22:58",
+      "store": "Renegade Game Studios",
+      "city": "Escondido",
+      "state": "CA",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "cus***@renegadegames.com",
+      "msg_id": "<178425137474.7820.9357511336495296777@r…",
+      "batch": "—",
+      "platform": "Kickstarter",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:23:02",
+      "store": "Dire Wolf Digital",
+      "city": "Denver",
+      "state": "CO",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "inf***@direwolfdigital.com",
+      "msg_id": "<178425137894.7820.4088155315741646955@r…",
+      "batch": "—",
+      "platform": "Kickstarter",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:25:06",
+      "store": "Analog Game Studios",
+      "city": "Toronto",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "con***@analoggamestudios.com",
+      "msg_id": "<178425150311.7820.8190816083563646680@r…",
+      "batch": "—",
+      "platform": "BackerKit",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:27:18",
+      "store": "Unphazed Games",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "unp***@gmail.com",
+      "msg_id": "<178425163464.7820.14857798247527643074@…",
+      "batch": "—",
+      "platform": "BackerKit",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:29:48",
+      "store": "Restock AR",
+      "city": "Rogers",
+      "state": "AR",
+      "type": "toy_store",
+      "template": "legacy_template_unknown",
+      "email": "sup***@restockar.com",
+      "msg_id": "<178425178526.7820.1650467292571723382@r…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    }
+  ],
+  "anomalies": [
+    "今日发送 16/20 — 未达日标",
+    "模板未记录: 16/16 封 (legacy)",
+    "Strict A0 库存不足: 3 (目标 60)"
+  ]
+}

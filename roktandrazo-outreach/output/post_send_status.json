@@ -1,0 +1,100 @@
+{
+  "stage": "post-send",
+  "business_date": "2026-07-23",
+  "timestamp": "2026-07-23T13:06:17+08:00",
+  "outreach_result": {
+    "unique_sends": 6,
+    "total_log_rows": 11,
+    "daily_target": 20,
+    "gap": 14,
+    "duplicate_bug_note": "send_log duplicate: 11 rows for 6 unique leads"
+  },
+  "inbox_scan": {
+    "messages_found": 2,
+    "replies": 0,
+    "bounces_detected": 0,
+    "unsubscribes": 0,
+    "spam_noise": 2,
+    "note": "2 TikTok verification emails; no BD-related inbox activity"
+  },
+  "pool_status": {
+    "a0_sendable_pool": 13,
+    "suppression_list_size": 26,
+    "risk_gate": "clear"
+  },
+  "send_details": [
+    {
+      "lead_id": 1,
+      "store": "Thinker Toys",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:02"
+    },
+    {
+      "lead_id": 1,
+      "store": "Thinker Toys",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:02"
+    },
+    {
+      "lead_id": 2,
+      "store": "Cloud Cap Games and Puzzles",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:05"
+    },
+    {
+      "lead_id": 2,
+      "store": "Cloud Cap Games and Puzzles",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:05"
+    },
+    {
+      "lead_id": 3,
+      "store": "Puddletown Games and Puzzles",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:08"
+    },
+    {
+      "lead_id": 3,
+      "store": "Puddletown Games and Puzzles",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:08"
+    },
+    {
+      "lead_id": 5,
+      "store": "Curio Asheville",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:11"
+    },
+    {
+      "lead_id": 5,
+      "store": "Curio Asheville",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:11"
+    },
+    {
+      "lead_id": 558,
+      "store": "Gear Gaming Fayetteville",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:35"
+    },
+    {
+      "lead_id": 558,
+      "store": "Gear Gaming Fayetteville",
+      "status": "sent",
+      "sent_at": "2026-07-23 02:55:35"
+    },
+    {
+      "lead_id": 623,
+      "store": "Timbuk Toys",
+      "status": "sent",
+      "sent_at": "2026-07-23 00:36:33"
+    }
+  ],
+  "lead_events_today": [],
+  "actions_taken": [],
+  "warnings": [
+    "Dashboard generation failed: dashboard module DB path mismatch",
+    "send_log duplicate bug: 11 rows for 6 unique sends",
+    "A0 pool at 13 — well below target of 60, needs replenishment"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "stage": "morning",
+  "date": "2026-07-23",
+  "status": "stage_not_run",
+  "reason": "scheduler_restored_at_10:52",
+  "generated_at": "2026-07-23T10:55:22.446170",
+  "inbox_new": 0,
+  "hot_reply": 0,
+  "hard_bounce": 0,
+  "unsubscribe": 0,
+  "risk_gate": "clear"
+}

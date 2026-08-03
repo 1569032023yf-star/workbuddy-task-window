@@ -1,0 +1,10 @@
+[
+  {"store_name": "Batcave Treasures and Toys", "city": "Memphis", "state": "TN", "official_website": "https://www.batcavetreasures.com/", "store_type": "collectible toy store"},
+  {"store_name": "Tucson Games and Gadgets", "city": "Tucson", "state": "AZ", "official_website": "https://tucsongamesandgadgets.com/", "store_type": "game store"},
+  {"store_name": "J and J Gaming Factory", "city": "Tucson", "state": "AZ", "official_website": "https://jandjgamingfactory.com/", "store_type": "game/hobby store"},
+  {"store_name": "Old Guard Games", "city": "Milwaukee", "state": "WI", "official_website": "https://www.oldguardgames.com/", "store_type": "game store"},
+  {"store_name": "Little Richard's Toy Store", "city": "Colorado Springs", "state": "CO", "official_website": "https://littlerichardstoystore.com/", "store_type": "toy store"},
+  {"store_name": "Alpha Comics & Games", "city": "Richmond", "state": "VA", "official_website": "https://alphacomics.com/", "store_type": "comic/game store"},
+  {"store_name": "YesterToys", "city": "Virginia Beach", "state": "VA", "official_website": "https://www.yestertoysva.com/", "store_type": "vintage toy store"},
+  {"store_name": "Monon Toys and Crafts", "city": "Indianapolis", "state": "IN", "official_website": "https://www.monontoys.com/", "store_type": "toy store"}
+]

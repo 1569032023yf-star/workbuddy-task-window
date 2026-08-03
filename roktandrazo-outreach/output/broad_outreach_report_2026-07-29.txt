@@ -1,0 +1,121 @@
+======================================================================
+  BD OUTREACH BROAD MATCH ELIGIBILITY — FINAL REPORT
+  Date: 2026-07-29  |  Policy: Broad Outreach Ready v1.0
+======================================================================
+
+---
+一、两套资格层
+  1. Strict A0 Organizations:          3
+  2. Broad Outreach Ready Orgs:         161
+  3. Broad Organization Opportunities:  162
+
+---
+二、解封统计
+  4. CONTACT_ROLE_UNCERTAIN unblocked:  162
+  5. organization_key auto-patched:     632
+
+---
+三、排除统计
+  6.  Invalid email excluded:           11
+  7.  Previously Sent excluded:         301
+  8.  Permanent Block excluded:         7
+  9.  Contact Form Only:                20
+  10. Exception Review:                 142
+  11. Contact Recovery:                 0
+
+---
+四、发送计划
+  12. Max New Outreach tonight:          60 (capped at 60)
+  13. Reached 60:                        YES
+
+---
+五、安全确认
+  14. send_log NOT modified:             YES (read-only analysis)
+  15. Final Send Plan NOT created:       YES (read-only analysis)
+  16. SMTP NOT invoked:                  YES (read-only analysis)
+
+---
+六、发送优先级
+  Strict A0 + High priority:  13
+  Normal priority:            149
+
+---
+七、Broad Ready by State (ALLOWED states: TN/AR/KY/OH/IN/MN/NE/NC/OR/CO):
+  CA  :  18  
+  TX  :  16  
+  NY  :  11  
+  TN  :  10  ALLOWED
+  FL  :  10  
+  GA  :   9  
+  WA  :   7  
+  MI  :   7  
+  UT  :   7  
+  NC  :   6  ALLOWED
+  WI  :   6  
+  OR  :   6  ALLOWED
+  IL  :   5  
+  AZ  :   5  
+  MO  :   4  
+  AR  :   3  ALLOWED
+  VA  :   3  
+  CO  :   3  ALLOWED
+  MA  :   3  
+  VT  :   3  
+  NV  :   3  
+  LA  :   3  
+  PA  :   3  
+  KY  :   2  ALLOWED
+  MN  :   2  ALLOWED
+  ID  :   1  
+  NM  :   1  
+  SC  :   1  
+  MD  :   1  
+  Various:   1  
+  RI  :   1  
+  WY  :   1  
+
+---
+八、Blocked Reasons:
+  previously_sent: 301
+  email_missing: 142
+  contact_form_only: 20
+  invalid_email_pattern: 10
+  permanently_suppressed: 5
+  status_blocked:failed: 2
+  status_blocked:delivery_issue: 1
+  system_email: 1
+
+---
+九、Broad Outreach Opportunities (first 30 of 162):
+  ID     Org Key                                       City/State             Category                 Prio     Send
+  ----------------------------------------------------------------------------------------------------------------
+  427    org:domain:idahotaters.com                    Boise, ID              gift shop                high     YES
+  437    org:domain:gamegoblins.com                    Conway, AR             game store               high     YES
+  531    sunnytoys_com                                 Memphis, TN            game store               high     YES
+  624    game_point_cafe                               Nashville, TN          broad:game_store         high     YES
+  626    nashville_souvenirs                           Nashville, TN          broad:gift_shop          high     YES
+  627    nashville_souvenirs                           Nashville, TN          broad:gift_shop          high     YES
+  628    tabla_rasa_toys                               Nashville, TN          broad:toy_store          high     YES
+  671    the_great_escape                              Nashville, TN          comic book store         high     YES
+  420    org:domain:northlittlerock.geargamingstore.   North Little Rock, A   card game store          high     YES
+  430    org:domain:woodenogregames.com                Paducah, KY            game store               high     YES
+  396    org:domain:kryptonitecharacterstore.com       Pigeon Forge, TN       broad:collectibles sto   high     YES
+  12     org:domain:toyopolissantafe.com               Santa Fe, NM           independent toy store    high     YES
+  316    bsideboardgamesandpuzzles_com                 Spokane, WA            board game store         high     YES
+  118    org:domain:curioshoppealexandria.com          Alexandria, VA         game store               normal   YES
+  85     org:domain:lonestarcomics.com                 Arlington, TX          game store               normal   YES
+  294    org:domain:storyvilletoys.com                 Arlington, VA          independent toy store    normal   YES
+  160    org:domain:criminalrecordsatl.com             Atlanta, GA            game store               normal   YES
+  265    org:domain:joystickgamebar.com                Atlanta, GA            board game store         normal   YES
+  161    org:domain:oxfordcomics.com                   Atlanta, GA            game store               normal   YES
+  125    org:domain:titancomicsga.com                  Atlanta, GA            game store               normal   YES
+  298    org:domain:toysenseatl.com                    Atlanta, GA            independent toy store    normal   YES
+  106    org:domain:austinbookscomics.com              Austin, TX             game store               normal   YES
+  277    org:domain:littleappletoys.com                Austin, TX             independent toy store    normal   YES
+  107    org:domain:nansnook.com                       Austin, TX             hobby store              normal   YES
+  80     org:domain:terratoysaustin.com                Austin, TX             independent toy store    normal   YES
+  123    org:domain:myparentsbasement.com              Avondale Estates, GA   board game store         normal   YES
+  84     org:domain:genxcomics.com                     Bedford, TX            game store               normal   YES
+  273    org:domain:wildcattoys.com                    Boulder, CO            independent toy store    normal   YES
+  251    org:domain:toyboxbrookline.com                Brookline, MA          independent toy store    normal   YES
+  197    org:domain:brooklynlab.com                    Brooklyn, NY           board game store         normal   YES

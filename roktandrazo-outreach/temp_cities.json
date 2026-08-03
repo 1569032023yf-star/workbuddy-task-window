@@ -1,0 +1,75 @@
+{
+  "cities": [
+    {
+      "city": "Ithaca",
+      "state": "NY",
+      "priority": 1,
+      "reason": "大学城，独立零售",
+      "category": "independent_retail"
+    },
+    {
+      "city": "Eureka Springs",
+      "state": "AR",
+      "priority": 1,
+      "reason": "维多利亚式小镇，礼品店",
+      "category": "tourist"
+    },
+    {
+      "city": "Carmel-by-the-Sea",
+      "state": "CA",
+      "priority": 1,
+      "reason": "艺术村，精品店密集",
+      "category": "tourist"
+    },
+    {
+      "city": "Chicago",
+      "state": "IL",
+      "priority": 1,
+      "reason": "文化多元，独立零售发达",
+      "category": "cultural"
+    },
+    {
+      "city": "Burlington",
+      "state": "VT",
+      "priority": 1,
+      "reason": "大学城，独立零售",
+      "category": "independent_retail"
+    },
+    {
+      "city": "Lake Geneva",
+      "state": "WI",
+      "priority": 1,
+      "reason": "度假胜地，礼品店",
+      "category": "tourist"
+    },
+    {
+      "city": "Bar Harbor",
+      "state": "ME",
+      "priority": 1,
+      "reason": "Acadia国家公园门户，礼品店密集",
+      "category": "tourist"
+    },
+    {
+      "city": "Charleston",
+      "state": "SC",
+      "priority": 1,
+      "reason": "历史名城，精品店密集",
+      "category": "tourist"
+    },
+    {
+      "city": "Madison",
+      "state": "WI",
+      "priority": 1,
+      "reason": "大学城，独立零售",
+      "category": "independent_retail"
+    },
+    {
+      "city": "Santa Fe",
+      "state": "NM",
+      "priority": 1,
+      "reason": "艺术之都，博物馆商店",
+      "category": "tourist"
+    }
+  ],
+  "timestamp": "2026-06-15T14:52:09.292046"
+}

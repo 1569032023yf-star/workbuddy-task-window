@@ -1,0 +1,93 @@
+[
+  {
+    "id": 417,
+    "store_name": "The Toy Store Gifts and More",
+    "city": "Jonesboro",
+    "state": "AR",
+    "store_type": "toy store / gift shop",
+    "official_website": "https://www.jonesborotoystore.com/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 8.87
+  },
+  {
+    "id": 416,
+    "store_name": "Game X Change Bowling Green",
+    "city": "Bowling Green",
+    "state": "KY",
+    "store_type": "game store",
+    "official_website": "https://www.gogamexchange.com/stores/kentucky/bowling-green/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 24.84
+  },
+  {
+    "id": 422,
+    "store_name": "Go Toys Games Calendars",
+    "city": "Bowling Green",
+    "state": "KY",
+    "store_type": "toy store / gift shop",
+    "official_website": "https://www.gotoysgames.com/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 4.91
+  },
+  {
+    "id": 432,
+    "store_name": "Kentucky Fried Gaming",
+    "city": "Danville",
+    "state": "KY",
+    "store_type": "game store",
+    "official_website": "https://www.kentuckyfriedgamingco.com/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 10.16
+  },
+  {
+    "id": 433,
+    "store_name": "Derby Comics and Games",
+    "city": "Shelbyville",
+    "state": "KY",
+    "store_type": "game store",
+    "official_website": "https://derbycomicsandgames.com/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 1,
+    "scan_method": "browser",
+    "scan_time": 7.17
+  },
+  {
+    "id": 388,
+    "store_name": "Puzzled Etc.",
+    "city": "Pigeon Forge",
+    "state": "TN",
+    "store_type": "puzzle / game store",
+    "official_website": "https://puzzledetc.com/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 6.85
+  },
+  {
+    "id": 397,
+    "store_name": "Bigfoot in the Smokies",
+    "city": "Pigeon Forge",
+    "state": "TN",
+    "store_type": "gift shop",
+    "official_website": "https://bigfootsmokies.com/",
+    "classification": "B2_manual_review",
+    "reason": "no_email_found",
+    "pages_checked": 5,
+    "scan_method": "http",
+    "scan_time": 12.3
+  }
+]

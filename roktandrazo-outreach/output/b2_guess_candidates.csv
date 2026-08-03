@@ -1,0 +1,9 @@
+id,store_name,store_type,city,state,website,domain,guessed_email,product_fit,recommended_action,notes
+228,Dallas Games Marathon,board game store,Dallas,TX,https://www.dallasgamesmarathon.com/,dallasgamesmarathon.com,info@dallasgamesmarathon.com,card_games,review,
+17,Great Escape Adventures,board game / hobby store,Ithaca,NY,https://greatescapeadventures.net/,GreatEscapeAdventures.net,SALES@GreatEscapeAdventures.net,card_games,review,
+152,Heroes Collectables,comic / game store,Houston,TX,https://www.heroescollectables.com/,heroescollectables.com,info@heroescollectables.com,card_games,review,
+254,Lake Geneva Games,board game store,Lake Geneva,WI,https://www.lakegenevagames.com/,lakegenevagames.com,info@lakegenevagames.com,card_games,review,
+140,Samurai Comics & Games,comic / game store,Phoenix,AZ,https://www.samuraicomics.com/,samuraicomics.com,info@samuraicomics.com,card_games,review,
+132,Shuffle & Cut,board game store,Orange,CA,https://www.shuffleandcut.com/,shuffleandcut.com,info@shuffleandcut.com,card_games,review,
+155,Space Cadets Collection Station,board game store,Houston,TX,https://www.spacecadets.com/,spacecadets.com,info@spacecadets.com,card_games,review,
+247,Turn Zero Games,board game store,Los Angeles,CA,https://www.turnzerogames.com/,turnzerogames.com,info@turnzerogames.com,card_games,review,

@@ -1,0 +1,475 @@
+{
+  "generated_at": "2026-07-14T18:04:09.854322+00:00",
+  "today": "2026-07-14",
+  "timezone": "Asia/Shanghai",
+  "sent_today": 20,
+  "daily_target": 20,
+  "remaining": 0,
+  "hybrid_count": 0,
+  "custom_count": 0,
+  "legacy_count": 20,
+  "followup_sent": 0,
+  "followup_planned": 5,
+  "replies": 0,
+  "hard_bounce": 0,
+  "unsubscribe": 0,
+  "msg_id_present": 0,
+  "msg_id_missing": 20,
+  "retail_a0": 8,
+  "custom_a0": 0,
+  "total_a0": 8,
+  "afternoon_target": 60,
+  "afternoon_gap": 52,
+  "today_complete": true,
+  "inbox": {
+    "normal_reply": 0,
+    "hot_reply": 0,
+    "auto_reply": 0,
+    "ignored_platform": 0,
+    "hard_bounce": 0,
+    "soft_bounce": 0,
+    "unsubscribe": 0,
+    "stop_required": false,
+    "stop_reasons": [],
+    "source_ok": true
+  },
+  "followup": {
+    "raw": 86,
+    "hygiene": 77,
+    "final": 64,
+    "planned": 5,
+    "sent": 0
+  },
+  "coverage": {
+    "states_covered": 0,
+    "cities_searched": 0,
+    "cities_pending": 0,
+    "cities": [],
+    "platforms": [
+      {
+        "platform": "Amazon",
+        "category": "own_brand",
+        "search_keyword": "playing cards",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      },
+      {
+        "platform": "Etsy",
+        "category": "own_brand",
+        "search_keyword": "custom puzzle",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      },
+      {
+        "platform": "Kickstarter",
+        "category": "crowdfunding",
+        "search_keyword": "board game",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      }
+    ]
+  },
+  "source_health": {
+    "database": true,
+    "inbox": true,
+    "followup": true,
+    "coverage": true
+  },
+  "state_detail": {
+    "TN": 11,
+    "KY": 6,
+    "AR": 3
+  },
+  "city_detail": [
+    {
+      "key": "TN|Knoxville",
+      "count": 4
+    },
+    {
+      "key": "TN|Nashville",
+      "count": 3
+    },
+    {
+      "key": "KY|Louisville",
+      "count": 3
+    },
+    {
+      "key": "TN|Pigeon Forge",
+      "count": 1
+    },
+    {
+      "key": "TN|Franklin",
+      "count": 1
+    },
+    {
+      "key": "KY|Bowling Green",
+      "count": 1
+    },
+    {
+      "key": "KY|Murray",
+      "count": 1
+    },
+    {
+      "key": "AR|Fort Smith",
+      "count": 1
+    },
+    {
+      "key": "AR|Springdale",
+      "count": 1
+    },
+    {
+      "key": "TN|Chattanooga",
+      "count": 1
+    },
+    {
+      "key": "AR|Little Rock",
+      "count": 1
+    },
+    {
+      "key": "KY|Owensboro",
+      "count": 1
+    },
+    {
+      "key": "TN|Millington",
+      "count": 1
+    }
+  ],
+  "ctype_detail": {
+    "toy / experience store": 1,
+    "general store": 1,
+    "game store": 3,
+    "toy store / gift shop": 1,
+    "toy_store": 3,
+    "general_store": 1,
+    "game_store": 4,
+    "bookstore": 1,
+    "gift shop": 1,
+    "toy store": 4
+  },
+  "platform_detail": {
+    "Website": 20
+  },
+  "batch_detail": {
+    "—": 20
+  },
+  "send_list": [
+    {
+      "time": "00:59:38",
+      "store": "Ridemakerz",
+      "city": "Pigeon Forge",
+      "state": "TN",
+      "type": "toy / experience store",
+      "template": "legacy_template_unknown",
+      "email": "ser***@ridemakerz.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:01:17",
+      "store": "White s Mercantile",
+      "city": "Franklin",
+      "state": "TN",
+      "type": "general store",
+      "template": "legacy_template_unknown",
+      "email": "inf***@whitesmercantile.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:03:12",
+      "store": "Game X Change Bowling Green",
+      "city": "Bowling Green",
+      "state": "KY",
+      "type": "game store",
+      "template": "legacy_template_unknown",
+      "email": "bow***@gxc-stores.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:05:08",
+      "store": "Milezone Toys and Gifts",
+      "city": "Murray",
+      "state": "KY",
+      "type": "toy store / gift shop",
+      "template": "legacy_template_unknown",
+      "email": "hom***@milezone.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:07:08",
+      "store": "Phillips Toy Mart",
+      "city": "Nashville",
+      "state": "TN",
+      "type": "toy_store",
+      "template": "legacy_template_unknown",
+      "email": "sup***@phillipstoymart.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:09:29",
+      "store": "Smart Toys & Books",
+      "city": "Knoxville",
+      "state": "TN",
+      "type": "toy_store",
+      "template": "legacy_template_unknown",
+      "email": "inf***@smarttoysandbooks.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:11:07",
+      "store": "Mast General Store",
+      "city": "Knoxville",
+      "state": "TN",
+      "type": "general_store",
+      "template": "legacy_template_unknown",
+      "email": "cus***@mastgeneralstore.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "02:46:03",
+      "store": "Playthings Toy Shoppe",
+      "city": "Louisville",
+      "state": "KY",
+      "type": "toy_store",
+      "template": "legacy_template_unknown",
+      "email": "cus***@playthingstoyshoppe.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "02:48:57",
+      "store": "Sharp Gaming",
+      "city": "Fort Smith",
+      "state": "AR",
+      "type": "game_store",
+      "template": "legacy_template_unknown",
+      "email": "sha***@gmail.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "02:51:10",
+      "store": "Final Boss Games",
+      "city": "Springdale",
+      "state": "AR",
+      "type": "game_store",
+      "template": "legacy_template_unknown",
+      "email": "sup***@finalbossgames.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "02:53:50",
+      "store": "McKay Books",
+      "city": "Nashville",
+      "state": "TN",
+      "type": "bookstore",
+      "template": "legacy_template_unknown",
+      "email": "sup***@mckaybooks.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "02:56:33",
+      "store": "Sci-Fi City",
+      "city": "Knoxville",
+      "state": "TN",
+      "type": "game store",
+      "template": "legacy_template_unknown",
+      "email": "ord***@sci-fi-city.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "02:59:24",
+      "store": "Snooty Patootie Boutique",
+      "city": "Knoxville",
+      "state": "TN",
+      "type": "gift shop",
+      "template": "legacy_template_unknown",
+      "email": "sno***@gmail.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:01:42",
+      "store": "Bricks & Minifigs Chattanooga",
+      "city": "Chattanooga",
+      "state": "TN",
+      "type": "toy store",
+      "template": "legacy_template_unknown",
+      "email": "cha***@bricksandminifigs.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:04:26",
+      "store": "Magic N Toys",
+      "city": "Little Rock",
+      "state": "AR",
+      "type": "toy store",
+      "template": "legacy_template_unknown",
+      "email": "sup***@magicntoys.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:06:48",
+      "store": "Roundhouse Electric Trains",
+      "city": "Louisville",
+      "state": "KY",
+      "type": "toy store",
+      "template": "legacy_template_unknown",
+      "email": "kev***@roundhouseky.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:09:18",
+      "store": "Learning Express Toys Louisville",
+      "city": "Louisville",
+      "state": "KY",
+      "type": "toy store",
+      "template": "legacy_template_unknown",
+      "email": "lou***@learningexpress.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:12:21",
+      "store": "Big Bang Comics & Games",
+      "city": "Owensboro",
+      "state": "KY",
+      "type": "game store",
+      "template": "legacy_template_unknown",
+      "email": "con***@buybigbang.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:14:59",
+      "store": "Centerpoint Toys & Games",
+      "city": "Millington",
+      "state": "TN",
+      "type": "game_store",
+      "template": "legacy_template_unknown",
+      "email": "cen***@gmail.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "03:17:04",
+      "store": "Middle Tennessee Gaming",
+      "city": "Nashville",
+      "state": "TN",
+      "type": "game_store",
+      "template": "legacy_template_unknown",
+      "email": "jef***@midtngaming.com",
+      "msg_id": "historical_unavailable",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    }
+  ],
+  "anomalies": [
+    "Message-ID 缺失: 20/20 封",
+    "模板未记录: 20/20 封 (legacy)",
+    "Strict A0 库存不足: 8 (目标 60)"
+  ]
+}

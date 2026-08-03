@@ -1,0 +1,42 @@
+# System Config / 系统配置
+
+- safe_daily_cap: 5
+- consecutive_stable_days: 0
+- last_send_date: 
+- today_sent_count: 0
+- today_bounce_count: 0
+- today_hard_bounce_count: 0
+- today_policy_bounce_count: 0
+- today_soft_bounce_count: 0
+- today_unknown_bounce_count: 0
+- today_reply_count: 0
+- today_unsubscribe_count: 0
+- system_version: 2.0.0
+- last_migration: 2026-06-23T16:25:49.977460
+- daily_send_target: 20
+- sendable_inventory_floor: 60
+- lead_factory_daily_verified_target: 40
+- lead_factory_daily_candidate_target: 200
+- actual_sent: 13
+- target_sent: 20
+- inventory_status: critical
+- daily_run_date: 2026-07-06
+- daily_run_status: underfilled
+- daily_send_status: underfilled
+- daily_run_target: 20
+- daily_run_actual: 3
+- daily_run_gap: 17
+- root_cause: sendable_inventory_insufficient
+- next_window_needed_count: 17
+- recovery_pending: true
+- send_pause: true
+- auto_send_enabled: true
+- pause_reason: 
+- primary_state_pool: ["TN", "AR", "KY"]
+- backup_state_pool: ["FL", "UT", "SC"]
+- inventory_floor: 60
+- send_window_timezone: Asia/Shanghai
+- send_window: 09:00-13:00
+- inventory_shift: 13:30-17:30
+- city_selector_mode: primary_state_only
+- emergency_recovery_enabled: true

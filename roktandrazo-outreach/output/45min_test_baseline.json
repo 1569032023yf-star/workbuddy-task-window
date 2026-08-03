@@ -1,0 +1,54 @@
+{
+  "test_start_at": "2026-07-28T17:05:49.360656+08:00",
+  "test_start_epoch": 1785229549.3606665,
+  "db_sha256": "ccc772f26f83653963785e529496bd1eca80c0a2c38430fe11696460439e7023",
+  "db_size": 1196032,
+  "send_log_count": 329,
+  "planned_count": 1,
+  "worker_http": "ERROR:HTTP Error 403: Forbidden",
+  "guard_status": {
+    "process_started_at": "2026-07-28T17:04:07.321227+08:00",
+    "last_heartbeat_at": "2026-07-28T17:05:37.326859+08:00",
+    "current_mode": "normal",
+    "system_required": true,
+    "display_required": false,
+    "ac_power": true,
+    "critical_window": false,
+    "last_error": null,
+    "restart_count": 0,
+    "pid": 7944,
+    "hostname": "raktrozo"
+  },
+  "poller_status": {
+    "process_started_at": "2026-07-28T15:39:16.732811+08:00",
+    "last_heartbeat_at": "2026-07-28T17:05:16.883009+08:00",
+    "running": true,
+    "jobs": {
+      "tracking": {
+        "last_success_at": "2026-07-28T17:04:23.899223+08:00",
+        "last_failure_at": null,
+        "last_error": "None",
+        "consecutive_failures": 0
+      },
+      "health": {
+        "last_success_at": "2026-07-28T17:04:18.396223+08:00",
+        "last_failure_at": null,
+        "last_error": "None",
+        "consecutive_failures": 0
+      },
+      "reply": {
+        "last_success_at": "2026-07-28T17:04:16.749163+08:00",
+        "last_failure_at": null,
+        "last_error": "None",
+        "consecutive_failures": 0
+      },
+      "bounce": {
+        "last_success_at": "2026-07-28T17:04:19.428477+08:00",
+        "last_failure_at": null,
+        "last_error": "None",
+        "consecutive_failures": 0
+      }
+    },
+    "current_errors": []
+  }
+}

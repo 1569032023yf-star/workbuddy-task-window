@@ -1,0 +1,12 @@
+{
+  "loop": 1,
+  "pool": 2,
+  "target": 60,
+  "mode": "morning",
+  "total_a0": 0,
+  "total_b1": 3,
+  "total_c": 4,
+  "total_rejected": 11,
+  "hard_stop": "",
+  "already_done_count": 18
+}

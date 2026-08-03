@@ -1,0 +1,43 @@
+{
+  "BIOS Power-On Hour": {
+    "value": "14",
+    "is_readonly": true
+  },
+  "BIOS Power-On Minute": {
+    "value": "0",
+    "is_readonly": true
+  },
+  "Sunday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "Monday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "Tuesday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "Wednesday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "Thursday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "Friday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "Saturday": {
+    "value": "*Disable,Enable",
+    "is_readonly": true
+  },
+  "After Power Loss": {
+    "value": "*Power Off,Power On,Previous State",
+    "is_readonly": true
+  },
+  "_timestamp": "2026-07-28T17:07:07.689983+08:00"
+}

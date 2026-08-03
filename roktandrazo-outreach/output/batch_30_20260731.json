@@ -1,0 +1,83 @@
+[
+  {
+    "lead_id": 683,
+    "email": "901comicsmidtown@gmail.com",
+    "name": "901 Comics (Midtown)",
+    "city": "Memphis",
+    "state": "TN",
+    "org": "901_comics_midtown",
+    "score": "A"
+  },
+  {
+    "lead_id": 690,
+    "email": "customercare@hollieray.com",
+    "name": "Hollie Ray",
+    "city": "Franklin",
+    "state": "TN",
+    "org": "hollie_ray_franklin",
+    "score": "A"
+  },
+  {
+    "lead_id": 698,
+    "email": "learningexpresschatt@gmail.com",
+    "name": "Learning Express Toys",
+    "city": "Chattanooga",
+    "state": "TN",
+    "org": "learningexpress_chattanooga",
+    "score": "A"
+  },
+  {
+    "lead_id": 701,
+    "email": "info@grandadventurescomics.com",
+    "name": "Grand Adventures Comics",
+    "city": "Murfreesboro",
+    "state": "TN",
+    "org": "grand_adventures_murfreesboro",
+    "score": "A"
+  },
+  {
+    "lead_id": 127,
+    "email": "info@thegamekeep.com",
+    "name": "The Game Keep",
+    "city": "Nashville",
+    "state": "TN",
+    "org": "thegamekeep_com",
+    "score": "C"
+  },
+  {
+    "lead_id": 183,
+    "email": "info@gamelairnashville.com",
+    "name": "Game Lair",
+    "city": "Nashville",
+    "state": "TN",
+    "org": "gamelairnashville_com",
+    "score": "B"
+  },
+  {
+    "lead_id": 184,
+    "email": "info@eastsidegamers.com",
+    "name": "Eastside Gamers",
+    "city": "Nashville",
+    "state": "TN",
+    "org": "eastsidegamers_com",
+    "score": "C"
+  },
+  {
+    "lead_id": 31,
+    "email": "PackratsParadiseES@gmail.com",
+    "name": "Packrat's Paradise",
+    "city": "Eureka Springs",
+    "state": "AR",
+    "org": "packratsparadise_com",
+    "score": "A"
+  },
+  {
+    "lead_id": 541,
+    "email": "customercare@easternnational.org",
+    "name": "Mammoth Cave NP Store",
+    "city": "Mammoth Cave",
+    "state": "KY",
+    "org": "shop_americasnationalparks_org",
+    "score": "A"
+  }
+]

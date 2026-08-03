@@ -1,0 +1,19 @@
+{
+  "stage": "outreach",
+  "date": "2026-07-23",
+  "status": "underfilled",
+  "stop_reason": "inventory_insufficient",
+  "new_outreach_sent": 6,
+  "send_log_rows_today": 11,
+  "target": 20,
+  "gap": 14,
+  "followup_sent": 0,
+  "followup_target": 5,
+  "a0_remaining": 0,
+  "today_bounces": 0,
+  "risk_gate": "clear",
+  "total_leads": 616,
+  "total_sent_all": 326,
+  "generated_at": "2026-07-23T10:58:25.653650",
+  "notes": "Send log has duplicate rows for 5 leads (Thinker Toys, Cloud Cap, Puddletown, Curio, Gear Gaming). get_today_sent_asia_shanghai() counts rows not unique leads. Bug: 11 rows but only 6 unique emails sent."
+}

@@ -1,0 +1,672 @@
+#!/usr/bin/env python3
+"""
+Daily Operator Session — Roktandrazo BD Outreach
+
+DESIGNED FOR: Manual operator window 09:00-13:00 Asia/Shanghai.
+NOT designed for automated cron scheduling (this machine is not a server).
+
+Usage:
+    # Dry run (default — no real sending, no DB changes)
+    python daily_session.py --dry-run
+
+    # Live session (WARNING: actually sends emails)
+    python daily_session.py --live
+
+    # Outside window: will prompt "wait for next window"
+    python daily_session.py --dry-run --force  (override window check)
+
+Schedule:
+    08:40-09:00  Batch 1 (5 emails, 3-5min intervals)
+    09:15        Scan: bounce + reply + unsub + auto_reply
+    09:30-09:50  Batch 2 (5 emails)
+    10:05        Scan
+    10:20-10:40  Batch 3 (5 emails)
+    10:55        Scan
+    11:10-11:30  Batch 4 (5 emails)
+    11:45        Scan
+    12:00        Daily report
+
+SAFETY NOTES:
+    - send_pause must be 'false' for live mode
+    - Never sends: guessed_email, Exchange MX, B/C pool, suppressed, already sent
+    - Hard bounce >= 1 or total bounce >= 2 → pause remaining batches
+    - Outside 09:00-13:00 → refuses to send (unless --force)
+"""
+
+import argparse
+import csv
+import os
+import random
+import sys
+import time
+from datetime import datetime, timedelta
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from bd_db import (
+    get_db, get_sendable_leads, update_lead_status, add_to_suppression,
+    log_send, is_suppressed, check_sent_log, check_bounce_history,
+    check_mx_provider, is_exchange_mx, get_config, set_config
+)
+
+OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
+os.makedirs(OUT_DIR, exist_ok=True)
+
+# Session constants
+WINDOW_START = 9.0     # 09:00
+WINDOW_END = 13.0     # 13:00
+BATCH_SIZE = 5
+DEFAULT_DAILY_TARGET = 20
+MIN_DELAY = 180       # 3 minutes
+MAX_DELAY = 300       # 5 minutes
+CATCHUP_MIN_DELAY = 120  # 2 minutes (faster for catchup)
+CATCHUP_MAX_DELAY = 180  # 3 minutes
+
+BATCH_SCHEDULE = [
+    {'batch': 1, 'start': '08:40', 'end': '09:00', 'scan_at': '09:15'},
+    {'batch': 2, 'start': '09:30', 'end': '09:50', 'scan_at': '10:05'},
+    {'batch': 3, 'start': '10:20', 'end': '10:40', 'scan_at': '10:55'},
+    {'batch': 4, 'start': '11:10', 'end': '11:30', 'scan_at': '11:45'},
+]
+
+
+def is_in_window() -> bool:
+    """Check if current local time is within the operator window 09:00-13:00 Asia/Shanghai."""
+    now = datetime.now()
+    current_hour = now.hour + now.minute / 60.0
+    return WINDOW_START <= current_hour < WINDOW_END
+
+
+def is_window_about_to_close(batch_schedule_index: int) -> bool:
+    """Check if there's enough time left for the next batch."""
+    now = datetime.now()
+    current_hour = now.hour + now.minute / 60.0
+    if batch_schedule_index < len(BATCH_SCHEDULE):
+        batch_end_hour = float(BATCH_SCHEDULE[batch_schedule_index]['end'].replace(':', '.'))
+        # Need at least 30 min buffer
+        return current_hour + 0.5 > batch_end_hour
+    return True
+
+
+def get_today_sent_count() -> int:
+    """Count how many emails were sent today."""
+    today = datetime.now().strftime('%Y-%m-%d')
+    conn = get_db()
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM send_log WHERE status='sent' AND date(sent_at) = ?", (today,))
+    count = c.fetchone()[0]
+    conn.close()
+    return count
+
+
+def batch_send(batch_num: int, leads: list[dict], dry_run: bool,
+               min_delay: int = MIN_DELAY, max_delay: int = MAX_DELAY) -> list[dict]:
+    """Send one batch (max 5 emails). Returns list of result dicts."""
+    results = []
+    batch_sent = 0
+    batch_failed = 0
+    batch_bounced = 0
+    batch_skipped = 0
+    batch_store_list = []
+
+    print(f"\n    {'[DRY RUN]' if dry_run else ''} Starting batch {batch_num} ({len(leads[:BATCH_SIZE])} emails)...")
+    for i, lead in enumerate(leads[:BATCH_SIZE], 1):
+        email = lead.get('email', '').strip().lower()
+        lead_id = lead.get('id')
+        store_name = lead.get('store_name', '?')
+        store_info = {'store_name': store_name, 'email': email, 'status': 'unknown'}
+
+        if dry_run:
+            delay = random.randint(min_delay, max_delay)
+            print(f"    {i}. {store_name:35s} | {email:35s} | wait {delay}s")
+            store_info['status'] = 'dry_run'
+            store_info['delay'] = delay
+            batch_store_list.append(store_info)
+            results.append({
+                'store_name': store_name, 'email': email,
+                'status': 'dry_run', 'message': 'DRY RUN',
+            })
+            continue
+
+        # --- Pre-send checks ---
+        if is_suppressed(email):
+            print(f"    {i}. {store_name}: SKIPPED (suppressed)")
+            store_info['status'] = 'skipped'
+            store_info['reason'] = 'suppressed'
+            batch_skipped += 1
+            batch_store_list.append(store_info)
+            results.append({'store_name': store_name, 'email': email, 'status': 'skipped', 'message': 'suppressed'})
+            continue
+
+        if check_sent_log(email):
+            print(f"    {i}. {store_name}: SKIPPED (already sent)")
+            store_info['status'] = 'skipped'
+            store_info['reason'] = 'already sent'
+            batch_skipped += 1
+            batch_store_list.append(store_info)
+            results.append({'store_name': store_name, 'email': email, 'status': 'skipped', 'message': 'already sent'})
+            continue
+
+        bounce = check_bounce_history(email)
+        if bounce['hard']:
+            print(f"    {i}. {store_name}: SKIPPED (hard bounce)")
+            store_info['status'] = 'skipped'
+            store_info['reason'] = 'hard bounce'
+            batch_skipped += 1
+            batch_store_list.append(store_info)
+            results.append({'store_name': store_name, 'email': email, 'status': 'skipped', 'message': 'hard bounce'})
+            continue
+
+        domain = email.split('@')[1] if '@' in email else ''
+        if domain:
+            mx = check_mx_provider(domain)
+            if mx in ('exchange', 'exchange_online'):
+                print(f"    {i}. {store_name}: SKIPPED (Exchange MX: {mx})")
+                store_info['status'] = 'skipped'
+                store_info['reason'] = f'Exchange MX: {mx}'
+                batch_skipped += 1
+                batch_store_list.append(store_info)
+                results.append({'store_name': store_name, 'email': email, 'status': 'skipped', 'message': f'Exchange MX: {mx}'})
+                continue
+
+        # --- Send (via bd_sender) ---
+        subject = lead.get('email_subject', '') or f"Wholesale Inquiry - {lead.get('store_name', '')}"
+        body_text = lead.get('email_body', '') or f"Hi {lead.get('store_name', '')} team,\n\nThis is a test message..."
+
+        from bd_sender import send_one
+        result = send_one(lead, dry_run=False)
+        result['store_name'] = store_name
+        result['email'] = email
+        results.append(result)
+
+        if result.get('status') == 'sent':
+            batch_sent += 1
+            store_info['status'] = 'sent'
+            print(f"    {i}. {store_name}: SENT to {email}")
+        elif result.get('status') == 'bounced':
+            batch_bounced += 1
+            store_info['status'] = 'bounced'
+            store_info['reason'] = result.get('message', '')
+            print(f"    {i}. {store_name}: BOUNCED ({result.get('message', '')})")
+        else:
+            batch_failed += 1
+            store_info['status'] = 'failed'
+            store_info['reason'] = result.get('message', '')
+            print(f"    {i}. {store_name}: FAILED ({result.get('message', '')})")
+
+        batch_store_list.append(store_info)
+
+        # Delay between emails
+        if i < len(leads[:BATCH_SIZE]):
+            delay = random.randint(min_delay, max_delay)
+            print(f"       waiting {delay}s...")
+            time.sleep(delay)
+
+    print(f"    Batch {batch_num} summary: sent={batch_sent} failed={batch_failed} bounced={batch_bounced} skipped={batch_skipped}")
+    return results
+
+
+def scan_bounce_and_reply(dry_run: bool) -> dict:
+    """Scan for bounce notifications and replies after a batch.
+    Returns scan results dict.
+    """
+    result = {
+        'bounces': [],
+        'hard_bounces': [],
+        'policy_bounces': [],
+        'replies': [],
+        'hot_replies': [],
+        'unsubscribes': [],
+        'auto_replies': [],
+    }
+
+    if dry_run:
+        print(f"    [DRY RUN] Would scan IMAP for: bounce / reply / unsub / auto_reply")
+        return result
+
+    try:
+        from agent_bounce_auditor import scan_bounces
+        from agent_reply_monitor import scan_replies
+
+        print("    Scanning bounces...")
+        bounce_results = scan_bounces(dry_run=False)
+        if isinstance(bounce_results, dict):
+            for b in bounce_results.get('bounces', []):
+                result['bounces'].append(b)
+                if b.get('type') == 'message_id_missing':
+                    # Sender-side header defect: do not suppress the recipient.
+                    result['policy_bounces'].append(b)
+                    print(f"    [MESSAGE-ID] {b.get('email', '')}: missing Message-ID bounce - NOT suppressed")
+                elif b.get('type') == 'hard':
+                    result['hard_bounces'].append(b)
+                    # Auto-suppress hard bounces
+                    email = b.get('email', '')
+                    if email:
+                        add_to_suppression(email, 'hard_bounce')
+                elif b.get('type') == 'policy':
+                    result['policy_bounces'].append(b)
+
+        print("    Scanning replies...")
+        reply_results = scan_replies(dry_run=False)
+        if isinstance(reply_results, dict):
+            result['replies'] = reply_results.get('replies', [])
+            result['hot_replies'] = reply_results.get('hot_replies', [])
+            result['unsubscribes'] = reply_results.get('unsubscribes', [])
+            result['auto_replies'] = reply_results.get('auto_replies', [])
+
+    except Exception as e:
+        print(f"    [SCAN ERROR] {e}")
+
+    return result
+
+
+def should_pause_after_scan(scan_result: dict) -> tuple[bool, str]:
+    """Check if we should pause remaining batches based on scan result.
+    Returns (should_pause, reason).
+    """
+    if len(scan_result.get('hard_bounces', [])) >= 1:
+        return True, f"Hard bounce >= 1 ({len(scan_result['hard_bounces'])})"
+    if len(scan_result.get('bounces', [])) >= 2:
+        return True, f"Total bounce >= 2 ({len(scan_result['bounces'])})"
+    if len(scan_result.get('unsubscribes', [])) >= 1:
+        return True, f"Unsubscribe >= 1 ({len(scan_result['unsubscribes'])})"
+    return False, ""
+
+
+def run_scan(dry_run: bool, label: str) -> dict:
+    """Run a scan cycle and print results."""
+    print(f"\n  [{label}] Scanning...")
+    scan_result = scan_bounce_and_reply(dry_run)
+
+    if not dry_run:
+        b = scan_result
+        print(f"    Bounces: {len(b['bounces'])} (hard: {len(b['hard_bounces'])}, policy: {len(b['policy_bounces'])})")
+        print(f"    Replies: {len(b['replies'])} (hot: {len(b['hot_replies'])})")
+        print(f"    Unsubscribes: {len(b['unsubscribes'])}")
+        print(f"    Auto-replies: {len(b['auto_replies'])}")
+    else:
+        print(f"    [DRY RUN] Would report bounce/reply stats here")
+
+    return scan_result
+
+
+def generate_daily_report(dry_run: bool, session_results: dict, daily_target: int = DEFAULT_DAILY_TARGET):
+    """Generate the 12:00 daily report and save to file."""
+    today = datetime.now().strftime('%Y-%m-%d')
+    report_path = os.path.join(OUT_DIR, f'daily_report_{today}.md')
+
+    total_sent = session_results.get('total_sent', 0)
+    total_failed = session_results.get('total_failed', 0)
+    total_bounced = session_results.get('total_bounced', 0)
+    total_skipped = session_results.get('total_skipped', 0)
+    scan_results = session_results.get('scan_results', [])
+    pause_reason = session_results.get('pause_reason', '')
+    batch_details = session_results.get('batch_details', [])
+    catchup = session_results.get('catchup', False)
+    deadline = session_results.get('deadline', '')
+
+    # Aggregate scan data
+    all_hard_bounces = []
+    all_policy_bounces = []
+    all_replies = []
+    all_hot_replies = []
+    all_unsubscribes = []
+    all_auto_replies = []
+    for sr in scan_results:
+        all_hard_bounces.extend(sr.get('hard_bounces', []))
+        all_policy_bounces.extend(sr.get('policy_bounces', []))
+        all_replies.extend(sr.get('replies', []))
+        all_hot_replies.extend(sr.get('hot_replies', []))
+        all_unsubscribes.extend(sr.get('unsubscribes', []))
+        all_auto_replies.extend(sr.get('auto_replies', []))
+
+    # Pool state
+    conn = get_db()
+    c = conn.cursor()
+    a0_count = c.execute("""SELECT COUNT(*) FROM leads WHERE status='new' AND confidence_score='A'
+        AND email_verified_on_official_site=1 AND email_source_type IN ('official_page_visible','official_mailto','wholesale_vendor_page')
+        AND email IS NOT NULL AND email != ''""").fetchone()[0]
+    ams_count = c.execute("SELECT COUNT(*) FROM leads WHERE status='approved_manual_send'").fetchone()[0]
+    b_count = c.execute("SELECT COUNT(*) FROM leads WHERE status IN ('new', 'manual_review_needed') AND confidence_score='B' AND email IS NOT NULL AND email != ''").fetchone()[0]
+    c_count = c.execute("""SELECT COUNT(*) FROM leads WHERE status='contact_form_pool'
+        OR (status='new' AND (email IS NULL OR email='') AND contact_form_url IS NOT NULL AND contact_form_url != '')""").fetchone()[0]
+    sp = get_config('send_pause') or 'true'
+    pr = get_config('pause_reason') or ''
+    conn.close()
+
+    with open(report_path, 'w', encoding='utf-8') as f:
+        f.write(f"# BD Daily Report — {today}\n\n")
+        if catchup:
+            f.write(f"> **Today Catch-up Mode** | Target: {daily_target} | Deadline: {deadline or '12:00'}\n\n")
+        f.write("---\n\n")
+
+        # 1. Send summary
+        f.write("## [发送摘要]\n\n")
+        f.write(f"| 指标 | 数值 |\n")
+        f.write(f"|------|------|\n")
+        f.write(f"| 今日目标 | {daily_target} |\n")
+        f.write(f"| 实际发送 | {total_sent} |\n")
+        f.write(f"| 发送失败 | {total_failed} |\n")
+        f.write(f"| 跳过 | {total_skipped} |\n")
+        f.write(f"| 退信 | {total_bounced} |\n")
+        f.write(f"| 完成率 | {total_sent / daily_target * 100:.0f}% |\n\n")
+
+        # 2. Per-batch breakdown
+        f.write("## [每批发送清单]\n\n")
+        for bd in batch_details:
+            bn = bd['batch']
+            f.write(f"### Batch {bn}\n\n")
+            f.write(f"| # | 门店 | 邮箱 | 状态 |\n")
+            f.write(f"|---|------|------|------|\n")
+            for i, s in enumerate(bd.get('stores', []), 1):
+                status_icon = {'sent': 'SENT', 'skipped': 'SKIP', 'bounced': 'BOUNCE', 'failed': 'FAIL', 'dry_run': 'DRY'}.get(s.get('status',''), s.get('status',''))
+                f.write(f"| {i} | {s.get('name','?')} | {s.get('email','')} | {status_icon} |\n")
+            f.write(f"\nBatch {bn} summary: sent={bd['sent']} failed={bd['failed']} bounced={bd['bounced']} skipped={bd['skipped']}\n\n")
+
+        # 3. Delivery status
+        f.write("## [送达状态]\n\n")
+        f.write(f"| 类型 | 数量 |\n")
+        f.write(f"|------|------|\n")
+        f.write(f"| 成功送达 | {total_sent} |\n")
+        f.write(f"| Hard Bounce | {len(all_hard_bounces)} |\n")
+        f.write(f"| Policy Bounce | {len(all_policy_bounces)} |\n")
+
+        # 4. Replies
+        f.write("\n## [回复摘要]\n\n")
+        f.write(f"| 类型 | 数量 |\n")
+        f.write(f"|------|------|\n")
+        f.write(f"| 新回复 | {len(all_replies)} |\n")
+        f.write(f"| 高意向回复 | {len(all_hot_replies)} |\n")
+        f.write(f"| 自动回复 | {len(all_auto_replies)} |\n")
+        f.write(f"| 退订 | {len(all_unsubscribes)} |\n\n")
+
+        # 5. Pool remaining
+        f.write("## [池剩余]\n\n")
+        f.write(f"| 池 | 数量 | 说明 |\n")
+        f.write(f"|---|------|------|\n")
+        f.write(f"| A0 (可发) | {a0_count} | 已验证邮箱，非Exchange |\n")
+        f.write(f"| A1 (Exchange) | 0 | 已验证邮箱，Exchange MX |\n")
+        f.write(f"| approved_manual | {ams_count} | 人工确认邮箱 |\n")
+        f.write(f"| B (需人工确认) | {b_count} | 猜测邮箱 |\n")
+        f.write(f"| C (contact form) | {c_count} | 仅contact form |\n\n")
+
+        # 6. Pause state
+        f.write("## [暂停状态]\n\n")
+        f.write(f"| 项 | 值 |\n")
+        f.write(f"|----|----|\n")
+        f.write(f"| send_pause | {sp} |\n")
+        f.write(f"| pause_reason | {pr} |\n")
+        if pause_reason:
+            f.write(f"| batch_paused | {pause_reason} |\n\n")
+        else:
+            f.write(f"| batch_paused | - |\n\n")
+
+        # 7. Anomalies
+        f.write("## [违规/异常]\n\n")
+        anomalies = []
+        if all_hard_bounces:
+            anomalies.append(f"Hard bounce detected: {len(all_hard_bounces)} emails (auto-suppressed)")
+        if all_policy_bounces:
+            anomalies.append(f"Policy bounce detected: {len(all_policy_bounces)}")
+        if all_unsubscribes:
+            anomalies.append(f"Unsubscribe detected: {len(all_unsubscribes)}")
+        if total_failed > 3:
+            anomalies.append(f"High failure rate: {total_failed}/{total_sent + total_failed}")
+        if total_sent < daily_target:
+            anomalies.append(f"未完成目标 (sent {total_sent}/{daily_target})")
+        if not anomalies:
+            f.write(f"  无异常\n\n")
+        else:
+            for a in anomalies:
+                f.write(f"  * {a}\n")
+            f.write("\n")
+
+        # 8. Suggestions
+        f.write("## [建议]\n\n")
+        if dry_run:
+            f.write(f"  * DRY RUN — no real emails were sent\n\n")
+        else:
+            if a0_count < daily_target:
+                f.write(f"  * A0 剩余 {a0_count} 条，不足下次 {daily_target} 封目标\n")
+                f.write(f"  * 建议先运行 Browser Verification 清洗 B 池，再只人工查看 Top 30 高价值例外\n")
+            else:
+                f.write(f"  * A0 剩余 {a0_count} 条，足够下次发送\n")
+            if a0_count >= daily_target:
+                f.write(f"  * 建议明天按 09:00-13:00 Asia/Shanghai 标准窗口执行\n")
+            else:
+                f.write(f"  * 建议先补足 A0 或 approved_manual_send 后再发送\n")
+            if b_count > 0:
+                f.write(f"  * B 池仍有 {b_count} 条待浏览器验证，不建议全量人工确认\n")
+            if sp == 'true' and not pause_reason:
+                f.write(f"  * send_pause 仍为 true — 如需发送请先解除\n")
+            f.write(f"  * 下一个 operator window: 明天 09:00-13:00 Asia/Shanghai\n\n")
+
+    print(f"\n  [REPORT] Daily report saved: {report_path}")
+    return report_path
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Daily Operator Session')
+    parser.add_argument('--dry-run', action='store_true', default=True, help='Dry run (no real send)')
+    parser.add_argument('--live', action='store_true', help='Live send mode')
+    parser.add_argument('--force', action='store_true', help='Override window check')
+    parser.add_argument('--skip-window-check', action='store_true', help=argparse.SUPPRESS)
+    parser.add_argument('--today-catchup', action='store_true',
+                        help='Today Catch-up Mode: send immediately, no window restriction, 2-3min intervals')
+    parser.add_argument('--target-count', type=int, default=DEFAULT_DAILY_TARGET,
+                        help=f'Target emails to send (default: {DEFAULT_DAILY_TARGET})')
+    parser.add_argument('--deadline', type=str, default='',
+                        help='Deadline time, e.g. "12:00 Asia/Shanghai". If reached, stop sending.')
+    args = parser.parse_args()
+
+    dry_run = not args.live
+    catchup = args.today_catchup
+    daily_target = args.target_count
+    deadline_str = args.deadline
+
+    print("=" * 60)
+    title = "BD DAILY OPERATOR SESSION"
+    if catchup:
+        title = "BD TODAY CATCH-UP MODE"
+    print(title)
+    print("=" * 60)
+    print(f"Mode: {'DRY RUN' if dry_run else 'LIVE SEND'}{' (Catch-up)' if catchup else ''}")
+    if catchup and not dry_run:
+        print(f"Target: {daily_target} emails before {deadline_str or '12:00'}")
+
+    # --- Window check (skip for catchup mode) ---
+    if not args.force and not catchup:
+        if not is_in_window():
+            now_str = datetime.now().strftime('%H:%M')
+            print(f"\n[WINDOW] Current time: {now_str}")
+            print(f"[WINDOW] Operator window: 09:00 - 13:00 Asia/Shanghai")
+            print(f"[WINDOW] Outside window — not sending.")
+            print(f"[WINDOW] Please wait for the next 09:00-13:00 Asia/Shanghai window,")
+            print(f"         or use --force to override this check.")
+            sys.exit(0)
+        else:
+            print(f"\n[WINDOW] Within operator window (09:00-13:00 Asia/Shanghai) [OK]")
+    elif catchup:
+        print(f"\n[CATCHUP] Today Catch-up Mode activated — window restriction overridden.")
+        print(f"[CATCHUP] All safety checks remain active.")
+
+    # --- Live mode check: send_pause must be false ---
+    if not dry_run:
+        sp = get_config('send_pause')
+        if sp == 'true':
+            print(f"\n[BLOCKED] send_pause = true")
+            reason = get_config('pause_reason') or 'No reason set'
+            print(f"  Reason: {reason}")
+            print(f"  Set send_pause to 'false' before running live session.")
+            print(f"  Use --dry-run for testing without sending.")
+            sys.exit(1)
+
+        print(f"\n[LIVE] Sending mode active. This WILL send real emails.")
+        if not catchup:
+            print("[LIVE] Press Ctrl+C within 5 seconds to abort...")
+            try:
+                time.sleep(5)
+            except KeyboardInterrupt:
+                print("\n[ABORTED] by user")
+                sys.exit(0)
+        else:
+            print("[CATCHUP] Proceeding immediately (user confirmed catch-up)...")
+        print("[LIVE] Proceeding...")
+
+    print(f"\n[INIT] Today's sent count so far: {get_today_sent_count()}")
+
+    # Deadline check helper
+    def is_past_deadline():
+        if deadline_str:
+            try:
+                now = datetime.now()
+                deadline_parts = deadline_str.split()[0].split(':')
+                dl_hour = int(deadline_parts[0])
+                dl_min = int(deadline_parts[1])
+                current_hour = now.hour + now.minute / 60.0
+                dl_hour_float = dl_hour + dl_min / 60.0
+                if current_hour >= dl_hour_float:
+                    return True
+            except:
+                pass
+        return False
+
+    # Use faster intervals for catchup
+    if catchup:
+        effective_min_delay = CATCHUP_MIN_DELAY
+        effective_max_delay = CATCHUP_MAX_DELAY
+    else:
+        effective_min_delay = MIN_DELAY
+        effective_max_delay = MAX_DELAY
+
+    print(f"\n[INIT] Interval: {effective_min_delay}s-{effective_max_delay}s per email")
+    print(f"[INIT] Daily target: {daily_target}")
+
+    # ================================================================
+    # Session execution
+    # ================================================================
+    session_results = {
+        'total_sent': 0,
+        'total_failed': 0,
+        'total_bounced': 0,
+        'total_skipped': 0,
+        'scan_results': [],
+        'pause_reason': '',
+        'batch_details': [],
+        'catchup': catchup,
+        'daily_target': daily_target,
+        'deadline': deadline_str,
+    }
+    all_batch_results = []
+
+    # In catchup mode: 4 sequential batches
+    # In normal mode: follow BATCH_SCHEDULE
+    if catchup:
+        batch_schedule = [
+            {'batch': 1, 'label': 'Catch-up Batch 1'},
+            {'batch': 2, 'label': 'Catch-up Batch 2'},
+            {'batch': 3, 'label': 'Catch-up Batch 3'},
+            {'batch': 4, 'label': 'Catch-up Batch 4'},
+        ]
+    else:
+        batch_schedule = BATCH_SCHEDULE
+
+    for batch_info in batch_schedule:
+        bnum = batch_info['batch']
+
+        # Deadline check before each batch
+        if is_past_deadline():
+            print(f"\n  [DEADLINE] Reached deadline {deadline_str}. Stopping.")
+            session_results['pause_reason'] = f'Deadline reached: {deadline_str}'
+            break
+
+        # Check if we should continue after pause
+        if session_results['pause_reason']:
+            print(f"\n  [PAUSED] Remaining batches skipped. Reason: {session_results['pause_reason']}")
+            break
+
+        # Check daily limit
+        today_sent = get_today_sent_count() if not dry_run else 0
+        remaining = daily_target - today_sent
+        if remaining <= 0:
+            print(f"\n  [LIMIT] Daily target of {daily_target} reached. Stopping.")
+            break
+
+        batch_size = min(BATCH_SIZE, remaining)
+
+        # Fetch leads for this batch
+        leads = get_sendable_leads(limit=batch_size)
+        if not leads:
+            print(f"\n  [EMPTY] No sendable leads remaining.")
+            break
+
+        batch_label = batch_info.get('label', f"Batch {bnum}")
+        print(f"\n  >>> {batch_label} ({batch_size} emails)")
+        batch_results = batch_send(bnum, leads[:batch_size], dry_run, effective_min_delay, effective_max_delay)
+
+        # Track results
+        for r in batch_results:
+            status = r.get('status', '')
+            if status == 'sent':
+                session_results['total_sent'] += 1
+            elif status in ('failed', 'error'):
+                session_results['total_failed'] += 1
+            elif status == 'bounced':
+                session_results['total_bounced'] += 1
+            elif status == 'skipped':
+                session_results['total_skipped'] += 1
+
+        all_batch_results.extend(batch_results)
+
+        # Store batch details for report
+        batch_detail = {
+            'batch': bnum,
+            'sent': sum(1 for r in batch_results if r.get('status') == 'sent'),
+            'failed': sum(1 for r in batch_results if r.get('status') in ('failed', 'error')),
+            'bounced': sum(1 for r in batch_results if r.get('status') == 'bounced'),
+            'skipped': sum(1 for r in batch_results if r.get('status') == 'skipped'),
+            'stores': [{'name': r.get('store_name','?'), 'email': r.get('email',''), 'status': r.get('status','')}
+                       for r in batch_results],
+        }
+        session_results.setdefault('batch_details', []).append(batch_detail)
+
+        # Scan after batch
+        scan_result = run_scan(dry_run, f"Scan after Batch {bnum}")
+        session_results['scan_results'].append(scan_result)
+
+        # Check if we should pause
+        should_pause, reason = should_pause_after_scan(scan_result)
+        if should_pause:
+            session_results['pause_reason'] = reason
+            print(f"\n  [PAUSE] Triggered: {reason}")
+            # NOTE: send_pause is NOT auto-set here.
+            # The orchestrator (daily_operator_auto.py) handles pausing
+            # based on aggregated session results.
+
+        # If not the last batch, wait until next batch time
+        if bnum < 4 and not session_results['pause_reason']:
+            print(f"\n  [WAIT] Next batch at {BATCH_SCHEDULE[bnum]['start']}...")
+
+    # ================================================================
+    # Daily report
+    # ================================================================
+    print(f"\n{'=' * 60}")
+    print("SESSION COMPLETE")
+    print(f"{'=' * 60}")
+    print(f"  Total sent:    {session_results['total_sent']}")
+    print(f"  Total failed:  {session_results['total_failed']}")
+    print(f"  Total bounced: {session_results['total_bounced']}")
+    print(f"  Total skipped: {session_results['total_skipped']}")
+    if session_results['pause_reason']:
+        print(f"  Paused:        {session_results['pause_reason']}")
+
+    report_path = generate_daily_report(dry_run, session_results, daily_target)
+
+    if dry_run:
+        print(f"\n[SAFE] DRY RUN — no emails were sent, no database changes.")
+        print(f"       Run with --live for real sending.")
+    else:
+        print(f"\n[LIVE] Session complete. Check daily report for details.")
+
+
+if __name__ == '__main__':
+    main()

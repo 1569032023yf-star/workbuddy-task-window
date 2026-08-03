@@ -1,0 +1,367 @@
+{
+  "_schema": "9.0_file_level_dashboard",
+  "generated_at": "2026-07-27T16:25:00+08:00",
+  "city": "Nashville",
+  "state": "TN",
+  "city_status": "partial_first_page_webfetch_all_queries_executed",
+  "production_db_status": "production_db_unavailable_for_recalculation",
+  "A_FILE_LEVEL_DISCOVERY": {
+    "raw_discovered_records": 58,
+    "unique_locations": 39,
+    "unique_organizations": 33,
+    "nashville_locations": 28,
+    "outside_active_city_locations": 11,
+    "outside_cities": [
+      "Hermitage",
+      "Goodlettsville",
+      "Brentwood",
+      "Madison",
+      "Franklin",
+      "Smyrna",
+      "Spring Hill"
+    ],
+    "related_location_groups": 3,
+    "related_detail": [
+      {
+        "org": "game_point_cafe",
+        "locations": 2,
+        "shared_email": "info@gamepointcafe.com"
+      },
+      {
+        "org": "nashville_souvenirs",
+        "locations": 2,
+        "shared_email": null
+      },
+      {
+        "org": "the_great_escape",
+        "locations": 2,
+        "shared_email": "contactus@thegreatescapeonline.com"
+      }
+    ]
+  },
+  "B_FILE_LEVEL_EVIDENCE": {
+    "official_site_verified_locations": 12,
+    "official_site_verified_organizations": 10,
+    "official_email_candidate_locations": 8,
+    "official_email_candidate_organizations": 7,
+    "official_email_audit": [
+      {
+        "organization_key": "game_point_cafe",
+        "business_name": "Game Point",
+        "email": "info@gamepointcafe.com",
+        "email_role": "general",
+        "evidence_url": "https://gamepointcafe.com/contact",
+        "evidence_snippet": "mailto:info@gamepointcafe.com on contact page",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "lane": "retail",
+        "proposed_classification": "potential_a0",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-24"
+      },
+      {
+        "organization_key": "tabla_rasa_toys",
+        "business_name": "Tabla Rasa Toys",
+        "email": "shop@tablarasatoys.com",
+        "email_role": "general_inquiry",
+        "evidence_url": "https://tablarasatoys.com/visit-us",
+        "evidence_snippet": "shop@tablarasatoys.com — mailto link in footer",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "lane": "retail",
+        "proposed_classification": "potential_a0",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-27"
+      },
+      {
+        "organization_key": "growup_kids",
+        "business_name": "growUP",
+        "email": "hello@growup.kids",
+        "email_role": "general",
+        "evidence_url": "https://growup.kids/policies/contact-information",
+        "evidence_snippet": "email: hello@growup.kids — official contact page",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "lane": "retail",
+        "proposed_classification": "potential_a0",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-27"
+      },
+      {
+        "organization_key": "ready_mark_cards",
+        "business_name": "Ready Mark Cards",
+        "email": "dylan@readymark.co",
+        "email_role": "owner",
+        "evidence_url": "https://readymark.co/pages/terms-of-service",
+        "evidence_snippet": "dylan@readymark.co — official Terms of Service page",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "lane": "retail",
+        "proposed_classification": "potential_a0",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-27",
+        "note": "First-name email (dylan@). Owner-operators common in card shops."
+      },
+      {
+        "organization_key": "parnassus_books",
+        "business_name": "Parnassus Books",
+        "email": "orders@parnassusbooks.net",
+        "email_role": "orders",
+        "evidence_url": "https://parnassusbooks.net/accessibility-statement",
+        "evidence_snippet": "Email: orders@parnassusbooks.net — official accessibility page",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": false,
+        "lane": "retail",
+        "proposed_classification": "potential_a0",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-27",
+        "note": "Primarily bookstore. Children's section exists. Product fit: moderate."
+      },
+      {
+        "organization_key": "the_bookshop",
+        "business_name": "The Bookshop",
+        "email": "thebookshoporders@gmail.com",
+        "email_role": "orders",
+        "evidence_url": "https://www.thebookshopnashville.com/contact-hours",
+        "evidence_snippet": "thebookshoporders@gmail.com — official contact-hours page",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": true,
+        "lane": "retail",
+        "proposed_classification": "manual_review",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-27",
+        "note": "Gmail address. Official page verified. Product fit: books + gift items. Needs manual review for public provider."
+      },
+      {
+        "organization_key": "miniature_cottage",
+        "business_name": "Miniature Cottage",
+        "email": "miniaturecottage@gmail.com",
+        "email_role": "general",
+        "evidence_url": "https://miniaturecottage.com/about-us",
+        "evidence_snippet": "Contact info: miniaturecottage@gmail.com",
+        "evidence_method": "webfetch_official_page",
+        "domain_match": true,
+        "public_mail_provider": true,
+        "lane": "retail",
+        "proposed_classification": "low_priority",
+        "production_gate_status": "pending",
+        "verified_at": "2026-07-27",
+        "note": "Gmail. Dollhouse miniatures only — no puzzle/game product fit."
+      }
+    ],
+    "search_only_email_candidates": [
+      {
+        "org": "phillips_toy_mart",
+        "email": "support@phillipstoymart.com",
+        "source": "new_lead_factory.py seed data"
+      },
+      {
+        "org": "nashville_toys_books",
+        "email": "contact@nashvilletoysandbooks.com",
+        "source": "allbiz.com directory"
+      },
+      {
+        "org": "fairytales_bookstore",
+        "email": "fairytales37206@gmail.com",
+        "source": "allbiz.com directory"
+      },
+      {
+        "org": "tennessee_state_museum",
+        "email": "store@tnmuseum.org",
+        "source": "tnmuseum.org official page — NEEDS VERIFICATION"
+      }
+    ]
+  },
+  "C_PENDING_PRODUCTION_CHECK": {
+    "file_level_potential_a0_organizations": 6,
+    "potential_a0_list": [
+      "game_point_cafe",
+      "tabla_rasa_toys",
+      "growup_kids",
+      "ready_mark_cards",
+      "parnassus_books",
+      "tennessee_state_museum"
+    ],
+    "pending_history_crosscheck": 6,
+    "pending_production_hygiene": 6,
+    "note": "ALL 6 require production DB crosscheck + hygiene gate before becoming real A0"
+  },
+  "D_CLASSIFICATION": {
+    "primary_mutually_exclusive": {
+      "potential_a0": {
+        "orgs": 6,
+        "locs": 7
+      },
+      "manual_review": {
+        "orgs": 8,
+        "locs": 8
+      },
+      "contact_form": {
+        "orgs": 2,
+        "locs": 2
+      },
+      "low_priority": {
+        "orgs": 3,
+        "locs": 3
+      },
+      "rejected": {
+        "orgs": 3,
+        "locs": 3
+      },
+      "outside_active_city": {
+        "orgs": 11,
+        "locs": 11
+      }
+    },
+    "attributes_overlapping": {
+      "official_site_verified": {
+        "orgs": 10,
+        "locs": 12
+      },
+      "official_email_candidate": {
+        "orgs": 7,
+        "locs": 8
+      },
+      "related_location": {
+        "orgs": 3
+      },
+      "custom_production_candidate": {
+        "orgs": 5
+      }
+    }
+  },
+  "E_QUERY_PROGRESS": {
+    "total_queries_executed": 22,
+    "remaining_queries": [],
+    "new_locations_this_session": 4,
+    "new_organizations_this_session": 2,
+    "query_log": [
+      {
+        "#": 10,
+        "query": "children's store",
+        "provider": "webfetch_google_maps",
+        "raw": 7,
+        "new_loc": 3,
+        "new_org": 2,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 11,
+        "query": "educational supply store",
+        "provider": "webfetch_google_maps",
+        "raw": 8,
+        "new_loc": 1,
+        "new_org": 0,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 12,
+        "query": "card game store",
+        "provider": "webfetch_google_maps",
+        "raw": 7,
+        "new_loc": 1,
+        "new_org": 1,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 13,
+        "query": "family game store",
+        "provider": "webfetch_google_maps",
+        "raw": 7,
+        "new_loc": 0,
+        "new_org": 0,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 14,
+        "query": "learning store",
+        "provider": "webfetch_google_maps",
+        "raw": 1,
+        "new_loc": 0,
+        "new_org": 0,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 15,
+        "query": "teacher supply store",
+        "provider": "webfetch_google_maps",
+        "raw": 0,
+        "new_loc": 0,
+        "new_org": 0,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 16,
+        "query": "science museum gift shop",
+        "provider": "webfetch_google_maps",
+        "raw": 5,
+        "new_loc": 2,
+        "new_org": 2,
+        "status": "partial_first_page_collected"
+      },
+      {
+        "#": 22,
+        "query": "local specialty retailer",
+        "provider": "webfetch_google_maps",
+        "raw": 0,
+        "new_loc": 0,
+        "new_org": 0,
+        "status": "partial_first_page_collected"
+      }
+    ],
+    "next_query": null
+  },
+  "F_NEW_FINDS_THIS_SESSION": [
+    {
+      "org": "adventure_science_center",
+      "name": "Adventure Science Center",
+      "address": "800 Fort Negley Blvd, Nashville, TN 37203",
+      "phone": "615-862-5160",
+      "website": "adventuresci.org",
+      "products": "educational toys, science kits, STEM products",
+      "classification": "manual_review_candidate",
+      "reason": "Gift shop confirmed with STEM products. No email found yet.",
+      "source": "science museum gift shop query"
+    },
+    {
+      "org": "tennessee_state_museum",
+      "name": "Tennessee State Museum Store",
+      "address": "1000 Rosa L. Parks Blvd, Nashville, TN 37208",
+      "phone": "615-741-2692",
+      "website": "tnmuseum.org/museum-store",
+      "email_candidate": "store@tnmuseum.org",
+      "products": "handmade artisan items, history merchandise, books, specialty gifts, jigsaw puzzles (confirmed on kids page)",
+      "classification": "potential_a0",
+      "reason": "Official email store@tnmuseum.org on museum-site. Jigsaw puzzles confirmed.",
+      "source": "science museum gift shop query"
+    }
+  ],
+  "G_CURSOR": {
+    "active_city": "Nashville",
+    "active_state": "TN",
+    "last_completed_query": "local specialty retailer",
+    "next_query": null,
+    "remaining_queries": [],
+    "query_index": 22,
+    "master_record_count": 58,
+    "unique_location_count": 39,
+    "unique_organization_count": 33,
+    "pending_evidence_count": 12,
+    "timestamp": "2026-07-28T09:39:30.533078",
+    "next_action": "continue remaining 6 queries, then process backlog evidence"
+  },
+  "_integrity": {
+    "production_db_not_modified": true,
+    "send_log_not_touched": true,
+    "final_send_plan_not_touched": true,
+    "no_query_completed": true,
+    "no_city_completed": true,
+    "inventory_continues": true
+  }
+}

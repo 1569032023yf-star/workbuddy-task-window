@@ -1,0 +1,2 @@
+﻿  系统睡眠诊断报告已弃用且替换为系统电源报告。
+  请改用命令 "powercfg /systempowerreport"。

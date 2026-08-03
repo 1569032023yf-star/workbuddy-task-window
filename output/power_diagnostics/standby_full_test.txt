@@ -1,0 +1,4 @@
+﻿=== Modern Standby Events (full test window, last 50 min) ===
+ZERO Modern Standby events during test window
+
+=== ALL Kernel-Power events ===

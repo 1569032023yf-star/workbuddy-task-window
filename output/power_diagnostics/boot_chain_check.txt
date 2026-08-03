@@ -1,0 +1,119 @@
+﻿=== WORKBUDDY SERVICE CHECK ===
+
+=== ALL AUTOSTART SERVICES WITH WORKBUDDY/CODEBUDDY ===
+
+=== SCHEDULED TASKS RELATED ===
+
+任务名:                             \Roktandrazo_Daily_Outreach
+注释:                               Roktandrazo BD Outreach - daily email pipelin
+e (DRY RUN)
+任务名:                             \RoktRazo-BD-Daily-Outreach
+要运行的任务:                       C:/Users/15690/.workbuddy/binaries/python/version
+s/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-o
+utreach/daily_operator_auto.py --live --target-count 20 --allow-topup --stop-on
+-risk
+要运行的任务:                       C:/Users/15690/.workbuddy/binaries/python/version
+s/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-o
+utreach/workbuddy_candidate_modules/inbox_polling_monitor.py
+要运行的任务:                       C:/Users/15690/.workbuddy/binaries/python/version
+s/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-o
+utreach/inventory_recovery_loop.py --mode morning --target 60 --batch-size 30 -
+-write-safe --no-dry-run --max-loops 10
+要运行的任务:                       C:\Users\15690\.workbuddy\binaries\python\version
+s\3.13.12\python.exe "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-
+outreach\bd_orchestrator.py" --stage status --dry-run
+起始于:                             C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\r
+oktandrazo-outreach
+要运行的任务:                       C:/Users/15690/.workbuddy/binaries/python/version
+s/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-o
+utreach/workbuddy_candidate_modules/inbox_polling_monitor.py
+
+
+
+=== USER STARTUP FOLDER ===
+
+Name                    
+----                    
+MiMo_Proxy_Autostart.vbs
+
+
+
+=== REGISTRY RUN KEYS ===
+
+
+OneDrive                                                 : "C:\Users\15690\AppD
+                                                           ata\Local\Microsoft\
+                                                           OneDrive\OneDrive.ex
+                                                           e" /background
+WXWork                                                   : "C:\Program Files (x
+                                                           86)\WXWork\WXWork.ex
+                                                           e" -min -autorun
+YoudaoDict                                               : "C:\Users\15690\AppD
+                                                           ata\Local\Youdao\Dic
+                                                           t\Application\Youdao
+                                                           Dict.exe" -hide -aut
+                                                           ostart
+Feishu                                                   : "C:\Users\15690\AppD
+                                                           ata\Local\Feishu\Fei
+                                                           shu.exe"
+Microsoft.Lists                                          : C:\Users\15690\AppDa
+                                                           ta\Local\Microsoft\O
+                                                           neDrive\26.123.0628.
+                                                           0001\OneDrive.Sync.S
+                                                           ervice.exe
+MicrosoftEdgeAutoLaunch_F48F413DB648DE9EFE92A4267503898C : "C:\Program Files (x
+                                                           86)\Microsoft\Edge\A
+                                                           pplication\msedge.ex
+                                                           e" --no-startup-wind
+                                                           ow --win-session-sta
+                                                           rt
+PSPath                                                   : Microsoft.PowerShell
+                                                           .Core\Registry::HKEY
+                                                           _CURRENT_USER\Softwa
+                                                           re\Microsoft\Windows
+                                                           \CurrentVersion\Run
+PSParentPath                                             : Microsoft.PowerShell
+                                                           .Core\Registry::HKEY
+                                                           _CURRENT_USER\Softwa
+                                                           re\Microsoft\Windows
+                                                           \CurrentVersion
+PSChildName                                              : Run
+PSDrive                                                  : HKCU
+PSProvider                                               : Microsoft.PowerShell
+                                                           .Core\Registry
+
+
+
+
+
+SecurityHealth : C:\Windows\system32\SecurityHealthSystray.exe
+RtkAudUService : "C:\Windows\System32\DriverStore\FileRepository\realtekservice
+                 .inf_amd64_72de53709bec2a68\RtkAudUService64.exe" -background
+AweSun         : "C:\Program Files\Oray\AweSun\AweSun.exe" --cmd=autorun
+PSPath         : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\Softwar
+                 e\Microsoft\Windows\CurrentVersion\Run
+PSParentPath   : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\Softwar
+                 e\Microsoft\Windows\CurrentVersion
+PSChildName    : Run
+PSDrive        : HKLM
+PSProvider     : Microsoft.PowerShell.Core\Registry
+
+
+
+
+=== WORKBUDDY DESKTOP APP CHECK ===
+
+Name         Id StartTime         
+----         -- ---------         
+WorkBuddy 20784 2026/7/28 17:02:05
+WorkBuddy 25420 2026/7/28 10:32:10
+WorkBuddy 31356 2026/7/28 10:32:10
+WorkBuddy 33172 2026/7/28 16:02:53
+WorkBuddy 35948 2026/7/28 10:32:09
+WorkBuddy 36348 2026/7/28 10:32:16
+WorkBuddy 36760 2026/7/28 10:32:12
+WorkBuddy 37500 2026/7/28 10:32:10
+WorkBuddy 41032 2026/7/28 10:32:11
+WorkBuddy 41824 2026/7/28 10:32:13
+
+

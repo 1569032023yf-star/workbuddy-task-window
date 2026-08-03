@@ -1,0 +1,369 @@
+{
+  "date": "2026-07-14",
+  "timezone": "Asia/Shanghai",
+  "daily_target": 20,
+  "today_sent": 20,
+  "batch1_morning": 7,
+  "batch2_catchup": 13,
+  "hybrid_template": 0,
+  "custom_template": 0,
+  "legacy_unknown": 20,
+  "states_covered": 3,
+  "cities_covered": 13,
+  "message_id_present": false,
+  "state_detail": {
+    "TN": 11,
+    "KY": 6,
+    "AR": 3
+  },
+  "city_detail": [
+    {
+      "state": "AR",
+      "city": "Fort Smith",
+      "count": 1
+    },
+    {
+      "state": "AR",
+      "city": "Little Rock",
+      "count": 1
+    },
+    {
+      "state": "AR",
+      "city": "Springdale",
+      "count": 1
+    },
+    {
+      "state": "KY",
+      "city": "Bowling Green",
+      "count": 1
+    },
+    {
+      "state": "KY",
+      "city": "Louisville",
+      "count": 3
+    },
+    {
+      "state": "KY",
+      "city": "Murray",
+      "count": 1
+    },
+    {
+      "state": "KY",
+      "city": "Owensboro",
+      "count": 1
+    },
+    {
+      "state": "TN",
+      "city": "Chattanooga",
+      "count": 1
+    },
+    {
+      "state": "TN",
+      "city": "Franklin",
+      "count": 1
+    },
+    {
+      "state": "TN",
+      "city": "Knoxville",
+      "count": 4
+    },
+    {
+      "state": "TN",
+      "city": "Millington",
+      "count": 1
+    },
+    {
+      "state": "TN",
+      "city": "Nashville",
+      "count": 3
+    },
+    {
+      "state": "TN",
+      "city": "Pigeon Forge",
+      "count": 1
+    }
+  ],
+  "send_list": [
+    {
+      "batch": 1,
+      "lead_id": 400,
+      "store_name": "Ridemakerz",
+      "city": "Pigeon Forge",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "servicecrew@ridemake***",
+      "subject": "Premium puzzles & card games for Ridemakerz (Low M",
+      "status": "sent",
+      "sent_at": "2026-07-14 00:59:38"
+    },
+    {
+      "batch": 1,
+      "lead_id": 403,
+      "store_name": "White s Mercantile",
+      "city": "Franklin",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "info@whitesmercantil***",
+      "subject": "Premium puzzles & card games for White s Mercantil",
+      "status": "sent",
+      "sent_at": "2026-07-14 01:01:17"
+    },
+    {
+      "batch": 1,
+      "lead_id": 416,
+      "store_name": "Game X Change Bowling Green",
+      "city": "Bowling Green",
+      "state": "KY",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "bowlinggreen@gxc-sto***",
+      "subject": "Premium puzzles & card games for Game X Change Bow",
+      "status": "sent",
+      "sent_at": "2026-07-14 01:03:12"
+    },
+    {
+      "batch": 1,
+      "lead_id": 424,
+      "store_name": "Milezone Toys and Gifts",
+      "city": "Murray",
+      "state": "KY",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "home@milezone.com***",
+      "subject": "Premium puzzles & card games for Milezone Toys and",
+      "status": "sent",
+      "sent_at": "2026-07-14 01:05:08"
+    },
+    {
+      "batch": 1,
+      "lead_id": 482,
+      "store_name": "Phillips Toy Mart",
+      "city": "Nashville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "support@phillipstoym***",
+      "subject": "Premium puzzles & card games for Phillips Toy Mart",
+      "status": "sent",
+      "sent_at": "2026-07-14 01:07:08"
+    },
+    {
+      "batch": 1,
+      "lead_id": 483,
+      "store_name": "Smart Toys & Books",
+      "city": "Knoxville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "info@smarttoysandboo***",
+      "subject": "Premium puzzles & card games for Smart Toys & Book",
+      "status": "sent",
+      "sent_at": "2026-07-14 01:09:29"
+    },
+    {
+      "batch": 1,
+      "lead_id": 484,
+      "store_name": "Mast General Store",
+      "city": "Knoxville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "customerservice@mast***",
+      "subject": "Premium puzzles & card games for Mast General Stor",
+      "status": "sent",
+      "sent_at": "2026-07-14 01:11:07"
+    },
+    {
+      "batch": 2,
+      "lead_id": 487,
+      "store_name": "Playthings Toy Shoppe",
+      "city": "Louisville",
+      "state": "KY",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "customerservice@play***",
+      "subject": "Premium puzzles & card games for Playthings Toy Sh",
+      "status": "sent",
+      "sent_at": "2026-07-14 02:46:03"
+    },
+    {
+      "batch": 2,
+      "lead_id": 494,
+      "store_name": "Sharp Gaming",
+      "city": "Fort Smith",
+      "state": "AR",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "sharpgamingsocialmed***",
+      "subject": "Premium puzzles & card games for Sharp Gaming (Low",
+      "status": "sent",
+      "sent_at": "2026-07-14 02:48:57"
+    },
+    {
+      "batch": 2,
+      "lead_id": 495,
+      "store_name": "Final Boss Games",
+      "city": "Springdale",
+      "state": "AR",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "support@finalbossgam***",
+      "subject": "Premium puzzles & card games for Final Boss Games ",
+      "status": "sent",
+      "sent_at": "2026-07-14 02:51:10"
+    },
+    {
+      "batch": 2,
+      "lead_id": 502,
+      "store_name": "McKay Books",
+      "city": "Nashville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "support@mckaybooks.c***",
+      "subject": "Premium puzzles & card games for McKay Books (Low ",
+      "status": "sent",
+      "sent_at": "2026-07-14 02:53:50"
+    },
+    {
+      "batch": 2,
+      "lead_id": 521,
+      "store_name": "Sci-Fi City",
+      "city": "Knoxville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "orders@sci-fi-city.c***",
+      "subject": "Premium puzzles & card games for Sci-Fi City (Low ",
+      "status": "sent",
+      "sent_at": "2026-07-14 02:56:33"
+    },
+    {
+      "batch": 2,
+      "lead_id": 522,
+      "store_name": "Snooty Patootie Boutique",
+      "city": "Knoxville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "snootypatootieknoxvi***",
+      "subject": "Premium puzzles & card games for Snooty Patootie B",
+      "status": "sent",
+      "sent_at": "2026-07-14 02:59:24"
+    },
+    {
+      "batch": 2,
+      "lead_id": 523,
+      "store_name": "Bricks & Minifigs Chattanooga",
+      "city": "Chattanooga",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "chattanooga.tn@brick***",
+      "subject": "Premium puzzles & card games for Bricks & Minifigs",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:01:42"
+    },
+    {
+      "batch": 2,
+      "lead_id": 524,
+      "store_name": "Magic N Toys",
+      "city": "Little Rock",
+      "state": "AR",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "support@magicntoys.c***",
+      "subject": "Premium puzzles & card games for Magic N Toys (Low",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:04:26"
+    },
+    {
+      "batch": 2,
+      "lead_id": 526,
+      "store_name": "Roundhouse Electric Trains",
+      "city": "Louisville",
+      "state": "KY",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "kevin@roundhouseky.c***",
+      "subject": "Premium puzzles & card games for Roundhouse Electr",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:06:48"
+    },
+    {
+      "batch": 2,
+      "lead_id": 527,
+      "store_name": "Learning Express Toys Louisville",
+      "city": "Louisville",
+      "state": "KY",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "louisvilleky@learnin***",
+      "subject": "Premium puzzles & card games for Learning Express ",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:09:18"
+    },
+    {
+      "batch": 2,
+      "lead_id": 528,
+      "store_name": "Big Bang Comics & Games",
+      "city": "Owensboro",
+      "state": "KY",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "contact@buybigbang.c***",
+      "subject": "Premium puzzles & card games for Big Bang Comics &",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:12:21"
+    },
+    {
+      "batch": 2,
+      "lead_id": 536,
+      "store_name": "Centerpoint Toys & Games",
+      "city": "Millington",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "centerpointtoys@gmai***",
+      "subject": "Premium puzzles & card games for Centerpoint Toys ",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:14:59"
+    },
+    {
+      "batch": 2,
+      "lead_id": 537,
+      "store_name": "Middle Tennessee Gaming",
+      "city": "Nashville",
+      "state": "TN",
+      "customer_type": "retail_store",
+      "template_id": "legacy_template_unknown",
+      "routing_reason": "Sent before template routing v3 existed",
+      "email": "jeff@midtngaming.com***",
+      "subject": "Premium puzzles & card games for Middle Tennessee ",
+      "status": "sent",
+      "sent_at": "2026-07-14 03:17:04"
+    }
+  ],
+  "template_note": "All 20 sent before template routing v3 — template_id = legacy_template_unknown"
+}

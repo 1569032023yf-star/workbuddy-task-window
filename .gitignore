@@ -1,0 +1,22 @@
+# OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Cloudflare Wrangler local dev state (cache, not source)
+.wrangler/state/

@@ -1,0 +1,14 @@
+[
+  {"store_name": "Level One Game Shop", "city": "Kansas City", "state": "MO", "official_website": "https://levelonegameshop.com/", "store_type": "board game store"},
+  {"store_name": "TableTop Game and Hobby", "city": "Kansas City", "state": "MO", "official_website": "https://tabletopgameandhobby.com/", "store_type": "board game store"},
+  {"store_name": "Warpstorm Games", "city": "Greenfield", "state": "WI", "official_website": "https://www.warpstormmke.com/", "store_type": "game store"},
+  {"store_name": "Board Game Barrister", "city": "Milwaukee", "state": "WI", "official_website": "https://www.boardgamebarrister.com/", "store_type": "board game store"},
+  {"store_name": "Alpha Comics & Games", "city": "Richmond", "state": "VA", "official_website": "https://alphacomics.com/", "store_type": "comic/game store"},
+  {"store_name": "Little Richard's Toy Store", "city": "Colorado Springs", "state": "CO", "official_website": "https://littlerichardstoystore.com/", "store_type": "toy store"},
+  {"store_name": "Poor Richard's Downtown", "city": "Colorado Springs", "state": "CO", "official_website": "https://poorrichardsdowntown.com/", "store_type": "toy store"},
+  {"store_name": "Crowemag Toys", "city": "Raleigh", "state": "NC", "official_website": "https://crowemagtoys.com/", "store_type": "toy store"},
+  {"store_name": "Nick's Trains", "city": "Raleigh", "state": "NC", "official_website": "https://www.nicks-trains.com/", "store_type": "toy/hobby store"},
+  {"store_name": "ToyFusion", "city": "Sacramento", "state": "CA", "official_website": "http://www.toyfusion.com/", "store_type": "vintage toy store"},
+  {"store_name": "Badger Games", "city": "Milwaukee", "state": "WI", "official_website": "https://badgergames.com/", "store_type": "game store"},
+  {"store_name": "Old Guard Games", "city": "Milwaukee", "state": "WI", "official_website": "https://www.oldguardgames.com/", "store_type": "game store"}
+]

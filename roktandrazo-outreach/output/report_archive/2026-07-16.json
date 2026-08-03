@@ -1,0 +1,464 @@
+{
+  "generated_at": "2026-07-16T17:30:02.019440+00:00",
+  "today": "2026-07-16",
+  "timezone": "Asia/Shanghai",
+  "sent_today": 18,
+  "daily_target": 20,
+  "remaining": 2,
+  "hybrid_count": 0,
+  "custom_count": 0,
+  "legacy_count": 18,
+  "followup_sent": 0,
+  "followup_planned": 5,
+  "replies": 0,
+  "hard_bounce": 0,
+  "unsubscribe": 0,
+  "msg_id_present": 18,
+  "msg_id_missing": 0,
+  "retail_a0": 3,
+  "custom_a0": 14,
+  "total_a0": 17,
+  "afternoon_target": 60,
+  "afternoon_gap": 43,
+  "today_complete": false,
+  "inbox": {
+    "normal_reply": 0,
+    "hot_reply": 0,
+    "auto_reply": 0,
+    "ignored_platform": 0,
+    "hard_bounce": 0,
+    "soft_bounce": 0,
+    "unsubscribe": 0,
+    "stop_required": false,
+    "stop_reasons": [],
+    "source_ok": true
+  },
+  "followup": {
+    "raw": 86,
+    "hygiene": 77,
+    "final": 64,
+    "planned": 5,
+    "sent": 0
+  },
+  "coverage": {
+    "states_covered": 0,
+    "cities_searched": 0,
+    "cities_pending": 0,
+    "cities": [],
+    "platforms": [
+      {
+        "platform": "Amazon",
+        "category": "own_brand",
+        "search_keyword": "playing cards",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      },
+      {
+        "platform": "Etsy",
+        "category": "own_brand",
+        "search_keyword": "custom puzzle",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      },
+      {
+        "platform": "Kickstarter",
+        "category": "crowdfunding",
+        "search_keyword": "board game",
+        "business_line": "custom",
+        "search_date": "2026-07-14",
+        "result_pages_or_batches": 0,
+        "candidates_found": 0,
+        "own_brand_verified": 0,
+        "non_cn_verified": 0,
+        "country_uncertain": 0,
+        "official_sites_found": 0,
+        "public_emails_found": 0,
+        "custom_production_qualified": 0,
+        "sent_count": 0,
+        "reject_count": 0,
+        "reject_reasons": []
+      }
+    ]
+  },
+  "source_health": {
+    "database": true,
+    "inbox": true,
+    "followup": true,
+    "coverage": true
+  },
+  "state_detail": {
+    "TN": 5,
+    "": 3,
+    "VT": 2,
+    "KY": 2,
+    "AR": 2,
+    "WA": 1,
+    "GA": 1,
+    "MI": 1,
+    "CT": 1
+  },
+  "city_detail": [
+    {
+      "key": "|Online",
+      "count": 3
+    },
+    {
+      "key": "VT|Burlington",
+      "count": 2
+    },
+    {
+      "key": "WA|Spokane",
+      "count": 1
+    },
+    {
+      "key": "GA|Savannah",
+      "count": 1
+    },
+    {
+      "key": "MI|Grand Rapids",
+      "count": 1
+    },
+    {
+      "key": "KY|Shelbyville",
+      "count": 1
+    },
+    {
+      "key": "TN|Clarksville",
+      "count": 1
+    },
+    {
+      "key": "TN|Knoxville",
+      "count": 1
+    },
+    {
+      "key": "TN|Nashville",
+      "count": 1
+    },
+    {
+      "key": "TN|Chattanooga",
+      "count": 1
+    },
+    {
+      "key": "AR|Mountain View",
+      "count": 1
+    },
+    {
+      "key": "TN|Murfreesboro",
+      "count": 1
+    },
+    {
+      "key": "AR|Conway",
+      "count": 1
+    },
+    {
+      "key": "KY|Lexington",
+      "count": 1
+    },
+    {
+      "key": "CT|Westport",
+      "count": 1
+    }
+  ],
+  "ctype_detail": {
+    "puzzle / gift manufacturer": 1,
+    "gift shop": 1,
+    "board game store": 2,
+    "independent toy store": 1,
+    "game store": 1,
+    "museum_store": 3,
+    "aquarium_store": 1,
+    "historic_site": 1,
+    "toy_store": 1,
+    "game_store": 2,
+    "online_brand": 4
+  },
+  "platform_detail": {
+    "Website": 14,
+    "Amazon": 2,
+    "Kickstarter": 2
+  },
+  "batch_detail": {
+    "—": 18
+  },
+  "send_list": [
+    {
+      "time": "01:00:06",
+      "store": "Vermont Christmas Company",
+      "city": "Burlington",
+      "state": "VT",
+      "type": "puzzle / gift manufacturer",
+      "template": "legacy_template_unknown",
+      "email": "inf***@vermontchristmasco.com",
+      "msg_id": "<178416360287.67808.15678558908641707766…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:02:50",
+      "store": "From Here Spokane",
+      "city": "Spokane",
+      "state": "WA",
+      "type": "gift shop",
+      "template": "legacy_template_unknown",
+      "email": "sho***@terrainspokane.com",
+      "msg_id": "<178416376683.67808.5231116070028628597@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:05:51",
+      "store": "The Boardroom VT",
+      "city": "Burlington",
+      "state": "VT",
+      "type": "board game store",
+      "template": "legacy_template_unknown",
+      "email": "the***@gmail.com",
+      "msg_id": "<178416394730.67808.4463555638205106951@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:08:40",
+      "store": "Gator Games and Books",
+      "city": "Savannah",
+      "state": "GA",
+      "type": "board game store",
+      "template": "legacy_template_unknown",
+      "email": "gat***@gmail.com",
+      "msg_id": "<178416411567.67808.10513600532601022414…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:10:47",
+      "store": "Galactic Toys & Collectibles",
+      "city": "Grand Rapids",
+      "state": "MI",
+      "type": "independent toy store",
+      "template": "legacy_template_unknown",
+      "email": "sup***@galactictoys.com",
+      "msg_id": "<178416424341.67808.920080480318179018@r…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:10:50",
+      "store": "Derby Comics and Games",
+      "city": "Shelbyville",
+      "state": "KY",
+      "type": "game store",
+      "template": "legacy_template_unknown",
+      "email": "der***@gmail.com",
+      "msg_id": "<178416424760.67808.13446129158325888220…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:13:18",
+      "store": "Seasons The Museum Store",
+      "city": "Clarksville",
+      "state": "TN",
+      "type": "museum_store",
+      "template": "legacy_template_unknown",
+      "email": "inf***@customshousemuseum.org",
+      "msg_id": "<178416439501.67808.13238819766310989706…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:15:27",
+      "store": "Knoxville Museum of Art Shop",
+      "city": "Knoxville",
+      "state": "TN",
+      "type": "museum_store",
+      "template": "legacy_template_unknown",
+      "email": "vwy***@knoxart.org",
+      "msg_id": "<178416452431.67808.15825385091548579588…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:17:44",
+      "store": "Country Music Hall of Fame Store",
+      "city": "Nashville",
+      "state": "TN",
+      "type": "museum_store",
+      "template": "legacy_template_unknown",
+      "email": "eco***@countrymusichalloffame.org",
+      "msg_id": "<178416466067.67808.3577634987094437914@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:20:12",
+      "store": "Tennessee Aquarium Gift Shop",
+      "city": "Chattanooga",
+      "state": "TN",
+      "type": "aquarium_store",
+      "template": "legacy_template_unknown",
+      "email": "sto***@eventnetwork.com",
+      "msg_id": "<178416480902.67808.2311194045776666075@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:20:16",
+      "store": "Ozark Folk Center Gift Shop",
+      "city": "Mountain View",
+      "state": "AR",
+      "type": "historic_site",
+      "template": "legacy_template_unknown",
+      "email": "oza***@arkansas.com",
+      "msg_id": "<178416481283.67808.1557509821068109744@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:22:59",
+      "store": "Bricks & Minifigs Murfreesboro",
+      "city": "Murfreesboro",
+      "state": "TN",
+      "type": "toy_store",
+      "template": "legacy_template_unknown",
+      "email": "mur***@bricksandminifigs.com",
+      "msg_id": "<178416497529.67808.2694011520795800074@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:25:48",
+      "store": "Trainer Js",
+      "city": "Conway",
+      "state": "AR",
+      "type": "game_store",
+      "template": "legacy_template_unknown",
+      "email": "tra***@gmail.com",
+      "msg_id": "<178416514433.67808.14622103158993832255…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:28:19",
+      "store": "Rusty Scabbard",
+      "city": "Lexington",
+      "state": "KY",
+      "type": "game_store",
+      "template": "legacy_template_unknown",
+      "email": "sca***@windstream.net",
+      "msg_id": "<178416529447.67808.6022431784738557877@…",
+      "batch": "—",
+      "platform": "Website",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:28:22",
+      "store": "GeoToys",
+      "city": "Westport",
+      "state": "CT",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "hel***@geotoys.com",
+      "msg_id": "<178416529974.67808.9708252457149579557@…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:30:40",
+      "store": "Ridleys Games",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "hel***@chroniclebooks.com",
+      "msg_id": "<178416543587.67808.5146247840282085087@…",
+      "batch": "—",
+      "platform": "Amazon",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:33:12",
+      "store": "Ten Hundred Art",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "ten***@tenhundredart.com",
+      "msg_id": "<178416558929.67808.4110034065084879687@…",
+      "batch": "—",
+      "platform": "Kickstarter",
+      "reason": "",
+      "status": "sent"
+    },
+    {
+      "time": "01:36:04",
+      "store": "Level 99 Games",
+      "city": "Online",
+      "state": "",
+      "type": "online_brand",
+      "template": "legacy_template_unknown",
+      "email": "ser***@level99games.com",
+      "msg_id": "<178416576113.67808.12477836882738755556…",
+      "batch": "—",
+      "platform": "Kickstarter",
+      "reason": "",
+      "status": "sent"
+    }
+  ],
+  "anomalies": [
+    "今日发送 18/20 — 未达日标",
+    "模板未记录: 18/18 封 (legacy)",
+    "Strict A0 库存不足: 17 (目标 60)"
+  ]
+}

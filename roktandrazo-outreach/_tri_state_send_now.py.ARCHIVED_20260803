@@ -1,0 +1,119 @@
+"""tri_state_21_sprint — Create Plan, Authorize, Send — 2026-07-31"""
+import sys, os, sqlite3, json, hashlib, secrets, time
+from datetime import datetime, timezone, timedelta
+ASIA_SH = timezone(timedelta(hours=8))
+now = datetime.now(ASIA_SH)
+PROJECT_DIR = r'C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach'
+sys.path.insert(0, PROJECT_DIR)
+DB = os.path.join(PROJECT_DIR, 'data', 'bd_leads.db')
+BATCH = 'tri_state_21_sprint_20260731'
+sep = '=' * 60
+
+# Load selected
+with open(os.path.join(PROJECT_DIR, 'output', 'sprint_final.json')) as f:
+    selected = json.load(f)
+selected = selected[:21]
+
+print(f'{sep}\nSTEP 1: CREATE PLAN ({len(selected)} entries)\n{sep}')
+conn = sqlite3.connect(DB)
+
+def build_email(name):
+    token = secrets.token_urlsafe(16)
+    pixel = f'<img src="https://roktandrazo-email-tracker.1569032023yf.workers.dev/o/{token}.gif" width="1" height="1" alt="" style="display:none"/>'
+    html = f'<p>Hi {name} team,</p><p>I&apos;m Ian from <b>Rokt&amp;Razo</b>. We design and produce premium puzzles and family card games for independent retailers.</p><p>Our collection: wholesale puzzles, family card games, custom &amp; private-label (low MOQ), complimentary catalogue &amp; sample. DDP shipping with friendly minimums.</p><p>Happy to send a catalogue your way.</p><p>Best,<br>Ian<br>Rokt&amp;Razo</p>{pixel}'
+    text = f'Hi {name} team,\n\nI am Ian from Rokt&Razo. We design and produce premium puzzles and family card games.\n\nWe handle DDP with friendly minimums: wholesale puzzles, family card games, custom & private-label, complimentary catalogue.\n\nHappy to send a catalogue your way.\n\nBest,\nIan\nRokt&Razo'
+    return html, text, token, hashlib.sha256(token.encode()).hexdigest()[:16]
+
+plan_entries = []
+for i, s in enumerate(selected):
+    lid, name, email, city, state, org = s['lead_id'], s['name'], s['email'], s['city'], s['state'], s['org']
+    html, text, token, thash = build_email(name)
+    plan_id = f'{BATCH}_{i+1:04d}'
+    
+    conn.execute('''INSERT INTO final_send_plan (plan_id, lead_id, company_name, recipient_email, message_type,
+        outreach_batch_date, planned_sequence, status, subject, body_text, body_html,
+        evidence_url, hygiene_passed_at, created_at, source_city, source_state)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+        (plan_id, lid, name, email, 'new_outreach', BATCH, i+1, 'planned',
+         f'Puzzles & Card Games for {name}', text, html,
+         f'{BATCH}_manual', now.isoformat(), now.isoformat(), city, state))
+    
+    conn.execute('''INSERT INTO email_tracking_messages (tracking_message_id, token_hash, lead_id, plan_entry_id, status, is_test)
+        VALUES (?,?,?,?,?,0)''',
+        (f'trk_{lid}_{BATCH}_{i}', thash, lid, plan_id, 'prepared'))
+    
+    plan_entries.append({'lead_id': lid, 'recipient_email': email, 'message_type': 'new_outreach'})
+
+conn.commit()
+print(f'  Plan entries: {len(plan_entries)}')
+print(f'  Tracking tokens: {len(plan_entries)}')
+
+# STEP 2: Authorization
+print(f'\n{sep}\nSTEP 2: AUTHORIZATION\n{sep}')
+from bd_sender import create_send_authorization
+auth = create_send_authorization(BATCH, BATCH, plan_entries, True, DB)
+print(f'  Auth: {auth["authorization_id"]}')
+print(f'  Entries: {auth["approved_entry_count"]}')
+AUTH_ID = auth['authorization_id']
+
+# STEP 3: SEND
+print(f'\n{sep}\nSTEP 3: SEND ({len(plan_entries)} emails)\n{sep}')
+from bd_sender import send_one
+
+stats = {'sent': 0, 'failed': 0, 'blocked': 0}
+conn.row_factory = sqlite3.Row
+
+for i, s in enumerate(selected):
+    lid, name, email, city, state, org = s['lead_id'], s['name'], s['email'], s['city'], s['state'], s['org']
+    plan_id = f'{BATCH}_{i+1:04d}'
+    
+    lead = {
+        'email': email, 'store_name': name, 'id': lid,
+        'email_subject': f'Puzzles & Card Games for {name}',
+        'email_body': f'Hi {name} team,\n\nI am Ian from Rokt&Razo. We design and produce premium puzzles and family card games.\n\nWe handle DDP with friendly minimums.\n\nHappy to send a catalogue.\n\nBest,\nIan\nRokt&Razo',
+        'final_plan_entry_id': i+1,
+        'message_type': 'new_outreach', 'outreach_batch_date': BATCH,
+        'authorization_id': AUTH_ID,
+    }
+    
+    try:
+        result = send_one(lead, dry_run=False)
+        status = result.get('status', 'unknown')
+        
+        if status == 'sent' or result.get('success'):
+            msg_id = result.get('message_id', '')
+            conn.execute('''INSERT INTO send_log (lead_id, email, subject, status, sent_at, message_type, 
+                batch_id, plan_entry_id, message_id) VALUES (?,?,?,?,?,?,?,?,?)''',
+                (lid, email, f'Puzzles & Card Games for {name}', 'sent',
+                 now.isoformat(), 'new_outreach', BATCH, plan_id, msg_id))
+            conn.execute("UPDATE final_send_plan SET status='sent', sent_at=? WHERE plan_id=?", (now.isoformat(), plan_id))
+            conn.execute("UPDATE email_tracking_messages SET status='active', activated_at=? WHERE plan_entry_id=?", (now.isoformat(), plan_id))
+            stats['sent'] += 1
+            print(f'  [{i+1:2d}/{len(selected)}] ✅ {state} {name[:25]:25s} → {email[:38]}')
+        elif status == 'blocked':
+            stats['blocked'] += 1
+            print(f'  [{i+1:2d}/{len(selected)}] 🚫 {state} {name[:25]:25s} BLOCKED: {result.get("message","")[:40]}')
+        else:
+            stats['failed'] += 1
+            print(f'  [{i+1:2d}/{len(selected)}] ❌ {state} {name[:25]:25s} FAILED: {result.get("message","")[:40]}')
+    except Exception as e:
+        stats['failed'] += 1
+        print(f'  [{i+1:2d}/{len(selected)}] ❌ {state} {name[:25]:25s} EXCEPTION: {str(e)[:40]}')
+    
+    time.sleep(2)
+
+conn.commit()
+
+# FINAL
+sl = conn.execute('SELECT COUNT(*) FROM send_log').fetchone()[0]
+print(f'\n{sep}\nSEND COMPLETE\n{sep}')
+print(f'  Planned:   {len(plan_entries)}')
+print(f'  SMTP Accepted: {stats["sent"]}')
+print(f'  Failed:    {stats["failed"]}')
+print(f'  Blocked:   {stats["blocked"]}')
+print(f'  send_log total: {sl}')
+print(f'  Batch: {BATCH}')
+print(f'  Auth consumed: {stats["sent"]}/{len(plan_entries)}')
+print(f'{sep}')
+
+conn.close()
