@@ -186,7 +186,7 @@ def collect_all_data():
               'dedup_counts': {}, 'error': str(e)}
 
     # Check if follow-up was ever wired and executed
-    fu_wired = 'build_followup_queue' in open(str(PROJECT_DIR / 'bd_orchestrator.py')).read()
+    fu_wired = 'build_followup_queue' in open(str(PROJECT_DIR / 'bd_orchestrator.py'), encoding='utf-8').read()
     fu_ever_sent = db_conn_check('SELECT COUNT(*) FROM leads WHERE followup_count > 0')
     fu_status = 'not_wired' if not fu_wired else ('never_executed' if fu_ever_sent == 0 else 'partial')
 
@@ -474,7 +474,7 @@ def main():
 
     # Write review queue JSON
     queue_path = OUT_DIR / 'manual_review_queue.json'
-    with open(queue_path, 'w') as f:
+    with open(queue_path, 'w', encoding='utf-8') as f:
         json.dump({
             'generated_at': now_cst().isoformat(),
             'total_pending': data['manual']['total_pending'],
@@ -489,7 +489,7 @@ def main():
 
     # Write follow-up status JSON
     fu_path = OUT_DIR / 'followup_rotation_status.json'
-    with open(fu_path, 'w') as f:
+    with open(fu_path, 'w', encoding='utf-8') as f:
         json.dump({
             'generated_at': now_cst().isoformat(),
             **data['followup'],

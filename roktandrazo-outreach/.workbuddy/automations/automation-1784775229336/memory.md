@@ -73,3 +73,41 @@
 - **Next actionable city**: Lexington, KY (4 B+candidates w/ websites)
 - **Blockers unchanged**: Google Places, Astrill VPN SSL, no staging
 - **No SMTP invoked, no Final Send Plan created**
+
+## 2026-08-03 15:00
+- **Status**: partial (discovery_blocked, all_lanes_exhausted, city_advanced)
+- **A0**: 0/30 (weekday target), gap 30. Dashboard shows 9 A-grade (7 retail+2 custom), sendable_leads gate=0
+- **Website Recovery**: 35 candidates scanned (TN/AR/KY) → 4 emails found (3 previously_sent, 1 bogus sentry/wix), 20 no email, 7 network errors properly classified, 4 platform skips. 0 new emails added to sendable pool
+- **Orchestrator**: Lane A discovery hung (Google Places 20min), killed. Ran manual inventory
+- **City**: Knoxville→search_matrix_exhausted (0 websites), Little Rock AR activated. Remaining: Fayetteville AR, Louisville KY, Lexington KY
+- **Broad Outreach**: 95 orgs
+- **Review Center**: 333 pending (260 manual+73 contact_form). 23 have emails in allowed states
+- **Near-A0**: 13 in TN/AR/KY w/ email but auto=0 (mostly bogus)
+- **No SMTP, no Final Send Plan**
+
+## 2026-08-05 15:00
+- **Status**: partial (max_loops_reached, pool_drained)
+- **A0**: 1/30 (weekday target), gap 29 — unchanged
+- **Orchestrator run**: Active city Nashville TN, Lane A configuration_blocked, staging empty, 5 loops × 34 candidates
+- **Emails found**: 3 — info@indiantypefoundry.com (Middle TN Gam), customercare@easternnational.org ×2 (Shiloh NMP + Cumberland Gap NHP) — all previously_sent
+- **No email**: 20 consistently no-email across all 5 loops
+- **Network errors (properly classified)**: 7 persistent — Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars. Loop 4: Fort Loudoun also flipped to network_retry_pending
+- **Platform skips**: 4 — 901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles
+- **No SMTP, no Final Send Plan**
+- **Blockers unchanged**: Google Places API, Astrill VPN, no staging. Pool completely drained — same 34 leads returning identical results across all loops
+
+## 2026-08-04 15:00
+- **Status**: partial (discovery_blocked, all_lanes_exhausted, max_loops_reached)
+- **A0**: 1/30 (weekday target), gap 29. Raw DB shows 28 auto_sendable=1 leads but orchestrator gate filters most out (send_log exclusion, state filter, etc.)
+- **New A0 promoted**: #689 The Crown Shop (shop@thecrownshop.com, Little Rock AR) — promoted to strict A0 via http_success on loop 1
+- **Website Recovery**: 35 candidates × 5 loops → 4 unique emails found: jeff@midtngaming.com (previously_sent), customercare@easternnational.org ×2 (previously_sent, Shiloh NMP + Cumberland Gap), shop@thecrownshop.com (NEW A0). 20 consistently no-email, 11 persistent network errors, 4 platform skips
+- **Network errors (persistent ×5 loops)**: Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics & Games, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars (7 sites) — all properly classified as network_retry_pending, NOT "no email"
+- **Platform skips**: 901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles
+- **Lane A discovery**: configuration_blocked (Google Places API not configured)
+- **Lane B/C/D staging**: empty
+- **City**: Nashville TN → CONTACT_ENRICHMENT_IN_PROGRESS (city cursor apparently reset from prior Little Rock by seed_default_queue)
+- **Remaining cities**: Memphis (CONTACT_ENRICHMENT_IN_PROGRESS), Knoxville (search_matrix_exhausted), Little Rock/Fayetteville/Louisville/Lexington (QUEUED)
+- **Broad Outreach**: 95 orgs
+- **Review Center**: 334 pending (261 manual + 73 contact_form)
+- **Dependency fix**: httpx was missing in venv — installed for this run
+- **No SMTP, no Final Send Plan**

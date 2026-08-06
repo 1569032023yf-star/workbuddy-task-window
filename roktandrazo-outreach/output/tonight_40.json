@@ -1,0 +1,402 @@
+[
+  {
+    "id": 128,
+    "store_name": "Next Level Games",
+    "city": "Nashville",
+    "state": "TN",
+    "store_type": "board game store",
+    "email": "customers@tnlg.net",
+    "organization_key": "nextlevelgamesnashville_com",
+    "confidence_score": "A"
+  },
+  {
+    "id": 404,
+    "store_name": "Storehouse no 9",
+    "city": "Franklin",
+    "state": "TN",
+    "store_type": "home decor / gift shop",
+    "email": "help@storehouseno9.com",
+    "organization_key": "org:domain:storehouseno9.com",
+    "confidence_score": "A"
+  },
+  {
+    "id": 750,
+    "store_name": "Karz&Dollz Toy Shop",
+    "city": "Bartlett",
+    "state": "TN",
+    "store_type": "toy_store",
+    "email": "karzndollztoyshop@gmail.com",
+    "organization_key": "karzndollz_bartlett",
+    "confidence_score": "A"
+  },
+  {
+    "id": 751,
+    "store_name": "Geeks Etc Video Games",
+    "city": "Tullahoma",
+    "state": "TN",
+    "store_type": "game_store",
+    "email": "geeksetc@lighttube.net",
+    "organization_key": "geeksetc_tullahoma",
+    "confidence_score": "A"
+  },
+  {
+    "id": 689,
+    "store_name": "The Crown Shop",
+    "city": "Little Rock",
+    "state": "AR",
+    "store_type": "gift_shop",
+    "email": "shop@thecrownshop.com",
+    "organization_key": "crown_shop_littlerock",
+    "confidence_score": "A"
+  },
+  {
+    "id": 334,
+    "store_name": "Well Played Board Game Cafe",
+    "city": "Asheville",
+    "state": "NC",
+    "store_type": "board game store",
+    "email": "info@wellplayedasheville.com",
+    "organization_key": "org:domain:wellplayedasheville.com",
+    "confidence_score": "A"
+  },
+  {
+    "id": 368,
+    "store_name": "The Deep Comics and Games",
+    "city": "Huntsville",
+    "state": "AL",
+    "store_type": "comic / game store",
+    "email": "info@deepcomics.com",
+    "organization_key": "org:domain:deepcomics.com",
+    "confidence_score": "A"
+  },
+  {
+    "id": 22,
+    "store_name": "I'm Board! Games & Family Fun",
+    "city": "Madison",
+    "state": "WI",
+    "store_type": "board game store",
+    "email": "info@imboardgames.com",
+    "organization_key": "org:domain:imboardgames.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 55,
+    "store_name": "The Uncommons",
+    "city": "New York",
+    "state": "NY",
+    "store_type": "board game cafe",
+    "email": "info@uncommonsnyc.com",
+    "organization_key": "org:domain:uncommonsnyc.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 60,
+    "store_name": "Pulp Fiction Comics & Games",
+    "city": "Culver City",
+    "state": "CA",
+    "store_type": "comic / game store",
+    "email": "info@pulpfictioncomics.com",
+    "organization_key": "org:domain:pulpfictioncomics.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 64,
+    "store_name": "D & J Hobby & Toy",
+    "city": "San Jose",
+    "state": "CA",
+    "store_type": "toy store / hobby shop",
+    "email": "info@djhobbytoys.com",
+    "organization_key": "org:domain:djhobbytoys.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 78,
+    "store_name": "Phoenix Comics & Games",
+    "city": "Seattle",
+    "state": "WA",
+    "store_type": "comic / game store",
+    "email": "info@phoenixseattle.com",
+    "organization_key": "org:domain:phoenixseattle.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 79,
+    "store_name": "Toy Joy",
+    "city": "Austin",
+    "state": "TX",
+    "store_type": "independent toy store",
+    "email": "info@toyjoy.com",
+    "organization_key": "org:domain:toyjoy.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 87,
+    "store_name": "Things From Another World",
+    "city": "Portland",
+    "state": "OR",
+    "store_type": "comic / game store",
+    "email": "info@tfaw.com",
+    "organization_key": "org:domain:tfaw.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 88,
+    "store_name": "Red Castle Games",
+    "city": "Portland",
+    "state": "OR",
+    "store_type": "board game store",
+    "email": "staff@redcastlegames.com",
+    "organization_key": "org:domain:redcastlegames.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 89,
+    "store_name": "Time Vault Games",
+    "city": "Portland",
+    "state": "OR",
+    "store_type": "board game store",
+    "email": "info@timevaultgames.com",
+    "organization_key": "org:domain:timevaultgames.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 94,
+    "store_name": "Kidding Around",
+    "city": "New York",
+    "state": "NY",
+    "store_type": "independent toy store",
+    "email": "info@kiddingaroundtoys.com",
+    "organization_key": "org:domain:kiddingaroundtoys.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 98,
+    "store_name": "Game Parlour",
+    "city": "San Francisco",
+    "state": "CA",
+    "store_type": "board game store",
+    "email": "hello@gameparloursf.com",
+    "organization_key": "org:domain:gameparloursf.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 99,
+    "store_name": "Game Cafe",
+    "city": "Palo Alto",
+    "state": "CA",
+    "store_type": "board game store",
+    "email": "info@gamecafepaloalto.com",
+    "organization_key": "org:domain:gamecafepaloalto.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 100,
+    "store_name": "Phoenix Comics & Games",
+    "city": "Seattle",
+    "state": "WA",
+    "store_type": "comic / game store",
+    "email": "info@phoenixcomicsseattle.com",
+    "organization_key": "org:domain:phoenixcomicsseattle.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 101,
+    "store_name": "Challengers Comics + Conversation",
+    "city": "Chicago",
+    "state": "IL",
+    "store_type": "comic / game store",
+    "email": "info@challengerscomics.com",
+    "organization_key": "org:domain:challengerscomics.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 103,
+    "store_name": "JP Comics & Games",
+    "city": "Jamaica Plain",
+    "state": "MA",
+    "store_type": "comic / game store",
+    "email": "info@jpcomics.com",
+    "organization_key": "org:domain:jpcomics.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 110,
+    "store_name": "Levels Up Games",
+    "city": "Roseville",
+    "state": "MN",
+    "store_type": "board game store",
+    "email": "info@levelsuggames.com",
+    "organization_key": "org:domain:levelsuggames.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 111,
+    "store_name": "Red Caps Corner",
+    "city": "Philadelphia",
+    "state": "PA",
+    "store_type": "board game store",
+    "email": "info@redcapscorner.com",
+    "organization_key": "org:domain:redcapscorner.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 112,
+    "store_name": "Phantom of the Attic",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "store_type": "comic / game store",
+    "email": "info@phantomoftheattic.com",
+    "organization_key": "org:domain:phantomoftheattic.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 120,
+    "store_name": "Gamers Geek and Tavern",
+    "city": "Raleigh",
+    "state": "NC",
+    "store_type": "board game store / tavern",
+    "email": "info@gamersgeekandtavern.com",
+    "organization_key": "org:domain:gamersgeekandtavern.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 121,
+    "store_name": "Uncle Bob's Hobbies",
+    "city": "Raleigh",
+    "state": "NC",
+    "store_type": "board game store",
+    "email": "info@unclebobshobbies.com",
+    "organization_key": "org:domain:unclebobshobbies.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 124,
+    "store_name": "Dr. No's Comics & Games",
+    "city": "Marietta",
+    "state": "GA",
+    "store_type": "comic / game store",
+    "email": "info@drnoscomics.com",
+    "organization_key": "org:domain:drnoscomics.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 130,
+    "store_name": "Gamezone",
+    "city": "San Diego",
+    "state": "CA",
+    "store_type": "board game store",
+    "email": "info@gamezonesd.com",
+    "organization_key": "org:domain:gamezonesd.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 132,
+    "store_name": "Shuffle & Cut",
+    "city": "Orange",
+    "state": "CA",
+    "store_type": "board game store",
+    "email": "info@shuffleandcut.com",
+    "organization_key": "org:domain:shuffleandcut.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 134,
+    "store_name": "Warhammer Madison",
+    "city": "Madison",
+    "state": "WI",
+    "store_type": "board game / hobby store",
+    "email": "info@warhammermadison.com",
+    "organization_key": "org:domain:warhammermadison.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 135,
+    "store_name": "Game Universe",
+    "city": "Milwaukee",
+    "state": "WI",
+    "store_type": "board game store",
+    "email": "info@gameuniverse.com",
+    "organization_key": "org:domain:gameuniverse.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 136,
+    "store_name": "Collectible Corner & Game Store",
+    "city": "Milwaukee",
+    "state": "WI",
+    "store_type": "comic / game store",
+    "email": "info@collectiblecornermke.com",
+    "organization_key": "org:domain:collectiblecornermke.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 141,
+    "store_name": "Imperial Outpost Games",
+    "city": "Phoenix",
+    "state": "AZ",
+    "store_type": "board game store",
+    "email": "info@imperialoutpostgames.com",
+    "organization_key": "org:domain:imperialoutpostgames.com",
+    "confidence_score": "C"
+  },
+  {
+    "id": 142,
+    "store_name": "Game Depot",
+    "city": "Tempe",
+    "state": "AZ",
+    "store_type": "board game store",
+    "email": "info@gamedepotaz.com",
+    "organization_key": "org:domain:gamedepotaz.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 144,
+    "store_name": "Scottsdale Toy Company",
+    "city": "Scottsdale",
+    "state": "AZ",
+    "store_type": "independent toy store",
+    "email": "info@scottsdaletoyco.com",
+    "organization_key": "org:domain:scottsdaletoyco.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 145,
+    "store_name": "Game Haven",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "store_type": "board game store",
+    "email": "info@gamehavenutah.com",
+    "organization_key": "org:domain:gamehavenutah.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 146,
+    "store_name": "Oasis Games",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "store_type": "board game store",
+    "email": "info@oasisgamesutah.com",
+    "organization_key": "org:domain:oasisgamesutah.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 147,
+    "store_name": "Hobby Hobbies",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "store_type": "toy / hobby store",
+    "email": "info@blickhobbies.com",
+    "organization_key": "org:domain:blickhobbies.com",
+    "confidence_score": "B"
+  },
+  {
+    "id": 148,
+    "store_name": "Game Grid",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "store_type": "board game store",
+    "email": "info@gamegridutah.com",
+    "organization_key": "org:domain:gamegridutah.com",
+    "confidence_score": "B"
+  }
+]

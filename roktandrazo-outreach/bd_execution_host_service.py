@@ -26,7 +26,9 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # ── Constants ──
+import zoneinfo
 ASIA_SHANGHAI = timezone(timedelta(hours=8))
+AMERICA_NEW_YORK = zoneinfo.ZoneInfo("America/New_York")  # Auto DST/ST
 BASE_DIR = Path(__file__).resolve().parent
 PYTHON_EXE = Path(sys.executable).resolve()
 LOG_DIR = BASE_DIR / "output"
@@ -35,10 +37,11 @@ STATUS_FILE = LOG_DIR / "bd_execution_host_status.json"
 PID_FILE = LOG_DIR / "bd_execution_host.pid"
 
 SERVICE_NAME = "BDExecutionHost"
-SERVICE_DISPLAY_NAME = "BD Execution Host"
+SERVICE_DISPLAY_NAME = "RoktAndRazoBDExecutionHost"
 SERVICE_DESCRIPTION = (
-    "BD Delivery Guard Execution Host — Auto-starts Delivery Guard, "
-    "Ops Center, and Poller on system boot. No SMTP. No customer data access."
+    "Rokt&Razo BD Production Execution Host — "
+    "Auto-starts Delivery Guard, Ops Center, Poller, and scheduled send stages. "
+    "Production send authority. No WorkBuddy UI required."
 )
 
 # Components to manage
@@ -63,6 +66,28 @@ COMPONENTS = {
         "heartbeat": LOG_DIR / "bd_ops_poller_status.json",
         "heartbeat_max_age": 150,
     },
+}
+
+# ── Send Stage Schedule (America/New_York) ──
+# All times in America/New_York. DST handled by zoneinfo.
+SEND_SCHEDULE = [
+    {"stage": "freeze",       "hour": 9,  "minute": 10,  "script": "bd_orchestrator.py", "args": ["--stage", "freeze", "--live"]},
+    {"stage": "pre_send",     "hour": 9,  "minute": 30,  "script": "bd_orchestrator.py", "args": ["--stage", "pre_send", "--live"]},
+    {"stage": "preflight",    "hour": 9,  "minute": 50,  "script": "bd_orchestrator.py", "args": ["--stage", "preflight", "--live"]},
+    {"stage": "outreach",     "hour": 10, "minute": 0,   "script": "bd_orchestrator.py", "args": ["--stage", "outreach", "--live"]},
+    {"stage": "post_send",    "hour": 10, "minute": 10,  "script": "bd_orchestrator.py", "args": ["--stage", "post_send", "--live"]},
+]
+
+SEND_SCHEDULE_BOOKMARK_FILE = LOG_DIR / "bd_execution_host_send_bookmark.json"
+SEND_POLICY_HASH = "3a7f9c1e"  # Policy: weekday_new_outreach_et1000
+CURRENT_SEND_POLICY = {
+    "policy_name": "weekday_new_outreach_et1000",
+    "timezone": "America/New_York",
+    "business_days": [0, 1, 2, 3, 4],  # Monday=0
+    "max_new_outreach": 30,
+    "follow_up_enabled": False,
+    "allowed_template_keys": ["retail_distributor_v5_locked", "custom_printing_production_v5_locked"],
+    "allowed_template_shas": ["ccb51505", "5893dbc9"],
 }
 
 class BDExecutionHost(win32serviceutil.ServiceFramework):

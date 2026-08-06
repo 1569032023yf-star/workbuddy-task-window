@@ -378,77 +378,91 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
             loop += 1
             log(f"\n  Inventory loop {loop}/{max_loops}: need {remaining}")
 
-            # Try fast_lead_discovery from B2 pool first
+            # ── Unified Website Recovery via http_scan_website ──
+            # Uses direct-first → proxy fallback → curl fallback strategy.
+            # Network failures are classified, not confused with "no email".
             try:
-                from fast_lead_discovery import process_lead, http_fast_scan, extract_emails
-                import httpx
-                client = httpx.Client(timeout=15, follow_redirects=True)
+                from inventory_monitor_executor import http_scan_website
+                import time as _time
 
                 conn = get_db()
                 c = conn.cursor()
-                # Lane 1: B2 manual_review_needed
+                # Query ALL leads needing website enrichment across 3 states (not just current city)
                 candidates = c.execute("""
-                    SELECT * FROM leads WHERE status='manual_review_needed' AND confidence_score='B'
+                    SELECT * FROM leads
+                    WHERE state IN ('TN','AR','KY')
+                    AND status NOT IN ('sent','bounced','do_not_contact')
+                    AND (email IS NULL OR email='')
                     AND official_website IS NOT NULL AND official_website != ''
-                    AND email IS NULL
-                    AND city=? AND state=?
-                    LIMIT 20
-                """, (active_retail_city['city'], active_retail_city['state'])).fetchall()
+                    ORDER BY CASE WHEN state='TN' THEN 0 WHEN state='AR' THEN 1 ELSE 2 END,
+                             city, id
+                    LIMIT 35
+                """).fetchall()
                 conn.close()
 
-                if not candidates:
-                    # Lane 2: Contact form pool
-                    conn = get_db()
-                    c = conn.cursor()
-                    candidates = c.execute("""
-                        SELECT * FROM leads WHERE status='contact_form_pool'
-                        AND official_website IS NOT NULL AND official_website != ''
-                        AND city=? AND state=?
-                        LIMIT 20
-                    """, (active_retail_city['city'], active_retail_city['state'])).fetchall()
-                    conn.close()
-                    log(f"  Lane 2 (contact_form_pool): {len(candidates)} candidates")
+                log(f"  Processing {len(candidates)} Website Recovery candidates (all 3 states)...")
 
-                log(f"  Processing {len(candidates)} candidates...")
-                for cand in candidates[:remaining]:
+                ssl_stats = {
+                    'direct_success': 0, 'direct_failed': 0,
+                    'curl_success': 0, 'curl_failed': 0,
+                    'no_email': 0, 'network_errors': 0,
+                    'emails_found': 0,
+                }
+                log(f"  Processing {min(len(candidates), 35)} candidates with unified HTTP scanner...")
+                
+                for i, cand in enumerate(candidates[:35]):
                     cd = dict(cand)
                     website = cd.get('official_website', '')
                     if not website:
                         continue
-                    try:
-                        resp = client.get(website)
-                        if resp.status_code == 200:
-                            emails = extract_emails(resp.text)
-                            if emails:
-                                email = emails[0][0]
-                                if not is_suppressed(email):
-                                    log(f"    Found: {cd['store_name']} → {email}")
-                                    if not dry_run:
-                                        conn2 = get_db()
-                                        try:
-                                            from manual_email_workflow import submit_manual_email
+                    
+                    scan_ss = {}
+                    email, ev_url, ev_snippet, result_type = http_scan_website(website, scan_ss)
+                    
+                    if email and '@' in email and not is_suppressed(email):
+                        ssl_stats['emails_found'] += 1
+                        log(f"    [{i+1}] ✅ {cd['store_name'][:30]} → {email} ({result_type})")
+                        if not dry_run:
+                            conn2 = get_db()
+                            try:
+                                from manual_email_workflow import submit_manual_email
+                                with conn2:
+                                    result = submit_manual_email(
+                                        conn2, cd['id'], 'inventory_lane',
+                                        email=email, evidence_url=website,
+                                        evidence_snippet=email,
+                                        evidence_method='official_contact_page',
+                                        contact_role='business_email',
+                                        notes=f'Unified scanner: {result_type}',
+                                    )
+                                log(f"        hygiene={result.get('final_status')}")
+                            finally:
+                                conn2.close()
+                        collected += 1
+                    elif result_type in ('no_email_found', 'website_scanned_no_email'):
+                        ssl_stats['no_email'] += 1
+                        log(f"    [{i+1}] 📄 {cd['store_name'][:30]} — scanned, no email")
+                    elif 'curl' in result_type and 'fail' not in result_type:
+                        ssl_stats['curl_success'] += 1
+                    elif 'network' in result_type or 'ssl' in result_type or 'timeout' in result_type:
+                        ssl_stats['network_errors'] += 1
+                        log(f"    [{i+1}] ⚠️ {cd['store_name'][:30]} — {result_type}")
+                    elif 'direct' in result_type:
+                        ssl_stats['direct_success'] += 1
+                    else:
+                        ssl_stats['network_errors'] += 1
+                        log(f"    [{i+1}] ? {cd['store_name'][:30]} — {result_type}")
+                    
+                    # Refresh Ops Center after each
+                    _time.sleep(0.15)
 
-                                            with conn2:
-                                                result = submit_manual_email(
-                                                    conn2,
-                                                    cd['id'],
-                                                    'inventory_lane',
-                                                    email=email,
-                                                    evidence_url=website,
-                                                    evidence_snippet=email,
-                                                    evidence_method='official_contact_page',
-                                                    contact_role='business_email',
-                                                    notes='Inventory Lane C official-site email extraction',
-                                                    page_text=resp.text,
-                                                )
-                                            log(f"      hygiene={result.get('final_status')} promoted={result.get('promoted')}")
-                                        finally:
-                                            conn2.close()
-                                    collected += 1
-                    except Exception as e:
-                        log(f"    Skip {cd['store_name']}: {e}")
+                log(f"  Result: direct_ok={ssl_stats['direct_success']} curl_ok={ssl_stats['curl_success']}")
+                log(f"          emails_found={ssl_stats['emails_found']} no_email={ssl_stats['no_email']}")
+                log(f"          network_err={ssl_stats['network_errors']}")
             except Exception as e:
-                log(f"  [WARN] Lane error: {e}")
+                import traceback
+                log(f"  [WARN] Unified scanner error: {e}")
+                log(traceback.format_exc()[-200:])
 
             # Recheck through the same gate used by Pre-Send.
             a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1))

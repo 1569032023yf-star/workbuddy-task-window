@@ -285,8 +285,16 @@ def extract_emails_from_html(html_text):
 
 
 def http_scan_website(website, ssl_stats):
-    """HTTP scan a website — try multiple paths, return first valid email + evidence."""
+    """HTTP scan a website — try multiple paths, return first valid email + evidence.
+    
+    Strategy: try DIRECT first (Astrill proxy blocks many US retail sites).
+    Only use proxy as fallback. curl subprocess without proxy as last resort.
+    Network failures are ALWAYS distinguished from genuine absence of email.
+    """
     import httpx
+    import subprocess
+    import time
+    import os
 
     domain = urlparse(website).netloc.lower()
     if not domain:
@@ -298,58 +306,139 @@ def http_scan_website(website, ssl_stats):
             return None, None, None, "skip_platform"
 
     headers = {'User-Agent': USER_AGENT}
+    
+    # Build explicit proxy config from environment
+    proxy_url = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy") or os.environ.get("HTTP_PROXY") or os.environ.get("http_proxy") or None
+    
+    # Track attempt results
+    attempts = 0
+    last_error = None
+    
+    def _attempt_fetch(url, use_proxy=False):
+        """Try fetching with httpx. use_proxy=False = direct connection."""
+        nonlocal attempts, last_error
+        for retry in range(2):
+            attempts += 1
+            try:
+                client_kwargs = {
+                    'timeout': HTTP_TIMEOUT,
+                    'follow_redirects': True,
+                    'verify': True,
+                }
+                if use_proxy and proxy_url:
+                    client_kwargs['proxy'] = proxy_url
+                    client_kwargs['trust_env'] = False
+                else:
+                    # Direct connection — explicitly disable proxy
+                    client_kwargs['trust_env'] = False
+                
+                with httpx.Client(**client_kwargs) as client:
+                    resp = client.get(url, headers=headers)
+                    return resp, None
+            except httpx.ConnectTimeout:
+                last_error = ('timeout', url)
+                ssl_stats['timeout_count'] = ssl_stats.get('timeout_count', 0) + 1
+                time.sleep(1.0 * (retry + 1))
+            except (httpx.ConnectError, httpx.RemoteProtocolError) as e:
+                last_error = ('ssl_proxy_failure', url, str(e)[:60])
+                ssl_stats['ssl_error_count'] = ssl_stats.get('ssl_error_count', 0) + 1
+                time.sleep(0.5)
+            except httpx.HTTPStatusError as e:
+                if e.response.status_code == 429:
+                    last_error = ('rate_limited', url)
+                    time.sleep(3.0 * (retry + 1))
+                elif 400 <= e.response.status_code < 500:
+                    return None, ('permanent_4xx', url, e.response.status_code)
+                else:
+                    last_error = ('http_error', url, e.response.status_code)
+                    time.sleep(1.0)
+            except Exception as e:
+                last_error = ('unknown', url, str(e)[:60])
+                time.sleep(0.5)
+        return None, last_error
 
+    # ── Primary: httpx DIRECT (no proxy — Astrill blocks US retail via proxy) ──
     for path in CONTACT_PATHS:
         url = urljoin(website, path)
-        try:
-            with httpx.Client(timeout=HTTP_TIMEOUT, follow_redirects=True, verify=True, trust_env=False) as client:
-                resp = client.get(url, headers=headers)
-
-                if resp.status_code == 200:
-                    html = resp.text
-                    emails = extract_emails_from_html(html)
-                    if emails:
-                        # Filter: only use first valid non-platform email
-                        for e in emails:
-                            edom = e.split('@')[-1]
-                            skip_this = False
-                            for sd in SKIP_DOMAINS:
-                                if sd in edom:
-                                    skip_this = True
-                                    break
-                            if not skip_this and not is_china_hosted(domain, html):
-                                return e, url, f"Email {e} found on {url}", "http_success"
-        except httpx.ConnectTimeout:
-            ssl_stats['timeout_count'] = ssl_stats.get('timeout_count', 0) + 1
-            ssl_stats['last_timeout_url'] = url
-            ssl_stats['last_timeout_at'] = datetime.now(SHANGHAI).isoformat()
-            continue
-        except (httpx.ConnectError, httpx.RemoteProtocolError) as e:
-            ssl_stats['ssl_error_count'] = ssl_stats.get('ssl_error_count', 0) + 1
-            ssl_stats['last_ssl_error_url'] = url
-            ssl_stats['last_ssl_error_at'] = datetime.now(SHANGHAI).isoformat()
-            continue
-        except Exception:
-            continue
-
-    # Try homepage as last resort
-    try:
-        with httpx.Client(timeout=HTTP_TIMEOUT, follow_redirects=True, verify=True, trust_env=False) as client:
-            resp = client.get(website, headers=headers)
-            if resp.status_code == 200:
-                html = resp.text
-                emails = extract_emails_from_html(html)
+        resp, err = _attempt_fetch(url, use_proxy=False)
+        
+        if resp and resp.status_code == 200:
+            html = resp.text
+            emails = extract_emails_from_html(html)
+            if emails:
                 for e in emails:
                     edom = e.split('@')[-1]
-                    skip_this = False
-                    for sd in SKIP_DOMAINS:
-                        if sd in edom:
-                            skip_this = True
-                            break
+                    skip_this = any(sd in edom for sd in SKIP_DOMAINS)
                     if not skip_this and not is_china_hosted(domain, html):
-                        return e, website, f"Email {e} found on homepage {website}", "http_homepage"
-    except Exception:
-        pass
+                        ssl_stats['direct_fetch_success'] = ssl_stats.get('direct_fetch_success', 0) + 1
+                        return e, url, f"Email {e} found on {url}", "http_success"
+        elif err and err[0] == 'permanent_4xx':
+            continue
+
+    # Try homepage direct
+    resp, err = _attempt_fetch(website, use_proxy=False)
+    if resp and resp.status_code == 200:
+        html = resp.text
+        emails = extract_emails_from_html(html)
+        for e in emails:
+            edom = e.split('@')[-1]
+            skip_this = any(sd in edom for sd in SKIP_DOMAINS)
+            if not skip_this and not is_china_hosted(domain, html):
+                ssl_stats['direct_fetch_success'] = ssl_stats.get('direct_fetch_success', 0) + 1
+                return e, website, f"Email {e} found on homepage {website}", "http_homepage"
+    elif resp and resp.status_code != 200:
+        ssl_stats['direct_fetch_non200'] = ssl_stats.get('direct_fetch_non200', 0) + 1
+    elif err:
+        # Direct failed — try proxy
+        ssl_stats['direct_failed'] = ssl_stats.get('direct_failed', 0) + 1
+        resp2, err2 = _attempt_fetch(website, use_proxy=True)
+        if resp2 and resp2.status_code == 200:
+            html = resp2.text
+            emails = extract_emails_from_html(html)
+            for e in emails:
+                edom = e.split('@')[-1]
+                skip_this = any(sd in edom for sd in SKIP_DOMAINS)
+                if not skip_this and not is_china_hosted(domain, html):
+                    ssl_stats['proxy_fallback_success'] = ssl_stats.get('proxy_fallback_success', 0) + 1
+                    return e, website, f"Email {e} found via proxy on {website}", "proxy_fallback_homepage"
+
+    # ── Fallback: curl subprocess WITHOUT proxy (direct, more reliable) ──
+    if last_error and last_error[0] in ('ssl_proxy_failure', 'timeout', 'unknown'):
+        curl_cmd = ['curl', '-s', '--max-time', '12', '-L', '-k', '--noproxy', '*',
+                    '-H', f'User-Agent: {USER_AGENT}']
+        
+        try:
+            r = subprocess.run(curl_cmd + [website], capture_output=True, text=True, timeout=15)
+            if r.returncode == 0 and r.stdout and len(r.stdout) > 200:
+                html = r.stdout
+                emails = extract_emails_from_html(html)
+                if emails:
+                    for e in emails:
+                        edom = e.split('@')[-1]
+                        skip_this = any(sd in edom for sd in SKIP_DOMAINS)
+                        if not skip_this and not is_china_hosted(domain, html):
+                            ssl_stats['curl_fallback_used'] = ssl_stats.get('curl_fallback_used', 0) + 1
+                            return e, website, f"Email {e} found via curl on {website}", "curl_fallback_homepage"
+                else:
+                    ssl_stats['curl_fallback_used'] = ssl_stats.get('curl_fallback_used', 0) + 1
+                    return None, None, None, "website_scanned_no_email"
+            else:
+                ssl_stats['curl_fallback_failed'] = ssl_stats.get('curl_fallback_failed', 0) + 1
+                return None, None, None, "network_retry_pending"
+        except subprocess.TimeoutExpired:
+            ssl_stats['curl_fallback_timeout'] = ssl_stats.get('curl_fallback_timeout', 0) + 1
+            return None, None, None, "timeout_retry_pending"
+        except Exception:
+            ssl_stats['curl_fallback_failed'] = ssl_stats.get('curl_fallback_failed', 0) + 1
+            return None, None, None, "network_retry_pending"
+
+    if last_error:
+        err_type = last_error[0]
+        if err_type in ('ssl_proxy_failure', 'timeout'):
+            return None, None, None, "ssl_proxy_failure"
+        elif err_type == 'rate_limited':
+            return None, None, None, "rate_limited"
+        ssl_stats['network_error_count'] = ssl_stats.get('network_error_count', 0) + 1
 
     return None, None, None, "no_email_found"
 

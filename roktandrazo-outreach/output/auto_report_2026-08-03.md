@@ -1,44 +1,91 @@
-# BD Auto Report — 2026-08-03
+# BD Daily Results — 2026-08-03 (Asia/Shanghai)
+**Generated**: 2026-08-04 08:52:40 CST
+**Mode**: Read-Only Summary (no SMTP, no send plan)
 
-## 1. Send Summary
-- Target: 20
-- Sent: 0
-- Gap: 20
-- Status: underfilled
-- Root cause: no_sendable_leads
+## 昨日批次摘要
 
-## 2. Lead Factory
-- Initial pool: 2
-- B pool approved: 1
-- New A0 collected: 0
-- Browser upgraded A0: 0
-- Pool after: 2 A0 + 0 AMS
-- Fresh cities remaining: 8
-- Collection needed: ['Jonesborough, TN', 'Searcy, AR', 'El Dorado, AR', 'Bardstown, KY']
-- Action: Run collection cycle for these cities
+| 指标 | 数值 |
+|------|------|
+| 昨日计划数 | 9 |
+| SMTP 已接受数 | 0 |
+| 投递率 | 0.0% |
+| 有打开信号的商家数 | 0 |
+| 暂无打开信号的商家数 | 0 |
+| 打开信号总次数 | 0 |
+| 人工回复数 | 0 |
+| 自动回复数 | 0 |
+| Hard Bounce 数 | 0 |
+| Unsubscribe 数 | 0 |
 
-## 3. Bounce & Reply
-- Hard bounce: 0
-- Total bounces: 0
-- Replies: 0
-- Hot replies: 0
-- Unsubscribes: 0
-- Auto-replies: 0
+## 当前库存
 
-## 4. Risk Status
-- No risk triggers
-- risk_type: none
-- send_pause: false
-- risk_gate: clear ()
-- cooldown_until: 
-- manual_pause: False
-- standing_authorization: True
-- scheduler_enabled: True
+| 指标 | 数值 |
+|------|------|
+| 总线索数 | 718 |
+| Broad Outreach Ready (locations) | 99 |
+| Broad Outreach Ready (organizations) | 99 |
+| Strict A0 (locations) | 1 |
+| Strict A0 (organizations) | 1 |
+| 人工待处理 (manual_review) | 710 |
+| 库存状态 | critical |
 
-## 5. Recommendation
-- Tomorrow sendable: 2
-- Next-window queued gap: 20
-- [WARN] Need 18 more leads for tomorrow
-- Fresh cities available: 8
-- Action: Run Lead Factory cycle today
-- 1 approved_manual_send candidates waiting for review
+## 活跃州与城市
+
+| 州 | 总线索 | 可发送 |
+|------|--------|--------|
+| TN * | 170 | 9 |
+| AR * | 62 | 4 |
+| KY * | 58 | 1 |
+| CA | 47 | 23 |
+| TX | 28 | 5 |
+| OR * | 25 | 9 |
+| WA | 23 | 9 |
+| FL | 23 | 10 |
+| NY | 22 | 7 |
+| NC * | 20 | 4 |
+
+*主要州 (TN, AR, KY) 优先采集
+
+### 主要州城市分布
+
+**TN** (170 leads across 31 cities)
+  - Nashville: 45
+  - Knoxville: 19
+  - Pigeon Forge: 12
+  - Franklin: 12
+  - Memphis: 11
+  - Chattanooga: 10
+  - Johnson City: 9
+  - Gatlinburg: 8
+  - ... and 23 more
+
+**AR** (62 leads across 17 cities)
+  - Fayetteville: 12
+  - Rogers: 6
+  - Jonesboro: 6
+  - Hot Springs: 6
+  - Russellville: 4
+  - Little Rock: 4
+  - Conway: 4
+  - Bentonville: 4
+  - ... and 9 more
+
+**KY** (58 leads across 19 cities)
+  - Lexington: 16
+  - Louisville: 11
+  - Bowling Green: 6
+  - Owensboro: 5
+  - Paducah: 4
+  - Richmond: 2
+  - Murray: 2
+  - Somerset: 1
+  - ... and 11 more
+
+## 逐条发送结果
+
+| # | Store | Recipient | Sent At | Open Signal | Reply | Bounce |
+|---|-------|-----------|---------|-------------|--------|--------|
+
+---
+*报告由 BD Daily Results 自动化生成 | 时区: Asia/Shanghai (UTC+8)*
+*打开信号数据来源: Cloudflare D1 Worker / poller cache*

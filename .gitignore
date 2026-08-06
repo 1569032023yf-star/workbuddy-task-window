@@ -20,3 +20,11 @@ node_modules/
 
 # Cloudflare Wrangler local dev state (cache, not source)
 .wrangler/state/
+
+# SQLite runtime temp files (WAL/SHM/journal — not source)
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Lock files
+*.lock

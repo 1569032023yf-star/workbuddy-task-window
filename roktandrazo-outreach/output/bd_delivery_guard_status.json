@@ -1,13 +1,13 @@
 {
-  "process_started_at": "2026-07-30T21:35:32.337141+08:00",
-  "last_heartbeat_at": "2026-07-31T09:56:05.895364+08:00",
-  "current_mode": "idle",
-  "system_required": false,
+  "process_started_at": "2026-08-03T10:39:12.486254+08:00",
+  "last_heartbeat_at": "2026-08-03T16:36:44.919820+08:00",
+  "current_mode": "normal",
+  "system_required": true,
   "display_required": false,
   "ac_power": true,
   "critical_window": false,
   "last_error": null,
   "restart_count": 0,
-  "pid": 33312,
+  "pid": 39108,
   "hostname": "raktrozo"
 }

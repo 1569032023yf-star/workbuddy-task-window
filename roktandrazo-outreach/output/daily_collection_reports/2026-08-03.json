@@ -1,0 +1,170 @@
+{
+  "report_date": "2026-08-03",
+  "generated_at": "2026-08-03T20:30:00.000000+08:00",
+  "run_ids": [
+    "inventory:2026-08-03:b6608421",
+    "inventory:2026-08-03:b0eb9d4b",
+    "inventory:2026-08-03:f6fb53b1",
+    "inventory:2026-08-03:cddca4b8",
+    "inventory:2026-08-03:b33bd533"
+  ],
+  "execution_mode": "inventory",
+  "current_run_id": "inventory:2026-08-03:b6608421",
+  "current_run_status": "running",
+  "started_at": "2026-08-03T12:00:25.808469+08:00",
+  "last_updated_at": "2026-08-03T20:30:00.000000+08:00",
+  "completed_at": null,
+  "active_state": "Tennessee",
+  "active_city": "Nashville",
+  "current_query": "toy store Nashville TN",
+  "starting_sendable": 8,
+  "ending_sendable": 95,
+  "sendable_delta": 87,
+  "gap_to_30": 0,
+  "gap_to_60": 0,
+  "sendable_by_tier": {
+    "strict_a0": 0,
+    "broad_outreach_ready": 95,
+    "total": 95
+  },
+  "sendable_in_allowed_states": 11,
+  "collection_activity": {
+    "new_organizations_today": 0,
+    "website_emails_found_today": 0,
+    "facebook_emails_found_today": 0,
+    "manual_emails_verified_today": 0,
+    "leads_last_checked_today": 10
+  },
+  "inventory_summary": {
+    "total_leads": 718,
+    "total_with_email": 401,
+    "total_unsent_with_email": 228,
+    "send_eligibility_classified": 96,
+    "send_eligibility_unclassified": 622,
+    "broad_outreach_ready_unsent": 95,
+    "blocked": 1,
+    "contact_form_pool_with_email": 20
+  },
+  "per_state": {
+    "TN": {
+      "total": 170,
+      "with_email": 80,
+      "unsent_sendable": 0
+    },
+    "AR": {
+      "total": 62,
+      "with_email": 33,
+      "unsent_sendable": 0
+    },
+    "KY": {
+      "total": 58,
+      "with_email": 29,
+      "unsent_sendable": 0
+    },
+    "OR": {
+      "total": 25,
+      "with_email": 20,
+      "unsent_sendable": 6
+    },
+    "NC": {
+      "total": 20,
+      "with_email": 18,
+      "unsent_sendable": 3
+    },
+    "MN": {
+      "total": 10,
+      "with_email": 9,
+      "unsent_sendable": 2
+    },
+    "OH": {
+      "total": 4,
+      "with_email": 4,
+      "unsent_sendable": 0
+    },
+    "NE": {
+      "total": 3,
+      "with_email": 3,
+      "unsent_sendable": 0
+    },
+    "IN": {
+      "total": 3,
+      "with_email": 3,
+      "unsent_sendable": 0
+    },
+    "CO": {
+      "total": 15,
+      "with_email": 14,
+      "unsent_sendable": 0
+    }
+  },
+  "broad_outreach_by_state": {
+    "CA": 17,
+    "FL": 9,
+    "UT": 7,
+    "WI": 6,
+    "WA": 6,
+    "OR": 6,
+    "NY": 6,
+    "AZ": 5,
+    "MO": 4,
+    "TX": 3,
+    "PA": 3,
+    "NV": 3,
+    "NC": 3,
+    "MI": 3,
+    "LA": 3,
+    "MN": 2,
+    "IL": 2,
+    "GA": 2,
+    "WY": 1,
+    "Various": 1,
+    "VT": 1,
+    "RI": 1,
+    "MA": 1
+  },
+  "website_recovery": {
+    "recheck_pending": 0,
+    "no_email_has_website": 72
+  },
+  "fb_pending": 0,
+  "manual_review_pending": 262,
+  "unsent_by_status": {
+    "manual_review_needed": 144,
+    "new": 51,
+    "contact_form_pool": 20,
+    "delivery_issue": 9,
+    "B": 2,
+    "A": 1,
+    "bounce_review": 1
+  },
+  "network": {
+    "errors_pending_recheck": 0,
+    "total_network_error_leads": 0
+  },
+  "safety": {
+    "smtp_calls": 0,
+    "final_send_plans_created": 0,
+    "send_authorizations_created": 0,
+    "send_log_total": 411,
+    "send_log_today": 0,
+    "send_log_delta": 0,
+    "send_log_unchanged": true
+  },
+  "remediation": {
+    "total_affected": 21,
+    "eligible": 21,
+    "blocked": 0,
+    "workflow_status": "PREVIEW_READY"
+  },
+  "scheduler_state": {
+    "scheduler_enabled": true,
+    "standing_authorization": true,
+    "manual_pause": false,
+    "risk_gate_status": "clear"
+  },
+  "verification": {
+    "smtp_verified_zero": true,
+    "send_plan_verified_zero": true,
+    "send_log_unchanged_verified": true
+  }
+}

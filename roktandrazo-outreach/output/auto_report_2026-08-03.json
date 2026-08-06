@@ -1,0 +1,600 @@
+{
+  "generated_at": "2026-08-04T08:52:40.438729+08:00",
+  "timezone": "Asia/Shanghai",
+  "target_date": "2026-08-03",
+  "summary": {
+    "date": "2026-08-03",
+    "planned": 9,
+    "smtp_accepted": 0,
+    "stores_with_open": 0,
+    "stores_no_open": 0,
+    "total_open_signals": 0,
+    "human_replies": 0,
+    "auto_replies": 0,
+    "hard_bounces": 0,
+    "unsubscribes": 0
+  },
+  "results": [],
+  "inventory": {
+    "total_leads": 718,
+    "send_prep_candidates": 145,
+    "strict_a0_locations": 1,
+    "strict_a0_organizations": 1,
+    "org_outreach_opps": 1,
+    "manual_review": 254,
+    "website_lookup": 61,
+    "contact_form_only": 86,
+    "low_priority": 4,
+    "previously_sent": 345,
+    "permanently_suppressed": 17,
+    "bounce_recovery": 0,
+    "unprocessed_staging": 0,
+    "targets": {
+      "critical": 40,
+      "warning": 80,
+      "target": 120
+    },
+    "gaps": {
+      "to_40": 39,
+      "to_80": 79,
+      "to_120": 119
+    },
+    "status": "critical"
+  },
+  "geo": {
+    "states": [
+      [
+        "TN",
+        170
+      ],
+      [
+        "AR",
+        62
+      ],
+      [
+        "KY",
+        58
+      ],
+      [
+        "CA",
+        47
+      ],
+      [
+        "TX",
+        28
+      ],
+      [
+        "OR",
+        25
+      ],
+      [
+        "WA",
+        23
+      ],
+      [
+        "FL",
+        23
+      ],
+      [
+        "NY",
+        22
+      ],
+      [
+        "NC",
+        20
+      ],
+      [
+        "IL",
+        18
+      ],
+      [
+        "MI",
+        17
+      ],
+      [
+        "WI",
+        15
+      ],
+      [
+        "CO",
+        15
+      ],
+      [
+        "AZ",
+        15
+      ],
+      [
+        "GA",
+        12
+      ],
+      [
+        "MA",
+        11
+      ],
+      [
+        "UT",
+        10
+      ],
+      [
+        "SC",
+        10
+      ],
+      [
+        "MN",
+        10
+      ],
+      [
+        "PA",
+        9
+      ],
+      [
+        "MO",
+        8
+      ],
+      [
+        "VT",
+        7
+      ],
+      [
+        "VA",
+        7
+      ],
+      [
+        "NM",
+        7
+      ],
+      [
+        "MD",
+        7
+      ],
+      [
+        "OH",
+        4
+      ],
+      [
+        "NV",
+        4
+      ],
+      [
+        "ME",
+        4
+      ],
+      [
+        "LA",
+        4
+      ],
+      [
+        "ID",
+        4
+      ],
+      [
+        "NE",
+        3
+      ],
+      [
+        "IN",
+        3
+      ],
+      [
+        "DC",
+        3
+      ],
+      [
+        "AL",
+        3
+      ],
+      [
+        "OK",
+        2
+      ],
+      [
+        "CT",
+        2
+      ],
+      [
+        "WY",
+        1
+      ],
+      [
+        "Various",
+        1
+      ],
+      [
+        "RI",
+        1
+      ],
+      [
+        "NH",
+        1
+      ],
+      [
+        "MT",
+        1
+      ],
+      [
+        "KS",
+        1
+      ]
+    ],
+    "cities": [
+      [
+        "AR",
+        "Fayetteville",
+        12
+      ],
+      [
+        "AR",
+        "Rogers",
+        6
+      ],
+      [
+        "AR",
+        "Jonesboro",
+        6
+      ],
+      [
+        "AR",
+        "Hot Springs",
+        6
+      ],
+      [
+        "AR",
+        "Russellville",
+        4
+      ],
+      [
+        "AR",
+        "Little Rock",
+        4
+      ],
+      [
+        "AR",
+        "Conway",
+        4
+      ],
+      [
+        "AR",
+        "Bentonville",
+        4
+      ],
+      [
+        "AR",
+        "Fort Smith",
+        3
+      ],
+      [
+        "AR",
+        "Eureka Springs",
+        3
+      ],
+      [
+        "AR",
+        "Springdale",
+        2
+      ],
+      [
+        "AR",
+        "Sherwood",
+        2
+      ],
+      [
+        "AR",
+        "Mountain View",
+        2
+      ],
+      [
+        "AR",
+        "North Little Rock",
+        1
+      ],
+      [
+        "AR",
+        "Lowell",
+        1
+      ],
+      [
+        "AR",
+        "Harrison",
+        1
+      ],
+      [
+        "AR",
+        "Batesville",
+        1
+      ],
+      [
+        "KY",
+        "Lexington",
+        16
+      ],
+      [
+        "KY",
+        "Louisville",
+        11
+      ],
+      [
+        "KY",
+        "Bowling Green",
+        6
+      ],
+      [
+        "KY",
+        "Owensboro",
+        5
+      ],
+      [
+        "KY",
+        "Paducah",
+        4
+      ],
+      [
+        "KY",
+        "Richmond",
+        2
+      ],
+      [
+        "KY",
+        "Murray",
+        2
+      ],
+      [
+        "KY",
+        "Somerset",
+        1
+      ],
+      [
+        "KY",
+        "Smiths Grove",
+        1
+      ],
+      [
+        "KY",
+        "Shelbyville",
+        1
+      ],
+      [
+        "KY",
+        "Salyersville",
+        1
+      ],
+      [
+        "KY",
+        "Radcliff",
+        1
+      ],
+      [
+        "KY",
+        "Princeton",
+        1
+      ],
+      [
+        "KY",
+        "Middlesboro",
+        1
+      ],
+      [
+        "KY",
+        "Mammoth Cave",
+        1
+      ],
+      [
+        "KY",
+        "La Grange",
+        1
+      ],
+      [
+        "KY",
+        "Florence",
+        1
+      ],
+      [
+        "KY",
+        "Elizabethtown",
+        1
+      ],
+      [
+        "KY",
+        "Danville",
+        1
+      ],
+      [
+        "TN",
+        "Nashville",
+        45
+      ],
+      [
+        "TN",
+        "Knoxville",
+        19
+      ],
+      [
+        "TN",
+        "Pigeon Forge",
+        12
+      ],
+      [
+        "TN",
+        "Franklin",
+        12
+      ],
+      [
+        "TN",
+        "Memphis",
+        11
+      ],
+      [
+        "TN",
+        "Chattanooga",
+        10
+      ],
+      [
+        "TN",
+        "Johnson City",
+        9
+      ],
+      [
+        "TN",
+        "Gatlinburg",
+        8
+      ],
+      [
+        "TN",
+        "Murfreesboro",
+        6
+      ],
+      [
+        "TN",
+        "Jackson",
+        4
+      ],
+      [
+        "TN",
+        "Cookeville",
+        4
+      ],
+      [
+        "TN",
+        "Clarksville",
+        4
+      ],
+      [
+        "TN",
+        "Morristown",
+        3
+      ],
+      [
+        "TN",
+        "Cleveland",
+        3
+      ],
+      [
+        "TN",
+        "Tullahoma",
+        2
+      ],
+      [
+        "TN",
+        "Kingsport",
+        2
+      ],
+      [
+        "TN",
+        "Columbia",
+        2
+      ],
+      [
+        "TN",
+        "Vonore",
+        1
+      ],
+      [
+        "TN",
+        "Smyrna",
+        1
+      ],
+      [
+        "TN",
+        "Shiloh",
+        1
+      ],
+      [
+        "TN",
+        "Oak Ridge",
+        1
+      ],
+      [
+        "TN",
+        "Millington",
+        1
+      ],
+      [
+        "TN",
+        "McMinnville",
+        1
+      ],
+      [
+        "TN",
+        "Hermitage",
+        1
+      ],
+      [
+        "TN",
+        "Greeneville",
+        1
+      ],
+      [
+        "TN",
+        "Fayetteville",
+        1
+      ],
+      [
+        "TN",
+        "Elizabethton",
+        1
+      ],
+      [
+        "TN",
+        "Dickson",
+        1
+      ],
+      [
+        "TN",
+        "Clinton",
+        1
+      ],
+      [
+        "TN",
+        "Bartlett",
+        1
+      ],
+      [
+        "TN",
+        "Alcoa",
+        1
+      ]
+    ],
+    "sendable_by_state": {
+      "CA": 23,
+      "FL": 10,
+      "WA": 9,
+      "TN": 9,
+      "OR": 9,
+      "UT": 7,
+      "NY": 7,
+      "WI": 6,
+      "AZ": 6,
+      "TX": 5,
+      "PA": 4,
+      "NC": 4,
+      "MO": 4,
+      "AR": 4,
+      "NV": 3,
+      "MI": 3,
+      "LA": 3,
+      "IL": 3,
+      "VT": 2,
+      "MN": 2,
+      "MA": 2,
+      "GA": 2,
+      "WY": 1,
+      "Various": 1,
+      "SC": 1,
+      "RI": 1,
+      "MD": 1,
+      "KY": 1,
+      "AL": 1
+    },
+    "allowed_states": [
+      "AR",
+      "CO",
+      "IN",
+      "KY",
+      "MN",
+      "NC",
+      "NE",
+      "OH",
+      "OR",
+      "TN"
+    ]
+  }
+}

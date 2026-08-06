@@ -1,0 +1,114 @@
+{
+  "report_type": "daily_collection_20_30",
+  "generated_at": "2026-08-04 20:27:44 CST",
+  "date": "2026-08-04",
+  "timezone": "Asia/Shanghai",
+  "collection_state": {
+    "active_state": "TN",
+    "active_city": "",
+    "current_query": "",
+    "city_queue": []
+  },
+  "final_sendable_unsent": {
+    "strict_a0_organizations": 2,
+    "broad_outreach_ready_organizations": 11,
+    "total_organizations": 13,
+    "gap_to_30": 17,
+    "gap_to_60": 47
+  },
+  "send_eligibility_breakdown": {
+    "blocked": 1,
+    "broad_outreach_ready": 95
+  },
+  "today_collection": {
+    "new_organizations": 0,
+    "new_organizations_with_email": 0,
+    "website_emails_found": 0,
+    "facebook_emails_found": 0,
+    "manual_emails_verified": 1
+  },
+  "today_email_sources": {},
+  "website_recovery": {
+    "no_email_with_website": 71,
+    "recheck_pending": 0,
+    "total_pending": 71
+  },
+  "network_errors": {
+    "other": 2,
+    "dns": 1,
+    "connection": 1
+  },
+  "inventory": {
+    "total_leads": 718,
+    "total_sent_all_time": 408,
+    "status_breakdown": {
+      "sent": 287,
+      "manual_review_needed": 261,
+      "contact_form_pool": 73,
+      "new": 70,
+      "bounced": 11,
+      "delivery_issue": 9,
+      "B": 2,
+      "failed": 2,
+      "A": 1,
+      "approved_manual_send": 1,
+      "bounce_review": 1
+    },
+    "state_breakdown": {
+      "TN": 170,
+      "AR": 62,
+      "KY": 58,
+      "CA": 47,
+      "TX": 28,
+      "OR": 25,
+      "WA": 23,
+      "FL": 23,
+      "NY": 22,
+      "NC": 20,
+      "IL": 18,
+      "MI": 17,
+      "WI": 15,
+      "CO": 15,
+      "AZ": 15,
+      "GA": 12,
+      "MA": 11,
+      "UT": 10,
+      "SC": 10,
+      "MN": 10,
+      "PA": 9,
+      "MO": 8,
+      "VT": 7,
+      "VA": 7,
+      "NM": 7,
+      "MD": 7,
+      "OH": 4,
+      "NV": 4,
+      "ME": 4,
+      "LA": 4,
+      "ID": 4,
+      "NE": 3,
+      "IN": 3,
+      "DC": 3,
+      "AL": 3,
+      "OK": 2,
+      "CT": 2,
+      "WY": 1,
+      "Various": 1,
+      "RI": 1,
+      "NH": 1,
+      "MT": 1,
+      "KS": 1
+    }
+  },
+  "safety_verification": {
+    "smtp_sends_today": 0,
+    "smtp_status": "PASS (0 sends)",
+    "send_log_total": 411,
+    "send_log_entries_today": 0,
+    "final_send_plan_entries_today": 0,
+    "final_send_plan_status": "PASS (0 plans)",
+    "inventory_stopped": "false",
+    "inventory_status": "RUNNING",
+    "all_checks_pass": true
+  }
+}

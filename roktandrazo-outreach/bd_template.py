@@ -76,15 +76,54 @@ BODY_HTML = """<p>Hi {greeting},</p>
 """
 
 # ── Custom Printing & Production Template ───────────────
-# Same body as V5 (LOCKED — no body modification allowed).
-# Different Subject: "Custom Production & Procurement Support for {{Store Name}}"
+# Independent body (NOT shared with retail_distributor).
+# Subject: "Custom Production & Procurement Support for {{Store Name}}"
 # Activated 2026-08-03 per user confirmation.
 
 def _subject_custom_printing_for(store_name: str) -> str:
     return f'Custom Production & Procurement Support for {store_name}'
 
-# Reuse BODY_TEXT, BODY_HTML, SIGNATURE_TEXT, SIGNATURE_HTML from above (LOCKED).
-# Canonical hashes are computed on the source strings below for integrity validation.
+CUSTOM_BODY_TEXT = """Hi {greeting},
+
+I'm Ian from rokt&razo. We are a custom printing and production partner with 10+ years of experience in the industry. We support many U.S. brands, independent artists, designers, and retailers with custom product development, printing, packaging, and sourcing — from small test runs to full-scale production.
+
+We are currently expanding our U.S. production partner network, and I wanted to see if there may be an opportunity to work together. We offer:
+
+- Custom production and private-label development
+- Printing, packaging, and assembly services
+- Supply chain and procurement support
+- Low minimums and flexible production runs
+
+We'd be happy to discuss your current or upcoming production needs.
+
+If you're interested, I'd be happy to send over our latest catalogue and capabilities overview. We've completed projects ranging from custom puzzles and card games to branded merchandise, packaging, and specialty print work.
+
+{pixel}
+
+{signature}
+"""
+
+CUSTOM_BODY_HTML = """<p>Hi {greeting},</p>
+
+<p>I'm Ian from <strong>rokt&amp;razo</strong>. We are a custom printing and production partner with 10+ years of experience in the industry. We support many U.S. brands, independent artists, designers, and retailers with custom product development, printing, packaging, and sourcing — from small test runs to full-scale production.</p>
+
+<p>We are currently expanding our U.S. production partner network, and I wanted to see if there may be an opportunity to work together. We offer:</p>
+
+<ul>
+<li>Custom production and private-label development</li>
+<li>Printing, packaging, and assembly services</li>
+<li>Supply chain and procurement support</li>
+<li>Low minimums and flexible production runs</li>
+</ul>
+
+<p>We'd be happy to discuss your current or upcoming production needs.</p>
+
+<p>If you're interested, I'd be happy to send over our latest catalogue and capabilities overview. We've completed projects ranging from custom puzzles and card games to branded merchandise, packaging, and specialty print work.</p>
+
+{pixel}
+
+{signature}
+"""
 
 # ── Template Registry ────────────────────────────────────
 
@@ -103,8 +142,8 @@ _TEMPLATE_REGISTRY = {
     "custom_printing_production_v5_locked": {
         "status": "ACTIVE_LOCKED",
         "subject_fn": _subject_custom_printing_for,
-        "body_text": BODY_TEXT,
-        "body_html": BODY_HTML,
+        "body_text": CUSTOM_BODY_TEXT,
+        "body_html": CUSTOM_BODY_HTML,
         "signature_text": SIGNATURE_TEXT,
         "signature_html": SIGNATURE_HTML,
         "canonical_subject_prefix": "Custom Production & Procurement Support for ",

@@ -1,0 +1,25 @@
+{
+  "batch_id": "new_outreach_20260804_et1000",
+  "count": 40,
+  "states": {
+    "TN": 4,
+    "AR": 1,
+    "NC": 3,
+    "AL": 1,
+    "WI": 4,
+    "NY": 2,
+    "CA": 6,
+    "WA": 2,
+    "TX": 1,
+    "OR": 3,
+    "IL": 1,
+    "MA": 1,
+    "MN": 1,
+    "PA": 2,
+    "GA": 1,
+    "AZ": 3,
+    "UT": 4
+  },
+  "frozen_at": "2026-08-04T18:40:52.589023+08:00",
+  "auth_id": "auth_new_outreach_20260804_et1000_new_outreach_20260804_et1000_4d20331aa67d1ab7"
+}

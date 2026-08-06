@@ -1,12 +1,33 @@
 {
-  "verdict": "BLOCKED",
-  "pass": 21,
-  "fail": 3,
-  "warn": 2,
+  "batch_id": "new_outreach_20260805_et1000",
+  "plan_count_planned": 0,
+  "plan_count_sent": 20,
+  "auth_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+  "auth_status": "consumed",
+  "pass": 7,
+  "fail": 4,
+  "warn": 0,
   "blocks": [
-    "Guard heartbeat < 900s (idle/normal): age=17942s, mode=normal",
-    "Guard current_mode = critical: actual=normal",
-    "Guard display_required = true: actual=False"
+    "No planned entries (batch already sent: 20/20)",
+    "No active authorization (auth consumed)",
+    "No auth for entry count check",
+    "No poller heartbeat timestamp (file key mismatch: uses last_heartbeat, script expects last_heartbeat_at)"
   ],
-  "time": "2026-07-29T22:57:17.865686+08:00"
+  "preflight_status": "failed",
+  "time": "2026-08-05T21:48:55+08:00",
+  "verdict": "BLOCKED — Batch already completed",
+  "context": {
+    "batch_already_processed": true,
+    "total_sent": 20,
+    "send_log_confirmed": 20,
+    "auth_entries_consumed": 20,
+    "auth_preflight_original": "passed",
+    "old_plans_auths_clean": true,
+    "ops_center": "HTTP 200",
+    "template_shas": "both match",
+    "poller_file_exists": true,
+    "poller_file_uses_wrong_key": "last_heartbeat vs last_heartbeat_at",
+    "poller_last_heartbeat": "2026-08-05T18:42:36+08:00",
+    "yesterdays_blockers_resolved": "old plans/auths cleaned up per 2026-08-04 findings"
+  }
 }
