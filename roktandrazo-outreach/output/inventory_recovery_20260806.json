@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-08-06T15:32:17.051910",
+  "target": 30,
+  "a0_raw": 24,
+  "a0_gate": 0,
+  "gap": 30,
+  "candidates_scanned": 34,
+  "ssl_stats": {
+    "direct_ok": 0,
+    "curl_ok": 0,
+    "emails_found": 3,
+    "no_email": 20,
+    "network_errors": 7,
+    "platform_skip": 4,
+    "previously_sent": 0,
+    "new_emails": 3
+  },
+  "new_a0_promoted": [],
+  "active_city": "Nashville",
+  "active_state": "TN"
+}

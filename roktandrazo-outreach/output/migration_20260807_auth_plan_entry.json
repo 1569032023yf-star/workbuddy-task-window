@@ -1,0 +1,11 @@
+{
+  "applied_at": "2026-08-07T14:22:38.683908+08:00",
+  "fixed_entries": 40,
+  "entries_without_fsp": 0,
+  "still_lead_id": 0,
+  "fsp_lead_mismatch": 0,
+  "auth_status": {
+    "consumed": 2,
+    "revoked": 4
+  }
+}

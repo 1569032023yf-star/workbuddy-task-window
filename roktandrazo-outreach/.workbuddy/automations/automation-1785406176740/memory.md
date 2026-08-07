@@ -72,3 +72,15 @@
 - **Ops API today (08-06)**: planned=0, sent=0 — normal, send window starts at 09:00
 - **Dashboard**: regenerated via bd_operations_dashboard.py (output/bd_operations_dashboard.html)
 - **Note**: outreach_batch_date stored as batch ID strings (e.g. `new_outreach_20260805_et1000`), NOT as YYYY-MM-DD; sent_at LIKE fallback works for daily queries
+
+## 2026-08-07 08:50 CST
+- **Batch analyzed**: 2026-08-06 (Thursday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ No sends on Aug 6** — day after the 40-email batch. Either orchestrator didn't run or no inventory left.
+- **Open Signals**: 0 | **Replies**: 0 human, 0 auto | **Bounces**: 0 hard | **Unsubs**: 0
+- **Inventory**: 738 total | 78 Broad Outreach Ready | 1 Strict A0 (recovered from 0) | 729 manual review pending
+  - Strict A0 back to 1 — new A0 lead collected or recovered since Aug 6
+- **Primary states**: TN (177/35 cities, 5 sendable), AR (67/17 cities, 4 sendable), KY (66/20 cities, 1 sendable)
+- **Dashboard**: regenerated successfully (318 manual pending via dashboard, 1 A0 sendable, 191 follow-up sendable)
+- **Data Freshness**: FRESH (bounce scan 08:35 CST, 15 min ago)
+- **Delivery Outcome**: SMTP 448 total, 269 in 30d; domain_invalid=22, hard_bounce=6, unmatched_dsn=21, unresolved=392

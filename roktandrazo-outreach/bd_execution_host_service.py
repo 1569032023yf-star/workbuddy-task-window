@@ -10,6 +10,11 @@ Account: LocalSystem (no user login required)
 
 NEVER calls SMTP. NEVER creates Final Send Plan.
 NEVER accesses customer data.
+
+RESPONSIBILITIES:
+- 生产调度权威时区：Asia/Shanghai（UTC+8，无 DST）。
+- 只调用唯一 Orchestrator（bd_orchestrator.py）执行各 stage；
+  不自己选客户、不建邮件、不建 Auth、不调 SMTP。
 """
 
 import os
@@ -26,9 +31,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # ── Constants ──
-import zoneinfo
-ASIA_SHANGHAI = timezone(timedelta(hours=8))
-AMERICA_NEW_YORK = zoneinfo.ZoneInfo("America/New_York")  # Auto DST/ST
+ASIA_SHANGHAI = timezone(timedelta(hours=8))  # 生产调度权威时区：UTC+8，无 DST
 BASE_DIR = Path(__file__).resolve().parent
 PYTHON_EXE = Path(sys.executable).resolve()
 LOG_DIR = BASE_DIR / "output"
@@ -68,21 +71,24 @@ COMPONENTS = {
     },
 }
 
-# ── Send Stage Schedule (America/New_York) ──
-# All times in America/New_York. DST handled by zoneinfo.
+# ── Send Stage Schedule (Asia/Shanghai) ──
+# 生产调度权威时区：Asia/Shanghai（UTC+8，无 DST），无 DST 切换。
+# stage 名必须与 bd_orchestrator.py 的 argparse choices 完全一致。
+# hour=0 表示次日午夜：post-send 00:10 / end-of-day 00:25 为跨午夜阶段，
+# 按次日处理，hour/min 字段天然支持该语义。
 SEND_SCHEDULE = [
-    {"stage": "freeze",       "hour": 9,  "minute": 10,  "script": "bd_orchestrator.py", "args": ["--stage", "freeze", "--live"]},
-    {"stage": "pre_send",     "hour": 9,  "minute": 30,  "script": "bd_orchestrator.py", "args": ["--stage", "pre_send", "--live"]},
-    {"stage": "preflight",    "hour": 9,  "minute": 50,  "script": "bd_orchestrator.py", "args": ["--stage", "preflight", "--live"]},
-    {"stage": "outreach",     "hour": 10, "minute": 0,   "script": "bd_orchestrator.py", "args": ["--stage", "outreach", "--live"]},
-    {"stage": "post_send",    "hour": 10, "minute": 10,  "script": "bd_orchestrator.py", "args": ["--stage", "post_send", "--live"]},
+    {"stage": "inventory",  "hour": 15, "minute": 0,  "script": "bd_orchestrator.py", "args": ["--stage", "inventory", "--live"]},
+    {"stage": "pre-send",   "hour": 22, "minute": 30, "script": "bd_orchestrator.py", "args": ["--stage", "pre-send", "--live"]},
+    {"stage": "outreach",   "hour": 23, "minute": 0,  "script": "bd_orchestrator.py", "args": ["--stage", "outreach", "--live"]},
+    {"stage": "post-send",  "hour": 0,  "minute": 10, "script": "bd_orchestrator.py", "args": ["--stage", "post-send", "--live"]},
+    {"stage": "end-of-day", "hour": 0,  "minute": 25, "script": "bd_orchestrator.py", "args": ["--stage", "end-of-day", "--live"]},
 ]
 
 SEND_SCHEDULE_BOOKMARK_FILE = LOG_DIR / "bd_execution_host_send_bookmark.json"
-SEND_POLICY_HASH = "3a7f9c1e"  # Policy: weekday_new_outreach_et1000
+SEND_POLICY_HASH = "3a7f9c1e"  # Policy: weekday_new_outreach_sh2300
 CURRENT_SEND_POLICY = {
-    "policy_name": "weekday_new_outreach_et1000",
-    "timezone": "America/New_York",
+    "policy_name": "weekday_new_outreach_sh2300",
+    "timezone": "Asia/Shanghai",
     "business_days": [0, 1, 2, 3, 4],  # Monday=0
     "max_new_outreach": 30,
     "follow_up_enabled": False,

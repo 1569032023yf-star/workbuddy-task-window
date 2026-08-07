@@ -1,6 +1,7 @@
 """
 Roktandrazo US Retail Store Outreach System - Configuration
 """
+import os
 
 # ============================================================
 # 产品信息
@@ -40,7 +41,23 @@ SENDER_TITLE = "Wholesale & Partnerships"
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
 SMTP_USER = "bqniki@gmail.com"
-SMTP_PASSWORD = "zqlgeodqmifdchhj"  # Gmail App Password
+# P7：密码不再硬编码。生产通过 .env / 环境变量 BD_SMTP_PASSWORD 提供；
+# 为空时功能 fail-closed（见 get_smtp_password()），绝无硬编码回退。
+SMTP_PASSWORD = os.environ.get("BD_SMTP_PASSWORD", "")
+
+
+def get_smtp_password() -> str:
+    """返回 SMTP 密码；未配置时 fail-closed（抛错提示缺 env）。
+
+    任何发送路径必须先调用本函数，禁止直接使用可能为空的 SMTP_PASSWORD。
+    """
+    pwd = SMTP_PASSWORD
+    if not pwd:
+        raise RuntimeError(
+            "SMTP_PASSWORD 未配置：请设置环境变量 BD_SMTP_PASSWORD（生产通过 .env 提供），"
+            "否则邮件发送功能不可用（fail-closed）。"
+        )
+    return pwd
 
 # ============================================================
 # 发信策略

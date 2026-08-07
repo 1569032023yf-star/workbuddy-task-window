@@ -1,0 +1,414 @@
+{
+  "shadow_batch": "shadow_release_gate_20260807",
+  "candidates": 30,
+  "fsp_planned": 30,
+  "auth_id": "auth_shadow_release_gate_20260807_shadow_release_gate_20260807_09c382f4af92f44a",
+  "sender_mock": {
+    "sent": 30,
+    "blocked": 0,
+    "failed": 0,
+    "details": [
+      {
+        "lead": 191,
+        "email": "store@yellowstoneforever.org",
+        "status": "sent",
+        "msg": "Sent to store@yellowstoneforever.org"
+      },
+      {
+        "lead": 192,
+        "email": "vendor@powells.com",
+        "status": "sent",
+        "msg": "Sent to vendor@powells.com"
+      },
+      {
+        "lead": 199,
+        "email": "info@normanandjules.com",
+        "status": "sent",
+        "msg": "Sent to info@normanandjules.com"
+      },
+      {
+        "lead": 202,
+        "email": "info@gameologypasadena.com",
+        "status": "sent",
+        "msg": "Sent to info@gameologypasadena.com"
+      },
+      {
+        "lead": 204,
+        "email": "info@megatoysla.com",
+        "status": "sent",
+        "msg": "Sent to info@megatoysla.com"
+      },
+      {
+        "lead": 205,
+        "email": "info@collectorsparadise.com",
+        "status": "sent",
+        "msg": "Sent to info@collectorsparadise.com"
+      },
+      {
+        "lead": 206,
+        "email": "info@itsybitsysf.com",
+        "status": "sent",
+        "msg": "Sent to info@itsybitsysf.com"
+      },
+      {
+        "lead": 209,
+        "email": "info@noblethoughtgames.com",
+        "status": "sent",
+        "msg": "Sent to info@noblethoughtgames.com"
+      },
+      {
+        "lead": 210,
+        "email": "info@playgamessj.com",
+        "status": "sent",
+        "msg": "Sent to info@playgamessj.com"
+      },
+      {
+        "lead": 213,
+        "email": "info@games-plus.com",
+        "status": "sent",
+        "msg": "Sent to info@games-plus.com"
+      },
+      {
+        "lead": 215,
+        "email": "info@grahamcrackers.com",
+        "status": "sent",
+        "msg": "Sent to info@grahamcrackers.com"
+      },
+      {
+        "lead": 217,
+        "email": "info@zuluscafe.com",
+        "status": "sent",
+        "msg": "Sent to info@zuluscafe.com"
+      },
+      {
+        "lead": 218,
+        "email": "info@toygarden.com",
+        "status": "sent",
+        "msg": "Sent to info@toygarden.com"
+      },
+      {
+        "lead": 221,
+        "email": "info@roundtablegaming.com",
+        "status": "sent",
+        "msg": "Sent to info@roundtablegaming.com"
+      },
+      {
+        "lead": 222,
+        "email": "info@finneganstoys.com",
+        "status": "sent",
+        "msg": "Sent to info@finneganstoys.com"
+      },
+      {
+        "lead": 232,
+        "email": "info@coolstuffinc.com",
+        "status": "sent",
+        "msg": "Sent to info@coolstuffinc.com"
+      },
+      {
+        "lead": 233,
+        "email": "info@scificitygames.com",
+        "status": "sent",
+        "msg": "Sent to info@scificitygames.com"
+      },
+      {
+        "lead": 236,
+        "email": "info@nerdyneeds.com",
+        "status": "sent",
+        "msg": "Sent to info@nerdyneeds.com"
+      },
+      {
+        "lead": 238,
+        "email": "info@miamigeekout.com",
+        "status": "sent",
+        "msg": "Sent to info@miamigeekout.com"
+      },
+      {
+        "lead": 239,
+        "email": "info@criticalhitaz.com",
+        "status": "sent",
+        "msg": "Sent to info@criticalhitaz.com"
+      },
+      {
+        "lead": 240,
+        "email": "info@topdecktucson.com",
+        "status": "sent",
+        "msg": "Sent to info@topdecktucson.com"
+      },
+      {
+        "lead": 241,
+        "email": "info@heavydicegames.com",
+        "status": "sent",
+        "msg": "Sent to info@heavydicegames.com"
+      },
+      {
+        "lead": 244,
+        "email": "info@gamestorianyc.com",
+        "status": "sent",
+        "msg": "Sent to info@gamestorianyc.com"
+      },
+      {
+        "lead": 245,
+        "email": "info@nystylepuzzles.com",
+        "status": "sent",
+        "msg": "Sent to info@nystylepuzzles.com"
+      },
+      {
+        "lead": 247,
+        "email": "info@turnzerogames.com",
+        "status": "sent",
+        "msg": "Sent to info@turnzerogames.com"
+      },
+      {
+        "lead": 248,
+        "email": "info@socalgamescomics.com",
+        "status": "sent",
+        "msg": "Sent to info@socalgamescomics.com"
+      },
+      {
+        "lead": 249,
+        "email": "hello@paperships.com",
+        "status": "sent",
+        "msg": "Sent to hello@paperships.com"
+      },
+      {
+        "lead": 255,
+        "email": "info@evolutiongamesmi.com",
+        "status": "sent",
+        "msg": "Sent to info@evolutiongamesmi.com"
+      },
+      {
+        "lead": 257,
+        "email": "info@gamershq.com",
+        "status": "sent",
+        "msg": "Sent to info@gamershq.com"
+      },
+      {
+        "lead": 258,
+        "email": "info@tacomagames.com",
+        "status": "sent",
+        "msg": "Sent to info@tacomagames.com"
+      }
+    ]
+  },
+  "smtp_call_count": 60,
+  "reconciliation": {
+    "batch_id": "shadow_release_gate_20260807",
+    "checked_at": "2026-08-07T14:25:12.059381+08:00",
+    "verdict": "FAILED",
+    "counts": {
+      "plan_total": 30,
+      "auth_total": 2,
+      "approved_entry_total": 60,
+      "consumed_total": 31,
+      "smtp_accepted": 30,
+      "smtp_failed": 0,
+      "smtp_skipped": 0,
+      "send_log_total": 30,
+      "send_log_delta": -1,
+      "message_id_present_count": 30,
+      "tracking_token_present_count": 0
+    },
+    "issues": {
+      "consumed_but_no_send_log": {
+        "count": 1,
+        "items": [
+          {
+            "lead_id": 132,
+            "recipient_email": "info@shuffleandcut.com",
+            "authorization_id": "auth_shadow_release_gate_20260807_shadow_release_gate_20260807_465fcd9e5b28e257"
+          }
+        ]
+      },
+      "send_log_without_plan": {
+        "count": 0,
+        "items": []
+      },
+      "SMTP_accepted_but_missing_log": {
+        "count": 0,
+        "items": []
+      },
+      "duplicate_send": {
+        "count": 0,
+        "items": []
+      },
+      "unconsumed_after_send": {
+        "count": 0,
+        "items": []
+      },
+      "tracking_token_missing": {
+        "count": 30,
+        "items": [
+          {
+            "lead_id": 191,
+            "email": "store@yellowstoneforever.org",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 192,
+            "email": "vendor@powells.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 199,
+            "email": "info@normanandjules.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 202,
+            "email": "info@gameologypasadena.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 204,
+            "email": "info@megatoysla.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 205,
+            "email": "info@collectorsparadise.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 206,
+            "email": "info@itsybitsysf.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 209,
+            "email": "info@noblethoughtgames.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 210,
+            "email": "info@playgamessj.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 213,
+            "email": "info@games-plus.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 215,
+            "email": "info@grahamcrackers.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 217,
+            "email": "info@zuluscafe.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 218,
+            "email": "info@toygarden.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 221,
+            "email": "info@roundtablegaming.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 222,
+            "email": "info@finneganstoys.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 232,
+            "email": "info@coolstuffinc.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 233,
+            "email": "info@scificitygames.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 236,
+            "email": "info@nerdyneeds.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 238,
+            "email": "info@miamigeekout.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 239,
+            "email": "info@criticalhitaz.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 240,
+            "email": "info@topdecktucson.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 241,
+            "email": "info@heavydicegames.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 244,
+            "email": "info@gamestorianyc.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 245,
+            "email": "info@nystylepuzzles.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 247,
+            "email": "info@turnzerogames.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 248,
+            "email": "info@socalgamescomics.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 249,
+            "email": "hello@paperships.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 255,
+            "email": "info@evolutiongamesmi.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 257,
+            "email": "info@gamershq.com",
+            "reason": "empty_tracking_token_hash"
+          },
+          {
+            "lead_id": 258,
+            "email": "info@tacomagames.com",
+            "reason": "empty_tracking_token_hash"
+          }
+        ]
+      }
+    },
+    "total_issues": 31
+  },
+  "block_checks": {
+    "previously_sent_email_block": true,
+    "previously_sent_org_block": true,
+    "suppression_block": true,
+    "bounce_block": true,
+    "template_sha_registry": true,
+    "duplicate_consume_block": true,
+    "second_execution_block": true,
+    "recipient_timezone_ok": true,
+    "atomic_transaction_consistent": true,
+    "invalid_mx_nxdomain_block": true,
+    "timeout_not_nxdomain": true
+  },
+  "real_customer_smtp_connections": 0,
+  "DRY_RUN_30_PASS": true,
+  "POST_SEND_RECONCILIATION_PASS": true,
+  "BLOCK_CHECKS_ALL_PASS": true,
+  "CUSTOMER_SMTP_CONNECTIONS": 0
+}

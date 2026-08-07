@@ -1,0 +1,9 @@
+{
+  "applied_at": "2026-08-07T14:23:29.344588+08:00",
+  "updated": -1,
+  "fsp_status_dist": {
+    "sent": 122,
+    "cancelled": 10
+  },
+  "remaining_invalid_template": 0
+}

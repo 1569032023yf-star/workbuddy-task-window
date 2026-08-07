@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-08-07T14:27:39.307534+08:00",
+  "mode": "release_gate_closure",
+  "POLLER_RESULT_SYNC_VERIFIED": false,
+  "poller_detail": "health/reply/bounce 三轮连续成功; tracking 失败(线上 Worker 无 /internal/dashboard-summary 路由, Cloudflare 403 code 1010)",
+  "LEAD_HISTORY_STATE_CLEAN": true,
+  "AUTH_HISTORY_CLEAN": true,
+  "BOUNCE_EVENT_DEDUP_CLEAN": true,
+  "FINAL_PLAN_HISTORY_CLEAN": true,
+  "BROAD_READY_COUNT": 48,
+  "DRY_RUN_30_PASS": true,
+  "POST_SEND_RECONCILIATION_PASS": true,
+  "CUSTOMER_SMTP_CONNECTIONS": 0,
+  "BROAD_READY_ORG_COUNT": 48,
+  "table_leads": 738,
+  "table_send_log": 451,
+  "table_final_send_plan": 132,
+  "table_send_authorizations": 6,
+  "table_send_authorization_entries": 40,
+  "table_bounce_log": 34,
+  "table_reply_log": 1,
+  "table_suppression_list": 26,
+  "table_unmatched_dsn": 21,
+  "table_contact_recovery": 15,
+  "SMTP_ACCEPTED": 448,
+  "PLANNED_REMAINING": 0,
+  "auth_status": {
+    "consumed": 2,
+    "revoked": 4
+  },
+  "SUPERVISED_SEND_RELEASE_READY": false,
+  "UNATTENDED_SEND_RELEASE_READY": false
+}

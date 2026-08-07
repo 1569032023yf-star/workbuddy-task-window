@@ -32,7 +32,13 @@ async function hashToken(token, env) {
 }
 
 async function hashIP(ip, env) {
-  const salt = (env && env.TRACKING_IP_SALT) ? env.TRACKING_IP_SALT : "roktandrazo-tracking-salt";
+  // P7: TRACKING_IP_SALT 从环境变量读取，不再硬编码默认值。
+  // 未配置时 IP 哈希不可用（fail-closed）：返回空串、跳过 IP 落库，并给出 console.warn。
+  const salt = (env && env.TRACKING_IP_SALT) ? env.TRACKING_IP_SALT : "";
+  if (!salt) {
+    console.warn("[roktandrazo-email-tracker] TRACKING_IP_SALT 未配置：IP 哈希不可用，跳过 IP 存储（fail-closed）");
+    return "";
+  }
   const encoder = new TextEncoder();
   const data = encoder.encode(salt + (ip || ""));
   const hash = await crypto.subtle.digest("SHA-256", data);

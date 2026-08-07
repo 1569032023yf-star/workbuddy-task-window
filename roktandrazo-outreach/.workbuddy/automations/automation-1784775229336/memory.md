@@ -1,5 +1,35 @@
 # RoktRazo BD Inventory — 15:00 Automation History
 
+## 2026-08-07 15:00
+- **Status**: partial (discovery_blocked, pool_drained, max_loops_reached)
+- **A0**: 0/30 (weekday target), gap 30 — all 29 auto_sendable=1 leads excluded by send_log gate
+- **Active city**: Nashville TN (from system_config cursor — no hardcode)
+- **Lane A discovery**: configuration_blocked (Google Places API). Lane B/C/D staging: empty
+- **Website Recovery**: 34 candidates × 5 loops → 3 emails (all previously_sent), 20 no email, 11 network errors (properly classified), 4 platform skips
+- **Broad Outreach**: 95 total, 11 in allowed states (OR 6, NC 3, MN 2)
+- **Review Center**: 187 manual_review_needed
+- **Near-A0**: 202 with email in allowed states but auto_sendable=0
+- **City queue**: Nashville/Memphis CONTACT_ENRICHMENT_IN_PROGRESS (dual active), Knoxville exhausted, LR/Fayetteville/Louisville/Lexington QUEUED
+- **Sent today**: 0. No SMTP, no Final Send Plan
+
+## 2026-08-06 15:00
+- **Status**: partial (discovery_blocked, pool_drained, all_lanes_exhausted)
+- **A0 gate**: 0/30 (weekday target), gap 30. 24 leads auto_sendable=1 but all excluded by send_log gate
+- **Dashboard**: A0 retail=6 custom=2 total=8 (counts all time, not unsent)
+- **Orchestrator**: Lane A discovery hung 20+ min (Google Places), killed. Ran custom recovery script
+- **Website Recovery**: 34 candidates scanned → 3 emails found (jeff@midtngaming.com, customercare@easternnational.org x2) — all previously_sent
+- **No email**: 20 consistently no-email across scans
+- **Network errors**: 7 persistent (Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars) — properly classified as network_retry_pending
+- **Platform skips**: 4 (901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles)
+- **Staging postprocess**: Failed — Nashville/Tennessee city row not found in retail_city_queue
+- **Staging results**: 0 pending (lead_discovery_results validation_status empty)
+- **City queue**: Nashville/Memphis both CONTACT_ENRICHMENT_IN_PROGRESS (dual active — possible bug), Knoxville search_matrix_exhausted, Little Rock/Fayetteville/Louisville/Lexington QUEUED
+- **Broad Outreach**: 95 leads send_eligibility=broad_outreach_ready, 11 in allowed states (OR 6, NC 3, MN 2)
+- **Review Center**: 300 pending (137 CONTACT_ROLE_UNCERTAIN + 70 WEAK_EVIDENCE + 54 CONTACT_FORM_ONLY + 39 others). 30 have emails in allowed states
+- **contact_form_pool**: 72 leads, 19 with emails
+- **Near-A0**: 31 leads with email but auto_sendable=0 in allowed states (8 real-looking emails in AR/KY/TN)
+- **No SMTP, no Final Send Plan created**
+
 ## 2026-07-23 15:00
 - **Status**: partial (all_lanes_exhausted)
 - **A0**: 12 → 15 (+3), target 60, gap 45

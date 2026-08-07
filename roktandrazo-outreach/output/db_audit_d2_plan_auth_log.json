@@ -1,0 +1,1023 @@
+{
+  "fsp_by_batch_date": {
+    "2026-07-28": 1,
+    "2026-07-29": 60,
+    "catchup_outreach_20260731": 10,
+    "new_outreach_20260805_2300cs_tnarky": 20,
+    "new_outreach_20260805_et1000": 20,
+    "tri_state_21_sprint_20260731": 21
+  },
+  "fsp_by_message_type": {
+    "new_outreach": 132
+  },
+  "fsp_by_status": {
+    "sent": 122,
+    "INVALID_TEMPLATE": 10
+  },
+  "planned_entries": [],
+  "STALE_PLANNED_COUNT": 0,
+  "ACTIVE_PLANNED_COUNT": 0,
+  "auth_by_status": {
+    "consumed": 2,
+    "revoked": 4
+  },
+  "authorizations": [
+    {
+      "authorization_id": "auth_catchup_outreach_20260731_catchup_outreach_20260731_8c0a4e883c290f00",
+      "plan_id": "catchup_outreach_20260731",
+      "outreach_batch_date": "catchup_outreach_20260731",
+      "status": "revoked",
+      "approved_entry_count": 10,
+      "preflight_status": "passed",
+      "approved_at": "2026-07-31T00:23:58.121794+08:00",
+      "expires_at": "2026-07-31T00:38:58.121804+08:00",
+      "consumed_at": null
+    },
+    {
+      "authorization_id": "auth_tri_state_21_sprint_20260731_tri_state_21_sprint_20260731_0946d67f556adb24",
+      "plan_id": "tri_state_21_sprint_20260731",
+      "outreach_batch_date": "tri_state_21_sprint_20260731",
+      "status": "revoked",
+      "approved_entry_count": 21,
+      "preflight_status": "passed",
+      "approved_at": "2026-07-31T01:27:55.151112+08:00",
+      "expires_at": "2026-07-31T01:42:55.151122+08:00",
+      "consumed_at": null
+    },
+    {
+      "authorization_id": "auth_2026-08-03_ab777bd5",
+      "plan_id": "2026-08-03:new_outreach:3939af2047",
+      "outreach_batch_date": "2026-08-03",
+      "status": "revoked",
+      "approved_entry_count": 9,
+      "preflight_status": "failed",
+      "approved_at": "2026-08-03T21:33:20.650359+08:00",
+      "expires_at": "2026-08-03T23:59:59.650369+08:00",
+      "consumed_at": null
+    },
+    {
+      "authorization_id": "auth_new_outreach_20260804_et1000_0e41d38a2f225535",
+      "plan_id": "new_outreach_20260804_et1000",
+      "outreach_batch_date": "new_outreach_20260804_et1000",
+      "status": "revoked",
+      "approved_entry_count": 30,
+      "preflight_status": "failed",
+      "approved_at": "2026-08-04T21:29:38.917593+08:00",
+      "expires_at": "2026-08-05T21:29:38.917593+08:00",
+      "consumed_at": null
+    },
+    {
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_id": "new_outreach_20260805_et1000",
+      "outreach_batch_date": "new_outreach_20260805_et1000",
+      "status": "consumed",
+      "approved_entry_count": 20,
+      "preflight_status": "passed",
+      "approved_at": "2026-08-05T18:42:36.317801+08:00",
+      "expires_at": "2026-08-05T18:57:36.317812+08:00",
+      "consumed_at": "2026-08-05T18:46:04.204582+08:00"
+    },
+    {
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_id": "new_outreach_20260805_2300cs_tnarky",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky",
+      "status": "consumed",
+      "approved_entry_count": 20,
+      "preflight_status": "passed",
+      "approved_at": "2026-08-05T22:59:59.349709+08:00",
+      "expires_at": "2026-08-05T23:14:59.349718+08:00",
+      "consumed_at": "2026-08-05T22:59:59.282676+08:00"
+    }
+  ],
+  "auth_without_entries": [
+    {
+      "authorization_id": "auth_catchup_outreach_20260731_catchup_outreach_20260731_8c0a4e883c290f00",
+      "status": "revoked"
+    },
+    {
+      "authorization_id": "auth_tri_state_21_sprint_20260731_tri_state_21_sprint_20260731_0946d67f556adb24",
+      "status": "revoked"
+    },
+    {
+      "authorization_id": "auth_2026-08-03_ab777bd5",
+      "status": "revoked"
+    },
+    {
+      "authorization_id": "auth_new_outreach_20260804_et1000_0e41d38a2f225535",
+      "status": "revoked"
+    }
+  ],
+  "entries_without_auth": [],
+  "entries_without_fsp": [
+    {
+      "id": 212,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 750,
+      "lead_id": 750,
+      "recipient_email": "karzndollztoyshop@gmail.com",
+      "status": "consumed"
+    },
+    {
+      "id": 213,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 751,
+      "lead_id": 751,
+      "recipient_email": "geeksetc@lighttube.net",
+      "status": "consumed"
+    },
+    {
+      "id": 215,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 404,
+      "lead_id": 404,
+      "recipient_email": "help@storehouseno9.com",
+      "status": "consumed"
+    },
+    {
+      "id": 216,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 689,
+      "lead_id": 689,
+      "recipient_email": "shop@thecrownshop.com",
+      "status": "consumed"
+    },
+    {
+      "id": 232,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 760,
+      "lead_id": 760,
+      "recipient_email": "webmaster@thevillagetoymaker.com",
+      "status": "consumed"
+    },
+    {
+      "id": 233,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 759,
+      "lead_id": 759,
+      "recipient_email": "info@musiccitybricks.com",
+      "status": "consumed"
+    },
+    {
+      "id": 234,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 758,
+      "lead_id": 758,
+      "recipient_email": "outerlimitscomics@gmail.com",
+      "status": "consumed"
+    },
+    {
+      "id": 235,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 757,
+      "lead_id": 757,
+      "recipient_email": "comics@comicsunlimited.com",
+      "status": "consumed"
+    },
+    {
+      "id": 236,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 756,
+      "lead_id": 756,
+      "recipient_email": "support@frontlinegames.net",
+      "status": "consumed"
+    },
+    {
+      "id": 237,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 755,
+      "lead_id": 755,
+      "recipient_email": "shop@monkeesofbrentwood.com",
+      "status": "consumed"
+    },
+    {
+      "id": 238,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 754,
+      "lead_id": 754,
+      "recipient_email": "hendersonville@replaytoys.com",
+      "status": "consumed"
+    },
+    {
+      "id": 239,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 769,
+      "lead_id": 769,
+      "recipient_email": "roguesgallery13@gmail.com",
+      "status": "consumed"
+    },
+    {
+      "id": 240,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 764,
+      "lead_id": 764,
+      "recipient_email": "bentonville@geargamingstore.com",
+      "status": "consumed"
+    },
+    {
+      "id": 241,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 763,
+      "lead_id": 763,
+      "recipient_email": "conway@gamegoblins.com",
+      "status": "consumed"
+    },
+    {
+      "id": 242,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 762,
+      "lead_id": 762,
+      "recipient_email": "dillydallystoy@gmail.com",
+      "status": "consumed"
+    },
+    {
+      "id": 243,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 761,
+      "lead_id": 761,
+      "recipient_email": "tcgamesconway@gmail.com",
+      "status": "consumed"
+    },
+    {
+      "id": 244,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 773,
+      "lead_id": 773,
+      "recipient_email": "gxchoptown@gmail.com",
+      "status": "consumed"
+    },
+    {
+      "id": 245,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 772,
+      "lead_id": 772,
+      "recipient_email": "store@clobberincomics.com",
+      "status": "consumed"
+    },
+    {
+      "id": 246,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 771,
+      "lead_id": 771,
+      "recipient_email": "info@comicbookworld.com",
+      "status": "consumed"
+    },
+    {
+      "id": 247,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 770,
+      "lead_id": 770,
+      "recipient_email": "info@comics2games.com",
+      "status": "consumed"
+    },
+    {
+      "id": 248,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 768,
+      "lead_id": 768,
+      "recipient_email": "staff@apluscomics.com",
+      "status": "consumed"
+    },
+    {
+      "id": 249,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 767,
+      "lead_id": 767,
+      "recipient_email": "louisville@comicbookworld.com",
+      "status": "consumed"
+    },
+    {
+      "id": 250,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 766,
+      "lead_id": 766,
+      "recipient_email": "zone@zonecomicsandtoys.com",
+      "status": "consumed"
+    },
+    {
+      "id": 251,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 765,
+      "lead_id": 765,
+      "recipient_email": "thedestinationky@gmail.com",
+      "status": "consumed"
+    }
+  ],
+  "plan_entry_id_points_to_lead_id": [
+    {
+      "id": 212,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 750,
+      "lead_id": 750,
+      "recipient_email": "karzndollztoyshop@gmail.com"
+    },
+    {
+      "id": 213,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 751,
+      "lead_id": 751,
+      "recipient_email": "geeksetc@lighttube.net"
+    },
+    {
+      "id": 215,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 404,
+      "lead_id": 404,
+      "recipient_email": "help@storehouseno9.com"
+    },
+    {
+      "id": 216,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 689,
+      "lead_id": 689,
+      "recipient_email": "shop@thecrownshop.com"
+    },
+    {
+      "id": 232,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 760,
+      "lead_id": 760,
+      "recipient_email": "webmaster@thevillagetoymaker.com"
+    },
+    {
+      "id": 233,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 759,
+      "lead_id": 759,
+      "recipient_email": "info@musiccitybricks.com"
+    },
+    {
+      "id": 234,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 758,
+      "lead_id": 758,
+      "recipient_email": "outerlimitscomics@gmail.com"
+    },
+    {
+      "id": 235,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 757,
+      "lead_id": 757,
+      "recipient_email": "comics@comicsunlimited.com"
+    },
+    {
+      "id": 236,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 756,
+      "lead_id": 756,
+      "recipient_email": "support@frontlinegames.net"
+    },
+    {
+      "id": 237,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 755,
+      "lead_id": 755,
+      "recipient_email": "shop@monkeesofbrentwood.com"
+    },
+    {
+      "id": 238,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 754,
+      "lead_id": 754,
+      "recipient_email": "hendersonville@replaytoys.com"
+    },
+    {
+      "id": 239,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 769,
+      "lead_id": 769,
+      "recipient_email": "roguesgallery13@gmail.com"
+    },
+    {
+      "id": 240,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 764,
+      "lead_id": 764,
+      "recipient_email": "bentonville@geargamingstore.com"
+    },
+    {
+      "id": 241,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 763,
+      "lead_id": 763,
+      "recipient_email": "conway@gamegoblins.com"
+    },
+    {
+      "id": 242,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 762,
+      "lead_id": 762,
+      "recipient_email": "dillydallystoy@gmail.com"
+    },
+    {
+      "id": 243,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 761,
+      "lead_id": 761,
+      "recipient_email": "tcgamesconway@gmail.com"
+    },
+    {
+      "id": 244,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 773,
+      "lead_id": 773,
+      "recipient_email": "gxchoptown@gmail.com"
+    },
+    {
+      "id": 245,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 772,
+      "lead_id": 772,
+      "recipient_email": "store@clobberincomics.com"
+    },
+    {
+      "id": 246,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 771,
+      "lead_id": 771,
+      "recipient_email": "info@comicbookworld.com"
+    },
+    {
+      "id": 247,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 770,
+      "lead_id": 770,
+      "recipient_email": "info@comics2games.com"
+    },
+    {
+      "id": 248,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 768,
+      "lead_id": 768,
+      "recipient_email": "staff@apluscomics.com"
+    },
+    {
+      "id": 249,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 767,
+      "lead_id": 767,
+      "recipient_email": "louisville@comicbookworld.com"
+    },
+    {
+      "id": 250,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 766,
+      "lead_id": 766,
+      "recipient_email": "zone@zonecomicsandtoys.com"
+    },
+    {
+      "id": 251,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 765,
+      "lead_id": 765,
+      "recipient_email": "thedestinationky@gmail.com"
+    }
+  ],
+  "consumed_entry_plan_still_planned": [],
+  "sent_plan_entry_still_pending": [],
+  "plan_entry_multiple_auths": [],
+  "duplicate_auth_entries": [],
+  "send_log_by_status": {
+    "failed": 3,
+    "sent": 448
+  },
+  "send_log_by_message_type": {
+    "null": 329,
+    "new_outreach": 122
+  },
+  "send_log_by_batch": {
+    "batch_20260729_60": 60,
+    "tri_state_21_sprint_20260731": 21,
+    "new_outreach_20260805_et1000": 20,
+    "new_outreach_20260805_2300cs_tnarky": 20,
+    "outreach:2026-07-23:1c903866": 5,
+    "pilot_901_games_20260729_0855": 1
+  },
+  "send_log_by_batch_date": {
+    "null": 350,
+    "2026-07-28": 1,
+    "2026-07-29": 60,
+    "new_outreach_20260805_2300cs_tnarky": 20,
+    "new_outreach_20260805_et1000": 20
+  },
+  "duplicate_message_id": [],
+  "duplicate_plan_entry_id": [],
+  "send_log_without_plan": [],
+  "plan_sent_without_send_log": [
+    {
+      "id": 103,
+      "plan_id": "new_outreach_20260805_et1000_0001",
+      "lead_id": 750,
+      "recipient_email": "karzndollztoyshop@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 104,
+      "plan_id": "new_outreach_20260805_et1000_0002",
+      "lead_id": 751,
+      "recipient_email": "geeksetc@lighttube.net",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 105,
+      "plan_id": "new_outreach_20260805_et1000_0003",
+      "lead_id": 128,
+      "recipient_email": "customers@tnlg.net",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 106,
+      "plan_id": "new_outreach_20260805_et1000_0004",
+      "lead_id": 404,
+      "recipient_email": "help@storehouseno9.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 107,
+      "plan_id": "new_outreach_20260805_et1000_0005",
+      "lead_id": 689,
+      "recipient_email": "shop@thecrownshop.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 108,
+      "plan_id": "new_outreach_20260805_et1000_0006",
+      "lead_id": 22,
+      "recipient_email": "info@imboardgames.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 109,
+      "plan_id": "new_outreach_20260805_et1000_0007",
+      "lead_id": 55,
+      "recipient_email": "info@uncommonsnyc.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 110,
+      "plan_id": "new_outreach_20260805_et1000_0008",
+      "lead_id": 87,
+      "recipient_email": "info@tfaw.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 111,
+      "plan_id": "new_outreach_20260805_et1000_0009",
+      "lead_id": 89,
+      "recipient_email": "info@timevaultgames.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 112,
+      "plan_id": "new_outreach_20260805_et1000_0010",
+      "lead_id": 94,
+      "recipient_email": "info@kiddingaroundtoys.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 113,
+      "plan_id": "new_outreach_20260805_et1000_0011",
+      "lead_id": 98,
+      "recipient_email": "hello@gameparloursf.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 114,
+      "plan_id": "new_outreach_20260805_et1000_0012",
+      "lead_id": 99,
+      "recipient_email": "info@gamecafepaloalto.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 115,
+      "plan_id": "new_outreach_20260805_et1000_0013",
+      "lead_id": 100,
+      "recipient_email": "info@phoenixcomicsseattle.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 116,
+      "plan_id": "new_outreach_20260805_et1000_0014",
+      "lead_id": 103,
+      "recipient_email": "info@jpcomics.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 117,
+      "plan_id": "new_outreach_20260805_et1000_0015",
+      "lead_id": 110,
+      "recipient_email": "info@levelsuggames.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 118,
+      "plan_id": "new_outreach_20260805_et1000_0016",
+      "lead_id": 112,
+      "recipient_email": "info@phantomoftheattic.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 119,
+      "plan_id": "new_outreach_20260805_et1000_0017",
+      "lead_id": 120,
+      "recipient_email": "info@gamersgeekandtavern.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 120,
+      "plan_id": "new_outreach_20260805_et1000_0018",
+      "lead_id": 121,
+      "recipient_email": "info@unclebobshobbies.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 121,
+      "plan_id": "new_outreach_20260805_et1000_0019",
+      "lead_id": 124,
+      "recipient_email": "info@drnoscomics.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 122,
+      "plan_id": "new_outreach_20260805_et1000_0020",
+      "lead_id": 130,
+      "recipient_email": "info@gamezonesd.com",
+      "outreach_batch_date": "new_outreach_20260805_et1000"
+    },
+    {
+      "id": 123,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0001",
+      "lead_id": 760,
+      "recipient_email": "webmaster@thevillagetoymaker.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 124,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0002",
+      "lead_id": 759,
+      "recipient_email": "info@musiccitybricks.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 125,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0003",
+      "lead_id": 758,
+      "recipient_email": "outerlimitscomics@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 126,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0004",
+      "lead_id": 757,
+      "recipient_email": "comics@comicsunlimited.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 127,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0005",
+      "lead_id": 756,
+      "recipient_email": "support@frontlinegames.net",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 128,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0006",
+      "lead_id": 755,
+      "recipient_email": "shop@monkeesofbrentwood.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 129,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0007",
+      "lead_id": 754,
+      "recipient_email": "hendersonville@replaytoys.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 130,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0008",
+      "lead_id": 769,
+      "recipient_email": "roguesgallery13@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 131,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0009",
+      "lead_id": 764,
+      "recipient_email": "bentonville@geargamingstore.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 132,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0010",
+      "lead_id": 763,
+      "recipient_email": "conway@gamegoblins.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 133,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0011",
+      "lead_id": 762,
+      "recipient_email": "dillydallystoy@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 134,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0012",
+      "lead_id": 761,
+      "recipient_email": "tcgamesconway@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 135,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0013",
+      "lead_id": 773,
+      "recipient_email": "gxchoptown@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 136,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0014",
+      "lead_id": 772,
+      "recipient_email": "store@clobberincomics.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 137,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0015",
+      "lead_id": 771,
+      "recipient_email": "info@comicbookworld.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 138,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0016",
+      "lead_id": 770,
+      "recipient_email": "info@comics2games.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 139,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0017",
+      "lead_id": 768,
+      "recipient_email": "staff@apluscomics.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 140,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0018",
+      "lead_id": 767,
+      "recipient_email": "louisville@comicbookworld.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 141,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0019",
+      "lead_id": 766,
+      "recipient_email": "zone@zonecomicsandtoys.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    },
+    {
+      "id": 142,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky_0020",
+      "lead_id": 765,
+      "recipient_email": "thedestinationky@gmail.com",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky"
+    }
+  ],
+  "auth_consumed_without_send_log": [
+    {
+      "entry_id": 212,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 750,
+      "lead_id": 750,
+      "recipient_email": "karzndollztoyshop@gmail.com"
+    },
+    {
+      "entry_id": 213,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 751,
+      "lead_id": 751,
+      "recipient_email": "geeksetc@lighttube.net"
+    },
+    {
+      "entry_id": 214,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 128,
+      "lead_id": 128,
+      "recipient_email": "customers@tnlg.net"
+    },
+    {
+      "entry_id": 215,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 404,
+      "lead_id": 404,
+      "recipient_email": "help@storehouseno9.com"
+    },
+    {
+      "entry_id": 216,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 689,
+      "lead_id": 689,
+      "recipient_email": "shop@thecrownshop.com"
+    },
+    {
+      "entry_id": 225,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 103,
+      "lead_id": 103,
+      "recipient_email": "info@jpcomics.com"
+    },
+    {
+      "entry_id": 226,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 110,
+      "lead_id": 110,
+      "recipient_email": "info@levelsuggames.com"
+    },
+    {
+      "entry_id": 227,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 112,
+      "lead_id": 112,
+      "recipient_email": "info@phantomoftheattic.com"
+    },
+    {
+      "entry_id": 228,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 120,
+      "lead_id": 120,
+      "recipient_email": "info@gamersgeekandtavern.com"
+    },
+    {
+      "entry_id": 229,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 121,
+      "lead_id": 121,
+      "recipient_email": "info@unclebobshobbies.com"
+    },
+    {
+      "entry_id": 230,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 124,
+      "lead_id": 124,
+      "recipient_email": "info@drnoscomics.com"
+    },
+    {
+      "entry_id": 231,
+      "authorization_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
+      "plan_entry_id": 130,
+      "lead_id": 130,
+      "recipient_email": "info@gamezonesd.com"
+    },
+    {
+      "entry_id": 232,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 760,
+      "lead_id": 760,
+      "recipient_email": "webmaster@thevillagetoymaker.com"
+    },
+    {
+      "entry_id": 233,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 759,
+      "lead_id": 759,
+      "recipient_email": "info@musiccitybricks.com"
+    },
+    {
+      "entry_id": 234,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 758,
+      "lead_id": 758,
+      "recipient_email": "outerlimitscomics@gmail.com"
+    },
+    {
+      "entry_id": 235,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 757,
+      "lead_id": 757,
+      "recipient_email": "comics@comicsunlimited.com"
+    },
+    {
+      "entry_id": 236,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 756,
+      "lead_id": 756,
+      "recipient_email": "support@frontlinegames.net"
+    },
+    {
+      "entry_id": 237,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 755,
+      "lead_id": 755,
+      "recipient_email": "shop@monkeesofbrentwood.com"
+    },
+    {
+      "entry_id": 238,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 754,
+      "lead_id": 754,
+      "recipient_email": "hendersonville@replaytoys.com"
+    },
+    {
+      "entry_id": 239,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 769,
+      "lead_id": 769,
+      "recipient_email": "roguesgallery13@gmail.com"
+    },
+    {
+      "entry_id": 240,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 764,
+      "lead_id": 764,
+      "recipient_email": "bentonville@geargamingstore.com"
+    },
+    {
+      "entry_id": 241,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 763,
+      "lead_id": 763,
+      "recipient_email": "conway@gamegoblins.com"
+    },
+    {
+      "entry_id": 242,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 762,
+      "lead_id": 762,
+      "recipient_email": "dillydallystoy@gmail.com"
+    },
+    {
+      "entry_id": 243,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 761,
+      "lead_id": 761,
+      "recipient_email": "tcgamesconway@gmail.com"
+    },
+    {
+      "entry_id": 244,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 773,
+      "lead_id": 773,
+      "recipient_email": "gxchoptown@gmail.com"
+    },
+    {
+      "entry_id": 245,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 772,
+      "lead_id": 772,
+      "recipient_email": "store@clobberincomics.com"
+    },
+    {
+      "entry_id": 246,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 771,
+      "lead_id": 771,
+      "recipient_email": "info@comicbookworld.com"
+    },
+    {
+      "entry_id": 247,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 770,
+      "lead_id": 770,
+      "recipient_email": "info@comics2games.com"
+    },
+    {
+      "entry_id": 248,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 768,
+      "lead_id": 768,
+      "recipient_email": "staff@apluscomics.com"
+    },
+    {
+      "entry_id": 249,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 767,
+      "lead_id": 767,
+      "recipient_email": "louisville@comicbookworld.com"
+    },
+    {
+      "entry_id": 250,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 766,
+      "lead_id": 766,
+      "recipient_email": "zone@zonecomicsandtoys.com"
+    },
+    {
+      "entry_id": 251,
+      "authorization_id": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310",
+      "plan_entry_id": 765,
+      "lead_id": 765,
+      "recipient_email": "thedestinationky@gmail.com"
+    }
+  ],
+  "send_log_empty_message_id": 323,
+  "send_log_empty_plan_entry_id": 369,
+  "send_log_orphan_lead": [],
+  "send_log_test_or_sender_copy": 0,
+  "send_log_test_types_detail": {},
+  "SMTP_ACCEPTED_TOTAL": 448,
+  "send_log_status_bounced": 0,
+  "send_log_status_failed": 3,
+  "sent_then_bounced_records": [],
+  "DELIVERY_BOUNCED_TOTAL": 0
+}

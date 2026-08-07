@@ -1,33 +1,57 @@
 {
-  "batch_id": "new_outreach_20260805_et1000",
-  "plan_count_planned": 0,
-  "plan_count_sent": 20,
-  "auth_id": "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839",
-  "auth_status": "consumed",
-  "pass": 7,
-  "fail": 4,
-  "warn": 0,
-  "blocks": [
-    "No planned entries (batch already sent: 20/20)",
-    "No active authorization (auth consumed)",
-    "No auth for entry count check",
-    "No poller heartbeat timestamp (file key mismatch: uses last_heartbeat, script expects last_heartbeat_at)"
+  "batch_id": "new_outreach_20260806_et1000",
+  "batch_date": "2026-08-06",
+  "checked_at": "2026-08-06T21:49:06.908034+08:00",
+  "verdict": "BLOCKED",
+  "steps": {
+    "1_batch_id": {
+      "status": "PASS",
+      "detail": "new_outreach_20260806_et1000"
+    },
+    "2_plan_entries": {
+      "status": "FAIL",
+      "detail": "0 planned entries for 2026-08-06"
+    },
+    "3_authorization": {
+      "status": "FAIL",
+      "detail": "No authorization exists for this batch"
+    },
+    "4_auth_plan_count": {
+      "status": "N/A",
+      "detail": "No data (0 auth, 0 plan)"
+    },
+    "5_org_duplicates": {
+      "status": "N/A",
+      "detail": "No planned entries"
+    },
+    "6_email_duplicates": {
+      "status": "N/A",
+      "detail": "No planned entries"
+    },
+    "7_template_sha": {
+      "status": "PASS",
+      "detail": "retail=ccb51505, custom=5893dbc9"
+    },
+    "8_ops_center": {
+      "status": "PASS",
+      "detail": "HTTP 200, server_running=true"
+    },
+    "9_poller_heartbeat": {
+      "status": "FAIL",
+      "detail": "Last heartbeat 2026-08-06 16:35 CST, ~5h stale (threshold: 15min)"
+    },
+    "10_old_plans_auths": {
+      "status": "PASS",
+      "detail": "No old plans or active auths from other batches"
+    }
+  },
+  "blockers": [
+    "NO_PLAN: final_send_plan has 0 entries for 2026-08-06. Frozen snapshot may be missing.",
+    "NO_AUTH: No send_authorizations record for this batch.",
+    "POLLER_STALE: bd_ops_poller last heartbeat at 16:35 CST (~5h ago). Poller may have died."
   ],
-  "preflight_status": "failed",
-  "time": "2026-08-05T21:48:55+08:00",
-  "verdict": "BLOCKED — Batch already completed",
-  "context": {
-    "batch_already_processed": true,
-    "total_sent": 20,
-    "send_log_confirmed": 20,
-    "auth_entries_consumed": 20,
-    "auth_preflight_original": "passed",
-    "old_plans_auths_clean": true,
-    "ops_center": "HTTP 200",
-    "template_shas": "both match",
-    "poller_file_exists": true,
-    "poller_file_uses_wrong_key": "last_heartbeat vs last_heartbeat_at",
-    "poller_last_heartbeat": "2026-08-05T18:42:36+08:00",
-    "yesterdays_blockers_resolved": "old plans/auths cleaned up per 2026-08-04 findings"
-  }
+  "pass_count": 4,
+  "fail_count": 3,
+  "na_count": 3,
+  "smtp_status": 0
 }

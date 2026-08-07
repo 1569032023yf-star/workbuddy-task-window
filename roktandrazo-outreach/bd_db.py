@@ -1057,5 +1057,87 @@ def ensure_default_state(conn: sqlite3.Connection | None = None):
         conn.commit()
         conn.close()
 
+# ============================================================
+# P0 退信自动回流 —— bounce_pipeline 配套辅助函数
+# ============================================================
+
+def record_bounce_log_entry(lead_id, email, bounce_type, diagnostic_code,
+                            status_code=None, raw_subject=None,
+                            recommended_action=None):
+    """幂等插入 bounce_log（同 email + 同 diagnostic_code 不重复插）。
+
+    返回插入行的 id；若已存在则返回既有行的 id。
+    """
+    conn = get_db()
+    c = conn.cursor()
+    email = (email or "").strip().lower()
+    domain = email.split("@", 1)[1] if "@" in email else ""
+
+    existing = c.execute(
+        "SELECT id FROM bounce_log WHERE email = ? "
+        "AND diagnostic_code IS NOT DISTINCT FROM ?",
+        (email, diagnostic_code),
+    ).fetchone()
+    if existing:
+        conn.close()
+        return existing[0]
+
+    now = datetime.now().astimezone().isoformat()
+    c.execute(
+        """
+        INSERT INTO bounce_log (lead_id, email, domain, campaign, bounce_received_at,
+                                status_code, diagnostic_code, bounce_type,
+                                raw_message_subject, recommended_action, processed_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (lead_id, email, domain, None, now, status_code, diagnostic_code,
+         bounce_type, raw_subject, recommended_action, now),
+    )
+    new_id = c.lastrowid
+    conn.commit()
+    conn.close()
+    return new_id
+
+
+def get_unmatched_dsn_count(conn=None):
+    """返回 unmatched_dsn 表行数。conn 可选，缺省使用默认连接。"""
+    owns = conn is None
+    conn = conn or get_db()
+    try:
+        row = conn.execute("SELECT COUNT(*) FROM unmatched_dsn").fetchone()
+        return int(row[0]) if row else 0
+    finally:
+        if owns:
+            conn.close()
+
+
+def list_contact_recovery(limit=50):
+    """返回 contact_recovery 表中 status='pending' 的行，按创建时间倒序。"""
+    conn = get_db()
+    try:
+        rows = conn.execute(
+            "SELECT * FROM contact_recovery WHERE status = 'pending' "
+            "ORDER BY created_at DESC LIMIT ?",
+            (int(limit),),
+        ).fetchall()
+        return [dict(r) for r in rows]
+    finally:
+        conn.close()
+
+
+def mark_contact_recovery_resolved(rec_id):
+    """把 contact_recovery 某条记录标记为 resolved，并刷新 updated_at。"""
+    conn = get_db()
+    try:
+        conn.execute(
+            "UPDATE contact_recovery SET status = 'resolved', "
+            "updated_at = ? WHERE id = ?",
+            (datetime.now().astimezone().isoformat(), int(rec_id)),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
 if __name__ == "__main__":
     init_db()

@@ -1,0 +1,558 @@
+{
+  "lead_by_status": {
+    "sent": 297,
+    "manual_review_needed": 245,
+    "new": 82,
+    "contact_form_pool": 72,
+    "bounced": 26,
+    "delivery_issue": 9,
+    "B": 2,
+    "failed": 2,
+    "A": 1,
+    "approved_manual_send": 1,
+    "bounce_review": 1
+  },
+  "sent_lead_without_send_log": [],
+  "new_lead_org_already_sent": [
+    {
+      "id": 0,
+      "store_name": "__AUTH_INFO__",
+      "email": null,
+      "organization_key": "org:name:__auth_info__"
+    },
+    {
+      "id": 115,
+      "store_name": "Board & Brew",
+      "email": "info@boardandbrew.com",
+      "organization_key": "org:domain:boardandbrew.com"
+    },
+    {
+      "id": 276,
+      "store_name": "Brandon's Toys",
+      "email": "info@brandonstoys.com",
+      "organization_key": "org:domain:brandonstoys.com"
+    },
+    {
+      "id": 316,
+      "store_name": "B Side Games",
+      "email": "bsidegames.info@gmail.com",
+      "organization_key": "bsideboardgamesandpuzzles_com"
+    },
+    {
+      "id": 320,
+      "store_name": "Quarterstaff Games",
+      "email": "diane@sevendaysvt.com",
+      "organization_key": "community_sevendaysvt_com"
+    },
+    {
+      "id": 356,
+      "store_name": "Old Fox Books",
+      "email": "booksrock@oldfoxbooks.com",
+      "organization_key": "org:domain:oldfoxbooks.com"
+    },
+    {
+      "id": 531,
+      "store_name": "Sunny Toys",
+      "email": "micah@micahrich.com",
+      "organization_key": "sunnytoys_com"
+    },
+    {
+      "id": 541,
+      "store_name": "Mammoth Cave NP Store",
+      "email": "customercare@easternnational.org",
+      "organization_key": "shop_americasnationalparks_org"
+    },
+    {
+      "id": 671,
+      "store_name": "The Great Escape (Charlotte)",
+      "email": "contactus@thegreatescapeonline.com",
+      "organization_key": "the_great_escape"
+    },
+    {
+      "id": 683,
+      "store_name": "901 Comics (Midtown)",
+      "email": "901comicsmidtown@gmail.com",
+      "organization_key": "901_comics_midtown"
+    },
+    {
+      "id": 690,
+      "store_name": "Hollie Ray",
+      "email": "customercare@hollieray.com",
+      "organization_key": "hollie_ray_franklin"
+    },
+    {
+      "id": 698,
+      "store_name": "Learning Express Toys",
+      "email": "learningexpresschatt@gmail.com",
+      "organization_key": "learningexpress_chattanooga"
+    },
+    {
+      "id": 701,
+      "store_name": "Grand Adventures Comics",
+      "email": "info@grandadventurescomics.com",
+      "organization_key": "grand_adventures_murfreesboro"
+    },
+    {
+      "id": 719,
+      "store_name": "Golden Keep Game Co",
+      "email": "goldenkeepgameco@gmail.com",
+      "organization_key": "golden_keep_louisville"
+    },
+    {
+      "id": 720,
+      "store_name": "Game King Lexington",
+      "email": "gklex00@gmail.com",
+      "organization_key": "game_king_lexington"
+    },
+    {
+      "id": 721,
+      "store_name": "Legendary Games Lexington",
+      "email": "legendarygameslexington@yahoo.com",
+      "organization_key": "legendary_games_lexington"
+    },
+    {
+      "id": 731,
+      "store_name": "Roll & Play Conway",
+      "email": "rollandplay501@gmail.com",
+      "organization_key": "rollandplay_conway"
+    },
+    {
+      "id": 732,
+      "store_name": "Bears Games Fayetteville",
+      "email": "bearscardshop@yahoo.com",
+      "organization_key": "bears_games_fayetteville"
+    },
+    {
+      "id": 733,
+      "store_name": "P&M Gaming Fort Smith",
+      "email": "piechocki.moore.gaming@gmail.com",
+      "organization_key": "pm_gaming_fort_smith"
+    },
+    {
+      "id": 734,
+      "store_name": "Golden Goblin Games",
+      "email": "goldengoblingames@yahoo.com",
+      "organization_key": "golden_goblin_harrison"
+    },
+    {
+      "id": 736,
+      "store_name": "Gamers Haven Jonesboro",
+      "email": "gamershavenar@gmail.com",
+      "organization_key": "gamers_haven_jonesboro"
+    },
+    {
+      "id": 737,
+      "store_name": "Chaos Games Lowell",
+      "email": "chaos@chaosgamesllc.com",
+      "organization_key": "chaos_games_lowell"
+    },
+    {
+      "id": 738,
+      "store_name": "AppalachiaTCG",
+      "email": "john@appalachiatcg.com",
+      "organization_key": "appalachia_tcg_salyersville"
+    },
+    {
+      "id": 740,
+      "store_name": "The Game Keep",
+      "email": "keepg@bellsouth.net",
+      "organization_key": "game_keep_hermitage"
+    },
+    {
+      "id": 741,
+      "store_name": "Secret City Exchange",
+      "email": "secretcityexchange@gmail.com",
+      "organization_key": "secret_city_oak_ridge"
+    },
+    {
+      "id": 742,
+      "store_name": "The Geeky Oasis",
+      "email": "thegeekyoasis@gmail.com",
+      "organization_key": "geeky_oasis_sherwood"
+    }
+  ],
+  "new_lead_email_already_sent": [
+    {
+      "id": 115,
+      "store_name": "Board & Brew",
+      "email": "info@boardandbrew.com"
+    },
+    {
+      "id": 276,
+      "store_name": "Brandon's Toys",
+      "email": "info@brandonstoys.com"
+    },
+    {
+      "id": 316,
+      "store_name": "B Side Games",
+      "email": "bsidegames.info@gmail.com"
+    },
+    {
+      "id": 320,
+      "store_name": "Quarterstaff Games",
+      "email": "diane@sevendaysvt.com"
+    },
+    {
+      "id": 531,
+      "store_name": "Sunny Toys",
+      "email": "micah@micahrich.com"
+    },
+    {
+      "id": 541,
+      "store_name": "Mammoth Cave NP Store",
+      "email": "customercare@easternnational.org"
+    },
+    {
+      "id": 671,
+      "store_name": "The Great Escape (Charlotte)",
+      "email": "contactus@thegreatescapeonline.com"
+    },
+    {
+      "id": 683,
+      "store_name": "901 Comics (Midtown)",
+      "email": "901comicsmidtown@gmail.com"
+    },
+    {
+      "id": 690,
+      "store_name": "Hollie Ray",
+      "email": "customercare@hollieray.com"
+    },
+    {
+      "id": 691,
+      "store_name": "Purple Butterfly Kids",
+      "email": "info@purplebutterflykids.com"
+    },
+    {
+      "id": 695,
+      "store_name": "Vintage to Modern Toys",
+      "email": "hothtoys@gmail.com"
+    },
+    {
+      "id": 698,
+      "store_name": "Learning Express Toys",
+      "email": "learningexpresschatt@gmail.com"
+    },
+    {
+      "id": 701,
+      "store_name": "Grand Adventures Comics",
+      "email": "info@grandadventurescomics.com"
+    },
+    {
+      "id": 719,
+      "store_name": "Golden Keep Game Co",
+      "email": "goldenkeepgameco@gmail.com"
+    },
+    {
+      "id": 720,
+      "store_name": "Game King Lexington",
+      "email": "gklex00@gmail.com"
+    },
+    {
+      "id": 721,
+      "store_name": "Legendary Games Lexington",
+      "email": "legendarygameslexington@yahoo.com"
+    },
+    {
+      "id": 731,
+      "store_name": "Roll & Play Conway",
+      "email": "rollandplay501@gmail.com"
+    },
+    {
+      "id": 732,
+      "store_name": "Bears Games Fayetteville",
+      "email": "bearscardshop@yahoo.com"
+    },
+    {
+      "id": 733,
+      "store_name": "P&M Gaming Fort Smith",
+      "email": "piechocki.moore.gaming@gmail.com"
+    },
+    {
+      "id": 734,
+      "store_name": "Golden Goblin Games",
+      "email": "goldengoblingames@yahoo.com"
+    },
+    {
+      "id": 735,
+      "store_name": "Steadfast Hobbies Hot Springs",
+      "email": "steadfasthobbies@gmail.com"
+    },
+    {
+      "id": 736,
+      "store_name": "Gamers Haven Jonesboro",
+      "email": "gamershavenar@gmail.com"
+    },
+    {
+      "id": 737,
+      "store_name": "Chaos Games Lowell",
+      "email": "chaos@chaosgamesllc.com"
+    },
+    {
+      "id": 738,
+      "store_name": "AppalachiaTCG",
+      "email": "john@appalachiatcg.com"
+    },
+    {
+      "id": 739,
+      "store_name": "The Game Piece",
+      "email": "daltong@thegamepiece.net"
+    },
+    {
+      "id": 740,
+      "store_name": "The Game Keep",
+      "email": "keepg@bellsouth.net"
+    },
+    {
+      "id": 741,
+      "store_name": "Secret City Exchange",
+      "email": "secretcityexchange@gmail.com"
+    },
+    {
+      "id": 742,
+      "store_name": "The Geeky Oasis",
+      "email": "thegeekyoasis@gmail.com"
+    },
+    {
+      "id": 754,
+      "store_name": "Replay Toys",
+      "email": "hendersonville@replaytoys.com"
+    },
+    {
+      "id": 755,
+      "store_name": "Monkees of Brentwood",
+      "email": "shop@monkeesofbrentwood.com"
+    },
+    {
+      "id": 756,
+      "store_name": "Frontline Games",
+      "email": "support@frontlinegames.net"
+    },
+    {
+      "id": 757,
+      "store_name": "Comics Unlimited",
+      "email": "comics@comicsunlimited.com"
+    },
+    {
+      "id": 758,
+      "store_name": "Outer Limits Comics",
+      "email": "outerlimitscomics@gmail.com"
+    },
+    {
+      "id": 759,
+      "store_name": "Music City Bricks",
+      "email": "info@musiccitybricks.com"
+    },
+    {
+      "id": 761,
+      "store_name": "Treasure Chest Games",
+      "email": "tcgamesconway@gmail.com"
+    },
+    {
+      "id": 762,
+      "store_name": "Dilly Dallys Toy Store",
+      "email": "dillydallystoy@gmail.com"
+    },
+    {
+      "id": 763,
+      "store_name": "Game Goblins Conway",
+      "email": "conway@gamegoblins.com"
+    },
+    {
+      "id": 764,
+      "store_name": "Gear Gaming Bentonville",
+      "email": "bentonville@geargamingstore.com"
+    },
+    {
+      "id": 765,
+      "store_name": "The Destination Games Toys Comics",
+      "email": "thedestinationky@gmail.com"
+    },
+    {
+      "id": 766,
+      "store_name": "Zone Comics & Toys",
+      "email": "zone@zonecomicsandtoys.com"
+    },
+    {
+      "id": 767,
+      "store_name": "Comic Book World Louisville",
+      "email": "louisville@comicbookworld.com"
+    },
+    {
+      "id": 768,
+      "store_name": "Collectibles Etc A+ Comics",
+      "email": "staff@apluscomics.com"
+    },
+    {
+      "id": 769,
+      "store_name": "The Rogue's Gallery",
+      "email": "roguesgallery13@gmail.com"
+    },
+    {
+      "id": 770,
+      "store_name": "Comics 2 Games",
+      "email": "info@comics2games.com"
+    },
+    {
+      "id": 772,
+      "store_name": "Clobberin Comics",
+      "email": "store@clobberincomics.com"
+    },
+    {
+      "id": 773,
+      "store_name": "Game X Change Hopkinsville",
+      "email": "gxchoptown@gmail.com"
+    }
+  ],
+  "sendable_lead_with_bounce": [],
+  "sendable_lead_suppressed": [],
+  "bounced_lead_still_auto_sendable": [],
+  "recovery_lead_still_sendable": [],
+  "empty_organization_key": 20,
+  "org_multiple_sendable": [
+    {
+      "organization_key": "dillydallys_com",
+      "cnt": 2
+    },
+    {
+      "organization_key": "nashville_souvenirs",
+      "cnt": 2
+    }
+  ],
+  "BROAD_READY_COUNT": 78,
+  "BROAD_READY_ORG_COUNT": 78,
+  "broad_ready_blockers": {
+    "previously_sent_email": 100,
+    "shared_domain_org_history": 100,
+    "previously_sent_org": 83,
+    "third_party_mismatch": 5,
+    "suppression": 5,
+    "image_fake_email": 5,
+    "sentry_hash_system_address": 4,
+    "invalid_email": 3,
+    "recheck_pending": 2
+  },
+  "STRICT_A0_COUNT": 4,
+  "contact_recovery_pending": 15,
+  "manual_review": 727,
+  "contact_form_only": 72,
+  "previously_sent_orgs": 412,
+  "unsent_plan_by_template": {
+    "null": 10
+  },
+  "sent_plan_by_template": {
+    "null": 22,
+    "custom_printing_production_v5_locked": 2,
+    "premium_puzzles_card_games_v5": 60,
+    "retail_distributor_v5_locked": 38
+  },
+  "unsent_template_mismatch": [
+    {
+      "id": 72,
+      "plan_id": "catchup_outreach_20260731_0001",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 73,
+      "plan_id": "catchup_outreach_20260731_0002",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 74,
+      "plan_id": "catchup_outreach_20260731_0003",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 75,
+      "plan_id": "catchup_outreach_20260731_0004",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 76,
+      "plan_id": "catchup_outreach_20260731_0005",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 77,
+      "plan_id": "catchup_outreach_20260731_0006",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 78,
+      "plan_id": "catchup_outreach_20260731_0007",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 79,
+      "plan_id": "catchup_outreach_20260731_0008",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 80,
+      "plan_id": "catchup_outreach_20260731_0009",
+      "template_id": null,
+      "template_key": null
+    },
+    {
+      "id": 81,
+      "plan_id": "catchup_outreach_20260731_0010",
+      "template_id": null,
+      "template_key": null
+    }
+  ],
+  "sent_historical_template_mismatch": {
+    "null": 22,
+    "premium_puzzles_card_games_v5": 60
+  },
+  "poller": {
+    "process_started_at": "2026-08-07T11:07:04.807939+08:00",
+    "last_heartbeat_at": "2026-08-07T11:07:04.829835+08:00",
+    "running": true,
+    "jobs": {
+      "tracking": {
+        "last_success_at": null,
+        "last_failure_at": null,
+        "last_error": "",
+        "consecutive_failures": 0,
+        "detail": ""
+      },
+      "health": {
+        "last_success_at": null,
+        "last_failure_at": null,
+        "last_error": "",
+        "consecutive_failures": 0,
+        "detail": ""
+      },
+      "reply": {
+        "last_success_at": null,
+        "last_failure_at": null,
+        "last_error": "",
+        "consecutive_failures": 0,
+        "detail": ""
+      },
+      "bounce": {
+        "last_success_at": null,
+        "last_failure_at": null,
+        "last_error": "",
+        "consecutive_failures": 0,
+        "detail": ""
+      }
+    },
+    "current_errors": []
+  },
+  "poller_jobs_success": {
+    "tracking": null,
+    "health": null,
+    "reply": null,
+    "bounce": null
+  },
+  "RESULT_SYNC_NOT_VERIFIED": true,
+  "ops_api_error": "name 'CST' is not defined"
+}

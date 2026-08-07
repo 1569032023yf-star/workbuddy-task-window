@@ -1,0 +1,19 @@
+{
+  "applied_at": "2026-08-07T14:21:23.688994+08:00",
+  "updated_leads": 46,
+  "skipped": 0,
+  "lead_status_dist": {
+    "sent": 343,
+    "manual_review_needed": 245,
+    "contact_form_pool": 72,
+    "new": 36,
+    "bounced": 26,
+    "delivery_issue": 9,
+    "B": 2,
+    "failed": 2,
+    "A": 1,
+    "approved_manual_send": 1,
+    "bounce_review": 1
+  },
+  "send_log_sent_unchanged": 448
+}

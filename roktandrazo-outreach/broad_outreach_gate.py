@@ -16,6 +16,10 @@ from dataclasses import dataclass, field
 from typing import Any, Mapping
 from urllib.parse import urlparse
 
+# 统一 Email Hygiene 权威入口（P7）：本地 INVALID_EMAIL_PATTERNS 等为历史副本，
+# 仅保留用于向后兼容；主判定一律走 email_hygiene.hygiene_check。
+from email_hygiene import hygiene_check
+
 
 # ═══════════════════════════════════════════════════════════
 # 一、商业类别匹配
@@ -215,39 +219,19 @@ def _match_service_opportunity(fit_reason: str, product_fit: str,
 
 
 def _has_valid_business_email(lead: Mapping[str, Any]) -> tuple[bool, str, str]:
-    """检查是否有公开业务联系方式。
+    """检查是否有公开业务联系方式（统一走 email_hygiene 权威入口）。
     
     Returns: (has_email, source_type, contact_source_confidence)
     """
     email = str(lead.get("email") or "").strip().lower()
     if not email:
         return False, "email_missing", "low"
-    
-    # 格式验证
-    if not EMAIL_RE.fullmatch(email):
-        return False, "email_invalid_format", "low"
-    
-    # 垃圾值检测（增强版）
-    if INVALID_EMAIL_PATTERNS.search(email):
-        return False, "invalid_email_pattern", "low"
-    
-    # URL-like local part
-    if _has_url_like_local_part(email):
-        return False, "url_like_local_part", "low"
-    
-    # Resource extension in email
-    if _has_resource_extension_in_email(email):
-        return False, "resource_extension_in_email", "low"
-    
-    # Hash-like email
-    if _is_hash_like_email(email):
-        return False, "hash_like_email", "low"
-    
-    # 系统邮箱检测
-    local_part = email.split("@")[0].lower()
-    if local_part in SYSTEM_EMAIL_PREFIXES:
-        return False, "system_email_address", "low"
-    
+
+    # 统一 Email Hygiene 权威判定（P7）；本地 regex 副本不再作为主判定
+    hygiene = hygiene_check(email)
+    if not hygiene["valid"]:
+        return False, hygiene["reason"], "low"
+
     # 判断来源置信度
     source_type = str(lead.get("email_source_type") or "unknown")
     direct_sources = {"official_page_visible", "official_mailto", "wholesale_vendor_page"}

@@ -1,0 +1,105 @@
+{
+  "audit_type": "PRODUCTION_DATABASE_SEMANTIC_READONLY_AUDIT",
+  "generated_at": "2026-08-07T11:33:04.021180",
+  "db": "data/bd_leads.db",
+  "mode": "sqlite readonly (mode=ro)",
+  "quick_check": "ok",
+  "integrity_check": "ok",
+  "user_version": 0,
+  "foreign_key_violations": 0,
+  "leads_total": 738,
+  "send_log_total": 451,
+  "SMTP_ACCEPTED_TOTAL": 448,
+  "send_log_failed": 3,
+  "DELIVERY_BOUNCED_TOTAL": 0,
+  "sent_without_message_id": 320,
+  "send_log_null_plan_entry_id": 369,
+  "send_log_null_message_type": 329,
+  "final_send_plan_total": 132,
+  "fsp_by_status": {
+    "INVALID_TEMPLATE": 10,
+    "sent": 122
+  },
+  "ACTIVE_PLANNED_COUNT": 0,
+  "STALE_PLANNED_COUNT": 0,
+  "auth_by_status": {
+    "consumed": 2,
+    "revoked": 4
+  },
+  "send_authorizations_total": 6,
+  "auth_entries_total": 40,
+  "auth_without_entries": 4,
+  "entries_without_auth": 0,
+  "entries_without_fsp": 24,
+  "plan_entry_id_points_to_lead_id": 24,
+  "bounce_total": 34,
+  "bounce_by_type": {
+    "domain": 4,
+    "domain_invalid": 18,
+    "hard": 6,
+    "policy": 3,
+    "unknown": 1,
+    "unresolved": 2
+  },
+  "bounce_duplicate_groups": [
+    {
+      "email": "info@djhobbytoys.com",
+      "cnt": 2
+    },
+    {
+      "email": "info@gameuniverse.com",
+      "cnt": 2
+    },
+    {
+      "email": "info@pulpfictioncomics.com",
+      "cnt": 2
+    }
+  ],
+  "DUPLICATE_BOUNCE_EVENTS": 3,
+  "UNIQUE_BOUNCE_EVENTS": 31,
+  "DOMAIN_INVALID": 22,
+  "MAILBOX_INVALID": 0,
+  "POLICY_BOUNCE": 3,
+  "SOFT_BOUNCE": 0,
+  "UNKNOWN_BOUNCE": 3,
+  "unmatched_dsn_total": 21,
+  "dsn_matched_now": 14,
+  "dsn_still_unmatched": 7,
+  "contact_recovery_total": 15,
+  "contact_recovery_pending": 15,
+  "reply_total": 1,
+  "reply_type": [
+    "auto_reply_ooo"
+  ],
+  "suppression_total": 26,
+  "suppression_by_reason": {
+    "Phase 0 real send via Gmail 2026-06-08": 9,
+    "Phase3_bounce: 2026-06-17T11:23:00.346974": 6,
+    "Phase3_domain_bounce: no MX record": 4,
+    "duplicate_store: Old Fox Books already has jinny@oldfoxbooks.com": 1,
+    "hard_bounce_20260625": 2,
+    "hard_bounce_20260709": 2,
+    "hard_bounce_small_batch_test": 1,
+    "unsubscribe_request": 1
+  },
+  "BROAD_READY_COUNT": 78,
+  "BROAD_READY_ORG_COUNT": 78,
+  "STRICT_A0_COUNT": 4,
+  "duplicate_org_send_groups": [],
+  "duplicate_org_send_count": 0,
+  "UNSENT_TEMPLATE_MISMATCH": 10,
+  "poller_jobs_last_success": {
+    "tracking": null,
+    "health": null,
+    "reply": null,
+    "bounce": null
+  },
+  "poller_running": true,
+  "RESULT_SYNC_VERIFIED": false,
+  "ops_api_total_leads": 738,
+  "ops_api_strict_a0": 1,
+  "db_vs_api_total_leads_diff": 0,
+  "today_new_send_log": 0,
+  "SMTP_DURING_AUDIT": 0,
+  "DATA_SEMANTICS_CLEAN": true
+}

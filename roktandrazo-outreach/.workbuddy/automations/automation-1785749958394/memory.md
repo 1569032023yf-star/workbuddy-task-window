@@ -1,5 +1,31 @@
 # BD Daily Collection Report — Automation Memory
 
+## 2026-08-06 20:30 Asia/Shanghai
+
+**Status**: Report generated successfully. Read-only, no writes.
+
+**Key metrics**:
+- Final Sendable Unsent: 79 (Strict A0: 1, Broad Outreach Ready: 78) — unchanged from 08-05
+- Gap to 30: 0 | Gap to 60: 0
+- New orgs today: 0 | Website emails: 0 | Facebook emails: 0 | Manual verified: 0
+- Total leads: 738 (↑20 from 08-05)
+- Primary states: TN 177 (↑7), AR 67 (↑5), KY 66 (↑8)
+- send_log total sent: 448 (↑20 from overnight batch on 08-05), send_plan today: 0
+- Website recovery: 71 pending, 0 recheck_pending
+- Network errors: 0
+- Nashville queries: 22/22 complete, 33 orgs discovered
+- Blocked reasons: previously_sent 424, email_missing 192, contact_form_only 19
+- Manual Review: 318 pending
+
+**Safety**: Read-only confirmed — SMTP=0, send_plan=0, no new writes. 20 overnight sends predate report. Inventory running.
+
+**Deliverables**:
+- output/daily_collection_reports/2026-08-06.json
+- output/daily_collection_reports/2026-08-06.md
+- Ops Center Dashboard regenerated (bd_dashboard_v3.2.py)
+
+**Changes from 08-05**: Total leads ↑20 (718→738), concentrated in primary states. send_log ↑20 (428→448) from overnight batch. Sendable pool unchanged at 79. No collection activity today. Manual review queue grew (254→318).
+
 ## 2026-08-05 20:30 Asia/Shanghai
 
 **Status**: Report generated successfully. Read-only, no writes.
@@ -20,8 +46,6 @@
 - output/daily_collection_reports/2026-08-05.json
 - output/daily_collection_reports/2026-08-05.md
 - Ops Center Dashboard regenerated (bd_dashboard_v3.2.py)
-
-**Changes from 08-04**: Strict A0 dropped from 2→1, Broad Ready dropped from 11→78? No — previous report counted differently (95 broad ready on 08-03, 11+2=13 on 08-04). send_log grew from 408→428.
 
 ## 2026-08-04 20:30 Asia/Shanghai
 

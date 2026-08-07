@@ -24,6 +24,7 @@ from manual_email_workflow import submit_manual_email
 from bd_ops_api import (
     get_ops_summary, get_today_stats, get_tracking_stats, get_inventory,
     get_search_progress, get_final_plan, get_health, get_data_quality,
+    get_schedule_preview_summary,
 )
 from bd_ops_poller import start_poller, get_state as get_poller_state
 
@@ -614,7 +615,7 @@ var REASONS = ["CONTACT_ROLE_UNCERTAIN","WEAK_EVIDENCE","CONTACT_FORM_ONLY","OTH
 var REASON_CN = {
   "CONTACT_ROLE_UNCERTAIN":"Email Role Uncertain / 邮箱角色不确定",
   "WEAK_EVIDENCE":"Weak Evidence / 证据不足",
-  "CONTACT_FORM_ONLY":"Contact Form Only / 仅有联系表单",
+  "CONTACT_FORM_ONLY":"Contact Form Only / 仅联系表单",
   "OTHER_STATE_RETAIL":"Other-State Retail / 非目标州零售",
   "BOUNCE_REVIEW":"Bounce Review / 退信核查",
   "DOMAIN_MISMATCH":"Domain Mismatch / 域名不匹配",
@@ -898,6 +899,63 @@ def _get_guard_state():
     return guard
 
 
+def api_reconciliation(limit: int = 10):
+    """读取最近几次发信后对账结果。
+
+    数据来源：output/post_send_reconciliation_*.json + system_config 中的
+    post_send_reconciliation_* 状态 key。返回 POST_SEND_RECONCILIATION_FAILED
+    标记（任一批次对账 FAILED 即置真），供运维在监控面板上使用。
+    """
+    results = []
+    # 1) output 目录下的对账 JSON 文件（按修改时间倒序）
+    out_dir = PROJECT_DIR / 'output'
+    if out_dir.exists():
+        for p in sorted(out_dir.glob('post_send_reconciliation_*.json'),
+                        key=lambda f: f.stat().st_mtime, reverse=True):
+            try:
+                data = json.loads(p.read_text(encoding='utf-8'))
+                data.setdefault('batch_id', p.stem.replace('post_send_reconciliation_', '', 1))
+                results.append(data)
+            except (json.JSONDecodeError, OSError):
+                continue
+
+    # 2) system_config 中的对账状态 key
+    conn = db()
+    try:
+        rows = conn.execute(
+            "SELECT key, value FROM system_config WHERE key LIKE 'post_send_reconciliation_%'"
+        ).fetchall()
+    except sqlite3.OperationalError:
+        rows = []
+    finally:
+        conn.close()
+
+    config_status = {}
+    for key, value in rows:
+        batch_id = key.replace('post_send_reconciliation_', '', 1)
+        status = (value or '').strip() or 'UNKNOWN'
+        try:
+            parsed = json.loads(status)
+            status = parsed.get('status', 'UNKNOWN')
+        except (json.JSONDecodeError, TypeError):
+            pass
+        config_status[batch_id] = status
+        if not any(r.get('batch_id') == batch_id for r in results):
+            results.append({'batch_id': batch_id, 'verdict': status, 'source': 'system_config'})
+
+    for r in results:
+        r['config_status'] = config_status.get(r.get('batch_id'), r.get('verdict'))
+
+    failed_present = any(s == 'FAILED' for s in config_status.values()) or \
+        any(r.get('verdict') == 'FAILED' for r in results)
+
+    return json.dumps({
+        'results': results[:limit],
+        'post_send_reconciliation_failed_present': failed_present,
+        'generated_at': now_cst().isoformat(),
+    })
+
+
 class ReviewHandler(BaseHTTPRequestHandler):
     server_start = ''
 
@@ -938,9 +996,14 @@ class ReviewHandler(BaseHTTPRequestHandler):
         elif path == '/api/ops/inventory':
             self._json(json.dumps(_safe_ops(lambda: get_inventory(str(DB_PATH)))))
         elif path == '/api/ops/search':
-            self._json(json.dumps(_safe_ops(lambda: get_search_progress())))
+            self._json(json.dumps(_safe_ops(lambda: get_search_progress(str(DB_PATH)))))
         elif path == '/api/ops/plan':
-            self._json(json.dumps(_safe_ops(lambda: get_final_plan(str(DB_PATH)))))
+            data = _safe_ops(lambda: get_final_plan(str(DB_PATH)))
+            if isinstance(data, dict) and 'error' not in data:
+                # 附加 schedule_preview 摘要（时区分布 + UNRESOLVED 数 + 当地10:00 的 China 时间样例）
+                data['schedule_preview'] = _safe_ops(
+                    lambda: get_schedule_preview_summary(str(DB_PATH)))
+            self._json(json.dumps(data))
         elif path == '/api/ops/health':
             self._json(json.dumps(_safe_ops(lambda: get_health(str(DB_PATH)))))
         elif path == '/api/ops/quality':
@@ -949,6 +1012,8 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._json(json.dumps(get_scheduler_state()))
         elif path == '/api/ops/guard':
             self._json(json.dumps(_get_guard_state()))
+        elif path == '/api/ops/reconciliation':
+            self._json(api_reconciliation())
         else:
             self.send_response(404)
             self.end_headers()

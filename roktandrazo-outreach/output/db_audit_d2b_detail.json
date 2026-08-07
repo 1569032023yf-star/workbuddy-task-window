@@ -1,0 +1,233 @@
+{
+  "failed_records": [
+    {
+      "id": 1,
+      "lead_id": 0,
+      "email": "ianyf@raoktandrazo.com",
+      "status": "failed",
+      "error_message": "(535, b'Error: authentication failed, system busy')",
+      "sent_at": "2026-06-11 02:46:27",
+      "batch_id": null,
+      "message_type": null
+    },
+    {
+      "id": 118,
+      "lead_id": 334,
+      "email": "info@wellplayedasheville.com",
+      "status": "failed",
+      "error_message": "Connection unexpectedly closed: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+      "sent_at": "2026-07-01 00:37:37",
+      "batch_id": null,
+      "message_type": null
+    },
+    {
+      "id": 156,
+      "lead_id": 368,
+      "email": "info@deepcomics.com",
+      "status": "failed",
+      "error_message": "[Errno 11001] getaddrinfo failed",
+      "sent_at": "2026-07-03 02:57:31",
+      "batch_id": null,
+      "message_type": null
+    }
+  ],
+  "et1000_sendlog_vs_fsp": [
+    {
+      "id": 435,
+      "lead_id": 750,
+      "plan_entry_id": null,
+      "email": "karzndollztoyshop@gmail.com",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 103,
+      "fsp_plan": "new_outreach_20260805_et1000_0001"
+    },
+    {
+      "id": 436,
+      "lead_id": 751,
+      "plan_entry_id": null,
+      "email": "geeksetc@lighttube.net",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 104,
+      "fsp_plan": "new_outreach_20260805_et1000_0002"
+    },
+    {
+      "id": 437,
+      "lead_id": 128,
+      "plan_entry_id": null,
+      "email": "customers@tnlg.net",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 105,
+      "fsp_plan": "new_outreach_20260805_et1000_0003"
+    },
+    {
+      "id": 438,
+      "lead_id": 404,
+      "plan_entry_id": null,
+      "email": "help@storehouseno9.com",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 106,
+      "fsp_plan": "new_outreach_20260805_et1000_0004"
+    },
+    {
+      "id": 439,
+      "lead_id": 689,
+      "plan_entry_id": null,
+      "email": "shop@thecrownshop.com",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 107,
+      "fsp_plan": "new_outreach_20260805_et1000_0005"
+    },
+    {
+      "id": 440,
+      "lead_id": 22,
+      "plan_entry_id": null,
+      "email": "info@imboardgames.com",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 108,
+      "fsp_plan": "new_outreach_20260805_et1000_0006"
+    },
+    {
+      "id": 441,
+      "lead_id": 55,
+      "plan_entry_id": null,
+      "email": "info@uncommonsnyc.com",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 109,
+      "fsp_plan": "new_outreach_20260805_et1000_0007"
+    },
+    {
+      "id": 442,
+      "lead_id": 87,
+      "plan_entry_id": null,
+      "email": "info@tfaw.com",
+      "batch_id": "new_outreach_20260805_et1000",
+      "fsp_id": 110,
+      "fsp_plan": "new_outreach_20260805_et1000_0008"
+    }
+  ],
+  "et1000_auth_entries_vs_fsp": [
+    {
+      "entry_id": 212,
+      "plan_entry_id": 750,
+      "lead_id": 750,
+      "recipient_email": "karzndollztoyshop@gmail.com",
+      "status": "consumed",
+      "fsp_id": 103,
+      "fsp_plan": "new_outreach_20260805_et1000_0001"
+    },
+    {
+      "entry_id": 213,
+      "plan_entry_id": 751,
+      "lead_id": 751,
+      "recipient_email": "geeksetc@lighttube.net",
+      "status": "consumed",
+      "fsp_id": 104,
+      "fsp_plan": "new_outreach_20260805_et1000_0002"
+    },
+    {
+      "entry_id": 214,
+      "plan_entry_id": 128,
+      "lead_id": 128,
+      "recipient_email": "customers@tnlg.net",
+      "status": "consumed",
+      "fsp_id": 105,
+      "fsp_plan": "new_outreach_20260805_et1000_0003"
+    },
+    {
+      "entry_id": 215,
+      "plan_entry_id": 404,
+      "lead_id": 404,
+      "recipient_email": "help@storehouseno9.com",
+      "status": "consumed",
+      "fsp_id": 106,
+      "fsp_plan": "new_outreach_20260805_et1000_0004"
+    },
+    {
+      "entry_id": 216,
+      "plan_entry_id": 689,
+      "lead_id": 689,
+      "recipient_email": "shop@thecrownshop.com",
+      "status": "consumed",
+      "fsp_id": 107,
+      "fsp_plan": "new_outreach_20260805_et1000_0005"
+    },
+    {
+      "entry_id": 217,
+      "plan_entry_id": 22,
+      "lead_id": 22,
+      "recipient_email": "info@imboardgames.com",
+      "status": "consumed",
+      "fsp_id": 108,
+      "fsp_plan": "new_outreach_20260805_et1000_0006"
+    },
+    {
+      "entry_id": 218,
+      "plan_entry_id": 55,
+      "lead_id": 55,
+      "recipient_email": "info@uncommonsnyc.com",
+      "status": "consumed",
+      "fsp_id": 109,
+      "fsp_plan": "new_outreach_20260805_et1000_0007"
+    },
+    {
+      "entry_id": 219,
+      "plan_entry_id": 87,
+      "lead_id": 87,
+      "recipient_email": "info@tfaw.com",
+      "status": "consumed",
+      "fsp_id": 110,
+      "fsp_plan": "new_outreach_20260805_et1000_0008"
+    },
+    {
+      "entry_id": 220,
+      "plan_entry_id": 89,
+      "lead_id": 89,
+      "recipient_email": "info@timevaultgames.com",
+      "status": "consumed",
+      "fsp_id": 111,
+      "fsp_plan": "new_outreach_20260805_et1000_0009"
+    },
+    {
+      "entry_id": 221,
+      "plan_entry_id": 94,
+      "lead_id": 94,
+      "recipient_email": "info@kiddingaroundtoys.com",
+      "status": "consumed",
+      "fsp_id": 112,
+      "fsp_plan": "new_outreach_20260805_et1000_0010"
+    },
+    {
+      "entry_id": 222,
+      "plan_entry_id": 98,
+      "lead_id": 98,
+      "recipient_email": "hello@gameparloursf.com",
+      "status": "consumed",
+      "fsp_id": 113,
+      "fsp_plan": "new_outreach_20260805_et1000_0011"
+    },
+    {
+      "entry_id": 223,
+      "plan_entry_id": 99,
+      "lead_id": 99,
+      "recipient_email": "info@gamecafepaloalto.com",
+      "status": "consumed",
+      "fsp_id": 114,
+      "fsp_plan": "new_outreach_20260805_et1000_0012"
+    }
+  ],
+  "auth_entry_counts": {
+    "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310": 20,
+    "auth_new_outreach_20260805_et1000_new_outreach_20260805_et1000_417fe7d221af2839": 20
+  },
+  "empty_message_id_by_batch": {
+    "null": 257,
+    "tri_state_21_sprint_20260731": 21,
+    "new_outreach_20260805_et1000": 20,
+    "new_outreach_20260805_2300cs_tnarky": 20,
+    "outreach:2026-07-23:1c903866": 5
+  },
+  "et1000_sendlog_null_plan_entry": 20,
+  "tnarky_sendlog_null_plan_entry": 20,
+  "sent_with_message_id": 128,
+  "sent_without_message_id": 320
+}

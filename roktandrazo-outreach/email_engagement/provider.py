@@ -220,8 +220,16 @@ class EmailEngagementProvider(ABC):
         ...
 
     def hash_token(self, token: str) -> str:
-        """Hash a token for storage. Uses HMAC-SHA256 with pepper."""
-        pepper = os.environ.get("EMAIL_TRACKING_PEPPER", "change-me-in-production")
+        """Hash a token for storage. Uses HMAC-SHA256 with pepper.
+
+        P7：pepper 不再有硬编码默认值；未配置 → fail-closed（抛错），
+        绝不回退到 change-me-in-production 之类的固定值。
+        """
+        pepper = os.environ.get("BD_TRACKING_PEPPER") or os.environ.get("EMAIL_TRACKING_PEPPER") or ""
+        if not pepper:
+            raise RuntimeError(
+                "EMAIL_TRACKING_PEPPER/BD_TRACKING_PEPPER 未配置：token 哈希不可用（fail-closed）。"
+            )
         return hmac.new(
             pepper.encode(), token.encode(), hashlib.sha256
         ).hexdigest()

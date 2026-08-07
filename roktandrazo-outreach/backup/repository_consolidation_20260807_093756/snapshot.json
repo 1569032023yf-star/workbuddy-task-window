@@ -1,0 +1,19 @@
+{
+  "sha256": "b70ae076f80a7153594924926fc1428d5f28cd963fb022238c6591231586da28",
+  "quick_check": "ok",
+  "counts": {
+    "leads": 738,
+    "send_log": 451,
+    "suppression_list": 26,
+    "bounce_log": 34,
+    "reply_log": 1,
+    "final_send_plan": 132,
+    "send_authorizations": 6,
+    "send_authorization_entries": 40,
+    "unmatched_dsn": 21,
+    "contact_recovery": 15,
+    "email_tracking_messages": 136
+  },
+  "backup_dir": "backup\\repository_consolidation_20260807_093756",
+  "backed_up_at": "2026-08-07T09:37:57.358341"
+}

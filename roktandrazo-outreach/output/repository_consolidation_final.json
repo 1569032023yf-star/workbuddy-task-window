@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-08-07T11:07:52.678032",
+  "db_backup": {
+    "dir": "backup/repository_consolidation_20260807_093756",
+    "sha256_prefix": "b70ae076f80a7153",
+    "quick_check": "ok"
+  },
+  "db_current": {
+    "sha256_prefix": "b70ae076f80a7153",
+    "counts": {
+      "leads": 738,
+      "send_log": 451,
+      "suppression_list": 26,
+      "bounce_log": 34,
+      "reply_log": 1,
+      "final_send_plan": 132,
+      "send_authorizations": 6,
+      "send_authorization_entries": 40,
+      "unmatched_dsn": 21,
+      "contact_recovery": 15
+    }
+  },
+  "audit": {
+    "files_classified": 190,
+    "A_ACTIVE_PRODUCTION": 38,
+    "B_SUPPORTING": 45,
+    "C_TEST_ONLY": 26,
+    "D_LEGACY_DISABLED": 30,
+    "E_ARCHIVE": 49,
+    "F_UNKNOWN": 0
+  },
+  "archived_dangerous_scripts": 22,
+  "smtp_authority": {
+    "only_bd_sender": true,
+    "archived_fail_closed": true
+  },
+  "tests": {
+    "result": "1 failed, 269 passed, 44 subtests passed in 29.96s"
+  },
+  "smtp_connections_during_test": 0,
+  "orchestrator_status": "OK read-only",
+  "ops_center": {
+    "url": "http://127.0.0.1:8765/",
+    "data_source": "production_db_live",
+    "inventory_total": 738
+  }
+}

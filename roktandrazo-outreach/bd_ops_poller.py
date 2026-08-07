@@ -165,7 +165,8 @@ def _http_get(url, headers=None, timeout=15):
 def poll_tracking():
     if not _lock("tracking"): return
     try:
-        api_key = os.environ.get("TRACKING_DASHBOARD_API_KEY", "roktandrazo-dashboard-key-2026")
+        # P7：不再有硬编码默认 key；为空时 Worker 鉴权失败 → 该 job 标记失败（fail-closed）
+        api_key = os.environ.get("TRACKING_DASHBOARD_API_KEY", "")
         code, body, transport = _http_get(
             f"{TRACKING_BASE}/internal/dashboard-summary",
             headers={"Authorization": f"Bearer {api_key}"},

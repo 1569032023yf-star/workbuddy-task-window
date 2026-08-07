@@ -79,6 +79,14 @@ def validate_send_authorization(authorization_id: str = None, plan_entry_id: int
                 req_email = str(recipient_email or '').strip().lower()
                 if auth_email != req_email:
                     raise SendAuthorizationError(f"email mismatch: auth has {auth_email}, requested {req_email}")
+
+            # P5 幂等：该 plan_entry_id 在 send_log 已有 sent 记录 → 直接拒绝再发
+            sent_row = conn.execute(
+                "SELECT id FROM send_log WHERE plan_entry_id=? AND status='sent' LIMIT 1",
+                (plan_entry_id,)
+            ).fetchone()
+            if sent_row:
+                raise SendAuthorizationError("entry already sent")
         
         mp = conn.execute("SELECT value FROM system_config WHERE key='manual_pause'").fetchone()
         if mp and mp['value'] == 'true':
@@ -98,14 +106,20 @@ def validate_send_authorization(authorization_id: str = None, plan_entry_id: int
 
 
 def consume_authorization_entry(authorization_id: str, plan_entry_id: int) -> bool:
-    """Mark one plan entry as consumed. Marks batch consumed when all entries done."""
+    """Mark one plan entry as consumed. Marks batch consumed when all entries done.
+    仅当本次 UPDATE 确实把某条 pending entry 置为 consumed（rowcount==1）才算成功；
+    rowcount==0 表示该 entry 已被消费或不存在 → 返回 False，防并发重复消费。
+    """
     conn = sqlite3.connect(DB_PATH)
     try:
         now = datetime.now(ASIA_SH).isoformat()
-        conn.execute(
+        cur = conn.execute(
             "UPDATE send_authorization_entries SET consumed_at=?, status='consumed' WHERE authorization_id=? AND plan_entry_id=? AND status='pending'",
             (now, authorization_id, plan_entry_id)
         )
+        if cur.rowcount != 1:
+            conn.rollback()
+            return False
         pending = conn.execute(
             "SELECT COUNT(*) FROM send_authorization_entries WHERE authorization_id=? AND status='pending'",
             (authorization_id,)
@@ -116,16 +130,40 @@ def consume_authorization_entry(authorization_id: str, plan_entry_id: int) -> bo
                 (now, authorization_id)
             )
         conn.commit()
-        return conn.total_changes > 0
+        return True
     finally:
         conn.close()
+
+
+def _consume_authorization_after_send(authorization_id: str, plan_entry_id: int) -> str:
+    """发送成功后的副作用：消费授权条目。返回可选的警告文本（无警告返回空串）。
+
+    仅当 plan_entry_id 存在时才消费；consume 返回 False（无 pending entry）
+    或异常都不视为发送失败，只返回警告信息，供 send_one 拼进 message。
+    """
+    if not plan_entry_id:
+        return ""
+    try:
+        ok = consume_authorization_entry(authorization_id, plan_entry_id)
+        if not ok:
+            return f"; warning: authorization entry {plan_entry_id} not consumed (no pending entry)"
+        return ""
+    except Exception as exc:  # 消费失败不得影响已成功的发送结果
+        return f"; warning: consume authorization entry {plan_entry_id} failed: {exc}"
 
 
 def create_send_authorization(plan_id: str, outreach_batch_date: str,
                                planned_entries: list,
                                preflight_passed: bool,
-                               db_path: str = None) -> dict:
+                               db_path: str = None,
+                               preflight_passed_status: str = 'passed') -> dict:
     """Create a short-lived send authorization after preflight passes.
+    
+    preflight_passed_status: 写入 send_authorizations.preflight_status 的值。
+      默认 'passed'（向后兼容）。当 run_preflight 失败时，调用方可在
+      preflight_passed=True 下传 'failed'，留一条被阻断的审计记录——
+      validate_send_authorization() 对 !='passed'（含 'failed'）一律阻断 SMTP。
+    preflight_passed=False 仍抛 ValueError（不建授权）。
     
     Returns dict with authorization_id or raises on failure.
     """
@@ -160,7 +198,7 @@ def create_send_authorization(plan_id: str, outreach_batch_date: str,
         """, (
             authorization_id, plan_id, outreach_batch_date,
             entries_hash, len(planned_entries), db_digest,
-            'passed', now, expires, 'system'
+            preflight_passed_status, now, expires, 'system'
         ))
         
         # Also create per-entry records
@@ -248,13 +286,15 @@ def _build_email(to_email: str, subject: str, body_text: str, body_html: str = N
     return msg
 
 
-def _save_to_sent(msg: MIMEMultipart) -> None:
-    """Save a copy of the sent email to the IMAP Sent folder (已发送)."""
+def _save_to_sent(msg: MIMEMultipart) -> tuple:
+    """Save a copy of the sent email to the IMAP Sent folder (已发送).
+    返回 (ok, error)。失败不抛出异常，由调用方记录 sender_copy_status。
+    """
     try:
         cfg = get_imap_config()
         if not cfg["user"] or not cfg["password"]:
             print("  [IMAP] No IMAP config, skipping sent-folder save")
-            return
+            return True, ""
 
         if cfg["use_ssl"]:
             imap = imaplib.IMAP4_SSL(cfg["host"], cfg["port"], timeout=15)
@@ -277,10 +317,127 @@ def _save_to_sent(msg: MIMEMultipart) -> None:
                 print(f"  [IMAP] Saved to decoded Sent folder")
             except imaplib.IMAP4.error as e2:
                 print(f"  [IMAP] Also failed: {e2}")
+                imap.logout()
+                return False, f"IMAP append failed: {e2}"
 
         imap.logout()
+        return True, ""
     except Exception as e:
         print(f"  [IMAP] Error: {e}")
+        return False, str(e)
+
+
+def _send_log_has_sent(plan_entry_id: int, db_path: str = None) -> bool:
+    """P5 幂等：send_log 是否已有该 plan_entry_id 的 sent 记录。"""
+    conn = sqlite3.connect(db_path or DB_PATH)
+    try:
+        row = conn.execute(
+            "SELECT id FROM send_log WHERE plan_entry_id=? AND status='sent' LIMIT 1",
+            (plan_entry_id,)
+        ).fetchone()
+        return row is not None
+    finally:
+        conn.close()
+
+
+def _resolve_real_plan_entry(plan_entry_id, lead_id: int = None, db_path: str = None):
+    """P5 校验：plan_entry_id 必须是 final_send_plan 表的真实 id，且 lead_id 与传入 lead 一致。
+    返回该行 dict（含 id/lead_id/recipient_email/outreach_batch_date/status），
+    不存在或 lead_id 不匹配 → 返回 None。
+    """
+    conn = sqlite3.connect(db_path or DB_PATH)
+    conn.row_factory = sqlite3.Row
+    try:
+        row = conn.execute(
+            "SELECT id, lead_id, recipient_email, outreach_batch_date, status "
+            "FROM final_send_plan WHERE id=?",
+            (plan_entry_id,)
+        ).fetchone()
+        if row is None:
+            return None
+        if lead_id is not None and row["lead_id"] != lead_id:
+            return None
+        return dict(row)
+    finally:
+        conn.close()
+
+
+def _commit_send_success(db_path: str, plan_entry_id: int, lead_id: int,
+                         email: str, actual_to: str, subject: str,
+                         message_type: str, outreach_batch_date: str,
+                         message_id: str, template_id: str, customer_type: str,
+                         routing_reason: str, batch_id: str, source_platform: str,
+                         authorization_id: str, smtp_accepted_at: str) -> tuple:
+    """P5 原子提交：SMTP accepted 后，把 send_log / final_send_plan /
+    authorization entry / leads 四类写入放在同一个 sqlite3 事务里。
+    任一步失败 → rollback 并返回 (False, error)，不留半提交状态。
+    """
+    conn = sqlite3.connect(db_path)
+    conn.isolation_level = None  # 关闭 sqlite3 隐式事务，显式控制 BEGIN/COMMIT/ROLLBACK
+    conn.row_factory = sqlite3.Row
+    try:
+        # 幂等确保 send_log 有 smtp_accepted_at / authorization_id 列（生产迁移可能缺失）
+        cols = {row[1] for row in conn.execute("PRAGMA table_info(send_log)")}
+        for _col in ("smtp_accepted_at", "authorization_id"):
+            if _col not in cols:
+                try:
+                    conn.execute(f"ALTER TABLE send_log ADD COLUMN {_col} TEXT")
+                except sqlite3.OperationalError:
+                    pass
+
+        now = datetime.now(ASIA_SH).isoformat()
+        conn.execute("BEGIN")
+        # a) send_log INSERT（email 列存真实收件人，便于对账）
+        conn.execute(
+            """INSERT INTO send_log
+               (lead_id, email, subject, status, sent_at, message_id,
+                template_id, customer_type, routing_reason, batch_id,
+                source_platform, message_type, outreach_batch_date,
+                plan_entry_id, authorization_id, smtp_accepted_at)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (lead_id, email, subject, "sent", now, message_id,
+             template_id, customer_type, routing_reason, batch_id,
+             source_platform, message_type, outreach_batch_date,
+             plan_entry_id, authorization_id, smtp_accepted_at),
+        )
+        # b) final_send_plan → sent（仅 planned/in_progress 可提交）
+        cur = conn.execute(
+            "UPDATE final_send_plan SET status='sent', sent_at=? WHERE id=? AND status IN ('planned','in_progress')",
+            (now, plan_entry_id),
+        )
+        if cur.rowcount == 0:
+            raise RuntimeError(f"final_send_plan id={plan_entry_id} not in planned/in_progress")
+        # c) authorization entry → consumed（仅 pending）
+        cur = conn.execute(
+            "UPDATE send_authorization_entries SET consumed_at=?, status='consumed' "
+            "WHERE authorization_id=? AND plan_entry_id=? AND status='pending'",
+            (now, authorization_id, plan_entry_id),
+        )
+        if cur.rowcount == 0:
+            raise RuntimeError(f"authorization entry {plan_entry_id} not pending")
+        # 批次级：全部条目消费完后标记整个 authorization 为 consumed
+        pending = conn.execute(
+            "SELECT COUNT(*) FROM send_authorization_entries WHERE authorization_id=? AND status='pending'",
+            (authorization_id,),
+        ).fetchone()[0]
+        if pending == 0:
+            conn.execute(
+                "UPDATE send_authorizations SET consumed_at=?, status='consumed' "
+                "WHERE authorization_id=? AND status='approved'",
+                (now, authorization_id),
+            )
+        # d) leads → sent（仅当前非 sent/bounced）
+        conn.execute(
+            "UPDATE leads SET status='sent', sent_at=? WHERE id=? AND COALESCE(status,'') NOT IN ('sent','bounced')",
+            (now, lead_id),
+        )
+        conn.commit()
+        return True, ""
+    except Exception as exc:
+        conn.rollback()
+        return False, str(exc)
+    finally:
+        conn.close()
 
 
 def _pre_send_checks(subject: str, body_text: str) -> list[str]:
@@ -303,6 +460,7 @@ def send_one(lead: dict, dry_run: bool = False) -> dict:
     body_text = lead.get("email_body", "")
     body_html = lead.get("email_body_html", "")
     plan_entry_id = lead.get("final_plan_entry_id")
+    # P5: 禁止接受 lead_id / 旧 plan_entry_id 字段冒充 final_send_plan.id
     message_type = lead.get("message_type")
     outreach_batch_date = lead.get("outreach_batch_date")
 
@@ -312,7 +470,7 @@ def send_one(lead: dict, dry_run: bool = False) -> dict:
 
     # Production sending is plan-only. A sender must never refill a batch from
     # the candidate pool after pre-send hygiene has frozen the recipient list.
-    if not dry_run and (not plan_entry_id or message_type not in ('new_outreach', 'follow_up') or not outreach_batch_date):
+    if not dry_run and (message_type not in ('new_outreach', 'follow_up') or not outreach_batch_date):
         return {"success": False, "message": "Missing immutable final send plan metadata", "status": "failed"}
 
     if is_suppressed(email):
@@ -349,7 +507,24 @@ def send_one(lead: dict, dry_run: bool = False) -> dict:
     # All production customer sends require a valid authorization.
     # Test mode and dry runs are exempt.
     authorization_id = lead.get("authorization_id", "")
+    real_plan = None
     if not test_cfg["test_mode"] and not dry_run:
+        # ── P5: final_plan_entry_id 必须是真实 final_send_plan.id ──
+        # 禁止用 lead_id / 字符串 id 冒充。空值或非 int → 直接 fail。
+        if plan_entry_id is None or not isinstance(plan_entry_id, int) or isinstance(plan_entry_id, bool):
+            return {"success": False, "message": "Missing real final_send_plan.id", "status": "failed"}
+
+        # P5 幂等：send_log 已有该 plan_entry_id 的 sent 记录 → 跳过，不再调 SMTP
+        if _send_log_has_sent(plan_entry_id):
+            return {"success": False, "message": "ALREADY_SENT_SKIP", "status": "skipped"}
+
+        # P5 数据不一致保护：send_log 无记录但 final_send_plan 已 sent → 跳过
+        real_plan = _resolve_real_plan_entry(plan_entry_id, lead_id)
+        if real_plan is None:
+            return {"success": False, "message": "Missing real final_send_plan.id", "status": "failed"}
+        if real_plan["status"] == "sent":
+            return {"success": False, "message": "ALREADY_SENT_SKIP", "status": "skipped"}
+
         try:
             validate_send_authorization(authorization_id,
                                           plan_entry_id=plan_entry_id,
@@ -398,29 +573,8 @@ def send_one(lead: dict, dry_run: bool = False) -> dict:
         # Send to customer only (tracked MIME)
         server.sendmail(sender_email, [actual_to], msg.as_string())
         server.quit()
-
-        _save_to_sent(msg)
-
-        # ── Tracking activation ──────────────────────────
-        tracking_token = lead.get("_tracking_token", "")
-        tracking_hash = lead.get("_tracking_token_hash", "")
-        tracking_msg_id = lead.get("_tracking_message_id", "")
-        if has_pixel and tracking_hash and tracking_msg_id:
-            _activate_tracking(tracking_hash, tracking_msg_id, lead_id)
-
-        # ── Sender copy (untracked, separate MIME) ───────
-        sender_copy_sent = False
-        if sender_email != actual_to:
-            try:
-                sc = _build_email(sender_email, subject, body_text, body_html_no_pixel if body_html_no_pixel else None)
-                sc["X-Roktandrazo-Type"] = "sender_copy"
-                sc_server = _create_connection()
-                sc_server.sendmail(sender_email, [sender_email], sc.as_string())
-                sc_server.quit()
-                sender_copy_sent = True
-            except Exception as sce:
-                # Sender copy failure must not affect customer send
-                pass
+        # P5: 记录 SMTP accepted 时刻（UTC ISO）
+        smtp_accepted_at = datetime.now(timezone.utc).isoformat()
 
         # Extract metadata
         message_id = msg.get("Message-ID", "")
@@ -441,19 +595,62 @@ def send_one(lead: dict, dry_run: bool = False) -> dict:
                      plan_entry_id=None)
             return {"success": True, "message": f"Test sent to {actual_to}", "status": "test"}
 
-        if plan_entry_id and message_type in ('new_outreach', 'follow_up') and outreach_batch_date:
-            return {"success": True, "message": f"Sent to {actual_to}", "status": "sent"}
+        # ── P5: SMTP accepted 后原子提交（send_log + FSP + auth entry + leads 单事务）──
+        # 防御：生产路径 real_plan 必由上方 gate 解析；仅 test_mode 且 test_email 为空等
+        # 异常配置才会走到这里且 real_plan 为 None，此时 fail-closed。
+        if real_plan is None:
+            return {"success": False, "message": "Missing real final_send_plan.id", "status": "failed"}
+        commit_ok, commit_err = _commit_send_success(
+            db_path=DB_PATH, plan_entry_id=plan_entry_id, lead_id=lead_id,
+            email=email, actual_to=actual_to, subject=subject,
+            message_type=message_type, outreach_batch_date=outreach_batch_date,
+            message_id=message_id, template_id=template_id,
+            customer_type=customer_type, routing_reason=routing_reason,
+            batch_id=batch_id, source_platform=source_platform,
+            authorization_id=authorization_id, smtp_accepted_at=smtp_accepted_at,
+        )
+        if not commit_ok:
+            return {"success": False, "message": f"DB commit failed: {commit_err}", "status": "failed"}
 
-        now = datetime.now().isoformat()
-        update_lead_status(lead_id, "sent", sent_at=now)
-        log_send(lead_id, email, subject, "sent",
-                  message_id=message_id, template_id=template_id,
-                  customer_type=customer_type, routing_reason=routing_reason,
-                  batch_id=batch_id, source_platform=source_platform,
-                  message_type=message_type, outreach_batch_date=outreach_batch_date,
-                  plan_entry_id=plan_entry_id)
+        # ── 提交成功后的 best-effort 副作用（失败不影响客户 SMTP accepted）──
+        sender_copy_failures = []
+        # IMAP Sent 副本（sender copy 失败不吞错误，仅记录）
+        try:
+            _sc_ok, _sc_err = _save_to_sent(msg)
+            if not _sc_ok:
+                sender_copy_failures.append(_sc_err)
+        except Exception as _sc_exc:
+            sender_copy_failures.append(str(_sc_exc))
 
-        return {"success": True, "message": f"Sent to {actual_to}", "status": "sent"}
+        # ── Tracking activation ──────────────────────────
+        tracking_hash = lead.get("_tracking_token_hash", "")
+        tracking_msg_id = lead.get("_tracking_message_id", "")
+        if has_pixel and tracking_hash and tracking_msg_id:
+            _activate_tracking(tracking_hash, tracking_msg_id, lead_id)
+
+        # ── Sender copy (untracked, separate MIME) ───────
+        if sender_email != actual_to:
+            try:
+                sc = _build_email(sender_email, subject, body_text, body_html_no_pixel if body_html_no_pixel else None)
+                sc["X-Roktandrazo-Type"] = "sender_copy"
+                sc_server = _create_connection()
+                sc_server.sendmail(sender_email, [sender_email], sc.as_string())
+                sc_server.quit()
+            except Exception as sce:
+                # P5: sender copy 失败不吞错误，写入返回 dict（不影响客户发送结果）
+                sender_copy_failures.append(f"sender_copy: {sce}")
+
+        result = {
+            "success": True,
+            "message": f"Sent to {actual_to}",
+            "status": "sent",
+            "plan_entry_id": real_plan["id"],
+            "plan_lead_id_matched": True,
+        }
+        if sender_copy_failures:
+            result["sender_copy_status"] = "failed"
+            result["sender_copy_error"] = "; ".join(sender_copy_failures)
+        return result
 
     except smtplib.SMTPRecipientsRefused as e:
         if test_cfg["test_mode"] and test_cfg["test_email"]:

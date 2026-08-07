@@ -1,0 +1,548 @@
+{
+  "bounce_total": 34,
+  "bounce_by_type": {
+    "domain": 4,
+    "domain_invalid": 18,
+    "hard": 6,
+    "policy": 3,
+    "unknown": 1,
+    "unresolved": 2
+  },
+  "bounce_gameuniverse.com": [
+    {
+      "id": 15,
+      "lead_id": 135,
+      "email": "info@gameuniverse.com",
+      "domain": "gameuniverse.com",
+      "bounce_type": "domain_invalid",
+      "diagnostic_code": "type=MX: Host not found",
+      "bounce_received_at": "2026-08-05T14:27:14.327867+08:00"
+    },
+    {
+      "id": 18,
+      "lead_id": 135,
+      "email": "info@gameuniverse.com",
+      "domain": "gameuniverse.com",
+      "bounce_type": "domain_invalid",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@gameuniverse.com> recipient rejected. type=MX: Host not found",
+      "bounce_received_at": "2026-08-06T15:37:10.038956+08:00"
+    }
+  ],
+  "bounce_djhobbytoys.com": [
+    {
+      "id": 16,
+      "lead_id": 64,
+      "email": "info@djhobbytoys.com",
+      "domain": "djhobbytoys.com",
+      "bounce_type": "domain_invalid",
+      "diagnostic_code": "type=MX: Host not found",
+      "bounce_received_at": "2026-08-05T14:27:14.327867+08:00"
+    },
+    {
+      "id": 19,
+      "lead_id": 64,
+      "email": "info@djhobbytoys.com",
+      "domain": "djhobbytoys.com",
+      "bounce_type": "domain_invalid",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@djhobbytoys.com> recipient rejected. type=MX: Host not found",
+      "bounce_received_at": "2026-08-06T15:37:10.046584+08:00"
+    }
+  ],
+  "bounce_pulpfictioncomics.com": [
+    {
+      "id": 17,
+      "lead_id": 60,
+      "email": "info@pulpfictioncomics.com",
+      "domain": "pulpfictioncomics.com",
+      "bounce_type": "domain_invalid",
+      "diagnostic_code": "type=MX: Host not found",
+      "bounce_received_at": "2026-08-05T14:27:14.327867+08:00"
+    },
+    {
+      "id": 20,
+      "lead_id": 60,
+      "email": "info@pulpfictioncomics.com",
+      "domain": "pulpfictioncomics.com",
+      "bounce_type": "domain_invalid",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@pulpfictioncomics.com> recipient rejected. type=MX: Host not found",
+      "bounce_received_at": "2026-08-06T15:37:10.049607+08:00"
+    }
+  ],
+  "bounce_duplicate_groups": [],
+  "bounce_by_email_multi": [
+    {
+      "email": "info@pulpfictioncomics.com",
+      "cnt": 2,
+      "types": "domain_invalid,domain_invalid"
+    },
+    {
+      "email": "info@gameuniverse.com",
+      "cnt": 2,
+      "types": "domain_invalid,domain_invalid"
+    },
+    {
+      "email": "info@djhobbytoys.com",
+      "cnt": 2,
+      "types": "domain_invalid,domain_invalid"
+    }
+  ],
+  "bounce_no_lead": 0,
+  "dsn_total": 21,
+  "dsn_detail": [
+    {
+      "id": 1,
+      "final_recipient": "info@gameuniverse.com",
+      "original_recipient": "info@gameuniverse.com",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@gameuniverse.com> recipient rejected. ",
+      "status_code": "5.1.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 2,
+      "final_recipient": "info@djhobbytoys.com",
+      "original_recipient": "info@djhobbytoys.com",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@djhobbytoys.com> recipient rejected. t",
+      "status_code": "5.1.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 3,
+      "final_recipient": "info@pulpfictioncomics.com",
+      "original_recipient": "info@pulpfictioncomics.com",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@pulpfictioncomics.com> recipient rejec",
+      "status_code": "5.1.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 4,
+      "final_recipient": "info@gameuniverse.com",
+      "original_recipient": "info@gameuniverse.com",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@gameuniverse.com> recipient rejected. ",
+      "status_code": "5.1.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 5,
+      "final_recipient": "info@djhobbytoys.com",
+      "original_recipient": "info@djhobbytoys.com",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@djhobbytoys.com> recipient rejected. t",
+      "status_code": "5.1.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 6,
+      "final_recipient": "info@pulpfictioncomics.com",
+      "original_recipient": "info@pulpfictioncomics.com",
+      "diagnostic_code": "smtp; 550 5.1.1 <info@pulpfictioncomics.com> recipient rejec",
+      "status_code": "5.1.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 7,
+      "final_recipient": "info@tfaw.com",
+      "original_recipient": "info@tfaw.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 442,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 8,
+      "final_recipient": "info@kiddingaroundtoys.com",
+      "original_recipient": "info@kiddingaroundtoys.com",
+      "diagnostic_code": "smtp; The email account that you tried to reach does not exi",
+      "status_code": "5.1.3",
+      "matched_send_log_id": 444,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 9,
+      "final_recipient": "hello@gameparloursf.com",
+      "original_recipient": "hello@gameparloursf.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 445,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 10,
+      "final_recipient": "info@gamecafepaloalto.com",
+      "original_recipient": "info@gamecafepaloalto.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 446,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 11,
+      "final_recipient": "info@phoenixcomicsseattle.com",
+      "original_recipient": "info@phoenixcomicsseattle.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 447,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 12,
+      "final_recipient": "info@jpcomics.com",
+      "original_recipient": "info@jpcomics.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 448,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 13,
+      "final_recipient": "info@levelsuggames.com",
+      "original_recipient": "info@levelsuggames.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 449,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 14,
+      "final_recipient": "info@phantomoftheattic.com",
+      "original_recipient": "info@phantomoftheattic.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 450,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 15,
+      "final_recipient": "info@unclebobshobbies.com",
+      "original_recipient": "info@unclebobshobbies.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 452,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 16,
+      "final_recipient": "info@drnoscomics.com",
+      "original_recipient": "info@drnoscomics.com",
+      "diagnostic_code": "",
+      "status_code": null,
+      "matched_send_log_id": 453,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 17,
+      "final_recipient": "info@gamezonesd.com",
+      "original_recipient": "info@gamezonesd.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 454,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 18,
+      "final_recipient": "info@gamersgeekandtavern.com",
+      "original_recipient": "info@gamersgeekandtavern.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 451,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 19,
+      "final_recipient": "webmaster@thevillagetoymaker.com",
+      "original_recipient": "webmaster@thevillagetoymaker.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 455,
+      "status": "MATCHABLE_NOW (already matched)"
+    },
+    {
+      "id": 20,
+      "final_recipient": "melissa@replaytoys.com",
+      "original_recipient": "melissa@replaytoys.com",
+      "diagnostic_code": "smtp; A delivery loop was detected which causes this email t",
+      "status_code": "5.7.1",
+      "matched_send_log_id": null,
+      "status": "STILL_UNMATCHED"
+    },
+    {
+      "id": 21,
+      "final_recipient": "info@comicbookworld.com",
+      "original_recipient": "info@comicbookworld.com",
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "status_code": null,
+      "matched_send_log_id": 469,
+      "status": "MATCHABLE_NOW (already matched)"
+    }
+  ],
+  "dsn_matched_now": 0,
+  "dsn_still_unmatched": 7,
+  "dsn_duplicate_groups": [
+    {
+      "recip": "info@djhobbytoys.com",
+      "diag": "smtp; 550 5.1.1 <info@djhobbytoys.com> r",
+      "cnt": 2
+    },
+    {
+      "recip": "info@gameuniverse.com",
+      "diag": "smtp; 550 5.1.1 <info@gameuniverse.com> ",
+      "cnt": 2
+    },
+    {
+      "recip": "info@pulpfictioncomics.com",
+      "diag": "smtp; 550 5.1.1 <info@pulpfictioncomics.",
+      "cnt": 2
+    }
+  ],
+  "recovery_total": 15,
+  "recovery_by_status": {
+    "pending": 15
+  },
+  "recovery_detail": [
+    {
+      "id": 1,
+      "lead_id": 135,
+      "org_name": "Game Universe",
+      "email": "info@gameuniverse.com",
+      "domain": "gameuniverse.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@gameuniverse.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 2,
+      "lead_id": 64,
+      "org_name": "D & J Hobby & Toy",
+      "email": "info@djhobbytoys.com",
+      "domain": "djhobbytoys.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@djhobbytoys.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 3,
+      "lead_id": 60,
+      "org_name": "Pulp Fiction Comics & Games",
+      "email": "info@pulpfictioncomics.com",
+      "domain": "pulpfictioncomics.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@pulpfictioncomics.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 4,
+      "lead_id": 87,
+      "org_name": "Things From Another World",
+      "email": "info@tfaw.com",
+      "domain": "tfaw.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@tfaw.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 5,
+      "lead_id": 98,
+      "org_name": "Game Parlour",
+      "email": "hello@gameparloursf.com",
+      "domain": "gameparloursf.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "hello@gameparloursf.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 6,
+      "lead_id": 99,
+      "org_name": "Game Cafe",
+      "email": "info@gamecafepaloalto.com",
+      "domain": "gamecafepaloalto.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@gamecafepaloalto.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 7,
+      "lead_id": 100,
+      "org_name": "Phoenix Comics & Games",
+      "email": "info@phoenixcomicsseattle.com",
+      "domain": "phoenixcomicsseattle.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@phoenixcomicsseattle.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 8,
+      "lead_id": 103,
+      "org_name": "JP Comics & Games",
+      "email": "info@jpcomics.com",
+      "domain": "jpcomics.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@jpcomics.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 9,
+      "lead_id": 110,
+      "org_name": "Levels Up Games",
+      "email": "info@levelsuggames.com",
+      "domain": "levelsuggames.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@levelsuggames.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 10,
+      "lead_id": 112,
+      "org_name": "Phantom of the Attic",
+      "email": "info@phantomoftheattic.com",
+      "domain": "phantomoftheattic.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@phantomoftheattic.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 11,
+      "lead_id": 121,
+      "org_name": "Uncle Bob's Hobbies",
+      "email": "info@unclebobshobbies.com",
+      "domain": "unclebobshobbies.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@unclebobshobbies.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 12,
+      "lead_id": 130,
+      "org_name": "Gamezone",
+      "email": "info@gamezonesd.com",
+      "domain": "gamezonesd.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@gamezonesd.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 13,
+      "lead_id": 120,
+      "org_name": "Gamers Geek and Tavern",
+      "email": "info@gamersgeekandtavern.com",
+      "domain": "gamersgeekandtavern.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@gamersgeekandtavern.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 14,
+      "lead_id": 760,
+      "org_name": "Village Toymaker",
+      "email": "webmaster@thevillagetoymaker.com",
+      "domain": "thevillagetoymaker.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "webmaster@thevillagetoymaker.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    },
+    {
+      "id": 15,
+      "lead_id": 771,
+      "org_name": "Comic Book World Florence",
+      "email": "info@comicbookworld.com",
+      "domain": "comicbookworld.com",
+      "reason": "domain_invalid: MX Host not found / 域名无效",
+      "status": "pending",
+      "lead_exists": true,
+      "lead_status": "bounced",
+      "lead_email": "info@comicbookworld.com",
+      "lead_email_sendable": 0,
+      "recovery_required": 1,
+      "has_alt_email": false,
+      "alt_email": null
+    }
+  ],
+  "recovery_duplicate_tasks": []
+}

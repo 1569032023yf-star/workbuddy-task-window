@@ -8,25 +8,58 @@ from datetime import datetime
 from outreach_control import build_final_plan_entries
 
 
-PLAN_COLUMNS = (
-    "plan_id, lead_id, recipient_email, company_name, customer_type, lead_segment, template_id, "
-    "source_city, source_state, evidence_url, hygiene_passed_at, message_type, outreach_batch_date, "
-    "planned_sequence, subject, body_text, body_html"
+# 基础列（不含自增 id 与渲染元数据列）
+_BASE_ENTRY_FIELDS = (
+    "lead_id", "recipient_email", "company_name", "customer_type", "lead_segment", "template_id",
+    "source_city", "source_state", "evidence_url", "hygiene_passed_at", "message_type",
+    "outreach_batch_date", "planned_sequence", "subject", "body_text", "body_html",
 )
+
+# P0 渲染元数据列：表缺少时自动跳过，保持向后兼容
+RENDER_META_COLUMNS = (
+    "template_key", "content_sha256", "renderer_version", "renderer_sha256",
+    "rendered_subject", "rendered_text_body", "rendered_html_body",
+)
+
+
+def _table_columns(conn: sqlite3.Connection) -> set[str]:
+    rows = conn.execute("PRAGMA table_info(final_send_plan)").fetchall()
+    return {r[1] for r in rows}
+
+
+def _render_meta_values(entry: dict, lead_by_id: dict) -> dict:
+    """从 entry/lead 提取渲染元数据；lead 缺字段时回退为空串。"""
+    lead = lead_by_id.get(entry["lead_id"], {}) or {}
+    return {
+        "template_key": lead.get("template_key") or entry.get("template_id") or "",
+        "content_sha256": lead.get("content_sha256") or "",
+        "renderer_version": lead.get("renderer_version") or "",
+        "renderer_sha256": lead.get("renderer_sha256") or "",
+        "rendered_subject": entry.get("subject") or "",
+        "rendered_text_body": entry.get("body_text") or "",
+        "rendered_html_body": entry.get("body_html") or "",
+    }
 
 
 def create_plan(conn: sqlite3.Connection, leads: list[dict], batch_date: str, message_type: str) -> str:
     entries = build_final_plan_entries(leads, batch_date, message_type)
     plan_id = f"{batch_date}:{message_type}:{uuid.uuid4().hex[:10]}"
-    values = [tuple([plan_id] + [entry[key] for key in (
-        "lead_id", "recipient_email", "company_name", "customer_type", "lead_segment", "template_id",
-        "source_city", "source_state", "evidence_url", "hygiene_passed_at", "message_type",
-        "outreach_batch_date", "planned_sequence", "subject", "body_text", "body_html",
-    )]) for entry in entries]
-    if not values:
+    if not entries:
         return ""
+    # 渲染元数据列：表缺列则跳过（向后兼容），template_id 保持原值
+    existing = _table_columns(conn)
+    meta_cols = [c for c in RENDER_META_COLUMNS if c in existing]
+    all_cols = ("plan_id",) + _BASE_ENTRY_FIELDS + tuple(meta_cols)
+    lead_by_id = {lead.get("id"): lead for lead in leads}
+    rows = []
+    for entry in entries:
+        row = [plan_id] + [entry[field] for field in _BASE_ENTRY_FIELDS]
+        meta = _render_meta_values(entry, lead_by_id)
+        row += [meta[c] for c in meta_cols]
+        rows.append(tuple(row))
     conn.executemany(
-        f"INSERT INTO final_send_plan ({PLAN_COLUMNS}) VALUES ({','.join('?' for _ in range(17))})", values
+        f"INSERT INTO final_send_plan ({','.join(all_cols)}) VALUES ({','.join('?' for _ in all_cols)})",
+        rows,
     )
     return plan_id
 

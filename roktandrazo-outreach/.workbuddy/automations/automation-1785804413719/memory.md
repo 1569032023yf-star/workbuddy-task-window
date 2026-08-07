@@ -1,39 +1,37 @@
 # BD Production Preflight — Execution Memory
 
-## 2026-08-05 21:50 CST
+## 2026-08-06 21:50 CST
 
-**Verdict: BLOCKED — Batch Already Completed** — 7 PASS, 4 FAIL
+**Verdict: BLOCKED — No Batch Data** — 4 PASS, 3 FAIL, 3 N/A
 
 ### Summary
-Today's batch `new_outreach_20260805_et1000` was **already fully processed** earlier today:
-- 20/20 plan entries sent via SMTP
-- Authorization consumed (preflight originally passed)
-- Send log confirms 20 deliveries
+Today's batch `new_outreach_20260806_et1000` has **zero plan entries and zero authorization** in the database. The pre_send_plan script ran at 21:26 CST and set `preflight_status=no_batch` (plan_count=0), indicating no frozen snapshot was available for today.
 
-### Failures (expected for completed batch)
-1. **No planned entries** — all 20 entries already sent, status=`sent`
-2. **No active authorization** — auth consumed
-3. **No auth for entry count check** — follows from #2
-4. **Poller heartbeat key mismatch** — status file uses `last_heartbeat`, preflight script expects `last_heartbeat_at`. Last actual heartbeat: 2026-08-05 18:42 CST (~3h ago)
+### Failures (3)
+1. **NO_PLAN**: `final_send_plan` has 0 entries for 2026-08-06. Frozen snapshot likely missing.
+2. **NO_AUTH**: No `send_authorizations` record for this batch.
+3. **POLLER_STALE**: Last heartbeat 2026-08-06 16:35 CST (~5h ago, threshold 15min). Poller may have died.
 
-### Passing Checks (7)
-- Batch ID: new_outreach_20260805_et1000
-- Organization duplicates: 0 (batch already sent, 0 planned)
-- Email duplicates: 0 (batch already sent, 0 planned)
-- Template SHAs: both match (retail=ccb51505, custom=5893dbc9)
-- Ops Center: HTTP 200
-- Old plans/auths: **CLEAN** — yesterday's 08-03 blockers resolved
-- Unknown templates: none
+### Passing Checks (4)
+- Batch ID: new_outreach_20260806_et1000 ✓
+- Template SHAs: retail=ccb51505, custom=5893dbc9 ✓
+- Ops Center: HTTP 200 ✓
+- Old plans/auths: CLEAN ✓
 
-### Yesterday's Blockers Resolved
-- Old 2026-08-03 plans: cleaned up
-- Old auth_2026-08-03_ab777bd5: revoked
-- Poller stale: file exists but key mismatch issue persists
+### N/A (3)
+- Auth=Plan count, Org duplicates, Email duplicates — no planned entries to check.
 
 ### Actions Taken
-- Set preflight_status = "failed" (no active auth to update — auth already consumed)
-- SMTP stays at 0 (no planned work remains)
+- Set `preflight_status = "failed"` in system_config
+- Wrote full result to `output/preflight_result.json`
+- SMTP stays at 0 (no planned work exists)
+
+### Root Cause Analysis
+- `preflight_plan_count=0` suggests the 21:10 freeze step (`output/frozen_new_outreach_20260806_et1000.json`) either didn't run or produced no candidates
+- Poller died at ~16:35 CST — needs restart
+- No leads qualified for today's outreach batch (possible pool exhaustion or filter too strict)
 
 ### To Resolve
-- Fix poller status key: change `last_heartbeat` → `last_heartbeat_at` in bd_ops_poller.py (or preflight to read both keys)
-- Restart poller to refresh heartbeat
+- Restart bd_ops_poller (died ~5h ago)
+- Check if freeze snapshot was generated at 21:10
+- Verify lead pool has unsent candidates in TN/AR/KY

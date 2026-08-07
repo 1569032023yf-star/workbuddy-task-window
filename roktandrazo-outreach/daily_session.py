@@ -39,7 +39,7 @@ import os
 import random
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from bd_db import (
@@ -50,6 +50,10 @@ from bd_db import (
 
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
 os.makedirs(OUT_DIR, exist_ok=True)
+
+# 生产调度权威时区：Asia/Shanghai（UTC+8，无 DST）。
+# 客户 IANA 时区只用于报告/分析，不用于主调度。
+ASIA_SH = timezone(timedelta(hours=8))
 
 # Session constants
 WINDOW_START = 23.0    # 23:00 Asia/Shanghai
@@ -124,7 +128,7 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True) -> dict:
 
 def _persist_final_plan_success(conn, entry: dict, lead: dict) -> None:
     """Commit the immutable-plan result, history, and lead state together."""
-    now = datetime.now().isoformat()
+    now = datetime.now(ASIA_SH).isoformat()
     if entry['message_type'] == 'follow_up':
         conn.execute("UPDATE leads SET followup_count=COALESCE(followup_count,0)+1, last_followup_at=? WHERE id=?",
                      (now, entry['lead_id']))
@@ -240,7 +244,7 @@ def is_in_window() -> bool:
 
 def is_window_about_to_close(batch_schedule_index: int) -> bool:
     """Check if there's enough time left for the next batch."""
-    now = datetime.now()
+    now = datetime.now(ASIA_SH)
     current_hour = now.hour + now.minute / 60.0
     if batch_schedule_index < len(BATCH_SCHEDULE):
         batch_end_hour = float(BATCH_SCHEDULE[batch_schedule_index]['end'].replace(':', '.'))
@@ -251,7 +255,7 @@ def is_window_about_to_close(batch_schedule_index: int) -> bool:
 
 def get_today_sent_count() -> int:
     """Count how many emails were sent today."""
-    today = datetime.now().strftime('%Y-%m-%d')
+    today = datetime.now(ASIA_SH).strftime('%Y-%m-%d')
     conn = get_db()
     c = conn.cursor()
     c.execute("SELECT COUNT(*) FROM send_log WHERE status='sent' AND date(sent_at) = ?", (today,))
@@ -460,7 +464,7 @@ def run_scan(dry_run: bool, label: str) -> dict:
 
 def generate_daily_report(dry_run: bool, session_results: dict, daily_target: int = DEFAULT_DAILY_TARGET):
     """Generate the 12:00 daily report and save to file."""
-    today = datetime.now().strftime('%Y-%m-%d')
+    today = datetime.now(ASIA_SH).strftime('%Y-%m-%d')
     report_path = os.path.join(OUT_DIR, f'daily_report_{today}.md')
 
     total_sent = session_results.get('total_sent', 0)
@@ -654,7 +658,7 @@ def main():
     # --- Window check (skip for catchup mode) ---
     if not args.force and not catchup:
         if not is_in_window():
-            now_str = datetime.now().strftime('%H:%M')
+            now_str = datetime.now(ASIA_SH).strftime('%H:%M')
             print(f"\n[WINDOW] Current time: {now_str}")
             print(f"[WINDOW] Operator window: 09:00 - 13:00 Asia/Shanghai")
             print(f"[WINDOW] Outside window — not sending.")
@@ -696,7 +700,7 @@ def main():
     def is_past_deadline():
         if deadline_str:
             try:
-                now = datetime.now()
+                now = datetime.now(ASIA_SH)
                 deadline_parts = deadline_str.split()[0].split(':')
                 dl_hour = int(deadline_parts[0])
                 dl_min = int(deadline_parts[1])

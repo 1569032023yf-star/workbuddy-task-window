@@ -245,7 +245,11 @@ def get_template_sha256(template_key: str) -> str:
     return _TEMPLATE_SHA256.get(template_key, "UNKNOWN")
 
 
-FOLLOW_UP_ENABLED = False
+import os as _os_followup
+
+# Follow-up 发送开关由系统配置控制（环境变量 BD_FOLLOW_UP_ENABLED，默认关闭）。
+# 不在模板模块永久硬编码，业务规则由系统配置/编排层决定。
+FOLLOW_UP_ENABLED = _os_followup.environ.get("BD_FOLLOW_UP_ENABLED", "false").lower() == "true"
 
 # ── Forbidden inline phrases (fail-closed) ───────────────
 _INLINE_FORBIDDEN_PHRASES = [
@@ -306,6 +310,7 @@ FOLLOWUP_BODY_HTML = """<p>Hi {greeting},</p>
 
 # ── Tracking configuration (env-driven, default OFF) ──
 import os
+import re
 import secrets
 import hashlib
 import hmac as _hmac
@@ -320,7 +325,9 @@ TRACKING_BASE_URL = os.environ.get(
     "EMAIL_TRACKING_PUBLIC_BASE_URL",
     "https://roktandrazo-email-tracker.1569032023yf.workers.dev"
 )
-TRACKING_PEPPER = os.environ.get("EMAIL_TRACKING_PEPPER", "tracking-pilot-20260728")
+# P7：TRACKING_PEPPER 不再硬编码默认值；优先 BD_TRACKING_PEPPER，
+# 兼容旧的 EMAIL_TRACKING_PEPPER；两者都为空时 _hmac 相关函数 fail-closed。
+TRACKING_PEPPER = os.environ.get("BD_TRACKING_PEPPER") or os.environ.get("EMAIL_TRACKING_PEPPER") or ""
 
 # Designated test recipients — only these emails get pixel tracking
 TRACKING_TEST_EMAILS = set(
@@ -339,6 +346,12 @@ PIXEL_UI_LABEL = "检测到邮件图片加载"
 
 
 def _make_token_hash(token: str) -> str:
+    # P7：pepper 为空 → fail-closed（抛错），不能用空串/硬编码继续工作
+    if not TRACKING_PEPPER:
+        raise RuntimeError(
+            "TRACKING_PEPPER 未配置：请设置环境变量 BD_TRACKING_PEPPER（或 EMAIL_TRACKING_PEPPER），"
+            "追踪 token 签名不可用（fail-closed）。"
+        )
     return _hmac.new(TRACKING_PEPPER.encode(), token.encode(), hashlib.sha256).hexdigest()
 
 
@@ -373,6 +386,39 @@ def _pixel_html_for_email(email: str) -> str:
         return ""
     token = secrets.token_urlsafe(24)
     return PIXEL_HTML.format(token=token)
+
+
+# ── 排版压缩渲染器（P0：邮件排版恢复）────────────────────
+# 大空白根因：{pixel} 占位在追踪关闭时替换为空串留下 4 个空行，
+#   SIGNATURE_TEXT 尾部还有 2 个硬编码空行，合计 text/plain 的
+#   署名/退订被 6 个空行推挤。此渲染器只对 format 后的成品做排版
+#   压缩，不改动任何模板常量（保证 _TEMPLATE_SHA256 不变）。
+RENDERER_VERSION = "email_html_compact_v1"
+RENDERER_SHA256 = None  # 底部 _compute_renderer_hash() 填充
+
+
+def _compact_render(body_text: str, body_html: str) -> tuple[str, str]:
+    """对 format 后的成品做排版压缩，返回 (压缩后的 text, 压缩后的 html)。
+
+    - text: 用 re.sub(r'\\n{3,}', '\\n\\n', body_text) 把连续 3+ 换行压成
+      1 个空行（正文→署名、署名→退订各恰 1 空行），再 strip。
+    - html: 用 re.sub(r'\\n{2,}', '\\n', body_html) 压缩空行（HTML 空行
+      渲染无影响，但保持源码紧凑），再 strip。
+    - 若 html 含 tracking pixel（按 src 特征判定），必须恰好 1 个。
+    """
+    compact_text = re.sub(r"\n{3,}", "\n\n", body_text).strip()
+    compact_html = re.sub(r"\n{2,}", "\n", body_html).strip()
+
+    # tracking pixel 的 src 特征（PIXEL_HTML 的 URL 前缀）
+    pixel_src_feature = f"{TRACKING_BASE_URL}/o/"
+    if pixel_src_feature in body_html:
+        pixel_count = compact_html.count(pixel_src_feature)
+        if pixel_count != 1:
+            raise ValueError(
+                f"RENDERER_REJECTED: tracking pixel count={pixel_count}, "
+                f"expected exactly 1 in html body"
+            )
+    return compact_text, compact_html
 
 
 def _safety_check(text: str) -> list:
@@ -424,6 +470,9 @@ def get_email_for_lead(lead: dict, template_key: str = None, tracking: dict = No
     
     body_text = tpl["body_text"].format(greeting=greeting, pixel="", signature=tpl["signature_text"])
     body_html = tpl["body_html"].format(greeting=greeting, pixel=pixel, signature=tpl["signature_html"])
+
+    # 排版压缩：消除 {pixel} 空占位 + 署名尾部硬编码空行造成的大空白
+    body_text, body_html = _compact_render(body_text, body_html)
     
     for label, content in [("text", body_text), ("html", body_html)]:
         issues = _safety_check(content)
@@ -442,10 +491,15 @@ def get_email_for_lead(lead: dict, template_key: str = None, tracking: dict = No
         "template_key": template_key,
         "template_status": tpl["status"],
         "template_sha256": _TEMPLATE_SHA256[template_key],
+        "content_sha256": _TEMPLATE_SHA256[template_key],
+        "renderer_version": RENDERER_VERSION,
+        "renderer_sha256": RENDERER_SHA256,
         "subject": subject,
-        "body_text": body_text.strip(),
-        "body_html": body_html.strip(),
-        "body_html_no_pixel": tpl["body_html"].format(greeting=greeting, pixel="", signature=tpl["signature_html"]).strip(),
+        "body_text": body_text,
+        "body_html": body_html,
+        "body_html_no_pixel": _compact_render(
+            "", tpl["body_html"].format(greeting=greeting, pixel="", signature=tpl["signature_html"])
+        )[1],
         "has_pixel": bool(pixel),
         "routing_reason": "manual_override" if lead.get("template_override") else "store_type",
         "store_type": lead.get("store_type", ""),
@@ -479,6 +533,18 @@ def get_followup_email_for_lead(lead: dict, original_subject: str = "",
     else:
         pixel = _pixel_html_for_email(email_addr)
 
+    # tracking 新 token：绝不复用首封 token。
+    # 优先使用调用方 prepare_tracking_for_lead 生成的全新 tracking；
+    # 未传入时现场生成全新 token（保证每次 follow-up 独立）。
+    if tracking and tracking.get("token"):
+        tracking_token = tracking["token"]
+        tracking_token_hash = tracking.get("token_hash", "")
+        tracking_message_id = tracking.get("tracking_message_id", "")
+    else:
+        tracking_token = secrets.token_urlsafe(24)
+        tracking_token_hash = ""
+        tracking_message_id = ""
+
     # Subject: Re: <original>
     followup_subject = f"Re: {original_subject}" if original_subject else "Following up"
 
@@ -500,6 +566,10 @@ def get_followup_email_for_lead(lead: dict, original_subject: str = "",
         # Threading headers — set by the sender as MIME headers
         "in_reply_to": original_message_id,
         "references": original_message_id,
+        # 独立 tracking token（不复用首封）
+        "tracking_token": tracking_token,
+        "tracking_token_hash": tracking_token_hash,
+        "tracking_message_id": tracking_message_id,
         "email_type": "follow_up",
     }
 
@@ -511,6 +581,11 @@ def apply_email_to_lead(lead: dict, template_key: str = None, tracking: dict = N
     lead["email_body"] = email_data["body_text"]
     lead["email_body_html"] = email_data["body_html"]
     lead["email_body_html_no_pixel"] = email_data["body_html_no_pixel"]
+    # P0 渲染元数据：供 final_send_plan 落库审计
+    lead["template_key"] = email_data["template_key"]
+    lead["content_sha256"] = email_data["content_sha256"]
+    lead["renderer_version"] = email_data["renderer_version"]
+    lead["renderer_sha256"] = email_data["renderer_sha256"]
     if tracking:
         lead["_tracking_token"] = tracking.get("token", "")
         lead["_tracking_token_hash"] = tracking.get("token_hash", "")
@@ -584,6 +659,15 @@ def preview_email(lead: dict, conn=None) -> str:
 
     lines.append("=" * 60)
     return "\n".join(lines)
+
+
+# ── Renderer 指纹（模块加载时填充）─────────────────────
+def _compute_renderer_hash() -> str:
+    """对 _compact_render 字节码算 sha256[:8]；渲染器实现变化时指纹自动变化。"""
+    return _hashlib.sha256(_compact_render.__code__.co_code).hexdigest()[:8]
+
+
+RENDERER_SHA256 = _compute_renderer_hash()
 
 
 if __name__ == "__main__":

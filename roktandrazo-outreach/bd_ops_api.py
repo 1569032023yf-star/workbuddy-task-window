@@ -1,9 +1,10 @@
 """BD Operations Center API — read-only stats for the dashboard.
 All functions take a db connection factory and return JSON-safe dicts."""
+import importlib.util
 import json, os, sqlite3, urllib.request, time
 from datetime import datetime, timedelta, timezone
 
-CST = timezone(timedelta(hours=8))
+ASIA_SH = timezone(timedelta(hours=8))
 TRACKING_BASE = "https://roktandrazo-email-tracker.1569032023yf.workers.dev"
 
 _cache = {}
@@ -21,12 +22,12 @@ def _set_cache(key, data):
     _cache[key] = {"d": data, "t": time.time()}
 
 
-def _now_cst():
-    return datetime.now(CST)
+def _now_shanghai():
+    return datetime.now(ASIA_SH)
 
 
 def _today_str():
-    return _now_cst().strftime("%Y-%m-%d")
+    return _now_shanghai().strftime("%Y-%m-%d")
 
 
 # ═══════════════════════════════════════════════
@@ -36,7 +37,8 @@ def _today_str():
 def _fetch_d1_sql(sql: str):
     """Run SQL against Cloudflare D1 via Worker internal API."""
     try:
-        token = os.environ.get("DASHBOARD_API_KEY", "roktandrazo-dashboard-key-2026")
+        # P7：不再有硬编码默认 key；为空时 Worker 鉴权失败 → 返回 None → 功能 unavailable（fail-closed）
+        token = os.environ.get("DASHBOARD_API_KEY", "")
         req = urllib.request.Request(
             f"{TRACKING_BASE}/internal/query",
             data=json.dumps({"sql": sql}).encode(),
@@ -229,27 +231,93 @@ def get_inventory(db_path: str):
 # Search progress
 # ═══════════════════════════════════════════════
 
-def get_search_progress():
-    result = {"active_city": "Nashville", "active_state": "TN",
-              "city_status": "active_partial_webfetch_collection",
-              "queries_total": 22, "queries_executed": 22, "queries_remaining": [],
-              "current_query": None, "current_source": None,
-              "raw_records": 0, "unique_locations": 0, "unique_organizations": 0}
+def get_search_progress(db_path: str):
+    """搜索进度：从 system_config + 城市队列表动态读取，绝不硬编码城市/查询数。
+
+    - active_city ← system_config.active_retail_city
+    - active_state ← system_config.active_retail_state 或 active_city_state
+    - queries_* ← lead_discovery_query_state（按 retail_city_queue 定位城市）；
+      城市无查询记录时回退 system_config 的 search_queries_* JSON 列表。
+    - 读取不到 → available=false, status='unknown'（fail-closed，不回退默认城市）。
+    """
+    result = {
+        "available": False, "status": "unknown",
+        "active_city": None, "active_state": None, "city_status": None,
+        "queries_total": 0, "queries_executed": 0, "queries_remaining": [],
+        "current_query": None, "current_source": None,
+        "raw_records": 0, "unique_locations": 0, "unique_organizations": 0,
+    }
+    conn = None
     try:
-        with open("data/webfetch_nashville_dashboard.json", "r") as f:
-            d = json.load(f)
-        gc = d.get("G_CURSOR", {})
-        disc = d.get("A_FILE_LEVEL_DISCOVERY", {})
-        result["queries_executed"] = gc.get("query_index", 22)
-        result["queries_remaining"] = gc.get("remaining_queries", [])
-        result["current_query"] = gc.get("next_query")
-        result["unique_locations"] = disc.get("unique_locations", 39)
-        result["unique_organizations"] = disc.get("unique_organizations", 33)
-        result["raw_records"] = d.get("A_FILE_LEVEL_DISCOVERY", {}).get("raw_records",
-                                    gc.get("raw_records", 58))
-        result["updated_at"] = d.get("generated_at", gc.get("timestamp", ""))
+        conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+        conn.row_factory = sqlite3.Row
+        c = conn.cursor()
+
+        def _cfg(key):
+            r = c.execute("SELECT value FROM system_config WHERE key=?", (key,)).fetchone()
+            return r[0] if r else None
+
+        active_city = _cfg("active_retail_city")
+        active_state = _cfg("active_retail_state") or _cfg("active_city_state")
+        result["active_city"] = active_city
+        result["active_state"] = active_state
+
+        # 城市队列表：优先按 system_config 城市定位；否则取非 QUEUED 的最高优先级城市。
+        queue_row = None
+        if active_city:
+            queue_row = c.execute(
+                "SELECT * FROM retail_city_queue WHERE city=? ORDER BY priority LIMIT 1",
+                (active_city,)).fetchone()
+        if queue_row is None:
+            queue_row = c.execute(
+                "SELECT * FROM retail_city_queue WHERE status != 'QUEUED' "
+                "ORDER BY priority LIMIT 1").fetchone()
+        if queue_row is not None:
+            result["city_status"] = queue_row["status"]
+
+        # 查询计数：优先 lead_discovery_query_state 按城市定位；无则回退 search_queries_* 配置。
+        query_rows = []
+        if queue_row is not None:
+            query_rows = c.execute(
+                "SELECT * FROM lead_discovery_query_state WHERE active_city_id=? ORDER BY id",
+                (queue_row["id"],)).fetchall()
+        if not query_rows:
+            q_list = _cfg("search_queries")
+            if not q_list:
+                for r in c.execute(
+                        "SELECT value FROM system_config WHERE key LIKE 'search_queries_%' "
+                        "ORDER BY key LIMIT 1"):
+                    q_list = r["value"]
+                    break
+            if q_list:
+                try:
+                    q_list = json.loads(q_list)
+                except Exception:
+                    q_list = None
+            if isinstance(q_list, list):
+                query_rows = [{"query_family": q, "status": "pending"} for q in q_list]
+
+        if query_rows:
+            total = len(query_rows)
+            pending_flags = ("pending", "queued")
+            executed = sum(1 for r in query_rows if r["status"] not in pending_flags)
+            remaining = [r["query_family"] for r in query_rows if r["status"] in pending_flags]
+            result.update({
+                "queries_total": total,
+                "queries_executed": executed,
+                "queries_remaining": remaining,
+                "current_query": remaining[0] if remaining else query_rows[0]["query_family"],
+                "current_source": queue_row["active_source"] if queue_row is not None else None,
+                "available": True,
+                "status": "in_progress" if remaining else "complete",
+            })
     except Exception:
-        pass
+        # fail-closed：任何读取异常都不回退默认城市/查询数
+        result["available"] = False
+        result["status"] = "unknown"
+    finally:
+        if conn is not None:
+            conn.close()
     return result
 
 
@@ -292,8 +360,127 @@ def get_final_plan(db_path: str):
 # Health
 # ═══════════════════════════════════════════════
 
+def get_delivery_outcome_summary(db_path: str):
+    """从 bounce_log 分类统计 + unmatched_dsn + reply_log 生成投递结果摘要。
+
+    SMTP Accepted 只统计 send_log.status='sent'，不因 bounce 减少；
+    bounced 邮件视为「已发送但投递失败」，单独在分类中展示。
+    """
+    conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    c = conn.cursor()
+    try:
+        smtp_all = c.execute("SELECT COUNT(*) FROM send_log WHERE status='sent'").fetchone()[0]
+        smtp_30d = c.execute(
+            "SELECT COUNT(*) FROM send_log WHERE status='sent' AND substr(sent_at,1,10) >= ?",
+            ((_now_shanghai() - timedelta(days=30)).strftime("%Y-%m-%d"),)).fetchone()[0]
+
+        raw = {}
+        for r in c.execute("SELECT bounce_type, COUNT(*) FROM bounce_log GROUP BY bounce_type"):
+            raw[r[0]] = r[1]
+        domain_invalid = raw.get("domain_invalid", 0) + raw.get("domain", 0)
+        mailbox_invalid = raw.get("mailbox_invalid", 0) + raw.get("mailbox", 0)
+        policy_bounce = raw.get("policy_bounce", 0) + raw.get("policy", 0)
+        soft_bounce = raw.get("soft_bounce", 0) + raw.get("soft", 0)
+        hard_bounce = raw.get("hard", 0)
+        other_bounce = sum(v for k, v in raw.items()
+                           if k not in ("domain_invalid", "domain", "mailbox_invalid", "mailbox",
+                                        "policy_bounce", "policy", "soft_bounce", "soft", "hard"))
+
+        unmatched_dsn = c.execute("SELECT COUNT(*) FROM unmatched_dsn").fetchone()[0]
+        if unmatched_dsn == 0:
+            row = c.execute("SELECT value FROM system_config WHERE key='last_imap_scan_result'").fetchone()
+            if row and row[0]:
+                try:
+                    scan = json.loads(row[0])
+                    unmatched_dsn = int(scan.get("unmatched_dsn") or 0)
+                except Exception:
+                    pass
+
+        reply_total = c.execute("SELECT COUNT(*) FROM reply_log").fetchone()[0]
+        auto_reply = c.execute(
+            "SELECT COUNT(*) FROM reply_log WHERE reply_type LIKE '%auto%' "
+            "OR reply_type LIKE '%ooo%' OR reply_type LIKE '%autoreply%' "
+            "OR reply_type LIKE '%notification%'").fetchone()[0]
+        human_reply = reply_total - auto_reply
+
+        classified_total = (domain_invalid + mailbox_invalid + policy_bounce + soft_bounce
+                            + hard_bounce + other_bounce + unmatched_dsn
+                            + human_reply + auto_reply)
+        outcome_unresolved = max(0, smtp_all - classified_total)
+    finally:
+        conn.close()
+
+    return {
+        "smtp_accepted_all": smtp_all,
+        "smtp_accepted_30d": smtp_30d,
+        "domain_invalid": domain_invalid,
+        "mailbox_invalid": mailbox_invalid,
+        "policy_bounce": policy_bounce,
+        "soft_bounce": soft_bounce,
+        "hard_bounce": hard_bounce,
+        "other_bounce": other_bounce,
+        "unmatched_dsn": unmatched_dsn,
+        "human_reply": human_reply,
+        "auto_reply": auto_reply,
+        "classified_total": classified_total,
+        "outcome_unresolved": outcome_unresolved,
+    }
+
+
+def get_data_freshness(db_path: str):
+    """读取 system_config 中的扫描/同步时间，返回数据新鲜度状态。"""
+    conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    c = conn.cursor()
+    try:
+        def cfg(key):
+            r = c.execute("SELECT value FROM system_config WHERE key=?", (key,)).fetchone()
+            return r[0] if r else None
+
+        last_bounce_scan_at = cfg("last_bounce_scan_at")
+        if not last_bounce_scan_at:
+            try:
+                poller = os.path.join(os.path.dirname(__file__), "output", "bd_ops_poller_status.json")
+                with open(poller, "r", encoding="utf-8") as f:
+                    p = json.load(f)
+                last_bounce_scan_at = (
+                    p.get("jobs", {}).get("bounce", {}).get("last_success_at")
+                    or p.get("last_heartbeat"))
+            except Exception:
+                pass
+        last_reply_scan_at = (cfg("last_reply_scan_at") or cfg("last_imap_scan_at")
+                              or last_bounce_scan_at)
+        sync_success_at = cfg("sync_0845_last_success_at")
+
+        level, label = "red", "DATA STALE"
+        age_minutes = None
+        if last_bounce_scan_at:
+            try:
+                dt = datetime.fromisoformat(str(last_bounce_scan_at))
+            except ValueError:
+                dt = None
+            if dt:
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=ASIA_SH)
+                age_minutes = int((_now_shanghai() - dt.astimezone(ASIA_SH)).total_seconds() // 60)
+                if age_minutes < 90:
+                    level, label = "green", "FRESH"
+                elif age_minutes <= 24 * 60:
+                    level, label = "yellow", "AGING"
+    finally:
+        conn.close()
+
+    return {
+        "last_bounce_scan_at": last_bounce_scan_at,
+        "last_reply_scan_at": last_reply_scan_at,
+        "sync_0845_last_success_at": sync_success_at,
+        "level": level,
+        "badge_label": label,
+        "age_minutes": age_minutes,
+    }
+
+
 def get_health(db_path: str):
-    result = {"components": {}, "generated_at": _now_cst().isoformat()}
+    result = {"components": {}, "generated_at": _now_shanghai().isoformat()}
 
     # Review Server
     result["components"]["review_server"] = {"status": "healthy", "port": 8765}
@@ -334,9 +521,19 @@ def get_health(db_path: str):
         result["manual_pause"] = "unknown"
 
     # Sending window
-    h = _now_cst().hour
+    h = _now_shanghai().hour
     result["in_send_window"] = 23 <= h or h < 1
-    result["current_time_cst"] = _now_cst().strftime("%Y-%m-%d %H:%M:%S")
+    result["current_time_shanghai"] = _now_shanghai().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Delivery Outcome 与数据新鲜度（保持原有字段不动，只新增）
+    try:
+        result["delivery_outcome"] = get_delivery_outcome_summary(db_path)
+    except Exception as e:
+        result["delivery_outcome"] = {"error": str(e)}
+    try:
+        result["data_freshness"] = get_data_freshness(db_path)
+    except Exception as e:
+        result["data_freshness"] = {"error": str(e)}
 
     return result
 
@@ -349,7 +546,7 @@ def get_data_quality(db_path: str):
     conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
     c = conn.cursor()
     warnings = []
-    now = _now_cst()
+    now = _now_shanghai()
 
     # organization_key empty
     n = c.execute("SELECT COUNT(*) FROM leads WHERE (organization_key IS NULL OR organization_key='') AND status NOT IN ('do_not_contact','review_rejected')").fetchone()[0]
@@ -386,6 +583,75 @@ def get_data_quality(db_path: str):
 
 
 # ═══════════════════════════════════════════════
+# P0 时区增强 — 发送预览 / 发送结果
+# ═══════════════════════════════════════════════
+
+_dashboard_mod = None
+
+
+def _load_dashboard_module():
+    """加载 bd_dashboard_v3.2.py（文件名含点号，须用 importlib）。"""
+    global _dashboard_mod
+    if _dashboard_mod is None:
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bd_dashboard_v3.2.py")
+        spec = importlib.util.spec_from_file_location("bd_dashboard_v3_2", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _dashboard_mod = mod
+    return _dashboard_mod
+
+
+def _ro_conn(db_path: str):
+    """只读连接 + Row factory，复用 bd_dashboard_v3.2 的计算函数。"""
+    conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def get_schedule_preview(db_path: str):
+    """发送预览：时区统计 + final_send_plan planned 行的预览明细。"""
+    mod = _load_dashboard_module()
+    conn = _ro_conn(db_path)
+    try:
+        stats = mod.compute_timezone_stats(conn)
+        entries = mod.compute_schedule_preview(conn)
+    finally:
+        conn.close()
+    return {"stats": stats, "entries": entries}
+
+
+def get_send_results_tz(db_path: str):
+    """发送结果：send_log 最近 30 天 + 时区列 + Delivery Outcome。"""
+    mod = _load_dashboard_module()
+    conn = _ro_conn(db_path)
+    try:
+        entries = mod.compute_send_results_tz(conn)
+    finally:
+        conn.close()
+    return {"entries": entries}
+
+
+def get_schedule_preview_summary(db_path: str):
+    """紧凑摘要：时区分布 + UNRESOLVED 数 + 当地 10:00 对应的 China 时间样例。"""
+    mod = _load_dashboard_module()
+    conn = _ro_conn(db_path)
+    try:
+        stats = mod.compute_timezone_stats(conn)
+        entries = mod.compute_schedule_preview(conn)
+    finally:
+        conn.close()
+    china_samples = [e.get("scheduled_china_time") for e in entries if e.get("scheduled_china_time")]
+    return {
+        "timezone_distribution": stats.get("distribution", {}),
+        "resolved": stats.get("resolved", 0),
+        "unresolved": stats.get("unresolved", 0),
+        "unresolved_entries": sum(1 for e in entries if e.get("timezone_unresolved")),
+        "china_time_sample": china_samples[0] if china_samples else None,
+        "sample_count": len(china_samples),
+    }
+
+
+# ═══════════════════════════════════════════════
 # Combined summary
 # ═══════════════════════════════════════════════
 
@@ -394,13 +660,15 @@ def get_ops_summary(db_path: str):
         try: return fn()
         except Exception as e: return default if not isinstance(default, dict) else {"error": str(e), **default}
     return {
-        "generated_at": _now_cst().isoformat(),
+        "generated_at": _now_shanghai().isoformat(),
         "timezone": "Asia/Shanghai",
         "today": safe(lambda: get_today_stats(db_path), {"date": _today_str()}),
         "tracking": safe(lambda: get_tracking_stats(), {"available": False}),
         "inventory": safe(lambda: get_inventory(db_path), {}),
-        "search": safe(lambda: get_search_progress(), {}),
+        "search": safe(lambda: get_search_progress(db_path), {}),
         "final_plan": safe(lambda: get_final_plan(db_path), {"entries": []}),
         "health": safe(lambda: get_health(db_path), {"components": {}}),
         "data_quality": safe(lambda: get_data_quality(db_path), {"warnings": []}),
+        "schedule_preview": safe(lambda: get_schedule_preview(db_path), {"entries": []}),
+        "send_results_tz": safe(lambda: get_send_results_tz(db_path), {"entries": []}),
     }

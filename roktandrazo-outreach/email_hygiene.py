@@ -5,6 +5,7 @@ All entry points (discovery, staging, manual, Broad, Strict A0,
 Pre-Send, Outreach) MUST call this module.
 
 Exports:
+  hygiene_check()                    — ★ 权威入口，返回 {valid, reason}
   validate_business_email()          — full validation, returns (bool, reason, confidence)
   validate_contact_business_association() — checks email actually belongs to business
   normalize_email()                  — canonical normalization
@@ -23,8 +24,9 @@ from typing import Optional, Tuple, Dict
 EMAIL_RE = re.compile(r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$")
 
 # Patterns that ALWAYS indicate an invalid business email
+# 注意: example/domain/test.com 需要前后非 [\w-]，否则会误伤 business-domain.com 等真实域名
 INVALID_PATTERNS = re.compile(
-    r'(example\.com|domain\.com|test\.com|anonymized|'
+    r'((?<![\w-])example\.com(?![\w-])|(?<![\w-])domain\.com(?![\w-])|(?<![\w-])test\.com(?![\w-])|anonymized|'
     r'noreply|no-reply|donotreply|@bot\.|@sentry|@anthropic|'
     r'\.png|\.jpg|\.gif|\.webp|\.jpeg|\.svg|\.css|\.js\b|'
     r'sentry\.io|wix\.com|square\.space|'
@@ -97,6 +99,85 @@ def _is_hash_like(email: str) -> bool:
 
 def _is_directory_domain(domain: str) -> bool:
     return domain.lower() in DIRECTORY_DOMAINS
+
+def _is_placeholder_domain(domain: str) -> bool:
+    """example/test/localhost 等占位域名 → 非真实业务邮箱，必须 FAIL。
+
+    同时覆盖常见占位域名变体（example.org / test.org / yourdomain 等）。
+    """
+    d = (domain or "").lower().rstrip(".")
+    if not d:
+        return True
+    if d in ("example.com", "example.org", "example.net", "example.edu",
+             "test.com", "test.org", "test.net", "localhost", "domain.com",
+             "yourdomain.com", "yourdomain", "yourdomain.net", "email.com",
+             "company.com", "website.com", "sample.com", "demo.com",
+             "youremail.com", "yoursite.com", "yourmail.com"):
+        return True
+    for prefix in ("example.", "test.", "demo.", "sample.", "yourdomain"):
+        if d.startswith(prefix):
+            return True
+    return False
+
+# ═══════════════════════════════════
+# ★ 权威入口: hygiene_check
+# ═══════════════════════════════════
+
+def hygiene_check(email: str) -> dict:
+    """统一 Email Hygiene 权威入口（P7）。全生产树只允许这一套判定。
+
+    返回: {"valid": bool, "reason": str}
+
+    必须 FAIL:
+      - 空 / 无 @ / 格式非法（invalid_format）
+      - 图片/资源伪邮箱（.png/.jpg/.gif 等资源扩展名、@2x、像素尺寸，如
+        tbs_rev_hz_type_110x@2x.png、certificate1_235x235@2x.jpg）
+      - www. 前缀 local-part（如 www.kll@toystoreandgifts.com）
+      - sentry.io / hash 系统地址（hash_like_email / sentry_system_address）
+      - example / test / localhost 占位地址（placeholder_domain）
+    必须 PASS:
+      - 泛邮箱（info/hello/contact/sales/orders 等）不是 blocker
+      - Gmail 等免费邮箱（hygiene 层面放行；是否发送由业务规则决定）
+
+    注意: third-party association mismatch（如 store 是 A 公司但邮箱来自
+    B 域）由调用方按 business association 规则阻断，hygiene 本身不管。
+    """
+    email = str(email or "").strip().lower()
+
+    if not email or "@" not in email:
+        return {"valid": False, "reason": "invalid_format"}
+
+    if not EMAIL_RE.fullmatch(email):
+        return {"valid": False, "reason": "invalid_format"}
+
+    # 以下顺序刻意先于 INVALID_PATTERNS，以便返回更精确的 reason：
+    # 图片/资源伪邮箱、www. 前缀、hash、系统前缀、sentry、占位域。
+    if _has_resource_extension(email):
+        return {"valid": False, "reason": "resource_extension_in_email"}
+
+    if _has_url_like_local(email):
+        return {"valid": False, "reason": "url_like_local_part"}
+
+    if _is_hash_like(email):
+        return {"valid": False, "reason": "hash_like_email"}
+
+    local_part, domain = email.split("@", 1)
+
+    if local_part in SYSTEM_PREFIXES:
+        return {"valid": False, "reason": "system_email_address"}
+
+    # sentry / 错误跟踪系统地址（local 或 domain 含 sentry）
+    if "sentry" in domain or "sentry" in local_part:
+        return {"valid": False, "reason": "sentry_system_address"}
+
+    if _is_placeholder_domain(domain):
+        return {"valid": False, "reason": "placeholder_domain"}
+
+    if INVALID_PATTERNS.search(email):
+        return {"valid": False, "reason": "invalid_email_pattern"}
+
+    return {"valid": True, "reason": "ok"}
+
 
 # ═══════════════════════════════════
 # Primary Export: validate_business_email

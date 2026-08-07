@@ -25,7 +25,7 @@ import sqlite3
 import sys
 import time
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # SIGPIPE-safe: prevent BrokenPipeError from skipping finally blocks
@@ -69,18 +69,23 @@ SEND_WINDOW_START = 23.0
 SEND_WINDOW_END = 24.0
 BATCH_SIZE = 5
 
+# 生产调度权威时区：Asia/Shanghai（UTC+8，无 DST）。
+# 客户 IANA 时区只用于报告/分析，不用于主调度。
+ASIA_SH = timezone(timedelta(hours=8))
 
-def now_cst() -> datetime:
-    """Current Asia/Shanghai time."""
-    return datetime.utcnow() + timedelta(hours=8)
+
+def now_shanghai() -> datetime:
+    """当前 Asia/Shanghai（UTC+8）时间，生产调度唯一时钟。"""
+    return datetime.now(ASIA_SH)
 
 
-def today_cst() -> str:
-    return outreach_batch_date(now_cst())
+def business_date_shanghai() -> str:
+    """按 Asia/Shanghai 时区计算业务日期。"""
+    return outreach_batch_date(now_shanghai())
 
 
 def is_in_send_window() -> bool:
-    return may_start_smtp_request(now_cst())
+    return may_start_smtp_request(now_shanghai())
 
 
 def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
@@ -100,7 +105,7 @@ def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
         candidate = build_candidate_from_db_row(row, context)
         if evaluate_a0(candidate).a0_eligible:
             lead = apply_email_to_lead(dict(row))
-            lead['hygiene_passed_at'] = now_cst().isoformat()
+            lead['hygiene_passed_at'] = now_shanghai().isoformat()
             eligible.append(lead)
     followups = []
     try:
@@ -113,7 +118,7 @@ def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
             lead = dict(row)
             template = get_email_for_lead(lead)
             lead.update(email_subject=template['subject'], email_body=template['body_text'],
-                        email_body_html=template.get('body_html', ''), hygiene_passed_at=now_cst().isoformat())
+                        email_body_html=template.get('body_html', ''), hygiene_passed_at=now_shanghai().isoformat())
             followups.append(lead)
     except Exception as exc:
         log(f"[WARN] Follow-up plan unavailable: {exc}")
@@ -167,7 +172,7 @@ def header(text: str):
 
 
 def log(*args):
-    ts = now_cst().strftime('%H:%M:%S')
+    ts = now_shanghai().strftime('%H:%M:%S')
     print(f"[{ts}]", *args)
 
 
@@ -545,7 +550,7 @@ def stage_end_of_day(run_id: str, business_date: str, dry_run: bool):
         'total_leads': total_leads,
         'total_sent_all': total_sent_all,
         'risk_gate': get_risk_gate()['status'],
-        'generated_at': now_cst().isoformat(),
+        'generated_at': now_shanghai().isoformat(),
     }
     json_path = OUT_DIR / 'latest_operations_report.json'
     with open(json_path, 'w') as f:
@@ -587,7 +592,7 @@ def stage_status():
     total = c.execute("SELECT COUNT(*) FROM leads").fetchone()[0]
     total_sent = c.execute("SELECT COUNT(*) FROM send_log WHERE status='sent'").fetchone()[0]
     today_bounce = c.execute("SELECT COUNT(*) FROM bounce_log WHERE date(bounce_received_at)=?",
-                             (today_cst(),)).fetchone()[0]
+                             (business_date_shanghai(),)).fetchone()[0]
     conn.close()
 
     gate = get_risk_gate()
@@ -616,7 +621,7 @@ def main():
     args = parser.parse_args()
 
     dry_run = not args.live
-    business_date = today_cst()
+    business_date = business_date_shanghai()
     run_id = f"{args.stage}:{business_date}:{uuid.uuid4().hex[:8]}"
 
     log(f"BD Orchestrator v3.1 | stage={args.stage} | dry_run={dry_run}")

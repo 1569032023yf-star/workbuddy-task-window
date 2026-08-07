@@ -4,6 +4,10 @@ from pathlib import Path
 
 DB_PATH = Path(__file__).resolve().parent / "data" / "bd_leads.db"
 
+# 模块级只读快照查询，不承担任何 SMTP 发送能力。
+# 统一常量：任何调用方都不应通过本模块触发真实发送。
+SEND_ENABLED = False
+
 EXCLUDED_NAMES = frozenset({
     "Cards Against Humanity", "What Do You Meme",
     "Ridleys Games", "Ultra PRO",

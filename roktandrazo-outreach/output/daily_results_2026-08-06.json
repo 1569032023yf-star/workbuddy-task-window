@@ -1,0 +1,51 @@
+{
+  "date": "2026-08-06",
+  "generated_at": "2026-08-06T15:48:58.356256+08:00",
+  "sync_0845_last_success_at": null,
+  "sync_age_minutes": null,
+  "sync_stale": true,
+  "steps": {},
+  "last_bounce_scan_at": "2026-08-05T14:06:21.671695+08:00",
+  "last_imap_scan_result": {
+    "mailbox_invalid": 0,
+    "domain_invalid": 0,
+    "policy_bounce": 3,
+    "soft_bounce": 0,
+    "human_reply": 0,
+    "auto_reply": 0,
+    "unsubscribe": 0,
+    "unmatched_dsn": 0,
+    "outcome_unresolved": 405
+  },
+  "last_reply_scan_at": null,
+  "last_successful_sync_at": null,
+  "last_send_date": "2026-08-05",
+  "metrics": {
+    "send_date": "2026-08-05",
+    "sends": 40,
+    "bounce_categories": {
+      "domain_invalid": 0,
+      "mailbox_invalid": 0,
+      "policy_bounce": 3,
+      "soft_bounce": 0,
+      "unmatched_dsn": 0
+    },
+    "bounce_log_total": 20,
+    "bounce_log_by_type": {
+      "domain": 4,
+      "domain_invalid": 6,
+      "hard": 6,
+      "policy": 3,
+      "unknown": 1
+    },
+    "reply_total": 1,
+    "reply_last_at": "2026-06-25T14:28:55.225376",
+    "unsubscribe_total": 1,
+    "tracking": {
+      "total": 136,
+      "matched": 61,
+      "hit_rate": 44.85
+    }
+  },
+  "report": "# BD Daily Results -- 2026-08-06 09:00 Asia/Shanghai\n\n- Generated: 2026-08-06T15:48:58.356256+08:00\n- Mode: read-only (uses 08:45 synced results)\n\n\n## !!! DATA STALE !!!\n\n**LAST SUCCESSFUL SYNC: NEVER**\n\n- 同步结果已超过 90 分钟未更新，以下指标不可信。\n- Bounce 数据不可用：bounce_scan 未运行（无同步记录）\n- Reply 数据不可用：reply_scan 未运行（无同步记录）\n\n| Metric | Value |\n|---|---|\n| Sends (2026-08-05) | UNAVAILABLE (stale) |\n| Bounce total | UNAVAILABLE |\n| Replies | UNAVAILABLE |\n| Unsubscribes | UNAVAILABLE (stale) |\n| Tracking hit rate | UNAVAILABLE (stale) |\n\n*BD Daily Results -- read-only report | 2026-08-06T15:48:58.356256+08:00 Asia/Shanghai*\n"
+}

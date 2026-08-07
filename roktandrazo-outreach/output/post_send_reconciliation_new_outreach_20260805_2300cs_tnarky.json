@@ -1,0 +1,146 @@
+{
+  "batch_id": "new_outreach_20260805_2300cs_tnarky",
+  "checked_at": "2026-08-06T15:48:15.648845+08:00",
+  "verdict": "FAILED",
+  "counts": {
+    "plan_total": 20,
+    "auth_total": 1,
+    "approved_entry_total": 20,
+    "consumed_total": 20,
+    "smtp_accepted": 20,
+    "smtp_failed": 0,
+    "smtp_skipped": 0,
+    "send_log_total": 20,
+    "send_log_delta": 0,
+    "message_id_present_count": 0,
+    "tracking_token_present_count": 0
+  },
+  "issues": {
+    "consumed_but_no_send_log": {
+      "count": 0,
+      "items": []
+    },
+    "send_log_without_plan": {
+      "count": 0,
+      "items": []
+    },
+    "SMTP_accepted_but_missing_log": {
+      "count": 0,
+      "items": []
+    },
+    "duplicate_send": {
+      "count": 0,
+      "items": []
+    },
+    "unconsumed_after_send": {
+      "count": 0,
+      "items": []
+    },
+    "tracking_token_missing": {
+      "count": 20,
+      "items": [
+        {
+          "lead_id": 760,
+          "email": "webmaster@thevillagetoymaker.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 759,
+          "email": "info@musiccitybricks.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 758,
+          "email": "outerlimitscomics@gmail.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 757,
+          "email": "comics@comicsunlimited.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 756,
+          "email": "support@frontlinegames.net",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 755,
+          "email": "shop@monkeesofbrentwood.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 754,
+          "email": "hendersonville@replaytoys.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 769,
+          "email": "roguesgallery13@gmail.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 764,
+          "email": "bentonville@geargamingstore.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 763,
+          "email": "conway@gamegoblins.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 762,
+          "email": "dillydallystoy@gmail.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 761,
+          "email": "tcgamesconway@gmail.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 773,
+          "email": "gxchoptown@gmail.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 772,
+          "email": "store@clobberincomics.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 771,
+          "email": "info@comicbookworld.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 770,
+          "email": "info@comics2games.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 768,
+          "email": "staff@apluscomics.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 767,
+          "email": "louisville@comicbookworld.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 766,
+          "email": "zone@zonecomicsandtoys.com",
+          "reason": "empty_tracking_token_hash"
+        },
+        {
+          "lead_id": 765,
+          "email": "thedestinationky@gmail.com",
+          "reason": "empty_tracking_token_hash"
+        }
+      ]
+    }
+  },
+  "total_issues": 20
+}

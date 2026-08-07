@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06T08:58:52.590222+00:00",
+  "generated_at": "2026-08-06T15:33:18.215408+00:00",
   "today": "2026-08-06",
   "timezone": "Asia/Shanghai",
   "sent_today": 0,
@@ -33,7 +33,7 @@
     "approved_manual": 1,
     "rejected": 0,
     "recheck_pending": 7,
-    "reviewed_today": 0,
+    "reviewed_today": 9,
     "a0_created_after_review": 0
   },
   "inbox": {

@@ -1,1 +1,36 @@
-{"last_heartbeat": "2026-08-05T22:59:59.282676+08:00", "last_ping": "2026-08-05T22:59:59.282676+08:00", "status": "alive", "batch_id": "new_outreach_20260805_2300cs_tnarky"}
+{
+  "process_started_at": "2026-08-07T11:07:04.807939+08:00",
+  "last_heartbeat_at": "2026-08-07T11:07:04.829835+08:00",
+  "running": true,
+  "jobs": {
+    "tracking": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    },
+    "health": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    },
+    "reply": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    },
+    "bounce": {
+      "last_success_at": null,
+      "last_failure_at": null,
+      "last_error": "",
+      "consecutive_failures": 0,
+      "detail": ""
+    }
+  },
+  "current_errors": []
+}

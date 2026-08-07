@@ -111,13 +111,16 @@ class CityOutreach40Tests(unittest.TestCase):
         self.assertNotIn("get_sendable_leads(limit=batch_size)", session_text.split('def execute_final_send_plan', 1)[1].split('def is_in_window', 1)[0])
 
     def test_dashboard_uses_message_type_and_batch_date(self):
-        dashboard_text = (ROOT / 'bd_operations_dashboard.py').read_text(encoding='utf-8')
-        self.assertIn("sl.message_type = 'new_outreach'", dashboard_text)
-        self.assertIn('sl.outreach_batch_date', dashboard_text)
+        # Production UI = bd_ops_api.py (Ops Center data source). Old bd_operations_dashboard.py is archived.
+        ops_text = (ROOT / 'bd_ops_api.py').read_text(encoding='utf-8')
+        self.assertIn("message_type NOT IN ('test','internal_report','acceptance_test','sender_copy')", ops_text)
+        self.assertIn('outreach_batch_date', ops_text)
 
     def test_dashboard_distinguishes_stage_not_run_from_zero(self):
-        dashboard_text = (ROOT / 'bd_operations_dashboard.py').read_text(encoding='utf-8')
-        self.assertIn("post_send_state = post_send_row['status'] if post_send_row else 'stage_not_run'", dashboard_text)
+        # Production UI = bd_ops_api.py + bd_review_server.py. Old bd_operations_dashboard.py is archived.
+        ops_text = (ROOT / 'bd_ops_api.py').read_text(encoding='utf-8')
+        self.assertIn('get_delivery_outcome_summary', ops_text)
+        self.assertIn('get_data_freshness', ops_text)
 
     def test_plan_session_does_not_requery_candidate_pool(self):
         session = ast.parse((ROOT / 'daily_session.py').read_text(encoding='utf-8'))

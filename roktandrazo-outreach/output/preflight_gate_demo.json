@@ -1,0 +1,54 @@
+{
+  "pass": false,
+  "checks": [
+    {
+      "name": "planned_rows_present",
+      "status": "fail",
+      "detail": "batch new_outreach_20260805_2300cs_tnarky has 0 planned rows"
+    },
+    {
+      "name": "dns_freshness",
+      "status": "pass",
+      "detail": "0 domain(s) fresh: none"
+    },
+    {
+      "name": "hygiene",
+      "status": "pass",
+      "detail": "0 planned lead(s) clean"
+    },
+    {
+      "name": "duplicates",
+      "status": "pass",
+      "detail": "0 planned row(s) unique"
+    },
+    {
+      "name": "template",
+      "status": "pass",
+      "detail": "0 planned row(s) template ok"
+    },
+    {
+      "name": "snapshot_plan_hash",
+      "status": "warn",
+      "detail": "no snapshot at C:\\Users\\15690\\WorkBuddy\\2026-06-05-15-31-42\\roktandrazo-outreach\\output\\frozen_new_outreach_20260805_2300cs_tnarky.json"
+    },
+    {
+      "name": "auth_entries",
+      "status": "fail",
+      "detail": "auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310: auth status=consumed (need approved); auth expired at 2026-08-05T23:14:59.349718+08:00; entries=20 vs planned=0"
+    },
+    {
+      "name": "stale_objects",
+      "status": "fail",
+      "detail": "poller_heartbeat_stale:1001.8min (>30min)"
+    }
+  ],
+  "blocks": [
+    "planned_rows_present",
+    "auth_entries: auth_new_outreach_20260805_2300cs_tnarky_new_outreach_20260805_2300cs_tnarky_a8fad63e9215f310: auth status=consumed (need approved); auth expired at 2026-08-05T23:14:59.349718+08:00; entries=20 vs planned=0",
+    "stale_objects: poller_heartbeat_stale:1001.8min (>30min)"
+  ],
+  "smtp_blocked": true,
+  "batch_id": "new_outreach_20260805_2300cs_tnarky",
+  "plan_count": 0,
+  "checked_at": "2026-08-06T15:41:47.160942+08:00"
+}

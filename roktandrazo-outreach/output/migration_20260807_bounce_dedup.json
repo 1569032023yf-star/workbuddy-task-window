@@ -1,0 +1,29 @@
+{
+  "applied_at": "2026-08-07T14:23:01.154314+08:00",
+  "marked": [
+    {
+      "duplicate_id": 18,
+      "primary_id": 15,
+      "domain": "gameuniverse.com",
+      "primary_time": "2026-08-05T14:27:14.327867+08:00",
+      "dup_time": "2026-08-06T15:37:10.038956+08:00"
+    },
+    {
+      "duplicate_id": 19,
+      "primary_id": 16,
+      "domain": "djhobbytoys.com",
+      "primary_time": "2026-08-05T14:27:14.327867+08:00",
+      "dup_time": "2026-08-06T15:37:10.046584+08:00"
+    },
+    {
+      "duplicate_id": 20,
+      "primary_id": 17,
+      "domain": "pulpfictioncomics.com",
+      "primary_time": "2026-08-05T14:27:14.327867+08:00",
+      "dup_time": "2026-08-06T15:37:10.049607+08:00"
+    }
+  ],
+  "duplicate_event_rows": 3,
+  "bounce_total": 34,
+  "unique_domain_invalid_primary": 15
+}

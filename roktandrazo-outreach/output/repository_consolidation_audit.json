@@ -1,0 +1,2334 @@
+{
+ "files": [
+  {
+   "path": "_archived_scripts/_manual_send_60.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "归档的危险手工发送脚本（send_one + send_log + FSP 更新）"
+  },
+  {
+   "path": "_bak.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "备份片段"
+  },
+  {
+   "path": "_catchup_calculate.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "catchup 计算（一次性）"
+  },
+  {
+   "path": "_daily_collection_report.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "每日采集报告（_ 前缀运维报告）"
+  },
+  {
+   "path": "_daily_readonly_report.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "每日只读报告（_ 前缀，仍可能被 automation 调用）"
+  },
+  {
+   "path": "_daily_report_20260806.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "日期报告脚本（20260806）"
+  },
+  {
+   "path": "_import_nashville_master.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "纳什维尔一次性导入"
+  },
+  {
+   "path": "_inventory_recovery_20260806.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "日期库存恢复脚本"
+  },
+  {
+   "path": "_inventory_report_gen.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "库存报告生成（一次性）"
+  },
+  {
+   "path": "_nashville_clean_import_v2.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "纳什维尔清理导入 v2（一次性）"
+  },
+  {
+   "path": "_pre_send_plan_20260806.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "日期预发送计划脚本，直接 INSERT final_send_plan（危险发送入口）"
+  },
+  {
+   "path": "_pre_send_plan_tonight.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "今晚预发送计划脚本，直接 INSERT final_send_plan（危险发送入口）"
+  },
+  {
+   "path": "_preflight_20260804.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "日期预检脚本（只读）"
+  },
+  {
+   "path": "_preflight_20260805.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "日期预检脚本（只读）"
+  },
+  {
+   "path": "_preflight_check.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "预检脚本（只读，引用 preflight_gate）"
+  },
+  {
+   "path": "_preflight_tonight.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "今晚预检脚本（只读）"
+  },
+  {
+   "path": "_prepare_tonight.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "今晚准备脚本，INSERT final_send_plan + create_send_authorization（危险）"
+  },
+  {
+   "path": "_run_901_games_delayed_pilot_once.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 3,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "pilot 一次性发送（send_one 调用，写 send_log）危险发送入口"
+  },
+  {
+   "path": "_run_broad_analysis.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "广撒分析（只读）"
+  },
+  {
+   "path": "_safe_import.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "导入安全助手"
+  },
+  {
+   "path": "_send_2300_tn_ar_ky.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 1,
+   "send_log_writes": 1,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "23:00 TN/AR/KY 发送脚本（send_one + create_send_authorization + FSP/send_log 直写）危险发送入口"
+  },
+  {
+   "path": "_send_tonight_20260805.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": true,
+   "notes": "SEND_LIVE=True；send_one + create_send_authorization + FSP 直写；唯一含 SEND_LIVE=True 的危险发送入口"
+  },
+  {
+   "path": "_simple_check.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "简单检查（一次性）"
+  },
+  {
+   "path": "_start_poller_inline.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "执行主机安装时生成，启动 bd_ops_poller 的生产引导脚本"
+  },
+  {
+   "path": "_test_nashville.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "纳什维尔验证（一次性）"
+  },
+  {
+   "path": "agent_bounce_auditor.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧退信 agent（已知 import 错误，被 bounce_pipeline 取代）"
+  },
+  {
+   "path": "agent_daily_report.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "日报生成器（agent 体系遗留报告）"
+  },
+  {
+   "path": "agent_email_verifier.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧邮箱验证 agent（被 email_hygiene 取代）"
+  },
+  {
+   "path": "agent_lead_collector.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧线索收集 agent"
+  },
+  {
+   "path": "agent_reply_monitor.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "IMAP 收件箱扫描，被 orchestrator post-send/end-of-day 调用"
+  },
+  {
+   "path": "agent_sender.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧发送 agent（仅选单+MX，无实际 SMTP）"
+  },
+  {
+   "path": "agent_supervisor.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧风控 agent（被 preflight_gate/risk_gate 取代）"
+  },
+  {
+   "path": "auto_collector.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧独立采集器（被 collection_pipeline 取代）"
+  },
+  {
+   "path": "auto_replenish_loop.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧自动补量循环，P0 硬禁用（import send_one 但不可运行）"
+  },
+  {
+   "path": "b_pool_audit_v2.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "B 池审计 v2（一次性）"
+  },
+  {
+   "path": "b_pool_import.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "B 池导入（legacy 使用）"
+  },
+  {
+   "path": "backup/bd_template_v4_backup_20260706.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "备份文件（不分类为生产）"
+  },
+  {
+   "path": "bd_dashboard_v3.2.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "Dashboard 生成器（无 SMTP）；读 recipient_scheduler/poller 心跳/对账结果"
+  },
+  {
+   "path": "bd_db.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "生产 DB 层；log_send() 写 send_log；依赖 history_crosscheck"
+  },
+  {
+   "path": "bd_delivery_guard.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "防休眠守卫服务（执行主机启动），无 SMTP"
+  },
+  {
+   "path": "bd_execution_host_service.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "Windows 服务 BDExecutionHost；调度 poller/review server/delivery guard/orchestrator；心跳路径定义"
+  },
+  {
+   "path": "bd_main.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧主入口（bd_sender send_one/batch_send）"
+  },
+  {
+   "path": "bd_operations_dashboard.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "Dashboard v2，被 orchestrator post-send 调用"
+  },
+  {
+   "path": "bd_ops_api.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "只读运维 API（final_send_plan/send_log 统计）"
+  },
+  {
+   "path": "bd_ops_poller.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 2,
+   "send_live_true": false,
+   "notes": "写 output/bd_ops_poller_status.json（心跳）；起 delivery guard；读 final_send_plan"
+  },
+  {
+   "path": "bd_orchestrator.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "生产调度入口（Windows 计划任务 5 阶段 + Execution Host）；stage_pre_send 调 bd_template/final_send_plan/lead_hygiene_gate/production_adapter/follow_up_queue_builder；stage_outreach 调 daily_session.execute_final_send_plan"
+  },
+  {
+   "path": "bd_review_cli.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "评审 CLI（运维辅助）"
+  },
+  {
+   "path": "bd_review_server.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "Ops Center 8765；依赖 review_workflow/history_crosscheck/manual_email_workflow/bd_ops_api/bd_ops_poller"
+  },
+  {
+   "path": "bd_sender.py",
+   "category": "A",
+   "smtp_calls": 3,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "唯一 SMTP 发送模块（smtplib/SMTP_SSL/sendmail）；定义 send_one、create_send_authorization；被 daily_session 等生产链调用"
+  },
+  {
+   "path": "bd_status_cli.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "状态 CLI（运维辅助）"
+  },
+  {
+   "path": "bd_template.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "模板/渲染引擎，生产 pre_send 与 orchestrator 依赖"
+  },
+  {
+   "path": "bounce_audit.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧退信审计"
+  },
+  {
+   "path": "bounce_deep.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧退信深度分析"
+  },
+  {
+   "path": "bounce_diag.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧退信诊断"
+  },
+  {
+   "path": "bounce_pipeline.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 2,
+   "send_live_true": false,
+   "notes": "IMAP 退信扫描；写 poller 心跳 jobs.bounce；被 result_recovery_sync 调用"
+  },
+  {
+   "path": "brand_candidate_importer.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "品牌候选导入器"
+  },
+  {
+   "path": "broad_outreach_gate.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧广撒门禁，仅被 _ 归档脚本引用（被 preflight_gate 取代）"
+  },
+  {
+   "path": "browser_verifier.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "浏览器验证器，仅 daily_operator_auto(旧) 引用"
+  },
+  {
+   "path": "city_selector.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "城市选择库（采集栈）"
+  },
+  {
+   "path": "city_selector_v2.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "城市选择 v2（采集栈）"
+  },
+  {
+   "path": "collection_pipeline.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "采集流水线（automation 记忆确认仍用于补库）"
+  },
+  {
+   "path": "config.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧配置（drafter/scorer/sender 用）"
+  },
+  {
+   "path": "configure_bios_power.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "BIOS 电源配置运维脚本（无 SMTP）"
+  },
+  {
+   "path": "contact_extractor.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "联系人提取库（采集栈）"
+  },
+  {
+   "path": "coverage_registry.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "搜索覆盖登记，被 bd_operations_dashboard 引用"
+  },
+  {
+   "path": "daily_operator_auto.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧每日自动编排器（无禁用块但已被 bd_orchestrator 取代；仍 import bd_sender._create_connection）"
+  },
+  {
+   "path": "daily_results_0900.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "09:00 只读日报（automation 入口，无扫描无 SMTP）"
+  },
+  {
+   "path": "daily_session.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 2,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "execute_final_send_plan() 消费 final_send_plan；2 处调用 bd_sender.send_one；写 send_log 与 final_send_plan 状态"
+  },
+  {
+   "path": "dashboard.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "Dashboard 生成，被 orchestrator end-of-day 调用"
+  },
+  {
+   "path": "db.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 DB 层（drafter/main/pipeline/sender 用）"
+  },
+  {
+   "path": "db_migration_v2.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧库迁移 v2（一次性）"
+  },
+  {
+   "path": "discovery/__init__.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/discovery_service.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/models.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/normalizer.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/__init__.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/base.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/browser_maps.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/browser_maps_scraper.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/google_places.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/mock_provider.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "discovery/providers/serpapi_maps.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "drafter.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧起草器"
+  },
+  {
+   "path": "dryrun_phase2.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 phase2 dry-run"
+  },
+  {
+   "path": "dryrun_phase3.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 phase3 dry-run"
+  },
+  {
+   "path": "email_engagement/__init__.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "email_engagement/disabled_provider.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "被禁用的 provider 实现"
+  },
+  {
+   "path": "email_engagement/local_first_party_provider.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "email_engagement/plunk_poc_provider.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "POC 实验 provider（明确不触碰生产 SMTP/send_log/FSP）"
+  },
+  {
+   "path": "email_engagement/provider.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "email_hygiene.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "统一邮箱校验库；当前无生产 import（任务列为 A）"
+  },
+  {
+   "path": "email_tracking_server.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "本地一手方 tracking HTTP 服务器（cloudflare worker 的本地替代，无 SMTP）"
+  },
+  {
+   "path": "env_loader.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "SMTP/IMAP 配置读取，被 bd_sender/bounce_pipeline 引用"
+  },
+  {
+   "path": "export_backup.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "备份导出（一次性）"
+  },
+  {
+   "path": "facebook_enrichment/b_pool_recovery_runner.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "facebook_enrichment/fb_batch_runner.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "facebook_enrichment/fb_enrich.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "facebook_enrichment/fb_rate_limiter.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "fast_lead_discovery.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 B2 快速发现（被 discovery/ 取代）"
+  },
+  {
+   "path": "fb_fallback_recovery.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "FB 富集回退恢复"
+  },
+  {
+   "path": "fb_worker.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "Facebook 富集 worker"
+  },
+  {
+   "path": "final_audit.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "终审（一次性）"
+  },
+  {
+   "path": "final_send_plan.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "create_plan() 写 INSERT INTO final_send_plan；依赖 outreach_control"
+  },
+  {
+   "path": "follow_up_test/inbox_polling_monitor.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "候选/测试副本（与 candidate 版本存在差异）"
+  },
+  {
+   "path": "gen_visual_report.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "可视化报告生成"
+  },
+  {
+   "path": "history_crosscheck.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "身份/历史投递查重库，被 bd_db 与 review_server 引用"
+  },
+  {
+   "path": "import_new_leads.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "一次性线索导入"
+  },
+  {
+   "path": "import_phase2.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase2 一次性导入"
+  },
+  {
+   "path": "import_phase3.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase3 一次性导入"
+  },
+  {
+   "path": "import_phase4.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase4 一次性导入"
+  },
+  {
+   "path": "import_phase4_b2.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase4 B2 一次性导入"
+  },
+  {
+   "path": "import_phase4_b3.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase4 B3 一次性导入"
+  },
+  {
+   "path": "import_phase4_b4.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase4 B4 一次性导入"
+  },
+  {
+   "path": "import_pilot.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "pilot 阶段导入"
+  },
+  {
+   "path": "install_service_elevate.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "服务安装（一次性，被 _elevated_install.bat 取代）"
+  },
+  {
+   "path": "inventory_expansion_runner.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "库存扩容执行器"
+  },
+  {
+   "path": "inventory_monitor_executor.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "库存监控执行引擎，被 orchestrator inventory 调用（http_scan_website）"
+  },
+  {
+   "path": "inventory_recovery_daemon.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "库存恢复守护（引用 unified_inventory）"
+  },
+  {
+   "path": "inventory_recovery_loop.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "库存恢复循环"
+  },
+  {
+   "path": "lead_audit_cleanup.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "线索审计清理（一次性）"
+  },
+  {
+   "path": "lead_hygiene_gate.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "A0 资格门禁（纯函数），被 orchestrator pre_send 调用"
+  },
+  {
+   "path": "legacy_lead_insert_guard.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧导入脚本共享的防重插入守卫"
+  },
+  {
+   "path": "main.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧入口（drafter+sender）"
+  },
+  {
+   "path": "manual_email_workflow.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "人工邮件提交工作流（无 SMTP 权限），被 review_server 调用"
+  },
+  {
+   "path": "migrations/migrate_city_outreach_40.py",
+   "category": "MIGRATION",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "migrations/migrate_email_tracking.py",
+   "category": "MIGRATION",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "modern_standby_guard_test.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "new_lead_factory.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "Lead Factory 批量入库（automation 记忆确认使用）"
+  },
+  {
+   "path": "outreach_control.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "纯控制逻辑常量/函数，被 orchestrator 与 final_send_plan 引用"
+  },
+  {
+   "path": "outreach_templates.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧模板系统（被 bd_template 取代）"
+  },
+  {
+   "path": "phase1_db.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "phase1 旧 DB 层"
+  },
+  {
+   "path": "pipeline.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 pipeline（drafter+sender）"
+  },
+  {
+   "path": "pipeline_orchestrator.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 agent 体系编排器"
+  },
+  {
+   "path": "pool_analysis.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "池分析（一次性）"
+  },
+  {
+   "path": "post_send_reconciliation.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "FSP/auth/send_log 三方对账；写 output/post_send_reconciliation_*.json"
+  },
+  {
+   "path": "preflight_gate.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": "P0 发信前只读门禁；依赖 recipient_scheduler.local_send_window_utc"
+  },
+  {
+   "path": "production_adapter.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "DB 行→门禁上下文适配，被 orchestrator pre_send 调用"
+  },
+  {
+   "path": "push_to_30.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "推送至 30（一次性）"
+  },
+  {
+   "path": "recipient_scheduler.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "收件人当地时间窗口调度；被 preflight_gate 与 dashboard 引用"
+  },
+  {
+   "path": "reconcile_a0.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "A0 对账（一次性）"
+  },
+  {
+   "path": "recovery_replay.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "恢复重放（一次性）"
+  },
+  {
+   "path": "render_dryrun_eml.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "EML 渲染预览（一次性）"
+  },
+  {
+   "path": "result_recovery_sync.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "08:45 结果同步入口（automation）；调用 bounce_pipeline.run_scan_and_writeback"
+  },
+  {
+   "path": "retail_city_queue.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "零售城市队列，被 orchestrator inventory 调用"
+  },
+  {
+   "path": "review_workflow.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "评审动作应用，被 review_server 调用"
+  },
+  {
+   "path": "scale_brand_insert.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "品牌批量插入（一次性）"
+  },
+  {
+   "path": "scale_to_30.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "扩容至 30（一次性）"
+  },
+  {
+   "path": "scorer.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "评分库（采集栈）"
+  },
+  {
+   "path": "scorer_v2.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "评分 v2（采集栈）"
+  },
+  {
+   "path": "search_engine.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "搜索解析库（采集栈）"
+  },
+  {
+   "path": "send_phase2.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 phase2 发送器，P0 硬禁用"
+  },
+  {
+   "path": "send_phase3.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 phase3 发送器，P0 硬禁用"
+  },
+  {
+   "path": "sender.py",
+   "category": "D",
+   "smtp_calls": 2,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧 SMTP 发送器，P0 硬禁用（LegacySMTPDisabledError），含 smtplib"
+  },
+  {
+   "path": "test_45min_delivery_guard.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 2,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "test_browser_maps_integration.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "test_unattended_delivery_v2.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 1,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/__init__.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_bounce_pipeline.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_city_outreach_40.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_compact_renderer.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_dashboard_metrics.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_dashboard_timezone.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_discovery_service.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 2,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_email_tracking.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_manual_email_workflow.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_p0_runtime_semantics.py",
+   "category": "C",
+   "smtp_calls": 1,
+   "send_one_calls": 1,
+   "fsp_writes": 0,
+   "send_log_writes": 3,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_post_send_reconciliation.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_preflight_gate.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_recipient_scheduler.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 1,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_result_sync.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 1,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_review_workflow.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "tests/test_timezone_resolver.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "timezone_resolver.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "时区解析库；当前仅 tests 引用（任务列为 A，疑似 CLI/待接线）"
+  },
+  {
+   "path": "unified_inventory.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "自动可发库存快照（只读）"
+  },
+  {
+   "path": "update_bounce_db.py",
+   "category": "D",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "旧退信库更新（被 bounce_pipeline 取代）"
+  },
+  {
+   "path": "verify_bios_closure.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "BIOS 合盖验证运维脚本（无 SMTP）"
+  },
+  {
+   "path": "website_audit.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "网站审计（一次性）"
+  },
+  {
+   "path": "website_verifier.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "官网验证库（采集栈）"
+  },
+  {
+   "path": "workbuddy_candidate_modules/b_pool_enrichment.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "候选模块：B 池富集（未深读）"
+  },
+  {
+   "path": "workbuddy_candidate_modules/dry_run_all.py",
+   "category": "E",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "候选模块 dry-run 工具"
+  },
+  {
+   "path": "workbuddy_candidate_modules/follow_up_queue_builder.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "生产 pre_send 调用 build_followup_queue"
+  },
+  {
+   "path": "workbuddy_candidate_modules/inbox_polling_monitor.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "候选模块：收件箱轮询（未深读）"
+  },
+  {
+   "path": "workbuddy_candidate_modules/lead_hygiene_gate.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "与根目录同名生产门禁副本"
+  },
+  {
+   "path": "workbuddy_candidate_modules/production_adapter.py",
+   "category": "A",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "与根目录同名生产适配副本"
+  },
+  {
+   "path": "workbuddy_candidate_modules/shadow_mode.py",
+   "category": "B",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": "候选模块：影子模式（未深读）"
+  },
+  {
+   "path": "workbuddy_candidate_modules/test_b_pool_enrichment.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "workbuddy_candidate_modules/test_hygiene_gate_production.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "workbuddy_candidate_modules/test_lead_hygiene_gate.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "workbuddy_candidate_modules/test_positive_samples.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  },
+  {
+   "path": "workbuddy_candidate_modules/test_production_adapter.py",
+   "category": "C",
+   "smtp_calls": 0,
+   "send_one_calls": 0,
+   "fsp_writes": 0,
+   "send_log_writes": 0,
+   "heartbeat_writes": 0,
+   "send_live_true": false,
+   "notes": ""
+  }
+ ],
+ "summary": {
+  "A": 38,
+  "B": 45,
+  "C": 26,
+  "D": 30,
+  "E": 49,
+  "F": 0
+ },
+ "smtp_search": {
+  "import_smtplib": [
+   {
+    "file": "bd_sender.py",
+    "line": 13
+   },
+   {
+    "file": "sender.py",
+    "line": 12
+   }
+  ],
+  "SMTP_SSL_or_SMTP_instantiation": [
+   {
+    "file": "bd_sender.py",
+    "line": 252,
+    "kind": "smtplib.SMTP_SSL"
+   },
+   {
+    "file": "sender.py",
+    "line": 91,
+    "kind": "smtplib.SMTP"
+   }
+  ],
+  "sendmail_calls": [
+   {
+    "file": "bd_sender.py",
+    "line": 426,
+    "kind": "server.sendmail"
+   },
+   {
+    "file": "bd_sender.py",
+    "line": 445,
+    "kind": "sc_server.sendmail"
+   },
+   {
+    "file": "sender.py",
+    "line": 96,
+    "kind": "server.sendmail"
+   }
+  ],
+  "send_message_calls": [],
+  "send_one_callers": [
+   {
+    "file": "daily_session.py",
+    "line": 102,
+    "kind": "production execute_final_send_plan"
+   },
+   {
+    "file": "daily_session.py",
+    "line": 345,
+    "kind": "production live send"
+   },
+   {
+    "file": "bd_sender.py",
+    "line": 530,
+    "kind": "internal batch_send→send_one"
+   },
+   {
+    "file": "_send_tonight_20260805.py",
+    "line": 248,
+    "kind": "E.ARCHIVE SEND_LIVE=True"
+   },
+   {
+    "file": "_send_2300_tn_ar_ky.py",
+    "line": 145,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_run_901_games_delayed_pilot_once.py",
+    "line": 351,
+    "kind": "E.ARCHIVE pilot"
+   },
+   {
+    "file": "_archived_scripts/_manual_send_60.py",
+    "line": 74,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "send_phase2.py",
+    "line": 94,
+    "kind": "D legacy disabled"
+   },
+   {
+    "file": "send_phase3.py",
+    "line": 146,
+    "kind": "D legacy disabled"
+   },
+   {
+    "file": "bd_main.py",
+    "line": 143,
+    "kind": "D legacy"
+   },
+   {
+    "file": "auto_replenish_loop.py",
+    "line": 206,
+    "kind": "D hard-disabled"
+   }
+  ],
+  "create_send_authorization_callers": [
+   {
+    "file": "_prepare_tonight.py",
+    "line": 115,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_send_2300_tn_ar_ky.py",
+    "line": 117,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_send_tonight_20260805.py",
+    "line": 193,
+    "kind": "E.ARCHIVE SEND_LIVE=True"
+   }
+  ],
+  "fsp_writers": [
+   {
+    "file": "final_send_plan.py",
+    "line": 61,
+    "kind": "A production create_plan"
+   },
+   {
+    "file": "_prepare_tonight.py",
+    "line": 98,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_pre_send_plan_tonight.py",
+    "line": 304,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_pre_send_plan_20260806.py",
+    "line": 304,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_send_tonight_20260805.py",
+    "line": 167,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_send_2300_tn_ar_ky.py",
+    "line": 95,
+    "kind": "E.ARCHIVE"
+   }
+  ],
+  "send_log_writers": [
+   {
+    "file": "bd_db.py",
+    "line": 407,
+    "kind": "A production log_send"
+   },
+   {
+    "file": "daily_session.py",
+    "line": 133,
+    "kind": "A production"
+   },
+   {
+    "file": "_archived_scripts/_manual_send_60.py",
+    "line": 86,
+    "kind": "E.ARCHIVE"
+   },
+   {
+    "file": "_run_901_games_delayed_pilot_once.py",
+    "line": 225,
+    "kind": "E.ARCHIVE pilot"
+   },
+   {
+    "file": "_send_2300_tn_ar_ky.py",
+    "line": 170,
+    "kind": "E.ARCHIVE"
+   }
+  ],
+  "heartbeat_writers": [
+   {
+    "file": "bd_ops_poller.py",
+    "line": 49,
+    "kind": "A poller 主写"
+   },
+   {
+    "file": "bounce_pipeline.py",
+    "line": 664,
+    "kind": "A 更新 jobs.bounce"
+   },
+   {
+    "file": "bd_execution_host_service.py",
+    "line": 66,
+    "kind": "A 心跳路径定义/监控"
+   }
+  ],
+  "send_live_true": [
+   {
+    "file": "_send_tonight_20260805.py",
+    "line": 17,
+    "kind": "E.ARCHIVE 唯一 SEND_LIVE=True"
+   }
+  ]
+ },
+ "date_scripts": [
+  "_archived_scripts/_manual_send_60.py",
+  "_catchup_calculate.py",
+  "_daily_report_20260806.py",
+  "_inventory_recovery_20260806.py",
+  "_pre_send_plan_20260806.py",
+  "_pre_send_plan_tonight.py",
+  "_preflight_20260804.py",
+  "_preflight_20260805.py",
+  "_preflight_check.py",
+  "_preflight_tonight.py",
+  "_prepare_tonight.py",
+  "_run_901_games_delayed_pilot_once.py",
+  "_send_2300_tn_ar_ky.py",
+  "_send_tonight_20260805.py",
+  "backup/bd_template_v4_backup_20260706.py",
+  "dryrun_phase2.py",
+  "dryrun_phase3.py",
+  "final_send_plan.py",
+  "import_phase2.py",
+  "import_phase3.py",
+  "import_phase4.py",
+  "import_phase4_b2.py",
+  "import_phase4_b3.py",
+  "import_phase4_b4.py",
+  "import_pilot.py",
+  "phase1_db.py",
+  "post_send_reconciliation.py",
+  "send_phase2.py",
+  "send_phase3.py",
+  "tests/test_post_send_reconciliation.py",
+  "tests/test_preflight_gate.py"
+ ]
+}
