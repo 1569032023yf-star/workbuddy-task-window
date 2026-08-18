@@ -1,0 +1,215 @@
+[
+  {
+    "name": "Alley Cat Games & Comics",
+    "city": "Dublin",
+    "state": "OH",
+    "phone": "(614) 336-2445",
+    "source": "web_directory",
+    "existing_lead_id": 881,
+    "existing_email": ""
+  },
+  {
+    "name": "Boardwalk Hobby Shop",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 871-2110",
+    "source": "web_directory",
+    "existing_lead_id": 882,
+    "existing_email": ""
+  },
+  {
+    "name": "Bookery Fantasy",
+    "city": "Fairborn",
+    "state": "OH",
+    "phone": "(937) 879-1408",
+    "source": "web_directory",
+    "existing_lead_id": 883,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Heaven",
+    "city": "Willoughby",
+    "state": "OH",
+    "phone": "(440) 942-6960",
+    "source": "web_directory",
+    "existing_lead_id": 884,
+    "existing_email": ""
+  },
+  {
+    "name": "Books Comics and Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 431-4999",
+    "source": "web_directory"
+  },
+  {
+    "name": "Castle Comics & Cards",
+    "city": "LaFayette",
+    "state": "IN",
+    "phone": "(765) 474-1110",
+    "source": "web_directory"
+  },
+  {
+    "name": "Comic Quest",
+    "city": "Evansville",
+    "state": "IN",
+    "phone": "(812) 474-1133",
+    "source": "web_directory"
+  },
+  {
+    "name": "Critical Effect Games & Hobbies",
+    "city": "Hobart",
+    "state": "IN",
+    "phone": "(219) 947-5997",
+    "source": "web_directory"
+  },
+  {
+    "name": "Die Hard Games",
+    "city": "Springfield",
+    "state": "IL",
+    "phone": "(217) 698-4343",
+    "source": "web_directory",
+    "existing_lead_id": 924,
+    "existing_email": ""
+  },
+  {
+    "name": "Doug's Hobbies",
+    "city": "Lake Forest",
+    "state": "IL",
+    "phone": "(847) 234-6609",
+    "source": "web_directory",
+    "existing_lead_id": 925,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon's Sanctum",
+    "city": "Moline",
+    "state": "IL",
+    "phone": "(309) 762-5577",
+    "source": "web_directory",
+    "existing_lead_id": 926,
+    "existing_email": ""
+  },
+  {
+    "name": "Draxtar Games, Inc",
+    "city": "Batavia",
+    "state": "IL",
+    "phone": "6304544585",
+    "source": "web_directory",
+    "existing_lead_id": 927,
+    "existing_email": ""
+  },
+  {
+    "name": "Compleat Strategist",
+    "city": "Falls Church",
+    "state": "VA",
+    "phone": "(703) 532-2477",
+    "source": "web_directory",
+    "existing_lead_id": 841,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon's Hoard",
+    "city": "Staunton",
+    "state": "VA",
+    "phone": "(540) 885-5530",
+    "source": "web_directory",
+    "existing_lead_id": 842,
+    "existing_email": ""
+  },
+  {
+    "name": "Dunn's Toy & Hobby",
+    "city": "Manassas",
+    "state": "VA",
+    "phone": "(703) 335-1884",
+    "source": "web_directory",
+    "existing_lead_id": 843,
+    "existing_email": ""
+  },
+  {
+    "name": "Fun -N- Games",
+    "city": "Blacksburg",
+    "state": "VA",
+    "phone": "(540) 552 2204",
+    "source": "web_directory",
+    "existing_lead_id": 844,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon Tears Gaming",
+    "city": "Dunn",
+    "state": "NC",
+    "phone": "910-891-2429",
+    "source": "web_directory",
+    "existing_lead_id": 1019,
+    "existing_email": ""
+  },
+  {
+    "name": "DragonTears Gaming",
+    "city": "DUNN",
+    "state": "NC",
+    "phone": "9108912429",
+    "source": "web_directory"
+  },
+  {
+    "name": "Event Horizon Games",
+    "city": "RALEIGH",
+    "state": "NC",
+    "phone": "9199774009",
+    "source": "web_directory",
+    "existing_lead_id": 1020,
+    "existing_email": ""
+  },
+  {
+    "name": "Fanboy Comics",
+    "city": "Wilmington",
+    "state": "NC",
+    "phone": "(910) 452-7828",
+    "source": "web_directory",
+    "existing_lead_id": 1021,
+    "existing_email": ""
+  },
+  {
+    "name": "Fantasy Factory",
+    "city": "Dalton",
+    "state": "GA",
+    "phone": "(706) 259-3315",
+    "source": "web_directory",
+    "existing_lead_id": 815,
+    "existing_email": ""
+  },
+  {
+    "name": "Galactic Comics",
+    "city": "Statesboro",
+    "state": "GA",
+    "phone": "(912) 489-3123",
+    "source": "web_directory",
+    "existing_lead_id": 816,
+    "existing_email": ""
+  },
+  {
+    "name": "Jungle Jake's",
+    "city": "Hinesville",
+    "state": "GA",
+    "phone": "912-344-1338",
+    "source": "web_directory",
+    "existing_lead_id": 819,
+    "existing_email": ""
+  },
+  {
+    "name": "Morningstar Games",
+    "city": "Savannah",
+    "state": "GA",
+    "phone": "(912) 927-2770",
+    "source": "web_directory",
+    "existing_lead_id": 820,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Cafe",
+    "city": "Independence",
+    "state": "MO",
+    "phone": "(816) 252-7529",
+    "source": "web_directory"
+  }
+]

@@ -1,5 +1,60 @@
 # BD Production Pre-Send Automation Memory
 
+## 2026-08-17 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260817_et1000`
+- **Snapshot:** `frozen_new_outreach_20260817_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 9th consecutive business day (Aug 5–17, no snapshot since Aug 4)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 35 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260817.py`
+- **Report:** `output/pre_send_report_2026-08-17_2130.md`
+
+## 2026-08-14 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260814_et1000`
+- **Snapshot:** `frozen_new_outreach_20260814_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 8th consecutive business day (Aug 5–14, no snapshot since Aug 4)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 30 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260814.py`
+- **Report:** `output/pre_send_report_2026-08-14_2130.md`
+
+## 2026-08-13 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260813_et1000`
+- **Snapshot:** `frozen_new_outreach_20260813_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 7th consecutive business day (Aug 5–13)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 36 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260813.py`
+- **Report:** `output/pre_send_report_2026-08-13_2130.md`
+
+## 2026-08-11 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260811_et1000`
+- **Snapshot:** `frozen_new_outreach_20260811_et1000.json` — NOT FOUND
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 6th consecutive business day
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **Report:** `output/pre_send_report_2026-08-11_2130.md`
+
+## 2026-08-10 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260810_et1000`
+- **Snapshot:** `frozen_new_outreach_20260810_et1000.json` — NOT FOUND
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 4th consecutive business day
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **Report:** `output/pre_send_report_2026-08-10_2130.md`
+
+## 2026-08-07 21:26 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260807_et1000`
+- **Snapshot:** `frozen_new_outreach_20260807_et1000.json` — NOT FOUND
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot exists for today
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **Script:** `_pre_send_plan_20260807.py`
+- **Report:** `output/pre_send_report_2026-08-07_2126.md`
+
 ## 2026-08-06 21:26 CST — NO_BATCH_TODAY
 - **Batch:** `new_outreach_20260806_et1000`
 - **Snapshot:** `frozen_new_outreach_20260806_et1000.json` — NOT FOUND

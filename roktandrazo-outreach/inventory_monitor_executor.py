@@ -269,18 +269,36 @@ def is_china_hosted(domain, html_text=""):
     return False
 
 def extract_emails_from_html(html_text):
-    """Extract and deduplicate emails from HTML."""
+    """Extract and deduplicate emails from HTML.
+
+    Applies authoritative hygiene so image/resource filenames (foo@2x.jpg,
+    foo_235x235@2x.png), sentry/hash addresses and system addresses are NOT
+    treated as real contacts — they were previously counted as 'found' and
+    then silently blocked later, wasting the scan.
+    """
+    try:
+        from email_hygiene import hygiene_check
+    except Exception:
+        hygiene_check = None
+
     found = set()
+    raw = set()
     # Standard emails
     for m in EMAIL_RE.finditer(html_text):
         e = m.group(0).lower().strip()
         if e not in UNSAFE_EMAIL_DOMAINS and not any(e.startswith(p) for p in UNSAFE_PREFIXES):
-            found.add(e)
+            raw.add(e)
     # Mailto
     for m in MAILTO_RE.finditer(html_text):
         e = m.group(1).lower().strip()
         if e not in UNSAFE_EMAIL_DOMAINS and not any(e.startswith(p) for p in UNSAFE_PREFIXES):
-            found.add(e)
+            raw.add(e)
+    for e in raw:
+        if hygiene_check is not None:
+            h = hygiene_check(e)
+            if not h.get('valid'):
+                continue
+        found.add(e)
     return list(found)
 
 
@@ -404,13 +422,24 @@ def http_scan_website(website, ssl_stats):
 
     # ── Fallback: curl subprocess WITHOUT proxy (direct, more reliable) ──
     if last_error and last_error[0] in ('ssl_proxy_failure', 'timeout', 'unknown'):
-        curl_cmd = ['curl', '-s', '--max-time', '12', '-L', '-k', '--noproxy', '*',
+        curl_cmd = ['curl', '-s', '--max-time', '12', '-L', '-k', '--compressed', '--noproxy', '*',
                     '-H', f'User-Agent: {USER_AGENT}']
         
         try:
-            r = subprocess.run(curl_cmd + [website], capture_output=True, text=True, timeout=15)
-            if r.returncode == 0 and r.stdout and len(r.stdout) > 200:
-                html = r.stdout
+            # NOTE: --compressed handles gzip responses; text=True otherwise raises
+            # UnicodeDecodeError on gzip bytes (0x8b magic), which falsely mapped to
+            # network_retry_pending. Use binary + safe decode.
+            r = subprocess.run(curl_cmd + [website], capture_output=True, timeout=15)
+            raw = r.stdout
+            html = None
+            if raw:
+                for enc in ('utf-8', 'latin-1'):
+                    try:
+                        html = raw.decode(enc)
+                        break
+                    except UnicodeDecodeError:
+                        continue
+            if r.returncode == 0 and html and len(html) > 200:
                 emails = extract_emails_from_html(html)
                 if emails:
                     for e in emails:

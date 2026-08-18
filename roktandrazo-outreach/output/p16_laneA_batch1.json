@@ -1,0 +1,104 @@
+[
+  {
+    "name": "BookMark",
+    "city": "Huntsville",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Crimson Castle Chess & Games",
+    "city": "Tuscaloosa",
+    "state": "AL",
+    "website": "crimsoncastlegames.com",
+    "website_valid": false,
+    "website_note": "域名停放",
+    "official_email": "",
+    "status": "WEBSITE_INVALID"
+  },
+  {
+    "name": "Game Headz",
+    "city": "Bessemer",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Legion",
+    "city": "Birmingham",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "仅Facebook",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "The Foundry",
+    "city": "Huntsville",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "官网失效",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Top Games",
+    "city": "Gardendale",
+    "state": "AL",
+    "website": "topgamesalabama.com",
+    "website_valid": false,
+    "website_note": "域名失效",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Visions Cards & Games",
+    "city": "Montgomery",
+    "state": "AL",
+    "website": "visions-games.com",
+    "website_valid": true,
+    "website_note": "官网不可达",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Bald Man Games",
+    "city": "Batesville",
+    "state": "AR",
+    "website": "https://www.baldmangames.com",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "vddw@baldmangames.com",
+    "evidence_url": "https://www.baldmangames.com/scry-behind-february-2026",
+    "evidence_snippet": "Winners, please contact Spencer and Ted at vddw@baldmangames.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Double Header",
+    "city": "Pine Bluff",
+    "state": "AR",
+    "website": "doubleheadergames.com",
+    "website_valid": false,
+    "website_note": "归属未确认",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Galaxy Games",
+    "city": "Springdale",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "同名异主排除",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  }
+]

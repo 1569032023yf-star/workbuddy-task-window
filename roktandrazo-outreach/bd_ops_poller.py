@@ -43,14 +43,19 @@ def _write_heartbeat():
                 "detail": str(j.get("detail", ""))[:200],
             }
         status["current_errors"] = [
-            {"job": j["name"], "error": j["error"][:100]}
-            for j in _state["jobs"].values() if j.get("error")
+            {"job": j.get("name", name), "error": str(j.get("error", ""))[:100]}
+            for name, j in _state["jobs"].items() if j.get("error")
         ]
-        with open(STATUS_PATH, "w") as f:
+        # Atomic write: write to temp then replace, so readers never see a
+        # partially-written file and stale overwrites are avoided.
+        tmp_path = STATUS_PATH + ".tmp"
+        with open(tmp_path, "w") as f:
             json.dump(status, f, indent=2)
+        os.replace(tmp_path, STATUS_PATH)
         _state["last_heartbeat_at"] = status["last_heartbeat_at"]
-    except Exception:
-        pass
+    except Exception as e:  # noqa: BLE001 — status write must never kill poller
+        _state["errors"].append({"job": "heartbeat", "error": str(e)[:200],
+                                 "at": datetime.now(CST).isoformat()})
 
 
 def _lock(name):
@@ -77,6 +82,12 @@ def _update_job(name, success, error=None, detail=None):
         "detail": detail,
         "consecutive_failures": (_state["jobs"].get(name, {}).get("consecutive_failures", 0) + 1) if not success else 0,
     }
+    # Persist promptly after each job so status.json reflects the latest
+    # result instead of waiting up to 60s for the heartbeat thread.
+    try:
+        _write_heartbeat()
+    except Exception:
+        pass
 
 
 # ═══════════════════════════════════════════════
@@ -246,6 +257,8 @@ def poll_reply():
         since = (datetime.now(CST) - timedelta(hours=24)).strftime("%d-%b-%Y")
         result, data = mail.search(None, f"(SINCE {since})")
         found = 0
+        # P1.3: sender copy / self-sent 过滤 —— From == 发件账号本身绝不视为客户回复
+        sender_email = (imap_user or "").strip().lower()
         if result == "OK" and data[0]:
             for num in data[0].split()[-20:]:
                 result, msg_data = mail.fetch(num, "(RFC822.HEADER)")
@@ -258,8 +271,15 @@ def poll_reply():
                 frm = msg.get("From", "")
                 subj = msg.get("Subject", "")
 
-                # Skip auto-replies
+                # P1.3: 跳过自动回复
                 if any(x in (subj or "").lower() for x in ["auto:", "out of office", "automatic reply"]):
+                    continue
+
+                # P1.3: 从 From 头提取真实发件人地址
+                addr = re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+', frm or "")
+                from_addr = addr[0].lower() if addr else ""
+                # 发件人 == 自己（sender copy / BCC 副本）→ 绝不是 customer_reply
+                if from_addr and from_addr == sender_email:
                     continue
 
                 # Match to sent messages
@@ -268,15 +288,22 @@ def poll_reply():
                 matched = None
                 if not matched and in_reply:
                     matched = c.execute("SELECT lead_id, email FROM send_log WHERE message_id=? AND status='sent'", (in_reply.strip(),)).fetchone()
-                if not matched:
-                    addr = re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+', frm or "")
-                    if addr:
-                        matched = c.execute("SELECT lead_id, email FROM send_log WHERE status='sent' AND email=? ORDER BY sent_at DESC LIMIT 1", (addr[0].lower(),)).fetchone()
+                if not matched and from_addr:
+                    matched = c.execute("SELECT lead_id, email FROM send_log WHERE status='sent' AND email=? ORDER BY sent_at DESC LIMIT 1", (from_addr,)).fetchone()
 
+                # P1.3: 匹配到 test/self-send（lead_id==0）→ 永不作为 customer_reply 入库
                 if matched:
+                    matched_lead_id, matched_email = matched[0], matched[1]
+                    if matched_lead_id in (None, 0):
+                        conn.close()
+                        continue
+                    # 再确认 From 域不与发件账号相同（兜底 sender copy Message-ID 识别）
+                    if from_addr == sender_email:
+                        conn.close()
+                        continue
                     c.execute("""INSERT OR IGNORE INTO reply_log (lead_id, email, reply_received_at, reply_type, summary)
                         VALUES (?, ?, datetime('now'), 'customer_reply', ?)""",
-                        (matched[0], matched[1], f"From: {frm[:100]} | Subject: {(subj or '')[:100]}"))
+                        (matched_lead_id, matched_email, f"From: {frm[:100]} | Subject: {(subj or '')[:100]}"))
                     conn.commit()
                     found += 1
                 conn.close()
@@ -293,15 +320,43 @@ def poll_reply():
 # D. Bounce monitor (every 5 min)
 # ═══════════════════════════════════════════════
 
+# D. Bounce monitor (every 5 min)
+# ═══════════════════════════════════════════════
+# P1.3: Bounce IMAP Authority = bounce_pipeline.scan_bounces。
+# poll_bounce 现在调用真实 IMAP 扫描（与 result_recovery_sync 同源），
+# 不再伪装"扫描邮箱"实际只读库。suppression 同步单独为 poll_suppression_sync。
+
 def poll_bounce():
+    """真实退信 IMAP 扫描（Bounce IMAP Authority = bounce_pipeline.scan_bounces）。"""
     if not _lock("bounce"): return
+    try:
+        import bounce_pipeline
+        summary = bounce_pipeline.run_scan_and_writeback()
+        detail = (f"scan_bounces: scanned={summary.get('scanned')} "
+                  f"matched={summary.get('matched')} "
+                  f"domain_invalid={summary.get('domain_invalid')} "
+                  f"mailbox_invalid={summary.get('mailbox_invalid')} "
+                  f"policy={summary.get('policy_bounce')} "
+                  f"unmatched={summary.get('unmatched_dsn')} "
+                  f"errors={len(summary.get('errors') or [])}")
+        _update_job("bounce", True, detail=detail)
+    except Exception as e:
+        _update_job("bounce", False, e)
+    finally:
+        _unlock("bounce")
+
+
+def poll_suppression_sync():
+    """仅做 bounce_log → suppression_list 同步（不再假装扫描邮箱）。
+    bounce_type 覆盖 domain_invalid/mailbox_invalid/policy/hard/permanent/unresolved。"""
+    if not _lock("suppression_sync"): return
     try:
         conn = sqlite3.connect(DB_PATH)
         c = conn.cursor()
-        # Check for recent hard bounces and update suppression
+        # 近 7 天退信邮箱 → suppression（覆盖本系统全部退信类型）
         recent = c.execute("""
             SELECT DISTINCT email FROM bounce_log
-            WHERE bounce_type IN ('hard','policy','permanent')
+            WHERE bounce_type IN ('hard','policy','permanent','domain_invalid','mailbox_invalid')
             AND email NOT IN (SELECT email FROM suppression_list)
             AND bounce_received_at > datetime('now', '-7 days')
         """).fetchall()
@@ -313,11 +368,11 @@ def poll_bounce():
                 added += 1
         conn.commit()
         conn.close()
-        _update_job("bounce", True, detail=f"Checked bounces, added {added} to suppression")
+        _update_job("suppression_sync", True, detail=f"Synced {added} bounced emails to suppression")
     except Exception as e:
-        _update_job("bounce", False, e)
+        _update_job("suppression_sync", False, e)
     finally:
-        _unlock("bounce")
+        _unlock("suppression_sync")
 
 
 # ═══════════════════════════════════════════════
@@ -438,7 +493,9 @@ def start_poller(daemon=True):
         threads.extend([
             threading.Thread(target=lambda: _loop("health", 60, poll_health), daemon=daemon),
             threading.Thread(target=lambda: _loop("reply", 300, poll_reply), daemon=daemon),
+            # P1.3: bounce 真实 IMAP 扫描 + suppression 同步分开
             threading.Thread(target=lambda: _loop("bounce", 300, poll_bounce), daemon=daemon),
+            threading.Thread(target=lambda: _loop("suppression_sync", 300, poll_suppression_sync), daemon=daemon),
             threading.Thread(target=lambda: _loop("delivery_guard", 60, poll_delivery_guard), daemon=daemon),
         ])
     for t in threads:

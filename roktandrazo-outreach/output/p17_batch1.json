@@ -1,0 +1,219 @@
+[
+  {
+    "name": "GameChanger",
+    "city": "Indian Harbour Beach",
+    "state": "FL",
+    "phone": "(321) 622-8525",
+    "source": "web_directory",
+    "existing_lead_id": 992,
+    "existing_email": ""
+  },
+  {
+    "name": "Geek Xtreme Entertainment",
+    "city": "Pompano Beach",
+    "state": "FL",
+    "phone": "(954) 946 1516",
+    "source": "web_directory",
+    "existing_lead_id": 993,
+    "existing_email": ""
+  },
+  {
+    "name": "Hammer Hall Gaming",
+    "city": "Jacksonville",
+    "state": "FL",
+    "phone": "(904) 240-1011",
+    "source": "web_directory",
+    "existing_lead_id": 994,
+    "existing_email": ""
+  },
+  {
+    "name": "Arsenal Games and Hobbies",
+    "city": "Augusta",
+    "state": "GA",
+    "phone": "706-364-2772",
+    "source": "web_directory",
+    "existing_lead_id": 812,
+    "existing_email": ""
+  },
+  {
+    "name": "Augusta Book Exchange",
+    "city": "Martinez",
+    "state": "GA",
+    "phone": "(706) 860-6553",
+    "source": "web_directory",
+    "existing_lead_id": 813,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon Star Hobbies",
+    "city": "Athens",
+    "state": "GA",
+    "phone": "(706) 850-6181",
+    "source": "web_directory",
+    "existing_lead_id": 814,
+    "existing_email": ""
+  },
+  {
+    "name": "Capital City Games",
+    "city": "Springfield",
+    "state": "IL",
+    "phone": "(217) 793-5229",
+    "source": "web_directory",
+    "existing_lead_id": 921,
+    "existing_email": ""
+  },
+  {
+    "name": "Castle Perilous",
+    "city": "Carbondale",
+    "state": "IL",
+    "phone": "(800) 297-2160",
+    "source": "web_directory",
+    "existing_lead_id": 922,
+    "existing_email": ""
+  },
+  {
+    "name": "Chicagoland Games",
+    "city": "Chicago",
+    "state": "IL",
+    "phone": "(773) 728-3656",
+    "source": "web_directory",
+    "existing_lead_id": 923,
+    "existing_email": ""
+  },
+  {
+    "name": "3SD Games",
+    "city": "Ellettsville",
+    "state": "IN",
+    "phone": "(812) 325-9433",
+    "source": "web_directory"
+  },
+  {
+    "name": "Atomic Hobby",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 471-2866",
+    "source": "web_directory"
+  },
+  {
+    "name": "Books Comics & Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 493-6116",
+    "source": "web_directory"
+  },
+  {
+    "name": "Albemarle Hobbies",
+    "city": "Albemarle",
+    "state": "NC",
+    "phone": "(704) 986-6540",
+    "source": "web_directory",
+    "existing_lead_id": 1016,
+    "existing_email": ""
+  },
+  {
+    "name": "All Fun & Games",
+    "city": "Apex",
+    "state": "NC",
+    "phone": "(919) 468-6322",
+    "source": "web_directory",
+    "existing_lead_id": 1017,
+    "existing_email": ""
+  },
+  {
+    "name": "Blue Ox Games",
+    "city": "Greenville",
+    "state": "NC",
+    "phone": "(252) 695-6442",
+    "source": "web_directory",
+    "existing_lead_id": 1018,
+    "existing_email": ""
+  },
+  {
+    "name": "Acme Games",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 231-3866",
+    "source": "web_directory",
+    "existing_lead_id": 878,
+    "existing_email": ""
+  },
+  {
+    "name": "Ahzz'z Arena",
+    "city": "Massillon",
+    "state": "OH",
+    "phone": "(330) 832-4500",
+    "source": "web_directory",
+    "existing_lead_id": 879,
+    "existing_email": ""
+  },
+  {
+    "name": "All American Comics & Cards",
+    "city": "Boardman",
+    "state": "OH",
+    "phone": "(330) 629-8754",
+    "source": "web_directory",
+    "existing_lead_id": 880,
+    "existing_email": ""
+  },
+  {
+    "name": "AC3 Inc",
+    "city": "Norfolk",
+    "state": "VA",
+    "phone": "(757) 502 8954",
+    "source": "web_directory",
+    "existing_lead_id": 838,
+    "existing_email": ""
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "phone": "(757) 479-5400",
+    "source": "web_directory",
+    "existing_lead_id": 839,
+    "existing_email": ""
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Portsmouth",
+    "state": "VA",
+    "phone": "(757) 465-1617",
+    "source": "web_directory"
+  },
+  {
+    "name": "Campus Cards & Games",
+    "city": "Bowling Green",
+    "state": "KY",
+    "phone": "270-846-3367",
+    "source": "web_directory",
+    "existing_lead_id": 722,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Book World Florence",
+    "city": "Florence",
+    "state": "KY",
+    "phone": "(859) 371-9562",
+    "source": "web_directory",
+    "existing_lead_id": 729,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Book World Louisville",
+    "city": "Louisville",
+    "state": "KY",
+    "phone": "(502) 964-5500",
+    "source": "web_directory",
+    "existing_lead_id": 728,
+    "existing_email": ""
+  },
+  {
+    "name": "Big City Comix and Games",
+    "city": "Kansas City",
+    "state": "MO",
+    "phone": "(816) 326-7759",
+    "source": "web_directory",
+    "existing_lead_id": 861,
+    "existing_email": ""
+  }
+]

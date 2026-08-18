@@ -1,0 +1,225 @@
+[
+  {
+    "name": "Above Board Games",
+    "city": "Fort Mill",
+    "state": "SC",
+    "phone": "(803) 792-4786",
+    "source": "web_directory",
+    "existing_lead_id": 1041,
+    "existing_email": ""
+  },
+  {
+    "name": "Borderlands",
+    "city": "Greenville",
+    "state": "SC",
+    "phone": "(864) 235-3488",
+    "source": "web_directory",
+    "existing_lead_id": 1042,
+    "existing_email": ""
+  },
+  {
+    "name": "Fireflt Toys & Games",
+    "city": "Lexington",
+    "state": "SC",
+    "phone": "803-996-3473",
+    "source": "web_directory",
+    "existing_lead_id": 1043,
+    "existing_email": ""
+  },
+  {
+    "name": "Firefly Toys & Games",
+    "city": "Lexington",
+    "state": "SC",
+    "phone": "803-996-3473",
+    "source": "web_directory",
+    "existing_lead_id": 1044,
+    "existing_email": ""
+  },
+  {
+    "name": "Allstar Cards, Games & Comics",
+    "city": "Leesville",
+    "state": "LA",
+    "phone": "(337) 537-0843",
+    "source": "web_directory",
+    "existing_lead_id": 964,
+    "existing_email": ""
+  },
+  {
+    "name": "And Books Too",
+    "city": "Lafayette",
+    "state": "LA",
+    "phone": "(318) 981-1646",
+    "source": "web_directory",
+    "existing_lead_id": 965,
+    "existing_email": ""
+  },
+  {
+    "name": "Axtion Comics",
+    "city": "Covington",
+    "state": "LA",
+    "phone": "(985) 809-2939",
+    "source": "web_directory",
+    "existing_lead_id": 966,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon's Lair, War Games and Hobby Supplies",
+    "city": "Bossier City",
+    "state": "LA",
+    "phone": "3187544383",
+    "source": "web_directory",
+    "existing_lead_id": 967,
+    "existing_email": ""
+  },
+  {
+    "name": "Alien Games",
+    "city": "Jenks",
+    "state": "OK",
+    "phone": "(918) 296-7111",
+    "source": "web_directory",
+    "existing_lead_id": 950,
+    "existing_email": ""
+  },
+  {
+    "name": "Carolina Comics",
+    "city": "Lawton",
+    "state": "OK",
+    "phone": "(580) 353-5164",
+    "source": "web_directory",
+    "existing_lead_id": 951,
+    "existing_email": ""
+  },
+  {
+    "name": "Gamers Guild",
+    "city": "Bartlesville",
+    "state": "OK",
+    "phone": "(918)876-1079",
+    "source": "web_directory",
+    "existing_lead_id": 952,
+    "existing_email": ""
+  },
+  {
+    "name": "Hall of Heroes",
+    "city": "Ponca City",
+    "state": "OK",
+    "phone": "(580) 765-7437",
+    "source": "web_directory",
+    "existing_lead_id": 953,
+    "existing_email": ""
+  },
+  {
+    "name": "Dewayne's World Comics & Games",
+    "city": "Kingsport",
+    "state": "TN",
+    "phone": "(423) 247-8997",
+    "source": "web_directory",
+    "existing_lead_id": 800,
+    "existing_email": null
+  },
+  {
+    "name": "Dicehead Games",
+    "city": "Cleveland",
+    "state": "TN",
+    "phone": "(423) 473-7125",
+    "source": "web_directory",
+    "existing_lead_id": 533,
+    "existing_email": ""
+  },
+  {
+    "name": "Grand Adventures",
+    "city": "Murfeesboro",
+    "state": "TN",
+    "phone": "(615) 867-0838",
+    "source": "web_directory"
+  },
+  {
+    "name": "Heroes Ink",
+    "city": "McMinnville",
+    "state": "TN",
+    "phone": "(931) 474-4376",
+    "source": "web_directory",
+    "existing_lead_id": 803,
+    "existing_email": null
+  },
+  {
+    "name": "CCYDNE Hobbies",
+    "city": "Lebanon",
+    "state": "MO",
+    "phone": "417-532-1049",
+    "source": "web_directory",
+    "existing_lead_id": 862,
+    "existing_email": ""
+  },
+  {
+    "name": "Changing Hands Bookstore",
+    "city": "Joplin",
+    "state": "MO",
+    "phone": "(417) 623-6699",
+    "source": "web_directory",
+    "existing_lead_id": 863,
+    "existing_email": ""
+  },
+  {
+    "name": "Dirt Road Comics and Collectibles",
+    "city": "Willow Springs",
+    "state": "MO",
+    "phone": "(417) 469-1904",
+    "source": "web_directory",
+    "existing_lead_id": 864,
+    "existing_email": ""
+  },
+  {
+    "name": "Eclipse Books, Comics, and Games",
+    "city": "Rolla",
+    "state": "MO",
+    "phone": "(573) 364-4301",
+    "source": "web_directory",
+    "existing_lead_id": 865,
+    "existing_email": ""
+  },
+  {
+    "name": "Crash Comics",
+    "city": "Paducah",
+    "state": "KY",
+    "phone": "(270) 442-7348",
+    "source": "web_directory",
+    "existing_lead_id": 724,
+    "existing_email": ""
+  },
+  {
+    "name": "Hard Knox Games",
+    "city": "Radcliff",
+    "state": "KY",
+    "phone": "2703525669",
+    "source": "web_directory",
+    "existing_lead_id": 727,
+    "existing_email": ""
+  },
+  {
+    "name": "Lotus Guardian",
+    "city": "Owensboro",
+    "state": "KY",
+    "phone": "(270) 926-6765",
+    "source": "web_directory",
+    "existing_lead_id": 797,
+    "existing_email": null
+  },
+  {
+    "name": "Louisville Game Shop",
+    "city": "Louisville",
+    "state": "KY",
+    "phone": "(502) 456-2734",
+    "source": "web_directory",
+    "existing_lead_id": 723,
+    "existing_email": ""
+  },
+  {
+    "name": "Cavalier Comics",
+    "city": "Wise",
+    "state": "VA",
+    "phone": "(276) 328-9312",
+    "source": "web_directory",
+    "existing_lead_id": 840,
+    "existing_email": ""
+  }
+]

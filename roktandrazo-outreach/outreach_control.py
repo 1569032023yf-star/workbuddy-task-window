@@ -83,15 +83,25 @@ def is_strict_a0(lead: dict) -> bool:
     )
 
 
-def build_final_plan_entries(leads: list[dict], batch_date: str, message_type: str) -> list[dict]:
-    """Freeze only already-approved inputs; callers supply rendered subject/body."""
+def build_final_plan_entries(leads: list[dict], batch_date: str, message_type: str,
+                             eligible_check: callable | None = None) -> list[dict]:
+    """Freeze only already-approved inputs; callers supply rendered subject/body.
+
+    eligible_check: 可选 callable(lead: dict) -> bool。正式政策下 new_outreach
+    的资格由调用方注入（Campaign Eligible 判定）；缺省回退 is_strict_a0 仅作
+    字段级兜底（历史行为），不再把 Strict A0 当作唯一发送池。
+    """
     if message_type not in {"new_outreach", "follow_up"}:
         raise ValueError("unsupported message_type")
     limit = NEW_OUTREACH_TARGET if message_type == "new_outreach" else FOLLOW_UP_MAX
     entries = []
     for sequence, lead in enumerate(leads[:limit], start=1):
-        if message_type == "new_outreach" and not is_strict_a0(lead):
-            continue
+        if message_type == "new_outreach":
+            if eligible_check is not None:
+                if not eligible_check(lead):
+                    continue
+            elif not is_strict_a0(lead):
+                continue
         required = ("id", "email", "store_name", "email_subject", "email_body", "evidence_url")
         if any(not lead.get(field) for field in required):
             continue
@@ -99,7 +109,9 @@ def build_final_plan_entries(leads: list[dict], batch_date: str, message_type: s
             "lead_id": lead["id"], "recipient_email": lead["email"].strip().lower(),
             "company_name": lead["store_name"], "customer_type": lead.get("customer_type") or lead.get("store_type") or "retail",
             "lead_segment": lead.get("lead_segment") or "strict_a0",
-            "template_id": lead.get("template_id") or "", "source_city": lead.get("city") or "",
+            # template_id 兼容旧字段：优先 template_key（P0 渲染元数据），preflight 用它校验模板注册
+            "template_id": lead.get("template_id") or lead.get("template_key") or "",
+            "source_city": lead.get("city") or "",
             "source_state": lead.get("state") or "", "evidence_url": lead["evidence_url"],
             "hygiene_passed_at": lead.get("hygiene_passed_at") or datetime.now(SHANGHAI).isoformat(),
             "message_type": message_type, "outreach_batch_date": batch_date,

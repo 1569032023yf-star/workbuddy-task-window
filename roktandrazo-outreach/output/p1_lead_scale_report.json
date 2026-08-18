@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-08-13T16:34:16.442356+08:00",
+  "mode": "P1.0-B Lead Scale Capacity Run",
+  "funnel_all_3_states": {
+    "Discovered": 348,
+    "ICP Qualified": 64,
+    "Website Found": 181,
+    "Email Found": 168,
+    "Broad Ready": 9,
+    "Campaign Eligible": 4
+  },
+  "funnel_by_state": {
+    "TN": {
+      "Discovered": 189,
+      "ICP Qualified": 31,
+      "Website Found": 96,
+      "Email Found": 88,
+      "Broad Ready": 2,
+      "Campaign Eligible": 1
+    },
+    "AR": {
+      "Discovered": 79,
+      "ICP Qualified": 14,
+      "Website Found": 38,
+      "Email Found": 39,
+      "Broad Ready": 2,
+      "Campaign Eligible": 1
+    },
+    "KY": {
+      "Discovered": 80,
+      "ICP Qualified": 19,
+      "Website Found": 47,
+      "Email Found": 41,
+      "Broad Ready": 5,
+      "Campaign Eligible": 2
+    }
+  },
+  "this_round_new_leads": 15,
+  "this_round_new_icp_qualified": 15,
+  "campaign_eligible_total": 4,
+  "campaign_eligible_leads": [
+    {
+      "id": 774,
+      "store": "Village Tinker",
+      "city": "Maryville",
+      "state": "TN",
+      "email": "villagetinker@villagetinker.com",
+      "icp_route": "B",
+      "icp_priority": "P2"
+    },
+    {
+      "id": 779,
+      "store": "Stoney's Gift & Toy Shoppe",
+      "city": "Covington",
+      "state": "KY",
+      "email": "sstonebraker1616@aol.com",
+      "icp_route": "A",
+      "icp_priority": "P3"
+    },
+    {
+      "id": 783,
+      "store": "Legit MTG",
+      "city": "Owensboro",
+      "state": "KY",
+      "email": "sales@legitmtg.com",
+      "icp_route": "A",
+      "icp_priority": "P2"
+    },
+    {
+      "id": 811,
+      "store": "The Game Store",
+      "city": "Jacksonville",
+      "state": "AR",
+      "email": "sales@thegamestore.com",
+      "icp_route": "A",
+      "icp_priority": "P2"
+    }
+  ],
+  "bottleneck_analysis": {
+    "primary": "Campaign Eligible < 20 — 三州 168 个有邮箱 lead 中 157 已被历史发送覆盖",
+    "previously_sent_email": 157,
+    "previously_sent_org": 137,
+    "public_mailbox_need_first_party_evidence": "Collector's/TTD/Boss Monster/TF Games 均为 Gmail/Yahoo/Hotmail 且缺官方归属证据 → MANUAL_REVIEW"
+  }
+}

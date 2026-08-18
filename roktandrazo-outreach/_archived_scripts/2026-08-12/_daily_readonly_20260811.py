@@ -1,0 +1,589 @@
+"""
+BD Daily Results — Read-Only Summary (2026-08-11 auto, for 08-10 batch)
+No SMTP. No Final Send Plan. Strictly read-only.
+"""
+import sqlite3, json, os, sys, traceback
+from datetime import datetime, timezone, timedelta
+
+ASIA_SH = timezone(timedelta(hours=8))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "data", "bd_leads.db")
+OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+YESTERDAY = (datetime.now(ASIA_SH) - timedelta(days=1)).strftime("%Y-%m-%d")
+TODAY = datetime.now(ASIA_SH).strftime("%Y-%m-%d")
+NOW_STR = datetime.now(ASIA_SH).strftime("%Y-%m-%d %H:%M:%S")
+
+print(f"{'='*70}")
+print(f"  BD DAILY RESULTS — READ-ONLY SUMMARY")
+print(f"  Generated: {NOW_STR} Asia/Shanghai")
+print(f"  Yesterday: {YESTERDAY}")
+print(f"  DB: {DB_PATH}")
+print(f"{'='*70}")
+
+# ═══════════════════════════════════════════════
+# 1. Clear Ops API cache & refresh stats
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print("  1. REFRESHING DASHBOARD CACHE")
+print(f"{'─'*60}")
+sys.path.insert(0, BASE_DIR)
+import bd_ops_api
+bd_ops_api._cache.clear()
+print("  [OK] Ops API cache cleared")
+
+# Refresh today stats and inventory
+today_stats = bd_ops_api.get_today_stats(DB_PATH)
+inventory = bd_ops_api.get_inventory(DB_PATH)
+health = bd_ops_api.get_health(DB_PATH)
+tracking = bd_ops_api.get_tracking_stats()
+search = bd_ops_api.get_search_progress(DB_PATH)
+data_quality = bd_ops_api.get_data_quality(DB_PATH)
+
+print(f"  Today stats: planned_new={today_stats['planned_new']}, sent_new={today_stats['sent_new']}")
+print(f"  Ops inventory: strict_a0_orgs={inventory['strict_a0_organizations']}, manual_review={inventory['manual_review']}")
+print(f"  Inventory status: {inventory['status']}")
+print(f"  Tracking: available={tracking.get('available')}, msgs_with_open={tracking.get('messages_with_open',0)}")
+print(f"  Data freshness: {health.get('data_freshness',{}).get('badge_label','?')}")
+
+# ═══════════════════════════════════════════════
+# 2. Yesterday's batch from send_log
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  2. YESTERDAY'S BATCH: {YESTERDAY}")
+print(f"{'─'*60}")
+
+conn = sqlite3.connect(f"file:{DB_PATH}?mode=ro", uri=True)
+conn.row_factory = sqlite3.Row
+
+# Plan count
+planned_count = conn.execute("""
+    SELECT COUNT(*) FROM final_send_plan
+    WHERE outreach_batch_date = ? AND status = 'planned'
+""", (YESTERDAY,)).fetchone()[0]
+
+# Send count by sent_at LIKE
+sent_rows = conn.execute("""
+    SELECT sl.*, l.store_name, l.city, l.state, l.email_type,
+           l.email AS lead_email,
+           COALESCE(NULLIF(l.organization_key,''),'org_'||sl.lead_id) as org_key
+    FROM send_log sl
+    LEFT JOIN leads l ON sl.lead_id = l.id
+    WHERE sl.status = 'sent'
+      AND sl.sent_at LIKE ?
+      AND sl.message_type NOT IN ('test','internal_report','acceptance_test','sender_copy')
+    ORDER BY sl.sent_at
+""", (f"{YESTERDAY}%",)).fetchall()
+
+# Also try outreach_batch_date
+sent_by_batch = conn.execute("""
+    SELECT COUNT(*) FROM send_log
+    WHERE status = 'sent' AND outreach_batch_date = ?
+      AND message_type NOT IN ('test','internal_report','acceptance_test','sender_copy')
+""", (YESTERDAY,)).fetchone()[0]
+
+smtp_accepted = max(len(sent_rows), sent_by_batch)
+
+# If sent_at LIKE returned 0 but batch_date has data, re-query
+if len(sent_rows) == 0 and sent_by_batch > 0:
+    sent_rows = conn.execute("""
+        SELECT sl.*, l.store_name, l.city, l.state, l.email_type,
+               l.email AS lead_email,
+               COALESCE(NULLIF(l.organization_key,''),'org_'||sl.lead_id) as org_key
+        FROM send_log sl
+        LEFT JOIN leads l ON sl.lead_id = l.id
+        WHERE sl.status = 'sent'
+          AND sl.outreach_batch_date = ?
+          AND sl.message_type NOT IN ('test','internal_report','acceptance_test','sender_copy')
+        ORDER BY sl.sent_at
+    """, (YESTERDAY,)).fetchall()
+
+print(f"  Planned: {planned_count}")
+print(f"  SMTP Accepted (sent_at LIKE): {len(sent_rows) if len(sent_rows) > 0 else '[none]'}")
+print(f"  SMTP Accepted (batch_date): {sent_by_batch}")
+print(f"  Final SMTP Accepted count: {smtp_accepted}")
+
+# ═══════════════════════════════════════════════
+# 3. Tracking data
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  3. TRACKING DATA")
+print(f"{'─'*60}")
+
+tracking_data = {"available": False, "messages_with_open": 0, "total_open_signals": 0, "breakdown": {}}
+
+# Try poller cache
+try:
+    cache_path = os.path.join(OUTPUT_DIR, "bd_ops_poller_tracking_cache.json")
+    with open(cache_path, "r") as f:
+        td = json.load(f)
+    if td.get("available"):
+        tracking_data = td
+        print(f"  Source: poller_cache (synced {td.get('synced_at','?')})")
+    else:
+        print(f"  Poller cache unavailable — trying D1 direct...")
+except Exception as e:
+    print(f"  Poller cache not found: {e}")
+
+# Fallback: D1 direct
+if not tracking_data.get("available"):
+    try:
+        import urllib.request
+        token = os.environ.get("DASHBOARD_API_KEY", "")
+        sql = "SELECT COUNT(DISTINCT message_id) as msgs, COUNT(*) as signals FROM email_tracking_events WHERE event_type = 'open'"
+        req = urllib.request.Request(
+            "https://roktandrazo-email-tracker.1569032023yf.workers.dev/internal/query",
+            data=json.dumps({"sql": sql}).encode(),
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+            method="POST",
+        )
+        resp = urllib.request.urlopen(req, timeout=10)
+        data = json.loads(resp.read())
+        if data and data.get("results"):
+            tracking_data["available"] = True
+            tracking_data["total_open_signals"] = int(data["results"][0].get("signals", 0))
+            tracking_data["messages_with_open"] = int(data["results"][0].get("msgs", 0))
+            tracking_data["source"] = "D1_direct"
+            print(f"  Source: D1 direct (msgs_with_open: {tracking_data['messages_with_open']}, signals: {tracking_data['total_open_signals']})")
+    except Exception as e:
+        print(f"  D1 query failed: {e}")
+
+# ═══════════════════════════════════════════════
+# 4. Open signals — check tracking_message_id linkage
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  4. OPEN SIGNAL ANALYSIS (per send)")
+print(f"{'─'*60}")
+
+lead_ids = [r["lead_id"] for r in sent_rows if r["lead_id"]]
+tracking_ids = conn.execute(f"""
+    SELECT lead_id, tracking_message_id FROM leads
+    WHERE id IN ({','.join('?' for _ in lead_ids)})
+""", lead_ids).fetchall() if lead_ids else []
+
+tracking_map = {r["lead_id"]: r["tracking_message_id"] for r in tracking_ids if r["tracking_message_id"]}
+print(f"  Leads with tracking_message_id: {len(tracking_map)}/{len(lead_ids)}")
+
+open_data = {}  # lead_id -> {has_open, first_open, last_open, count}
+
+# Try D1 per-message query if we have tracking IDs
+if tracking_data.get("available") and tracking_map:
+    try:
+        import urllib.request
+        tracking_ids_str = "','".join(tracking_map.values())
+        sql = f"""
+            SELECT message_id, MIN(event_at) as first_open, MAX(event_at) as last_open, COUNT(*) as opens
+            FROM email_tracking_events
+            WHERE event_type = 'open' AND message_id IN ('{tracking_ids_str}')
+            GROUP BY message_id
+        """
+        token = os.environ.get("DASHBOARD_API_KEY", "")
+        req = urllib.request.Request(
+            "https://roktandrazo-email-tracker.1569032023yf.workers.dev/internal/query",
+            data=json.dumps({"sql": sql}).encode(),
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+            method="POST",
+        )
+        resp = urllib.request.urlopen(req, timeout=10)
+        data = json.loads(resp.read())
+        if data and data.get("results"):
+            for r in data["results"]:
+                msg_id = r.get("message_id", "")
+                for lid, mid in tracking_map.items():
+                    if mid == msg_id:
+                        open_data[lid] = {
+                            "has_open": True if r.get("opens", 0) > 0 else False,
+                            "first_open": r.get("first_open", ""),
+                            "last_open": r.get("last_open", ""),
+                            "count": r.get("opens", 0),
+                        }
+                        break
+        print(f"  D1 tracked msgs with opens: {sum(1 for v in open_data.values() if v['has_open'])}")
+    except Exception as e:
+        print(f"  D1 per-message query failed: {e}")
+
+# ═══════════════════════════════════════════════
+# 5. Replies & Bounces for yesterday
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  5. REPLIES & BOUNCES")
+print(f"{'─'*60}")
+
+human_replies = conn.execute("""
+    SELECT COUNT(*) FROM reply_log
+    WHERE reply_received_at LIKE ? 
+    AND (reply_type NOT LIKE '%auto%' AND reply_type NOT LIKE '%ooo%' 
+         AND reply_type NOT LIKE '%autoreply%' AND reply_type NOT LIKE '%notification%' 
+         OR reply_type IS NULL)
+""", (f"{YESTERDAY}%",)).fetchone()[0]
+
+auto_replies = conn.execute("""
+    SELECT COUNT(*) FROM reply_log
+    WHERE reply_received_at LIKE ? 
+    AND (reply_type LIKE '%auto%' OR reply_type LIKE '%ooo%' 
+         OR reply_type LIKE '%autoreply%' OR reply_type LIKE '%notification%')
+""", (f"{YESTERDAY}%",)).fetchone()[0]
+
+hard_bounces = conn.execute("""
+    SELECT COUNT(*) FROM bounce_log
+    WHERE bounce_type IN ('hard','policy','permanent') AND bounce_received_at LIKE ?
+""", (f"{YESTERDAY}%",)).fetchone()[0]
+
+soft_bounces = conn.execute("""
+    SELECT COUNT(*) FROM bounce_log
+    WHERE bounce_type IN ('soft','transient') AND bounce_received_at LIKE ?
+""", (f"{YESTERDAY}%",)).fetchone()[0]
+
+unsubs = conn.execute("""
+    SELECT COUNT(*) FROM leads WHERE unsubscribed_at LIKE ?
+""", (f"{YESTERDAY}%",)).fetchone()[0]
+
+print(f"  Human replies: {human_replies}")
+print(f"  Auto replies: {auto_replies}")
+print(f"  Hard bounces: {hard_bounces}")
+print(f"  Soft bounces: {soft_bounces}")
+print(f"  Unsubscribes: {unsubs}")
+
+# ═══════════════════════════════════════════════
+# 6. Current Inventory
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  6. CURRENT INVENTORY")
+print(f"{'─'*60}")
+
+total_leads = conn.execute("SELECT COUNT(*) FROM leads").fetchone()[0]
+
+# Broad Outreach Ready via module
+try:
+    from broad_outreach_gate import analyze_all_leads
+    broad_conn = sqlite3.connect(f"file:{DB_PATH}?mode=ro", uri=True)
+    broad_result = analyze_all_leads(broad_conn)
+    broad_ready = broad_result.get("broad_org_opportunities", 0)
+    broad_locations = broad_result.get("broad_ready_locations", [])
+    broad_ready_locs = len(broad_locations) if isinstance(broad_locations, list) else 0
+    broad_high = broad_result.get("contact_role_uncertain_unblocked", 0)
+    broad_conn.close()
+except Exception as e:
+    print(f"  broad_outreach_gate error: {e}")
+    broad_ready = "N/A"
+    broad_high = "N/A"
+    broad_ready_locs = "N/A"
+
+# Strict A0
+strict_a0 = conn.execute("""
+    SELECT COUNT(*) FROM leads WHERE
+    status='new' AND confidence_score='A' AND auto_sendable=1
+    AND email_verified_on_official_site=1 AND email IS NOT NULL AND email != ''
+    AND email NOT IN (SELECT email FROM suppression_list)
+    AND id NOT IN (SELECT lead_id FROM send_log WHERE status='sent')
+    AND id NOT IN (SELECT lead_id FROM bounce_log WHERE bounce_type IN ('hard','policy','permanent'))
+""").fetchone()[0]
+
+# Manual review pending
+manual_pending = conn.execute("""
+    SELECT COUNT(*) FROM leads
+    WHERE review_reason_code IS NOT NULL AND review_reason_code != ''
+    AND review_status = 'pending'
+""").fetchone()[0]
+
+# Also count manual_review_needed status
+manual_status = conn.execute("""
+    SELECT COUNT(*) FROM leads WHERE status = 'manual_review_needed'
+""").fetchone()[0]
+
+prev_sent = conn.execute("""
+    SELECT COUNT(DISTINCT lead_id) FROM send_log WHERE status='sent'
+""").fetchone()[0]
+
+suppressed_count = conn.execute("""
+    SELECT COUNT(*) FROM leads WHERE
+    email IN (SELECT email FROM suppression_list)
+    OR status='do_not_contact' OR unsubscribed_at IS NOT NULL
+""").fetchone()[0]
+
+print(f"  Total leads: {total_leads}")
+print(f"  Broad Outreach Ready: {broad_ready} orgs / {broad_ready_locs} locations")
+print(f"  Broad High Priority: {broad_high}")
+print(f"  Strict A0: {strict_a0}")
+print(f"  Manual review pending (review_status): {manual_pending}")
+print(f"  Manual review needed (status): {manual_status}")
+print(f"  Previously sent: {prev_sent}")
+print(f"  Suppressed: {suppressed_count}")
+
+# ═══════════════════════════════════════════════
+# 7. Active states & cities
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  7. ACTIVE STATES & COLLECTION PROGRESS")
+print(f"{'─'*60}")
+
+state_stats = conn.execute("""
+    SELECT state, COUNT(*) as cnt, COUNT(DISTINCT city) as cities
+    FROM leads
+    WHERE state IN ('TN','AR','KY','OH','IN','MN','NE','NC','OR','CO')
+    GROUP BY state ORDER BY cnt DESC
+""").fetchall()
+
+state_detail = []
+for r in state_stats:
+    state = r["state"]
+    sendable = conn.execute("""
+        SELECT COUNT(*) FROM leads WHERE state = ?
+        AND id NOT IN (SELECT DISTINCT lead_id FROM send_log WHERE status='sent')
+        AND status NOT IN ('do_not_contact','review_rejected')
+        AND email IS NOT NULL AND email != ''
+        AND email NOT IN (SELECT email FROM suppression_list)
+    """, (state,)).fetchone()[0]
+    state_detail.append({
+        "state": state, "total": r["cnt"], "cities": r["cities"], "sendable": sendable
+    })
+    print(f"  {state}: {r['cnt']} leads in {r['cities']} cities ({sendable} unsent/sendable)")
+
+# ═══════════════════════════════════════════════
+# 8. Per-send detail
+# ═══════════════════════════════════════════════
+print(f"\n{'='*70}")
+print(f"  YESTERDAY'S SEND RESULTS — {YESTERDAY}")
+print(f"{'='*70}")
+
+opens_count = 0
+no_open_count = 0
+store_details = []
+
+for idx, r in enumerate(sent_rows, 1):
+    lid = r["lead_id"]
+    store = r.get("store_name", f"Lead #{lid}")
+    email = r.get("email") or r.get("lead_email") or ""
+    sent_at = r.get("sent_at", "")
+    city = r.get("city", "")
+    state = r.get("state", "")
+    org = r.get("org_key", "")
+
+    o = open_data.get(lid, {})
+    has_open = o.get("has_open", False)
+    first_open = o.get("first_open", "")[:19] if o.get("first_open") else ""
+    last_open = o.get("last_open", "")[:19] if o.get("last_open") else ""
+    open_count = o.get("count", 0)
+
+    if has_open:
+        opens_count += 1
+        signal = "Open Signal"
+    else:
+        no_open_count += 1
+        signal = "No Open Signal Yet"
+
+    # Check reply
+    reply_count = conn.execute("""
+        SELECT COUNT(*) FROM reply_log WHERE lead_id = ? AND reply_received_at LIKE ?
+    """, (lid, f"{YESTERDAY}%")).fetchone()[0]
+
+    reply_type = ""
+    if reply_count > 0:
+        rt = conn.execute("""
+            SELECT reply_type FROM reply_log WHERE lead_id = ? AND reply_received_at LIKE ? LIMIT 1
+        """, (lid, f"{YESTERDAY}%")).fetchone()
+        reply_type = rt[0] if rt else ""
+
+    # Check bounce
+    bounce_count = conn.execute("""
+        SELECT COUNT(*) FROM bounce_log WHERE lead_id = ? AND bounce_received_at LIKE ?
+    """, (lid, f"{YESTERDAY}%")).fetchone()[0]
+
+    bounce_type = ""
+    if bounce_count > 0:
+        bt = conn.execute("""
+            SELECT bounce_type FROM bounce_log WHERE lead_id = ? AND bounce_received_at LIKE ? LIMIT 1
+        """, (lid, f"{YESTERDAY}%")).fetchone()
+        bounce_type = bt[0] if bt else ""
+
+    # Print per-store
+    print(f"\n#{idx}. {store}")
+    print(f"   Org: {org}")
+    print(f"   Recipient: {email[:45]}")
+    print(f"   Sent At: {sent_at}")
+    print(f"   Location: {city}, {state}")
+    print(f"   {signal}")
+    if has_open:
+        print(f"   First Open Signal: {first_open}")
+        print(f"   Last Open Signal: {last_open}")
+        print(f"   Open Signals: {open_count}")
+    print(f"   Reply: {'Yes (' + reply_type + ')' if reply_count > 0 else 'No'}")
+    print(f"   Bounce: {'Yes (' + bounce_type + ')' if bounce_count > 0 else 'No'}")
+
+    store_details.append({
+        "idx": idx,
+        "store": store,
+        "org": org,
+        "recipient": email[:45],
+        "sent_at": sent_at,
+        "city": city,
+        "state": state,
+        "signal": signal,
+        "has_open": has_open,
+        "first_open": first_open,
+        "last_open": last_open,
+        "open_count": open_count,
+        "reply": f"Yes ({reply_type})" if reply_count > 0 else "No",
+        "bounce": f"Yes ({bounce_type})" if bounce_count > 0 else "No",
+    })
+
+print(f"\n{'='*70}")
+print(f"  OPEN SIGNAL SUMMARY:")
+print(f"  Open Signal: {opens_count}")
+print(f"  No Open Signal Yet: {no_open_count}")
+print(f"  Total: {len(sent_rows)}")
+
+# Close DB connections
+conn.close()
+
+# ═══════════════════════════════════════════════
+# 9. Generate report files
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  9. SAVING REPORTS")
+print(f"{'─'*60}")
+
+# Markdown report
+report_path = os.path.join(OUTPUT_DIR, f"auto_report_{TODAY}.md")
+report_lines = [
+    f"# BD Daily Results — {YESTERDAY} Batch Summary",
+    f"",
+    f"**Generated**: {NOW_STR} Asia/Shanghai | **DB**: `bd_leads.db` | **Mode**: Read-Only",
+    f"",
+    f"## Batch Summary",
+    f"",
+    f"| Metric | Value |",
+    f"|--------|-------|",
+    f"| Planned | {planned_count} |",
+    f"| SMTP Accepted | {smtp_accepted} |",
+    f"| Open Signal | {opens_count} |",
+    f"| No Open Signal Yet | {no_open_count} |",
+    f"| Total Open Signals (D1) | {tracking_data.get('total_open_signals', 0)} |",
+    f"| Human Replies | {human_replies} |",
+    f"| Auto Replies | {auto_replies} |",
+    f"| Hard Bounces | {hard_bounces} |",
+    f"| Unsubscribes | {unsubs} |",
+    f"",
+    f"## Inventory",
+    f"",
+    f"| Metric | Value |",
+    f"|--------|-------|",
+    f"| Total Leads | {total_leads} |",
+    f"| Broad Outreach Ready | {broad_ready} orgs / {broad_ready_locs} locations |",
+    f"| Strict A0 | {strict_a0} |",
+    f"| Manual Review Pending | {manual_pending} (review_status=pending) / {manual_status} (status=manual_review_needed) |",
+    f"| Previously Sent | {prev_sent} |",
+    f"| Suppressed | {suppressed_count} |",
+    f"",
+    f"## Active States",
+    f"",
+    f"| State | Leads | Cities | Sendable |",
+    f"|-------|-------|--------|----------|",
+]
+for s in state_detail:
+    report_lines.append(f"| {s['state']} | {s['total']} | {s['cities']} | {s['sendable']} |")
+
+report_lines.append("")
+report_lines.append("## Yesterday's Send Details")
+report_lines.append("")
+
+if store_details:
+    for sd in store_details:
+        status = "Open Signal" if sd['has_open'] else "No Open Signal Yet"
+        report_lines.append(f"### {sd['idx']}. {sd['store']}")
+        report_lines.append(f"- **Recipient**: {sd['recipient']}")
+        report_lines.append(f"- **Sent At**: {sd['sent_at']}")
+        report_lines.append(f"- **Location**: {sd['city']}, {sd['state']}")
+        report_lines.append(f"- **Status**: {status}")
+        if sd['has_open']:
+            report_lines.append(f"- **First Open Signal**: {sd['first_open']}")
+            report_lines.append(f"- **Last Open Signal**: {sd['last_open']}")
+        report_lines.append(f"- **Reply**: {sd['reply']}")
+        report_lines.append(f"- **Bounce**: {sd['bounce']}")
+        report_lines.append("")
+else:
+    report_lines.append("No sends found for yesterday.")
+
+with open(report_path, "w", encoding="utf-8") as f:
+    f.write("\n".join(report_lines))
+
+# JSON report
+report_json_path = os.path.join(OUTPUT_DIR, f"auto_report_{TODAY}.json")
+report_json = {
+    "generated_at": NOW_STR,
+    "timezone": "Asia/Shanghai",
+    "yesterday": YESTERDAY,
+    "today": TODAY,
+    "batch": {
+        "planned": planned_count,
+        "smtp_accepted": smtp_accepted,
+        "opens": opens_count,
+        "no_opens": no_open_count,
+        "total_open_signals_d1": tracking_data.get("total_open_signals", 0),
+        "human_replies": human_replies,
+        "auto_replies": auto_replies,
+        "hard_bounces": hard_bounces,
+        "unsubscribes": unsubs,
+    },
+    "inventory": {
+        "total_leads": total_leads,
+        "broad_outreach_ready_orgs": broad_ready,
+        "broad_outreach_ready_locs": broad_ready_locs,
+        "strict_a0": strict_a0,
+        "manual_review_pending_review_status": manual_pending,
+        "manual_review_needed_status": manual_status,
+        "previously_sent": prev_sent,
+        "suppressed": suppressed_count,
+    },
+    "states": state_detail,
+    "store_details": store_details,
+    "tracking_source": tracking_data.get("source", "unavailable"),
+    "data_freshness": health.get("data_freshness", {}),
+}
+with open(report_json_path, "w", encoding="utf-8") as f:
+    json.dump(report_json, f, indent=2, ensure_ascii=False)
+
+print(f"  Report saved: {report_path}")
+print(f"  JSON saved: {report_json_path}")
+
+# ═══════════════════════════════════════════════
+# 10. Regenerate dashboard HTML
+# ═══════════════════════════════════════════════
+print(f"\n{'─'*60}")
+print(f"  10. REGENERATING DASHBOARD HTML")
+print(f"{'─'*60}")
+
+try:
+    import importlib.util
+    dash_path = os.path.join(BASE_DIR, "bd_dashboard_v3.2.py")
+    spec = importlib.util.spec_from_file_location("bd_dashboard_v3_2", dash_path)
+    dash_mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(dash_mod)
+
+    dash_output = os.path.join(OUTPUT_DIR, "bd_ops_dashboard.html")
+    dash_mod.main()  # bd_dashboard_v3.2 writes to bd_operations_dashboard.html
+
+    # Check what file was written
+    for candidate in [
+        os.path.join(OUTPUT_DIR, "bd_operations_dashboard.html"),
+        os.path.join(BASE_DIR, "bd_ops_dashboard.html"),
+        os.path.join(BASE_DIR, "bd_operations_dashboard.html"),
+    ]:
+        if os.path.exists(candidate):
+            print(f"  Dashboard found: {candidate}")
+            # Copy to standard location
+            target = os.path.join(OUTPUT_DIR, "bd_ops_dashboard.html")
+            import shutil
+            shutil.copy2(candidate, target)
+            print(f"  Dashboard copied to: {target}")
+except Exception as e:
+    print(f"  Dashboard regeneration failed: {e}")
+    traceback.print_exc()
+
+print(f"\n{'='*70}")
+print(f"  DONE.")
+print(f"  Report: {report_path}")
+print(f"  JSON: {report_json_path}")
+print(f"  Dashboard: output/bd_ops_dashboard.html")
+print(f"{'='*70}")

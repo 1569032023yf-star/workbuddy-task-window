@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-08-12T18:08:36.713979+08:00",
+  "mode": "P0 ICP + Lead Recovery",
+  "icp_recovery_leads_imported": 11,
+  "with_email": 7,
+  "P1": 0,
+  "P2": 2,
+  "P3": 3,
+  "UNQUALIFIED": 5,
+  "NEGATIVE_ICP": 1,
+  "qualified_new_with_email": 5,
+  "broad_ready_tn_ar_ky": 4,
+  "website_scan_dryrun": {
+    "scanned": 25,
+    "found_valid_email": 0,
+    "no_email": 19,
+    "network_fail": 4,
+    "pseudo_email_before_fix": 2
+  },
+  "garbage_emails_cleared": 14,
+  "total_leads": 749,
+  "send_log_total": 451,
+  "smtp_accepted": 448,
+  "customer_smtp_connections": 0,
+  "today_inventory_submissions": {
+    "previously_sent": 14
+  }
+}

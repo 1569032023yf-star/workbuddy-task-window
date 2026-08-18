@@ -1,57 +1,101 @@
 {
-  "batch_id": "new_outreach_20260806_et1000",
-  "batch_date": "2026-08-06",
-  "checked_at": "2026-08-06T21:49:06.908034+08:00",
-  "verdict": "BLOCKED",
-  "steps": {
-    "1_batch_id": {
-      "status": "PASS",
-      "detail": "new_outreach_20260806_et1000"
+  "preflight_ts_cst": "2026-08-17 21:46:42 CST",
+  "batch_id": "new_outreach_20260817_et1000",
+  "batch_date": "20260817",
+  "gates": {
+    "step1_batch_id": {
+      "pass": true,
+      "value": "new_outreach_20260817_et1000"
     },
-    "2_plan_entries": {
-      "status": "FAIL",
-      "detail": "0 planned entries for 2026-08-06"
+    "step2_plan_entries": {
+      "pass": false,
+      "count": 0
     },
-    "3_authorization": {
-      "status": "FAIL",
-      "detail": "No authorization exists for this batch"
+    "step3_auth_exists": {
+      "pass": false,
+      "reason": "No send authorization found"
     },
-    "4_auth_plan_count": {
-      "status": "N/A",
-      "detail": "No data (0 auth, 0 plan)"
+    "step4_auth_plan_match": {
+      "pass": false,
+      "plan_count": 0,
+      "auth_entry_count": 0,
+      "match": true,
+      "note": "Both zero = no valid plan"
     },
-    "5_org_duplicates": {
-      "status": "N/A",
-      "detail": "No planned entries"
+    "step5_org_duplicates": {
+      "pass": null,
+      "reason": "no_plan",
+      "duplicate_count": 0
     },
-    "6_email_duplicates": {
-      "status": "N/A",
-      "detail": "No planned entries"
+    "step6_email_duplicates": {
+      "pass": null,
+      "reason": "no_plan",
+      "duplicate_count": 0
     },
-    "7_template_sha": {
-      "status": "PASS",
-      "detail": "retail=ccb51505, custom=5893dbc9"
+    "step7_template_sha": {
+      "pass": true,
+      "retail": {
+        "expected": "ccb51505",
+        "actual": "ccb51505",
+        "match": true
+      },
+      "custom": {
+        "expected": "5893dbc9",
+        "actual": "5893dbc9",
+        "match": true
+      }
     },
-    "8_ops_center": {
-      "status": "PASS",
-      "detail": "HTTP 200, server_running=true"
+    "step8_ops_center": {
+      "pass": false,
+      "http_code": 0,
+      "url": "http://127.0.0.1:8765/",
+      "error": "URLError <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>"
     },
-    "9_poller_heartbeat": {
-      "status": "FAIL",
-      "detail": "Last heartbeat 2026-08-06 16:35 CST, ~5h stale (threshold: 15min)"
+    "step9_poller_heartbeat": {
+      "pass": false,
+      "poller_last_heartbeat": "2026-08-14T11:55:26.729006+08:00",
+      "poller_age_minutes": 4911.3,
+      "poller_threshold_minutes": 2,
+      "sync_0845_last_success_at": "2026-08-14T08:35:45.673389+08:00"
     },
-    "10_old_plans_auths": {
-      "status": "PASS",
-      "detail": "No old plans or active auths from other batches"
+    "step10_old_plans_auths": {
+      "pass": false,
+      "old_active_plans": 0,
+      "active_old_auths": 1,
+      "planned_batches": [],
+      "active_auth_rows": [
+        {
+          "authorization_id": "auth_p1_2_first20_20260813:new_outreach:9775e37d9b_p1_2_first20_20260813_1c7a693a9e25eaa3",
+          "outreach_batch_date": "p1_2_first20_20260813",
+          "status": "approved",
+          "expires_at": "2026-08-14T10:10:14.834969+08:00"
+        }
+      ]
     }
   },
+  "frozen_snapshot_exists": false,
+  "a0_pool_count": 6,
+  "gate_summary": {
+    "step1_batch_id": "PASS",
+    "step2_plan_entries": "FAIL",
+    "step3_auth_exists": "FAIL",
+    "step4_auth_plan_match": "FAIL",
+    "step5_org_duplicates": "N/A",
+    "step6_email_duplicates": "N/A",
+    "step7_template_sha": "PASS",
+    "step8_ops_center": "FAIL",
+    "step9_poller_heartbeat": "FAIL",
+    "step10_old_plans_auths": "FAIL"
+  },
   "blockers": [
-    "NO_PLAN: final_send_plan has 0 entries for 2026-08-06. Frozen snapshot may be missing.",
-    "NO_AUTH: No send_authorizations record for this batch.",
-    "POLLER_STALE: bd_ops_poller last heartbeat at 16:35 CST (~5h ago). Poller may have died."
+    "step2_plan_entries",
+    "step3_auth_exists",
+    "step4_auth_plan_match",
+    "step8_ops_center",
+    "step9_poller_heartbeat",
+    "step10_old_plans_auths"
   ],
-  "pass_count": 4,
-  "fail_count": 3,
-  "na_count": 3,
-  "smtp_status": 0
+  "overall_verdict": "BLOCKED",
+  "smtp_enabled": "0",
+  "system_config_written": false
 }

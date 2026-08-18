@@ -90,6 +90,31 @@ def _email_domain(email: str) -> str:
     return email.rsplit("@", 1)[-1].lower() if "@" in email else ""
 
 
+# 公共免费邮箱域名：这些域名被无数互不相关的组织共用，
+# 域名本身不能作为"同一组织"的判断依据（完整邮箱去重仍然生效）。
+FREE_MAILBOX_DOMAINS: FrozenSet[str] = frozenset({
+    "gmail.com", "googlemail.com",
+    "yahoo.com", "ymail.com", "rocketmail.com",
+    "hotmail.com", "hotmail.co.uk", "live.com", "outlook.com", "msn.com",
+    "aol.com", "aim.com",
+    "icloud.com", "me.com", "mac.com",
+    "protonmail.com", "proton.me",
+    "mail.com", "gmx.com", "zoho.com",
+    "qq.com", "163.com", "126.com", "sina.com",
+})
+
+
+def _is_free_mailbox_domain(domain: str) -> bool:
+    """判断是否为公共免费邮箱域名。"""
+    if not domain:
+        return False
+    d = domain.lower().strip()
+    if d in FREE_MAILBOX_DOMAINS:
+        return True
+    # 子域兜底（如 foo.gmail.com 等罕见场景）
+    return any(d == f or d.endswith("." + f) for f in FREE_MAILBOX_DOMAINS)
+
+
 def _load_db_signals(conn: sqlite3.Connection, email: str, org_key: str,
                      domain_hash: str, lead_id: Any) -> dict:
     """从库中读取发送/压制/退信/回复等信号（只读）。
@@ -152,7 +177,12 @@ def _load_db_signals(conn: sqlite3.Connection, email: str, org_key: str,
                     "WHERE sl.status='sent' AND l.domain_hash=? LIMIT 1", (domain_hash,)).fetchone())
         elif email:
             domain = _email_domain(email)
-            if domain:
+            # Free public mailbox domains (gmail/yahoo/hotmail/aol/outlook/...) are
+            # shared by millions of unrelated businesses — the domain alone does NOT
+            # identify the same organization. Skip the %@domain history check for them.
+            # Dedup for those relies on exact email, organization_key, suppression and
+            # send_log history which are all checked separately above.
+            if domain and not _is_free_mailbox_domain(domain):
                 signals["shared_domain_sent"] = bool(
                     c.execute(
                         "SELECT 1 FROM send_log WHERE lower(email) LIKE ? AND status='sent' LIMIT 1",

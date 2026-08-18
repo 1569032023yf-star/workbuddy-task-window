@@ -1,0 +1,24 @@
+{
+  "batch": "p17_batch1",
+  "input": 25,
+  "email_found": [
+    "Dragon Star Hobbies",
+    "Chicagoland Games",
+    "Blue Ox Games",
+    "Atlantis Comics",
+    "Atlantis Comics"
+  ],
+  "by_status": {
+    "NO_WEBSITE_CLUE": 2,
+    "FETCH_ERR": 10,
+    "NO_EMAIL": 7,
+    "FB_ONLY": 1,
+    "EMAIL_FOUND": 5
+  },
+  "new_eligible_v2": [
+    "Dragon Star Hobbies",
+    "Chicagoland Games",
+    "Blue Ox Games",
+    "Atlantis Comics"
+  ]
+}

@@ -111,6 +111,52 @@ function checkAuth(request, env) {
   return token === expected;
 }
 
+/**
+ * GET /internal/dashboard-summary
+ * Bearer auth (DASHBOARD_API_KEY). Returns tracking messages + recent open events
+ * so the local poller can sync delivery/open state into the BD database.
+ */
+async function handleInternalDashboardSummary(request, env) {
+  if (!checkAuth(request, env)) {
+    return new Response(JSON.stringify({ error: "unauthorized" }), {
+      status: 401, headers: { "Content-Type": "application/json" }
+    });
+  }
+  try {
+    const db = env.DB;
+    const nowIso = new Date().toISOString();
+    const active = await db.prepare(
+      "SELECT id, token_hash, tracking_message_id, plan_entry_id, lead_id, organization_key, " +
+      "send_log_id, smtp_message_id, status, created_at, activated_at, first_open_signal_at, " +
+      "last_open_signal_at, open_signal_count FROM tracking_messages " +
+      "WHERE status IN ('prepared','active') ORDER BY id DESC LIMIT 500"
+    ).all();
+
+    const recent = await db.prepare(
+      "SELECT id, tracking_message_id, event_type, event_at, source_classification, user_agent_family " +
+      "FROM tracking_events WHERE event_type='open' ORDER BY id DESC LIMIT 200"
+    ).all();
+
+    const totalRes = await db.prepare(
+      "SELECT COUNT(*) AS n, COALESCE(SUM(open_signal_count),0) AS opens FROM tracking_messages"
+    ).first();
+
+    return new Response(JSON.stringify({
+      ok: true, service: "roktandrazo-email-tracker", generated_at: nowIso,
+      active_messages: active.results || [],
+      recent_events: recent.results || [],
+      totals: {
+        tracked_messages: totalRes ? (totalRes.n || 0) : 0,
+        total_open_signals: totalRes ? (totalRes.opens || 0) : 0,
+      },
+    }), { status: 200, headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } });
+  } catch (e) {
+    return new Response(JSON.stringify({ error: "dashboard_summary_failed", detail: e.message }), {
+      status: 500, headers: { "Content-Type": "application/json" }
+    });
+  }
+}
+
 async function handleMXCheck(request, env) {
   if (!checkAuth(request, env)) {
     return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401,

@@ -178,20 +178,37 @@ def reconcile_batch(conn, batch_id):
             })
 
     # 6) tracking_token_missing
+    # Tracking tokens were introduced after the 8/5 legacy batches (all historical
+    # send_log rows predate the feature). Rows that are already sent/bounced, have no
+    # pending authorization/plan, and can never re-enter the current pool are
+    # LEGACY_TRACKING_TOKEN_MISSING (historical data debt) — WARN, not a current
+    # release safety failure.
+    legacy_sent_dates = {
+        "new_outreach_20260805_2300cs_tnarky",
+        "new_outreach_20260805_et1000",
+    }
+    legacy_items = []
     for l in log_rows:
         token = (l[5] or '').strip()
-        if not token:
-            issues['tracking_token_missing']['items'].append({
-                'lead_id': l[1],
-                'email': l[2],
-                'reason': 'empty_tracking_token_hash',
-            })
-        elif token not in tracking_hashes:
-            issues['tracking_token_missing']['items'].append({
-                'lead_id': l[1],
-                'email': l[2],
-                'reason': 'token_hash_not_in_email_tracking_messages',
-            })
+        if not token or token not in tracking_hashes:
+            item = {'lead_id': l[1], 'email': l[2],
+                    'reason': 'empty_tracking_token_hash' if not token else 'token_hash_not_in_email_tracking_messages'}
+            # Legacy detection: batch predates tracking feature OR lead already sent/bounced
+            is_legacy_batch = batch_id in legacy_sent_dates
+            lead_term = cur.execute("SELECT status, email_sendable FROM leads WHERE id=?", (l[1],)).fetchone()
+            lead_sent_or_bounced = bool(lead_term) and str(lead_term[0] or '') in ('sent', 'bounced')
+            if is_legacy_batch or lead_sent_or_bounced:
+                item['classification'] = 'LEGACY_TRACKING_TOKEN_MISSING'
+                legacy_items.append(item)
+            else:
+                issues['tracking_token_missing']['items'].append(item)
+
+    issues['historical_tracking_token_missing'] = {
+        'count': len(legacy_items),
+        'items': legacy_items,
+        'classification': 'LEGACY_HISTORICAL_DEBT',
+        'note': 'Predates tracking token feature; sent/bounced, no pending auth/plan, cannot re-enter current pool',
+    }
 
     # 汇总每类计数
     for cat in ISSUE_CATEGORIES:

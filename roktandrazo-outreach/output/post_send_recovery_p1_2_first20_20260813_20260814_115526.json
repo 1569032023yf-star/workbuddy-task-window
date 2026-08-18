@@ -1,0 +1,25 @@
+{
+  "batch": "p1_2_first20_20260813",
+  "completed_at": "2026-08-14T11:55:26.730779+08:00",
+  "steps": {
+    "bounce_imap_scan": {
+      "ok": true,
+      "scanned": 16,
+      "matched": 16,
+      "domain_invalid": 13,
+      "mailbox_invalid": 0,
+      "policy_bounce": 0,
+      "unmatched_dsn": 0,
+      "unresolved": 3
+    },
+    "suppression_sync": {
+      "ok": true
+    },
+    "reply_scan": {
+      "ok": true
+    },
+    "tracking_sync": {
+      "ok": true
+    }
+  }
+}

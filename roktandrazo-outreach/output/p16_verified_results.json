@@ -1,0 +1,314 @@
+[
+  {
+    "name": "BookMark",
+    "city": "Huntsville",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Crimson Castle Chess & Games",
+    "city": "Tuscaloosa",
+    "state": "AL",
+    "website": "crimsoncastlegames.com",
+    "website_valid": false,
+    "website_note": "域名停放",
+    "official_email": "",
+    "status": "WEBSITE_INVALID"
+  },
+  {
+    "name": "Game Headz",
+    "city": "Bessemer",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Legion",
+    "city": "Birmingham",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "仅Facebook",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "The Foundry",
+    "city": "Huntsville",
+    "state": "AL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "官网失效",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Top Games",
+    "city": "Gardendale",
+    "state": "AL",
+    "website": "topgamesalabama.com",
+    "website_valid": false,
+    "website_note": "域名失效",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Visions Cards & Games",
+    "city": "Montgomery",
+    "state": "AL",
+    "website": "visions-games.com",
+    "website_valid": true,
+    "website_note": "官网不可达",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Bald Man Games",
+    "city": "Batesville",
+    "state": "AR",
+    "website": "https://www.baldmangames.com",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "vddw@baldmangames.com",
+    "evidence_url": "https://www.baldmangames.com/scry-behind-february-2026",
+    "evidence_snippet": "Winners, please contact Spencer and Ted at vddw@baldmangames.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Double Header",
+    "city": "Pine Bluff",
+    "state": "AR",
+    "website": "doubleheadergames.com",
+    "website_valid": false,
+    "website_note": "归属未确认",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Galaxy Games",
+    "city": "Springdale",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "同名异主排除",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Gear Gaming",
+    "city": "Fayetteville",
+    "state": "AR",
+    "website": "https://www.geargamingstore.com",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "fayetteville@geargamingstore.com",
+    "evidence_url": "http://fayetteville.geargamingstore.com/pages/contact-us",
+    "evidence_snippet": "Contact Us: Address 3029 North College Ave, Fayetteville; Phone (479)276-8110; Email fayetteville@geargamingstore.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "IMAGINE! Hobbies & Games",
+    "city": "Sherwood",
+    "state": "AR",
+    "website": "https://imaginegamez.wordpress.com",
+    "website_valid": true,
+    "website_note": "官方博客",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Shannon's Cards & Comics",
+    "city": "Wynne",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "wixsite 404",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "The Bat Cave",
+    "city": "Conway",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "门店已关",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "The Gamer Utopia",
+    "city": "Rogers",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "域名出售",
+    "official_email": "",
+    "status": "WEBSITE_INVALID"
+  },
+  {
+    "name": "2D10 Games",
+    "city": "Ft. Myers",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "已关闭",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Anthem Games",
+    "city": "Tampa",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "官网不可达",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Armada Games",
+    "city": "Temple Terrace",
+    "state": "FL",
+    "website": "https://shoparmada.com",
+    "website_valid": true,
+    "website_note": "官方商店",
+    "official_email": "info@armadagames.com",
+    "evidence_url": "https://shoparmada.com/pages/contact-us",
+    "evidence_snippet": "Contact Us: General Questions info@armadagames.com; Order armadaorders@armadagames.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Bobe's Hobby House",
+    "city": "Pensacola",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "域名被劫持",
+    "official_email": "",
+    "status": "WEBSITE_INVALID"
+  },
+  {
+    "name": "Book & Game Emporium",
+    "city": "Fort Walton Beach",
+    "state": "FL",
+    "website": "https://www.bookandgames.net",
+    "website_valid": true,
+    "website_note": "官方商店",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Borderlands Comics & Games",
+    "city": "Jacksonville",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "已被收购更名",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Broadsword",
+    "city": "Orange Park",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Comic Emporium",
+    "city": "Panama City",
+    "state": "FL",
+    "website": "http://comicemporium.net/",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Comics & Games Tallahassee",
+    "city": "Tallahassee",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Cool Comics & Games",
+    "city": "Cape Coral",
+    "state": "FL",
+    "website": "http://www.coolcomicsandgames.com/",
+    "website_valid": true,
+    "website_note": "官方单页站",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Cool Stuff Games",
+    "city": "Winter Park",
+    "state": "FL",
+    "website": "https://www.coolstuffgames.com/",
+    "website_valid": true,
+    "website_note": "连锁官方站",
+    "official_email": "Info@CoolStuffInc.com",
+    "evidence_url": "https://www.coolstuffinc.com/main_contact.php",
+    "evidence_snippet": "Contact Information: Email: Info@CoolStuffInc.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "DCD Games",
+    "city": "St. Augustine",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "无官网",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Dogs of War Gaming",
+    "city": "Palm Bay",
+    "state": "FL",
+    "website": "https://dogsofwargaming.square.site/",
+    "website_valid": true,
+    "website_note": "Square店铺",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Emerald City",
+    "city": "Clearwater",
+    "state": "FL",
+    "website": "https://emeraldcitycomics.com/",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "email@emeraldcitycomics.com",
+    "evidence_url": "https://emeraldcitycomics.com/",
+    "evidence_snippet": "Visit us 4902 113th Ave N Clearwater, FL 33760 727-398-2665 email@emeraldcitycomics.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Fallout Comics",
+    "city": "Tallahassee",
+    "state": "FL",
+    "website": "http://falloutcomics.com/",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "info@falloutcomics.com",
+    "evidence_url": "http://www.falloutcomics.com/privacy-policy/",
+    "evidence_snippet": "Company: Fallout Comics Email: info@falloutcomics.com Postal: 1482 Apalachee Pkwy, Tallahassee FL 32301",
+    "status": "EMAIL_FOUND"
+  }
+]

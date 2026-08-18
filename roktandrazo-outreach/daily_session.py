@@ -66,8 +66,16 @@ CATCHUP_MIN_DELAY = 120  # 2 minutes (faster for catchup)
 CATCHUP_MAX_DELAY = 180  # 3 minutes
 
 
-def execute_final_send_plan(batch_date: str, dry_run: bool = True) -> dict:
-    """Consume a frozen plan only; never query leads to replace skipped recipients."""
+def execute_final_send_plan(batch_date: str, dry_run: bool = True,
+                            send_window_override: bool = False) -> dict:
+    """Consume a frozen plan only; never query leads to replace skipped recipients.
+
+    send_window_override: 仅一次性时间规则 override（如 P1.2 延误批次补发）。
+    只跳过 recipient_scheduler.in_send_window() 这一道时间窗口 gate；
+    其余 Gate（suppression/bounce/unsubscribe/duplicate/evidence/hygiene/
+    template/tracking/authorization/preflight）全部保持 fail-closed。
+    默认 False，永久 Scheduler 规则（Recipient Local Time 10:00）不变。
+    """
     from outreach_control import (
         FOLLOW_UP_MAX, MAX_SEND_DELAY_SECONDS, MIN_SEND_DELAY_SECONDS,
         NEW_OUTREACH_TARGET, may_start_smtp_request,
@@ -78,16 +86,49 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True) -> dict:
     entries = load_planned_entries(conn, batch_date)
     result = {'new_outreach': 0, 'follow_up': 0, 'skipped': 0, 'failed': 0, 'test': 0,
               'planned': len(entries), 'preview': []}
+
+    # ── P1.0: 正式链 Authorization ──
+    # 创建时 plan_entry_id 必须等于真实 final_send_plan.id（create_send_authorization
+    # 内部已强制校验）。真实发送前创建；dry-run 只做 shadow 验证不写库。
+    from bd_sender import create_send_authorization
+    auth_entries = [
+        {"lead_id": e["lead_id"], "recipient_email": e["recipient_email"],
+         "message_type": e["message_type"], "final_plan_entry_id": e["id"]}
+        for e in entries
+    ]
+    authorization_id = ""
+    if entries and not dry_run:
+        plan_id = entries[0]["plan_id"]
+        # 使用与 conn 相同的 DB 文件（避免 bd_sender.DB_PATH 与 bd_db.DB_PATH 不一致导致写错库）
+        _db_file = conn.execute("PRAGMA database_list").fetchone()[2]
+        # 幂等：同一 plan 已存在 approved auth（ET/CT 分批多次调用）→ 复用，不重复创建
+        existing = None
+        if _table_exists(conn, "send_authorizations"):
+            existing = conn.execute(
+                "SELECT authorization_id FROM send_authorizations "
+                "WHERE plan_id=? AND status='approved' ORDER BY rowid DESC LIMIT 1",
+                (plan_id,),
+            ).fetchone()
+        if existing:
+            authorization_id = existing["authorization_id"]
+            result["authorization_id"] = authorization_id
+            result["authorization_reused"] = True
+        else:
+            auth = create_send_authorization(plan_id, batch_date, auth_entries, preflight_passed=True,
+                                             db_path=_db_file)
+            authorization_id = auth["authorization_id"]
+            result["authorization_id"] = authorization_id
+    else:
+        result["authorization_shadow"] = {
+            "entries": len(auth_entries),
+            "plan_entry_id_is_fsp_id": all(isinstance(e["final_plan_entry_id"], int) for e in auth_entries),
+        }
+
     limits = {'new_outreach': NEW_OUTREACH_TARGET, 'follow_up': FOLLOW_UP_MAX}
     for entry in entries:
         message_type = entry['message_type']
         if result[message_type] >= limits[message_type]:
             break
-        if not dry_run and not may_start_smtp_request():
-            mark_entry(conn, entry['id'], 'skipped', 'smtp_cutoff_23_59_30')
-            conn.commit()
-            result['skipped'] += 1
-            continue
         lead = _load_and_recheck_plan_lead(conn, entry)
         if lead is None:
             if not dry_run:
@@ -95,12 +136,28 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True) -> dict:
                 conn.commit()
             result['skipped'] += 1
             continue
+        # P1.2: 收件人当地时区窗口（09:55-10:10 local）——客户当地时间才是业务时钟。
+        # 不用全局 Asia/Shanghai 23:00 gate；UNSET/UNRESOLVED/非工作日/窗口外 → BLOCK。
+        if not dry_run:
+            from recipient_scheduler import in_send_window
+            tz_name = str(lead.get('recipient_timezone') or '').strip()
+            tz_status = str(lead.get('timezone_status') or '').upper()
+            if not tz_name or tz_status != 'RESOLVED':
+                mark_entry(conn, entry['id'], 'skipped', 'recipient_timezone_unresolved')
+                conn.commit()
+                result['skipped'] += 1
+                continue
+            if not send_window_override and not in_send_window(tz_name):
+                mark_entry(conn, entry['id'], 'skipped', 'recipient_local_time_outside_0955_1010')
+                conn.commit()
+                result['skipped'] += 1
+                continue
         lead.update({
             'email_subject': entry['subject'], 'email_body': entry['body_text'],
             'email_body_html': entry['body_html'] or '', 'template_id': entry['template_id'] or '',
             'customer_type': entry['customer_type'] or '', 'batch_id': entry['plan_id'],
             'message_type': message_type, 'outreach_batch_date': batch_date,
-            'final_plan_entry_id': entry['id'],
+            'final_plan_entry_id': entry['id'], 'authorization_id': authorization_id,
         })
         from bd_sender import send_one
         sent = send_one(lead, dry_run=dry_run)
@@ -127,18 +184,17 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True) -> dict:
 
 
 def _persist_final_plan_success(conn, entry: dict, lead: dict) -> None:
-    """Commit the immutable-plan result, history, and lead state together."""
+    """Commit the immutable-plan result, history, and lead state together.
+
+    P1.0 单写保证：send_one._commit_send_success 已在一个事务里原子完成
+    send_log / final_send_plan→sent / authorization→consumed / leads→sent。
+    本函数只补 send_one 未覆盖的部分：follow_up 的 followup_count 递增。
+    1 次 SMTP Accepted = 恰好 1 条 send_log，绝不在此重复 INSERT send_log。
+    """
     now = datetime.now(ASIA_SH).isoformat()
     if entry['message_type'] == 'follow_up':
         conn.execute("UPDATE leads SET followup_count=COALESCE(followup_count,0)+1, last_followup_at=? WHERE id=?",
                      (now, entry['lead_id']))
-    else:
-        conn.execute("UPDATE leads SET status='sent', sent_at=? WHERE id=?", (now, entry['lead_id']))
-    conn.execute("""INSERT INTO send_log (lead_id,email,subject,status,sent_at,message_type,outreach_batch_date,plan_entry_id)
-                    VALUES (?,?,?,?,?,?,?,?)""",
-                 (entry['lead_id'], entry['recipient_email'], entry['subject'], 'sent', now,
-                  entry['message_type'], entry['outreach_batch_date'], entry['id']))
-    conn.execute("UPDATE final_send_plan SET status='sent', skip_reason='', sent_at=? WHERE id=?", (now, entry['id']))
 
 
 def _table_exists(conn, name: str) -> bool:
@@ -182,12 +238,13 @@ def _load_and_recheck_plan_lead(conn, entry: dict) -> dict | None:
 
 
 def _new_outreach_gate(conn, lead: dict, entry: dict) -> bool:
-    from lead_hygiene_gate import evaluate_a0
-    from production_adapter import build_candidate_from_db_row, build_context
+    from campaign_eligible import review_campaign_eligible
 
-    if str(lead.get('status') or '').lower() != 'new' or str(lead.get('confidence_score') or '').upper() != 'A':
-        return False
-    if not lead.get('auto_sendable') or lead.get('unsubscribed_at'):
+    # 正式政策：Broad Ready → ICP Qualified → Campaign Eligible → Final Send Plan。
+    # Strict A0 只是优先层，不是唯一发送门槛。发送前 recheck 用 Campaign Eligible 判定。
+    # status 不再硬性要求 'new'（Campaign Eligible 已含未发送/未 suppression 检查，
+    # 且已复核的 manual_review_needed lead 也可进入发送池）。
+    if lead.get('unsubscribed_at'):
         return False
     if _table_exists(conn, 'manual_send_queue') and conn.execute(
         "SELECT 1 FROM manual_send_queue WHERE lead_id=? AND COALESCE(status,'') NOT IN ('rejected','cancelled','consumed')", (lead['id'],)
@@ -195,7 +252,8 @@ def _new_outreach_gate(conn, lead: dict, entry: dict) -> bool:
         return False
     if _lead_or_email_exists(conn, 'send_log', lead['id'], entry['recipient_email'], "AND status='sent' AND COALESCE(message_type,'new_outreach')='new_outreach'"):
         return False
-    return evaluate_a0(build_candidate_from_db_row(lead, build_context(conn))).a0_eligible
+    r = review_campaign_eligible(lead, {"conn": conn})
+    return r["pool"] == "CAMPAIGN_ELIGIBLE"
 
 
 def _follow_up_gate(conn, lead: dict, entry: dict) -> bool:

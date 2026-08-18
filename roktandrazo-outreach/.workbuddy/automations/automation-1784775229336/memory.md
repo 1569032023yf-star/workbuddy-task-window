@@ -1,143 +1,48 @@
 # RoktRazo BD Inventory — 15:00 Automation History
 
-## 2026-08-07 15:00
+## 2026-08-14 15:00 (actual run 15:02–15:46 CST, completed clean 43m44s)
+- **Status**: partial (max_loops_reached), A0 = 0/30, BroadReady = 5/30, gap 25 — 10th consecutive zero-intake day.
+- **Active city**: Nashville TN (from system_config cursor, no hardcode, no state jump).
+- **Provider**: ran with `WORKBUDDY_DISCOVERY_PROVIDER=web_directory` (DB retail_city_queue.active_provider already = web_directory; google_places has no API key). Lane A: 1 query family ('tabletop game store') → 15 seen, 0 new_unique, 0 leads (TN directory already exhausted). Lane B/C/D staging: empty.
+- **Website Recovery**: 5 loops × 35 candidates → 0 emails. Per-loop: no_email≈25-26, network_err≈9-10 (7 persistent network_retry_pending + 2 skip_platform). Persistent network errors unchanged (Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars).
+- **No SMTP** (send_log untouched, today_sent_count=4 from morning outreach only). No Final Send Plan. No Send Authorization. Lock released.
+- **Review Center auto-classify**: 88 manual_review leads with email via evaluate_a0 → 0 pass (all verdict B2_manual_review). FB queue: 20 rows all terminal (failed_final/mismatch/no_facebook_*) → 0 actionable.
+- **Dashboard refreshed**: Manual Review 546 pending, Inventory 0 A0.
+- **Root cause (unchanged, 10th day)**: TN/AR/KY pool structurally depleted. analyze_all_leads: 42 broad_ready_orgs but ~30 in non-primary states (GA/NV/AZ/TX/UT etc. from 08-13 web_directory mass run); TN/AR/KY broad-ready only 5. Blocked: email_missing 471, previously_sent 474. web_directory provider works but only yields whole-state directories (wargames.com), already exhausted for TN/AR/KY.
+- **Action needed**: (a) discovery provider with real coverage (serpapi_maps/browser_maps + key — human credential decision), OR (b) authorize sendable-pool expansion to non-primary allowed states already discovered (OH/NC/FL/GA etc.). Neither is automatable without user decision.
+
+## 2026-08-13 15:00 (actual run 15:01–15:30 CST, killed mid-run loop 3/5)
+- **Status**: partial. A0 = 0/30, BroadReady = 6/30, gap 24 (weekday target 30).
+- **Active city**: Nashville TN (from system_config cursor, no hardcode, no state jump).
+- **Lane A discovery**: configuration_blocked (provider=google_places, no API key). Lane B/C/D staging: empty.
+- **Website Recovery**: 3 loops × 35 candidates → 0 emails. Per loop: no_email=26, network_err=9 (7 real network_retry_pending + 2 skip_platform). Persistent network errors unchanged (Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars).
+- **Process killed mid-run**: background task "failed" at ~50min while on loop 3 (candidate #26 Kindness & Joy Toys) — network hang, no traceback. Left stale lock + job_runs='running'. Cleaned up manually (release_run_lock + finish_job_run partial). Loops 4–5 would have been identical (same exhausted 35-candidate pool).
+- **Review Center auto-classify**: 102 manual_review leads with email scanned via evaluate_a0 → 0 pass A0 → 0 auto-approved.
+- **FB enrichment queue**: 20 rows assessed; only 3 actionable (2 NC + 1 OR, all CONTACT_FORM_ONLY); 0 emails found. Requires browser worker (fb_worker.py) not wired into inventory stage — remains unprocessed.
+- **No SMTP, no Final Send Plan, no Send Authorization.** Dashboard refreshed (bd_dashboard_v3.2.py).
+- **Root cause (9th consecutive zero-intake day)**: google_places provider unconfigured → zero new lead intake since Jul 29. TN/AR/KY pool structurally depleted: 147 sent, 139 manual_review (132 no-email), 20 contact_form, only 14 unsent-with-email (6 BroadReady + 8 hard-blocked: 7 previously_sent, 1 suppressed).
+- **Action needed**: configure discovery provider credentials (set WORKBUDDY_DISCOVERY_PROVIDER, e.g. serpapi_maps/browser_maps with key) — this is a human credential decision; without it the pipeline cannot reach the 30 target.
+
+## 2026-08-13 (actual run 05:59–06:43 CST, 44min)
+- **Status**: partial (max_loops_reached), A0 = 0/30, gap 30 — 8th consecutive zero-intake day
+- **Active city**: Nashville TN (from system_config cursor, no hardcode)
+- **Lane A discovery**: configuration_blocked (provider=google_places, provider_not_configured). Lane B/C/D staging: empty
+- **Website Recovery**: 35 candidates × 5 loops → 0 emails found. Final loop: no_email=26, network_err=9 (7 real network_retry_pending + 2 skip_platform mis-counted into the aggregate counter)
+- **Persistent network errors (unchanged)**: Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics & Games, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars
+- **Platform skips**: 901 Toys, CM Games Morristown (others no longer in the 35-candidate query)
+- **No SMTP** (send_log +0 today), no Final Send Plan, no Send Authorization. Lock released. Dashboard refreshed (A0=0, Manual Review=295).
+- **Root cause (unchanged)**: Google Places provider unconfigured → zero intake since Jul 29. Website Recovery pool fully depleted (all no-email/network/platform). Previously_sent recurring emails now excluded by `NOT EXISTS manual_email_submission submitted_by='inventory_lane'`.
+- **Action needed**: configure discovery provider (set `WORKBUDDY_DISCOVERY_PROVIDER` + credentials, e.g. serpapi_maps or browser_maps) or activate a new intake lane. FB enrichment queue (20 rows) is NOT wired into the inventory stage — remains unprocessed.
+
+## 2026-08-11 15:00 (actual run: 05:56 UTC = 13:56 CST)
 - **Status**: partial (discovery_blocked, pool_drained, max_loops_reached)
-- **A0**: 0/30 (weekday target), gap 30 — all 29 auto_sendable=1 leads excluded by send_log gate
+- **A0**: 0/30, gap 30 — 40min runtime, identical pattern to all prior runs since Aug 6
 - **Active city**: Nashville TN (from system_config cursor — no hardcode)
 - **Lane A discovery**: configuration_blocked (Google Places API). Lane B/C/D staging: empty
-- **Website Recovery**: 34 candidates × 5 loops → 3 emails (all previously_sent), 20 no email, 11 network errors (properly classified), 4 platform skips
-- **Broad Outreach**: 95 total, 11 in allowed states (OR 6, NC 3, MN 2)
-- **Review Center**: 187 manual_review_needed
-- **Near-A0**: 202 with email in allowed states but auto_sendable=0
-- **City queue**: Nashville/Memphis CONTACT_ENRICHMENT_IN_PROGRESS (dual active), Knoxville exhausted, LR/Fayetteville/Louisville/Lexington QUEUED
-- **Sent today**: 0. No SMTP, no Final Send Plan
-
-## 2026-08-06 15:00
-- **Status**: partial (discovery_blocked, pool_drained, all_lanes_exhausted)
-- **A0 gate**: 0/30 (weekday target), gap 30. 24 leads auto_sendable=1 but all excluded by send_log gate
-- **Dashboard**: A0 retail=6 custom=2 total=8 (counts all time, not unsent)
-- **Orchestrator**: Lane A discovery hung 20+ min (Google Places), killed. Ran custom recovery script
-- **Website Recovery**: 34 candidates scanned → 3 emails found (jeff@midtngaming.com, customercare@easternnational.org x2) — all previously_sent
-- **No email**: 20 consistently no-email across scans
-- **Network errors**: 7 persistent (Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars) — properly classified as network_retry_pending
-- **Platform skips**: 4 (901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles)
-- **Staging postprocess**: Failed — Nashville/Tennessee city row not found in retail_city_queue
-- **Staging results**: 0 pending (lead_discovery_results validation_status empty)
-- **City queue**: Nashville/Memphis both CONTACT_ENRICHMENT_IN_PROGRESS (dual active — possible bug), Knoxville search_matrix_exhausted, Little Rock/Fayetteville/Louisville/Lexington QUEUED
-- **Broad Outreach**: 95 leads send_eligibility=broad_outreach_ready, 11 in allowed states (OR 6, NC 3, MN 2)
-- **Review Center**: 300 pending (137 CONTACT_ROLE_UNCERTAIN + 70 WEAK_EVIDENCE + 54 CONTACT_FORM_ONLY + 39 others). 30 have emails in allowed states
-- **contact_form_pool**: 72 leads, 19 with emails
-- **Near-A0**: 31 leads with email but auto_sendable=0 in allowed states (8 real-looking emails in AR/KY/TN)
-- **No SMTP, no Final Send Plan created**
-
-## 2026-07-23 15:00
-- **Status**: partial (all_lanes_exhausted)
-- **A0**: 12 → 15 (+3), target 60, gap 45
-- **Review Recovery**: 27 known brands already in DB, no new inserts
-- **Lanes executed**: Retail (3 leads, +1), Institutions (4, +0), Online Brands (35, +1), HTTP-first (24, +1)
-- **SSL errors**: 121, timeouts: 33 — severe connectivity issues
-- **Custom C pool**: 55 leads moved to contact_form_pool
-- **Warning**: 3 A0 additions have questionable emails (bot/anthropic, sentry/wix, image filename) — hygiene gate needs strengthening
-- **Recovery replay**: ran before main pipeline, confirmed all 27 known brands already in DB
-- **Facebook enrichment**: skipped (browser not available in automation)
-
-## 2026-07-29 15:00
-- **Status**: complete (all_lanes_exhausted, discovery_blocked)
-- **A0**: 1 → 3 (+2), target 120, gap 117
-- **Orchestrator run**: Lane A discovery blocked (configuration_blocked), staging empty, 5 loops exhausted on Nashville contact_form_pool (2 leads, no emails found)
-- **Manual inventory**: Near-A0 fixes (+1 B Side Games evidence_method repair), Memphis Sunny Toys upgrade (+1), Nashville 3 B-grade leads failed SSL (VPN proxy broken)
-- **City advancement**: Nashville → search_matrix_exhausted (discovery blocked, lanes exhausted), Memphis now active
-- **Review Center**: 213 manual_review_needed + 72 contact_form_pool = 285 pending
-- **Organization Outreach Opportunities**: 195 total (13 in TN allowed states)
-- **Blocker**: Astrill VPN HTTPS proxy SSL EOF errors prevent all website verification; Google Places API not configured; no staging imports
-
-## 2026-07-30 15:00
-- **Status**: partial (discovery_blocked, pool_drained, max_loops_reached)
-- **A0**: 0/120, gap 120 — CRITICAL. Pool completely drained; all 3 A0 leads (#316, #531, #671) sent 2026-07-29, now excluded by send_log gate
-- **Orchestrator run**: active city Memphis, Lane A discovery configuration_blocked, staging empty, 5 loops on 1 Memphis contact_form_pool candidate → 0 emails found
-- **Broad Ready**: 99 locations, 99 orgs, 99 Organization Outreach Opportunities
-- **Near-A0 candidates**: 18 leads have emails but auto_sendable=0 (8 with real emails upgradeable, 10 bad emails)
-- **B-grade no email**: 11 leads in AR/TN — all missing both email AND website URL
-- **City queue**: Nashville complete → Memphis active → Knoxville pending. No advance needed (Memphis still in progress)
-- **Review Center**: 142 exception_review (no email) + 20 contact_form_only = 162 pending
-- **Blockers unchanged**: Google Places API, VPN proxy SSL, no staging imports. No SMTP invoked.
-
-## 2026-07-31 15:00
-- **Status**: partial (discovery_blocked, pool_drained, all_lanes_exhausted)
-- **A0**: 0/120, gap 120 — unchanged. All 3 strict A0 sent 07/29, excluded by send_log gate
-- **Orchestrator run**: City queue bug — jumped to Louisville bypassing Memphis/Knoxville; Lane A configuration_blocked, staging empty, 0 candidates
-- **City queue fix**: Louisville/Lexington reset to pending; Memphis retained at partial_collection_done
-- **Broad Outreach**: 95 orgs / 95 locations (95 Organization Outreach Opportunities), 11 in allowed states (OR 6, NC 3, MN 2)
-- **send_eligibility**: Written to 95 leads as 'broad_outreach_ready'
-- **Organization keys**: 569 patched via _gen_organization_key
-- **Memphis email extraction**: 5 B-grade leads scanned, 0 emails found (3 no email on page, 1 SSL EOF, 1 Facebook page)
-- **Review Center**: 334 pending (261 manual_review_needed + 73 contact_form_pool)
-- **Near-A0**: 342 leads with A-grade email but not strict A0 (only ~16 in allowed states)
-- **No SMTP invoked, no Final Send Plan created**
-
-## 2026-08-01 15:00
-- **Status**: partial (discovery_blocked, pool_drained, all_lanes_exhausted)
-- **A0**: 0/120, gap 120 — all 4 strict A0 (#316,#531,#671,#530) sent 07/29 or earlier
-- **Orchestrator run 1**: City queue bug reoccurred — Louisville activated instead of Memphis. Root cause identified: `activate_next_city()` only selects `status='pending'` cities; Memphis was `partial_collection_done`
-- **Fix applied**: Deactivated Louisville, activated Memphis (partial unique index `idx_retail_city_only_one_active` on `status='active'` requires at most 1 active city at a time)
-- **Orchestrator run 2**: Memphis active, 3 B-grade candidates found, all failed — 3 sites no email extraction (comiccellaronline.com empty, 901comics.com is Chinese company, extremetoysmemphis.com SSL EOF), 1 contact_form_pool (memphistoyexchange.com SPA no static content)
-- **City queue state**: Nashville→search_matrix_exhausted, Memphis→active, Knoxville→pending, Little Rock/Fayetteville→partial_collection_done, Louisville/Lexington→pending
-- **Broad Outreach**: 95 orgs (95 Organization Outreach Opportunities), 11 in allowed states (OR 6, NC 3, MN 2)
-- **Review Center**: 333 pending (259 manual_review_needed + 74 contact_form_pool)
-- **Near-A0**: 343 candidates, 179 in allowed states — untapped pool for upgrades
-- **Memphis A-grade**: #531 Sunny Toys (email micah@micahrich.com flagged as DOMAIN_MISMATCH/invalid — font attribution, already sent), #683 901 Comics Midtown (email_verified_on_official_site=0, new, not yet sendable)
-- **Blockers**: Google Places API not configured, Astrill VPN SSL proxy breaks HTTPS, all Memphis sites dead ends
-- **No SMTP invoked, no Final Send Plan created**
-
-## 2026-08-02 15:00
-- **Status**: partial (discovery_blocked, all_lanes_exhausted, city_advanced)
-- **A0**: 0→4/120 (via send_log exclusion fix), gap 116 — 4 unsent A0 found (#691,#695,#735,#739) not in send_log
-- **All A0 (raw)**: 24 (20 sent & excluded by send_log)
-- **Orchestrator run**: Lane A configuration_blocked, staging empty, 5 loops on 3 Memphis B2 candidates — all SSL EOF (extreme_toys x5)
-- **City advancement**: Memphis → search_matrix_exhausted (5 candidates SSL-blocked x5+ days), Knoxville activated (0 B+candidates with websites — all 5 B-grade lack website URLs)
-- **Broad Outreach**: 95 orgs (11 in allowed states: OR 6, NC 3, MN 2)
-- **Organization Outreach Opportunities**: 99 (4 A0 + 95 Broad, unique union)
-- **Review Center**: 333 pending (260 manual_review_needed + 73 contact_form_pool)
-- **Near-A0**: 10 in allowed states with email but auto_sendable=0 (6 bogus, 4 real)
-- **B-grade w/ email**: 20 in allowed states (upgrade pool)
-- **Next actionable city**: Lexington, KY (4 B+candidates w/ websites)
-- **Blockers unchanged**: Google Places, Astrill VPN SSL, no staging
-- **No SMTP invoked, no Final Send Plan created**
-
-## 2026-08-03 15:00
-- **Status**: partial (discovery_blocked, all_lanes_exhausted, city_advanced)
-- **A0**: 0/30 (weekday target), gap 30. Dashboard shows 9 A-grade (7 retail+2 custom), sendable_leads gate=0
-- **Website Recovery**: 35 candidates scanned (TN/AR/KY) → 4 emails found (3 previously_sent, 1 bogus sentry/wix), 20 no email, 7 network errors properly classified, 4 platform skips. 0 new emails added to sendable pool
-- **Orchestrator**: Lane A discovery hung (Google Places 20min), killed. Ran manual inventory
-- **City**: Knoxville→search_matrix_exhausted (0 websites), Little Rock AR activated. Remaining: Fayetteville AR, Louisville KY, Lexington KY
-- **Broad Outreach**: 95 orgs
-- **Review Center**: 333 pending (260 manual+73 contact_form). 23 have emails in allowed states
-- **Near-A0**: 13 in TN/AR/KY w/ email but auto=0 (mostly bogus)
-- **No SMTP, no Final Send Plan**
-
-## 2026-08-05 15:00
-- **Status**: partial (max_loops_reached, pool_drained)
-- **A0**: 1/30 (weekday target), gap 29 — unchanged
-- **Orchestrator run**: Active city Nashville TN, Lane A configuration_blocked, staging empty, 5 loops × 34 candidates
-- **Emails found**: 3 — info@indiantypefoundry.com (Middle TN Gam), customercare@easternnational.org ×2 (Shiloh NMP + Cumberland Gap NHP) — all previously_sent
-- **No email**: 20 consistently no-email across all 5 loops
-- **Network errors (properly classified)**: 7 persistent — Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars. Loop 4: Fort Loudoun also flipped to network_retry_pending
-- **Platform skips**: 4 — 901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles
-- **No SMTP, no Final Send Plan**
-- **Blockers unchanged**: Google Places API, Astrill VPN, no staging. Pool completely drained — same 34 leads returning identical results across all loops
-
-## 2026-08-04 15:00
-- **Status**: partial (discovery_blocked, all_lanes_exhausted, max_loops_reached)
-- **A0**: 1/30 (weekday target), gap 29. Raw DB shows 28 auto_sendable=1 leads but orchestrator gate filters most out (send_log exclusion, state filter, etc.)
-- **New A0 promoted**: #689 The Crown Shop (shop@thecrownshop.com, Little Rock AR) — promoted to strict A0 via http_success on loop 1
-- **Website Recovery**: 35 candidates × 5 loops → 4 unique emails found: jeff@midtngaming.com (previously_sent), customercare@easternnational.org ×2 (previously_sent, Shiloh NMP + Cumberland Gap), shop@thecrownshop.com (NEW A0). 20 consistently no-email, 11 persistent network errors, 4 platform skips
-- **Network errors (persistent ×5 loops)**: Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics & Games, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars (7 sites) — all properly classified as network_retry_pending, NOT "no email"
-- **Platform skips**: 901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles
-- **Lane A discovery**: configuration_blocked (Google Places API not configured)
-- **Lane B/C/D staging**: empty
-- **City**: Nashville TN → CONTACT_ENRICHMENT_IN_PROGRESS (city cursor apparently reset from prior Little Rock by seed_default_queue)
-- **Remaining cities**: Memphis (CONTACT_ENRICHMENT_IN_PROGRESS), Knoxville (search_matrix_exhausted), Little Rock/Fayetteville/Louisville/Lexington (QUEUED)
-- **Broad Outreach**: 95 orgs
-- **Review Center**: 334 pending (261 manual + 73 contact_form)
-- **Dependency fix**: httpx was missing in venv — installed for this run
-- **No SMTP, no Final Send Plan**
+- **Website Recovery**: 34 candidates × 5 loops → 3 emails per loop (all previously_sent: jeff@midtngaming.com, customercare@easternnational.org ×2), 20 no email, 7 persistent network errors + 4 platform skips = 11 total errors per loop
+- **Persistent network errors (7, unchanged)**: Turtles Nest Toys, Old Black Mountain Games, Dewaynes World Comics & Games, Extreme Toys, Puzzles Plus, Treasure Chest Games, Go Toys Games Calendars
+- **Platform skips (4, unchanged)**: 901 Toys, CM Games Morristown, CM Games Lexington, Matts Games Collectibles
+- **Pool**: 738 total, unchanged. A0=0, Broad=95, Manual=217. All lanes exhausted.
+- **Sent today**: 0. No SMTP, no Final Send Plan.
+- **Root cause**: Google Places API blocked (rate limit / credentials) → zero new lead intake since Aug 6 (6th consecutive day). Website Recovery pool fully depleted — all 34 candidates hit either no-email (20) or network error (7) or platform skip (4). 3 recurring emails found (jeff@midtngaming.com, customercare@easternnational.org) are all previously_sent and excluded by send_log gate.
+- **Action needed**: Google Places API credentials must be refreshed or alternative discovery provider activated. Website Recovery pool cannot generate more leads without new intake.

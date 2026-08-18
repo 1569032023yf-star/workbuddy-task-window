@@ -1,0 +1,170 @@
+{
+  "report_type": "daily_collection",
+  "report_time_iso": "2026-08-10T20:28:35+08:00",
+  "report_time_display": "2026-08-10 20:28:35 Asia/Shanghai",
+  "date": "2026-08-10",
+  "overview": {
+    "total_leads": 738,
+    "status_distribution": {
+      "sent": 373,
+      "manual_review_needed": 217,
+      "contact_form_pool": 72,
+      "new": 34,
+      "bounced": 26,
+      "delivery_issue": 9,
+      "B": 2,
+      "failed": 2,
+      "A": 1,
+      "approved_manual_send": 1,
+      "bounce_review": 1
+    },
+    "primary_states": {
+      "TN": 177,
+      "AR": 67,
+      "KY": 66
+    },
+    "all_states": {
+      "TN": 177,
+      "AR": 67,
+      "KY": 66,
+      "CA": 47,
+      "TX": 28,
+      "OR": 25,
+      "WA": 23,
+      "FL": 23,
+      "NY": 22,
+      "NC": 20,
+      "NULL": 20,
+      "IL": 18,
+      "MI": 17,
+      "WI": 15,
+      "CO": 15,
+      "AZ": 15,
+      "GA": 12,
+      "MA": 11,
+      "UT": 10,
+      "SC": 10,
+      "MN": 10,
+      "PA": 9,
+      "MO": 8,
+      "VT": 7,
+      "VA": 7,
+      "NM": 7,
+      "MD": 7,
+      "OH": 4,
+      "NV": 4,
+      "ME": 4,
+      "LA": 4,
+      "ID": 4,
+      "NE": 3,
+      "IN": 3,
+      "DC": 3,
+      "AL": 3,
+      "OK": 2,
+      "CT": 2,
+      "WY": 1,
+      "Various": 1,
+      "RI": 1,
+      "NH": 1,
+      "MT": 1,
+      "KS": 1
+    },
+    "manual_review_pending": 217,
+    "inventory_health": "low"
+  },
+  "active_discovery": {
+    "state": null,
+    "city": null,
+    "current_query": null,
+    "query_progress": "N/A"
+  },
+  "sendable_pool": {
+    "strict_a0_unsent": 0,
+    "broad_outreach_ready_unsent": 48,
+    "final_sendable_unsent": 48,
+    "gap_to_30": 0,
+    "gap_to_60": 12
+  },
+  "today_activity": {
+    "new_organizations": 0,
+    "website_emails_found": 0,
+    "facebook_emails_found": 0,
+    "manual_emails_verified": 0,
+    "discovery_results": 0
+  },
+  "website_recovery": {
+    "pending": 15,
+    "recheck_pending": 0,
+    "status_breakdown": {
+      "pending": 15
+    }
+  },
+  "errors": {
+    "contact_recovery_errors": {
+      "domain_invalid: MX Host not found / 域名无效": 15
+    },
+    "lead_errors_classified": {
+      "other": 3,
+      "connection": 1
+    },
+    "error_samples": [
+      "Hard bounce via postmaster notification",
+      "[Errno 11001] getaddrinfo failed",
+      "Connection unexpectedly closed: [WinError 10054] 远程主机强迫关闭了一个现有的连接。"
+    ]
+  },
+  "safety_verification": {
+    "smtp_sends_today": 0,
+    "smtp_sends_total": 451,
+    "send_plan_today": 0,
+    "send_plan_total": 132,
+    "bounces_today": 0,
+    "can_send": true
+  },
+  "send_eligibility": {
+    "blocked": 1,
+    "broad_outreach_ready": 95
+  },
+  "blocked_reasons": {
+    "previously_sent": 373,
+    "email_missing": 189,
+    "other": 102,
+    "bounced": 26
+  },
+  "fb_enrichment_queue_pending": 0,
+  "recent_jobs": [
+    {
+      "run_id": "inventory:2026-08-10:4d35a45d",
+      "stage": "inventory",
+      "status": "partial",
+      "started_at": "2026-08-10 06:56:14"
+    },
+    {
+      "run_id": "inventory:2026-08-09:a7aeff55",
+      "stage": "inventory",
+      "status": "partial",
+      "started_at": "2026-08-09 07:56:28"
+    },
+    {
+      "run_id": "inventory:2026-08-09:620c1e36",
+      "stage": "inventory",
+      "status": "partial",
+      "started_at": "2026-08-09 06:56:15"
+    },
+    {
+      "run_id": "inventory:2026-08-09:30076e69",
+      "stage": "inventory",
+      "status": "partial",
+      "started_at": "2026-08-09 01:51:24"
+    },
+    {
+      "run_id": "inventory:2026-08-08:b709af2b",
+      "stage": "inventory",
+      "status": "stopped",
+      "started_at": "2026-08-08 07:56:00"
+    }
+  ],
+  "read_only": true,
+  "smtp_disabled": true,
+  "no_send_plan_created": true
+}

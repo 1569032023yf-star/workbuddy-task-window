@@ -92,3 +92,14 @@ new / reviewed / drafted / sent / replied / bounced / unsubscribed / do_not_cont
 - 删除：5个旧副本目录 + 39个根目录过期文件 + tools/google-maps-scraper(57M) + outreach内部旧备份(backup_t1/staging/20个循环备份/__pycache__/旧DB)
 - 保留核心: roktandrazo-outreach/(8.5M) + bd_effective_artifacts_20260707_1614/ + codex_handoff_bd_automation_20260707_1129/
 - 审计方案: WORKSPACE_AUDIT_CLEANUP_PLAN_20260720.md
+
+### Token / Research Efficiency Rule (2026-08-17, 长期约定)
+Verified Lead Recovery 低 token 模式：
+- 禁止为普通批量验证启动多个 Agent 重复加载项目上下文
+- 批量筛选优先本地代码/HTTP/DNS/数据库，不用 Agent 逐条推理
+- 只有通过预筛（未历史发送 + 非suppression + ICP Qualified + 官网域有效 + MX PASS）的候选才允许 WebSearch/WebFetch 深度验证
+- 每商户上限：1 次官网搜索 + 1 次首页读取 + 最多 2 个深层页面；超出标记 MANUAL_REVIEW，不无限重试
+- 不输出逐步思考日志，只记录关键结果；每 25–50 家统一输出一次漏斗
+- 最终报告只保留：Input / Website / Email / MX / Duplicate / Verified / Eligible V2 / rejection reasons
+- 目标：最小化 tokens per Verified Eligible V2
+- Agent 只负责最终证据判断，不负责机械性筛选

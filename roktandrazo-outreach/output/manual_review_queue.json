@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-07T08:50:49.988090+08:00",
-  "total_pending": 318,
+  "generated_at": "2026-08-17T20:26:50.817527+08:00",
+  "total_pending": 538,
   "categories": {
-    "manual_review_needed": 245,
+    "manual_review_needed": 465,
     "bounce_review": 1,
     "contact_form_pool": 72
   },
@@ -671,23 +671,6 @@
       "source_keyword": "sprint_2026-07-31"
     },
     {
-      "id": 727,
-      "store_name": "Hard Knox Games",
-      "city": "Radcliff",
-      "state": "KY",
-      "official_website": "",
-      "email": "",
-      "email_source_type": "unknown",
-      "evidence_url": null,
-      "confidence_score": "B",
-      "status": "manual_review_needed",
-      "collected_at": null,
-      "manual_decision": null,
-      "store_type": "game_store",
-      "contact_form_url": null,
-      "source_keyword": "sprint_2026-07-31"
-    },
-    {
       "id": 728,
       "store_name": "Comic Book World Louisville",
       "city": "Louisville",
@@ -1101,8 +1084,8 @@
       "city": "Burlington",
       "state": "VT",
       "official_website": "https://www.kidstructivefuntoys.com/",
-      "email": "79baaa8e09c746d2b7401643b99792e0@sentry.wixpress.com",
-      "email_source_type": "official_page_visible",
+      "email": "",
+      "email_source_type": null,
       "evidence_url": "https://www.kidstructivefuntoys.com/",
       "confidence_score": "A",
       "status": "manual_review_needed",
@@ -1706,6 +1689,23 @@
       "store_type": "independent toy store",
       "contact_form_url": "",
       "source_keyword": "independent toy store Scottsdale AZ"
+    },
+    {
+      "id": 145,
+      "store_name": "Game Haven",
+      "city": "Salt Lake City",
+      "state": "UT",
+      "official_website": "https://www.gamehavenutah.com/",
+      "email": "info@gamehavenutah.com",
+      "email_source_type": "guessed_email",
+      "evidence_url": "https://www.gamehavenutah.com/",
+      "confidence_score": "B",
+      "status": "manual_review_needed",
+      "collected_at": "2026-06-17 09:52:58",
+      "manual_decision": null,
+      "store_type": "board game store",
+      "contact_form_url": "",
+      "source_keyword": "board game store Salt Lake City UT"
     }
   ]
 }

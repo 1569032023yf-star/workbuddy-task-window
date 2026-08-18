@@ -41,8 +41,9 @@ def _render_meta_values(entry: dict, lead_by_id: dict) -> dict:
     }
 
 
-def create_plan(conn: sqlite3.Connection, leads: list[dict], batch_date: str, message_type: str) -> str:
-    entries = build_final_plan_entries(leads, batch_date, message_type)
+def create_plan(conn: sqlite3.Connection, leads: list[dict], batch_date: str, message_type: str,
+                eligible_check: callable | None = None) -> str:
+    entries = build_final_plan_entries(leads, batch_date, message_type, eligible_check=eligible_check)
     plan_id = f"{batch_date}:{message_type}:{uuid.uuid4().hex[:10]}"
     if not entries:
         return ""

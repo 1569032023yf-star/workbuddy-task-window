@@ -95,18 +95,16 @@ def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
         update_job_run(run_id, current_step='freeze_final_send_plan', target=NEW_OUTREACH_TARGET)
     from bd_template import apply_email_to_lead
     from final_send_plan import create_plan
-    from lead_hygiene_gate import evaluate_a0
-    from production_adapter import build_candidate_from_db_row, build_context
+    from campaign_eligible import campaign_eligible_check, select_candidates_for_plan
 
     conn = get_db()
-    context = build_context(conn)
     eligible = []
-    for row in get_sendable_leads(limit=NEW_OUTREACH_TARGET):
-        candidate = build_candidate_from_db_row(row, context)
-        if evaluate_a0(candidate).a0_eligible:
-            lead = apply_email_to_lead(dict(row))
-            lead['hygiene_passed_at'] = now_shanghai().isoformat()
-            eligible.append(lead)
+    # 正式政策：Broad Ready → ICP Qualified → Campaign Eligible → Final Send Plan。
+    # Strict A0 只是优先层，不是唯一发送池；Campaign Eligible 是主池判定。
+    for row in select_candidates_for_plan(conn, NEW_OUTREACH_TARGET):
+        lead = apply_email_to_lead(dict(row))
+        lead['hygiene_passed_at'] = now_shanghai().isoformat()
+        eligible.append(lead)
     followups = []
     try:
         from workbuddy_candidate_modules.follow_up_queue_builder import build_followup_queue
@@ -132,7 +130,8 @@ def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
         log(f"[DRY RUN] Final Send Plan preview only: new={preview['new_outreach']}, follow-up={preview['follow_up']}")
         return preview
     with conn:
-        plan_id = create_plan(conn, eligible, business_date, 'new_outreach')
+        plan_id = create_plan(conn, eligible, business_date, 'new_outreach',
+                              eligible_check=campaign_eligible_check(conn))
         followup_plan_id = create_plan(conn, followups, business_date, 'follow_up')
     conn.close()
     log(f"Final plans frozen: new={plan_id} ({len(eligible)}), follow-up={followup_plan_id} ({len(followups)})")
@@ -295,8 +294,41 @@ def stage_post_send(run_id: str, business_date: str, dry_run: bool):
 
 
 # ═══════════════════════════════════════════════════════════
-# Stage: inventory (15:00) — target Strict A0 >= 120
+# Stage: inventory (15:00) — target Broad Ready >= 30 (main pool)
 # ═══════════════════════════════════════════════════════════
+
+def _count_broad_ready_pool(limit: int = 1000) -> int:
+    """生产主池口径：Broad Outreach Ready（非 Strict A0）。
+    Strict A0 只是优先层；inventory 的 final_pool 必须用主池。
+    只读，不写库。
+    """
+    try:
+        from broad_ready import is_broad_outreach_ready
+        conn = get_db()
+        conn.row_factory = sqlite3.Row
+        try:
+            c = conn.cursor()
+            c.execute("""
+                SELECT * FROM leads
+                WHERE state IN ('TN','AR','KY')
+                AND status NOT IN ('sent','bounced','do_not_contact','rejected',
+                                   'failed','delivery_issue','bounce_review','contact_form_pool')
+                AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
+                LIMIT ?
+            """, (limit,))
+            rows = [dict(r) for r in c.fetchall()]
+            ready = 0
+            for ld in rows:
+                if is_broad_outreach_ready(ld, {'conn': conn}).get('ready'):
+                    ready += 1
+            return ready
+        finally:
+            conn.close()
+    except Exception as e:
+        log(f"  [WARN] _count_broad_ready_pool error: {e}")
+        return 0
+
+
 def stage_inventory(run_id: str, business_date: str, dry_run: bool):
     header("STAGE: Inventory — Target 30 Sendable Orgs, send_enabled=false")
     if dry_run:
@@ -305,10 +337,13 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
         conn = get_db()
         try:
             a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1, conn=conn))
+            broad_ready = _count_broad_ready_pool(INVENTORY_TARGET + 1)
         finally:
             conn.close()
-        preview = {'strict_a0': a0, 'target': INVENTORY_TARGET, 'gap': max(0, INVENTORY_TARGET - a0)}
-        log(f"[DRY RUN] Inventory preview: A0={a0}/{INVENTORY_TARGET}; no provider, website, cursor, or DB writes")
+        preview = {'strict_a0': a0, 'broad_ready': broad_ready,
+                   'target': INVENTORY_TARGET,
+                   'gap': max(0, INVENTORY_TARGET - broad_ready)}
+        log(f"[DRY RUN] Inventory preview: BroadReady={broad_ready}/{INVENTORY_TARGET} (A0={a0}); no provider, website, cursor, or DB writes")
         return preview
     set_execution_mode('inventory_recovery')
     update_job_run(run_id, current_step='inventory_start', target=INVENTORY_TARGET)
@@ -399,6 +434,13 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
                     AND status NOT IN ('sent','bounced','do_not_contact')
                     AND (email IS NULL OR email='')
                     AND official_website IS NOT NULL AND official_website != ''
+                    -- exclude leads already submitted to manual_email_submission in this lane
+                    -- (prevents the same 34-site pool being rescanned every loop/day)
+                    AND NOT EXISTS (
+                        SELECT 1 FROM manual_email_submission ms
+                        WHERE ms.lead_id = leads.id
+                          AND COALESCE(ms.submitted_by,'') = 'inventory_lane'
+                    )
                     ORDER BY CASE WHEN state='TN' THEN 0 WHEN state='AR' THEN 1 ELSE 2 END,
                              city, id
                     LIMIT 35
@@ -423,7 +465,12 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
                     
                     scan_ss = {}
                     email, ev_url, ev_snippet, result_type = http_scan_website(website, scan_ss)
-                    
+
+                    # Use the actual page where the email was found as evidence URL,
+                    # not the homepage — so verification re-checks the same page.
+                    evidence_url = ev_url or website
+                    evidence_snippet = ev_snippet or email or result_type
+
                     if email and '@' in email and not is_suppressed(email):
                         ssl_stats['emails_found'] += 1
                         log(f"    [{i+1}] ✅ {cd['store_name'][:30]} → {email} ({result_type})")
@@ -434,8 +481,8 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
                                 with conn2:
                                     result = submit_manual_email(
                                         conn2, cd['id'], 'inventory_lane',
-                                        email=email, evidence_url=website,
-                                        evidence_snippet=email,
+                                        email=email, evidence_url=evidence_url,
+                                        evidence_snippet=evidence_snippet,
                                         evidence_method='official_contact_page',
                                         contact_role='business_email',
                                         notes=f'Unified scanner: {result_type}',
@@ -469,21 +516,25 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
                 log(f"  [WARN] Unified scanner error: {e}")
                 log(traceback.format_exc()[-200:])
 
-            # Recheck through the same gate used by Pre-Send.
+            # Recheck through the production main pool gate (Broad Outreach Ready).
+            # Strict A0 (get_sendable_leads) is the priority layer, NOT the main pool —
+            # inventory target is measured against the main pool per production policy.
             a0 = len(get_sendable_leads(limit=INVENTORY_TARGET + 1))
-            remaining = max(0, INVENTORY_TARGET - a0)
-            log(f"  After loop {loop}: A0={a0}, remaining={remaining}")
+            broad_ready = _count_broad_ready_pool(INVENTORY_TARGET + 1)
+            remaining = max(0, INVENTORY_TARGET - broad_ready)
+            log(f"  After loop {loop}: A0={a0}, BroadReady={broad_ready}, remaining={remaining}")
 
+        final_broad = _count_broad_ready_pool(INVENTORY_TARGET + 1)
         final_a0 = a0
-        final_gap = max(0, INVENTORY_TARGET - final_a0)
+        final_gap = max(0, INVENTORY_TARGET - final_broad)
 
         if final_gap == 0:
-            finish_job_run(run_id, 'completed', actual=final_a0, gap=0)
+            finish_job_run(run_id, 'completed', actual=final_broad, gap=0)
         else:
-            finish_job_run(run_id, 'partial', actual=final_a0, gap=final_gap,
+            finish_job_run(run_id, 'partial', actual=final_broad, gap=final_gap,
                            stop_reason='max_loops_reached')
 
-        log(f"\nInventory done: A0={final_a0}/{INVENTORY_TARGET}")
+        log(f"\nInventory done: BroadReady={final_broad}/{INVENTORY_TARGET} (A0={final_a0})")
         return final_gap == 0
 
     finally:

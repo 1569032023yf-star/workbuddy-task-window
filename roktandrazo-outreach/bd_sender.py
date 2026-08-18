@@ -202,15 +202,23 @@ def create_send_authorization(plan_id: str, outreach_batch_date: str,
         ))
         
         # Also create per-entry records
+        # P1.0: plan_entry_id 必须是真实 final_send_plan.id，从创建瞬间即成立。
+        # 禁止用 lead_id 冒充后事后 UPDATE 修正。
         for e in planned_entries:
             lid = e.get('lead_id')
             remail = str(e.get('recipient_email', '')).strip().lower()
+            peid = e.get('final_plan_entry_id') or e.get('plan_entry_id')
+            if peid is None or not isinstance(peid, int) or isinstance(peid, bool):
+                raise ValueError(
+                    f"create_send_authorization: planned entry for lead {lid} missing "
+                    "real final_send_plan.id (final_plan_entry_id/plan_entry_id must be int)"
+                )
             entry_hash = hashlib.sha256(f"{lid}:{remail}".encode()).hexdigest()[:12]
             conn.execute("""
                 INSERT OR IGNORE INTO send_authorization_entries
                 (authorization_id, plan_entry_id, lead_id, recipient_email, entry_hash, status)
                 VALUES (?,?,?,?,?,'pending')
-            """, (authorization_id, lid, lid, remail, entry_hash))
+            """, (authorization_id, peid, lid, remail, entry_hash))
         
         conn.commit()
         return {
@@ -538,7 +546,9 @@ def send_one(lead: dict, dry_run: bool = False) -> dict:
         if lead.get("message_type") == "new_outreach":
             from bd_template import check_inline_forbidden, _TEMPLATE_REGISTRY
             body = lead.get("email_body", "")
-            template_key = lead.get("template_key", "")
+            # 正式链权威字段是 template_id（FSP 冻结字段，preflight check_template 同口径）；
+            # template_key 仅为渲染元数据列，leads 表可能不存在 → 回退 template_id。
+            template_key = lead.get("template_key") or lead.get("template_id") or ""
             
             # Check forbidden phrases
             forbidden = check_inline_forbidden(body or "")

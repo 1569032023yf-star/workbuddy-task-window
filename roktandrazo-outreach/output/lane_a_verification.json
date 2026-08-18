@@ -1,0 +1,62 @@
+{
+  "132": {
+    "store": "Shuffle & Cut",
+    "website": "https://www.shuffleandcut.com/",
+    "result": "NO_EMAIL",
+    "note": "官网存在(桌游店)，contact 页 404，仅联系表单+电话，无公开邮箱"
+  },
+  "145": {
+    "store": "Game Haven",
+    "website": "https://www.gamehavenutah.com/",
+    "result": "UNREACHABLE",
+    "note": "官网无法连接(fetch failed, http+https)"
+  },
+  "153": {
+    "store": "Third Planet Comics",
+    "website": "https://www.thirdplanet.com/",
+    "result": "DOMAIN_FOR_SALE",
+    "note": "域名在 GoDaddy 出售(9,995)，官网已失效"
+  },
+  "179": {
+    "store": "Eternal Games",
+    "website": "https://www.eternalgames.com/",
+    "result": "DOMAIN_FOR_SALE",
+    "note": "域名在 Sedo 出售，redirect 到 sedo.com"
+  },
+  "182": {
+    "store": "Maximum Comics",
+    "website": "https://www.maximumcomics.com/",
+    "result": "NO_EMAIL",
+    "note": "官网真实存在(拉斯维加斯漫画店)，contact/about 404，主页无邮箱，仅电话 702-367-0755"
+  },
+  "185": {
+    "store": "MoMA Design Store",
+    "website": "https://store.moma.org/",
+    "result": "NO_EMAIL",
+    "note": "官网存在(MoMA)，about/contact 无邮箱，客服走表单"
+  },
+  "190": {
+    "store": "Eastern National/eParks",
+    "website": "https://www.eparks.com/",
+    "result": "SITE_NOT_FOUND",
+    "note": "DreamHost Site not found，官网已失效"
+  },
+  "285": {
+    "store": "Top Ten Toys",
+    "website": "https://www.toptentoys.com/",
+    "result": "DOMAIN_HIJACKED",
+    "note": "域名变成 Europe777 赌场站，原玩具店官网已被劫持"
+  },
+  "286": {
+    "store": "Games & Gizmos",
+    "website": "https://www.gamesngizmos.com/",
+    "result": "UNREACHABLE",
+    "note": "官网无法连接(fetch failed, http+https)"
+  },
+  "301": {
+    "store": "Diversions Puzzles",
+    "website": "https://www.diversionspuzzles.com/",
+    "result": "UNREACHABLE",
+    "note": "官网无法连接(fetch failed, http+https)"
+  }
+}

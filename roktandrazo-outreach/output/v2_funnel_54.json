@@ -1,0 +1,3093 @@
+[
+  {
+    "lead_id": 132,
+    "store_name": "Shuffle & Cut",
+    "email": "info@shuffleandcut.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@shuffleandcut.com website=https://www.shuffleandcut.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:shuffleandcut.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=shuffleandcut.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:11:41.998062+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 134,
+    "store_name": "Warhammer Madison",
+    "email": "info@warhammermadison.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@warhammermadison.com website=https://www.warhammermadison.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:warhammermadison.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=warhammermadison.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:13:12.419708+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 136,
+    "store_name": "Collectible Corner & Game Store",
+    "email": "info@collectiblecornermke.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@collectiblecornermke.com website=https://www.collectiblecornermke.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:collectiblecornermke.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=collectiblecornermke.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:00:39.305065+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 142,
+    "store_name": "Game Depot",
+    "email": "info@gamedepotaz.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gamedepotaz.com website=https://www.gamedepotaz.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Phoenix"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gamedepotaz.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gamedepotaz.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:02:14.520725+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 144,
+    "store_name": "Scottsdale Toy Company",
+    "email": "info@scottsdaletoyco.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@scottsdaletoyco.com website=https://www.scottsdaletoyco.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Phoenix"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:scottsdaletoyco.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=scottsdaletoyco.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:11:08.143258+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 145,
+    "store_name": "Game Haven",
+    "email": "info@gamehavenutah.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gamehavenutah.com website=https://www.gamehavenutah.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Denver"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gamehavenutah.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=gamehavenutah.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:05:50.148122+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 146,
+    "store_name": "Oasis Games",
+    "email": "info@oasisgamesutah.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@oasisgamesutah.com website=https://www.oasisgamesutah.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Denver"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:oasisgamesutah.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=oasisgamesutah.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:10:47.082252+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 147,
+    "store_name": "Hobby Hobbies",
+    "email": "info@blickhobbies.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@blickhobbies.com website=https://www.blickhobbies.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Denver"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:blickhobbies.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=blickhobbies.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:09:50.564366+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 148,
+    "store_name": "Game Grid",
+    "email": "info@gamegridutah.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gamegridutah.com website=https://www.gamegridutah.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Denver"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gamegridutah.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gamegridutah.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:02:34.970214+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 149,
+    "store_name": "Park City Toy Lending Library",
+    "email": "info@parkcitytoylibrary.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@parkcitytoylibrary.com website=https://www.parkcitytoylibrary.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Denver"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:parkcitytoylibrary.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=parkcitytoylibrary.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:10:57.321761+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 153,
+    "store_name": "Third Planet Comics & Games",
+    "email": "info@thirdplanet.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@thirdplanet.com website=https://www.thirdplanet.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:thirdplanet.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=thirdplanet.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:12:31.361356+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 162,
+    "store_name": "Giga-Bites Cafe",
+    "email": "info@gigabitescafe.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history",
+          "hard_policy_permanent_bounce"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gigabitescafe.com website=https://www.gigabitescafe.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gigabitescafe.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=gigabitescafe.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:09:40.345067+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "broad_ready:hard_policy_permanent_bounce",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 163,
+    "store_name": "The Rook Game Room",
+    "email": "info@therooknola.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@therooknola.com website=https://www.therooknola.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:therooknola.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=therooknola.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:12:13.330705+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 164,
+    "store_name": "D4 Seasons",
+    "email": "info@d4seasons.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@d4seasons.com website=https://www.d4seasons.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:d4seasons.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=d4seasons.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:00:57.501783+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 165,
+    "store_name": "B Plus Comics",
+    "email": "info@bpluscomics.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@bpluscomics.com website=https://www.bpluscomics.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:bpluscomics.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=bpluscomics.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:00:29.050455+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 166,
+    "store_name": "31st Century Toys & Comics",
+    "email": "info@31st-century.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@31st-century.com website=https://www.31st-century.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:31st-century.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=31st-century.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:00:18.850112+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 167,
+    "store_name": "Tabletop Game Cafe",
+    "email": "info@tabletopkc.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@tabletopkc.com website=https://www.tabletopkc.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:tabletopkc.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=tabletopkc.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:12:02.541801+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 168,
+    "store_name": "Fantasy Shop",
+    "email": "info@fantasyshoponline.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@fantasyshoponline.com website=https://www.fantasyshoponline.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:fantasyshoponline.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=fantasyshoponline.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:02:03.779405+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 169,
+    "store_name": "Dice Cafe",
+    "email": "info@dicecafestl.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@dicecafestl.com website=https://www.dicecafestl.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:dicecafestl.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=dicecafestl.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:01:08.044612+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 170,
+    "store_name": "Stomping Grounds",
+    "email": "info@stompinggroundsphl.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@stompinggroundsphl.com website=https://www.stompinggroundsphl.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:stompinggroundsphl.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=stompinggroundsphl.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:11:52.279951+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 171,
+    "store_name": "Tiki Tiki Board Games",
+    "email": "hello@tikitikiboardgames.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=hello@tikitikiboardgames.com website=https://www.tikitikiboardgames.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:tikitikiboardgames.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=tikitikiboardgames.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:12:41.691287+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 175,
+    "store_name": "Gameday",
+    "email": "info@gamedaymiami.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gamedaymiami.com website=https://www.gamedaymiami.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gamedaymiami.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=gamedaymiami.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:09:29.816480+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 176,
+    "store_name": "Unreal City Comics",
+    "email": "info@unrealcitycomics.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@unrealcitycomics.com website=https://www.unrealcitycomics.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:unrealcitycomics.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=unrealcitycomics.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:13:02.184478+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 177,
+    "store_name": "Treasure Coast Toys",
+    "email": "info@treasurecoasttoys.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@treasurecoasttoys.com website=https://www.treasurecoasttoys.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:treasurecoasttoys.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=treasurecoasttoys.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:12:51.930758+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 179,
+    "store_name": "Eternal Games",
+    "email": "info@eternalgames.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@eternalgames.com website=https://www.eternalgames.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:eternalgames.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=eternalgames.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:01:41.365758+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 180,
+    "store_name": "Game Forge",
+    "email": "info@gameforgelv.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gameforgelv.com website=https://www.gameforgelv.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gameforgelv.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gameforgelv.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:02:24.761761+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 181,
+    "store_name": "Shall We Game",
+    "email": "info@shallwegamelv.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@shallwegamelv.com website=https://www.shallwegamelv.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:shallwegamelv.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=shallwegamelv.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:11:19.447305+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 182,
+    "store_name": "Maximum Comics",
+    "email": "info@maximumcomics.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@maximumcomics.com website=https://www.maximumcomics.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:maximumcomics.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=maximumcomics.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:10:08.584156+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 185,
+    "store_name": "MoMA Design Store",
+    "email": "customerservice@momastore.org",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=customerservice@momastore.org website=https://www.momastore.org/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:momastore.org"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=momastore.org MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-08T09:10:36.826492+08:00 age=6.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 262,
+    "store_name": "Event Horizon Games",
+    "email": "info@eventhz.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@eventhz.com website=https://www.eventhz.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:eventhz.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=eventhz.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:00:01.332442+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 269,
+    "store_name": "Arizona Toy Exchange",
+    "email": "info@aztoyexchange.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@aztoyexchange.com website=https://www.aztoyexchange.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Phoenix"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:aztoyexchange.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=aztoyexchange.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-29T17:46:38.831454+08:00 age=45.9d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 270,
+    "store_name": "Painted Yahtzee Gaming",
+    "email": "info@paintedyahzee.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@paintedyahzee.com website=https://www.paintedyahzee.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:paintedyahzee.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=paintedyahzee.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:23:34.151168+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 271,
+    "store_name": "Bold City Games",
+    "email": "info@boldcitygames.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "no_mail_route",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@boldcitygames.com website=https://www.boldcitygames.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:boldcitygames.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=boldcitygames.com MX_BLOCK=no_mail_route"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-29T18:04:53.658114+08:00 age=45.9d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "mx:no_mail_route",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 275,
+    "store_name": "Crimson Dragon Games",
+    "email": "info@crimsondragongames.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@crimsondragongames.com website=https://www.crimsondragongames.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:crimsondragongames.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=crimsondragongames.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T08:44:25.915291+08:00 age=45.3d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 278,
+    "store_name": "Gameology & More",
+    "email": "info@gameologysd.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gameologysd.com website=https://www.gameologysd.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gameologysd.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gameologysd.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:07:26.241206+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 280,
+    "store_name": "Dragon's Keep Games",
+    "email": "info@dragonskeepgames.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@dragonskeepgames.com website=https://www.dragonskeepgames.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Denver"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:dragonskeepgames.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=dragonskeepgames.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T08:57:55.491232+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 283,
+    "store_name": "Beans & Ice Cream Toys",
+    "email": "info@beansandicecream.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@beansandicecream.com website=https://www.beansandicecream.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:beansandicecream.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=beansandicecream.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-29T18:04:28.252912+08:00 age=45.9d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 284,
+    "store_name": "Patina - Gifts & Toys",
+    "email": "info@patinamn.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@patinamn.com website=https://www.patinamn.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:patinamn.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=patinamn.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:24:23.223223+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 285,
+    "store_name": "Top Ten Toys",
+    "email": "info@toptentoys.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@toptentoys.com website=https://www.toptentoys.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:toptentoys.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=toptentoys.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:44:18.545931+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 286,
+    "store_name": "Games & Gizmos",
+    "email": "info@gamesngizmos.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gamesngizmos.com website=https://www.gamesngizmos.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gamesngizmos.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=gamesngizmos.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:08:15.260381+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 287,
+    "store_name": "The Game Room",
+    "email": "info@gameroompa.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gameroompa.com website=https://www.gameroompa.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gameroompa.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gameroompa.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:40:18.534979+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 291,
+    "store_name": "Peekaboo Toys",
+    "email": "info@peekabootoyspdx.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@peekabootoyspdx.com website=https://www.peekabootoyspdx.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:peekabootoyspdx.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=peekabootoyspdx.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:24:34.073689+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 292,
+    "store_name": "The Learning Tree",
+    "email": "info@learningtreeoakland.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@learningtreeoakland.com website=https://www.learningtreeoakland.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Los_Angeles"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:learningtreeoakland.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=learningtreeoakland.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:41:01.414365+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 297,
+    "store_name": "Game Galaxy",
+    "email": "info@gamegalaxysa.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gamegalaxysa.com website=https://www.gamegalaxysa.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gamegalaxysa.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gamegalaxysa.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:02:32.068675+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 300,
+    "store_name": "Wonderment Toys",
+    "email": "info@wondermenttoys.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@wondermenttoys.com website=https://www.wondermenttoys.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:wondermenttoys.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=wondermenttoys.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:54:52.686809+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 301,
+    "store_name": "Diversions Puzzles & Games",
+    "email": "info@diversionspuzzles.com",
+    "eligible": false,
+    "pool": "NEEDS_EMAIL_VERIFICATION",
+    "tier": "E4",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@diversionspuzzles.com website=https://www.diversionspuzzles.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:diversionspuzzles.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=diversionspuzzles.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T08:54:01.520300+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 302,
+    "store_name": "Go Toys & Games",
+    "email": "info@gotoysgames.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E4",
+    "mx_status": "nxdomain",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": true,
+        "detail": []
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@gotoysgames.com website=https://www.gotoysgames.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:gotoysgames.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": false,
+        "detail": "domain=gotoysgames.com MX_BLOCK=nxdomain"
+      },
+      "email_source_tier": {
+        "pass": false,
+        "detail": "E4 guessed_email needs enhanced verification: guessed_email high-risk"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-06-30T09:10:03.041705+08:00 age=45.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "mx:nxdomain",
+      "guessed_email_without_enhanced_verification"
+    ],
+    "v1_pool": "CAMPAIGN_ELIGIBLE",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 334,
+    "store_name": "Well Played Board Game Cafe",
+    "email": "info@wellplayedasheville.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E1",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@wellplayedasheville.com website=https://wellplayedasheville.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:wellplayedasheville.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=wellplayedasheville.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E1: official_page_visible + verified_on_official_site"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-07-01T08:37:37.314799+08:00 age=44.3d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 368,
+    "store_name": "The Deep Comics and Games",
+    "email": "info@deepcomics.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E1",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history",
+          "hard_policy_permanent_bounce"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=info@deepcomics.com website=https://deepcomics.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:deepcomics.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=deepcomics.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E1: official_page_visible + verified_on_official_site"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-07-03T10:57:31.682530+08:00 age=42.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "broad_ready:hard_policy_permanent_bounce"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 774,
+    "store_name": "Village Tinker",
+    "email": "villagetinker@villagetinker.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E1",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=villagetinker@villagetinker.com website=https://villagetinker.com"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:villagetinker.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=villagetinker.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E1: official_page_visible + verified_on_official_site"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-13T09:01:00.968198+08:00 age=1.2d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 779,
+    "store_name": "Stoney's Gift & Toy Shoppe",
+    "email": "sstonebraker1616@aol.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E2",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "previously_sent_email",
+          "previously_sent_org"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=sstonebraker1616@aol.com website=http://www.stoneystoys.com"
+      },
+      "public_mailbox_ownership": {
+        "pass": true,
+        "detail": "free mailbox aol.com; official_evidence=YES"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:stoneystoys.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=aol.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E2: web_search_official + official evidence"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-13T15:02:34.858015+08:00 age=1.0d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 783,
+    "store_name": "Legit MTG",
+    "email": "sales@legitmtg.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E2",
+    "mx_status": "ok",
+    "evidence_stale": false,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "suppression",
+          "hard_policy_permanent_bounce",
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=sales@legitmtg.com website=https://legitmtg.com"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:legitmtg.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=legitmtg.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E2: web_search_official + official evidence"
+      },
+      "evidence_freshness": {
+        "pass": true,
+        "detail": "checked_at=2026-08-13T15:02:34.864033+08:00 age=1.0d (fresh)"
+      }
+    },
+    "blockers": [
+      "broad_ready:suppression",
+      "broad_ready:hard_policy_permanent_bounce",
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 811,
+    "store_name": "The Game Store",
+    "email": "sales@thegamestore.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E2",
+    "mx_status": "ok",
+    "evidence_stale": true,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=sales@thegamestore.com website=https://www.thegamestore.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/Chicago"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:thegamestore.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=thegamestore.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E2: web_search_official + official evidence"
+      },
+      "evidence_freshness": {
+        "pass": false,
+        "detail": "evidence_checked_at/last_checked_at missing → cannot confirm freshness"
+      }
+    },
+    "blockers": [
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "evidence_stale"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  },
+  {
+    "lead_id": 1048,
+    "store_name": "Mystic Falls Cardboard Company",
+    "email": "support@mysticfallscardboardcompany.com",
+    "eligible": false,
+    "pool": "BLOCKED",
+    "tier": "E2",
+    "mx_status": "ok",
+    "evidence_stale": true,
+    "checks": {
+      "broad_ready": {
+        "pass": false,
+        "detail": [
+          "previously_sent_email",
+          "previously_sent_org",
+          "shared_domain_org_history"
+        ]
+      },
+      "hygiene": {
+        "pass": true,
+        "detail": "ok"
+      },
+      "email_ownership": {
+        "pass": true,
+        "detail": "email=support@mysticfallscardboardcompany.com website=https://mysticfallscardboardcompany.com/"
+      },
+      "timezone": {
+        "pass": true,
+        "detail": "RESOLVED/America/New_York"
+      },
+      "organization_key": {
+        "pass": true,
+        "detail": "org:domain:mysticfallscardboardcompany.com"
+      },
+      "evidence": {
+        "pass": true,
+        "detail": "present"
+      },
+      "mx_verification": {
+        "pass": true,
+        "detail": "domain=mysticfallscardboardcompany.com MX=ok"
+      },
+      "email_source_tier": {
+        "pass": true,
+        "detail": "E2: web_search_official + official evidence"
+      },
+      "evidence_freshness": {
+        "pass": false,
+        "detail": "evidence_checked_at/last_checked_at missing → cannot confirm freshness"
+      }
+    },
+    "blockers": [
+      "broad_ready:previously_sent_email",
+      "broad_ready:previously_sent_org",
+      "broad_ready:shared_domain_org_history",
+      "evidence_stale"
+    ],
+    "v1_pool": "BLOCKED",
+    "campaign_eligible_version": "campaign_eligible_v2"
+  }
+]

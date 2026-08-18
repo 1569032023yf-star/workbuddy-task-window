@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-08-13 08:52:30",
+  "timezone": "Asia/Shanghai",
+  "yesterday": "2026-08-12",
+  "today": "2026-08-13",
+  "batch": {
+    "planned": 0,
+    "smtp_accepted": 0,
+    "opens": 0,
+    "no_opens": 0,
+    "total_open_signals": 2,
+    "human_replies": 0,
+    "auto_replies": 0,
+    "hard_bounces": 0,
+    "unsubscribes": 0
+  },
+  "inventory": {
+    "total_leads": 749,
+    "broad_outreach_ready_orgs": 55,
+    "broad_outreach_ready_locs": 55,
+    "strict_a0": 0,
+    "manual_review_pending_review_status": 267,
+    "manual_review_needed_status": 222,
+    "previously_sent": 427,
+    "suppressed": 18
+  },
+  "states": [
+    {
+      "state": "TN",
+      "total": 181,
+      "cities": 38,
+      "sendable": 6
+    },
+    {
+      "state": "KY",
+      "total": 72,
+      "cities": 23,
+      "sendable": 4
+    },
+    {
+      "state": "AR",
+      "total": 68,
+      "cities": 18,
+      "sendable": 1
+    },
+    {
+      "state": "OR",
+      "total": 25,
+      "cities": 4,
+      "sendable": 6
+    },
+    {
+      "state": "NC",
+      "total": 20,
+      "cities": 7,
+      "sendable": 2
+    },
+    {
+      "state": "CO",
+      "total": 15,
+      "cities": 5,
+      "sendable": 0
+    },
+    {
+      "state": "MN",
+      "total": 10,
+      "cities": 5,
+      "sendable": 1
+    },
+    {
+      "state": "OH",
+      "total": 4,
+      "cities": 1,
+      "sendable": 0
+    },
+    {
+      "state": "NE",
+      "total": 3,
+      "cities": 1,
+      "sendable": 0
+    },
+    {
+      "state": "IN",
+      "total": 3,
+      "cities": 2,
+      "sendable": 0
+    }
+  ],
+  "store_details": [],
+  "tracking_source": "poller_cache",
+  "ops_today": {
+    "date": "2026-08-13",
+    "timezone": "Asia/Shanghai",
+    "planned_new": 0,
+    "planned_fw": 0,
+    "sent_new": 0,
+    "sent_fw": 0,
+    "failed": 0,
+    "skipped": 0,
+    "unique_orgs_sent": 0,
+    "replies": 0,
+    "hard_bounces": 0,
+    "unsubscribed": 0
+  },
+  "ops_inventory": {
+    "total_leads": 749,
+    "send_prep_candidates": 91,
+    "strict_a0_locations": 0,
+    "strict_a0_organizations": 0,
+    "org_outreach_opps": 0,
+    "manual_review": 254,
+    "website_lookup": 61,
+    "contact_form_only": 86,
+    "low_priority": 8,
+    "previously_sent": 385,
+    "permanently_suppressed": 18,
+    "bounce_recovery": 0,
+    "unprocessed_staging": 0,
+    "targets": {
+      "critical": 40,
+      "warning": 80,
+      "target": 120
+    },
+    "gaps": {
+      "to_40": 40,
+      "to_80": 80,
+      "to_120": 120
+    },
+    "status": "critical"
+  }
+}

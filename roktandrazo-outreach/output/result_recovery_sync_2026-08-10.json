@@ -1,0 +1,203 @@
+{
+  "run_at": "2026-08-10T08:36:08.435079+08:00",
+  "date": "2026-08-10",
+  "sync_0845_last_success_at": "2026-08-10T08:36:08.435103+08:00",
+  "steps": {
+    "tracking_sync": {
+      "ok": true,
+      "data": {
+        "total": 136,
+        "matched": 61,
+        "hit_rate": 44.85,
+        "matched_by_token": 0,
+        "matched_by_send_log_id": 61,
+        "matched_by_smtp_message_id": 61
+      }
+    },
+    "bounce_scan": {
+      "ok": true,
+      "at": "2026-08-10T08:35:48.135894+08:00",
+      "data": {
+        "scanned": 15,
+        "matched": 14,
+        "domain_invalid": 12,
+        "mailbox_invalid": 0,
+        "policy_bounce": 0,
+        "soft_bounce": 0,
+        "unmatched_dsn": 1,
+        "errors": [],
+        "dsns": [
+          {
+            "raw_message_id": "<report.1785926629>",
+            "final_recipient": "info@tfaw.com",
+            "original_recipient": "info@tfaw.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 442,
+            "lead_id": 87
+          },
+          {
+            "raw_message_id": "<6a7313f1.4b33ca46.25552c.9a65.GMR@mx.google.com>",
+            "final_recipient": "info@kiddingaroundtoys.com",
+            "original_recipient": "info@kiddingaroundtoys.com",
+            "diagnostic_code": "smtp; The email account that you tried to reach does not exist. Please try double-checking the recipient's email address for typos or unnecessary spaces. For more information, go to https://support.google.com/mail/?p=NoSuchUser",
+            "status_code": "5.1.3",
+            "bounce_type": "unresolved",
+            "matched_send_log_id": 444,
+            "lead_id": 94
+          },
+          {
+            "raw_message_id": "<report.1785926645>",
+            "final_recipient": "hello@gameparloursf.com",
+            "original_recipient": "hello@gameparloursf.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 445,
+            "lead_id": 98
+          },
+          {
+            "raw_message_id": "<report.1785926652>",
+            "final_recipient": "info@gamecafepaloalto.com",
+            "original_recipient": "info@gamecafepaloalto.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 446,
+            "lead_id": 99
+          },
+          {
+            "raw_message_id": "<report.1785926657>",
+            "final_recipient": "info@phoenixcomicsseattle.com",
+            "original_recipient": "info@phoenixcomicsseattle.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 447,
+            "lead_id": 100
+          },
+          {
+            "raw_message_id": "<report.1785926666>",
+            "final_recipient": "info@jpcomics.com",
+            "original_recipient": "info@jpcomics.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 448,
+            "lead_id": 103
+          },
+          {
+            "raw_message_id": "<report.1785926670>",
+            "final_recipient": "info@levelsuggames.com",
+            "original_recipient": "info@levelsuggames.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 449,
+            "lead_id": 110
+          },
+          {
+            "raw_message_id": "<report.1785926676>",
+            "final_recipient": "info@phantomoftheattic.com",
+            "original_recipient": "info@phantomoftheattic.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 450,
+            "lead_id": 112
+          },
+          {
+            "raw_message_id": "<report.1785926690>",
+            "final_recipient": "info@unclebobshobbies.com",
+            "original_recipient": "info@unclebobshobbies.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 452,
+            "lead_id": 121
+          },
+          {
+            "raw_message_id": "<report.1785926699>",
+            "final_recipient": "info@drnoscomics.com",
+            "original_recipient": "info@drnoscomics.com",
+            "diagnostic_code": null,
+            "status_code": null,
+            "bounce_type": "unresolved",
+            "matched_send_log_id": 453,
+            "lead_id": 124
+          },
+          {
+            "raw_message_id": "<report.1785926700>",
+            "final_recipient": "info@gamezonesd.com",
+            "original_recipient": "info@gamezonesd.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 454,
+            "lead_id": 130
+          },
+          {
+            "raw_message_id": "<report.1785926720>",
+            "final_recipient": "info@gamersgeekandtavern.com",
+            "original_recipient": "info@gamersgeekandtavern.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 451,
+            "lead_id": 120
+          },
+          {
+            "raw_message_id": "<report.1785942015>",
+            "final_recipient": "webmaster@thevillagetoymaker.com",
+            "original_recipient": "webmaster@thevillagetoymaker.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 455,
+            "lead_id": 760
+          },
+          {
+            "raw_message_id": "<6a73501c.d7c98f2b.2247bf.ecb1.GMR@mx.google.com>",
+            "final_recipient": "melissa@replaytoys.com",
+            "original_recipient": "melissa@replaytoys.com",
+            "diagnostic_code": "smtp; A delivery loop was detected which causes this email to be undeliverable.",
+            "status_code": "5.7.1",
+            "bounce_type": null,
+            "matched_send_log_id": null,
+            "lead_id": null
+          },
+          {
+            "raw_message_id": "<report.1785942103>",
+            "final_recipient": "info@comicbookworld.com",
+            "original_recipient": "info@comicbookworld.com",
+            "diagnostic_code": "type=MX: Host not found (html fallback)",
+            "status_code": null,
+            "bounce_type": "domain_invalid",
+            "matched_send_log_id": 469,
+            "lead_id": 771
+          }
+        ],
+        "unresolved": 2
+      }
+    },
+    "reply_scan": {
+      "ok": true,
+      "at": "2026-08-10T08:36:08.432274+08:00",
+      "data": {
+        "total_replies": 1,
+        "last_processed_at": null,
+        "last_reply_received_at": "2026-06-25T14:28:55.225376"
+      }
+    },
+    "unsubscribe_scan": {
+      "ok": true,
+      "at": "2026-08-10T08:36:08.432382+08:00",
+      "data": {
+        "unsubscribe_total": 1,
+        "suppression_total": 26
+      }
+    }
+  },
+  "all_ok": true
+}

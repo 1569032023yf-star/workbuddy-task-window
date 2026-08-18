@@ -1,0 +1,76 @@
+{
+  "Above Board Games": {
+    "status": "FETCH_ERR:URLError"
+  },
+  "Borderlands": {
+    "domain": "borderlands.us",
+    "domain_match": true,
+    "emails": [],
+    "evidence_urls": [],
+    "pages": 2,
+    "status": "NO_EMAIL"
+  },
+  "Alien Games": {
+    "status": "FETCH_ERR:URLError"
+  },
+  "Hall of Heroes": {
+    "domain": "hallofheroes.net",
+    "domain_match": true,
+    "emails": [],
+    "evidence_urls": [],
+    "pages": 1,
+    "status": "NO_EMAIL"
+  },
+  "Dewayne's World Comics & Games": {
+    "status": "FETCH_ERR:URLError"
+  },
+  "Dicehead Games": {
+    "domain": "dicehead.com",
+    "domain_match": true,
+    "emails": [],
+    "evidence_urls": [],
+    "pages": 2,
+    "status": "NO_EMAIL"
+  },
+  "Grand Adventures": {
+    "domain": "grandadventurescomics.com",
+    "domain_match": true,
+    "emails": [
+      "granddadventuress@gmail.com"
+    ],
+    "evidence_urls": [
+      "http://www.grandadventurescomics.com/"
+    ],
+    "pages": 1,
+    "status": "EMAIL_FOUND"
+  },
+  "Changing Hands Bookstore": {
+    "domain": "changinghandsjoplin.com",
+    "domain_match": false,
+    "emails": [],
+    "evidence_urls": [],
+    "pages": 1,
+    "status": "NO_EMAIL"
+  },
+  "Dirt Road Comics and Collectibles": {
+    "status": "FETCH_ERR:URLError"
+  },
+  "Eclipse Books, Comics, and Games": {
+    "status": "FETCH_ERR:URLError"
+  },
+  "Hard Knox Games": {
+    "domain": "hardknoxgames.com",
+    "domain_match": true,
+    "emails": [
+      "hardknoxgames@gmail.com"
+    ],
+    "evidence_urls": [
+      "https://www.hardknoxgames.com/service/"
+    ],
+    "pages": 2,
+    "status": "EMAIL_FOUND"
+  },
+  "Louisville Game Shop": {
+    "status": "FETCH_ERR:HTTPError"
+  }
+}

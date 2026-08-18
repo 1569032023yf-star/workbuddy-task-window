@@ -1,0 +1,293 @@
+[
+  {
+    "name": "GameChanger",
+    "city": "Indian Harbour Beach",
+    "state": "FL",
+    "clue_website": "http://gamechangerstores.com/",
+    "dir_email_clue": "Dana at GameChangerStores dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Geek Xtreme Entertainment",
+    "city": "Pompano Beach",
+    "state": "FL",
+    "clue_website": "http://gxegames.com/",
+    "dir_email_clue": "gaming at gxegames dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Hammer Hall Gaming",
+    "city": "Jacksonville",
+    "state": "FL",
+    "clue_website": "http://www.hammerhallgaming.com/",
+    "dir_email_clue": "hammerhallamanda at gmail dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Arsenal Games and Hobbies",
+    "city": "Augusta",
+    "state": "GA",
+    "clue_website": "www.arsenal-games.com",
+    "dir_email_clue": "arsenalgames73 at knology dot net",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Augusta Book Exchange",
+    "city": "Martinez",
+    "state": "GA",
+    "clue_website": "http://www.comics-n-games.com/",
+    "dir_email_clue": "store2 at comics-n-games dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "comics-n-games.com",
+    "domain_match_store": false,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Dragon Star Hobbies",
+    "city": "Athens",
+    "state": "GA",
+    "clue_website": "http://www.dragonstarhobbies.com/",
+    "dir_email_clue": "",
+    "fetched_pages": 1,
+    "emails": [
+      "dragonstarhobbies@gmail.com"
+    ],
+    "evidence_urls": [
+      "http://www.dragonstarhobbies.com/"
+    ],
+    "domain": "dragonstarhobbies.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Capital City Games",
+    "city": "Springfield",
+    "state": "IL",
+    "clue_website": "http://www.capitalcitygames.com/",
+    "dir_email_clue": "",
+    "fetched_pages": 2,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "capitalcitygames.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Castle Perilous",
+    "city": "Carbondale",
+    "state": "IL",
+    "clue_website": "http://www.castleperilous.com/",
+    "dir_email_clue": "CastleP at aol dot com",
+    "status": "FETCH_ERR:TimeoutError"
+  },
+  {
+    "name": "Chicagoland Games",
+    "city": "Chicago",
+    "state": "IL",
+    "clue_website": "http://www.chicagolandgames.com/",
+    "dir_email_clue": "chicagolandgames at gmail dot com",
+    "fetched_pages": 2,
+    "emails": [
+      "staff@chicagolandgames.com"
+    ],
+    "evidence_urls": [
+      "http://www.chicagolandgames.com/",
+      "https://www.chicagolandgames.com/contact"
+    ],
+    "domain": "chicagolandgames.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "3SD Games",
+    "city": "Ellettsville",
+    "state": "IN",
+    "clue_website": "https://www.facebook.com/pages/3SD-Games/132528199253",
+    "dir_email_clue": "",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "Atomic Hobby",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "clue_website": "http://www.atomichgstore.com/3328/",
+    "dir_email_clue": "",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Books Comics & Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "clue_website": "http://www.Superherogameland.com",
+    "dir_email_clue": "bct at bctcomics dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Albemarle Hobbies",
+    "city": "Albemarle",
+    "state": "NC",
+    "clue_website": "http://albemarlehobbies.com/",
+    "dir_email_clue": "albehobs at ctc dot net",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "All Fun & Games",
+    "city": "Apex",
+    "state": "NC",
+    "clue_website": "http://www.allfunngames.com/",
+    "dir_email_clue": "afng at allfunngames dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "allfunngames.com",
+    "domain_match_store": false,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Blue Ox Games",
+    "city": "Greenville",
+    "state": "NC",
+    "clue_website": "http://www.blueoxgames.com",
+    "dir_email_clue": "harry at blueoxgames dot com",
+    "fetched_pages": 3,
+    "emails": [
+      "sales@blueoxgames.com"
+    ],
+    "evidence_urls": [
+      "http://www.blueoxgames.com",
+      "http://www.blueoxgames.com/contact_us",
+      "http://www.blueoxgames.com/catalog/comic_books_manga_trade_paperbacks__graphic_novels/3683"
+    ],
+    "domain": "blueoxgames.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Acme Games",
+    "city": "Cincinnati",
+    "state": "OH",
+    "clue_website": "http://www.acmegames.com/",
+    "dir_email_clue": "ski dot a dot anderson at gmail dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "acmegames.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Ahzz'z Arena",
+    "city": "Massillon",
+    "state": "OH",
+    "clue_website": "http://ahzzz.com/",
+    "dir_email_clue": "ahzz at sssnet dot com",
+    "fetched_pages": 2,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "ahzzz.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "All American Comics & Cards",
+    "city": "Boardman",
+    "state": "OH",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "AC3 Inc",
+    "city": "Norfolk",
+    "state": "VA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "clue_website": "http://www.atlantis-comics.com/",
+    "dir_email_clue": "ac2 at atlantis-comics dot com",
+    "fetched_pages": 3,
+    "emails": [
+      "ecom@atlantis-comics.com",
+      "ac3@atlantis-comics.com",
+      "ac1@atlantis-comics.com"
+    ],
+    "evidence_urls": [
+      "http://www.atlantis-comics.com/",
+      "http://www.atlantis-comics.com/pages/contact",
+      "http://www.atlantis-comics.com/pages/what-we-buy"
+    ],
+    "domain": "atlantis-comics.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Portsmouth",
+    "state": "VA",
+    "clue_website": "http://www.atlantis-comics.com/",
+    "dir_email_clue": "ac2 at atlantis-comics dot com",
+    "fetched_pages": 3,
+    "emails": [
+      "ecom@atlantis-comics.com",
+      "ac3@atlantis-comics.com",
+      "ac1@atlantis-comics.com"
+    ],
+    "evidence_urls": [
+      "http://www.atlantis-comics.com/",
+      "http://www.atlantis-comics.com/pages/contact",
+      "http://www.atlantis-comics.com/pages/what-we-buy"
+    ],
+    "domain": "atlantis-comics.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Campus Cards & Games",
+    "city": "Bowling Green",
+    "state": "KY",
+    "clue_website": "www.CampusCardsandGames.com",
+    "dir_email_clue": "",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Comic Book World Florence",
+    "city": "Florence",
+    "state": "KY",
+    "clue_website": "http://www.comicbookworld.com",
+    "dir_email_clue": "cbwinfo at comicbookworld dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "comicbookworld.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Comic Book World Louisville",
+    "city": "Louisville",
+    "state": "KY",
+    "clue_website": "http://www.comicbookworld.com",
+    "dir_email_clue": "cbwinfo at comicbookworld dot com",
+    "fetched_pages": 2,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "comicbookworld.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Big City Comix and Games",
+    "city": "Kansas City",
+    "state": "MO",
+    "clue_website": "http://www.bigcitycomix.com/",
+    "dir_email_clue": "gerald at bigcitycomix dot com",
+    "status": "FETCH_ERR:URLError"
+  }
+]

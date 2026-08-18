@@ -69,5 +69,9 @@ def load_provider(name: str | None = None) -> SearchProvider:
         from discovery.providers.browser_maps import BrowserMapsProvider
 
         return BrowserMapsProvider()
+    if provider_name in ("web_directory", "webdir"):
+        from discovery.providers.web_directory import WebDirectoryProvider
+
+        return WebDirectoryProvider()
     raise ProviderError(f"unknown discovery provider: {provider_name}")
 

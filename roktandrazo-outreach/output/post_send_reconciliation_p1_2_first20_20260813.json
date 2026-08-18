@@ -1,0 +1,172 @@
+{
+  "batch_id": "p1_2_first20_20260813",
+  "checked_at": "2026-08-14T09:55:29.170678+08:00",
+  "verdict": "PASSED",
+  "counts": {
+    "plan_total": 20,
+    "auth_total": 2,
+    "approved_entry_total": 27,
+    "consumed_total": 20,
+    "smtp_accepted": 20,
+    "smtp_failed": 0,
+    "smtp_skipped": 0,
+    "send_log_total": 20,
+    "send_log_delta": 0,
+    "message_id_present_count": 20,
+    "tracking_token_present_count": 0
+  },
+  "issues": {
+    "consumed_but_no_send_log": {
+      "count": 0,
+      "items": []
+    },
+    "send_log_without_plan": {
+      "count": 0,
+      "items": []
+    },
+    "SMTP_accepted_but_missing_log": {
+      "count": 0,
+      "items": []
+    },
+    "duplicate_send": {
+      "count": 0,
+      "items": []
+    },
+    "unconsumed_after_send": {
+      "count": 0,
+      "items": []
+    },
+    "tracking_token_missing": {
+      "count": 0,
+      "items": []
+    },
+    "historical_tracking_token_missing": {
+      "count": 20,
+      "items": [
+        {
+          "lead_id": 162,
+          "email": "info@gigabitescafe.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 163,
+          "email": "info@therooknola.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 167,
+          "email": "info@tabletopkc.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 262,
+          "email": "info@eventhz.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 271,
+          "email": "info@boldcitygames.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 334,
+          "email": "info@wellplayedasheville.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 368,
+          "email": "info@deepcomics.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 1048,
+          "email": "support@mysticfallscardboardcompany.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 774,
+          "email": "villagetinker@villagetinker.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 783,
+          "email": "sales@legitmtg.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 811,
+          "email": "sales@thegamestore.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 166,
+          "email": "info@31st-century.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 168,
+          "email": "info@fantasyshoponline.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 176,
+          "email": "info@unrealcitycomics.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 177,
+          "email": "info@treasurecoasttoys.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 175,
+          "email": "info@gamedaymiami.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 169,
+          "email": "info@dicecafestl.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 165,
+          "email": "info@bpluscomics.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 164,
+          "email": "info@d4seasons.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        },
+        {
+          "lead_id": 779,
+          "email": "sstonebraker1616@aol.com",
+          "reason": "empty_tracking_token_hash",
+          "classification": "LEGACY_TRACKING_TOKEN_MISSING"
+        }
+      ],
+      "classification": "LEGACY_HISTORICAL_DEBT",
+      "note": "Predates tracking token feature; sent/bounced, no pending auth/plan, cannot re-enter current pool"
+    }
+  },
+  "total_issues": 0
+}

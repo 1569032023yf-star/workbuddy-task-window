@@ -1,0 +1,2806 @@
+[
+  {
+    "name": "Hobbytown USA",
+    "city": "Alabaster",
+    "state": "AL",
+    "phone": "(205) 663-6407",
+    "source": "web_directory",
+    "existing_lead_id": 833,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Birmingham",
+    "state": "AL",
+    "phone": "(205) 655-9022",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Florence",
+    "state": "AL",
+    "phone": "(256) 766-6664",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Huntsville",
+    "state": "AL",
+    "phone": "(256) 489-5242",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Daphne",
+    "state": "AL",
+    "phone": "(251) 621-8723",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Mobile",
+    "state": "AL",
+    "phone": "(251) 633-8446",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Auburn",
+    "state": "AL",
+    "phone": "(334) 826-8216",
+    "source": "web_directory"
+  },
+  {
+    "name": "Coliseum of Comics Downtown Lakeland",
+    "city": "Lakeland",
+    "state": "FL",
+    "phone": "(863) 686-1350",
+    "source": "web_directory",
+    "existing_lead_id": 980,
+    "existing_email": ""
+  },
+  {
+    "name": "Coliseum of Comics Fashion Square Mall",
+    "city": "Orlando",
+    "state": "FL",
+    "phone": "(407) 228-1210",
+    "source": "web_directory",
+    "existing_lead_id": 981,
+    "existing_email": ""
+  },
+  {
+    "name": "Coliseum of Comics Millenia",
+    "city": "Orlando",
+    "state": "FL",
+    "phone": "(407) 363-7676",
+    "source": "web_directory",
+    "existing_lead_id": 982,
+    "existing_email": ""
+  },
+  {
+    "name": "Coliseum of Comics Seminole",
+    "city": "Sanford",
+    "state": "FL",
+    "phone": "(407) 324-1800",
+    "source": "web_directory",
+    "existing_lead_id": 983,
+    "existing_email": ""
+  },
+  {
+    "name": "GameChanger",
+    "city": "Indian Harbour Beach",
+    "state": "FL",
+    "phone": "(321) 622-8525",
+    "source": "web_directory",
+    "existing_lead_id": 992,
+    "existing_email": ""
+  },
+  {
+    "name": "Geek Xtreme Entertainment",
+    "city": "Pompano Beach",
+    "state": "FL",
+    "phone": "(954) 946 1516",
+    "source": "web_directory",
+    "existing_lead_id": 993,
+    "existing_email": ""
+  },
+  {
+    "name": "Hammer Hall Gaming",
+    "city": "Jacksonville",
+    "state": "FL",
+    "phone": "(904) 240-1011",
+    "source": "web_directory",
+    "existing_lead_id": 994,
+    "existing_email": ""
+  },
+  {
+    "name": "Happy Viking Games",
+    "city": "Jacksonville, FL",
+    "state": "FL",
+    "phone": "904-379-2042",
+    "source": "web_directory",
+    "existing_lead_id": 995,
+    "existing_email": ""
+  },
+  {
+    "name": "Head Games",
+    "city": "Brandon",
+    "state": "FL",
+    "phone": "]",
+    "source": "web_directory",
+    "existing_lead_id": 996,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Tallahassee",
+    "state": "FL",
+    "phone": "(850) 671-2030",
+    "source": "web_directory",
+    "existing_lead_id": 997,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Pensacola",
+    "state": "FL",
+    "phone": "(850) 476-2708",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Gainesville",
+    "state": "FL",
+    "phone": "(352) 377-0077",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "West Melbourne",
+    "state": "FL",
+    "phone": "(321) 574-0951",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Brandon",
+    "state": "FL",
+    "phone": "(813) 655-6366",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Tampa",
+    "state": "FL",
+    "phone": "(813) 964-5447",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Lakeland",
+    "state": "FL",
+    "phone": "(863) 644-0197",
+    "source": "web_directory"
+  },
+  {
+    "name": "Jax Card Singles",
+    "city": "Jacksonville",
+    "state": "FL",
+    "phone": "(904) 647-8040",
+    "source": "web_directory",
+    "existing_lead_id": 998,
+    "existing_email": ""
+  },
+  {
+    "name": "NWS Online Gaming Store",
+    "city": "Orlando",
+    "state": "FL",
+    "phone": "4079257782",
+    "source": "web_directory",
+    "existing_lead_id": 999,
+    "existing_email": ""
+  },
+  {
+    "name": "Past Present Future Comics",
+    "city": "West Palm Beach",
+    "state": "FL",
+    "phone": "(561) 697-2554",
+    "source": "web_directory",
+    "existing_lead_id": 1000,
+    "existing_email": ""
+  },
+  {
+    "name": "Pendragon",
+    "city": "Tarpon Springs",
+    "state": "FL",
+    "phone": "(727) 937-9023",
+    "source": "web_directory",
+    "existing_lead_id": 1001,
+    "existing_email": ""
+  },
+  {
+    "name": "Pop Comics & Games",
+    "city": "Sarasota",
+    "state": "FL",
+    "phone": "(941) 925-0833",
+    "source": "web_directory",
+    "existing_lead_id": 1002,
+    "existing_email": ""
+  },
+  {
+    "name": "Rhubarb Games",
+    "city": "Orlando",
+    "state": "FL",
+    "phone": "(407) 679-8811",
+    "source": "web_directory",
+    "existing_lead_id": 1003,
+    "existing_email": ""
+  },
+  {
+    "name": "Rob's Trade Caravan",
+    "city": "Port Richey",
+    "state": "FL",
+    "phone": "(727) 847-4400",
+    "source": "web_directory",
+    "existing_lead_id": 1004,
+    "existing_email": ""
+  },
+  {
+    "name": "Sci Fi City",
+    "city": "Orlando",
+    "state": "FL",
+    "phone": "(407) 282-2292",
+    "source": "web_directory",
+    "existing_lead_id": 1005,
+    "existing_email": ""
+  },
+  {
+    "name": "Secret Headquarters",
+    "city": "Tallahassee",
+    "state": "FL",
+    "phone": "(850) 385-2736",
+    "source": "web_directory",
+    "existing_lead_id": 1006,
+    "existing_email": ""
+  },
+  {
+    "name": "Sunshine Adventure Gaming",
+    "city": "Miami",
+    "state": "FL",
+    "phone": "(305) 264-1250",
+    "source": "web_directory",
+    "existing_lead_id": 1007,
+    "existing_email": ""
+  },
+  {
+    "name": "Tates Gaming Satellite",
+    "city": "Lauderhill",
+    "state": "FL",
+    "phone": "(954) 742-5141",
+    "source": "web_directory",
+    "existing_lead_id": 1008,
+    "existing_email": ""
+  },
+  {
+    "name": "TBS Comics",
+    "city": "Pensacola",
+    "state": "FL",
+    "phone": "(850) 474-1419",
+    "source": "web_directory",
+    "existing_lead_id": 1009,
+    "existing_email": ""
+  },
+  {
+    "name": "TBS Comics",
+    "city": "Fort Walton Beach",
+    "state": "FL",
+    "phone": "(850) 244-5441",
+    "source": "web_directory"
+  },
+  {
+    "name": "The BattleZone",
+    "city": "Sebring",
+    "state": "FL",
+    "phone": "8634430617",
+    "source": "web_directory",
+    "existing_lead_id": 1010,
+    "existing_email": ""
+  },
+  {
+    "name": "The Dark Side",
+    "city": "Sarasota",
+    "state": "FL",
+    "phone": "(941) 363-0840",
+    "source": "web_directory",
+    "existing_lead_id": 1011,
+    "existing_email": ""
+  },
+  {
+    "name": "Vorpal Games",
+    "city": "Gainesville",
+    "state": "FL",
+    "phone": "(352) 692-4455",
+    "source": "web_directory",
+    "existing_lead_id": 1012,
+    "existing_email": ""
+  },
+  {
+    "name": "War & Pieces",
+    "city": "Davie",
+    "state": "FL",
+    "phone": "(954) 797-6080",
+    "source": "web_directory",
+    "existing_lead_id": 1013,
+    "existing_email": ""
+  },
+  {
+    "name": "Wizard's Wall",
+    "city": "Melbourne",
+    "state": "FL",
+    "phone": "(321) 727-2599",
+    "source": "web_directory",
+    "existing_lead_id": 1014,
+    "existing_email": ""
+  },
+  {
+    "name": "Wizards (Urban Anthropology)",
+    "city": "St. Augustine",
+    "state": "FL",
+    "phone": "(904) 687-2166",
+    "source": "web_directory",
+    "existing_lead_id": 1015,
+    "existing_email": ""
+  },
+  {
+    "name": "Arsenal Games and Hobbies",
+    "city": "Augusta",
+    "state": "GA",
+    "phone": "706-364-2772",
+    "source": "web_directory",
+    "existing_lead_id": 812,
+    "existing_email": ""
+  },
+  {
+    "name": "Augusta Book Exchange",
+    "city": "Martinez",
+    "state": "GA",
+    "phone": "(706) 860-6553",
+    "source": "web_directory",
+    "existing_lead_id": 813,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon Star Hobbies",
+    "city": "Athens",
+    "state": "GA",
+    "phone": "(706) 850-6181",
+    "source": "web_directory",
+    "existing_lead_id": 814,
+    "existing_email": ""
+  },
+  {
+    "name": "Fantasy Factory",
+    "city": "Dalton",
+    "state": "GA",
+    "phone": "(706) 259-3315",
+    "source": "web_directory",
+    "existing_lead_id": 815,
+    "existing_email": ""
+  },
+  {
+    "name": "Galactic Comics",
+    "city": "Statesboro",
+    "state": "GA",
+    "phone": "(912) 489-3123",
+    "source": "web_directory",
+    "existing_lead_id": 816,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Buford",
+    "state": "GA",
+    "phone": "(770) 904-0601",
+    "source": "web_directory",
+    "existing_lead_id": 817,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Cumming",
+    "state": "GA",
+    "phone": "(678) 965-4405",
+    "source": "web_directory",
+    "existing_lead_id": 818,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Duluth",
+    "state": "GA",
+    "phone": "(770) 418-0850",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Kennesaw",
+    "state": "GA",
+    "phone": "(770) 426-8800",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Newnan",
+    "state": "GA",
+    "phone": "(770) 683-5203",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Augusta",
+    "state": "GA",
+    "phone": "(706) 855-5003",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Brunswick",
+    "state": "GA",
+    "phone": "(912) 265-3100",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Columbus",
+    "state": "GA",
+    "phone": "(706) 660-1793",
+    "source": "web_directory"
+  },
+  {
+    "name": "Jungle Jake's",
+    "city": "Hinesville",
+    "state": "GA",
+    "phone": "912-344-1338",
+    "source": "web_directory",
+    "existing_lead_id": 819,
+    "existing_email": ""
+  },
+  {
+    "name": "Morningstar Games",
+    "city": "Savannah",
+    "state": "GA",
+    "phone": "(912) 927-2770",
+    "source": "web_directory",
+    "existing_lead_id": 820,
+    "existing_email": ""
+  },
+  {
+    "name": "Moxie Games",
+    "city": "Columbus",
+    "state": "GA",
+    "phone": "(706) 221-6700",
+    "source": "web_directory",
+    "existing_lead_id": 821,
+    "existing_email": ""
+  },
+  {
+    "name": "Phoenix Games",
+    "city": "Buford",
+    "state": "GA",
+    "phone": "(678) 546-2020",
+    "source": "web_directory",
+    "existing_lead_id": 822,
+    "existing_email": ""
+  },
+  {
+    "name": "The Gaming Pit",
+    "city": "Lilburn",
+    "state": "GA",
+    "phone": "(770) 921-5511",
+    "source": "web_directory",
+    "existing_lead_id": 823,
+    "existing_email": ""
+  },
+  {
+    "name": "The Raven's Nest",
+    "city": "Marietta",
+    "state": "GA",
+    "phone": "678-637-8000",
+    "source": "web_directory",
+    "existing_lead_id": 824,
+    "existing_email": ""
+  },
+  {
+    "name": "The Tower Games & Comics",
+    "city": "Lawrenceville",
+    "state": "GA",
+    "phone": "(678) 215-0505",
+    "source": "web_directory",
+    "existing_lead_id": 825,
+    "existing_email": ""
+  },
+  {
+    "name": "The War House",
+    "city": "Chatsworth",
+    "state": "GA",
+    "phone": "(706) 695-8150",
+    "source": "web_directory",
+    "existing_lead_id": 826,
+    "existing_email": ""
+  },
+  {
+    "name": "Titan Games & Comics",
+    "city": "Smyrna",
+    "state": "GA",
+    "phone": "(770) 433-8226",
+    "source": "web_directory",
+    "existing_lead_id": 827,
+    "existing_email": ""
+  },
+  {
+    "name": "Titan Games & Comics",
+    "city": "Duluth",
+    "state": "GA",
+    "phone": "(770) 497-0202",
+    "source": "web_directory"
+  },
+  {
+    "name": "Titan Games & Comics",
+    "city": "College Park",
+    "state": "GA",
+    "phone": "(770) 996-9129",
+    "source": "web_directory"
+  },
+  {
+    "name": "Tyche's Games",
+    "city": "Athens",
+    "state": "GA",
+    "phone": "(706) 354-4500",
+    "source": "web_directory",
+    "existing_lead_id": 828,
+    "existing_email": ""
+  },
+  {
+    "name": "Waging Wargames",
+    "city": "Hoschton",
+    "state": "GA",
+    "phone": "(706) 654-0010",
+    "source": "web_directory",
+    "existing_lead_id": 829,
+    "existing_email": ""
+  },
+  {
+    "name": "Capital City Games",
+    "city": "Springfield",
+    "state": "IL",
+    "phone": "(217) 793-5229",
+    "source": "web_directory",
+    "existing_lead_id": 921,
+    "existing_email": ""
+  },
+  {
+    "name": "Castle Perilous",
+    "city": "Carbondale",
+    "state": "IL",
+    "phone": "(800) 297-2160",
+    "source": "web_directory",
+    "existing_lead_id": 922,
+    "existing_email": ""
+  },
+  {
+    "name": "Chicagoland Games",
+    "city": "Chicago",
+    "state": "IL",
+    "phone": "(773) 728-3656",
+    "source": "web_directory",
+    "existing_lead_id": 923,
+    "existing_email": ""
+  },
+  {
+    "name": "Die Hard Games",
+    "city": "Springfield",
+    "state": "IL",
+    "phone": "(217) 698-4343",
+    "source": "web_directory",
+    "existing_lead_id": 924,
+    "existing_email": ""
+  },
+  {
+    "name": "Doug's Hobbies",
+    "city": "Lake Forest",
+    "state": "IL",
+    "phone": "(847) 234-6609",
+    "source": "web_directory",
+    "existing_lead_id": 925,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon's Sanctum",
+    "city": "Moline",
+    "state": "IL",
+    "phone": "(309) 762-5577",
+    "source": "web_directory",
+    "existing_lead_id": 926,
+    "existing_email": ""
+  },
+  {
+    "name": "Draxtar Games, Inc",
+    "city": "Batavia",
+    "state": "IL",
+    "phone": "6304544585",
+    "source": "web_directory",
+    "existing_lead_id": 927,
+    "existing_email": ""
+  },
+  {
+    "name": "Dreamland Comics",
+    "city": "Libertyville",
+    "state": "IL",
+    "phone": "(847) 680-0727",
+    "source": "web_directory",
+    "existing_lead_id": 928,
+    "existing_email": ""
+  },
+  {
+    "name": "Everything Games",
+    "city": "Buffalo Grove",
+    "state": "IL",
+    "phone": "(224)676-1114",
+    "source": "web_directory",
+    "existing_lead_id": 929,
+    "existing_email": ""
+  },
+  {
+    "name": "Fantasy Books 2",
+    "city": "Fairview Heights",
+    "state": "IL",
+    "phone": "(618) 624.0920",
+    "source": "web_directory",
+    "existing_lead_id": 930,
+    "existing_email": ""
+  },
+  {
+    "name": "Fantasy Books, Inc.",
+    "city": "Belleville",
+    "state": "IL",
+    "phone": "(618) 235-0844",
+    "source": "web_directory",
+    "existing_lead_id": 931,
+    "existing_email": ""
+  },
+  {
+    "name": "Fantasy Games",
+    "city": "O'Fallon",
+    "state": "IL",
+    "phone": "(618) 632.3026",
+    "source": "web_directory",
+    "existing_lead_id": 932,
+    "existing_email": ""
+  },
+  {
+    "name": "Fantasy Games & Books",
+    "city": "O'Fallon",
+    "state": "IL",
+    "phone": "(618) 632-3026",
+    "source": "web_directory",
+    "existing_lead_id": 933,
+    "existing_email": ""
+  },
+  {
+    "name": "Fun 4 All",
+    "city": "Peoria",
+    "state": "IL",
+    "phone": "(309) 589-0055",
+    "source": "web_directory",
+    "existing_lead_id": 934,
+    "existing_email": ""
+  },
+  {
+    "name": "Gamer's Asylum, Inc.",
+    "city": "Evanston",
+    "state": "IL",
+    "phone": "(847) 905-0269",
+    "source": "web_directory",
+    "existing_lead_id": 935,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Plus",
+    "city": "Mount Prospect",
+    "state": "IL",
+    "phone": "(847) 577-9656",
+    "source": "web_directory",
+    "existing_lead_id": 936,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Libertyville",
+    "state": "IL",
+    "phone": "(847) 573-1547",
+    "source": "web_directory",
+    "existing_lead_id": 937,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Geneva",
+    "state": "IL",
+    "phone": "(630) 232-2929",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Shorewood",
+    "state": "IL",
+    "phone": "(815) 609-1603",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Orland Park",
+    "state": "IL",
+    "phone": "(708) 226-9563",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Downers Grove",
+    "state": "IL",
+    "phone": "(630) 426-0120",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Niles",
+    "state": "IL",
+    "phone": "(847) 983-9961",
+    "source": "web_directory"
+  },
+  {
+    "name": "Heroic Adventures",
+    "city": "Edwardsville",
+    "state": "IL",
+    "phone": "(618) 659-0099",
+    "source": "web_directory",
+    "existing_lead_id": 938,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Crystal Lake",
+    "state": "IL",
+    "phone": "(815) 444-1515",
+    "source": "web_directory",
+    "existing_lead_id": 939,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Northbrook",
+    "state": "IL",
+    "phone": "(847) 205-5588",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "St. Charles",
+    "state": "IL",
+    "phone": "(630) 587-1256",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Schaumburg",
+    "state": "IL",
+    "phone": "(847) 490-0900",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Orland Park",
+    "state": "IL",
+    "phone": "(708) 349-8697",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Rockford",
+    "state": "IL",
+    "phone": "(815) 282-0727",
+    "source": "web_directory"
+  },
+  {
+    "name": "Leisure Hours Hobbies",
+    "city": "Joliet",
+    "state": "IL",
+    "phone": "(815) 439-1477",
+    "source": "web_directory",
+    "existing_lead_id": 940,
+    "existing_email": ""
+  },
+  {
+    "name": "Metropolis Comics",
+    "city": "Lasalle",
+    "state": "IL",
+    "phone": "(815) 223-9433",
+    "source": "web_directory",
+    "existing_lead_id": 941,
+    "existing_email": ""
+  },
+  {
+    "name": "Quincy Hobby Center",
+    "city": "Quincy",
+    "state": "IL",
+    "phone": "(217) 223-8498",
+    "source": "web_directory",
+    "existing_lead_id": 942,
+    "existing_email": ""
+  },
+  {
+    "name": "The Dragon's Table",
+    "city": "Champaign",
+    "state": "IL",
+    "phone": "(217) 359-0503",
+    "source": "web_directory",
+    "existing_lead_id": 943,
+    "existing_email": ""
+  },
+  {
+    "name": "The Dragon’s Refuge",
+    "city": "Peotone",
+    "state": "IL",
+    "phone": "(708) 258-9040",
+    "source": "web_directory",
+    "existing_lead_id": 944,
+    "existing_email": ""
+  },
+  {
+    "name": "The End Zone",
+    "city": "Mattoon",
+    "state": "IL",
+    "phone": "(217) 235-2960",
+    "source": "web_directory",
+    "existing_lead_id": 945,
+    "existing_email": ""
+  },
+  {
+    "name": "The Game Room",
+    "city": "Washington",
+    "state": "IL",
+    "phone": "(309) 444-4640",
+    "source": "web_directory",
+    "existing_lead_id": 946,
+    "existing_email": ""
+  },
+  {
+    "name": "The Gamer's Sanctuary",
+    "city": "Pekin",
+    "state": "IL",
+    "phone": "(309) 642-6224",
+    "source": "web_directory",
+    "existing_lead_id": 947,
+    "existing_email": ""
+  },
+  {
+    "name": "Unique Gifts and Games",
+    "city": "Grayslake",
+    "state": "IL",
+    "phone": "(847) 548-8270",
+    "source": "web_directory",
+    "existing_lead_id": 948,
+    "existing_email": ""
+  },
+  {
+    "name": "Xtreme Games",
+    "city": "Round Lake Beach",
+    "state": "IL",
+    "phone": "(847) 543-4269",
+    "source": "web_directory",
+    "existing_lead_id": 949,
+    "existing_email": ""
+  },
+  {
+    "name": "3SD Games",
+    "city": "Ellettsville",
+    "state": "IN",
+    "phone": "(812) 325-9433",
+    "source": "web_directory"
+  },
+  {
+    "name": "Atomic Hobby",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 471-2866",
+    "source": "web_directory"
+  },
+  {
+    "name": "Books Comics & Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 493-6116",
+    "source": "web_directory"
+  },
+  {
+    "name": "Books Comics and Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 431-4999",
+    "source": "web_directory"
+  },
+  {
+    "name": "Castle Comics & Cards",
+    "city": "LaFayette",
+    "state": "IN",
+    "phone": "(765) 474-1110",
+    "source": "web_directory"
+  },
+  {
+    "name": "Comic Quest",
+    "city": "Evansville",
+    "state": "IN",
+    "phone": "(812) 474-1133",
+    "source": "web_directory"
+  },
+  {
+    "name": "Critical Effect Games & Hobbies",
+    "city": "Hobart",
+    "state": "IN",
+    "phone": "(219) 947-5997",
+    "source": "web_directory"
+  },
+  {
+    "name": "Fantasy Games & Cards",
+    "city": "South Bend",
+    "state": "IN",
+    "phone": "(574) 277-1133",
+    "source": "web_directory"
+  },
+  {
+    "name": "Galactic Gregs",
+    "city": "Valparaiso",
+    "state": "IN",
+    "phone": "(219) 464-0119",
+    "source": "web_directory"
+  },
+  {
+    "name": "Game insane",
+    "city": "Aurora",
+    "state": "IN",
+    "phone": "8125373030",
+    "source": "web_directory"
+  },
+  {
+    "name": "Game Preserve - Bloomington",
+    "city": "Bloomington",
+    "state": "IN",
+    "phone": "(812) 332-6602",
+    "source": "web_directory"
+  },
+  {
+    "name": "Game Preserve - Fashion Mall",
+    "city": "Indianapolis",
+    "state": "IN",
+    "phone": "(317) 881-4263",
+    "source": "web_directory"
+  },
+  {
+    "name": "Game Preserve - Keystone",
+    "city": "Indianapolis",
+    "state": "IN",
+    "phone": "(317) 571-9110",
+    "source": "web_directory"
+  },
+  {
+    "name": "Game Preserve - LaFayette",
+    "city": "LaFayette",
+    "state": "IN",
+    "phone": "(765) 448-4200‎",
+    "source": "web_directory"
+  },
+  {
+    "name": "GameQuest",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 482-4983",
+    "source": "web_directory"
+  },
+  {
+    "name": "Gamerz",
+    "city": "Indianapolis",
+    "state": "IN",
+    "phone": "(317) 865-1500",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games to Die For",
+    "city": "Indianapolis",
+    "state": "IN",
+    "phone": "(317) 271-4234",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hero's Emporium",
+    "city": "Indianapolis",
+    "state": "IN",
+    "phone": "317-991-4125",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Indianapolis",
+    "state": "IN",
+    "phone": "(317) 882-3175",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Schererville",
+    "state": "IN",
+    "phone": "(219) 864-1944",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Evansville",
+    "state": "IN",
+    "phone": "(812) 473-1500",
+    "source": "web_directory"
+  },
+  {
+    "name": "LanLizards, Inc.",
+    "city": "Mishawaka",
+    "state": "IN",
+    "phone": "(574) 247-9822",
+    "source": "web_directory"
+  },
+  {
+    "name": "Nerdvana Games",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "888-960-NERD",
+    "source": "web_directory"
+  },
+  {
+    "name": "Reader Copies",
+    "city": "Anderson",
+    "state": "IN",
+    "phone": "(765) 649-5767",
+    "source": "web_directory"
+  },
+  {
+    "name": "Sinclair Books, Comics & Games",
+    "city": "Kendallville",
+    "state": "IN",
+    "phone": "(260) 347-2995",
+    "source": "web_directory"
+  },
+  {
+    "name": "The Danger Room Entertainment",
+    "city": "Anderson",
+    "state": "IN",
+    "phone": "(765) 646-6341",
+    "source": "web_directory"
+  },
+  {
+    "name": "The Keep",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "phone": "(260) 471-4336",
+    "source": "web_directory"
+  },
+  {
+    "name": "The Sage's Shoppe",
+    "city": "West Lafayette",
+    "state": "IN",
+    "phone": "(765) 463-4841",
+    "source": "web_directory"
+  },
+  {
+    "name": "Urban Vikings Gaming Center",
+    "city": "Madison",
+    "state": "IN",
+    "phone": "(812) 574-4169",
+    "source": "web_directory"
+  },
+  {
+    "name": "Valparaiso Hobby",
+    "city": "Valparaiso",
+    "state": "IN",
+    "phone": "(219) 462-8346",
+    "source": "web_directory"
+  },
+  {
+    "name": "Wizard's Keep",
+    "city": "Muncie",
+    "state": "IN",
+    "phone": "(765) 286-5145",
+    "source": "web_directory"
+  },
+  {
+    "name": "Yorktown Hobbies",
+    "city": "Yorktown",
+    "state": "IN",
+    "phone": "(765) 759-7817",
+    "source": "web_directory"
+  },
+  {
+    "name": "Campus Cards & Games",
+    "city": "Bowling Green",
+    "state": "KY",
+    "phone": "270-846-3367",
+    "source": "web_directory",
+    "existing_lead_id": 722,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Book World Florence",
+    "city": "Florence",
+    "state": "KY",
+    "phone": "(859) 371-9562",
+    "source": "web_directory",
+    "existing_lead_id": 729,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Book World Louisville",
+    "city": "Louisville",
+    "state": "KY",
+    "phone": "(502) 964-5500",
+    "source": "web_directory",
+    "existing_lead_id": 728,
+    "existing_email": ""
+  },
+  {
+    "name": "Crash Comics",
+    "city": "Paducah",
+    "state": "KY",
+    "phone": "(270) 442-7348",
+    "source": "web_directory",
+    "existing_lead_id": 724,
+    "existing_email": ""
+  },
+  {
+    "name": "Hard Knox Games",
+    "city": "Radcliff",
+    "state": "KY",
+    "phone": "2703525669",
+    "source": "web_directory",
+    "existing_lead_id": 727,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Louisville",
+    "state": "KY",
+    "phone": "(502) 254-5755",
+    "source": "web_directory",
+    "existing_lead_id": 785,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Lexington",
+    "state": "KY",
+    "phone": "(859) 277-5664",
+    "source": "web_directory"
+  },
+  {
+    "name": "Lotus Guardian",
+    "city": "Owensboro",
+    "state": "KY",
+    "phone": "(270) 926-6765",
+    "source": "web_directory",
+    "existing_lead_id": 797,
+    "existing_email": null
+  },
+  {
+    "name": "Louisville Game Shop",
+    "city": "Louisville",
+    "state": "KY",
+    "phone": "(502) 456-2734",
+    "source": "web_directory",
+    "existing_lead_id": 723,
+    "existing_email": ""
+  },
+  {
+    "name": "Pet Shop Comics",
+    "city": "Louisville",
+    "state": "KY",
+    "phone": "(502) 957-3188",
+    "source": "web_directory",
+    "existing_lead_id": 787,
+    "existing_email": ""
+  },
+  {
+    "name": "Raven Tales, LLC",
+    "city": "Owensboro",
+    "state": "KY",
+    "phone": "(270) 686-3423",
+    "source": "web_directory",
+    "existing_lead_id": 798,
+    "existing_email": null
+  },
+  {
+    "name": "Recreational Conflict",
+    "city": "Owensboro",
+    "state": "KY",
+    "phone": "270-302-7243",
+    "source": "web_directory",
+    "existing_lead_id": 730,
+    "existing_email": ""
+  },
+  {
+    "name": "TNC Hobbies",
+    "city": "Elizabethtown",
+    "state": "KY",
+    "phone": "(270) 765-5035",
+    "source": "web_directory",
+    "existing_lead_id": 799,
+    "existing_email": null
+  },
+  {
+    "name": "Allstar Cards, Games & Comics",
+    "city": "Leesville",
+    "state": "LA",
+    "phone": "(337) 537-0843",
+    "source": "web_directory",
+    "existing_lead_id": 964,
+    "existing_email": ""
+  },
+  {
+    "name": "And Books Too",
+    "city": "Lafayette",
+    "state": "LA",
+    "phone": "(318) 981-1646",
+    "source": "web_directory",
+    "existing_lead_id": 965,
+    "existing_email": ""
+  },
+  {
+    "name": "Axtion Comics",
+    "city": "Covington",
+    "state": "LA",
+    "phone": "(985) 809-2939",
+    "source": "web_directory",
+    "existing_lead_id": 966,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon's Lair, War Games and Hobby Supplies",
+    "city": "Bossier City",
+    "state": "LA",
+    "phone": "3187544383",
+    "source": "web_directory",
+    "existing_lead_id": 967,
+    "existing_email": ""
+  },
+  {
+    "name": "Go 4 Games",
+    "city": "Metairie",
+    "state": "LA",
+    "phone": "(504) 324-8335",
+    "source": "web_directory",
+    "existing_lead_id": 968,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Denham Springs",
+    "state": "LA",
+    "phone": "(225)665-5950",
+    "source": "web_directory",
+    "existing_lead_id": 969,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "West Monroe",
+    "state": "LA",
+    "phone": "(318) 325-5862",
+    "source": "web_directory"
+  },
+  {
+    "name": "Little Wars",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "phone": "(225) 924-6304",
+    "source": "web_directory",
+    "existing_lead_id": 970,
+    "existing_email": ""
+  },
+  {
+    "name": "Paper Heroes",
+    "city": "Lake Charles",
+    "state": "LA",
+    "phone": "(337) 478-2143",
+    "source": "web_directory",
+    "existing_lead_id": 971,
+    "existing_email": ""
+  },
+  {
+    "name": "School of Comics",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "phone": "(225) 922-9080",
+    "source": "web_directory",
+    "existing_lead_id": 972,
+    "existing_email": ""
+  },
+  {
+    "name": "B&B Game Shop",
+    "city": "Eureka",
+    "state": "MISSOURI",
+    "phone": "(636) 938-9989",
+    "source": "web_directory"
+  },
+  {
+    "name": "Big City Comix and Games",
+    "city": "Kansas City",
+    "state": "MO",
+    "phone": "(816) 326-7759",
+    "source": "web_directory",
+    "existing_lead_id": 861,
+    "existing_email": ""
+  },
+  {
+    "name": "CCYDNE Hobbies",
+    "city": "Lebanon",
+    "state": "MO",
+    "phone": "417-532-1049",
+    "source": "web_directory",
+    "existing_lead_id": 862,
+    "existing_email": ""
+  },
+  {
+    "name": "Changing Hands Bookstore",
+    "city": "Joplin",
+    "state": "MO",
+    "phone": "(417) 623-6699",
+    "source": "web_directory",
+    "existing_lead_id": 863,
+    "existing_email": ""
+  },
+  {
+    "name": "Dirt Road Comics and Collectibles",
+    "city": "Willow Springs",
+    "state": "MO",
+    "phone": "(417) 469-1904",
+    "source": "web_directory",
+    "existing_lead_id": 864,
+    "existing_email": ""
+  },
+  {
+    "name": "Eclipse Books, Comics, and Games",
+    "city": "Rolla",
+    "state": "MO",
+    "phone": "(573) 364-4301",
+    "source": "web_directory",
+    "existing_lead_id": 865,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Cafe",
+    "city": "Independence",
+    "state": "MO",
+    "phone": "(816) 252-7529",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Hazelwood",
+    "state": "MO",
+    "phone": "(314) 227-5485",
+    "source": "web_directory",
+    "existing_lead_id": 866,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Ballwin",
+    "state": "MO",
+    "phone": "(636) 394-0177",
+    "source": "web_directory",
+    "existing_lead_id": 867,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Kansas City",
+    "state": "MO",
+    "phone": "(816) 459-9590",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Branson",
+    "state": "MO",
+    "phone": "(417) 334-8374",
+    "source": "web_directory"
+  },
+  {
+    "name": "Magelings",
+    "city": "Columbia",
+    "state": "MO",
+    "phone": "(573) 416-0808",
+    "source": "web_directory",
+    "existing_lead_id": 868,
+    "existing_email": ""
+  },
+  {
+    "name": "Meadowridge Train Depot",
+    "city": "Jefferson City",
+    "state": "MO",
+    "phone": "(573) 395-4910",
+    "source": "web_directory",
+    "existing_lead_id": 869,
+    "existing_email": ""
+  },
+  {
+    "name": "Meta Games Unlimited",
+    "city": "Springfield",
+    "state": "MO",
+    "phone": "(417) 881-9390",
+    "source": "web_directory",
+    "existing_lead_id": 870,
+    "existing_email": ""
+  },
+  {
+    "name": "Miniature Market",
+    "city": "Saint Louis",
+    "state": "MO",
+    "phone": "314-692-8044",
+    "source": "web_directory",
+    "existing_lead_id": 871,
+    "existing_email": ""
+  },
+  {
+    "name": "Movie Magic of Maryville",
+    "city": "Maryville",
+    "state": "MO",
+    "phone": "(660) 582-3681",
+    "source": "web_directory",
+    "existing_lead_id": 872,
+    "existing_email": ""
+  },
+  {
+    "name": "Ogre's Games",
+    "city": "Saint Louis",
+    "state": "MO",
+    "phone": "(314) 353-6473",
+    "source": "web_directory",
+    "existing_lead_id": 873,
+    "existing_email": ""
+  },
+  {
+    "name": "Pulp Fiction Comics & Games",
+    "city": "Lees Summit",
+    "state": "MO",
+    "phone": "(816) 554-7333",
+    "source": "web_directory",
+    "existing_lead_id": 874,
+    "existing_email": ""
+  },
+  {
+    "name": "Thompson Productions L.L.C.",
+    "city": "Warrensburg",
+    "state": "MO",
+    "phone": "(660) 747-3830",
+    "source": "web_directory",
+    "existing_lead_id": 875,
+    "existing_email": ""
+  },
+  {
+    "name": "Valhalla's Gate",
+    "city": "Columbia",
+    "state": "MO",
+    "phone": "(573) 442-9909",
+    "source": "web_directory",
+    "existing_lead_id": 876,
+    "existing_email": ""
+  },
+  {
+    "name": "Velocity CDs & Games",
+    "city": "Moberly",
+    "state": "MO",
+    "phone": "(660) 269-8820",
+    "source": "web_directory",
+    "existing_lead_id": 877,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Flowood",
+    "state": "MS",
+    "phone": "(601) 919-8697",
+    "source": "web_directory",
+    "existing_lead_id": 1047,
+    "existing_email": ""
+  },
+  {
+    "name": "Albemarle Hobbies",
+    "city": "Albemarle",
+    "state": "NC",
+    "phone": "(704) 986-6540",
+    "source": "web_directory",
+    "existing_lead_id": 1016,
+    "existing_email": ""
+  },
+  {
+    "name": "All Fun & Games",
+    "city": "Apex",
+    "state": "NC",
+    "phone": "(919) 468-6322",
+    "source": "web_directory",
+    "existing_lead_id": 1017,
+    "existing_email": ""
+  },
+  {
+    "name": "Blue Ox Games",
+    "city": "Greenville",
+    "state": "NC",
+    "phone": "(252) 695-6442",
+    "source": "web_directory",
+    "existing_lead_id": 1018,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon Tears Gaming",
+    "city": "Dunn",
+    "state": "NC",
+    "phone": "910-891-2429",
+    "source": "web_directory",
+    "existing_lead_id": 1019,
+    "existing_email": ""
+  },
+  {
+    "name": "DragonTears Gaming",
+    "city": "DUNN",
+    "state": "NC",
+    "phone": "9108912429",
+    "source": "web_directory"
+  },
+  {
+    "name": "Event Horizon Games",
+    "city": "RALEIGH",
+    "state": "NC",
+    "phone": "9199774009",
+    "source": "web_directory",
+    "existing_lead_id": 1020,
+    "existing_email": ""
+  },
+  {
+    "name": "Fanboy Comics",
+    "city": "Wilmington",
+    "state": "NC",
+    "phone": "(910) 452-7828",
+    "source": "web_directory",
+    "existing_lead_id": 1021,
+    "existing_email": ""
+  },
+  {
+    "name": "Hillside Games",
+    "city": "Asheville",
+    "state": "NC",
+    "phone": "(828) 505-1195",
+    "source": "web_directory",
+    "existing_lead_id": 1022,
+    "existing_email": ""
+  },
+  {
+    "name": "Hit Point Hobbies",
+    "city": "Southern Pines",
+    "state": "NC",
+    "phone": "(910) 692-8447",
+    "source": "web_directory",
+    "existing_lead_id": 1023,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobby Chest",
+    "city": "Jacksonville",
+    "state": "NC",
+    "phone": "(910) 353-4473",
+    "source": "web_directory",
+    "existing_lead_id": 1024,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Greensboro",
+    "state": "NC",
+    "phone": "(336) 373-1021",
+    "source": "web_directory",
+    "existing_lead_id": 1025,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Monroe",
+    "state": "NC",
+    "phone": "(704) 238-8696",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Mooresville",
+    "state": "NC",
+    "phone": "(704) 799-9332",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Charlotte",
+    "state": "NC",
+    "phone": "(704) 544-2303",
+    "source": "web_directory"
+  },
+  {
+    "name": "HyperMind",
+    "city": "Burlington",
+    "state": "NC",
+    "phone": "(336) 584-1760",
+    "source": "web_directory",
+    "existing_lead_id": 1026,
+    "existing_email": ""
+  },
+  {
+    "name": "Kit Kringle",
+    "city": "Asheboro",
+    "state": "NC",
+    "phone": "(336)-629-4398",
+    "source": "web_directory",
+    "existing_lead_id": 1027,
+    "existing_email": ""
+  },
+  {
+    "name": "New Realm Gaming",
+    "city": "Concord",
+    "state": "NC",
+    "phone": "704-960-7131",
+    "source": "web_directory",
+    "existing_lead_id": 1028,
+    "existing_email": ""
+  },
+  {
+    "name": "Parker, Banner, Kent and Wayne Comics and Games",
+    "city": "Cornelius",
+    "state": "NC",
+    "phone": "(704) 892-4263",
+    "source": "web_directory",
+    "existing_lead_id": 1029,
+    "existing_email": ""
+  },
+  {
+    "name": "Pastimes",
+    "city": "Asheville",
+    "state": "NC",
+    "phone": "(828) 658-0588",
+    "source": "web_directory",
+    "existing_lead_id": 1030,
+    "existing_email": ""
+  },
+  {
+    "name": "Plan 9 Comics",
+    "city": "Boone",
+    "state": "NC",
+    "phone": "(828) 265-2002",
+    "source": "web_directory",
+    "existing_lead_id": 1031,
+    "existing_email": ""
+  },
+  {
+    "name": "Rules of Engagement",
+    "city": "Havelock",
+    "state": "NC",
+    "phone": "(252) 652-6538",
+    "source": "web_directory",
+    "existing_lead_id": 1032,
+    "existing_email": ""
+  },
+  {
+    "name": "Sword & Grail/Virtual Ambush",
+    "city": "Asheville",
+    "state": "NC",
+    "phone": "(828) 254-9989",
+    "source": "web_directory",
+    "existing_lead_id": 1033,
+    "existing_email": ""
+  },
+  {
+    "name": "The Gamer's Armory",
+    "city": "Cary",
+    "state": "NC",
+    "phone": "919-238-4817",
+    "source": "web_directory",
+    "existing_lead_id": 1034,
+    "existing_email": ""
+  },
+  {
+    "name": "The Hobbit",
+    "city": "Fayetteville",
+    "state": "NC",
+    "phone": "(910) 864-3155",
+    "source": "web_directory",
+    "existing_lead_id": 1035,
+    "existing_email": ""
+  },
+  {
+    "name": "The Mana Spot",
+    "city": "Boone",
+    "state": "NC",
+    "phone": "828-278-9391",
+    "source": "web_directory",
+    "existing_lead_id": 1036,
+    "existing_email": ""
+  },
+  {
+    "name": "The Pirate Cove",
+    "city": "Sanford",
+    "state": "NC",
+    "phone": "919-776-COVE",
+    "source": "web_directory",
+    "existing_lead_id": 1037,
+    "existing_email": ""
+  },
+  {
+    "name": "The Wyvern's Tale",
+    "city": "Asheville",
+    "state": "NC",
+    "phone": "828-505-7887",
+    "source": "web_directory",
+    "existing_lead_id": 1038,
+    "existing_email": ""
+  },
+  {
+    "name": "Time Tunnel Comics & Toys",
+    "city": "Hickory",
+    "state": "NC",
+    "phone": "(828) 325-9858",
+    "source": "web_directory",
+    "existing_lead_id": 1039,
+    "existing_email": ""
+  },
+  {
+    "name": "Your Local Game Store",
+    "city": "Matthews",
+    "state": "NC",
+    "phone": "(704) 729-4547",
+    "source": "web_directory",
+    "existing_lead_id": 1040,
+    "existing_email": ""
+  },
+  {
+    "name": "Acme Games",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 231-3866",
+    "source": "web_directory",
+    "existing_lead_id": 878,
+    "existing_email": ""
+  },
+  {
+    "name": "Ahzz'z Arena",
+    "city": "Massillon",
+    "state": "OH",
+    "phone": "(330) 832-4500",
+    "source": "web_directory",
+    "existing_lead_id": 879,
+    "existing_email": ""
+  },
+  {
+    "name": "All American Comics & Cards",
+    "city": "Boardman",
+    "state": "OH",
+    "phone": "(330) 629-8754",
+    "source": "web_directory",
+    "existing_lead_id": 880,
+    "existing_email": ""
+  },
+  {
+    "name": "Alley Cat Games & Comics",
+    "city": "Dublin",
+    "state": "OH",
+    "phone": "(614) 336-2445",
+    "source": "web_directory",
+    "existing_lead_id": 881,
+    "existing_email": ""
+  },
+  {
+    "name": "Boardwalk Hobby Shop",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 871-2110",
+    "source": "web_directory",
+    "existing_lead_id": 882,
+    "existing_email": ""
+  },
+  {
+    "name": "Bookery Fantasy",
+    "city": "Fairborn",
+    "state": "OH",
+    "phone": "(937) 879-1408",
+    "source": "web_directory",
+    "existing_lead_id": 883,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Heaven",
+    "city": "Willoughby",
+    "state": "OH",
+    "phone": "(440) 942-6960",
+    "source": "web_directory",
+    "existing_lead_id": 884,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Shop Plus",
+    "city": "Newark",
+    "state": "OH",
+    "phone": "(740) 344-5471",
+    "source": "web_directory",
+    "existing_lead_id": 885,
+    "existing_email": ""
+  },
+  {
+    "name": "Ctrl Alt Elite Gaming",
+    "city": "Sheffield Village",
+    "state": "OH",
+    "phone": "(440) 934-1713",
+    "source": "web_directory",
+    "existing_lead_id": 886,
+    "existing_email": ""
+  },
+  {
+    "name": "Empire Game Center",
+    "city": "Streetsboro",
+    "state": "OH",
+    "phone": "3303460847",
+    "source": "web_directory",
+    "existing_lead_id": 887,
+    "existing_email": ""
+  },
+  {
+    "name": "Fog of Dusk",
+    "city": "Columbus",
+    "state": "OH",
+    "phone": "614-900-1209",
+    "source": "web_directory",
+    "existing_lead_id": 888,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Room",
+    "city": "Toledo",
+    "state": "OH",
+    "phone": "(419) 475-3775",
+    "source": "web_directory",
+    "existing_lead_id": 889,
+    "existing_email": ""
+  },
+  {
+    "name": "Gamer's Haven",
+    "city": "Middleburg Heights",
+    "state": "OH",
+    "phone": "(440) 845-9978",
+    "source": "web_directory",
+    "existing_lead_id": 890,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Matfield Heights",
+    "state": "OH",
+    "phone": "440 464 9706",
+    "source": "web_directory",
+    "existing_lead_id": 891,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 321-1104",
+    "source": "web_directory"
+  },
+  {
+    "name": "Guard Tower",
+    "city": "Columbus",
+    "state": "OH",
+    "phone": "(614) 488-4311",
+    "source": "web_directory",
+    "existing_lead_id": 892,
+    "existing_email": ""
+  },
+  {
+    "name": "Heroes Haven Games and Collectibles",
+    "city": "Mansfield",
+    "state": "OH",
+    "phone": "419-709-8919",
+    "source": "web_directory",
+    "existing_lead_id": 893,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobby Central",
+    "city": "Delaware",
+    "state": "OH",
+    "phone": "(740) 363-0381",
+    "source": "web_directory",
+    "existing_lead_id": 894,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobby Trench",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(313) 978-5175",
+    "source": "web_directory",
+    "existing_lead_id": 895,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbyland",
+    "city": "Columbus",
+    "state": "OH",
+    "phone": "(614) 766-2300",
+    "source": "web_directory",
+    "existing_lead_id": 896,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbyland Stores Inc.",
+    "city": "Columbus",
+    "state": "OH",
+    "phone": "(614) 866-5011",
+    "source": "web_directory",
+    "existing_lead_id": 897,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Columbus",
+    "state": "OH",
+    "phone": "(614) 777-9307",
+    "source": "web_directory",
+    "existing_lead_id": 898,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Holland",
+    "state": "OH",
+    "phone": "(419) 867-9490",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Mentor",
+    "state": "OH",
+    "phone": "(440) 946-5588",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Strongsville",
+    "state": "OH",
+    "phone": "(440) 846-1770",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Boardman",
+    "state": "OH",
+    "phone": "(330) 729-9433",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 697-8224",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Centerville",
+    "state": "OH",
+    "phone": "(937) 291-8522",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "South Point",
+    "state": "OH",
+    "phone": "(740) 894-6303",
+    "source": "web_directory"
+  },
+  {
+    "name": "In The Ballpark",
+    "city": "Lancaster",
+    "state": "OH",
+    "phone": "(740) 653-5955",
+    "source": "web_directory",
+    "existing_lead_id": 899,
+    "existing_email": ""
+  },
+  {
+    "name": "JAC Games",
+    "city": "Akron",
+    "state": "OH",
+    "phone": "(330) 475-7468",
+    "source": "web_directory",
+    "existing_lead_id": 900,
+    "existing_email": ""
+  },
+  {
+    "name": "Kenmore Comics",
+    "city": "Akron",
+    "state": "OH",
+    "phone": "330-745-5530",
+    "source": "web_directory",
+    "existing_lead_id": 901,
+    "existing_email": ""
+  },
+  {
+    "name": "Main Street Hobby",
+    "city": "Shelby",
+    "state": "OH",
+    "phone": "(419) 528-3008",
+    "source": "web_directory",
+    "existing_lead_id": 902,
+    "existing_email": ""
+  },
+  {
+    "name": "Mom's Friendly Game Shop",
+    "city": "Wilmington",
+    "state": "OH",
+    "phone": "937-283-9191",
+    "source": "web_directory",
+    "existing_lead_id": 903,
+    "existing_email": ""
+  },
+  {
+    "name": "Packrat Comics",
+    "city": "Hilliard",
+    "state": "OH",
+    "phone": "(614)527-8450",
+    "source": "web_directory",
+    "existing_lead_id": 904,
+    "existing_email": ""
+  },
+  {
+    "name": "Ravenstone Games, Inc.",
+    "city": "Columbus",
+    "state": "OH",
+    "phone": "(614) 844-6463",
+    "source": "web_directory",
+    "existing_lead_id": 905,
+    "existing_email": ""
+  },
+  {
+    "name": "Realm of Heroes",
+    "city": "Mansfield",
+    "state": "OH",
+    "phone": "(419) 529-8441",
+    "source": "web_directory",
+    "existing_lead_id": 906,
+    "existing_email": ""
+  },
+  {
+    "name": "Recess Games",
+    "city": "North Olmstead",
+    "state": "OH",
+    "phone": "(440) 779-7008",
+    "source": "web_directory",
+    "existing_lead_id": 907,
+    "existing_email": ""
+  },
+  {
+    "name": "Recess II",
+    "city": "Strongsville",
+    "state": "OH",
+    "phone": "(440) 238-5009",
+    "source": "web_directory",
+    "existing_lead_id": 908,
+    "existing_email": ""
+  },
+  {
+    "name": "Sci Fi City",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 245-9105",
+    "source": "web_directory",
+    "existing_lead_id": 909,
+    "existing_email": ""
+  },
+  {
+    "name": "The Hero Zone",
+    "city": "Sandusky",
+    "state": "OH",
+    "phone": "(419) 621-0282",
+    "source": "web_directory",
+    "existing_lead_id": 910,
+    "existing_email": ""
+  },
+  {
+    "name": "The Hobby Shop",
+    "city": "Dayton",
+    "state": "OH",
+    "phone": "937-436-6161",
+    "source": "web_directory",
+    "existing_lead_id": 911,
+    "existing_email": ""
+  },
+  {
+    "name": "The Keep Games",
+    "city": "Massillon",
+    "state": "OH",
+    "phone": "(330) 830-4899",
+    "source": "web_directory",
+    "existing_lead_id": 912,
+    "existing_email": ""
+  },
+  {
+    "name": "Up Up and Away",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 661-6300",
+    "source": "web_directory",
+    "existing_lead_id": 913,
+    "existing_email": ""
+  },
+  {
+    "name": "Warzone Matrix",
+    "city": "Cleveland",
+    "state": "OH",
+    "phone": "(216) 433-1316",
+    "source": "web_directory",
+    "existing_lead_id": 914,
+    "existing_email": ""
+  },
+  {
+    "name": "Whatever Cards & Games",
+    "city": "Saint Marys",
+    "state": "OH",
+    "phone": "419-394-1900",
+    "source": "web_directory",
+    "existing_lead_id": 915,
+    "existing_email": ""
+  },
+  {
+    "name": "Wings Wheels & Waves",
+    "city": "Alliance",
+    "state": "OH",
+    "phone": "330-680-8028",
+    "source": "web_directory",
+    "existing_lead_id": 916,
+    "existing_email": ""
+  },
+  {
+    "name": "Wings Wheels and Waves",
+    "city": "Alliance",
+    "state": "OH",
+    "phone": "330-680-8028",
+    "source": "web_directory"
+  },
+  {
+    "name": "Wings Wheels and Waves!",
+    "city": "Wooster",
+    "state": "OH",
+    "phone": "330-601-0585",
+    "source": "web_directory",
+    "existing_lead_id": 917,
+    "existing_email": ""
+  },
+  {
+    "name": "Wings, Wheels, and Waves",
+    "city": "Massillon",
+    "state": "OH",
+    "phone": "330-830-7755",
+    "source": "web_directory",
+    "existing_lead_id": 918,
+    "existing_email": ""
+  },
+  {
+    "name": "Wizard's Guild",
+    "city": "Athens",
+    "state": "OH",
+    "phone": "(740) 594-5300‎",
+    "source": "web_directory",
+    "existing_lead_id": 919,
+    "existing_email": ""
+  },
+  {
+    "name": "YottaQuest",
+    "city": "Cincinnati",
+    "state": "OH",
+    "phone": "(513) 923-1985",
+    "source": "web_directory",
+    "existing_lead_id": 920,
+    "existing_email": ""
+  },
+  {
+    "name": "Alien Games",
+    "city": "Jenks",
+    "state": "OK",
+    "phone": "(918) 296-7111",
+    "source": "web_directory",
+    "existing_lead_id": 950,
+    "existing_email": ""
+  },
+  {
+    "name": "Carolina Comics",
+    "city": "Lawton",
+    "state": "OK",
+    "phone": "(580) 353-5164",
+    "source": "web_directory",
+    "existing_lead_id": 951,
+    "existing_email": ""
+  },
+  {
+    "name": "Gamers Guild",
+    "city": "Bartlesville",
+    "state": "OK",
+    "phone": "(918)876-1079",
+    "source": "web_directory",
+    "existing_lead_id": 952,
+    "existing_email": ""
+  },
+  {
+    "name": "Hall of Heroes",
+    "city": "Ponca City",
+    "state": "OK",
+    "phone": "(580) 765-7437",
+    "source": "web_directory",
+    "existing_lead_id": 953,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Norman",
+    "state": "OK",
+    "phone": "(405) 292-5850",
+    "source": "web_directory",
+    "existing_lead_id": 954,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Tulsa",
+    "state": "OK",
+    "phone": "(918) 307-2000",
+    "source": "web_directory"
+  },
+  {
+    "name": "Knight Arms",
+    "city": "Stillwater",
+    "state": "OK",
+    "phone": "(405) 533-3666",
+    "source": "web_directory",
+    "existing_lead_id": 955,
+    "existing_email": ""
+  },
+  {
+    "name": "Little Shoppe of Games",
+    "city": "Oklahoma City",
+    "state": "OK",
+    "phone": "(405) 463-6565",
+    "source": "web_directory",
+    "existing_lead_id": 956,
+    "existing_email": ""
+  },
+  {
+    "name": "New World",
+    "city": "Del City",
+    "state": "OK",
+    "phone": "(405) 677-2559",
+    "source": "web_directory",
+    "existing_lead_id": 957,
+    "existing_email": ""
+  },
+  {
+    "name": "The Cave",
+    "city": "Ada",
+    "state": "OK",
+    "phone": "(580) 436-4242",
+    "source": "web_directory",
+    "existing_lead_id": 958,
+    "existing_email": ""
+  },
+  {
+    "name": "The Covenant Store",
+    "city": "Tulsa",
+    "state": "OK",
+    "phone": "Ph# (918) 409-0491",
+    "source": "web_directory",
+    "existing_lead_id": 959,
+    "existing_email": ""
+  },
+  {
+    "name": "Top Deck Games",
+    "city": "Tulsa",
+    "state": "OK",
+    "phone": "(918) 665-7529",
+    "source": "web_directory",
+    "existing_lead_id": 960,
+    "existing_email": ""
+  },
+  {
+    "name": "Valhalla Gaming and Entertainment",
+    "city": "Stillwater",
+    "state": "OK",
+    "phone": "Ph# (405) 533-1852",
+    "source": "web_directory",
+    "existing_lead_id": 961,
+    "existing_email": ""
+  },
+  {
+    "name": "Wizard's Asylum",
+    "city": "Tulsa",
+    "state": "OK",
+    "phone": "(918) 250-2077",
+    "source": "web_directory",
+    "existing_lead_id": 962,
+    "existing_email": ""
+  },
+  {
+    "name": "Wizard's Asylum Comics & Games",
+    "city": "Norman",
+    "state": "OK",
+    "phone": "(405) 292-4263",
+    "source": "web_directory",
+    "existing_lead_id": 963,
+    "existing_email": ""
+  },
+  {
+    "name": "Above Board Games",
+    "city": "Fort Mill",
+    "state": "SC",
+    "phone": "(803) 792-4786",
+    "source": "web_directory",
+    "existing_lead_id": 1041,
+    "existing_email": ""
+  },
+  {
+    "name": "Borderlands",
+    "city": "Greenville",
+    "state": "SC",
+    "phone": "(864) 235-3488",
+    "source": "web_directory",
+    "existing_lead_id": 1042,
+    "existing_email": ""
+  },
+  {
+    "name": "Fireflt Toys & Games",
+    "city": "Lexington",
+    "state": "SC",
+    "phone": "803-996-3473",
+    "source": "web_directory",
+    "existing_lead_id": 1043,
+    "existing_email": ""
+  },
+  {
+    "name": "Firefly Toys & Games",
+    "city": "Lexington",
+    "state": "SC",
+    "phone": "803-996-3473",
+    "source": "web_directory",
+    "existing_lead_id": 1044,
+    "existing_email": ""
+  },
+  {
+    "name": "Green Dragon",
+    "city": "North Charleston",
+    "state": "SOUTH",
+    "phone": "(843) 797-2052",
+    "source": "web_directory"
+  },
+  {
+    "name": "Heroes & Dragons",
+    "city": "Columbia",
+    "state": "SC",
+    "phone": "(803) 731-4376",
+    "source": "web_directory",
+    "existing_lead_id": 1045,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Columbia",
+    "state": "SC",
+    "phone": "(803) 736-0959",
+    "source": "web_directory",
+    "existing_lead_id": 1046,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Charleston",
+    "state": "SC",
+    "phone": "(843) 769-5808",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Greenville",
+    "state": "SC",
+    "phone": "(864) 627-9633",
+    "source": "web_directory"
+  },
+  {
+    "name": "Dewayne's World Comics & Games",
+    "city": "Kingsport",
+    "state": "TN",
+    "phone": "(423) 247-8997",
+    "source": "web_directory",
+    "existing_lead_id": 800,
+    "existing_email": null
+  },
+  {
+    "name": "Dicehead Games",
+    "city": "Cleveland",
+    "state": "TN",
+    "phone": "(423) 473-7125",
+    "source": "web_directory",
+    "existing_lead_id": 533,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Memphis",
+    "state": "TN",
+    "phone": "(901) 541-7700",
+    "source": "web_directory",
+    "existing_lead_id": 801,
+    "existing_email": null
+  },
+  {
+    "name": "Grand Adventures",
+    "city": "Murfeesboro",
+    "state": "TN",
+    "phone": "(615) 867-0838",
+    "source": "web_directory"
+  },
+  {
+    "name": "Heroes Ink",
+    "city": "McMinnville",
+    "state": "TN",
+    "phone": "(931) 474-4376",
+    "source": "web_directory",
+    "existing_lead_id": 803,
+    "existing_email": null
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Murfreesboro",
+    "state": "TN",
+    "phone": "(615) 890-6777",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Chattanooga",
+    "state": "TN",
+    "phone": "(423) 648-4880",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Johnson City",
+    "state": "TN",
+    "phone": "(423) 610-1010",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Knoxville",
+    "state": "TN",
+    "phone": "(865) 675-1975",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Memphis",
+    "state": "TN",
+    "phone": "(901) 213-2682",
+    "source": "web_directory"
+  },
+  {
+    "name": "Nord's Games",
+    "city": "Antioch",
+    "state": "TN",
+    "phone": "(407) 282-2292",
+    "source": "web_directory",
+    "existing_lead_id": 804,
+    "existing_email": null
+  },
+  {
+    "name": "Sci Fi City",
+    "city": "Knoxville",
+    "state": "TN",
+    "phone": "(865) 523-4700",
+    "source": "web_directory",
+    "existing_lead_id": 805,
+    "existing_email": null
+  },
+  {
+    "name": "Wargames Miniatures",
+    "city": "Nashville",
+    "state": "TN",
+    "phone": "(615) 332-8905",
+    "source": "web_directory",
+    "existing_lead_id": 788,
+    "existing_email": ""
+  },
+  {
+    "name": "AC3 Inc",
+    "city": "Norfolk",
+    "state": "VA",
+    "phone": "(757) 502 8954",
+    "source": "web_directory",
+    "existing_lead_id": 838,
+    "existing_email": ""
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "phone": "(757) 479-5400",
+    "source": "web_directory",
+    "existing_lead_id": 839,
+    "existing_email": ""
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Portsmouth",
+    "state": "VA",
+    "phone": "(757) 465-1617",
+    "source": "web_directory"
+  },
+  {
+    "name": "Cavalier Comics",
+    "city": "Wise",
+    "state": "VA",
+    "phone": "(276) 328-9312",
+    "source": "web_directory",
+    "existing_lead_id": 840,
+    "existing_email": ""
+  },
+  {
+    "name": "Compleat Strategist",
+    "city": "Falls Church",
+    "state": "VA",
+    "phone": "(703) 532-2477",
+    "source": "web_directory",
+    "existing_lead_id": 841,
+    "existing_email": ""
+  },
+  {
+    "name": "Dragon's Hoard",
+    "city": "Staunton",
+    "state": "VA",
+    "phone": "(540) 885-5530",
+    "source": "web_directory",
+    "existing_lead_id": 842,
+    "existing_email": ""
+  },
+  {
+    "name": "Dunn's Toy & Hobby",
+    "city": "Manassas",
+    "state": "VA",
+    "phone": "(703) 335-1884",
+    "source": "web_directory",
+    "existing_lead_id": 843,
+    "existing_email": ""
+  },
+  {
+    "name": "Fun -N- Games",
+    "city": "Blacksburg",
+    "state": "VA",
+    "phone": "(540) 552 2204",
+    "source": "web_directory",
+    "existing_lead_id": 844,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Parlor",
+    "city": "Woodbridge",
+    "state": "VA",
+    "phone": "(703) 803-3114",
+    "source": "web_directory",
+    "existing_lead_id": 845,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Parlor",
+    "city": "Chantilly",
+    "state": "VA",
+    "phone": "(703) 803-3114",
+    "source": "web_directory"
+  },
+  {
+    "name": "Game Quest",
+    "city": "Radford",
+    "state": "VA",
+    "phone": "(540) 639-6547",
+    "source": "web_directory",
+    "existing_lead_id": 846,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Vault",
+    "city": "Fredericksburg",
+    "state": "VA",
+    "phone": "(540) 785-4263",
+    "source": "web_directory",
+    "existing_lead_id": 847,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Springfield",
+    "state": "VA",
+    "phone": "(703) 451-2508",
+    "source": "web_directory",
+    "existing_lead_id": 848,
+    "existing_email": ""
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Woodbridge",
+    "state": "VA",
+    "phone": "(703) 492-4555",
+    "source": "web_directory"
+  },
+  {
+    "name": "Games Workshop",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "phone": "(757) 962-5259",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Manassas",
+    "state": "VA",
+    "phone": "(703) 369-5990",
+    "source": "web_directory",
+    "existing_lead_id": 849,
+    "existing_email": ""
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Lake Ridge",
+    "state": "VA",
+    "phone": "(703) 590-9890",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Charlottesville",
+    "state": "VA",
+    "phone": "(434) 244-6000",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Richmond",
+    "state": "VA",
+    "phone": "(804) 270-2250",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "phone": "(757) 306-4760",
+    "source": "web_directory"
+  },
+  {
+    "name": "Hobbytown USA",
+    "city": "Newport News",
+    "state": "VA",
+    "phone": "(757) 890-4515",
+    "source": "web_directory"
+  },
+  {
+    "name": "Jersey Cards & Comics",
+    "city": "Yorktown",
+    "state": "VA",
+    "phone": "(757) 890-2842",
+    "source": "web_directory",
+    "existing_lead_id": 850,
+    "existing_email": ""
+  },
+  {
+    "name": "Leesburg Hobbies",
+    "city": "Leesburg",
+    "state": "VA",
+    "phone": "(703) 779-8600",
+    "source": "web_directory",
+    "existing_lead_id": 851,
+    "existing_email": ""
+  },
+  {
+    "name": "Lost Shade",
+    "city": "Harrisonburg",
+    "state": "VA",
+    "phone": "(540) 438-5678",
+    "source": "web_directory",
+    "existing_lead_id": 852,
+    "existing_email": ""
+  },
+  {
+    "name": "Minatures Of Chesapeake",
+    "city": "Hampton",
+    "state": "VA",
+    "phone": "757-826-5255",
+    "source": "web_directory",
+    "existing_lead_id": 853,
+    "existing_email": ""
+  },
+  {
+    "name": "Mind Games",
+    "city": "Winchester",
+    "state": "VA",
+    "phone": "(540) 542-0555",
+    "source": "web_directory",
+    "existing_lead_id": 854,
+    "existing_email": ""
+  },
+  {
+    "name": "One Eyed Jacques",
+    "city": "Richmond",
+    "state": "VA",
+    "phone": "(804) 359-6008",
+    "source": "web_directory",
+    "existing_lead_id": 855,
+    "existing_email": ""
+  },
+  {
+    "name": "Pam's Dream Hobbies & Toys",
+    "city": "King George",
+    "state": "VA",
+    "phone": "(540) 644-0550",
+    "source": "web_directory",
+    "existing_lead_id": 856,
+    "existing_email": ""
+  },
+  {
+    "name": "The Dragon's Den",
+    "city": "Glen Allen",
+    "state": "VA",
+    "phone": "(804) 308-0647",
+    "source": "web_directory",
+    "existing_lead_id": 857,
+    "existing_email": ""
+  },
+  {
+    "name": "The End Game Center",
+    "city": "Charlottesville",
+    "state": "VA",
+    "phone": "(434) 973-2205",
+    "source": "web_directory",
+    "existing_lead_id": 858,
+    "existing_email": ""
+  },
+  {
+    "name": "Tower Of Games",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "phone": "(757) 420-8008",
+    "source": "web_directory",
+    "existing_lead_id": 859,
+    "existing_email": ""
+  },
+  {
+    "name": "World's Best Comics",
+    "city": "Newport News",
+    "state": "VA",
+    "phone": "(757) 595-9005",
+    "source": "web_directory",
+    "existing_lead_id": 860,
+    "existing_email": ""
+  }
+]

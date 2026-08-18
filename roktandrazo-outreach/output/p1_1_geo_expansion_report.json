@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-08-13T16:46:19.089343+08:00",
+  "phase": "P1.1 Geographic Expansion + Manual Review",
+  "funnel_global": {
+    "Discovered": 1017,
+    "ICP Qualified": 912,
+    "Website Found": 606,
+    "Email Found": 546,
+    "Broad Ready": 61,
+    "Campaign Eligible": 54
+  },
+  "funnel_tn_ar_ky": {
+    "Discovered": 348,
+    "ICP Qualified": 337,
+    "Website Found": 181,
+    "Email Found": 168,
+    "Broad Ready": 9,
+    "Campaign Eligible": 4
+  },
+  "funnel_new_states": {
+    "Discovered": 352,
+    "ICP Qualified": 271,
+    "Website Found": 114,
+    "Email Found": 100,
+    "Broad Ready": 17,
+    "Campaign Eligible": 16
+  },
+  "new_leads_this_round": 236,
+  "campaign_eligible_total": 54,
+  "icp_qualified_total": 912
+}

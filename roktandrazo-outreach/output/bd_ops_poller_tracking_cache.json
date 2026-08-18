@@ -1,40 +1,75 @@
 {
-  "synced_at": "2026-07-30T11:25:40.031264+08:00",
+  "synced_at": "2026-08-14T11:55:26.727973+08:00",
   "transport": "curl_subprocess",
-  "tracked_sent": 2,
+  "tracked_sent": 4,
   "messages_with_open": 2,
   "total_open_signals": 2,
   "active_messages": [
     {
-      "tracking_message_id": "tracking_test_v2",
-      "open_signal_count": 1,
-      "first_open_signal_at": "",
-      "last_open_signal_at": "2026-07-28T03:11:28.387Z",
-      "status": "active"
-    },
-    {
+      "id": 4,
+      "token_hash": "a0f33df03378670044eaf6d0dc6d5ce8724d77b51e620d7a0f81270998cd2f06",
       "tracking_message_id": "prod_530_test_prod_path_20260728",
-      "open_signal_count": 1,
+      "plan_entry_id": "",
+      "lead_id": 0,
+      "organization_key": "",
+      "send_log_id": 0,
+      "smtp_message_id": "",
+      "status": "active",
+      "created_at": "2026-07-28 03:22:36",
+      "activated_at": "2026-07-28 03:22:49",
       "first_open_signal_at": "",
       "last_open_signal_at": "2026-07-28T03:23:47.720Z",
-      "status": "active"
-    }
-  ],
-  "recent_events": [
-    {
-      "tracking_message_id": 4,
-      "msg_tid": "prod_530_test_prod_path_20260728",
-      "event_type": "open_signal",
-      "event_at": "2026-07-28T03:23:47.720Z",
-      "source_classification": "wechat_work_mail_client"
+      "open_signal_count": 1
     },
     {
-      "tracking_message_id": 1,
-      "msg_tid": "tracking_test_v2",
-      "event_type": "open_signal",
-      "event_at": "2026-07-28T03:11:28.387Z",
-      "source_classification": "likely_apple_mpp"
+      "id": 3,
+      "token_hash": "eb34ad53918c34c5a77471341dc47d831d637bf0c91d353e0fcabfe721e9afd2",
+      "tracking_message_id": "prod_530_test_prod_path_20260728",
+      "plan_entry_id": "",
+      "lead_id": 0,
+      "organization_key": "",
+      "send_log_id": 0,
+      "smtp_message_id": "",
+      "status": "prepared",
+      "created_at": "2026-07-28 03:22:10",
+      "activated_at": "",
+      "first_open_signal_at": "",
+      "last_open_signal_at": "",
+      "open_signal_count": 0
+    },
+    {
+      "id": 2,
+      "token_hash": "bd79ef6bf4a0b70893c1ea8aa3230fd37c2e249b8edb468c4447654d8e82f80d",
+      "tracking_message_id": "prod_530_test_prod_path_20260728",
+      "plan_entry_id": "",
+      "lead_id": 0,
+      "organization_key": "",
+      "send_log_id": 0,
+      "smtp_message_id": "",
+      "status": "prepared",
+      "created_at": "2026-07-28 03:21:23",
+      "activated_at": "",
+      "first_open_signal_at": "",
+      "last_open_signal_at": "",
+      "open_signal_count": 0
+    },
+    {
+      "id": 1,
+      "token_hash": "d4a9a765b6a10a081f06b58d70ca8417d063d2c8b482faf200e82ab43a3605d8",
+      "tracking_message_id": "tracking_test_v2",
+      "plan_entry_id": "",
+      "lead_id": 0,
+      "organization_key": "",
+      "send_log_id": 0,
+      "smtp_message_id": "",
+      "status": "active",
+      "created_at": "2026-07-28 03:08:40",
+      "activated_at": "",
+      "first_open_signal_at": "",
+      "last_open_signal_at": "2026-07-28T03:11:28.387Z",
+      "open_signal_count": 1
     }
   ],
+  "recent_events": [],
   "available": true
 }

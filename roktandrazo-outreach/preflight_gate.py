@@ -495,7 +495,7 @@ def check_stale_objects(conn, batch_id, now=None):
 
     old_auths = conn.execute(
         "SELECT authorization_id FROM send_authorizations "
-        "WHERE status='approved' AND plan_id!=?",
+        "WHERE status='approved' AND outreach_batch_date!=?",
         (batch_id,),
     ).fetchall()
     for a in old_auths:
@@ -545,7 +545,7 @@ def _batch_date_of(row):
         return None
 
 
-def check_timezones(conn, plan_rows, now=None):
+def check_timezones(conn, plan_rows, now=None, send_window_override: bool = False):
     """对每条 planned 记录做时区窗口检查（P0 追加步骤）。
 
     单条判定：
@@ -554,6 +554,10 @@ def check_timezones(conn, plan_rows, now=None):
       - scheduled_utc_time 已计算（按计划日/今天的当地 10:00 窗口推算）；
       - 当前时间不早于当地窗口：已过窗口但日期仍是今天 → catch-up 允许；
         scheduled 时刻早于当前且当地日期已过去 → 'expired' 单条 block。
+
+    send_window_override=True（一次性时间 override，如 P1.2 延误补发）时，
+    仅豁免 'expired' 窗口判定；TIMEZONE_UNRESOLVED / 无效时区 /
+    非自动调度等数据质量类判定仍然 fail-closed。
 
     任何对象 TIMEZONE_UNRESOLVED → 该条标记 TIMEZONE_UNRESOLVED 不发送
     （记入 timezone_blocks），不影响其他已确认时区对象；仅当全部条目
@@ -612,9 +616,10 @@ def check_timezones(conn, plan_rows, now=None):
                     start, _end = _local_window_utc_for(tz, _batch_date_of(row), now_utc)
                     sched_local_date = start.astimezone(ZoneInfo(tz)).date()
                     today_local = now_utc.astimezone(ZoneInfo(tz)).date()
-                    if start <= now_utc and sched_local_date < today_local:
+                    if start <= now_utc and sched_local_date < today_local and not send_window_override:
                         reason = "expired"
-                    # 其余情形：未到点，或已过窗口但仍是今天 → catch-up 允许
+                    # 其余情形：未到点，或已过窗口但仍是今天 → catch-up 允许；
+                    # send_window_override 时即使计划日已过也视为可发
                 except Exception:
                     reason = "schedule_compute_error"
         if reason:
@@ -650,7 +655,8 @@ def _local_window_utc_for(tz, on_date, now_utc):
 
 # ── run_preflight 汇总 ──────────────────────────────────────
 
-def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_cache=True, now=None):
+def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_cache=True, now=None,
+                  send_window_override: bool = False):
     """汇总全部检查。任何 fail → smtp_blocked=True（SMTP 保持 0）。
 
     返回 {pass, checks, blocks, smtp_blocked, batch_id, plan_count, checked_at,
@@ -724,7 +730,7 @@ def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_
 
     # 8) 时区窗口检查：部分未解析只 block 单条（timezone_blocks），
     #    仅全部被 block 时整体 fail 并进入 blocks
-    tz_res = check_timezones(conn, plan_rows, now)
+    tz_res = check_timezones(conn, plan_rows, now, send_window_override=send_window_override)
     checks.append(tz_res["check"])
     if tz_res["check"]["status"] == "fail":
         blocks.append(f"timezone_resolution: {tz_res['check']['detail']}")

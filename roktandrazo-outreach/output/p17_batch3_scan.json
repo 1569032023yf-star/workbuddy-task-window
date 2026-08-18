@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Alley Cat Games & Comics",
+    "city": "Dublin",
+    "state": "OH",
+    "clue_website": "http://www.alleycatgames.net",
+    "dir_email_clue": "jeff at alleycatgames dot net",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Boardwalk Hobby Shop",
+    "city": "Cincinnati",
+    "state": "OH",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Bookery Fantasy",
+    "city": "Fairborn",
+    "state": "OH",
+    "clue_website": "http://www.bookeryfantasy.com/",
+    "dir_email_clue": "bookeryf at sprynet dot com",
+    "fetched_pages": 2,
+    "emails": [
+      "bookeryfan@aol.com"
+    ],
+    "evidence_urls": [
+      "http://www.bookeryfantasy.com/",
+      "http://www.bookeryfantasy.com/contact-us-2.html"
+    ],
+    "domain": "bookeryfantasy.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Comic Heaven",
+    "city": "Willoughby",
+    "state": "OH",
+    "clue_website": "http://www.comicheaven.com/",
+    "dir_email_clue": "",
+    "status": "FETCH_ERR:HTTPError"
+  },
+  {
+    "name": "Books Comics and Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "clue_website": "http://bctcomics.com",
+    "dir_email_clue": "bct2 at yahoo dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "bctcomics.com",
+    "domain_match_store": false,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Castle Comics & Cards",
+    "city": "LaFayette",
+    "state": "IN",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Comic Quest",
+    "city": "Evansville",
+    "state": "IN",
+    "clue_website": "http://www.comicquest.com",
+    "dir_email_clue": "sales at comicquest dot com",
+    "fetched_pages": 2,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "comicquest.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Critical Effect Games & Hobbies",
+    "city": "Hobart",
+    "state": "IN",
+    "clue_website": "http://www.criticaleffectgames.com/",
+    "dir_email_clue": "criticaleffectgames at yahoo dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Die Hard Games",
+    "city": "Springfield",
+    "state": "IL",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Doug's Hobbies",
+    "city": "Lake Forest",
+    "state": "IL",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Dragon's Sanctum",
+    "city": "Moline",
+    "state": "IL",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Draxtar Games, Inc",
+    "city": "Batavia",
+    "state": "IL",
+    "clue_website": "DraxtarGames.com",
+    "dir_email_clue": "dradarious at yahoo dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Compleat Strategist",
+    "city": "Falls Church",
+    "state": "VA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Dragon's Hoard",
+    "city": "Staunton",
+    "state": "VA",
+    "clue_website": "http://www.thedragonshoard.com/",
+    "dir_email_clue": "Sales at thedragonshoard dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "thedragonshoard.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Dunn's Toy & Hobby",
+    "city": "Manassas",
+    "state": "VA",
+    "clue_website": "http://www.dunnstoyandhobby.com/",
+    "dir_email_clue": "CustomerService at dunnstoyandhobby dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Fun -N- Games",
+    "city": "Blacksburg",
+    "state": "VA",
+    "clue_website": "https://www.facebook.com/pages/Fun-N-Games-Hobby-Shoppe/159286730773676",
+    "dir_email_clue": "funngames at blacksburg dot net",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "Dragon Tears Gaming",
+    "city": "Dunn",
+    "state": "NC",
+    "clue_website": "https://www.facebook.com/Dragontearsgaming",
+    "dir_email_clue": "thedragontears01 at gmail dot com",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "DragonTears Gaming",
+    "city": "DUNN",
+    "state": "NC",
+    "clue_website": "https://www.facebook.com/Dragontearsgaming",
+    "dir_email_clue": "Thedragontears01 at gmail dot com",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "Event Horizon Games",
+    "city": "RALEIGH",
+    "state": "NC",
+    "clue_website": "http://www.eventhorizongames.com/",
+    "dir_email_clue": "admin at eventhorizongames dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "eventhorizongames.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Fanboy Comics",
+    "city": "Wilmington",
+    "state": "NC",
+    "clue_website": "http://www.fanboycomics.biz/",
+    "dir_email_clue": "",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "fanboycomics.biz",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Fantasy Factory",
+    "city": "Dalton",
+    "state": "GA",
+    "clue_website": "http://www.fantasyfactory.com/",
+    "dir_email_clue": "",
+    "fetched_pages": 1,
+    "emails": [
+      "orders@fantasyfactory.com"
+    ],
+    "evidence_urls": [
+      "http://www.fantasyfactory.com/"
+    ],
+    "domain": "fantasyfactory.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Galactic Comics",
+    "city": "Statesboro",
+    "state": "GA",
+    "clue_website": "http://www.galacticcomicsandgames.com/",
+    "dir_email_clue": "galactic at galacticcomicsandgames dot com",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "galacticcomicsandgames.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Jungle Jake's",
+    "city": "Hinesville",
+    "state": "GA",
+    "clue_website": "www.junglejakes.com",
+    "dir_email_clue": "travelinlees at coastalnow dot net",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "junglejakes.com",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Morningstar Games",
+    "city": "Savannah",
+    "state": "GA",
+    "clue_website": "http://www.morningstargaming.com/",
+    "dir_email_clue": "",
+    "fetched_pages": 2,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "morningstargaming.com",
+    "domain_match_store": false,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Game Cafe",
+    "city": "Independence",
+    "state": "MO",
+    "clue_website": "http://www.playgamecafe.com",
+    "dir_email_clue": "julie at playgamecafe dot com",
+    "fetched_pages": 2,
+    "emails": [
+      "tom@playgamecafe.com",
+      "jonathan@playgamecafe.com"
+    ],
+    "evidence_urls": [
+      "http://www.playgamecafe.com",
+      "http://www.playgamecafe.com/hours_and_contact"
+    ],
+    "domain": "playgamecafe.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  }
+]

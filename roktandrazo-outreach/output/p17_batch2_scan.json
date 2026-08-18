@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Above Board Games",
+    "city": "Fort Mill",
+    "state": "SC",
+    "clue_website": "http://www.aboveboardgames.net/",
+    "dir_email_clue": "info at aboveboardgames dot net",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Borderlands",
+    "city": "Greenville",
+    "state": "SC",
+    "clue_website": "http://www.borderlands.us/",
+    "dir_email_clue": "comics at borderlands dot us",
+    "fetched_pages": 2,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "borderlands.us",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Fireflt Toys & Games",
+    "city": "Lexington",
+    "state": "SC",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Firefly Toys & Games",
+    "city": "Lexington",
+    "state": "SC",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Allstar Cards, Games & Comics",
+    "city": "Leesville",
+    "state": "LA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "And Books Too",
+    "city": "Lafayette",
+    "state": "LA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Axtion Comics",
+    "city": "Covington",
+    "state": "LA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Dragon's Lair, War Games and Hobby Supplies",
+    "city": "Bossier City",
+    "state": "LA",
+    "clue_website": "https://www.facebook.com/pages/Dragons-Lair-WarGames-and-Hobby-Supplies/135954706484246",
+    "dir_email_clue": "sothearith dot iem at gmail dot com",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "Alien Games",
+    "city": "Jenks",
+    "state": "OK",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Carolina Comics",
+    "city": "Lawton",
+    "state": "OK",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Gamers Guild",
+    "city": "Bartlesville",
+    "state": "OK",
+    "clue_website": "",
+    "dir_email_clue": "sales at okgamersguild dot com",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Hall of Heroes",
+    "city": "Ponca City",
+    "state": "OK",
+    "clue_website": "Www.hallofheroes.net",
+    "dir_email_clue": "Hallofheroes at sbcglobal dot net",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "hallofheroes.net",
+    "domain_match_store": true,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Dewayne's World Comics & Games",
+    "city": "Kingsport",
+    "state": "TN",
+    "clue_website": "http://dewaynes-world.com",
+    "dir_email_clue": "",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Dicehead Games",
+    "city": "Cleveland",
+    "state": "TN",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Grand Adventures",
+    "city": "Murfeesboro",
+    "state": "TN",
+    "clue_website": "http://www.grandadventurescomics.com/",
+    "dir_email_clue": "",
+    "fetched_pages": 1,
+    "emails": [
+      "granddadventuress@gmail.com"
+    ],
+    "evidence_urls": [
+      "http://www.grandadventurescomics.com/"
+    ],
+    "domain": "grandadventurescomics.com",
+    "domain_match_store": true,
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Heroes Ink",
+    "city": "McMinnville",
+    "state": "TN",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "CCYDNE Hobbies",
+    "city": "Lebanon",
+    "state": "MO",
+    "clue_website": "http://www.facebook.com/ccydnehobbies",
+    "dir_email_clue": "ccydne at cheapcrapyoudontneedenterprises dot com",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "Changing Hands Bookstore",
+    "city": "Joplin",
+    "state": "MO",
+    "clue_website": "http://www.changinghandsjoplin.com",
+    "dir_email_clue": "chbs at sbcglobal dot net",
+    "fetched_pages": 1,
+    "emails": [],
+    "evidence_urls": [],
+    "domain": "changinghandsjoplin.com",
+    "domain_match_store": false,
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Dirt Road Comics and Collectibles",
+    "city": "Willow Springs",
+    "state": "MO",
+    "clue_website": "http://dirtroadcomics.com/",
+    "dir_email_clue": "admin at dirtroadcomics dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Eclipse Books, Comics, and Games",
+    "city": "Rolla",
+    "state": "MO",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Crash Comics",
+    "city": "Paducah",
+    "state": "KY",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Hard Knox Games",
+    "city": "Radcliff",
+    "state": "KY",
+    "clue_website": "hardknoxgames.com",
+    "dir_email_clue": "hardknoxgames at gmail dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Lotus Guardian",
+    "city": "Owensboro",
+    "state": "KY",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Louisville Game Shop",
+    "city": "Louisville",
+    "state": "KY",
+    "clue_website": "http://www.thelouisvillegameshop.com",
+    "dir_email_clue": "colin at thelouisvillegameshop dot com",
+    "status": "FETCH_ERR:URLError"
+  },
+  {
+    "name": "Cavalier Comics",
+    "city": "Wise",
+    "state": "VA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  }
+]

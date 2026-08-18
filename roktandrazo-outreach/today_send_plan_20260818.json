@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-08-18T08:48:10.467002",
+  "target_max": 30,
+  "base_locked": 11,
+  "batches": {
+    "ET": {
+      "count": 7,
+      "shanghai_window": "22:00",
+      "leads": [
+        {
+          "id": 727,
+          "store_name": "Hard Knox Games",
+          "state": "KY",
+          "email": "hardknoxgames@gmail.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://hardknoxgames.com",
+          "evidence_checked_at": "2026-08-17T18:10:12.932402",
+          "org_key": "hard_knox_radcliff"
+        },
+        {
+          "id": 814,
+          "store_name": "Dragon Star Hobbies",
+          "state": "GA",
+          "email": "dragonstarhobbies@gmail.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://www.dragonstarhobbies.com/",
+          "evidence_checked_at": "2026-08-17T17:59:13.316218",
+          "org_key": "org:name:dragon-star-hobbies:athens:GA"
+        },
+        {
+          "id": 815,
+          "store_name": "Fantasy Factory",
+          "state": "GA",
+          "email": "orders@fantasyfactory.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://www.fantasyfactory.com/",
+          "evidence_checked_at": "2026-08-17T18:13:35.330293",
+          "org_key": "org:name:fantasy-factory:dalton:GA"
+        },
+        {
+          "id": 839,
+          "store_name": "Atlantis Comics",
+          "state": "VA",
+          "email": "ecom@atlantis-comics.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://www.atlantis-comics.com/pages/contact",
+          "evidence_checked_at": "2026-08-17T17:59:13.316218",
+          "org_key": "org:name:atlantis-comics:virginia beach:VA"
+        },
+        {
+          "id": 883,
+          "store_name": "Bookery Fantasy",
+          "state": "OH",
+          "email": "bookeryfan@aol.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://www.bookeryfantasy.com/contact-us-2.html",
+          "evidence_checked_at": "2026-08-17T18:13:35.330293",
+          "org_key": "org:name:bookery-fantasy:fairborn:OH"
+        },
+        {
+          "id": 1018,
+          "store_name": "Blue Ox Games",
+          "state": "NC",
+          "email": "sales@blueoxgames.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://www.blueoxgames.com/contact_us",
+          "evidence_checked_at": "2026-08-17T17:59:13.316218",
+          "org_key": "org:name:blue-ox-games:greenville:NC"
+        },
+        {
+          "id": 1054,
+          "store_name": "Fallout Comics",
+          "state": "FL",
+          "email": "info@falloutcomics.com",
+          "source_type": "official_page_visible",
+          "tz": "America/New_York",
+          "evidence_url": "http://www.falloutcomics.com/privacy-policy/",
+          "evidence_checked_at": "2026-08-17T16:19:13.026422",
+          "org_key": "org:domain:falloutcomics.com"
+        }
+      ]
+    },
+    "CT": {
+      "count": 4,
+      "shanghai_window": "23:00",
+      "leads": [
+        {
+          "id": 802,
+          "store_name": "Grand Adventures",
+          "state": "TN",
+          "email": "granddadventuress@gmail.com",
+          "source_type": "official_page_visible",
+          "tz": "America/Chicago",
+          "evidence_url": "http://www.grandadventurescomics.com/",
+          "evidence_checked_at": "2026-08-17T18:10:12.932402",
+          "org_key": "org:name:grand-adventures:murfreesboro:TN"
+        },
+        {
+          "id": 923,
+          "store_name": "Chicagoland Games",
+          "state": "IL",
+          "email": "staff@chicagolandgames.com",
+          "source_type": "official_page_visible",
+          "tz": "America/Chicago",
+          "evidence_url": "https://www.chicagolandgames.com/contact",
+          "evidence_checked_at": "2026-08-17T17:59:13.316218",
+          "org_key": "org:name:chicagoland-games:chicago:IL"
+        },
+        {
+          "id": 1053,
+          "store_name": "Bald Man Games",
+          "state": "AR",
+          "email": "vddw@baldmangames.com",
+          "source_type": "official_page_visible",
+          "tz": "America/Chicago",
+          "evidence_url": "https://www.baldmangames.com/scry-behind-february-2026",
+          "evidence_checked_at": "2026-08-17T16:19:13.026422",
+          "org_key": "org:domain:baldmangames.com"
+        },
+        {
+          "id": 1055,
+          "store_name": "Game Cafe",
+          "state": "MO",
+          "email": "tom@playgamecafe.com",
+          "source_type": "official_page_visible",
+          "tz": "America/Chicago",
+          "evidence_url": "http://www.playgamecafe.com/hours_and_contact",
+          "evidence_checked_at": "2026-08-17T18:13:35.330293",
+          "org_key": "org:domain:playgamecafe.com"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "ET": 7,
+    "CT": 4
+  }
+}

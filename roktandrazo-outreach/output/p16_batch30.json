@@ -1,0 +1,272 @@
+[
+  {
+    "name": "BookMark",
+    "city": "Huntsville",
+    "state": "AL",
+    "phone": "(256) 881-3910",
+    "source": "web_directory",
+    "existing_lead_id": 830,
+    "existing_email": ""
+  },
+  {
+    "name": "Crimson Castle Chess & Games",
+    "city": "Tuscaloosa",
+    "state": "AL",
+    "phone": "(205) 758-6402",
+    "source": "web_directory",
+    "existing_lead_id": 831,
+    "existing_email": ""
+  },
+  {
+    "name": "Game Headz",
+    "city": "Bessemer",
+    "state": "AL",
+    "phone": "",
+    "source": "web_directory",
+    "existing_lead_id": 832,
+    "existing_email": ""
+  },
+  {
+    "name": "Legion",
+    "city": "Birmingham",
+    "state": "AL",
+    "phone": "(205) 970-0999",
+    "source": "web_directory",
+    "existing_lead_id": 834,
+    "existing_email": ""
+  },
+  {
+    "name": "The Foundry",
+    "city": "Huntsville",
+    "state": "AL",
+    "phone": "256-213-7467",
+    "source": "web_directory",
+    "existing_lead_id": 835,
+    "existing_email": ""
+  },
+  {
+    "name": "Top Games",
+    "city": "Gardendale",
+    "state": "AL",
+    "phone": "205-285-8500",
+    "source": "web_directory",
+    "existing_lead_id": 836,
+    "existing_email": ""
+  },
+  {
+    "name": "Visions Cards & Games",
+    "city": "Montgomery",
+    "state": "AL",
+    "phone": "(334) 215-3334",
+    "source": "web_directory",
+    "existing_lead_id": 837,
+    "existing_email": ""
+  },
+  {
+    "name": "Bald Man Games",
+    "city": "Batesville",
+    "state": "AR",
+    "phone": "(870) 307-0062",
+    "source": "web_directory",
+    "existing_lead_id": 559,
+    "existing_email": null
+  },
+  {
+    "name": "Double Header",
+    "city": "Pine Bluff",
+    "state": "AR",
+    "phone": "(870) 247-5966",
+    "source": "web_directory",
+    "existing_lead_id": 790,
+    "existing_email": ""
+  },
+  {
+    "name": "Galaxy Games",
+    "city": "Springdale",
+    "state": "AR",
+    "phone": "Ph# (479) 305-0253",
+    "source": "web_directory",
+    "existing_lead_id": 560,
+    "existing_email": null
+  },
+  {
+    "name": "Gear Gaming",
+    "city": "Fayetteville",
+    "state": "AR",
+    "phone": "(479) 276-8110",
+    "source": "web_directory",
+    "existing_lead_id": 792,
+    "existing_email": ""
+  },
+  {
+    "name": "IMAGINE! Hobbies & Games",
+    "city": "Sherwood",
+    "state": "AR",
+    "phone": "(501) 833-3423",
+    "source": "web_directory",
+    "existing_lead_id": 793,
+    "existing_email": ""
+  },
+  {
+    "name": "Shannon�s Cards & Comics",
+    "city": "Wynne",
+    "state": "AR",
+    "phone": "Ph# (870) 208-8885",
+    "source": "web_directory",
+    "existing_lead_id": 794,
+    "existing_email": ""
+  },
+  {
+    "name": "The Bat Cave",
+    "city": "Conway",
+    "state": "AR",
+    "phone": "Ph# (501) 329-2939",
+    "source": "web_directory",
+    "existing_lead_id": 795,
+    "existing_email": ""
+  },
+  {
+    "name": "The Gamer Utopia",
+    "city": "Rogers",
+    "state": "AR",
+    "phone": "Ph# (479) 202-5177",
+    "source": "web_directory",
+    "existing_lead_id": 552,
+    "existing_email": null
+  },
+  {
+    "name": "2D10 Games",
+    "city": "Ft. Myers",
+    "state": "FL",
+    "phone": "(239) 690-2310",
+    "source": "web_directory",
+    "existing_lead_id": 973,
+    "existing_email": ""
+  },
+  {
+    "name": "Anthem Games",
+    "city": "Tampa",
+    "state": "FL",
+    "phone": "(813) 333-5386",
+    "source": "web_directory",
+    "existing_lead_id": 974,
+    "existing_email": ""
+  },
+  {
+    "name": "Armada Games",
+    "city": "Temple Terrace",
+    "state": "FL",
+    "phone": "(813) 980-6080",
+    "source": "web_directory",
+    "existing_lead_id": 975,
+    "existing_email": ""
+  },
+  {
+    "name": "Bobe's Hobby House",
+    "city": "Pensacola",
+    "state": "FL",
+    "phone": "850-433-2187",
+    "source": "web_directory",
+    "existing_lead_id": 976,
+    "existing_email": ""
+  },
+  {
+    "name": "Book & Game Emporium",
+    "city": "Fort Walton Beach",
+    "state": "FL",
+    "phone": "(850) 863-7964",
+    "source": "web_directory",
+    "existing_lead_id": 977,
+    "existing_email": ""
+  },
+  {
+    "name": "Borderlands Comics & Games",
+    "city": "Jacksonville",
+    "state": "FL",
+    "phone": "(904) 720-0774",
+    "source": "web_directory",
+    "existing_lead_id": 978,
+    "existing_email": ""
+  },
+  {
+    "name": "Broadsword",
+    "city": "Orange Park",
+    "state": "FL",
+    "phone": "(904) 215-9170",
+    "source": "web_directory",
+    "existing_lead_id": 979,
+    "existing_email": ""
+  },
+  {
+    "name": "Comic Emporium",
+    "city": "Panama City",
+    "state": "FL",
+    "phone": "(850) 769-2690",
+    "source": "web_directory",
+    "existing_lead_id": 984,
+    "existing_email": ""
+  },
+  {
+    "name": "Comics & Games Tallahassee",
+    "city": "Tallahassee",
+    "state": "FL",
+    "phone": "(850) 224-9888",
+    "source": "web_directory",
+    "existing_lead_id": 985,
+    "existing_email": ""
+  },
+  {
+    "name": "Cool Comics & Games, Inc.",
+    "city": "Cape Coral",
+    "state": "FL",
+    "phone": "(239) 573-7468",
+    "source": "web_directory",
+    "existing_lead_id": 986,
+    "existing_email": ""
+  },
+  {
+    "name": "Cool Stuff Games",
+    "city": "Winter Park",
+    "state": "FL",
+    "phone": "(407) 695-6554",
+    "source": "web_directory",
+    "existing_lead_id": 987,
+    "existing_email": ""
+  },
+  {
+    "name": "DCD Games",
+    "city": "St. Augustine",
+    "state": "FL",
+    "phone": "904-540-7093",
+    "source": "web_directory",
+    "existing_lead_id": 988,
+    "existing_email": ""
+  },
+  {
+    "name": "Dogs of War Gaming",
+    "city": "Palm Bay",
+    "state": "FL",
+    "phone": "(321) 951-9700",
+    "source": "web_directory",
+    "existing_lead_id": 989,
+    "existing_email": ""
+  },
+  {
+    "name": "Emerald City",
+    "city": "Clearwater",
+    "state": "FL",
+    "phone": "727-398-2665",
+    "source": "web_directory",
+    "existing_lead_id": 990,
+    "existing_email": ""
+  },
+  {
+    "name": "Fallout Comics",
+    "city": "Tallahassee",
+    "state": "FL",
+    "phone": "850-298-4263",
+    "source": "web_directory",
+    "existing_lead_id": 991,
+    "existing_email": ""
+  }
+]

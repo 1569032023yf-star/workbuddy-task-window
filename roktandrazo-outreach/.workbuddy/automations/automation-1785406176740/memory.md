@@ -84,3 +84,111 @@
 - **Dashboard**: regenerated successfully (318 manual pending via dashboard, 1 A0 sendable, 191 follow-up sendable)
 - **Data Freshness**: FRESH (bounce scan 08:35 CST, 15 min ago)
 - **Delivery Outcome**: SMTP 448 total, 269 in 30d; domain_invalid=22, hard_bounce=6, unmatched_dsn=21, unresolved=392
+
+
+## 2026-08-11 09:00 CST (automated run)
+- **Batch analyzed**: 2026-08-10 (Monday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 6 consecutive days without sends** (Aug 5-10) — last send was Aug 5 40-email batch
+- **Open Signals**: 0 | **Replies**: 0 human, 0 auto | **Bounces**: 0 hard | **Unsubs**: 0
+- **Tracking**: poller cache stale (Jul 30); 2 all-time open signals in D1; tracking_message_id linkage gap persists
+- **Inventory**: 738 total | 48 Broad Outreach Ready orgs (48 locations) | 0 Strict A0 ⚠️ CRITICAL (7th day at 0)
+  - Broad Ready stable at 48 — no consumption, no replenishment
+  - Previously sent: 427 (up from earlier counts, more leads marked sent)
+  - Manual review pending: 267 (review_status=pending) / 290 (dashboard) / 254 (bd_ops_api)
+  - Suppressed: 17
+- **Primary states**: TN (177/35 cities, 5 sendable), AR (67/17 cities, 4), KY (66/20 cities, 1), OR (25/4, 8)
+- **Dashboard**: regenerated via bd_dashboard_v3.2.py (290 manual pending, 0 A0 sendable, 191 follow-up sendable)
+- **Data Freshness**: FRESH (bounce scan 23:40 CST, 16 min ago)
+- **Delivery Outcome**: SMTP 448 total, 234 in 30d; domain_invalid=22, hard=6, policy=3, unmatched_dsn=21, unresolved=392; auto_reply=1
+- **Output**: auto_report_2026-08-11.md, auto_report_2026-08-11.json, bd_ops_dashboard.html
+- **Key issues**: 1) 6-day send drought — orchestrator not running; 2) Strict A0=0 for 7 days; 3) No new lead collection in progress
+
+## 2026-08-11 08:54 CST
+- **Batch analyzed**: 2026-08-10 (Monday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 5 consecutive days without sends** (Aug 6-10) since Aug 5 40-email batch
+- **Open Signals**: 0 (tracking cache stale since Jul 30; 2 total open signals all-time)
+- **Replies**: 0 human, 0 auto | **Bounces**: 0 new on Aug 10 | **Unsubs**: 0
+- **Inventory**: 738 total | 48 Broad Outreach Ready orgs (48 locations) | 0 Strict A0 ⚠️ CRITICAL
+  - Broad Ready stable at 48 orgs — inventory not being consumed (no sends), not being replenished
+  - Strict A0 = 0 for 4th consecutive day (since Aug 7)
+  - 29 leads have auto_sendable=1 but most already sent; 18 A-confidence unsent leads all have auto_sendable=0
+  - Manual review pending: 254 (bd_ops_api) / 267 (report query) / 290 (dashboard)
+- **Primary states**: TN (177/35 cities, 5 sendable), AR (67/17 cities, 4), KY (66/20 cities, 1), OR (25/4, 8), NC (20/7, 2)
+- **Dashboard**: regenerated via bd_dashboard_v3.2.py (290 manual pending, 0 A0 sendable, 191 follow-up sendable)
+- **Data Freshness**: FRESH (bounce scan Aug 10 17:35 MST, ~19 min ago)
+- **Delivery Outcome**: SMTP 448 total, 234 in 30d; domain_invalid=22, hard=6, policy=3, unmatched_dsn=21, unresolved=392
+- **Script fix**: broad_outreach_gate analyze_all_leads expects connection object, not path string (fixed in _daily_readonly_report.py); corrected key names from broad_outreach_ready→broad_org_opportunities
+- **Output**: auto_report_2026-08-11.md, auto_report_2026-08-11.json, bd_operations_dashboard.html
+
+## 2026-08-08 08:51 CST
+- **Batch analyzed**: 2026-08-07 (Friday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 2 consecutive days without sends** (Aug 6-7) after Aug 5 40-email batch
+- **Open Signals**: 0 | **Replies**: 0 human, 0 auto | **Bounces**: 0 new | **Unsubs**: 0
+- **⚠️ Aug 5 batch bounce scan (Aug 7)**: 14 bounces from 40 sends (35% bounce rate)
+  - 12 domain_invalid + 2 unresolved — mostly guessed_email info@ addresses to invalid domains
+  - Bounced stores: Things From Another World (OR), Kidding Around (NY), Game Parlour (CA), Game Cafe (CA), Phoenix Comics & Games (WA), JP Comics & Games (MA), Levels Up Games (MN), Phantom of the Attic (PA), Uncle Bob's Hobbies (NC), Dr. No's Comics & Games (GA), Gamezone (CA), Gamers Geek and Tavern (NC), Village Toymaker (TN), Comic Book World Florence (KY)
+- **Inventory**: 738 total | 48 Broad Outreach Ready (orgs) | 0 Strict A0 ⚠️ | 254 manual review (bd_ops_api)
+  - Strict A0 dropped 1→0 — either consumed or reclassified
+  - Broad Ready dropped 78→48 — 30 consumed by sends/bounces since Aug 5 report; no new replenishment
+  - 192 exception_review leads (no email) — biggest inventory blocker
+- **Primary states**: TN (177/35 cities, 5 sendable), AR (67/17 cities, 4 sendable), KY (66/20 cities, 1 sendable)
+- **Dashboard**: regenerated via bd_dashboard_v3.2.py (260 manual pending, 0 A0 sendable, 191 follow-up sendable)
+- **Data Freshness**: FRESH (bounce scan 08:35 CST, 17 min ago)
+- **Delivery Outcome**: SMTP 448 total, 264 in 30d; domain_invalid=22, hard=6, unmatched_dsn=21, unresolved=392
+- **Key issues**:
+  1. 35% bounce rate on Aug 5 batch — guessed_email strategy produces high invalid-domain rate
+  2. Strict A0 = 0 — critical, no high-confidence auto-sendable inventory
+  3. Tracking gap: only 4/40 Aug 5 sends have tracking_message_id; D1 returns 403
+  4. Broad Ready at 48 orgs — sufficient for ~2 days of sending if orchestrator runs
+  5. 192 exception_review leads = 192 leads with no email — cannot send without email discovery
+
+## 2026-08-12 23:59 CST (automated run, late)
+- **Batch analyzed**: 2026-08-11 (Tuesday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 6 consecutive days without sends** (Aug 6-11) — last send was Aug 5 (40-email batch). Today is day 7.
+- **Open Signals**: 0 (poller_cache stale since Jul 30 — only 2 test signals; tracking_message_id linkage gap persists)
+- **Replies**: 0 human, 0 auto | **Bounces**: 0 hard | **Unsubs**: 0
+- **Inventory**: 749 total (+11 from 738) | 55 Broad Outreach Ready orgs/55 locs (up from 48) | 0 Strict A0 ⚠️ CRITICAL (8th day at 0)
+  - Manual review pending: 267 (review_status=pending) / 222 (status=manual_review_needed) / 254 (bd_ops_api)
+  - Previously sent: 427 | Suppressed: 18
+- **Primary states**: TN (181/38 cities, 6 sendable), KY (72/23, 4), AR (68/18, 1) — KY now ahead of AR
+- **Dashboard**: regenerated via bd_dashboard_v3.2.py (295 manual pending, 0 A0 sendable, 243 follow-up sendable)
+- **Ops API**: today planned_new=0 sent_new=0 replies=0 hard_bounces=0; inventory status=critical (strict_a0_orgs=0)
+- **Data Freshness**: FRESH (bounce scan 23:40 CST, 18 min ago)
+- **Delivery Outcome**: SMTP 448 total, 234 in 30d; domain_invalid=22, hard=6, policy=3, unmatched_dsn=21, unresolved=392; auto_reply=1
+- **Note**: review_server (port 8765) NOT running — /api/ops/* endpoints and dynamic bd_ops_dashboard.html not live; static dashboard regenerated instead
+- **Script**: new _daily_results_readonly.py (clears bd_ops_api cache + get_today_stats/get_inventory + broad gate + dashboard regen)
+
+## 2026-08-13 08:52 CST (automated run)
+- **Batch analyzed**: 2026-08-12 (Wednesday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 7 consecutive days without sends** (Aug 6-12) — last send Aug 5 (40-email batch). Confirmed last send_at = 2026-08-05T22:59:59+08:00.
+- **Open Signals**: 0 (poller_cache stale Jul 30; total_open_signals=2 test-only) | **Replies**: 0 | **Bounces**: 0 | **Unsubs**: 0
+- **Inventory**: 749 total (unchanged) | 55 Broad Outreach Ready orgs/55 locs | 0 Strict A0 ⚠️ CRITICAL (9th day at 0)
+  - auto_sendable=1 not-yet-sent = 4 (all fail Strict A0 gate — not confidence A + verified)
+  - Manual review pending: 267 (review_status=pending) / 222 (status=manual_review_needed) / 254 (bd_ops_api)
+  - Previously sent: 427 | Suppressed: 18
+- **Primary states**: TN (181/38 cities, 6 sendable), KY (72/23, 4), AR (68/18, 1), OR (25/4, 6), NC (20/7, 2)
+- **Collection progress**: active_city=Nashville, active_state=Tennessee, city_status=CONTACT_ENRICHMENT_IN_PROGRESS, queries 1/20 executed, current="board game store" (google_places), raw_records=0
+- **Ops API**: today(08-13) planned_new=0 sent_new=0 replies=0 hard_bounces=0; inventory status=critical (strict_a0_orgs=0)
+- **Data Freshness**: FRESH (bounce scan 08:35 CST, 16min ago)
+- **Dashboard**: static regen via bd_dashboard_v3.2.main() → output/bd_operations_dashboard.html (295 manual, 0 A0, 243 follow-up sendable)
+- **Note**: review_server (port 8765) NOT running — /api/ops/today & /api/ops/inventory dynamic endpoints down; static dashboard used
+- **Key issues**: 1) 7-day send drought; 2) Strict A0=0 for 9 days; 3) Nashville enrichment in progress but 0 raw records
+
+## 2026-08-14 08:51 CST (automated run)
+- **Batch analyzed**: 2026-08-13 (Thursday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 8 consecutive days without sends** (Aug 6-13) — last send Aug 5 (40 emails). No sends yesterday.
+- **Open Signals**: 0 (poller_cache stale Jul 30; total_open_signals=2 test-only) | **Bounces**: 0 | **Unsubs**: 0
+- **🔴 NEW CRITICAL BUG — reply_log false positives**: "Human Replies=359" is bogus. All 359 `customer_reply` rows have `lead_id=0` + `email=ianyf@roktandrazo.com` + summary "From: Ian <ianyf@roktandrazo.com> | Subject: Premium puzzles" — the reply monitor is scanning Ian's OWN Sent mailbox and logging outbound mail as customer_reply. Real organic replies = 0 (only other reply_log row is lead_id=237 auto_reply_ooo dated 2026-06-25).
+- **Leads jumped 749→1017 (+268)**: 268 leads collected on 08-13 (Nashville enrichment ran). total_leads=1017.
+- **Inventory**: 60 Broad Outreach Ready orgs/60 locs (up from 55) | 0 Strict A0 ⚠️ CRITICAL (10th day at 0) | manual review: 515 (review_status=pending w/ reason) / 487 (status=manual_review_needed); raw review_status=pending=1005 | previously sent 427 | suppressed 18
+- **Primary states**: TN (189/39 cities, 6 sendable), KY (80/24, 5), AR (79/20, 3), OR (25/4, 6), NC (45/26, 2)
+- **Dashboard**: regenerated via bd_dashboard_v3.2.main() → output/bd_operations_dashboard.html (Manual Review 560, 1 A0 sendable, 243 follow-up sendable, SMTP 448/194 30d, Reconciliation any_failed=True)
+- **Collection config**: active_city=Nashville, active_state=Tennessee (active_city_state=TN), city_selector_mode=primary_state_only, primary_state_pool=[TN,AR,KY], backup=[FL,UT,SC]
+- **Output**: auto_report_2026-08-14.md, auto_report_2026-08-14.json, bd_operations_dashboard.html
+- **Key issues**: 1) 8-day send drought; 2) Strict A0=0 (10 days); 3) reply monitor misclassifying own sent mail as customer_reply (needs fix); 4) Reconciliation any_failed=True

@@ -186,6 +186,12 @@ class DiscoveryService:
         if self._all_places_queries_completed(city_id):
             self._mark_places_matrix_completed(city_id)
             summary.status = "places_matrix_completed_web_pending"
+        # Commit staged discovery rows so results persist even if the caller
+        # (orchestrator / manual run) does not wrap this in a transaction.
+        try:
+            self.conn.commit()
+        except sqlite3.Error:
+            pass
         return summary
 
     def run_staging_postprocess(
@@ -379,13 +385,21 @@ class DiscoveryService:
         actual_state = _normalize_state(result.state)
         expected_city = str(city_row.get("city") or "").strip()
         expected_state = _normalize_state(city_row.get("state"))
-        country = str(result.country or "").strip().upper()
+        country = str(result.country or "").upper()
         if country and country not in {"US", "USA", "UNITED STATES"}:
             self._update_result(discovery_id, "outside_active_city", "", None, "country_mismatch")
             return "outside_active_city"
         if not actual_city or not actual_state:
             self._update_result(discovery_id, "location_review", "", None, "address_components_missing")
             return "location_review"
+        # State-level providers (web_directory) discover stores across the whole state,
+        # so only require state match — not the exact active city.
+        provider_name = (self.provider.provider_name or "").lower()
+        if provider_name in ("web_directory", "webdir"):
+            if actual_state != expected_state:
+                self._update_result(discovery_id, "outside_active_city", "", None, "active_state_mismatch")
+                return "outside_active_city"
+            return ""
         if actual_city.lower() != expected_city.lower() or actual_state != expected_state:
             self._update_result(discovery_id, "outside_active_city", "", None, "active_city_mismatch")
             return "outside_active_city"
@@ -656,6 +670,10 @@ class DiscoveryService:
         actual_state = _normalize_state(row.get("state"))
         if not actual_city or not actual_state:
             return False
+        provider_name = (self.provider.provider_name or "").lower()
+        if provider_name in ("web_directory", "webdir"):
+            # State-level provider: only state must match the active city's state.
+            return actual_state != _normalize_state(city_row.get("state"))
         return actual_city.lower() != str(city_row.get("city") or "").strip().lower() or actual_state != _normalize_state(city_row.get("state"))
 
     def _classify_and_maybe_create_lead(self, discovery_id: int, result: PlaceSearchResult) -> tuple[str, int | None]:

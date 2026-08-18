@@ -1,0 +1,72 @@
+{
+  "total_leads": 738,
+  "status_distribution": {
+    "sent": 373,
+    "manual_review_needed": 217,
+    "contact_form_pool": 72,
+    "new": 34,
+    "bounced": 26,
+    "delivery_issue": 9,
+    "B": 2,
+    "failed": 2,
+    "A": 1,
+    "approved_manual_send": 1,
+    "bounce_review": 1
+  },
+  "state_distribution": {
+    "TN": 177,
+    "AR": 67,
+    "KY": 66,
+    "OR": 25,
+    "NC": 20,
+    "CO": 15,
+    "MN": 10,
+    "OH": 4,
+    "NE": 3,
+    "IN": 3
+  },
+  "send_eligibility": {
+    "(empty)": 642,
+    "broad_outreach_ready": 95,
+    "blocked": 1
+  },
+  "broad_ready_unsent": 50,
+  "strict_a0_unsent": 0,
+  "final_sendable_unsent": 50,
+  "gap_to_30": 0,
+  "gap_to_60": 10,
+  "broad_unsent_breakdown": {
+    "bounced": 2,
+    "manual_review_needed": 48
+  },
+  "new_orgs_today": 0,
+  "website_emails_today": 0,
+  "facebook_emails_today": 0,
+  "manual_verified_today": 0,
+  "manual_review_pending": 217,
+  "website_recovery_pending": 74,
+  "contact_recovery_pending": 15,
+  "contact_recovery_recheck": 0,
+  "network_errors": {
+    "Hard bounce via postmaster notification": 2,
+    "[Errno 11001] getaddrinfo failed": 1,
+    "Connection unexpectedly closed: [WinError 10054] 远程主机强迫关闭了一个现有的连接。": 1
+  },
+  "send_log_total": 451,
+  "send_log_today": 0,
+  "send_plan_today": 0,
+  "total_bounces": 34,
+  "total_suppressed": 26,
+  "email_missing": 192,
+  "contact_form_only": 17,
+  "active_city": "Nashville",
+  "active_state": "TN",
+  "inventory_health": "LOW",
+  "safety_verification": {
+    "smtp_sends_today": 0,
+    "send_plan_today": 0,
+    "read_only_confirmed": true,
+    "inventory_not_stopped": true,
+    "pass": true
+  }
+}

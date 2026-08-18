@@ -44,14 +44,22 @@ class P0RuntimeSemanticsTests(unittest.TestCase):
         ):
             if name not in send_log_columns:
                 self.conn.execute(f'ALTER TABLE send_log ADD COLUMN {name} {kind}')
+        # ICP / Campaign Eligible 相关列（生产库经 migration 存在；测试库动态补齐）
+        lead_columns = {row[1] for row in self.conn.execute('PRAGMA table_info(leads)')}
+        for name, kind in (
+            ('organization_key', 'TEXT'), ('recipient_timezone', 'TEXT'), ('timezone_status', 'TEXT'),
+        ):
+            if name not in lead_columns:
+                self.conn.execute(f'ALTER TABLE leads ADD COLUMN {name} {kind}')
         self.conn.execute("""INSERT INTO leads (
             store_name,store_type,city,state,official_website,email,evidence_url,evidence_snippet,evidence_method,
             email_source_type,email_verified_on_official_site,confidence_score,status,auto_sendable,manual_sendable,
-            domain_hash,followup_count,review_status
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+            domain_hash,followup_count,review_status,organization_key,recipient_timezone,timezone_status
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
             'North Store', 'retail', 'Nashville', 'TN', 'https://north.example', 'sales@north.example',
             'https://north.example/contact', 'sales@north.example', 'official_contact_page',
             'official_page_visible', 1, 'A', 'new', 1, 0, 'north', 0, 'hygiene_passed',
+            'north', 'America/Chicago', 'RESOLVED',
         ))
         self.conn.commit()
         self.lead = dict(self.conn.execute('SELECT * FROM leads WHERE id=1').fetchone())
@@ -108,8 +116,25 @@ class P0RuntimeSemanticsTests(unittest.TestCase):
                              VALUES (1,'sales@north.example','Hello','sent','new_outreach','2026-07-01')""")
         self.conn.commit()
         self._plan('follow_up')
-        with patch('outreach_control.may_start_smtp_request', return_value=True), \
-             patch('bd_sender.send_one', return_value={'success': True, 'status': 'sent', 'message': 'mock sent'}), \
+
+        def _fake_send_one(lead, dry_run=False):
+            # 模拟真实 send_one 的原子副作用（send_log + FSP sent），
+            # 以验证 execute_final_send_plan 的编排；_persist 只递增 followup_count。
+            self.conn.execute(
+                """INSERT INTO send_log (lead_id,email,subject,status,sent_at,message_type,outreach_batch_date,plan_entry_id)
+                   VALUES (?,?,?,?,datetime('now'),?,?,?)""",
+                (lead['id'], lead['email'], lead.get('email_subject', 'Hello'), 'sent',
+                 lead.get('message_type', 'follow_up'), lead.get('outreach_batch_date'), lead.get('final_plan_entry_id')))
+            self.conn.execute(
+                "UPDATE final_send_plan SET status='sent', sent_at=datetime('now') WHERE id=?",
+                (lead.get('final_plan_entry_id'),))
+            self.conn.commit()
+            return {'success': True, 'status': 'sent', 'message': 'mock sent'}
+
+        with patch('recipient_scheduler.in_send_window', return_value=True), \
+             patch('bd_sender.send_one', side_effect=_fake_send_one), \
+             patch('bd_sender.create_send_authorization',
+                   return_value={'authorization_id': 'auth_test', 'status': 'approved'}), \
              patch('daily_session.time.sleep', return_value=None):
             result = execute_final_send_plan('2026-07-24', dry_run=False)
         self.assertEqual(result['follow_up'], 1)
@@ -130,7 +155,9 @@ class P0RuntimeSemanticsTests(unittest.TestCase):
         preview = execute_final_send_plan('2026-07-24', dry_run=True)
         self.assertEqual(preview['skipped'], 1)
         self.assertEqual(before, snapshot_database(self.path))
-        with patch('outreach_control.may_start_smtp_request', return_value=True):
+        with patch('recipient_scheduler.in_send_window', return_value=True), \
+             patch('bd_sender.create_send_authorization',
+                   return_value={'authorization_id': 'auth_test', 'status': 'approved'}):
             live = execute_final_send_plan('2026-07-24', dry_run=False)
         self.assertEqual(live['skipped'], 1)
         self.assertEqual(self.conn.execute('SELECT status FROM final_send_plan').fetchone()[0], 'skipped')

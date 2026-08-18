@@ -1,0 +1,312 @@
+[
+  {
+    "name": "GameChanger",
+    "city": "Indian Harbour Beach",
+    "state": "FL",
+    "clue_website": "http://gamechangerstores.com/",
+    "dir_email_clue": "Dana at GameChangerStores dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://gamechangerstores.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Geek Xtreme Entertainment",
+    "city": "Pompano Beach",
+    "state": "FL",
+    "clue_website": "http://gxegames.com/",
+    "dir_email_clue": "gaming at gxegames dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://gxegames.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Hammer Hall Gaming",
+    "city": "Jacksonville",
+    "state": "FL",
+    "clue_website": "http://www.hammerhallgaming.com/",
+    "dir_email_clue": "hammerhallamanda at gmail dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.hammerhallgaming.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Arsenal Games and Hobbies",
+    "city": "Augusta",
+    "state": "GA",
+    "clue_website": "www.arsenal-games.com",
+    "dir_email_clue": "arsenalgames73 at knology dot net",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.arsenal-games.com"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Augusta Book Exchange",
+    "city": "Martinez",
+    "state": "GA",
+    "clue_website": "http://www.comics-n-games.com/",
+    "dir_email_clue": "store2 at comics-n-games dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.comics-n-games.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Dragon Star Hobbies",
+    "city": "Athens",
+    "state": "GA",
+    "clue_website": "http://www.dragonstarhobbies.com/",
+    "dir_email_clue": "",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.dragonstarhobbies.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Capital City Games",
+    "city": "Springfield",
+    "state": "IL",
+    "clue_website": "http://www.capitalcitygames.com/",
+    "dir_email_clue": "",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.capitalcitygames.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Castle Perilous",
+    "city": "Carbondale",
+    "state": "IL",
+    "clue_website": "http://www.castleperilous.com/",
+    "dir_email_clue": "CastleP at aol dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.castleperilous.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Chicagoland Games",
+    "city": "Chicago",
+    "state": "IL",
+    "clue_website": "http://www.chicagolandgames.com/",
+    "dir_email_clue": "chicagolandgames at gmail dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.chicagolandgames.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "3SD Games",
+    "city": "Ellettsville",
+    "state": "IN",
+    "clue_website": "https://www.facebook.com/pages/3SD-Games/132528199253",
+    "dir_email_clue": "",
+    "status": "FB_ONLY"
+  },
+  {
+    "name": "Atomic Hobby",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "clue_website": "http://www.atomichgstore.com/3328/",
+    "dir_email_clue": "",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.atomichgstore.com/3328/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Books Comics & Things",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "clue_website": "http://www.Superherogameland.com",
+    "dir_email_clue": "bct at bctcomics dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.Superherogameland.com"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Albemarle Hobbies",
+    "city": "Albemarle",
+    "state": "NC",
+    "clue_website": "http://albemarlehobbies.com/",
+    "dir_email_clue": "albehobs at ctc dot net",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://albemarlehobbies.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "All Fun & Games",
+    "city": "Apex",
+    "state": "NC",
+    "clue_website": "http://www.allfunngames.com/",
+    "dir_email_clue": "afng at allfunngames dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.allfunngames.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Blue Ox Games",
+    "city": "Greenville",
+    "state": "NC",
+    "clue_website": "http://www.blueoxgames.com",
+    "dir_email_clue": "harry at blueoxgames dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.blueoxgames.com"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Acme Games",
+    "city": "Cincinnati",
+    "state": "OH",
+    "clue_website": "http://www.acmegames.com/",
+    "dir_email_clue": "ski dot a dot anderson at gmail dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.acmegames.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Ahzz'z Arena",
+    "city": "Massillon",
+    "state": "OH",
+    "clue_website": "http://ahzzz.com/",
+    "dir_email_clue": "ahzz at sssnet dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://ahzzz.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "All American Comics & Cards",
+    "city": "Boardman",
+    "state": "OH",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "AC3 Inc",
+    "city": "Norfolk",
+    "state": "VA",
+    "clue_website": "",
+    "dir_email_clue": "",
+    "status": "NO_WEBSITE_CLUE"
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "clue_website": "http://www.atlantis-comics.com/",
+    "dir_email_clue": "ac2 at atlantis-comics dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.atlantis-comics.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Atlantis Comics",
+    "city": "Portsmouth",
+    "state": "VA",
+    "clue_website": "http://www.atlantis-comics.com/",
+    "dir_email_clue": "ac2 at atlantis-comics dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.atlantis-comics.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Campus Cards & Games",
+    "city": "Bowling Green",
+    "state": "KY",
+    "clue_website": "www.CampusCardsandGames.com",
+    "dir_email_clue": "",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.CampusCardsandGames.com"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Comic Book World Florence",
+    "city": "Florence",
+    "state": "KY",
+    "clue_website": "http://www.comicbookworld.com",
+    "dir_email_clue": "cbwinfo at comicbookworld dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.comicbookworld.com"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Comic Book World Louisville",
+    "city": "Louisville",
+    "state": "KY",
+    "clue_website": "http://www.comicbookworld.com",
+    "dir_email_clue": "cbwinfo at comicbookworld dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.comicbookworld.com"
+    },
+    "status": "WEBSITE_INVALID:None"
+  },
+  {
+    "name": "Big City Comix and Games",
+    "city": "Kansas City",
+    "state": "MO",
+    "clue_website": "http://www.bigcitycomix.com/",
+    "dir_email_clue": "gerald at bigcitycomix dot com",
+    "extract": {
+      "success": false,
+      "error": null,
+      "url": "http://www.bigcitycomix.com/"
+    },
+    "status": "WEBSITE_INVALID:None"
+  }
+]

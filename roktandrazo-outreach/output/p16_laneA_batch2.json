@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Gear Gaming",
+    "city": "Fayetteville",
+    "state": "AR",
+    "website": "https://www.geargamingstore.com",
+    "website_valid": true,
+    "website_note": "官方站点",
+    "official_email": "fayetteville@geargamingstore.com",
+    "evidence_url": "http://fayetteville.geargamingstore.com/pages/contact-us",
+    "evidence_snippet": "Contact Us: Address 3029 North College Ave, Fayetteville; Phone (479)276-8110; Email fayetteville@geargamingstore.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "IMAGINE! Hobbies & Games",
+    "city": "Sherwood",
+    "state": "AR",
+    "website": "https://imaginegamez.wordpress.com",
+    "website_valid": true,
+    "website_note": "官方博客",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  },
+  {
+    "name": "Shannon's Cards & Comics",
+    "city": "Wynne",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "wixsite 404",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "The Bat Cave",
+    "city": "Conway",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "门店已关",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "The Gamer Utopia",
+    "city": "Rogers",
+    "state": "AR",
+    "website": "",
+    "website_valid": false,
+    "website_note": "域名出售",
+    "official_email": "",
+    "status": "WEBSITE_INVALID"
+  },
+  {
+    "name": "2D10 Games",
+    "city": "Ft. Myers",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "已关闭",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Anthem Games",
+    "city": "Tampa",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "官网不可达",
+    "official_email": "",
+    "status": "NO_WEBSITE"
+  },
+  {
+    "name": "Armada Games",
+    "city": "Temple Terrace",
+    "state": "FL",
+    "website": "https://shoparmada.com",
+    "website_valid": true,
+    "website_note": "官方商店",
+    "official_email": "info@armadagames.com",
+    "evidence_url": "https://shoparmada.com/pages/contact-us",
+    "evidence_snippet": "Contact Us: General Questions info@armadagames.com; Order armadaorders@armadagames.com",
+    "status": "EMAIL_FOUND"
+  },
+  {
+    "name": "Bobe's Hobby House",
+    "city": "Pensacola",
+    "state": "FL",
+    "website": "",
+    "website_valid": false,
+    "website_note": "域名被劫持",
+    "official_email": "",
+    "status": "WEBSITE_INVALID"
+  },
+  {
+    "name": "Book & Game Emporium",
+    "city": "Fort Walton Beach",
+    "state": "FL",
+    "website": "https://www.bookandgames.net",
+    "website_valid": true,
+    "website_note": "官方商店",
+    "official_email": "",
+    "status": "NO_EMAIL"
+  }
+]
