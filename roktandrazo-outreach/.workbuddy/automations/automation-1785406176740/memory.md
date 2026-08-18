@@ -192,3 +192,17 @@
 - **Collection config**: active_city=Nashville, active_state=Tennessee (active_city_state=TN), city_selector_mode=primary_state_only, primary_state_pool=[TN,AR,KY], backup=[FL,UT,SC]
 - **Output**: auto_report_2026-08-14.md, auto_report_2026-08-14.json, bd_operations_dashboard.html
 - **Key issues**: 1) 8-day send drought; 2) Strict A0=0 (10 days); 3) reply monitor misclassifying own sent mail as customer_reply (needs fix); 4) Reconciliation any_failed=True
+
+## 2026-08-18 08:52 CST (automated run)
+- **Batch analyzed**: 2026-08-17 (Monday)
+- **Planned**: 0 | **SMTP Accepted**: 0 | **Delivery rate**: N/A
+- **⚠️ 3-day drought** (Aug 15-17) — last send was Aug 14 P1.2 batch (20 emails)
+- **Open Signals**: 0 (poller_cache stale Jul 30; total=2 test-only) | **Replies**: 0 | **Bounces**: 0 new | **Unsubs**: 0
+- **✅ reply_log false-positive FIXED**: reply_log now 1 row only (lead_id=237 auto_reply_ooo 2026-06-25); the 359 bogus self-mail rows (lead_id=0/ianyf@) are GONE — reply monitor cleaned
+- **🔴 Aug 14 P1.2 batch (20 emails) bounce audit**: 18 bounce records = 12 domain_invalid + 3 unresolved + 2 mailbox_invalid + 1 policy_bounce (~90% bounce rate). Only 5 clean: Well Played (NC), Mystic Falls Cardboard (GA), Village Tinker (TN), The Game Store (AR), Stoney's Gift & Toy (KY). bounce scan continued finding new bounces through 08-18 08:35
+- **Inventory**: 1020 total (+3 from 1017) | 53 Broad Outreach Ready orgs/53 locs (down from 60) | 0 Strict A0 ⚠️ CRITICAL (~14th day at 0) | manual: 515 (review_status=pending) / 465 (status) / 254 (bd_ops_api) | prev_sent=447 | suppressed=45
+- **Primary states**: TN (189/39, 6 sendable), KY (80/24, 4), AR (80/20, 3), OR (25/4, 6), NC (45/26, 1)
+- **Collection**: Nashville TN, CONTACT_ENRICHMENT_IN_PROGRESS, queries 5/40 executed (web_directory), current="board game store", raw_records=0 (enrichment stuck — same as 08-13/14)
+- **Dashboard**: regenerated → output/bd_operations_dashboard.html (Manual Review 538, 0 A0 sendable, follow-up 251 sendable, SMTP 468/180 30d, domain_invalid=34 hard=6 unmatched_dsn=36 unresolved=379, Reconciliation 2 batches any_failed=True)
+- **Data Freshness**: FRESH (bounce scan 08:35 CST, 16min ago)
+- **Key issues**: 1) 3-day drought after P1.2; 2) Strict A0=0 ~14 days; 3) P1.2 bounce rate ~90% (guessed info@ emails to invalid domains) — bounce source must be governed before next batch; 4) Nashville enrichment producing 0 records
