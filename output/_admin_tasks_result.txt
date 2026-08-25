@@ -1,0 +1,16 @@
+=== ADMIN HELPER START pid=26108 ===
+
+=== [1] EXISTING TASKS (match rokt/bd/outreach/orchestrat) ===
+  ERROR enumerating: (-2147352567, '发生意外。', (0, None, None, None, 0, -2147024843), None)
+
+
+=== [2] CREATE/UPDATE TASKS (Asia/Shanghai local time) ===
+  ERROR creating tasks: (-2147352567, '发生意外。', (0, None, None, None, 0, -2147024843), None)
+
+=== [3] DISABLE LEGACY 09:00 TASK (if any) ===
+  ERROR disabling legacy: (-2147352567, '发生意外。', (0, None, None, None, 0, -2147024843), None)
+
+=== [4] BDExecutionHost SERVICE -> MANUAL (keep registration) ===
+  SET Start=3 (Manual). Service will NOT auto-start. Registration kept.
+
+=== ADMIN HELPER DONE ===

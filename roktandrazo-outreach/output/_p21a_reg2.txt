@@ -1,0 +1,7 @@
+﻿=== HKCU 3.13 InstallPath ===
+(default)=C:\Users\15690\AppData\Local\Programs\Python\Python313\
+ExecutablePath=C:\Users\15690\AppData\Local\Programs\Python\Python313\python.exe
+=== HKCU 3.13 PythonPath ===
+(default)=C:\Users\15690\AppData\Local\Programs\Python\Python313\Lib\;C:\Users\15690\AppData\Local\Programs\Python\Python313\DLLs\
+=== which python is registered (3.12 vs 3.13) ===
+3.12 (default)=C:\Users\15690\AppData\Local\Programs\Python\Python312\

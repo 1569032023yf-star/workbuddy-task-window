@@ -1,0 +1,23 @@
+{
+  "PRESEND_JOB": null,
+  "OUTREACH_JOB": null,
+  "POSTSEND_JOB": null,
+  "AUTOMATED_RUN": "pending",
+  "PRESEND_OK": "false",
+  "FSP_CREATED": 44,
+  "FSP_NEW_OUTREACH": 40,
+  "FSP_FOLLOW_UP": 4,
+  "DUPLICATE_FSP": 0,
+  "IDEMPOTENT": "true",
+  "FRESH_AUTH": [],
+  "OUTREACH_OK": "false",
+  "SMTP_ACCEPTED": 0,
+  "SMTP_NEW_OUTREACH": 0,
+  "SMTP_FOLLOW_UP": 0,
+  "SENT_EMAILS": [],
+  "BOUNCE": 0,
+  "REPLY": 0,
+  "POSTSEND_OK": "false",
+  "FULL_LOOP_PASS": "false",
+  "_captured_at": "2026-08-20T12:04:32"
+}

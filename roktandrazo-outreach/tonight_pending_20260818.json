@@ -1,0 +1,89 @@
+{
+  "batch_date": "2026-08-18",
+  "prepared": [
+    {
+      "lead_id": 727,
+      "store_name": "Hard Knox Games",
+      "email": "hardknoxgames@gmail.com",
+      "fsp_id": 174,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Hard Knox Games (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 802,
+      "store_name": "Grand Adventures",
+      "email": "granddadventuress@gmail.com",
+      "fsp_id": 175,
+      "bucket": "CT",
+      "subject": "Premium puzzles & card games for Grand Adventures (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 814,
+      "store_name": "Dragon Star Hobbies",
+      "email": "dragonstarhobbies@gmail.com",
+      "fsp_id": 176,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Dragon Star Hobbies (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 815,
+      "store_name": "Fantasy Factory",
+      "email": "orders@fantasyfactory.com",
+      "fsp_id": 177,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Fantasy Factory (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 839,
+      "store_name": "Atlantis Comics",
+      "email": "ac1@atlantis-comics.com",
+      "fsp_id": 178,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Atlantis Comics (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 883,
+      "store_name": "Bookery Fantasy",
+      "email": "bookeryfan@aol.com",
+      "fsp_id": 179,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Bookery Fantasy (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 923,
+      "store_name": "Chicagoland Games",
+      "email": "staff@chicagolandgames.com",
+      "fsp_id": 180,
+      "bucket": "CT",
+      "subject": "Premium puzzles & card games for Chicagoland Games (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 1018,
+      "store_name": "Blue Ox Games",
+      "email": "sales@blueoxgames.com",
+      "fsp_id": 181,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Blue Ox Games (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 1053,
+      "store_name": "Bald Man Games",
+      "email": "vddw@baldmangames.com",
+      "fsp_id": 182,
+      "bucket": "CT",
+      "subject": "Premium puzzles & card games for Bald Man Games (Low MOQ / DDP)"
+    },
+    {
+      "lead_id": 1054,
+      "store_name": "Fallout Comics",
+      "email": "info@falloutcomics.com",
+      "fsp_id": 183,
+      "bucket": "ET",
+      "subject": "Premium puzzles & card games for Fallout Comics (Low MOQ / DDP)"
+    }
+  ],
+  "windows_shanghai": {
+    "ET": "22:00",
+    "CT": "23:00"
+  }
+}

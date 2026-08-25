@@ -1,0 +1,140 @@
+{
+  "total_leads": 1066,
+  "status_distribution": {
+    "manual_review_needed": 480,
+    "sent": 395,
+    "contact_form_pool": 70,
+    "new": 57,
+    "bounced": 49,
+    "delivery_issue": 9,
+    "B": 2,
+    "A": 1,
+    "approved_manual_send": 1,
+    "bounce_review": 1,
+    "do_not_contact": 1
+  },
+  "state_distribution": {
+    "TN": 189,
+    "KY": 80,
+    "AR": 80,
+    "OH": 47,
+    "NC": 47,
+    "OR": 27,
+    "CO": 16,
+    "MN": 10,
+    "IN": 5,
+    "NE": 3
+  },
+  "send_eligibility": {
+    "(empty)": 970,
+    "broad_outreach_ready": 95,
+    "blocked": 1
+  },
+  "broad_ready_unsent": 29,
+  "strict_a0_unsent": 0,
+  "final_sendable_unsent": 29,
+  "gap_to_30": 1,
+  "gap_to_60": 31,
+  "broad_unsent_breakdown": {
+    "bounced": 2,
+    "manual_review_needed": 27
+  },
+  "new_orgs_today": 0,
+  "website_emails_today": 0,
+  "facebook_emails_today": 0,
+  "manual_verified_today": 0,
+  "manual_review_pending": 480,
+  "website_recovery_pending": 97,
+  "contact_recovery_pending": 36,
+  "contact_recovery_recheck": 0,
+  "network_errors": {
+    "Hard bounce via postmaster notification": 2,
+    "[Errno 11001] getaddrinfo failed": 1,
+    "Connection unexpectedly closed: [WinError 10054] 远程主机强迫关闭了一个现有的连接。": 1
+  },
+  "send_log_total": 496,
+  "send_log_today": 5,
+  "send_plan_today": 5,
+  "final_send_plan_total": 278,
+  "final_send_plan_today": 5,
+  "smtp_enabled": "0",
+  "total_bounces": 62,
+  "total_suppressed": 55,
+  "bounces_today": 8,
+  "bounces_today_classified": [
+    {
+      "bounce_type": "domain_invalid",
+      "status_code": null,
+      "diagnostic_code": "type=MX: Host not found (html fallback)",
+      "cnt": 8
+    }
+  ],
+  "email_missing": 480,
+  "contact_form_only": 19,
+  "active_city": "Nashville",
+  "active_state": "TN",
+  "current_query": {
+    "query_status_counts": {
+      "completed": 31,
+      "configuration_blocked": 4,
+      "pending": 463,
+      "provider_not_configured": 1,
+      "provider_timeout": 1
+    },
+    "active": null,
+    "latest_pending": {
+      "id": 500,
+      "active_city_id": 20,
+      "provider": "google_places",
+      "query_family": "card game store",
+      "query_text": "card game store Ithaca NY",
+      "status": "pending",
+      "page_cursor": "",
+      "pages_processed": 0,
+      "results_seen": 0,
+      "new_unique_places": 0,
+      "duplicate_places": 0,
+      "provider_errors": 0,
+      "consecutive_pages_without_new_place": 0,
+      "last_success_at": null,
+      "last_error": null,
+      "resume_state": null,
+      "started_at": "2026-08-20T07:04:14.499090+00:00",
+      "completed_at": null
+    },
+    "city_queue_front": [
+      {
+        "city": "Atlanta",
+        "state": "GA",
+        "status": "PENDING",
+        "priority": 30
+      },
+      {
+        "city": "Birmingham",
+        "state": "AL",
+        "status": "PENDING",
+        "priority": 30
+      },
+      {
+        "city": "Richmond",
+        "state": "VA",
+        "status": "PENDING",
+        "priority": 30
+      }
+    ]
+  },
+  "inventory_health": "LOW",
+  "safety_verification": {
+    "smtp_sends_today": 5,
+    "smtp_enabled": "0",
+    "send_plan_today": 5,
+    "final_send_plan_total": 278,
+    "final_send_plan_today": 5,
+    "read_only_confirmed": true,
+    "inventory_not_stopped": true,
+    "no_new_plan_today": false,
+    "smtp_channel_off": true,
+    "pass": false
+  },
+  "_delta_vs": "2026-08-20"
+}

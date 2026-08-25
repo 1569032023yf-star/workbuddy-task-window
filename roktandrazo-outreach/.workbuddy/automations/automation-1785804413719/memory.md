@@ -183,3 +183,145 @@ Frozen snapshot `frozen_new_outreach_20260813_et1000.json` never generated — l
 
 ### Root cause (persistent)
 21:10 CST freeze step absent → no `frozen_new_outreach_YYYYMMDD_et1000.json` since Aug 4 → no plan → no auth. A0 pool stuck at 6. Ops Center (8765) down; poller dead since 08-14. Same `auth_p1_2_first20_20260813` leftover auth never expired-out.
+
+## 2026-08-18 21:48 CST
+
+**Verdict: BLOCKED** — 4 PASS, 4 FAIL, 2 N/A. Root cause SHIFTED (infra recovered, but batch-id mismatch now blocks).
+
+### Failures (4)
+1. **NO_PLAN (step2)**: 0 entries in `final_send_plan` for `new_outreach_20260818_et1000`. Frozen snapshot still missing (last = 08-04).
+2. **NO_AUTH (step3)**: no `send_authorizations` for the target batch.
+3. **AUTH_PLAN_MISMATCH (step4)**: both zero = no valid plan (auto-fail).
+4. **STEP10_ACTIVE_LEFTOVER**: 9 `planned` rows under `outreach_batch_date='2026-08-18'` (plain date) + 1 stale `approved` auth `auth_p1_2_first20_20260813` (expired 08-14, never flipped).
+
+### Passing (4)
+- Step1 batch_id `new_outreach_20260818_et1000` ✓
+- Step7 template SHA retail=ccb51505 / custom=5893dbc9 ✓
+- Step8 Ops Center HTTP **200** ✓ (RESTARTED — was down 11 consecutive days)
+- Step9 poller heartbeat 0.02 min fresh, running=true ✓ (RESTARTED — was dead since 08-14)
+
+### N/A (2)
+- Org duplicates, Email duplicates — no plan for target batch.
+
+### Key context (positive shift)
+- A0 pool **29** (up from 6 — inventory replenished).
+- Canary send completed today (lead 1055, `tom@playgamecafe.com`, 09:21 CST, template retail_distributor_v5_locked).
+- 10 leads prepared today: 9 `planned` + 1 `cancelled` + 1 `sent` — but ALL under `outreach_batch_date='2026-08-18'` (plain date), NOT the canonical `new_outreach_20260818_et1000`.
+- `tonight_pending_20260818.json` exists (10 prepared leads).
+- **NEW ROOT CAUSE**: today's scripts `_canary_exec.py` / `_prepare_remaining_10.py` hardcoded `batch_date = "2026-08-18"` instead of the canonical batch id → the 9 prepared leads + canary are orphaned under the wrong identifier, and no authorization was created for the 9 planned leads.
+- Poller `delivery_guard` job dead ("Guard dead, max restarts reached") — soft note, not a step-9 blocker.
+
+### Actions Taken (read-only, NO SMTP)
+- Wrote `output/preflight_result.json` via `_preflight_20260818.py` (read-only, `system_config_written=false`).
+- Did NOT write system_config — respecting "预检不写 system_config" guardrail; `_pre_send_plan_20260818.py` already set `preflight_status=no_batch` at 21:26 today.
+- SMTP_enabled='0' verified unchanged.
+
+### Recommended next steps (for the human / next repair cycle)
+1. Re-key the 9 planned leads + generate a fresh authorization under the canonical `new_outreach_20260818_et1000` (they are already V2-verified + template-rendered; only the batch-id + auth are missing).
+2. Generate the frozen snapshot for `new_outreach_20260818_et1000` (restore the 21:10 freeze step).
+3. Flip stale `auth_p1_2_first20_20260813` → `expired`.
+4. Restart `delivery_guard` (poller running but this component crashed).
+
+## 2026-08-19 21:51 CST
+
+**Verdict: BLOCKED** — 4 PASS, 4 FAIL, 2 N/A
+
+### Failures (4)
+1. **NO_PLAN (step2)**: 0 entries in `final_send_plan` for `new_outreach_20260819_et1000`. Frozen snapshot still missing (last = 08-04).
+2. **NO_AUTH (step3)**: no `send_authorizations` for the target batch.
+3. **AUTH_PLAN_MISMATCH (step4)**: both zero = no valid plan (auto-fail).
+4. **STEP10_ACTIVE_LEFTOVER**: 9 `planned` rows under `outreach_batch_date='2026-08-19'` (plain date) + 1 stale `approved` auth `auth_p1_2_first20_20260813` (expired 08-14, never flipped).
+
+### Passing (4)
+- Step1 batch_id `new_outreach_20260819_et1000` ✓
+- Step7 template SHA retail=ccb51505 / custom=5893dbc9 ✓
+- Step8 Ops Center HTTP **200** ✓ (recovered; was down 11 days)
+- Step9 poller heartbeat 0.0 min fresh, running=true ✓
+
+### N/A (2)
+- Org duplicates, Email duplicates — no plan for target batch.
+
+### Key context
+- A0 pool **29** (unchanged). Frozen snapshot last = 08-04.
+- **Same root cause as 08-18**: today's 9 `planned` + 1 `cancelled` leads written under plain date `2026-08-19`, NOT canonical `new_outreach_20260819_et1000`; no frozen snapshot, no auth. `tonight_pending_20260819.json` missing.
+- Poller `delivery_guard` job dead ("Guard dead, max restarts reached") — soft note, not a step-9 blocker.
+
+### Actions Taken (read-only, NO SMTP)
+- Wrote `output/preflight_result.json` via `_preflight_20260819.py` (read-only, `system_config_written=false`).
+- Did NOT write system_config — respecting "预检不写 system_config" guardrail; `_pre_send_plan_20260819.py` already set `preflight_status=no_batch`/`NO_BATCH_TODAY` at 21:31 (its blockers list still shows step8/step9 which have since recovered).
+- SMTP_enabled='0' verified unchanged.
+
+## 2026-08-20 21:51 CST
+
+**Verdict: BLOCKED** — 2 PASS, 6 FAIL, 2 N/A. Root cause UNCHANGED (batch-id mismatch) + infra regressed again.
+
+### Failures (6)
+1. **NO_PLAN (step2)**: 0 entries in `final_send_plan` for `new_outreach_20260820_et1000`. Frozen snapshot still missing (last = 08-04).
+2. **NO_AUTH (step3)**: no `send_authorizations` for the canonical batch.
+3. **AUTH_PLAN_MISMATCH (step4)**: both zero = no valid plan (auto-fail).
+4. **OPS_CENTER_DOWN (step8)**: 127.0.0.1:8765 connection refused (WinError 10061) — regressed (was 200 on 08-18/08-19).
+5. **POLLER_STALE (step9)**: last_heartbeat 15:11 today → 399 min stale (threshold 2 min). `running=true` but `delivery_guard` dead + `tracking` all-transports-failed.
+6. **STEP10_ACTIVE_LEFTOVER**: **44** `planned` rows under plain date `2026-08-20` (NOT canonical batch) — grew from 9 (08-18/08-19) to 44 today. No auth created for them.
+
+### Passing (2)
+- Step1 batch_id `new_outreach_20260820_et1000` ✓
+- Step7 template SHA retail=ccb51505 / custom=5893dbc9 ✓
+
+### N/A (2)
+- Org duplicates, Email duplicates — no plan for canonical batch.
+
+### Key context
+- A0 pool **29** (unchanged). Frozen snapshot last = 08-04.
+- **Same root cause as 08-18/08-19**: today's prepared leads written under plain date `2026-08-20`, NOT canonical `new_outreach_20260820_et1000`; no frozen snapshot, no auth. Count grew 9 → 44 (pipeline IS producing leads now, but under wrong batch id).
+- 1 `canary_2026-08-20` cancelled (auth `auth_canary_2026-08-20` revoked).
+- send_log today = 0 (nothing sent, SMTP=0).
+- system_config already held `preflight_status=no_batch`/`NO_BATCH_TODAY` + 6 blockers (set by `_pre_send_plan` at 21:31).
+
+### Actions Taken (read-only, NO SMTP)
+- Wrote `output/preflight_result.json` via `_preflight_20260820.py` (read-only, `system_config_written=false`).
+- Did NOT write system_config — respecting "预检不写 system_config" guardrail; state already correctly reflects blocked + SMTP_enabled=0.
+- SMTP_enabled='0' verified unchanged.
+
+### Recommended next steps (for human / next repair cycle)
+1. Re-key the 44 planned leads under canonical `new_outreach_20260820_et1000` + generate a matching authorization (they are already prepared; only batch-id + auth missing).
+2. Restore the 21:10 CST freeze step to generate `frozen_new_outreach_YYYYMMDD_et1000.json` (missing since 08-04).
+3. Restart Ops Center (8765) — regressed today.
+4. Restart `delivery_guard` + fix `tracking` transport (poller running but both sub-jobs failing).
+
+## 2026-08-21 21:51 CST
+
+**Verdict: BLOCKED** — 3 PASS, 5 FAIL, 2 N/A. Root cause UNCHANGED (batch-id mismatch), but SENDING RESUMED (5 emails actually sent).
+
+### Failures (5)
+1. **NO_PLAN (step2)**: 0 entries in `final_send_plan` for canonical `new_outreach_20260821_et1000`. Frozen snapshot still missing (last = 08-04).
+2. **NO_AUTH (step3)**: no `send_authorizations` for the canonical batch.
+3. **AUTH_PLAN_MISMATCH (step4)**: both zero = no valid plan (auto-fail).
+4. **OPS_CENTER_DOWN (step8)**: 127.0.0.1:8765 connection refused (no listener) — still down.
+5. **POLLER_STALE (step9)**: `last_heartbeat_at` 2026-08-20T15:11:50 → 1839 min stale (threshold 2 min). `running=true` but `delivery_guard` dead + `tracking` all-transports-failed.
+
+### Passing (3)
+- Step1 batch_id `new_outreach_20260821_et1000` ✓
+- Step7 template SHA retail=ccb51505 / custom=5893dbc9 ✓
+- Step10 old plans/auths: 0 active ✓
+
+### N/A (2)
+- Org duplicates, Email duplicates — no plan for canonical batch.
+
+### Key context — SENDING RESUMED (important shift)
+- **5 emails actually sent today** (08-21 11:59–12:04 CST, SMTP accepted), template `retail_distributor_v5_locked`, leads 1056–1060.
+- BUT all 5 written under plain date `outreach_batch_date='2026-08-21'` (plan_id `2026-08-21:new_outreach:38419abaa0`), NOT canonical `new_outreach_20260821_et1000`. Auth `auth_2026-08-21:new_outreach:...` now `consumed`.
+- **Same root cause as 08-18/08-19/08-20**: today's sends keyed under plain date, not canonical batch id; no frozen snapshot.
+- system_config `SMTP_enabled`='0' is now STALE — SMTP is actually working (5 sends today) but flag not updated since 08-11.
+- sync_0845 ran this morning (08:51). A0 pool 29. Frozen snapshot last = 08-04.
+
+### Actions Taken (read-only, NO SMTP)
+- Wrote `output/preflight_result.json` via `_preflight_20260821.py` (read-only, `system_config_written=false`).
+- Did NOT write system_config — respecting "预检不写 system_config" guardrail; `_pre_send_plan_20260821.py` already set `preflight_status=no_batch`/`NO_BATCH_TODAY` at 21:31.
+- SMTP_enabled='0' left untouched (flagged as stale).
+
+### Recommended next steps (for human / next repair cycle)
+1. **Fix batch-id in the send pipeline** — today's 5 sends prove SMTP + plan + auth all work; the only remaining defect is the batch identifier (plain date vs canonical `new_outreach_YYYYMMDD_et1000`). Re-keying the same flow to the canonical id would make the gate pass.
+2. Restore the 21:10 CST freeze step (`frozen_new_outreach_YYYYMMDD_et1000.json` missing since 08-04).
+3. Restart Ops Center (8765).
+4. Restart `delivery_guard` + fix `tracking` transport.
+5. Reconcile `SMTP_enabled` config flag with reality (it's been '0' while sends actually go out).

@@ -193,13 +193,14 @@ for r in sent_rows:
                         (lid, f"{YESTERDAY}%")).fetchone()[0]
     bounce_n = c.execute("SELECT COUNT(*) FROM bounce_log WHERE lead_id=? AND bounce_received_at LIKE ?",
                          (lid, f"{YESTERDAY}%")).fetchone()[0]
+    store_name = r["store_name"] if r["store_name"] else f"Lead #{lid}"
     detail.append({
-        "store": r.get("store_name") or f"Lead #{lid}",
-        "org": r.get("org_key", ""),
-        "recipient": (r.get("email") or "")[:40],
-        "sent_at": r.get("sent_at", ""),
-        "city": r.get("city", ""),
-        "state": r.get("state", ""),
+        "store": store_name,
+        "org": r["org_key"] or "",
+        "recipient": (r["email"] or "")[:40],
+        "sent_at": r["sent_at"] or "",
+        "city": r["city"] or "",
+        "state": r["state"] or "",
         "open_signal": "Open Signal" if has_open else "No Open Signal Yet",
         "first_open": (o.get("first_open") or "")[:19],
         "last_open": (o.get("last_open") or "")[:19],

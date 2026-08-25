@@ -1,0 +1,139 @@
+{
+  "total_leads": 1043,
+  "status_distribution": {
+    "manual_review_needed": 467,
+    "sent": 380,
+    "new": 71,
+    "contact_form_pool": 70,
+    "bounced": 40,
+    "delivery_issue": 9,
+    "B": 2,
+    "A": 1,
+    "approved_manual_send": 1,
+    "bounce_review": 1,
+    "do_not_contact": 1
+  },
+  "state_distribution": {
+    "TN": 189,
+    "KY": 80,
+    "AR": 80,
+    "OH": 47,
+    "NC": 47,
+    "OR": 27,
+    "CO": 16,
+    "MN": 10,
+    "IN": 5,
+    "NE": 3
+  },
+  "send_eligibility": {
+    "(empty)": 947,
+    "broad_outreach_ready": 95,
+    "blocked": 1
+  },
+  "broad_ready_unsent": 37,
+  "strict_a0_unsent": 0,
+  "final_sendable_unsent": 37,
+  "gap_to_30": 0,
+  "gap_to_60": 23,
+  "broad_unsent_breakdown": {
+    "bounced": 2,
+    "manual_review_needed": 35
+  },
+  "new_orgs_today": 23,
+  "website_emails_today": 0,
+  "facebook_emails_today": 0,
+  "manual_verified_today": 0,
+  "manual_review_pending": 467,
+  "website_recovery_pending": 92,
+  "contact_recovery_pending": 27,
+  "contact_recovery_recheck": 0,
+  "network_errors": {
+    "Hard bounce via postmaster notification": 2,
+    "[Errno 11001] getaddrinfo failed": 1,
+    "Connection unexpectedly closed: [WinError 10054] 远程主机强迫关闭了一个现有的连接。": 1
+  },
+  "send_log_total": 472,
+  "send_log_today": 1,
+  "send_plan_today": 11,
+  "final_send_plan_total": 173,
+  "final_send_plan_today": 11,
+  "smtp_enabled": "0",
+  "total_bounces": 52,
+  "total_suppressed": 54,
+  "bounces_today": 3,
+  "bounces_today_classified": [
+    {
+      "bounce_type": "unresolved",
+      "status_code": null,
+      "diagnostic_code": null,
+      "cnt": 3
+    }
+  ],
+  "email_missing": 461,
+  "contact_form_only": 19,
+  "active_city": "Nashville",
+  "active_state": "TN",
+  "current_query": {
+    "query_status_counts": {
+      "completed": 29,
+      "configuration_blocked": 3,
+      "pending": 407,
+      "provider_timeout": 1
+    },
+    "active": null,
+    "latest_pending": {
+      "id": 440,
+      "active_city_id": 19,
+      "provider": "web_directory",
+      "query_family": "card game store",
+      "query_text": "card game store Jackson MS",
+      "status": "pending",
+      "page_cursor": "",
+      "pages_processed": 0,
+      "results_seen": 0,
+      "new_unique_places": 0,
+      "duplicate_places": 0,
+      "provider_errors": 0,
+      "consecutive_pages_without_new_place": 0,
+      "last_success_at": null,
+      "last_error": null,
+      "resume_state": null,
+      "started_at": "2026-08-13T08:44:10.801083+00:00",
+      "completed_at": null
+    },
+    "city_queue_front": [
+      {
+        "city": "Atlanta",
+        "state": "GA",
+        "status": "PENDING",
+        "priority": 30
+      },
+      {
+        "city": "Birmingham",
+        "state": "AL",
+        "status": "PENDING",
+        "priority": 30
+      },
+      {
+        "city": "Richmond",
+        "state": "VA",
+        "status": "PENDING",
+        "priority": 30
+      }
+    ]
+  },
+  "inventory_health": "LOW",
+  "safety_verification": {
+    "smtp_sends_today": 1,
+    "smtp_enabled": "0",
+    "send_plan_today": 11,
+    "final_send_plan_total": 173,
+    "final_send_plan_today": 11,
+    "read_only_confirmed": true,
+    "inventory_not_stopped": true,
+    "no_new_plan_today": false,
+    "smtp_channel_off": true,
+    "pass": false
+  },
+  "_delta_vs": "2026-08-17"
+}

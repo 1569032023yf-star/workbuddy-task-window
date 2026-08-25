@@ -1,0 +1,1 @@
+﻿PATH="C:\Users\15690\.workbuddy\binaries\python\versions\3.13.12\pythonservice.exe" | STATE=Stopped | START=Auto

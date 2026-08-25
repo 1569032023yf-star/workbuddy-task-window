@@ -375,10 +375,8 @@ def _run_hygiene(c, lead):
     if bounced:
         reasons.append('hard_bounce_history')
 
-    # Other-state retail block
-    is_custom = any(x in store_type for x in ['custom', 'brand', 'publisher', 'manufacturer', 'online'])
-    if state and state not in PRIMARY_STATES and not is_custom:
-        reasons.append(f'other_state_retail_blocked:{state}')
+    # P1.7C: State no longer part of review/email-safety eligibility.
+    # (other_state_retail_blocked removed — all states allowed in Review.)
 
     # Exchange MX block (check if mx_provider exists)
     lead_full = c.execute("SELECT mx_provider FROM leads WHERE id=?", (lead['id'],)).fetchone()

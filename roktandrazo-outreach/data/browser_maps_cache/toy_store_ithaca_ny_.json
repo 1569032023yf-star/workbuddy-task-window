@@ -1,0 +1,65 @@
+{
+  "provider": "browser_maps",
+  "query": "toy store",
+  "city": "Ithaca",
+  "state": "NY",
+  "page_cursor": "",
+  "next_page_cursor": "2",
+  "status": "ok",
+  "error": "",
+  "results": [
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "browser_maps_toy_store_0",
+      "place_id": "gmaps_results",
+      "business_name": "Results",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [],
+      "source_query": "toy store",
+      "source_url": "",
+      "raw_payload": {
+        "raw_text": "Results\n\n\nShare"
+      },
+      "next_page_cursor": "",
+      "fetched_at": "2026-08-19T07:30:45.369926+00:00",
+      "location_lat": null,
+      "location_lng": null
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "browser_maps_toy_store_1",
+      "place_id": "gmaps_get_the_most_out_of_google_maps\nsign_in",
+      "business_name": "Get the most out of Google Maps\nSign in",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [],
+      "source_query": "toy store",
+      "source_url": "",
+      "raw_payload": {
+        "raw_text": "Get the most out of Google Maps\nSign in"
+      },
+      "next_page_cursor": "",
+      "fetched_at": "2026-08-19T07:30:45.369963+00:00",
+      "location_lat": null,
+      "location_lng": null
+    }
+  ],
+  "request_count": 1,
+  "cost_units": 0,
+  "collected_at": "2026-08-19T07:30:46.016579+00:00"
+}

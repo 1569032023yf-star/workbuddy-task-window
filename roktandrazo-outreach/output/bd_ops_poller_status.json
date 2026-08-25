@@ -1,34 +1,43 @@
 {
-  "process_started_at": "2026-08-14T11:55:20.676063+08:00",
-  "last_heartbeat_at": "2026-08-14T11:55:26.729006+08:00",
+  "process_started_at": "2026-08-18T17:39:59.969226+08:00",
+  "last_heartbeat_at": "2026-08-20T15:11:50.317132+08:00",
   "running": true,
   "jobs": {
     "tracking": {
-      "last_success_at": "2026-08-14T11:55:26.728846+08:00",
+      "last_success_at": "2026-08-20T15:10:44.891506+08:00",
+      "last_failure_at": null,
+      "last_error": "tracking_all_transports_failed: curl_subprocess_no_data,urllib_proxy_no_data,urllib_direct_no_data",
+      "consecutive_failures": 1,
+      "detail": "None"
+    },
+    "health": {
+      "last_success_at": "2026-08-20T15:11:30.502671+08:00",
       "last_failure_at": null,
       "last_error": "None",
       "consecutive_failures": 0,
-      "detail": "Synced 4 msgs (2 open) via curl_subprocess"
-    },
-    "health": {
-      "last_success_at": null,
-      "last_failure_at": null,
-      "last_error": "",
-      "consecutive_failures": 0,
-      "detail": ""
+      "detail": "leads=1066 send_log=482 planned=44 db=ok"
     },
     "reply": {
-      "last_success_at": "2026-08-14T11:55:25.235667+08:00",
+      "last_success_at": "2026-08-20T15:11:50.316787+08:00",
       "last_failure_at": null,
       "last_error": "None",
       "consecutive_failures": 0,
       "detail": "Scanned INBOX, found 0 replies"
     },
     "bounce": {
-      "last_success_at": "2026-08-18T08:35:56.308661+08:00",
+      "last_success_at": "2026-08-22T08:53:19.335988+08:00",
       "error": null,
       "consecutive_failures": 0
     }
   },
-  "current_errors": []
+  "current_errors": [
+    {
+      "job": "delivery_guard",
+      "error": "Guard dead, max restarts reached (running=False, hb=True)"
+    },
+    {
+      "job": "tracking",
+      "error": "tracking_all_transports_failed: curl_subprocess_no_data,urllib_proxy_no_data,urllib_direct_no_data"
+    }
+  ]
 }

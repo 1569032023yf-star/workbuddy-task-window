@@ -1,0 +1,47 @@
+=== DIAG START pid=17244 ===
+IsUserAnAdmin=1
+
+--- try Schedule.Service with CoInitializeSecurity ---
+CoInitializeSecurity OK
+COM FAILED: (-2147352567, '发生意外。', (0, None, None, None, 0, -2147024843), None)
+Traceback (most recent call last):
+  File "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\output\_diag_tasks.py", line 43, in main
+    sched.Connect(".")
+    ~~~~~~~~~~~~~^^^^^
+  File "<COMObject Schedule.Service>", line 2, in Connect
+pywintypes.com_error: (-2147352567, '发生意外。', (0, None, None, None, 0, -2147024843), None)
+
+
+--- write test to C:\Windows\System32\Tasks ---
+WRITE OK (System32\Tasks writable)
+
+--- schtasks from elevated python ---
+schtasks rc=0 outlen=60293 errlen=0
+  任务名:       \Roktandrazo_Daily_Outreach
+  任务名:       \RoktRazo-BD-Daily-Outreach
+  任务名:       \RoktRazo-BD-Inbox-Morning
+  任务名:       \RoktRazo-BD-Inventory-Recovery
+  任务名:       \RoktRazo-BD-Morning
+  任务名:       \RoktRazo-BD-PostSend-Poll
+  文件夹: \Microsoft\Windows\UpdateOrchestrator
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Report policies
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Report policies
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Report policies
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Maintenance Work
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Scan
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Wake To Work
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Schedule Work
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\Start Oobe Expedite Work
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\StartOobeAppsScanAfterUpdate
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\StartOobeAppsScan_LicenseAccepted
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\UIEOrchestrator
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\USO_UxBroker
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\USO_UxBroker
+  任务名:       \Microsoft\Windows\UpdateOrchestrator\UUS Failover Task
+
+=== DIAG DONE ===

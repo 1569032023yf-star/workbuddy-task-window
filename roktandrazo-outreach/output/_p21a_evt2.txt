@@ -1,0 +1,12 @@
+﻿=== SCM events for BDExecutionHost (latest 5) ===
+[2026/8/20 9:28:15] 由于下列错误，RoktAndRazoBDExecutionHost 服务启动失败: 
+服务没有及时响应启动或控制请求。
+[2026/8/20 9:28:15] 等待 RoktAndRazoBDExecutionHost 服务的连接超时(30000 毫秒)。
+[2026/8/20 9:24:22] 由于下列错误，RoktAndRazoBDExecutionHost 服务启动失败: 
+服务没有及时响应启动或控制请求。
+[2026/8/20 9:24:22] 等待 RoktAndRazoBDExecutionHost 服务的连接超时(30000 毫秒)。
+[2026/8/20 9:22:44] 由于下列错误，RoktAndRazoBDExecutionHost 服务启动失败: 
+服务没有及时响应启动或控制请求。
+
+=== Application log for BDExecutionHost / pythonservice ===
+ERR2 找不到映像文件中指定的资源类型。

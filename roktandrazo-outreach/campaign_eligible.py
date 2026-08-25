@@ -207,23 +207,34 @@ def review_batch(lead_ids: list[int], conn: sqlite3.Connection) -> list[dict]:
 
 
 def select_candidates_for_plan(conn: sqlite3.Connection, limit: int,
-                               states: tuple[str, ...] = ("TN", "AR", "KY")) -> list[dict]:
+                               states: tuple[str, ...] | None = None) -> list[dict]:
     """正式政策候选选择：Broad Ready → ICP Qualified → Campaign Eligible → Final Send Plan。
 
-    Strict A0 只是优先层，不是唯一发送池。本函数从三州主池选出
-    CAMPAIGN_ELIGIBLE 的 lead（未渲染，调用方负责 apply_email_to_lead）。
-    只读，不写库、不发送。
+    Strict A0 只是优先层，不是唯一发送池。本函数选出 CAMPAIGN_ELIGIBLE 的 lead
+    （未渲染，调用方负责 apply_email_to_lead）。只读，不写库、不发送。
+
+    states=None（默认）= 全州允许（P1.7C：州不再作为发送资格硬门禁）；
+    传入具体州元组时按州限定（保留旧调用兼容）。
     """
     conn.row_factory = sqlite3.Row
-    states_sql = ",".join("?" for _ in states)
-    rows = conn.execute(
-        f"""SELECT * FROM leads
-            WHERE state IN ({states_sql})
-              AND status NOT IN ('sent','bounced','do_not_contact','rejected',
-                                 'failed','delivery_issue','bounce_review','contact_form_pool')
-              AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
-            ORDER BY id"""
-        , states).fetchall()
+    if states is None:
+        rows = conn.execute(
+            """SELECT * FROM leads
+                WHERE status NOT IN ('sent','bounced','do_not_contact','rejected',
+                                     'failed','delivery_issue','bounce_review','contact_form_pool')
+                  AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
+                ORDER BY id"""
+        ).fetchall()
+    else:
+        states_sql = ",".join("?" for _ in states)
+        rows = conn.execute(
+            f"""SELECT * FROM leads
+                WHERE state IN ({states_sql})
+                  AND status NOT IN ('sent','bounced','do_not_contact','rejected',
+                                     'failed','delivery_issue','bounce_review','contact_form_pool')
+                  AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
+                ORDER BY id"""
+            , states).fetchall()
     out: list[dict] = []
     for row in rows:
         lead = dict(row)

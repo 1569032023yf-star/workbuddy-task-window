@@ -16,32 +16,70 @@ def seed_default_queue(conn: sqlite3.Connection) -> None:
         VALUES (?, ?, ?, ?, 'pending')""", DEFAULT_RETAIL_CITIES)
 
 
-def active_city(conn: sqlite3.Connection) -> dict | None:
-    row = conn.execute("""SELECT * FROM retail_city_queue
+# NY 实验州第一轮城市清单（Upstate-first：small / regional / college / tourist，非 NYC 主导）。
+# 按优先级升序；NYC / Long Island 不进入本轮（Major Metro 不自动获得高优先级）。
+NY_FIRST_ROUND_CITIES: list[tuple[str, str, int, str]] = [
+    ("Ithaca",            "NY", 1,  "America/New_York"),   # college town
+    ("Saratoga Springs",  "NY", 2,  "America/New_York"),   # tourist town
+    ("Cooperstown",       "NY", 3,  "America/New_York"),   # tourist town
+    ("Lake Placid",       "NY", 4,  "America/New_York"),   # tourist town
+    ("Oneonta",           "NY", 5,  "America/New_York"),   # college town
+    ("New Paltz",         "NY", 6,  "America/New_York"),   # college town
+    ("Corning",           "NY", 7,  "America/New_York"),   # small / regional
+    ("Glens Falls",       "NY", 8,  "America/New_York"),   # small city
+    ("Plattsburgh",       "NY", 9,  "America/New_York"),   # small / college
+    ("Watertown",         "NY", 10, "America/New_York"),   # small city
+    ("Utica",             "NY", 11, "America/New_York"),   # regional center
+    ("Binghamton",        "NY", 12, "America/New_York"),   # regional / college
+    ("Poughkeepsie",      "NY", 13, "America/New_York"),   # Hudson Valley regional
+    ("Syracuse",          "NY", 14, "America/New_York"),   # regional center / college
+    ("Albany",            "NY", 15, "America/New_York"),   # state capital / regional
+    ("Rochester",         "NY", 16, "America/New_York"),   # regional center
+    ("Buffalo",           "NY", 17, "America/New_York"),   # regional center
+]
+
+
+def seed_state_cities(conn: sqlite3.Connection, state: str, cities: list[tuple[str, str, int, str]]) -> int:
+    """State-scoped seed: INSERT OR IGNORE per state; returns number of new rows."""
+    before = conn.total_changes
+    conn.executemany("""INSERT OR IGNORE INTO retail_city_queue (city, state, priority, timezone, status)
+        VALUES (?, ?, ?, ?, 'pending')""", cities)
+    conn.commit()
+    return conn.total_changes - before
+
+
+def _state_filter(state: str | None) -> tuple[str, list[object]]:
+    return (" AND state=?" if state else "", [state] if state else [])
+
+
+def active_city(conn: sqlite3.Connection, state: str | None = None) -> dict | None:
+    st_clause, st_args = _state_filter(state)
+    row = conn.execute(f"""SELECT * FROM retail_city_queue
         WHERE status IN ('active','validating','paused_by_runtime_limit','places_matrix_completed_web_pending',
-                         'CONTACT_ENRICHMENT_IN_PROGRESS','DISCOVERY_IN_PROGRESS','QUEUED')
+                         'CONTACT_ENRICHMENT_IN_PROGRESS','DISCOVERY_IN_PROGRESS','QUEUED'){st_clause}
         ORDER BY CASE status WHEN 'active' THEN 0 WHEN 'CONTACT_ENRICHMENT_IN_PROGRESS' THEN 1 WHEN 'DISCOVERY_IN_PROGRESS' THEN 2 ELSE 3 END, priority, id
-        LIMIT 1""").fetchone()
+        LIMIT 1""", st_args).fetchone()
     return dict(row) if row else None
 
 
-def activate_next_city(conn: sqlite3.Connection) -> dict:
-    current = active_city(conn)
+def activate_next_city(conn: sqlite3.Connection, state: str | None = None) -> dict:
+    st_clause, st_args = _state_filter(state)
+    current = active_city(conn, state=state)
     if current:
         if current['status'] in ('paused_by_runtime_limit', 'places_matrix_completed_web_pending'):
             conn.execute("UPDATE retail_city_queue SET status='active' WHERE id=?", (current['id'],))
             return dict(conn.execute("SELECT * FROM retail_city_queue WHERE id=?", (current['id'],)).fetchone())
         return current
-    paused = conn.execute("SELECT * FROM retail_city_queue WHERE status='paused_by_runtime_limit' ORDER BY priority, id LIMIT 1").fetchone()
+    paused = conn.execute(f"SELECT * FROM retail_city_queue WHERE status='paused_by_runtime_limit'{st_clause} ORDER BY priority, id LIMIT 1", st_args).fetchone()
     if paused:
         conn.execute("UPDATE retail_city_queue SET status='active' WHERE id=?", (paused['id'],))
         return dict(conn.execute("SELECT * FROM retail_city_queue WHERE id=?", (paused['id'],)).fetchone())
-    row = conn.execute("""SELECT * FROM retail_city_queue
-        WHERE status IN ('pending','QUEUED','CONTACT_ENRICHMENT_IN_PROGRESS','DISCOVERY_IN_PROGRESS')
-        ORDER BY priority, id LIMIT 1""").fetchone()
+    row = conn.execute(f"""SELECT * FROM retail_city_queue
+        WHERE status IN ('pending','QUEUED','CONTACT_ENRICHMENT_IN_PROGRESS','DISCOVERY_IN_PROGRESS'){st_clause}
+        ORDER BY priority, id LIMIT 1""", st_args).fetchone()
     if not row:
-        # Check if current city is active with enrichment status
-        current_check = conn.execute("SELECT * FROM retail_city_queue WHERE status='CONTACT_ENRICHMENT_IN_PROGRESS' ORDER BY priority LIMIT 1").fetchone()
+        # Check if current city is active with enrichment status (state-scoped)
+        current_check = conn.execute(f"SELECT * FROM retail_city_queue WHERE status='CONTACT_ENRICHMENT_IN_PROGRESS'{st_clause} ORDER BY priority LIMIT 1", st_args).fetchone()
         if current_check:
             row = current_check
         else:

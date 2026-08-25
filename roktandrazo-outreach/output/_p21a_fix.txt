@@ -1,0 +1,6 @@
+﻿=== Try CIM modify service PathName ===
+BEFORE PathName="C:\Users\15690\.workbuddy\binaries\python\versions\3.13.12\python.exe" "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\bd_execution_host_service.py" run
+CIM PathName change not supported (requires sc.exe / SCM API with admin)
+
+=== Admin check ===
+IS_ADMIN=False

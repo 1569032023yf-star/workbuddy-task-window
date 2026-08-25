@@ -1,11 +1,11 @@
 {
-  "preflight_ts_cst": "2026-08-17 21:46:42 CST",
-  "batch_id": "new_outreach_20260817_et1000",
-  "batch_date": "20260817",
+  "preflight_ts_cst": "2026-08-21 21:51:13 CST",
+  "batch_id": "new_outreach_20260821_et1000",
+  "batch_date": "20260821",
   "gates": {
     "step1_batch_id": {
       "pass": true,
-      "value": "new_outreach_20260817_et1000"
+      "value": "new_outreach_20260821_et1000"
     },
     "step2_plan_entries": {
       "pass": false,
@@ -53,28 +53,46 @@
     },
     "step9_poller_heartbeat": {
       "pass": false,
-      "poller_last_heartbeat": "2026-08-14T11:55:26.729006+08:00",
-      "poller_age_minutes": 4911.3,
+      "poller_last_heartbeat": "2026-08-20T15:11:50.317132+08:00",
+      "poller_age_minutes": 1839.4,
       "poller_threshold_minutes": 2,
-      "sync_0845_last_success_at": "2026-08-14T08:35:45.673389+08:00"
+      "poller_running": true,
+      "poller_current_errors": [
+        {
+          "job": "delivery_guard",
+          "error": "Guard dead, max restarts reached (running=False, hb=True)"
+        },
+        {
+          "job": "tracking",
+          "error": "tracking_all_transports_failed: curl_subprocess_no_data,urllib_proxy_no_data,urllib_direct_no_data"
+        }
+      ],
+      "sync_0845_last_success_at": "2026-08-21T08:51:18.722047+08:00"
     },
     "step10_old_plans_auths": {
-      "pass": false,
+      "pass": true,
       "old_active_plans": 0,
-      "active_old_auths": 1,
+      "active_old_auths": 0,
       "planned_batches": [],
-      "active_auth_rows": [
-        {
-          "authorization_id": "auth_p1_2_first20_20260813:new_outreach:9775e37d9b_p1_2_first20_20260813_1c7a693a9e25eaa3",
-          "outreach_batch_date": "p1_2_first20_20260813",
-          "status": "approved",
-          "expires_at": "2026-08-14T10:10:14.834969+08:00"
-        }
-      ]
+      "active_auth_rows": []
     }
   },
   "frozen_snapshot_exists": false,
-  "a0_pool_count": 6,
+  "a0_pool_count": 29,
+  "diagnostics": {
+    "plain_date_2026_08_21": {
+      "planned": 0,
+      "sent": 5,
+      "cancelled": 0,
+      "latest_auth": {
+        "authorization_id": "auth_2026-08-21:new_outreach:38419abaa0_2026-08-21_b2695c8a8bc4d4fe",
+        "status": "consumed"
+      },
+      "note": "Today's prepared leads written under outreach_batch_date='2026-08-21' (plain date)?"
+    },
+    "tonight_pending_20260821_json_exists": false,
+    "all_active_auths": []
+  },
   "gate_summary": {
     "step1_batch_id": "PASS",
     "step2_plan_entries": "FAIL",
@@ -85,17 +103,15 @@
     "step7_template_sha": "PASS",
     "step8_ops_center": "FAIL",
     "step9_poller_heartbeat": "FAIL",
-    "step10_old_plans_auths": "FAIL"
+    "step10_old_plans_auths": "PASS"
   },
   "blockers": [
     "step2_plan_entries",
     "step3_auth_exists",
     "step4_auth_plan_match",
     "step8_ops_center",
-    "step9_poller_heartbeat",
-    "step10_old_plans_auths"
+    "step9_poller_heartbeat"
   ],
   "overall_verdict": "BLOCKED",
-  "smtp_enabled": "0",
-  "system_config_written": false
+  "smtp_enabled": "0"
 }

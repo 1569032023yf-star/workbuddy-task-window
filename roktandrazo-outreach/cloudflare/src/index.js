@@ -188,18 +188,22 @@ async function handleMXCheck(request, env) {
     } else if (mxData.Status === 3) {
       results.mx_status = "nxdomain";
     } else {
-      results.mx_status = "no_mx_found";
-      // Check A/AAAA fallback
-      const aResp = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=A`, {
-        headers: { "Accept": "application/dns-json" }
-      });
-      const aData = await aResp.json();
-      if (aData.Status === 0 && aData.Answer && aData.Answer.length > 0) {
-        results.mx_status = "implicit_mail_route";
-        results.a_records = aData.Answer.filter(a => a.type === 1).map(a => a.data);
-      } else {
-        results.mx_status = "no_mail_route";
-      }
+      // P1.7H: EXPLICIT_MX_REQUIRED — 域存在但 MX Answer=0（NoAnswer）一律 fail-closed。
+      // 不再因 A/AAAA 存在而返回 implicit_mail_route：RFC5321 隐式路由假设与腾讯 SMTP
+      // 实际行为冲突（falloutcomics.com 真实 DSN: type=MX Host not found）。
+      // 有真实 MX → mx_pass；NXDOMAIN → nxdomain；Null MX → null_mx（上游映射）；
+      // 无 MX → no_mail_route；DNS 异常 → dns_error。
+      results.mx_status = "no_mail_route";
+      // A 记录仅审计用途，不参与投递判定
+      try {
+        const aResp = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=A`, {
+          headers: { "Accept": "application/dns-json" }
+        });
+        const aData = await aResp.json();
+        if (aData.Status === 0 && aData.Answer && aData.Answer.length > 0) {
+          results.a_records = aData.Answer.filter(a => a.type === 1).map(a => a.data);
+        }
+      } catch (e) { /* A 记录仅审计用途，查询失败不改变判定 */ }
     }
 
     results.raw_status = mxData.Status;

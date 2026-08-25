@@ -31,6 +31,7 @@ from __future__ import annotations
 import os
 import re
 import sys
+import sqlite3
 from datetime import datetime, timedelta, timezone
 from typing import Any, Mapping, Optional
 
@@ -307,3 +308,72 @@ def scan_v2_inventory(lead_ids: list[int], conn) -> list[dict]:
         r = review_campaign_eligible_v2(lead, {"conn": conn, "mx_lookup": mx_lookup})
         results.append(r)
     return results
+
+
+# ─────────────────────────────────────────────────────────────
+# P2.2A FIX — V2 hard gate for PreSend / Final Send Plan
+# ─────────────────────────────────────────────────────────────
+def campaign_eligible_check_v2(conn: sqlite3.Connection) -> callable:
+    """Hard-gate factory for build_final_plan_entries / create_plan.
+
+    A new_outreach FSP entry is only built for a lead whose
+    Campaign Eligible V2 passes (V1 + explicit MX PASS + evidence fresh
+    + official source quality). It must NOT rely on confidence_score,
+    auto_sendable, V1 Campaign Eligible, or Broad Ready alone.
+    """
+    def _check(lead: dict) -> bool:
+        return bool(review_campaign_eligible_v2(lead, {"conn": conn}).get("eligible"))
+    return _check
+
+
+def select_candidates_for_plan_v2(conn: sqlite3.Connection, limit: int,
+                                  states: tuple[str, ...] | None = None) -> list[dict]:
+    """New-outreach candidate selection gated by Campaign Eligible V2.
+
+    Only leads whose pool == CAMPAIGN_ELIGIBLE_V2 are returned. MX is
+    batch-queried once per unique domain (mx_lookup) for efficiency.
+    Read-only: no DB writes beyond MX cache, no sends.
+    """
+    conn.row_factory = sqlite3.Row
+    if states is None:
+        rows = conn.execute(
+            """SELECT * FROM leads
+                WHERE status NOT IN ('sent','bounced','do_not_contact','rejected',
+                                     'failed','delivery_issue','bounce_review','contact_form_pool')
+                  AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
+                ORDER BY id"""
+        ).fetchall()
+    else:
+        states_sql = ",".join("?" for _ in states)
+        rows = conn.execute(
+            f"""SELECT * FROM leads
+                WHERE state IN ({states_sql})
+                  AND status NOT IN ('sent','bounced','do_not_contact','rejected',
+                                     'failed','delivery_issue','bounce_review','contact_form_pool')
+                  AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
+                ORDER BY id""", states).fetchall()
+
+    # batch MX lookup for all candidate domains (single Worker call per domain)
+    domains: set[str] = set()
+    for row in rows:
+        d = _domain_of_email(str(row["email"] or ""))
+        if d:
+            domains.add(d)
+    mx_lookup: dict[str, str] = {}
+    from preflight_gate import query_mx
+    for d in sorted(domains):
+        try:
+            status, _ts = query_mx(d)
+        except Exception:
+            status = MX_DNS_ERROR
+        mx_lookup[d] = status
+
+    out: list[dict] = []
+    for row in rows:
+        lead = dict(row)
+        r = review_campaign_eligible_v2(lead, {"conn": conn, "mx_lookup": mx_lookup})
+        if r["pool"] == "CAMPAIGN_ELIGIBLE_V2":
+            out.append(lead)
+            if len(out) >= limit:
+                break
+    return out

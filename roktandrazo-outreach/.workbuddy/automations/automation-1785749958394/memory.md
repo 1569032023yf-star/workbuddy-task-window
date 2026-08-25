@@ -132,3 +132,120 @@
 - output/daily_collection_reports/2026-08-17.json
 - output/daily_collection_reports/2026-08-17.md
 - output/bd_operations_dashboard.html (regenerated)
+
+## 2026-08-18 20:31 Asia/Shanghai (evening run — 20:30 scheduled)
+
+**Status**: Report generated. Read-only — 0 DB writes (before/after identical: leads 1043, send_log 472, final_send_plan 173, bounce_log 52, suppression_list 54). Essentially a re-snapshot ~4min after the 20:27 run; no data change.
+
+**Key metrics** (identical to 20:27 run):
+- Final Sendable Unsent: 37 (Broad 37, Strict A0 0) | Gap to 30=0 / Gap to 60=23 | Inventory LOW
+- Total leads: 1043 | New orgs today: 23 | Website/Facebook/Manual emails: 0
+- manual_review_needed: 467 | website_recovery_pending: 92 | contact_recovery_pending: 27
+- send_log total: 472 (today 1) | final_send_plan total: 173 (today 11) | SMTP_enabled=0
+- Network errors: 4 (hard bounce 2, DNS 1, connection reset 1) | Bounces today: 3 (unresolved)
+- Active: TN / Nashville. Discovery queue front: Atlanta GA / Birmingham AL / Richmond VA (priority 30). Query pending 407 / completed 29 / config_blocked 3 / provider_timeout 1. Latest pending: "card game store Jackson MS". No in_progress (provider blocked).
+
+**Safety**: read-only ✓. Strict "Final Send Plan=0" → FAIL (11 production entries today at 01:51 CST, +1 send 09:21). SMTP channel=0 ✓. send_log unchanged by this run (472) ✓. Inventory running (DB mtime 20:28).
+
+**Ops Center**: 8765 listening (HTTP 200); live api/ops/summary generated_at 20:31, inventory.status=critical (Ops Center's own gap model to 40/80/120). Static dashboard regenerated via bd_dashboard_v3.2.py; Data Freshness FRESH (last_bounce_scan_at 20:28).
+
+**Deliverables**:
+- output/daily_collection_reports/2026-08-18.json
+- output/daily_collection_reports/2026-08-18.md
+- output/bd_operations_dashboard.html (regenerated) + manual_review_queue.json + followup_rotation_status.json
+
+## 2026-08-18 20:27 Asia/Shanghai (evening run)
+
+**Status**: Report generated. Read-only — 0 DB writes (before/after identical: leads 1043, send_log 472, final_send_plan 173, bounce_log 52, suppression 54).
+
+**Key metrics**:
+- Final Sendable Unsent: 37 (Broad 37, Strict A0 0) — unchanged vs 08-17; Gap to 30=0 / Gap to 60=23; Inventory LOW
+- Total leads: 1043 (+23 vs 08-17 1020) | New orgs today: 23 | Website/Facebook/Manual emails today: 0
+- New leads today span MO/NC/OR/PA/WA/AL/CO/IN (discovery still expanding beyond ALLOWED_STATES)
+- manual_review_needed: 467 (+2) | website_recovery: 92 (-2) | contact_recovery: 27 | email_missing: 461 (-2)
+- send_log total: 472 (+1) | send_log today: 1 | final_send_plan total: 173 (+11) | final_send_plan today: 11
+- SMTP_enabled = 0 (channel off)
+- Network errors: 4 (hard bounce 2, DNS 1, connection reset 1)
+- Bounces today: 3 (all 'unresolved', null diagnostic) at 08:35 — morning IMAP scan stale notifications (gigabitescafe/deepcomics/gamedaymiami)
+
+**⚠️ Production activity today (NOT caused by this run)**:
+- 1 SMTP send at 09:21 CST: lead 1055 "Game Cafe" Independence MO → tom@playgamecafe.com (template_id='' empty, manual_verified_by=user). MO is outside ALLOWED_STATES. Flag for review.
+- 11 final_send_plan entries today (01:51 CST, plan prefix `2026-08-18:new_outreach:`), all strict_a0: 9 planned + 1 sent + 1 cancelled. Suggests P17/P1.2 supervised batch active.
+
+**Safety**: read-only integrity ✓ (0 writes). Strict "Final Send Plan=0" check → FAIL (11 production entries today). SMTP channel=0 ✓. send_log unchanged BY THIS RUN ✓ (before=after=472), but production +1 today.
+
+**Ops Center**: 8765 NOW LISTENING (HTTP 200) — first time in recent runs. Live dashboard data confirmed current (api/ops/summary generated_at 20:27, today sent_new=1/planned_new=9). Static dashboard regenerated via bd_dashboard_v3.2.py. Data freshness now FRESH (last_bounce_scan_at 20:23, age 4min). Reconciliation: 1 legacy batch FAILED (new_outreach_20260805, 20 tracking_token_missing), 1 PASSED (p1_2_first20_20260813).
+
+**Deliverables**:
+- output/daily_collection_reports/2026-08-18.json
+- output/daily_collection_reports/2026-08-18.md
+- output/bd_operations_dashboard.html (regenerated) + manual_review_queue.json + followup_rotation_status.json
+
+## 2026-08-20 20:31 Asia/Shanghai (evening run — 20:30 scheduled)
+
+**Status**: Report generated. Read-only — 0 DB writes (before/after identical: leads 1066, send_log 482, final_send_plan 229, bounce_log 54, suppression_list 55).
+
+**Key metrics**:
+- Final Sendable Unsent: 37 (Broad 37, Strict A0 0) | Gap to 30=0 / Gap to 60=23 | Inventory LOW
+- Total leads: 1066 (unchanged vs 08-19) | New orgs today: 0 | Website/Facebook/Manual emails: 0
+- manual_review_needed: 488 | website_recovery_pending: 97 | contact_recovery_pending: 28 | email_missing: 480
+- send_log total: 482 (today 0) | final_send_plan total: 229 (today 45) | SMTP_enabled=0
+- Network errors: 4 (hard bounce 2, DNS 1, connection reset 1) | Bounces today: 0
+- Active: TN / Nashville. Discovery queue front: Atlanta GA / Birmingham AL / Richmond VA (priority 30). Query pending 463 / completed 31 / config_blocked 4 / provider_not_configured 1 / provider_timeout 1. Latest pending: "card game store Ithaca NY". No in_progress.
+
+**⚠️ Production activity today (NOT caused by this run)**: final_send_plan +45 entries today (was 184→229), all still `planned`/`cancelled`, SMTP=0 so nothing sent. Breakdown: `2026-08-20:new_outreach:199a9b0383` = 40 planned, `2026-08-20:follow_up:8354ac2a58` = 4 planned (follow-up re-enabled? flag), `canary_2026-08-20:new_outreach:81a9168fc8` = 1 cancelled.
+
+**Safety**: read-only ✓. Strict "Final Send Plan=0" → FAIL (45 production entries today). SMTP channel=0 ✓. send_log unchanged by this run (482) ✓. Inventory running (DB mtime 15:11).
+
+**Ops Center**: 8765 NOT listening (curl 000, no port in netstat). Static dashboard regenerated via bd_dashboard_v3.2.py; Data Freshness AGING (last_bounce_scan_at 15:11, age 320min). Reconciliation 2 batches any_failed=True. Schedule Preview 44 rows.
+
+**Deliverables**:
+- output/daily_collection_reports/2026-08-20.json
+- output/daily_collection_reports/2026-08-20.md
+- output/bd_operations_dashboard.html (regenerated) + manual_review_queue.json + followup_rotation_status.json
+
+## 2026-08-19 20:32 Asia/Shanghai (evening run — 20:30 scheduled)
+
+**Status**: Report generated. Read-only — 0 DB writes (before/after identical: leads 1066, send_log 482, final_send_plan 184, bounce_log 54, suppression_list 55).
+
+**Key metrics**:
+- Final Sendable Unsent: 37 (Broad 37, Strict A0 0) | Gap to 30=0 / Gap to 60=23 | Inventory LOW
+- Total leads: 1066 (+23 vs 08-18 1043) | New orgs today: 23 | Website/Facebook/Manual emails: 0
+- manual_review_needed: 488 (+21) | website_recovery: 97 (+5) | contact_recovery: 28 (+1) | email_missing: 480
+- send_log total: 482 (today 10) | final_send_plan total: 184 (today 11) | SMTP_enabled=0
+- Network errors: 4 (hard bounce 2, DNS 1, connection reset 1) | Bounces today: 2 (1 domain_invalid MX-not-found + 1 unresolved)
+- Active: TN / Nashville. Discovery queue front: Atlanta GA / Birmingham AL / Richmond VA (priority 30). Query pending 444 / completed 31 / config_blocked 3 / provider_not_configured 1 / provider_timeout 1. Latest pending: "card game store Ithaca NY". No in_progress.
+
+**Safety**: read-only ✓. Strict "Final Send Plan=0" → FAIL (11 production entries today, +10 sends). SMTP channel=0 ✓. send_log unchanged by this run (482) ✓. Inventory running (DB mtime 20:29).
+
+**Ops Center**: 8765 listening (HTTP 200); live api/ops/summary generated_at 20:32, total_leads=1066 (matches snapshot). Static dashboard regenerated via bd_dashboard_v3.2.py; Data Freshness FRESH (last_bounce_scan_at 20:29, age 3min).
+
+**Deliverables**:
+- output/daily_collection_reports/2026-08-19.json
+- output/daily_collection_reports/2026-08-19.md
+- output/bd_operations_dashboard.html (regenerated) + manual_review_queue.json + followup_rotation_status.json
+
+## 2026-08-21 20:31 Asia/Shanghai (evening run — 20:30 scheduled)
+
+**Status**: Report generated. Read-only — 0 DB writes (before/after identical: leads 1066, send_log 496, final_send_plan 278, bounce_log 62, suppression_list 55).
+
+**Key metrics**:
+- Final Sendable Unsent: 29 (Broad 29, Strict A0 0) — ↓8 vs 08-20 (37→29); Gap to 30=1 / Gap to 60=31; Inventory LOW
+- Total leads: 1066 (unchanged) | New orgs today: 0 | Website/Facebook/Manual emails: 0
+- manual_review_needed: 480 (-8) | website_recovery_pending: 97 | contact_recovery_pending: 36 (+8) | email_missing: 480
+- send_log total: 496 (+14) | send_log today: 5 | final_send_plan total: 278 (+49) | final_send_plan today: 5
+- SMTP_enabled=0 | Network errors: 4 (hard bounce 2, DNS 1, connection reset 1) | Bounces today: 8
+- Active: TN / Nashville. Discovery queue front: Atlanta GA / Birmingham AL / Richmond VA (priority 30). Query pending 463 / completed 31 / config_blocked 4 / provider_not_configured 1 / provider_timeout 1. Latest pending: "card game store Ithaca NY". No in_progress.
+
+**⚠️ Production activity today (NOT caused by this run)**:
+- 5 SMTP sends 11:59–12:04 CST, batch `2026-08-21:new_outreach:38419abaa0`, template retail_distributor_v5_locked, leads 1056–1060 (The Wyvern's Tale / Mage's Comics / Village Meeple / Meta-Games Unlimited / Ye Gamer's Guild). 5 final_send_plan entries status='sent'.
+- 8 bounces today (08:51 CST IMAP scan), all `domain_invalid` / "type=MX: Host not found (html fallback)" — these are STALE PostMaster notifications for `info@` guessed domains (warhammermadison.com, collectiblecornermke.com, thirdplanet.com, crimsondragongames.com, beansandicecream.com, patinamn.com, gamegalaxysa.com, wondermenttoys.com), NOT today's 5 sends. Recurring stale-notification issue (same class flagged 08-14/08-18).
+
+**Safety**: read-only ✓ (0 writes). Strict "Final Send Plan=0" → FAIL (5 production 'sent' entries today). SMTP channel=0 ✓. send_log unchanged by this run (496) ✓. Inventory running.
+
+**Ops Center**: 8765 NOT listening (curl 000). Static dashboard regenerated via bd_dashboard_v3.2.py; Data Freshness AGING (last_bounce_scan_at 08-21 08:51, age ~700min). Reconciliation 2 batches any_failed=True. Schedule Preview 5 rows.
+
+**Deliverables**:
+- output/daily_collection_reports/2026-08-21.json
+- output/daily_collection_reports/2026-08-21.md
+- output/bd_operations_dashboard.html (regenerated) + manual_review_queue.json + followup_rotation_status.json

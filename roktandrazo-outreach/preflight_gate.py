@@ -57,7 +57,10 @@ DNS_FAIL_STATUSES = frozenset({"nxdomain", "null_mx", "no_mail_route"})
 # Worker 返回的 mx_status → 门禁 mx_status 映射
 _WORKER_STATUS_MAP = {
     "mx_pass": "ok",
-    "implicit_mail_route": "ok",  # 无 MX 但有 A/AAAA，RFC5321 隐式投递路由，不算 fail
+    # P1.7H: EXPLICIT_MX_REQUIRED — 即使旧 Worker/历史响应返回 implicit_mail_route，
+    # 一律映射为 no_mail_route（fail）。腾讯 SMTP 不做 A-fallback（falloutcomics.com
+    # 真实 DSN: type=MX Host not found），A-only 隐式路由不可视为可投递。
+    "implicit_mail_route": "no_mail_route",
     "nxdomain": "nxdomain",
     "no_mx_found": "null_mx",
     "no_mail_route": "no_mail_route",
@@ -172,10 +175,15 @@ def check_dns_freshness(conn, max_age_hours=24, persist_cache=True, batch_id=Non
 
     - 同域名单次运行只查一次（内存缓存）。
     - 读取 system_config.mx_cache_<domain>（json {status, checked_at}）：
-      命中且在 max_age_hours 内 → 直接复用缓存，不再查网络；
-      未命中或超龄 → 现场查 Worker MX 并写缓存，同时该域名标记 stale=True。
-    - freshness 规则：>24h 未查或从未查 → stale（必须 fail）；
-      MX 结果在 24h 内且为 nxdomain/null_mx/no_mail_route → fail。
+      命中且在 max_age_hours 内 → 直接复用缓存（fresh=True），不再查网络；
+      未命中或超龄 → 现场查 Worker MX 并写缓存（self-bootstrap）：
+        * 本次 live 查询成功且结果为可投递状态（explicit MX = ok）
+          → 立即视为 FRESH/PASS（stale=False），不要求第二次运行；
+        * 本次 live 查询返回 dns_error/timeout/unauthorized/no_mail_route/
+          nxdomain/null_mx/invalid_mx → FAIL CLOSED（stale=True）。
+      注意：stale 缓存本身绝不被当作 PASS；PASS 只来自 fresh 缓存
+      或本次成功的 live refresh。
+    - MX 结果在 24h 内且为 nxdomain/null_mx/no_mail_route → fail（沿用上方判定）。
     - persist_cache=False 时不写 system_config（只读场景）。
     返回 dict：domain -> {mx_status, checked_at, stale, fresh}
     """
@@ -218,18 +226,23 @@ def check_dns_freshness(conn, max_age_hours=24, persist_cache=True, batch_id=Non
             }
             continue
 
-        # 缓存未命中/超龄 → 现场查询
+        # 缓存未命中/超龄 → 现场查询（self-bootstrap：本次 live 成功即视为 fresh）
         status, checked_at = query_mx(domain)
         if persist_cache:
             try:
                 _write_config(conn, f"mx_cache_{domain}", json.dumps({"status": status, "checked_at": checked_at}))
             except sqlite3.Error:
                 pass  # 缓存写失败不阻断检查
+        # 本次 live 查询成功且结果为可投递状态（explicit MX = ok）→
+        # 立即视为 FRESH/PASS（同一运行内即可通过，不要求第二次运行）。
+        # 其余（dns_error / timeout / unauthorized / no_mail_route /
+        # nxdomain / null_mx / invalid_mx）→ FAIL CLOSED（stale=True）。
+        live_passed = (status == "ok")
         results[domain] = {
             "mx_status": status,
             "checked_at": checked_at,
-            "stale": True,   # 上一次验证超过 24h 或从未验证 → 冷启动，必须 fail
-            "fresh": False,
+            "stale": not live_passed,
+            "fresh": live_passed,
         }
     return results
 
@@ -656,8 +669,14 @@ def _local_window_utc_for(tz, on_date, now_utc):
 # ── run_preflight 汇总 ──────────────────────────────────────
 
 def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_cache=True, now=None,
-                  send_window_override: bool = False):
+                  send_window_override: bool = False, include_auth_entries: bool = True):
     """汇总全部检查。任何 fail → smtp_blocked=True（SMTP 保持 0）。
+
+    include_auth_entries=False 时跳过 check_auth_entries（该检查要求授权已存在，
+    用于「授权创建前」的 PRE_AUTH 阶段：此时授权尚不存在，必须先拿到真实结果
+    才能决定是否创建授权，避免 create_send_authorization(preflight_passed=True)
+    硬编码假通过）。授权创建后再以 include_auth_entries=True 跑一遍做 POST_AUTH
+    一致性校验。
 
     返回 {pass, checks, blocks, smtp_blocked, batch_id, plan_count, checked_at,
           timezone_blocks}
@@ -715,14 +734,18 @@ def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_
         checks.append({"name": "dns_freshness", "status": "warn", "detail": "require_dns=False, skipped"})
 
     # 2..7 各检查
-    for fn in (
+    # PRE_AUTH 阶段：除 auth_entries 外的全部检查（不依赖授权已存在）。
+    # auth_entries 仅在 include_auth_entries=True 时纳入（POST_AUTH 一致性校验）。
+    pre_auth_fns = [
         check_hygiene,
         check_duplicates,
         check_template,
         lambda c, rows: check_snapshot_plan_hash(c, snapshot_path, rows),
-        lambda c, rows: check_auth_entries(c, batch_id, now),
         lambda c, rows: check_stale_objects(c, batch_id, now),
-    ):
+    ]
+    if include_auth_entries:
+        pre_auth_fns.append(lambda c, rows: check_auth_entries(c, batch_id, now))
+    for fn in pre_auth_fns:
         res = fn(conn, plan_rows)
         checks.append(res)
         if res["status"] == "fail":

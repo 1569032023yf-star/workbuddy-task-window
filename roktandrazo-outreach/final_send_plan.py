@@ -47,6 +47,18 @@ def create_plan(conn: sqlite3.Connection, leads: list[dict], batch_date: str, me
     plan_id = f"{batch_date}:{message_type}:{uuid.uuid4().hex[:10]}"
     if not entries:
         return ""
+    # ── Idempotency guard (root-cause fix for FSP duplicate accumulation) ──
+    # Retire any pre-existing PLANNED rows of the same message_type across ALL
+    # batches BEFORE freezing the new plan. Repeated pre-send runs used to append
+    # duplicate rows (=> double-sends) and left stale batches that fail preflight's
+    # stale_objects gate. Cancelling prior planned rows of this message_type keeps
+    # exactly one active planned set at a time. No-op when entries is empty (early
+    # return above), so an empty eligible set never wipes an in-flight plan.
+    conn.execute(
+        "UPDATE final_send_plan SET status='cancelled', skip_reason='superseded_by_new_plan' "
+        "WHERE status='planned' AND message_type=?",
+        (message_type,),
+    )
     # 渲染元数据列：表缺列则跳过（向后兼容），template_id 保持原值
     existing = _table_columns(conn)
     meta_cols = [c for c in RENDER_META_COLUMNS if c in existing]

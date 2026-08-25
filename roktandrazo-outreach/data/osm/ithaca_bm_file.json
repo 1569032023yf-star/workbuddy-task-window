@@ -1,0 +1,735 @@
+{
+  "provider": "browser_maps",
+  "query": "toy store Ithaca NY",
+  "city": "Ithaca",
+  "state": "NY",
+  "page_cursor": "",
+  "next_page_cursor": "",
+  "status": "ok",
+  "error": "",
+  "results": [
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:1234244215",
+      "place_id": "osm-node-1234244215",
+      "business_name": "The Outdoor Store",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.439735,
+        "osm_lon": -76.496132
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.439735,
+      "location_lng": -76.496132
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:1676946843",
+      "place_id": "osm-node-1676946843",
+      "business_name": "Buffalo Street Books",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "https://www.buffalostreetbooks.com/",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.441187,
+        "osm_lon": -76.498329
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.441187,
+      "location_lng": -76.498329
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:3758987560",
+      "place_id": "osm-node-3758987560",
+      "business_name": "Autumn Leaves Used Books",
+      "formatted_address": "115 East State Street Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-273-8239",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.439418,
+        "osm_lon": -76.498289
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.439418,
+      "location_lng": -76.498289
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:3760474957",
+      "place_id": "osm-node-3760474957",
+      "business_name": "One Green Horse",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.542038,
+        "osm_lon": -76.661869
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.542038,
+      "location_lng": -76.661869
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:4896092210",
+      "place_id": "osm-node-4896092210",
+      "business_name": "Advantage Sport & Fitness Inc.",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "+1-800-308-4382",
+      "website": "https://www.advantagefitness.com/",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.480468,
+        "osm_lon": -76.480543
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.480468,
+      "location_lng": -76.480543
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:5290663523",
+      "place_id": "osm-node-5290663523",
+      "business_name": "Bev and Co",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "gift"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "gift",
+        "osm_lat": 42.479998,
+        "osm_lon": -76.481901
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.479998,
+      "location_lng": -76.481901
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:6388141742",
+      "place_id": "osm-node-6388141742",
+      "business_name": "Kleins Archery",
+      "formatted_address": "119 Freeville Road Dryden 13053",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "13053",
+      "phone": "+1-607-844-3474",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.498437,
+        "osm_lon": -76.313109
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.498437,
+      "location_lng": -76.313109
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:6698915300",
+      "place_id": "osm-node-6698915300",
+      "business_name": "Homegrown",
+      "formatted_address": "104 East State Street Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-273-0430",
+      "website": "https://www.homegrownskateshop.com",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.439652,
+        "osm_lon": -76.498712
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.439652,
+      "location_lng": -76.498712
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:6920426294",
+      "place_id": "osm-node-6920426294",
+      "business_name": "Taughannock Falls Overlook Visitor Center",
+      "formatted_address": "2381 Taughannock Park Road",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "https://www.visitithaca.com/things-to-do/outdoor-recreation/taughannock-falls-state-park/",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "gift"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "gift",
+        "osm_lat": 42.538612,
+        "osm_lon": -76.607393
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.538612,
+      "location_lng": -76.607393
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:7705047190",
+      "place_id": "osm-node-7705047190",
+      "business_name": "Found in Ithaca",
+      "formatted_address": "620 South Aurora Street Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-697-5335",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "antiques"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "antiques",
+        "osm_lat": 42.430952,
+        "osm_lon": -76.499674
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.430952,
+      "location_lng": -76.499674
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:8796617772",
+      "place_id": "osm-node-8796617772",
+      "business_name": "Michaels",
+      "formatted_address": "40 Catherwood Road Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-319-2100",
+      "website": "https://locations.michaels.com/NY/Ithaca/5095",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "craft"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "craft",
+        "osm_lat": 42.484471,
+        "osm_lon": -76.490304
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.484471,
+      "location_lng": -76.490304
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:8796643384",
+      "place_id": "osm-node-8796643384",
+      "business_name": "Barnes & Noble",
+      "formatted_address": "614 South Meadow Street Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-273-6784",
+      "website": "https://stores.barnesandnoble.com/store/2122",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.432974,
+        "osm_lon": -76.510233
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.432974,
+      "location_lng": -76.510233
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:8977165759",
+      "place_id": "osm-node-8977165759",
+      "business_name": "Instant Replay Sports",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.479826,
+        "osm_lon": -76.481952
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.479826,
+      "location_lng": -76.481952
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:10222791218",
+      "place_id": "osm-node-10222791218",
+      "business_name": "Odyssey Bookstore",
+      "formatted_address": "115 West Green Street Lower Ithica 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-269-5800",
+      "website": "https://odysseybookstore.com/",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.438423,
+        "osm_lon": -76.500007
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.438423,
+      "location_lng": -76.500007
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:11754168404",
+      "place_id": "osm-node-11754168404",
+      "business_name": "Gourdlandia",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "gift"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "gift",
+        "osm_lat": 42.442983,
+        "osm_lon": -76.541084
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.442983,
+      "location_lng": -76.541084
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:12082133672",
+      "place_id": "osm-node-12082133672",
+      "business_name": "Dick's Sporting Goods",
+      "formatted_address": "710 South Meadow Street Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "+1-607-216-6180",
+      "website": "https://stores.dickssportinggoods.com/ny/ithaca/1535/",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.431929,
+        "osm_lon": -76.510279
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.431929,
+      "location_lng": -76.510279
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:12086198631",
+      "place_id": "osm-node-12086198631",
+      "business_name": "Midas Menagerie",
+      "formatted_address": "118 West Green Street Ithaca 14850",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "14850",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "antiques"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "antiques",
+        "osm_lat": 42.438924,
+        "osm_lon": -76.500067
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.438924,
+      "location_lng": -76.500067
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:13295757701",
+      "place_id": "osm-node-13295757701",
+      "business_name": "Young’s Gold Silver Coins & Antiquities",
+      "formatted_address": "416 Elmira Road",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "antiques"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "antiques",
+        "osm_lat": 42.418521,
+        "osm_lon": -76.522304
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.418521,
+      "location_lng": -76.522304
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:13755682901",
+      "place_id": "osm-node-13755682901",
+      "business_name": "Sundrees",
+      "formatted_address": "11 West Main Street",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "gift"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "gift",
+        "osm_lat": 42.54199,
+        "osm_lon": -76.662685
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.54199,
+      "location_lng": -76.662685
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:13760696801",
+      "place_id": "osm-node-13760696801",
+      "business_name": "Protagonist Books & Coffee",
+      "formatted_address": "8-10 West Main Street",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "+1-607-241-0943",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.490744,
+        "osm_lon": -76.298228
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.490744,
+      "location_lng": -76.298228
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:13993604601",
+      "place_id": "osm-node-13993604601",
+      "business_name": "Finger Lakes Running",
+      "formatted_address": "700 Cascadilla Street",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "sports"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "sports",
+        "osm_lat": 42.44445,
+        "osm_lon": -76.509364
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.44445,
+      "location_lng": -76.509364
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:13993605701",
+      "place_id": "osm-node-13993605701",
+      "business_name": "The Treasure Chest Ithaca",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "antiques"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "antiques",
+        "osm_lat": 42.437193,
+        "osm_lon": -76.509219
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.437193,
+      "location_lng": -76.509219
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:node:14002504501",
+      "place_id": "osm-node-14002504501",
+      "business_name": "Pastimes Antiques and Treasures",
+      "formatted_address": "215 North Cayuga Street",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "https://www.pastimes.com/",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "antiques"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "antiques",
+        "osm_lat": 42.440987,
+        "osm_lon": -76.498605
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.440987,
+      "location_lng": -76.498605
+    },
+    {
+      "provider": "browser_maps",
+      "provider_result_id": "osm:way:199734708",
+      "place_id": "osm-way-199734708",
+      "business_name": "The Cornell Store",
+      "formatted_address": "",
+      "city": "Ithaca",
+      "state": "NY",
+      "country": "US",
+      "postal_code": "",
+      "phone": "",
+      "website": "",
+      "business_status": "OPERATIONAL",
+      "primary_type": "store",
+      "types": [
+        "store",
+        "point_of_interest",
+        "books"
+      ],
+      "source_query": "toy store Ithaca NY",
+      "source_url": "",
+      "raw_payload": {
+        "osm_shop": "books",
+        "osm_lat": 42.446552,
+        "osm_lon": -76.484658
+      },
+      "next_page_cursor": "",
+      "location_lat": 42.446552,
+      "location_lng": -76.484658
+    }
+  ],
+  "request_count": 1,
+  "cost_units": 0,
+  "collected_at": "2026-08-19T00:00:00+00:00"
+}

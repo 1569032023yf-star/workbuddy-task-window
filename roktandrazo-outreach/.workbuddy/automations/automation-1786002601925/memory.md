@@ -75,3 +75,48 @@
 - unsubscribe: total 1, suppression_total 53（历史 26 → 53，+27，与近期新增 bounce 同步入 suppression 一致）。
 - 输出落盘 output/result_recovery_sync_2026-08-18.json（7921 B）；system_config 写入 sync_0845_last_success_at=2026-08-18T08:35:56.311936+08:00、sync_0845_steps 全 ok（DB 实测确认）。
 - poller_status: bounce job last_success_at=2026-08-18T08:35:56.308661+08:00，consecutive_failures=0（心跳正常，未 stale）。tracking/reply/health job 及 last_heartbeat_at 仍停在 2026-08-14（poller 进程 08-14 后未再心跳，属 poller 自身维护，非本脚本职责；bounce 心跳由本脚本刷新，09:00 日报不会误报 BOUNCE SCAN FAILED）。
+
+## 2026-08-19 (08:35 CST) — 正常运行（早间轮次）
+- 脚本执行成功，exit 0，all_ok=true，四步全部 ok。
+- tracking: total 136 / matched 61 (hit_rate 44.85%)，全部按 send_log_id+smtp_message_id 匹配（与历史一致）。
+- bounce: scanned 16 / matched 16 / domain_invalid 13 / mailbox_invalid 0 / policy 0 / soft 0 / unmatched_dsn 0 / unresolved 3（与 08-18 完全一致，无新增 bounce；16 条 DSN 含 comicbookworld + report.178667xxxx 系列，全部匹配 send_log，13 domain_invalid [MX host not found] + 3 unresolved [gigabitescafe/deepcomics/gamedaymiami 无诊断码]）。
+- reply: total 1（last_reply_received_at 2026-06-25）— 正常值。
+- unsubscribe: total 1, suppression_total 54（08-18 的 53 → 54，+1）。
+- 输出落盘 output/result_recovery_sync_2026-08-19.json（7921 B）；system_config 写入 sync_0845_last_success_at=2026-08-19T08:35:53.928549+08:00、sync_0845_steps 全 ok（DB 实测确认）。
+- poller_status: 心跳全面恢复——last_heartbeat_at=2026-08-19T08:35:55.88，四个 job 全部有 last_success_at 且 consecutive_failures=0（tracking 08:35:55 / health 08:35:14 / reply 08:31:59 / bounce 08:35:51）。poller 进程今日活跃，未 stale；09:00 日报不会误报任何 SCAN FAILED。
+
+## 2026-08-19 (08:52 CST) — 正常运行（08:45 计划轮次，当日第二次执行）
+- 脚本执行成功，exit 0，all_ok=true，四步全部 ok。
+- tracking: total 136 / matched 61 (hit_rate 44.85%)，全部按 send_log_id+smtp_message_id 匹配（与历史一致）。
+- bounce: scanned 16 / matched 16 / domain_invalid 13 / mailbox_invalid 0 / policy 0 / soft 0 / unmatched_dsn 0 / unresolved 3（与 08-18/08-19 早间完全一致，无新增 bounce；16 条 DSN 全部匹配 send_log，13 domain_invalid [MX host not found] + 3 unresolved [gigabitescafe/deepcomics/gamedaymiami 无诊断码]）。
+- reply: total 1（last_reply_received_at 2026-06-25）— 正常值。
+- unsubscribe: total 1, suppression_total 54（无变化）。
+- 输出落盘 output/result_recovery_sync_2026-08-19.json（7921 B，覆盖今日早间文件）；system_config 写入 sync_0845_last_success_at=2026-08-19T08:52:01.826409+08:00、sync_0845_steps 全 ok（DB 实测确认）。
+- poller_status: 心跳正常——last_heartbeat_at=2026-08-19T08:52:03.12，bounce job last_success_at=08:51:39（scanned=16 matched=16 domain_invalid=13），四个 job consecutive_failures=0，未 stale。注意：current_errors 仍报 delivery_guard "Guard dead, max restarts reached"（poller 自身 guard job 状态，非本脚本职责，09:00 日报留意）。
+
+## 2026-08-20 (08:52 CST) — 正常运行（08:45 计划轮次）
+- 脚本执行成功，exit 0，all_ok=true，四步全部 ok。
+- tracking: total 136 / matched 61 (hit_rate 44.85%)，全部按 send_log_id+smtp_message_id 匹配（与历史一致）。
+- bounce: scanned 16 / matched 16 / domain_invalid 13 / mailbox_invalid 0 / policy 0 / soft 0 / unmatched_dsn 0 / unresolved 3（与 08-18/08-19 完全一致，无新增 bounce；16 条 DSN 全部匹配 send_log，13 domain_invalid [MX host not found] + 3 unresolved [deepcomics/gamedaymiami/fantasyfactory 无诊断码]）。
+- reply: total 1（last_reply_received_at 2026-06-25）— 正常值。
+- unsubscribe: total 1, suppression_total 55（08-19 的 54 → 55，+1）。
+- 输出落盘 output/result_recovery_sync_2026-08-20.json（7926 B）；system_config 写入 sync_0845_last_success_at=2026-08-20T08:52:15、sync_0845_steps 全 ok。
+- poller_status: 心跳正常——last_heartbeat_at=2026-08-20T08:52:08，bounce job last_success_at=08:52:15，四个 job consecutive_failures=0，未 stale；09:00 日报不会误报任何 SCAN FAILED。current_errors 仍报 delivery_guard "Guard dead, max restarts reached"（poller 自身 guard job 状态，非本脚本职责，持续观察）。
+
+## 2026-08-21 (08:51 CST) — 正常运行（08:45 计划轮次）
+- 脚本执行成功，exit 0，all_ok=true，四步全部 ok。
+- tracking: total 136 / matched 61 (hit_rate 44.85%)，全部按 send_log_id+smtp_message_id 匹配（与历史一致）。
+- bounce: ⚠️ 队列变化：scanned 17 / matched 17 / domain_invalid 15 / mailbox_invalid 0 / policy 0 / soft 0 / unmatched_dsn 0 / unresolved 2（08-20 的 16 条 → 17 条，+1；domain_invalid 13 → 15，+2；unresolved 3 → 2，-1）。15 条 domain_invalid 全部 MX host not found（send_log 547-574 系列 P1.x 新批次回流：unrealcitycomics 548 / treasurecoasttoys 549 / dicecafestl 551 / bpluscomics 552 / fantasyshoponline 547 / d4seasons 553 / falloutcomics 564 / warhammermadison 567 / collectiblecornermke 568 / thirdplanet 569 / crimsondragongames 570 / beansandicecream 571 / patinamn 572 / gamegalaxysa 573 / wondermenttoys 574，lead 134-300/1054）；2 unresolved [gamedaymiami 550 / fantasyfactory 558 无诊断码]；deepcomics 已移出队列。无 mailbox/policy/soft 新风险。
+- reply: total 1（last_reply_received_at 2026-06-25）— 正常值。
+- unsubscribe: total 1, suppression_total 55（无变化）。
+- 输出落盘 output/result_recovery_sync_2026-08-21.json（8451 B）；system_config 写入 sync_0845_last_success_at=2026-08-21T08:51:18.722047+08:00、sync_0845_steps 全 ok（DB 实测确认）。
+- poller_status: bounce job last_success_at=2026-08-21T08:51:18.719600+08:00（本脚本刷新，心跳正常，未 stale；09:00 日报不会误报 BOUNCE SCAN FAILED）。⚠️ poller 整体心跳停在 2026-08-20T15:11:50（tracking/health/reply job last_success 均 08-20 15:xx），tracking job consecutive_failures=1 报 "tracking_all_transports_failed: curl_subprocess_no_data,urllib_proxy_no_data,urllib_direct_no_data"；current_errors 仍含 delivery_guard "Guard dead, max restarts reached"（poller 自身状态，非本脚本职责，09:00 日报留意 TRACKING SCAN / HEALTH 可能 stale）。
+
+## 2026-08-22 (08:53 CST) — 正常运行（08:45 计划轮次）
+- 脚本执行成功，exit 0，all_ok=true，四步全部 ok。
+- tracking: total 136 / matched 61 (hit_rate 44.85%)，全部按 send_log_id+smtp_message_id 匹配（与历史一致）。
+- bounce: ⚠️ 队列微变化：scanned 16 / matched 16 / domain_invalid 14 / mailbox_invalid 0 / policy 0 / soft 0 / unmatched_dsn 0 / unresolved 2（08-21 的 17 条 → 16 条，-1；domain_invalid 15 → 14，-1）。unrealcitycomics (send_log 548) 已移出队列；其余 14 条 domain_invalid [MX host not found: treasurecoasttoys 549/dicecafestl 551/bpluscomics 552/fantasyshoponline 547/d4seasons 553/falloutcomics 564/warhammermadison 567/collectiblecornermke 568/thirdplanet 569/crimsondragongames 570/beansandicecream 571/patinamn 572/gamegalaxysa 573/wondermenttoys 574] + 2 unresolved [gamedaymiami 550/fantasyfactory 558 无诊断码]，全部匹配 send_log。无新增 bounce、无 mailbox/policy/soft 风险。
+- reply: total 1（last_reply_received_at 2026-06-25）— 正常值。
+- unsubscribe: total 1, suppression_total 55（无变化）。
+- 输出落盘 output/result_recovery_sync_2026-08-22.json（8021 B）；system_config 写入 sync_0845_last_success_at=2026-08-22T08:53:19.341040+08:00、sync_0845_steps 全 ok（脚本输出确认）。
+- poller_status: bounce job last_success_at=2026-08-22T08:53:19.335988+08:00（本脚本刷新，心跳正常，未 stale；09:00 日报不会误报 BOUNCE SCAN FAILED）。⚠️ poller 整体心跳仍停在 2026-08-20T15:11:50（连续第 2 天；tracking/health/reply job last_success 均 08-20 15:xx），tracking job consecutive_failures=1 报 "tracking_all_transports_failed"；current_errors 仍含 delivery_guard "Guard dead, max restarts reached"（poller 自身状态，非本脚本职责，09:00 日报留意 TRACKING SCAN / HEALTH 可能 stale）。

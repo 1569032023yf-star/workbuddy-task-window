@@ -1,0 +1,20 @@
+import sqlite3
+DB = r"C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach/data/bd_leads.db"
+c = sqlite3.connect(DB); cur = c.cursor()
+targets = [1068,1070,1071,1072,1073,1074,1075,1076,1077]
+print("=== final_send_plan for 8/19 batch leads ===")
+cur.execute("SELECT id, plan_id, lead_id, outreach_batch_date, status, sent_at, skip_reason FROM final_send_plan WHERE lead_id IN (%s) ORDER BY lead_id" % ",".join(str(t) for t in targets))
+for r in cur.fetchall(): print("  ", r)
+print("\n=== send_log for those leads ===")
+cur.execute("SELECT id, lead_id, email, status, error_message FROM send_log WHERE lead_id IN (%s) ORDER BY lead_id" % ",".join(str(t) for t in targets))
+rows=cur.fetchall()
+print("  count:", len(rows))
+for r in rows: print("  ", r)
+print("\n=== outreach_batch_date distribution ===")
+cur.execute("SELECT outreach_batch_date, status, COUNT(*) FROM final_send_plan GROUP BY outreach_batch_date, status ORDER BY outreach_batch_date DESC LIMIT 30")
+for r in cur.fetchall(): print("  ", r)
+print("\n=== preflight_blockers ===")
+cur.execute("SELECT value FROM system_config WHERE key='preflight_blockers'")
+v=cur.fetchone()
+print("  ", v[0] if v else None)
+c.close()

@@ -1,5 +1,5 @@
 {
-  "date": "2026-07-23",
+  "date": "2026-08-24",
   "new_outreach_sent": 0,
   "new_outreach_target": 40,
   "new_outreach_gap": 40,
@@ -8,10 +8,10 @@
   "replies": 0,
   "unsubscribes": 0,
   "a0_sendable": 0,
-  "inventory_target": 120,
-  "inventory_gap": 120,
-  "total_leads": 616,
-  "total_sent_all": 326,
+  "inventory_target": 30,
+  "inventory_gap": 30,
+  "total_leads": 1066,
+  "total_sent_all": 493,
   "risk_gate": "clear",
-  "generated_at": "2026-07-23T17:31:19.800325"
+  "generated_at": "2026-08-25T00:25:04.816797+08:00"
 }

@@ -97,6 +97,19 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
         for e in entries
     ]
     authorization_id = ""
+    # P2.3B: 真实 preflight 硬门 —— 创建授权前先跑 PRE_AUTH 检查（不含 auth_entries，
+    # 因为授权此刻尚不存在）。结果必须来自可追溯到 real preflight evidence 的检查，
+    # 不得再用 create_send_authorization(preflight_passed=True) 硬编码假通过。
+    from preflight_gate import run_preflight
+    _snapshot_path = os.path.join(OUT_DIR, f"frozen_{batch_date}.json")
+    # dry-run 用 persist_cache=False（只读，不写 system_config.mx_cache）；live 才写真实缓存。
+    _pf_pre = run_preflight(conn, batch_date, snapshot_path=_snapshot_path,
+                            persist_cache=(not dry_run), include_auth_entries=False)
+    result["preflight_pre_auth"] = {
+        "pass": _pf_pre["pass"],
+        "blocks": _pf_pre["blocks"],
+        "checked_at": _pf_pre["checked_at"],
+    }
     if entries and not dry_run:
         plan_id = entries[0]["plan_id"]
         # 使用与 conn 相同的 DB 文件（避免 bd_sender.DB_PATH 与 bd_db.DB_PATH 不一致导致写错库）
@@ -113,11 +126,28 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
             authorization_id = existing["authorization_id"]
             result["authorization_id"] = authorization_id
             result["authorization_reused"] = True
-        else:
-            auth = create_send_authorization(plan_id, batch_date, auth_entries, preflight_passed=True,
-                                             db_path=_db_file)
+        elif _pf_pre["pass"]:
+            # 真实 preflight 通过 → 用真实结果创建授权（preflight_status='passed' 可追溯到本次检查）
+            auth = create_send_authorization(
+                plan_id, batch_date, auth_entries,
+                preflight_passed=True, preflight_passed_status='passed',
+                db_path=_db_file,
+            )
             authorization_id = auth["authorization_id"]
             result["authorization_id"] = authorization_id
+            # POST_AUTH 一致性校验：授权已存在 → 纳入 auth_entries 检查（plan 与 entries 逐条一致）
+            _pf_post = run_preflight(conn, batch_date, snapshot_path=_snapshot_path,
+                                     include_auth_entries=True)
+            result["preflight_post_auth"] = {
+                "pass": _pf_post["pass"],
+                "blocks": _pf_post["blocks"],
+                "checked_at": _pf_post["checked_at"],
+            }
+        else:
+            # 真实 preflight 失败 → fail-closed：不创建授权，send_one 将因无 approved 授权而拒绝，
+            # 条目被标记 failed，SMTP 保持 0。
+            result["preflight_blocked"] = True
+            authorization_id = ""
     else:
         result["authorization_shadow"] = {
             "entries": len(auth_entries),
@@ -238,7 +268,7 @@ def _load_and_recheck_plan_lead(conn, entry: dict) -> dict | None:
 
 
 def _new_outreach_gate(conn, lead: dict, entry: dict) -> bool:
-    from campaign_eligible import review_campaign_eligible
+    from campaign_eligible_v2 import review_campaign_eligible_v2
 
     # 正式政策：Broad Ready → ICP Qualified → Campaign Eligible → Final Send Plan。
     # Strict A0 只是优先层，不是唯一发送门槛。发送前 recheck 用 Campaign Eligible 判定。
@@ -252,8 +282,14 @@ def _new_outreach_gate(conn, lead: dict, entry: dict) -> bool:
         return False
     if _lead_or_email_exists(conn, 'send_log', lead['id'], entry['recipient_email'], "AND status='sent' AND COALESCE(message_type,'new_outreach')='new_outreach'"):
         return False
-    r = review_campaign_eligible(lead, {"conn": conn})
-    return r["pool"] == "CAMPAIGN_ELIGIBLE"
+    # explicit fail-closed rechecks (additive to V2 broad_ready history checks)
+    if is_suppressed(entry['recipient_email']):
+        return False
+    if check_bounce_history(entry['recipient_email'])['hard']:
+        return False
+    # Campaign Eligible V2: V1 + explicit MX PASS + evidence fresh + official source quality
+    r = review_campaign_eligible_v2(lead, {"conn": conn})
+    return bool(r.get("eligible"))
 
 
 def _follow_up_gate(conn, lead: dict, entry: dict) -> bool:

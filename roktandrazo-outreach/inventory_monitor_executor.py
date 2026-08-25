@@ -60,7 +60,8 @@ SKIP_DOMAINS = {
 CHINA_TLDS = {'.cn', '.中国', '.公司', '.网络'}
 CHINA_HOSTING_KEYWORDS = ['aliyun', 'tencent', 'qcloud', 'ucloud', 'beian']
 
-ALLOWED_STATES = frozenset({"TN", "AR", "KY"})
+# P1.7C: State no longer a discovery/inventory hard gate. Empty = all states allowed.
+ALLOWED_STATES = frozenset()  # legacy value was {"TN","AR","KY"}; empty means no state restriction
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
 
@@ -108,15 +109,14 @@ def get_db(readonly=False):
     return conn
 
 def count_sendable(conn=None):
-    """Count unsent sendable organizations in TN/AR/KY (not just A0)."""
+    """Count unsent sendable organizations across all states (P1.7C: no 3-state filter)."""
     close_after = conn is None
     if conn is None:
         conn = get_db(readonly=True)
     c = conn.cursor()
     c.execute("""
         SELECT COUNT(DISTINCT COALESCE(NULLIF(l.organization_key,''),'org_'||l.id)) FROM leads l
-        WHERE l.state IN ('TN','AR','KY')
-        AND l.status NOT IN ('sent','bounced','do_not_contact')
+        WHERE l.status NOT IN ('sent','bounced','do_not_contact')
         AND l.email IS NOT NULL AND l.email != '' AND l.email LIKE '%@%.%'
         AND l.email NOT IN (SELECT email FROM suppression_list)
         AND l.email NOT IN (SELECT email FROM send_log WHERE status='sent')
@@ -205,12 +205,11 @@ def select_batch(conn, lane, already_done, limit=20):
     placeholders = ','.join('?' * len(already_done)) if already_done else '0'
 
     if lane == "retail":
-        # Lane 1: Retail stores in TN/AR/KY
+        # Lane 1: Retail stores (all states; P1.7C removed 3-state hard filter)
         c.execute(f"""
             SELECT * FROM leads
             WHERE status IN ('new','manual_review_needed')
             AND official_website IS NOT NULL AND official_website != ''
-            AND state IN ('TN','AR','KY')
             AND (email IS NULL OR email='')
             AND confidence_score IN ('B','B2','')
             AND id NOT IN ({placeholders})

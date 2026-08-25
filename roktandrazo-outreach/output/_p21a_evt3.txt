@@ -1,0 +1,16 @@
+﻿=== SCM events (latest 4) ===
+[2026/8/20 9:30:55] RoktAndRazoBDExecutionHost 服务由于下列服务特定错误而终止: 
+函数不正确。
+[2026/8/20 9:30:23] 服务已安装在系统中。
+
+服务名称: RoktAndRazoBDExecutionHost
+服务文件名: "C:\Users\15690\.workbuddy\binaries\python\versions\3.13.12\pythonservice.exe"
+服务类型: 用户模式服务
+服务启动类型: 自动启动
+服务账户: LocalSystem
+[2026/8/20 9:28:15] 由于下列错误，RoktAndRazoBDExecutionHost 服务启动失败: 
+服务没有及时响应启动或控制请求。
+[2026/8/20 9:28:15] 等待 RoktAndRazoBDExecutionHost 服务的连接超时(30000 毫秒)。
+
+=== Application events (latest 4) ===
+ERR2 找不到映像文件中指定的资源类型。

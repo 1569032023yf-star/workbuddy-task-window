@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-18T08:52:02.654918+08:00",
-  "total_pending": 538,
+  "generated_at": "2026-08-22T09:02:47.238522+08:00",
+  "total_pending": 551,
   "categories": {
-    "manual_review_needed": 465,
+    "manual_review_needed": 480,
     "bounce_review": 1,
-    "contact_form_pool": 72
+    "contact_form_pool": 70
   },
   "queue": [
     {
@@ -994,40 +994,6 @@
       "source_keyword": "board game store puzzle shop Ithaca NY"
     },
     {
-      "id": 18,
-      "store_name": "Timeless Toys",
-      "city": "Chicago",
-      "state": "IL",
-      "official_website": "https://timelesstoys.com/",
-      "email": "",
-      "email_source_type": null,
-      "evidence_url": "https://timelesstoys.com/",
-      "confidence_score": "C",
-      "status": "contact_form_pool",
-      "collected_at": "2026-06-15 07:13:03",
-      "manual_decision": null,
-      "store_type": "independent toy store",
-      "contact_form_url": "https://timelesstoys.com/pages/contact-us",
-      "source_keyword": "independent toy store Chicago IL"
-    },
-    {
-      "id": 19,
-      "store_name": "Building Blocks Toy Store",
-      "city": "Chicago",
-      "state": "IL",
-      "official_website": "https://www.buildingblockstoys.com/",
-      "email": "",
-      "email_source_type": "guessed_email",
-      "evidence_url": "https://www.buildingblockstoys.com/",
-      "confidence_score": "B",
-      "status": "contact_form_pool",
-      "collected_at": "2026-06-15 07:13:03",
-      "manual_decision": null,
-      "store_type": "independent toy store",
-      "contact_form_url": "https://www.buildingblockstoys.com/contact",
-      "source_keyword": "independent toy store Chicago IL"
-    },
-    {
       "id": 23,
       "store_name": "Wonder Works Toys",
       "city": "Charleston",
@@ -1589,40 +1555,6 @@
       "source_keyword": "board game store Orange CA"
     },
     {
-      "id": 134,
-      "store_name": "Warhammer Madison",
-      "city": "Madison",
-      "state": "WI",
-      "official_website": "https://www.warhammermadison.com/",
-      "email": "info@warhammermadison.com",
-      "email_source_type": "guessed_email",
-      "evidence_url": "https://www.warhammermadison.com/",
-      "confidence_score": "B",
-      "status": "manual_review_needed",
-      "collected_at": "2026-06-17 09:52:58",
-      "manual_decision": null,
-      "store_type": "board game / hobby store",
-      "contact_form_url": "",
-      "source_keyword": "board game / hobby store Madison WI"
-    },
-    {
-      "id": 136,
-      "store_name": "Collectible Corner & Game Store",
-      "city": "Milwaukee",
-      "state": "WI",
-      "official_website": "https://www.collectiblecornermke.com/",
-      "email": "info@collectiblecornermke.com",
-      "email_source_type": "guessed_email",
-      "evidence_url": "https://www.collectiblecornermke.com/",
-      "confidence_score": "B",
-      "status": "manual_review_needed",
-      "collected_at": "2026-06-17 09:52:58",
-      "manual_decision": null,
-      "store_type": "comic / game store",
-      "contact_form_url": "",
-      "source_keyword": "comic / game store Milwaukee WI"
-    },
-    {
       "id": 137,
       "store_name": "Fun4All Gaming Lounge",
       "city": "Grand Rapids",
@@ -1706,6 +1638,74 @@
       "store_type": "board game store",
       "contact_form_url": "",
       "source_keyword": "board game store Salt Lake City UT"
+    },
+    {
+      "id": 146,
+      "store_name": "Oasis Games",
+      "city": "Salt Lake City",
+      "state": "UT",
+      "official_website": "https://www.oasisgamesutah.com/",
+      "email": "info@oasisgamesutah.com",
+      "email_source_type": "guessed_email",
+      "evidence_url": "https://www.oasisgamesutah.com/",
+      "confidence_score": "B",
+      "status": "manual_review_needed",
+      "collected_at": "2026-06-17 09:52:58",
+      "manual_decision": null,
+      "store_type": "board game store",
+      "contact_form_url": "",
+      "source_keyword": "board game store Salt Lake City UT"
+    },
+    {
+      "id": 147,
+      "store_name": "Hobby Hobbies",
+      "city": "Salt Lake City",
+      "state": "UT",
+      "official_website": "https://www.blickhobbies.com/",
+      "email": "info@blickhobbies.com",
+      "email_source_type": "guessed_email",
+      "evidence_url": "https://www.blickhobbies.com/",
+      "confidence_score": "B",
+      "status": "manual_review_needed",
+      "collected_at": "2026-06-17 09:52:58",
+      "manual_decision": null,
+      "store_type": "toy / hobby store",
+      "contact_form_url": "",
+      "source_keyword": "toy / hobby store Salt Lake City UT"
+    },
+    {
+      "id": 148,
+      "store_name": "Game Grid",
+      "city": "Salt Lake City",
+      "state": "UT",
+      "official_website": "https://www.gamegridutah.com/",
+      "email": "info@gamegridutah.com",
+      "email_source_type": "guessed_email",
+      "evidence_url": "https://www.gamegridutah.com/",
+      "confidence_score": "B",
+      "status": "manual_review_needed",
+      "collected_at": "2026-06-17 09:52:58",
+      "manual_decision": null,
+      "store_type": "board game store",
+      "contact_form_url": "",
+      "source_keyword": "board game store Salt Lake City UT"
+    },
+    {
+      "id": 149,
+      "store_name": "Park City Toy Lending Library",
+      "city": "Park City",
+      "state": "UT",
+      "official_website": "https://www.parkcitytoylibrary.com/",
+      "email": "info@parkcitytoylibrary.com",
+      "email_source_type": "guessed_email",
+      "evidence_url": "https://www.parkcitytoylibrary.com/",
+      "confidence_score": "B",
+      "status": "manual_review_needed",
+      "collected_at": "2026-06-17 09:52:58",
+      "manual_decision": null,
+      "store_type": "toy store / gift shop",
+      "contact_form_url": "",
+      "source_keyword": "toy store / gift shop Park City UT"
     }
   ]
 }

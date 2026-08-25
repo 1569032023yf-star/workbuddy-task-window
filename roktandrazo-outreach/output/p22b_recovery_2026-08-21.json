@@ -1,0 +1,118 @@
+{
+  "MANUAL_PAUSE_RESTORED": true,
+  "SEND_WINDOW_OVERRIDE_RESET": true,
+  "STANDING_AUTH": "true",
+  "RISK_GATE": "clear",
+  "FSP_IDS": [
+    328,
+    329,
+    330,
+    331,
+    332
+  ],
+  "FSP_PLANNED": 5,
+  "FSP_STATUSES": [
+    [
+      328,
+      1056,
+      "sent"
+    ],
+    [
+      329,
+      1057,
+      "sent"
+    ],
+    [
+      330,
+      1058,
+      "sent"
+    ],
+    [
+      331,
+      1059,
+      "sent"
+    ],
+    [
+      332,
+      1060,
+      "sent"
+    ]
+  ],
+  "SEND_LOG_IDS": [
+    575,
+    576,
+    577,
+    578,
+    579
+  ],
+  "SENT_LOG_DETAIL": [
+    {
+      "id": 575,
+      "lead_id": 1056,
+      "email": "store@thewyvernstaleavl.com",
+      "status": "sent",
+      "message_type": "new_outreach"
+    },
+    {
+      "id": 576,
+      "lead_id": 1057,
+      "email": "info@magescomics.com",
+      "status": "sent",
+      "message_type": "new_outreach"
+    },
+    {
+      "id": 577,
+      "lead_id": 1058,
+      "email": "info@villagemeeple.com",
+      "status": "sent",
+      "message_type": "new_outreach"
+    },
+    {
+      "id": 578,
+      "lead_id": 1059,
+      "email": "customerservice@mguinc.com",
+      "status": "sent",
+      "message_type": "new_outreach"
+    },
+    {
+      "id": 579,
+      "lead_id": 1060,
+      "email": "borr@yegamersguild.com",
+      "status": "sent",
+      "message_type": "new_outreach"
+    }
+  ],
+  "AUTHORIZATION_ID": "auth_2026-08-21:new_outreach:38419abaa0_2026-08-21_b2695c8a8bc4d4fe",
+  "AUTH_PREFLOGHT_STATUS": "passed",
+  "RECONCILE_SEND_LOG_COUNT": 5,
+  "DUPLICATE_SEND": [],
+  "DSN_SCAN": {
+    "scanned": 16,
+    "matched": 16,
+    "domain_invalid": 14,
+    "mailbox_invalid": 0,
+    "policy_bounce": 0,
+    "soft_bounce": 0,
+    "unmatched_dsn": 0
+  },
+  "REPLY_SCAN": "[{'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}, {'folder': 'INBOX', 'subject': '来自roktandrazo.com的退信', 'from': '\"PostMaster\" <PostMaster@roktandrazo.com>', 'type': 'bounce', 'reason': 'bounce_signal: postmaster'}]",
+  "SUPPRESSION_TOTAL": 55,
+  "SUPPRESSION_ADDED": [],
+  "TARGET": 5,
+  "PLANNED": 5,
+  "ATTEMPTED": 5,
+  "SMTP_ACCEPTED": 5,
+  "FAILED": 0,
+  "SKIPPED": 0,
+  "V2_RECHECK_PASS": true,
+  "MX_PASS": true,
+  "IMMEDIATE_BOUNCE": 14,
+  "REPLY": 0,
+  "SUPPRESSION_ADDED_COUNT": 0,
+  "DUPLICATE_SEND_COUNT": 0,
+  "DAILY_SESSION_USED": true,
+  "SEND_TIME_V2_RECHECK_EXECUTED": true,
+  "DIRECT_SEND_ONE_BYPASS": false,
+  "FULL_CHAIN_PASS": true,
+  "POST_FIX_V2_GATE_PASS": true
+}

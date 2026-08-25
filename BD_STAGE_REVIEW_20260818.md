@@ -131,22 +131,59 @@ Campaign Eligible V2 → Final Send Plan → Scheduler → Fresh Authorization�
 
 # 今日恢复发送结果（发送后回填）
 
-> 以下字段在今日各时区窗口发送并回流结果后更新。
+> V2 底仓 11 条已锁定今晚按 recipient local 10:00 分批真实发送。以下字段随回流更新。
 
-- TARGET_SEND = 30（最多目标，非最低门槛）
-- TODAY_VERIFIED_AVAILABLE = 11（底仓；动态追加）
-- TODAY_SEND_ACTUAL = ?
-- TODAY_SMTP_ACCEPTED = ?
-- TODAY_BOUNCED = ?
-- TODAY_BOUNCE_RATE = ?
-- TODAY_REPLY = ?
-- REMAINING_VERIFIED_INVENTORY = ?
+## Canary — 生产链路验证（已执行，SEND_WINDOW_OVERRIDE）
+为验证修复后正式发信链，今日 09:21 上海时间先行发出 1 条生产 Canary（非 Local-10:00 调度，仅验证 delivery chain；其 open/reply 数据不用于判断发送时间效果）：
 
-### 发送批次（按 recipient local 10:00，换算上海时间）
+- CANARY_LEAD = Game Cafe（id=1055，tom@playgamecafe.com，store-domain 官方邮箱）
+- V2 = PASS ｜ Preflight = PASS
+- 链：Final Send Plan (id=173) → Fresh Authorization → send_one → SMTP → Reconciliation
+- SMTP Accepted = YES（send_log id=555，status=sent）
+- Message-ID = `<178701607874.6280.1405454414691365213@roktandrazo.com>`
+- Bounce immediately seen = 0（即时 DSN 扫描无退信；扫描命中的 16 条 DSN 均属历史旧批，非本 Canary）
+- Reconciliation = 一致（leads=sent / final_send_plan=sent / send_log=sent）
+- **30–60 分钟后再扫腾讯企业邮箱 INBOX（已执行）**：CANARY_FINAL_BOUNCE = 0，CANARY_DELIVERY_PASS = **true**（16 条历史 DSN 均属旧批，lead 1055 无任何退信回单）
+
+> 结论：Email Quality V2 升级后的正式发信链（Authorization 原子化 + Preflight + SMTP + Reconciliation + 真实 DSN 回流）在生产环境验证通过。
+
+## 今日新增 Verified V2（Discovery 补库）
+通过现有流程（官网核实 → 第一方公开邮箱 → evidence → MX → timezone → V2）新增 2 条合格未发送线索：
+- **The Wyvern's Tale**（id=1056，Asheville NC，store@thewyvernstaleavl.com，官网 mailto 验证，MX=ok）
+- **Mage's Comics**（id=1057，Indianapolis IN，info@magescomics.com，官网 contact 页验证，MX=ok）
+
+> Sci-Fi City（Knoxville TN）官网邮箱 `waltricketts@sci-fi-city.com` 经 dedup 命中已发送旧线索（id=521，status=sent），正确拦截重复发送——系统按设计工作。
+
+## 今晚主批次（按 recipient local 10:00，换算上海时间）
+以 DB 当前 `recipient_timezone` 为唯一真相源：11 条 V2 中 Canary（id=1055，Game Cafe，MO→CT）已发，剩余 **10 条 = ET 7 / CT 3**（「ET 6 / CT 4」为早先粗略计数误差）。
+
 | 时区 | 条数 | 上海发送窗口 | 状态 |
 |------|------|--------------|------|
-| ET（America/New_York） | 7 | 约 22:00 | 待 Fresh Auth + Preflight |
-| CT（America/Chicago） | 4 | 约 23:00 | 待 Fresh Auth + Preflight |
+| ET（America/New_York） | 7（含 Fallout/Atlantis/Blue Ox/Dragon Star/Hard Knox/Bookery/Fantasy Factory） | 约 22:00 | FSP 174–183 已建，待 Fresh Auth + Preflight |
+| CT（America/Chicago） | 3（Grand Adventures / Chicagoland / Bald Man） | 约 23:00 | FSP 174–183 已建，待 Fresh Auth + Preflight |
+
+## ⚠️ 今晚自动发送执行器状态（关键）
+存在完整 3 段调度链（Pre-Send 21:30 / Preflight 21:50 / Outreach 22:00 上海，Mon–Fri），但**真正的发送执行器 `BD Production Outreach`（automation-1785804421539）当前为 PAUSED（原因：ExecutionHost未验证）**。
+
+- **SCHEDULER_ACTIVE = false**
+- **AUTO_SEND_AT_WINDOW_CONFIRMED = false**
+
+即：Final Send Plan 已建，但今晚 22:00 / 23:00 **不会自动触发 Canonical Send**。需二选一才能真发出：
+1. 用户在 WorkBuddy 取消暂停 `automation-1785804421539` 并完成 ExecutionHost 校验 → 自动按窗口发送；或
+2. 由我在窗口时间手动用 `bd_sender.send_one` 按正式链触发这 10 条。
+
+## 汇总字段（截至本稿）
+- TARGET_SEND = 30（最多目标，非最低门槛）
+- VERIFIED_V2_START = 11（今晨，含 Canary 前）
+- NEW_VERIFIED_V2_TODAY = 2（Wyvern's Tale 1056 / Mage's Comics 1057）
+- VERIFIED_V2_INVENTORY_NOW = 12（未发送合格：10 queued + 2 new）
+- TODAY_SEND_ACTUAL = 1（Canary，SEND_WINDOW_OVERRIDE 验证发送）
+- TODAY_SMTP_ACCEPTED = 1（Canary）
+- TODAY_BOUNCED = 0
+- TODAY_BOUNCE_RATE = 0%
+- TODAY_REPLY = 0
+- QUEUED_NOT_SENT = 10（FSP 已建，待执行器恢复后按窗口发送）
+- PRODUCTION_BUG = false（唯一阻塞为调度执行器被平台暂停，非代码 bug）
 
 ---
 

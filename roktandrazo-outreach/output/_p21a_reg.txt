@@ -1,0 +1,7 @@
+﻿=== HKLM PythonCore keys ===
+ERR 找不到路径“HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore”，因为该路径不存在。
+=== HKCU PythonCore keys ===
+3.12
+3.13
+=== 3.13 InstallPath (HKLM) ===
+ERR 找不到路径“HKLM:\SOFTWARE\Python\PythonCore\3.13\InstallPath”，因为该路径不存在。

@@ -1,5 +1,45 @@
 # BD Production Pre-Send Automation Memory
 
+## 2026-08-21 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260821_et1000`
+- **Snapshot:** `frozen_new_outreach_20260821_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 13th consecutive business day (Aug 5–21, no snapshot since Aug 4)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 34 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260821.py`
+- **Report:** `output/pre_send_report_2026-08-21_2130.md`
+
+## 2026-08-20 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260820_et1000`
+- **Snapshot:** `frozen_new_outreach_20260820_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 12th consecutive business day (Aug 5–20, no snapshot since Aug 4)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 38 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260820.py`
+- **Report:** `output/pre_send_report_2026-08-20_2130.md`
+
+## 2026-08-19 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260819_et1000`
+- **Snapshot:** `frozen_new_outreach_20260819_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 11th consecutive business day (Aug 5–19, no snapshot since Aug 4)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 38 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260819.py`
+- **Report:** `output/pre_send_report_2026-08-19_2130.md`
+
+## 2026-08-18 21:30 CST — NO_BATCH_TODAY
+- **Batch:** `new_outreach_20260818_et1000`
+- **Snapshot:** `frozen_new_outreach_20260818_et1000.json` — NOT FOUND (checked output/ and data/)
+- **Result:** NO_BATCH_TODAY — no 21:10 freeze snapshot, 10th consecutive business day (Aug 5–18, no snapshot since Aug 4)
+- **Orgs:** 0 (clean exit)
+- **preflight_status:** `no_batch`
+- **FYI:** raw eligible unsent in ALLOWED_STATES = 42 (today_sent=0, today_plan=0)
+- **Script:** `_pre_send_plan_20260818.py`
+- **Report:** `output/pre_send_report_2026-08-18_2130.md`
+
 ## 2026-08-17 21:30 CST — NO_BATCH_TODAY
 - **Batch:** `new_outreach_20260817_et1000`
 - **Snapshot:** `frozen_new_outreach_20260817_et1000.json` — NOT FOUND (checked output/ and data/)

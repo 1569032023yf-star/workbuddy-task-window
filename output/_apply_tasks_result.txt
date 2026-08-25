@@ -1,0 +1,27 @@
+=== APPLY START pid=30668 ===
+XML WRITTEN: RoktRazo-BD-PreSend @ 2026-08-20T22:30:00+08:00 -> --stage pre-send --live
+XML WRITTEN: RoktRazo-BD-Outreach @ 2026-08-20T23:00:00+08:00 -> --stage outreach --live
+XML WRITTEN: RoktRazo-BD-PostSend @ 2026-08-21T00:10:00+08:00 -> --stage post-send --live
+
+=== REGISTER ===
+  CREATE RoktRazo-BD-PreSend rc=0: �ɹ�: �ɹ������ƻ����� "RoktRazo-BD-PreSend"��
+  CREATE RoktRazo-BD-Outreach rc=0: �ɹ�: �ɹ������ƻ����� "RoktRazo-BD-Outreach"��
+  CREATE RoktRazo-BD-PostSend rc=0: �ɹ�: �ɹ������ƻ����� "RoktRazo-BD-PostSend"��
+
+=== DISABLE LEGACY ===
+  DISABLE RoktRazo-BD-Daily-Outreach rc=0: �ɹ�: �����˼ƻ����� "RoktRazo-BD-Daily-Outreach" �Ĳ�����
+  DISABLE Roktandrazo_Daily_Outreach rc=0: �ɹ�: �����˼ƻ����� "Roktandrazo_Daily_Outreach" �Ĳ�����
+
+=== VERIFY ===
+  RoktRazo-BD-PreSend | ENABLED | start=2026-08-20T22:30:00+08:00
+      args: "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\bd_orchestrator.py" --stage pre-send --live
+  RoktRazo-BD-Outreach | ENABLED | start=2026-08-20T23:00:00+08:00
+      args: "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\bd_orchestrator.py" --stage outreach --live
+  RoktRazo-BD-PostSend | ENABLED | start=2026-08-21T00:10:00+08:00
+      args: "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\bd_orchestrator.py" --stage post-send --live
+  RoktRazo-BD-Daily-Outreach | DISABLED | start=2026-07-14T09:00:00
+      args: C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach/daily_operator_auto.py --live --target-count 20 --allow-topup --stop-on-risk
+  Roktandrazo_Daily_Outreach | DISABLED | start=2026-07-07T10:00:00+08:00
+      args: "C:\Users\15690\Documents\����bd\daily_runner.py" --dry-run
+
+=== APPLY DONE ===

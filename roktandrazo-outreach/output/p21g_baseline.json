@@ -1,0 +1,121 @@
+{
+  "captured_at": "2026-08-20T11:59",
+  "active_batch": "2026-08-20",
+  "batches": {
+    "2026-08-20": {
+      "planned": 44,
+      "dup_pairs": 0,
+      "follow_up": 4,
+      "new_outreach": 40
+    }
+  },
+  "auths": [
+    {
+      "id": 1,
+      "plan_id": "catchup_outreach_20260731",
+      "outreach_batch_date": "catchup_outreach_20260731",
+      "status": "revoked"
+    },
+    {
+      "id": 2,
+      "plan_id": "tri_state_21_sprint_20260731",
+      "outreach_batch_date": "tri_state_21_sprint_20260731",
+      "status": "revoked"
+    },
+    {
+      "id": 3,
+      "plan_id": "2026-08-03:new_outreach:3939af2047",
+      "outreach_batch_date": "2026-08-03",
+      "status": "revoked"
+    },
+    {
+      "id": 5,
+      "plan_id": "new_outreach_20260804_et1000",
+      "outreach_batch_date": "new_outreach_20260804_et1000",
+      "status": "revoked"
+    },
+    {
+      "id": 8,
+      "plan_id": "new_outreach_20260805_et1000",
+      "outreach_batch_date": "new_outreach_20260805_et1000",
+      "status": "consumed"
+    },
+    {
+      "id": 9,
+      "plan_id": "new_outreach_20260805_2300cs_tnarky",
+      "outreach_batch_date": "new_outreach_20260805_2300cs_tnarky",
+      "status": "consumed"
+    },
+    {
+      "id": 12,
+      "plan_id": "plan_p1_supervised_20260813",
+      "outreach_batch_date": "p1_supervised_20260813",
+      "status": "superseded"
+    },
+    {
+      "id": 13,
+      "plan_id": "2026-07-24:follow_up:52f17401a7",
+      "outreach_batch_date": "2026-07-24",
+      "status": "superseded"
+    },
+    {
+      "id": 14,
+      "plan_id": "2026-07-24:follow_up:8bc7ff59ca",
+      "outreach_batch_date": "2026-07-24",
+      "status": "superseded"
+    },
+    {
+      "id": 15,
+      "plan_id": "2026-07-24:follow_up:bfbd5514ad",
+      "outreach_batch_date": "2026-07-24",
+      "status": "superseded"
+    },
+    {
+      "id": 16,
+      "plan_id": "2026-07-24:follow_up:7cf5ca504c",
+      "outreach_batch_date": "2026-07-24",
+      "status": "superseded"
+    },
+    {
+      "id": 18,
+      "plan_id": "2026-08-13:new_outreach:e813ae2094:p1c",
+      "outreach_batch_date": "2026-08-13",
+      "status": "superseded"
+    },
+    {
+      "id": 26,
+      "plan_id": "p1_2_first20_20260813:new_outreach:9775e37d9b",
+      "outreach_batch_date": "p1_2_first20_20260813",
+      "status": "consumed"
+    },
+    {
+      "id": 27,
+      "plan_id": "p1_2_first20_20260813:new_outreach:9775e37d9b",
+      "outreach_batch_date": "p1_2_first20_20260813",
+      "status": "revoked"
+    },
+    {
+      "id": 28,
+      "plan_id": "2026-08-18:new_outreach:7b51165fca",
+      "outreach_batch_date": "2026-08-18",
+      "status": "consumed"
+    },
+    {
+      "id": 29,
+      "plan_id": "2026-08-18:new_outreach:11254a8b09",
+      "outreach_batch_date": "2026-08-18",
+      "status": "consumed"
+    },
+    {
+      "id": 30,
+      "plan_id": "canary_2026-08-20:new_outreach:81a9168fc8",
+      "outreach_batch_date": "canary_2026-08-20",
+      "status": "revoked"
+    }
+  ],
+  "send_log_total": 482,
+  "send_log_2026_08_20": 0,
+  "bounce_log_total": 54,
+  "reply_log_total": 1,
+  "stale_objects_2026_08_20": "pass"
+}

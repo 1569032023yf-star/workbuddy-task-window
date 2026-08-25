@@ -1,0 +1,17 @@
+﻿=== A1: ScheduledTasks (BD/rokt/outreach/orchestr) ===
+NAME=Roktandrazo_Daily_Outreach | PATH=\ | STATE=Ready | NEXT=2026/8/19 10:00:00 | LAST=2026/8/18 10:00:01 | RESULT=0 | CMD=C:\Users\15690\AppData\Local\Programs\Python\Python313\python.exe "C:\Users\15690\Documents\线下bd\daily_runner.py" --dry-run
+NAME=RoktRazo-BD-Daily-Outreach | PATH=\ | STATE=Ready | NEXT=2026/8/19 9:00:00 | LAST=2026/8/18 9:00:01 | RESULT=0 | CMD=C:/Users/15690/.workbuddy/binaries/python/versions/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach/daily_operator_auto.py --live --target-count 20 --allow-topup --stop-on-risk
+NAME=RoktRazo-BD-Inbox-Morning | PATH=\ | STATE=Ready | NEXT=2026/8/20 8:30:00 | LAST=2026/8/19 8:30:01 | RESULT=1 | CMD=C:/Users/15690/.workbuddy/binaries/python/versions/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach/workbuddy_candidate_modules/inbox_polling_monitor.py
+NAME=RoktRazo-BD-Inventory-Recovery | PATH=\ | STATE=Ready | NEXT=2026/8/19 15:00:00 | LAST=2026/8/18 15:00:01 | RESULT=0 | CMD=C:/Users/15690/.workbuddy/binaries/python/versions/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach/inventory_recovery_loop.py --mode morning --target 60 --batch-size 30 --write-safe --no-dry-run --max-loops 10
+NAME=RoktRazo-BD-Morning | PATH=\ | STATE=Ready | NEXT=2026/8/20 8:30:00 | LAST=2026/8/19 8:30:01 | RESULT=0 | CMD=C:\Users\15690\.workbuddy\binaries\python\versions\3.13.12\python.exe "C:\Users\15690\WorkBuddy\2026-06-05-15-31-42\roktandrazo-outreach\bd_orchestrator.py" --stage status --dry-run
+NAME=RoktRazo-BD-PostSend-Poll | PATH=\ | STATE=Ready | NEXT=2026/8/19 13:10:00 | LAST=2026/8/18 13:10:01 | RESULT=1 | CMD=C:/Users/15690/.workbuddy/binaries/python/versions/3.13.12/python.exe C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach/workbuddy_candidate_modules/inbox_polling_monitor.py
+NAME=RunPlatformExperienceHelper_Daily | PATH=\GoogleUserPEH\ | STATE=Ready | NEXT=2026/8/19 15:42:50 | LAST=2026/8/18 15:40:07 | RESULT=0 | CMD="C:\Program Files\Google\Chrome\Application\PlatformExperienceHelper\platform_experience_helper.exe" 
+NAME=appuriverifierdaily | PATH=\Microsoft\Windows\ApplicationData\ | STATE=Ready | NEXT= | LAST=2026/8/18 15:16:40 | RESULT=0 | CMD=%windir%\system32\AppHostRegistrationVerifier.exe 
+NAME=SoftLandingDeferralTask-{4f20649b-7ebd-45c6-8742-6921829c42bf} | PATH=\SoftLanding\S-1-5-21-5926390-557196042-3608508572-1001\ | STATE=Ready | NEXT=2026/8/19 8:59:00 | LAST=2026/8/19 8:44:01 | RESULT=0 | CMD= 
+
+=== A2: Service RoktAndRazoBDExecutionHost ===
+SERVICE_NOT_FOUND
+
+=== A3: any service containing BD/Rokt (broader) ===
+SVC_NAME=BDESVC | DISPLAY=BitLocker Drive Encryption Service | STATE=Running | START=Manual | PATH=C:\Windows\System32\svchost.exe -k netsvcs -p
+SVC_NAME=cbdhsvc_8b22d | DISPLAY=cbdhsvc_8b22d | STATE=Running | START=Auto | PATH=C:\Windows\system32\svchost.exe -k ClipboardSvcGroup -p

@@ -1,0 +1,202 @@
+{
+  "generated_at": "2026-08-22 09:02:46",
+  "timezone": "Asia/Shanghai",
+  "yesterday": "2026-08-21",
+  "today": "2026-08-22",
+  "batch": {
+    "planned": 24,
+    "smtp_accepted": 5,
+    "opens": 0,
+    "no_opens": 5,
+    "total_open_signals": 2,
+    "human_replies": 0,
+    "auto_replies": 0,
+    "hard_bounces": 0,
+    "unsubscribes": 0
+  },
+  "inventory": {
+    "total_leads": 1066,
+    "broad_outreach_ready_orgs": 55,
+    "broad_outreach_ready_locs": 55,
+    "strict_a0": 0,
+    "manual_review_pending_review_status": 536,
+    "manual_review_needed_status": 480,
+    "previously_sent": 472,
+    "suppressed": 47
+  },
+  "states": [
+    {
+      "state": "TN",
+      "total": 189,
+      "cities": 39,
+      "sendable": 5
+    },
+    {
+      "state": "KY",
+      "total": 80,
+      "cities": 24,
+      "sendable": 3
+    },
+    {
+      "state": "AR",
+      "total": 80,
+      "cities": 20,
+      "sendable": 2
+    },
+    {
+      "state": "OH",
+      "total": 47,
+      "cities": 29,
+      "sendable": 0
+    },
+    {
+      "state": "NC",
+      "total": 47,
+      "cities": 26,
+      "sendable": 1
+    },
+    {
+      "state": "OR",
+      "total": 27,
+      "cities": 4,
+      "sendable": 8
+    },
+    {
+      "state": "CO",
+      "total": 16,
+      "cities": 6,
+      "sendable": 1
+    },
+    {
+      "state": "MN",
+      "total": 10,
+      "cities": 5,
+      "sendable": 0
+    },
+    {
+      "state": "IN",
+      "total": 5,
+      "cities": 3,
+      "sendable": 0
+    },
+    {
+      "state": "NE",
+      "total": 3,
+      "cities": 1,
+      "sendable": 0
+    }
+  ],
+  "store_details": [
+    {
+      "store": "The Wyvern's Tale",
+      "org": "org:domain:thewyvernstaleavl.com",
+      "recipient": "store@thewyvernstaleavl.com",
+      "sent_at": "2026-08-21T11:59:36.267058+08:00",
+      "city": "Asheville",
+      "state": "NC",
+      "open_signal": "No Open Signal Yet",
+      "first_open": "",
+      "last_open": "",
+      "open_count": 0,
+      "reply": 0,
+      "bounce": 0
+    },
+    {
+      "store": "Mage's Comics",
+      "org": "org:domain:magescomics.com",
+      "recipient": "info@magescomics.com",
+      "sent_at": "2026-08-21T12:01:09.834383+08:00",
+      "city": "Indianapolis",
+      "state": "IN",
+      "open_signal": "No Open Signal Yet",
+      "first_open": "",
+      "last_open": "",
+      "open_count": 0,
+      "reply": 0,
+      "bounce": 0
+    },
+    {
+      "store": "Village Meeple Board Game Cafe",
+      "org": "org:domain:villagemeeple.com",
+      "recipient": "info@villagemeeple.com",
+      "sent_at": "2026-08-21T12:02:15.141374+08:00",
+      "city": "Springfield",
+      "state": "MO",
+      "open_signal": "No Open Signal Yet",
+      "first_open": "",
+      "last_open": "",
+      "open_count": 0,
+      "reply": 0,
+      "bounce": 0
+    },
+    {
+      "store": "Meta-Games Unlimited (MGU)",
+      "org": "org:domain:mguinc.com",
+      "recipient": "customerservice@mguinc.com",
+      "sent_at": "2026-08-21T12:03:18.093952+08:00",
+      "city": "Springfield",
+      "state": "MO",
+      "open_signal": "No Open Signal Yet",
+      "first_open": "",
+      "last_open": "",
+      "open_count": 0,
+      "reply": 0,
+      "bounce": 0
+    },
+    {
+      "store": "Ye Gamer's Guild",
+      "org": "org:domain:yegamersguild.com",
+      "recipient": "borr@yegamersguild.com",
+      "sent_at": "2026-08-21T12:04:51.545089+08:00",
+      "city": "Greenwood",
+      "state": "IN",
+      "open_signal": "No Open Signal Yet",
+      "first_open": "",
+      "last_open": "",
+      "open_count": 0,
+      "reply": 0,
+      "bounce": 0
+    }
+  ],
+  "tracking_source": "poller_cache",
+  "ops_today": {
+    "date": "2026-08-22",
+    "timezone": "Asia/Shanghai",
+    "planned_new": 0,
+    "planned_fw": 0,
+    "sent_new": 0,
+    "sent_fw": 0,
+    "failed": 0,
+    "skipped": 0,
+    "unique_orgs_sent": 0,
+    "replies": 0,
+    "hard_bounces": 0,
+    "unsubscribed": 0
+  },
+  "ops_inventory": {
+    "total_leads": 1066,
+    "send_prep_candidates": 83,
+    "strict_a0_locations": 0,
+    "strict_a0_organizations": 0,
+    "org_outreach_opps": 0,
+    "manual_review": 252,
+    "website_lookup": 61,
+    "contact_form_only": 86,
+    "low_priority": 21,
+    "previously_sent": 424,
+    "permanently_suppressed": 47,
+    "bounce_recovery": 0,
+    "unprocessed_staging": 304,
+    "targets": {
+      "critical": 40,
+      "warning": 80,
+      "target": 120
+    },
+    "gaps": {
+      "to_40": 40,
+      "to_80": 80,
+      "to_120": 120
+    },
+    "status": "critical"
+  }
+}

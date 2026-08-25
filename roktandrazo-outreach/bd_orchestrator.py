@@ -40,6 +40,7 @@ else:
 
 PROJECT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT_DIR))
+import env_loader  # P2.2A: ensure .env (MX Worker token) loaded before any V2 query_mx call
 
 from bd_db import (
     get_db, get_config, set_config, set_state, get_state,
@@ -96,12 +97,15 @@ def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
     from bd_template import apply_email_to_lead
     from final_send_plan import create_plan
     from campaign_eligible import campaign_eligible_check, select_candidates_for_plan
+    from campaign_eligible_v2 import (
+        campaign_eligible_check_v2, select_candidates_for_plan_v2,
+    )
 
     conn = get_db()
     eligible = []
     # 正式政策：Broad Ready → ICP Qualified → Campaign Eligible → Final Send Plan。
     # Strict A0 只是优先层，不是唯一发送池；Campaign Eligible 是主池判定。
-    for row in select_candidates_for_plan(conn, NEW_OUTREACH_TARGET):
+    for row in select_candidates_for_plan_v2(conn, NEW_OUTREACH_TARGET):
         lead = apply_email_to_lead(dict(row))
         lead['hygiene_passed_at'] = now_shanghai().isoformat()
         eligible.append(lead)
@@ -131,7 +135,7 @@ def stage_pre_send(run_id: str, business_date: str, dry_run: bool):
         return preview
     with conn:
         plan_id = create_plan(conn, eligible, business_date, 'new_outreach',
-                              eligible_check=campaign_eligible_check(conn))
+                              eligible_check=campaign_eligible_check_v2(conn))
         followup_plan_id = create_plan(conn, followups, business_date, 'follow_up')
     conn.close()
     log(f"Final plans frozen: new={plan_id} ({len(eligible)}), follow-up={followup_plan_id} ({len(followups)})")
@@ -310,8 +314,7 @@ def _count_broad_ready_pool(limit: int = 1000) -> int:
             c = conn.cursor()
             c.execute("""
                 SELECT * FROM leads
-                WHERE state IN ('TN','AR','KY')
-                AND status NOT IN ('sent','bounced','do_not_contact','rejected',
+                WHERE status NOT IN ('sent','bounced','do_not_contact','rejected',
                                    'failed','delivery_issue','bounce_review','contact_form_pool')
                 AND email IS NOT NULL AND email != '' AND email LIKE '%@%.%'
                 LIMIT ?
@@ -327,6 +330,32 @@ def _count_broad_ready_pool(limit: int = 1000) -> int:
     except Exception as e:
         log(f"  [WARN] _count_broad_ready_pool error: {e}")
         return 0
+
+
+# P1.7C final wiring: canonical Discovery must run one Active State at a time.
+# Valid 2-letter US state codes (50 states; DC excluded unless added explicitly).
+US_STATE_CODES = frozenset({
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
+    "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+    "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT",
+    "VA","WA","WV","WI","WY",
+})
+
+
+def _resolve_active_discovery_state() -> tuple[str | None, str | None]:
+    """Read active_discovery_state from system_config and validate.
+
+    Returns (state, error_code); error_code in
+    (None, 'ACTIVE_STATE_NOT_SET', 'ACTIVE_STATE_INVALID').
+    Fail-closed: canonical Discovery never falls back to state=None (nationwide queue).
+    """
+    from bd_db import get_config
+    raw = (get_config('active_discovery_state') or '').strip().upper()
+    if not raw:
+        return None, 'ACTIVE_STATE_NOT_SET'
+    if len(raw) != 2 or not raw.isalpha() or raw not in US_STATE_CODES:
+        return None, 'ACTIVE_STATE_INVALID'
+    return raw, None
 
 
 def stage_inventory(run_id: str, business_date: str, dry_run: bool):
@@ -356,12 +385,24 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
 
     try:
         from retail_city_queue import activate_next_city, seed_default_queue
+        # P1.7C final wiring: state-scoped Discovery. Fail-closed — no nationwide fallback.
+        active_state, state_error = _resolve_active_discovery_state()
+        if state_error:
+            log(f"[BLOCKED] Discovery stage stopped: {state_error} (no nationwide fallback)")
+            finish_job_run(run_id, 'stopped', stop_reason=state_error)
+            return False
         city_conn = get_db()
-        with city_conn:
-            seed_default_queue(city_conn)
-            active_retail_city = activate_next_city(city_conn)
-        city_conn.close()
-        log(f"Active retail city: {active_retail_city['city']}, {active_retail_city['state']} (no city switching)")
+        try:
+            with city_conn:
+                seed_default_queue(city_conn)
+                active_retail_city = activate_next_city(city_conn, state=active_state)
+        except RuntimeError:
+            log(f"[BLOCKED] Discovery stage stopped: ACTIVE_STATE_EXHAUSTED = {active_state} (wait for human decision on next state)")
+            finish_job_run(run_id, 'stopped', stop_reason=f'ACTIVE_STATE_EXHAUSTED:{active_state}')
+            return False
+        finally:
+            city_conn.close()
+        log(f"Active retail city (state scope={active_state}): {active_retail_city['city']}, {active_retail_city['state']} (no city switching)")
 
         # Lane A: new place discovery. Provider failures are fail-closed and checkpointed.
         try:
@@ -427,11 +468,10 @@ def stage_inventory(run_id: str, business_date: str, dry_run: bool):
 
                 conn = get_db()
                 c = conn.cursor()
-                # Query ALL leads needing website enrichment across 3 states (not just current city)
+                # Query ALL leads needing website enrichment across all states (P1.7C: no 3-state hard filter)
                 candidates = c.execute("""
                     SELECT * FROM leads
-                    WHERE state IN ('TN','AR','KY')
-                    AND status NOT IN ('sent','bounced','do_not_contact')
+                    WHERE status NOT IN ('sent','bounced','do_not_contact')
                     AND (email IS NULL OR email='')
                     AND official_website IS NOT NULL AND official_website != ''
                     -- exclude leads already submitted to manual_email_submission in this lane
