@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""收件人当地 10:00 分批调度器（P0）。
+"""收件人当地发送窗口分批调度器（P0）。
 
-生产政策：recipient_local_send_time=10:00，allowed_weekdays=Mon-Fri。
-按收件人 IANA 时区计算当地 10:00:00-10:09:59 发送窗口对应的 UTC 时刻，
+生产政策（P2.3I 调整）：RECIPIENT_LOCAL_SEND_WINDOW = 08:00–11:10 local time，
+allowed_weekdays=Mon-Fri。
+按收件人 IANA 时区计算当地 08:00:00-11:10:59 发送窗口对应的 UTC 时刻，
 实现分批发送（Eastern 先、Pacific 后）。
 
+上海 23:00 单一 Outreach 通过该窗口覆盖美国大陆：
+  ET ≈ 11:00   CT ≈ 10:00   MT ≈ 09:00   PT ≈ 08:00（均落在 08:00–11:10 内）。
+
 本模块只读：dry_run_batch 绝不写库、绝不 SMTP。所有调度时间计算
-强制使用 zoneinfo，自动处理 DST 切换。
+强制使用 zoneinfo，自动处理 DST 切换。删时区 gate / send_window_override /
+全天任意发送 / 新增四套时区 Scheduler / 修改其它安全门 均禁止——本文件
+仅修改收件人当地窗口的起止时刻。
 """
 from __future__ import annotations
 
@@ -23,9 +29,12 @@ from zoneinfo import ZoneInfo, available_timezones
 PROJECT_DIR = Path(__file__).resolve().parent
 DB_PATH = os.environ.get("WORKBUDDY_BD_DB_PATH") or str(PROJECT_DIR / "data" / "bd_leads.db")
 
-# 生产政策常量：当地 10:00 发送，窗口 10 分钟（10:00:00-10:09:59）
-RECIPIENT_LOCAL_SEND_TIME = 10
-SEND_WINDOW_MINUTES = 10
+# 生产政策常量（P2.3I）：收件人当地时间窗口 08:00:00–11:10:59。
+# 仅改此窗口的起止时刻；时区 gate / DST / weekday 逻辑保持不变。
+RECIPIENT_LOCAL_SEND_START_HOUR = 8
+RECIPIENT_LOCAL_SEND_START_MIN = 0
+RECIPIENT_LOCAL_SEND_END_HOUR = 11
+RECIPIENT_LOCAL_SEND_END_MIN = 10
 
 UTC = timezone.utc
 
@@ -40,7 +49,7 @@ def _as_utc(dt: datetime | None) -> datetime:
 
 
 def local_send_window_utc(tz_name: str, on_date: date | None = None) -> tuple[datetime, datetime]:
-    """计算某时区某日当地 10:00:00 与 10:09:59 对应的 UTC 时刻。
+    """计算某时区某日当地 08:00:00 与 11:10:59 对应的 UTC 时刻（P2.3I 窗口）。
 
     必须用 zoneinfo 自动处理 DST（非夏令时/夏令时窗口会随偏移变化）。
     on_date 为收件人当地日历日；为 None 时取该时区当前本地日期。
@@ -49,10 +58,14 @@ def local_send_window_utc(tz_name: str, on_date: date | None = None) -> tuple[da
     tz = ZoneInfo(tz_name)
     if on_date is None:
         on_date = datetime.now(tz).date()
-    start_local = datetime.combine(on_date, time(RECIPIENT_LOCAL_SEND_TIME, 0, 0), tzinfo=tz)
+    start_local = datetime.combine(
+        on_date,
+        time(RECIPIENT_LOCAL_SEND_START_HOUR, RECIPIENT_LOCAL_SEND_START_MIN, 0),
+        tzinfo=tz,
+    )
     end_local = datetime.combine(
         on_date,
-        time(RECIPIENT_LOCAL_SEND_TIME, SEND_WINDOW_MINUTES - 1, 59),
+        time(RECIPIENT_LOCAL_SEND_END_HOUR, RECIPIENT_LOCAL_SEND_END_MIN, 59),
         tzinfo=tz,
     )
     return start_local.astimezone(UTC), end_local.astimezone(UTC)

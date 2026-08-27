@@ -84,6 +84,10 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
 
     conn = get_db()
     entries = load_planned_entries(conn, batch_date)
+    # P2.3I: 本 batch 的 message_type（FSP 通常单一 message_type；混合后取首条，
+    # 仅用于把 preflight 的 planned_rows_present / stale_objects 正确 scope 到
+    # batch_date + message_type，避免 new_outreach 与 follow_up 相互污染）。
+    batch_message_type = entries[0]["message_type"] if entries else None
     result = {'new_outreach': 0, 'follow_up': 0, 'skipped': 0, 'failed': 0, 'test': 0,
               'planned': len(entries), 'preview': []}
 
@@ -104,7 +108,8 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
     _snapshot_path = os.path.join(OUT_DIR, f"frozen_{batch_date}.json")
     # dry-run 用 persist_cache=False（只读，不写 system_config.mx_cache）；live 才写真实缓存。
     _pf_pre = run_preflight(conn, batch_date, snapshot_path=_snapshot_path,
-                            persist_cache=(not dry_run), include_auth_entries=False)
+                            persist_cache=(not dry_run), include_auth_entries=False,
+                            message_type=batch_message_type)
     result["preflight_pre_auth"] = {
         "pass": _pf_pre["pass"],
         "blocks": _pf_pre["blocks"],
@@ -137,7 +142,7 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
             result["authorization_id"] = authorization_id
             # POST_AUTH 一致性校验：授权已存在 → 纳入 auth_entries 检查（plan 与 entries 逐条一致）
             _pf_post = run_preflight(conn, batch_date, snapshot_path=_snapshot_path,
-                                     include_auth_entries=True)
+                                     include_auth_entries=True, message_type=batch_message_type)
             result["preflight_post_auth"] = {
                 "pass": _pf_post["pass"],
                 "blocks": _pf_post["blocks"],
@@ -166,7 +171,7 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
                 conn.commit()
             result['skipped'] += 1
             continue
-        # P1.2: 收件人当地时区窗口（09:55-10:10 local）——客户当地时间才是业务时钟。
+        # P2.3I: 收件人当地时区窗口（08:00-11:10 local）——客户当地时间才是业务时钟。
         # 不用全局 Asia/Shanghai 23:00 gate；UNSET/UNRESOLVED/非工作日/窗口外 → BLOCK。
         if not dry_run:
             from recipient_scheduler import in_send_window
@@ -178,7 +183,7 @@ def execute_final_send_plan(batch_date: str, dry_run: bool = True,
                 result['skipped'] += 1
                 continue
             if not send_window_override and not in_send_window(tz_name):
-                mark_entry(conn, entry['id'], 'skipped', 'recipient_local_time_outside_0955_1010')
+                mark_entry(conn, entry['id'], 'skipped', 'recipient_local_time_outside_0800_1110')
                 conn.commit()
                 result['skipped'] += 1
                 continue

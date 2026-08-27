@@ -74,18 +74,18 @@ class TestLocalSendWindowUtc(unittest.TestCase):
         d = date(2026, 7, 15)  # 夏季：EDT(-4) / PDT(-7)
         ny_start, ny_end = rs.local_send_window_utc("America/New_York", d)
         la_start, la_end = rs.local_send_window_utc("America/Los_Angeles", d)
-        self.assertEqual(ny_start, utc_dt(2026, 7, 15, 14, 0, 0))
-        self.assertEqual(ny_end, utc_dt(2026, 7, 15, 14, 9, 59))
-        self.assertEqual(la_start, utc_dt(2026, 7, 15, 17, 0, 0))
-        self.assertEqual(la_end, utc_dt(2026, 7, 15, 17, 9, 59))
+        self.assertEqual(ny_start, utc_dt(2026, 7, 15, 12, 0, 0))
+        self.assertEqual(ny_end, utc_dt(2026, 7, 15, 15, 10, 59))
+        self.assertEqual(la_start, utc_dt(2026, 7, 15, 15, 0, 0))
+        self.assertEqual(la_end, utc_dt(2026, 7, 15, 18, 10, 59))
         self.assertEqual((la_start - ny_start).total_seconds(), 3 * 3600)
 
     def test_dst_spring_forward_2026_03_08(self):
-        # 03-07 仍为 EST(-5)，03-08 凌晨 2 点切 EDT(-4)，同一当地 10:00 对应 UTC 提前 1 小时
+        # 03-07 仍为 EST(-5)，03-08 凌晨 2 点切 EDT(-4)，同一当地 08:00 对应 UTC 提前 1 小时
         before = rs.local_send_window_utc("America/New_York", date(2026, 3, 7))[0]
         after = rs.local_send_window_utc("America/New_York", date(2026, 3, 8))[0]
-        self.assertEqual(before, utc_dt(2026, 3, 7, 15, 0, 0))
-        self.assertEqual(after, utc_dt(2026, 3, 8, 14, 0, 0))
+        self.assertEqual(before, utc_dt(2026, 3, 7, 13, 0, 0))
+        self.assertEqual(after, utc_dt(2026, 3, 8, 12, 0, 0))
         # 本地偏移从 -5h 跳到 -4h（DST 开启）
         self.assertEqual(before.astimezone(ZoneInfo("America/New_York")).utcoffset(),
                          timedelta(hours=-5))
@@ -93,11 +93,11 @@ class TestLocalSendWindowUtc(unittest.TestCase):
                          timedelta(hours=-4))
 
     def test_dst_fall_back_2026_11_01(self):
-        # 10-31 仍为 EDT(-4)，11-01 凌晨 2 点切 EST(-5)，同一当地 10:00 对应 UTC 推迟 1 小时
+        # 10-31 仍为 EDT(-4)，11-01 凌晨 2 点切 EST(-5)，同一当地 08:00 对应 UTC 推迟 1 小时
         before = rs.local_send_window_utc("America/New_York", date(2026, 10, 31))[0]
         after = rs.local_send_window_utc("America/New_York", date(2026, 11, 2))[0]
-        self.assertEqual(before, utc_dt(2026, 10, 31, 14, 0, 0))
-        self.assertEqual(after, utc_dt(2026, 11, 2, 15, 0, 0))
+        self.assertEqual(before, utc_dt(2026, 10, 31, 12, 0, 0))
+        self.assertEqual(after, utc_dt(2026, 11, 2, 13, 0, 0))
         # 本地偏移从 -4h 回到 -5h（DST 关闭）
         self.assertEqual(before.astimezone(ZoneInfo("America/New_York")).utcoffset(),
                          timedelta(hours=-4))
@@ -120,13 +120,13 @@ class TestIsWeekdayLocal(unittest.TestCase):
 
 
 class TestInSendWindow(unittest.TestCase):
-    """发送窗口边界（含端点）。窗口为 2026-08-07 当地 10:00:00-10:09:59（EDT -> 14:00-14:09:59 UTC）。"""
+    """发送窗口边界（含端点）。窗口为 2026-08-07 当地 08:00:00-11:10:59（EDT -> 12:00:00-15:10:59 UTC）。"""
 
     def test_boundaries(self):
-        self.assertFalse(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 13, 59, 59)))
-        self.assertTrue(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 14, 0, 0)))
-        self.assertTrue(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 14, 9, 59)))
-        self.assertFalse(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 14, 10, 0)))
+        self.assertFalse(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 11, 59, 59)))
+        self.assertTrue(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 12, 0, 0)))
+        self.assertTrue(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 15, 10, 59)))
+        self.assertFalse(rs.in_send_window("America/New_York", utc_dt(2026, 8, 7, 15, 11, 0)))
 
 
 class TestSchedulePlanEntry(unittest.TestCase):
@@ -151,8 +151,8 @@ class TestSchedulePlanEntry(unittest.TestCase):
         self.assertTrue(e["sendable"])
         self.assertIsNone(e["block_reason"])
         self.assertEqual(e["recipient_timezone"], "America/New_York")
-        self.assertEqual(e["scheduled_utc_time"], "2026-08-07T14:00:00+00:00")
-        self.assertEqual(e["scheduled_local_time"], "2026-08-07T10:00:00-04:00[America/New_York]")
+        self.assertEqual(e["scheduled_utc_time"], "2026-08-07T12:00:00+00:00")
+        self.assertEqual(e["scheduled_local_time"], "2026-08-07T08:00:00-04:00[America/New_York]")
         self.assertEqual(e["lead_id"], 1)
         self.assertEqual(e["recipient_email"], "a@x.com")
 
@@ -217,7 +217,7 @@ class TestGroupEntriesByTimezone(unittest.TestCase):
         # LA 窗口晚于 NY
         self.assertEqual(
             groups["America/Los_Angeles"][0]["scheduled_utc_time"],
-            "2026-08-07T17:00:00+00:00",
+            "2026-08-07T15:00:00+00:00",
         )
 
 
@@ -251,8 +251,8 @@ class TestDryRunBatch(unittest.TestCase):
         order = res["send_order_suggestion"]
         self.assertEqual([o["timezone"] for o in order],
                          ["America/New_York", "America/Los_Angeles"])
-        self.assertEqual(order[0]["window_utc_start"], "2026-08-07T14:00:00+00:00")
-        self.assertEqual(order[1]["window_utc_start"], "2026-08-07T17:00:00+00:00")
+        self.assertEqual(order[0]["window_utc_start"], "2026-08-07T12:00:00+00:00")
+        self.assertEqual(order[1]["window_utc_start"], "2026-08-07T15:00:00+00:00")
 
         # 只读验证：计划仍为 planned，未创建任何新表（无 send_log 写入迹象）
         self.assertEqual(

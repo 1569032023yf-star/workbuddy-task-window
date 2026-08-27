@@ -493,24 +493,40 @@ def check_auth_entries(conn, batch_id, now=None):
 
 # ── 7. Stale objects / poller ───────────────────────────────
 
-def check_stale_objects(conn, batch_id, now=None):
-    """旧 planned 计划、active 旧授权、Poller 心跳 ≤30min。"""
+def check_stale_objects(conn, batch_id, now=None, message_type=None):
+    """旧 planned 计划、active 旧授权、Poller 心跳 ≤30min。
+
+    message_type（P2.3I）：按 batch_date + message_type 正确 scope，避免
+    new_outreach 与 follow_up 相互污染。仅当「其它旧 batch 存在相同 message_type
+    的 planned 行 / active 授权」时才判 FAIL；同 message_type 的当前 batch 不被
+    误伤。不传 message_type 时退化为全 message_type 检查（向后兼容）。
+    """
     now = now or datetime.now(ASIA_SH)
     failures = []
 
-    old_plans = conn.execute(
-        "SELECT outreach_batch_date d, COUNT(*) c FROM final_send_plan "
-        "WHERE status='planned' AND outreach_batch_date!=? GROUP BY outreach_batch_date",
-        (batch_id,),
-    ).fetchall()
+    q = ("SELECT outreach_batch_date d, COUNT(*) c FROM final_send_plan "
+         "WHERE status='planned' AND outreach_batch_date!=?")
+    params = [batch_id]
+    if message_type:
+        q += " AND message_type=?"
+        params.append(message_type)
+    q += " GROUP BY outreach_batch_date"
+    old_plans = conn.execute(q, params).fetchall()
     for p in old_plans:
         failures.append(f"old_planned_plan:{p['d']} x{p['c']}")
 
-    old_auths = conn.execute(
-        "SELECT authorization_id FROM send_authorizations "
-        "WHERE status='approved' AND outreach_batch_date!=?",
-        (batch_id,),
-    ).fetchall()
+    # send_authorizations 无 message_type 列，需经 plan_id 关联 final_send_plan 取 message_type。
+    if message_type:
+        q2 = ("SELECT DISTINCT sa.authorization_id FROM send_authorizations sa "
+              "JOIN final_send_plan fsp ON fsp.plan_id = sa.plan_id "
+              "WHERE sa.status='approved' AND fsp.outreach_batch_date!=? "
+              "AND fsp.message_type=?")
+        p2 = [batch_id, message_type]
+    else:
+        q2 = ("SELECT sa.authorization_id FROM send_authorizations sa "
+              "WHERE sa.status='approved' AND sa.outreach_batch_date!=?")
+        p2 = [batch_id]
+    old_auths = conn.execute(q2, p2).fetchall()
     for a in old_auths:
         failures.append(f"old_active_auth:{a['authorization_id']}")
 
@@ -669,7 +685,8 @@ def _local_window_utc_for(tz, on_date, now_utc):
 # ── run_preflight 汇总 ──────────────────────────────────────
 
 def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_cache=True, now=None,
-                  send_window_override: bool = False, include_auth_entries: bool = True):
+                  send_window_override: bool = False, include_auth_entries: bool = True,
+                  message_type: str | None = None):
     """汇总全部检查。任何 fail → smtp_blocked=True（SMTP 保持 0）。
 
     include_auth_entries=False 时跳过 check_auth_entries（该检查要求授权已存在，
@@ -702,13 +719,30 @@ def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_
     checks = []
     blocks = []
 
-    # 0) 批次必须有 planned 行，否则无可验证内容 → fail-closed
-    if plan_count == 0:
+    # 0) 批次必须有「当前 message_type」的 planned 行（P2.3I：按 batch_date + message_type
+    #    正确 scope，避免 new_outreach / follow_up 相互污染）。
+    #    - 当前 batch_date + 当前 message_type 存在 planned FSP rows → PASS
+    #    - 当前 batch 没有该 message_type 的 planned rows → FAIL
+    #    - 其它旧 batch 的 planned rows 由 check_stale_objects FAIL（下方 step 2..7）
+    #    不传 message_type 时退化为全 message_type 计数（向后兼容既有调用方）。
+    if message_type:
+        prp_count = conn.execute(
+            "SELECT COUNT(*) c FROM final_send_plan "
+            "WHERE outreach_batch_date=? AND message_type=? AND status='planned'",
+            (batch_id, message_type),
+        ).fetchone()["c"]
+        prp_detail = f"{prp_count} planned {message_type} rows for {batch_id}"
+    else:
+        prp_count = plan_count
+        prp_detail = f"{plan_count} planned rows (message_type unscoped)"
+    if prp_count == 0:
         checks.append({"name": "planned_rows_present", "status": "fail",
-                       "detail": f"batch {batch_id} has 0 planned rows"})
+                       "detail": (f"batch {batch_id} has 0 planned rows for "
+                                  f"message_type={message_type}") if message_type else
+                                  f"batch {batch_id} has 0 planned rows"})
         blocks.append("planned_rows_present")
     else:
-        checks.append({"name": "planned_rows_present", "status": "pass", "detail": f"{plan_count} planned rows"})
+        checks.append({"name": "planned_rows_present", "status": "pass", "detail": prp_detail})
 
     # 1) DNS freshness
     if require_dns:
@@ -741,7 +775,7 @@ def run_preflight(conn, batch_id, snapshot_path=None, require_dns=True, persist_
         check_duplicates,
         check_template,
         lambda c, rows: check_snapshot_plan_hash(c, snapshot_path, rows),
-        lambda c, rows: check_stale_objects(c, batch_id, now),
+        lambda c, rows: check_stale_objects(c, batch_id, now, message_type),
     ]
     if include_auth_entries:
         pre_auth_fns.append(lambda c, rows: check_auth_entries(c, batch_id, now))

@@ -137,13 +137,13 @@ class SchedulePreviewTest(unittest.TestCase):
         self.assertEqual(by_lead[1]["state"], "NY")
 
     def test_preview_timezone_and_china_time(self):
-        """纽约当地 10:00（2026-08-05）→ Asia/Shanghai 应为 22:00 当日。"""
+        """纽约当地 08:00（2026-08-05）→ Asia/Shanghai 应为 20:00 当日（P2.3I 窗口 08:00-11:10）。"""
         entries = DASH.compute_schedule_preview(self.conn, now_utc=NOW_UTC)
         e = next(x for x in entries if x["lead_id"] == 1)
         self.assertEqual(e["recipient_timezone"], "America/New_York")
-        self.assertIn("10:00:00", e["scheduled_local_time"])
-        # 8 月纽约为 EDT（UTC-4），当地 10:00 = UTC 14:00 = 上海 22:00
-        self.assertIn("22:00:00", e["scheduled_china_time"])
+        self.assertIn("08:00:00", e["scheduled_local_time"])
+        # 8 月纽约为 EDT（UTC-4），当地 08:00 = UTC 12:00 = 上海 20:00
+        self.assertIn("20:00:00", e["scheduled_china_time"])
         self.assertTrue(e["schedulable"])
 
     def test_preview_unresolved_marker(self):
