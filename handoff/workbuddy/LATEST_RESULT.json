@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-09-11T10:00:00+08:00",
+  "repo": "1569032023yf-star/workbuddy-task-window",
+  "branch": "main",
+  "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
+  "production_code_sha": "da36acfdbd19c896f3fdc0dc1bc1e16ac2b42eb4",
+  "production_status": "FROZEN (P1.9 SYSTEM_FREEZE=true); canonical scheduler ACTIVE; no sends since 2026-09-03",
+  "current_phase": "PHASE_4A_COMPLETE / PERMANENT_HANDOFF_MODE_SETUP",
+  "current_blocker": "SAFE_FSP materialized=0; V2-eligible read-only proxy=12 leads/11 orgs not materialized (review gate fail-closed); 428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
+  "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) — sole authority; BDExecutionHost Stopped; no second scheduler",
+  "workbuddy_automations": [
+    {"id": "1784775229336", "name": "BD Inventory", "schedule": "daily 15:00", "state": "ACTIVE"},
+    {"id": "1785804406748", "name": "BD Production Pre-Send", "schedule": "Mon-Fri 21:30", "state": "ACTIVE"},
+    {"id": "1785804413719", "name": "BD Production Preflight", "schedule": "Mon-Fri 21:50", "state": "ACTIVE"},
+    {"id": "1785804421539", "name": "BD Production Outreach", "schedule": "Mon-Fri 22:00", "state": "ACTIVE"},
+    {"id": "1786002601925", "name": "Result Recovery Sync", "schedule": "daily 08:45", "state": "ACTIVE", "note": "support job, not a stage trigger"}
+  ],
+  "windows_tasks": [
+    {"name": "RoktRazo-BD-PreSend", "state": "Disabled", "classification": "DUPLICATE of canonical Pre-Send"},
+    {"name": "RoktRazo-BD-Outreach", "state": "Disabled", "classification": "DUPLICATE of canonical Outreach"},
+    {"name": "RoktRazo-BD-PostSend", "state": "Ready/Enabled", "classification": "UNIQUE_REQUIRED (--stage post-send 00:10 daily)"}
+  ],
+  "duplicate_active_trigger_count": 0,
+  "database_schema_changed": false,
+  "frozen_files_changed": false,
+  "safe_metrics": {
+    "V2_ELIGIBLE_UNSENT": 12,
+    "V2_ELIGIBLE_UNSENT_AUTHORITY": "leads table read-only SQL proxy (canonical = campaign_eligible_v2.review_campaign_eligible_v2() requires live MX=ok, NOT enforced in proxy; true canonical <=12)",
+    "READ_ONLY_SAFE_UNIQUE_ORGS": 11,
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "distinct leads.organization_key among V2-eligible proxy set",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MATERIALIZED_FSP_PLANNED_AUTHORITY": "final_send_plan.status='planned'",
+    "BROAD_READY": 95,
+    "BROAD_READY_AUTHORITY": "leads.send_eligibility='broad_outreach_ready'",
+    "VISIBLE_FIRST_PARTY_EMAILS": 338,
+    "VISIBLE_FIRST_PARTY_EMAILS_AUTHORITY": "leads.email NOT NULL AND email_verified_on_official_site=1 AND status NOT IN terminal (canonical); conflicting looser code defs D1~914/D2~983 exist",
+    "metric_definition_mismatch_found": true
+  },
+  "supporting_totals": {
+    "total_leads": 1069,
+    "total_sent": 516,
+    "full_evidence_records": 897,
+    "manual_review_needed": 480,
+    "last_send_log_ts": "2026-09-03T01:10:35+08:00",
+    "last_fsp_created_ts": "2026-09-02 14:32:08"
+  },
+  "last_runs": {
+    "inventory": "2026-09-10 11:27 (one-off) + daily 15:00 automation; no DB execution-log timestamp",
+    "presend": "Mon-Fri 21:30 automation ACTIVE; no DB execution-log timestamp",
+    "preflight": "Mon-Fri 21:50 automation ACTIVE; no DB execution-log timestamp",
+    "outreach": "Mon-Fri 22:00 automation ACTIVE; last actual send 2026-09-03",
+    "postsend": "2026-09-10 00:10:01 (Windows task, result 0)"
+  },
+  "next_action": [
+    "Resolve SAFE=0: authorize OFFICIAL_EMAIL_ENRICHMENT for 428 no-email leads OR relax review gate (user authorization required, not auto)",
+    "Continue permanent handoff: sync every future production audit/result to workbuddy-task-window main",
+    "RECOMMENDED: purge already-tracked *.db files from repo history per safe-git rule E (separate destructive authorization)",
+    "Migrate PostSend Windows task to WorkBuddy automation when new-automation allowed"
+  ],
+  "contains_credentials": false,
+  "contains_pii": false
+}
