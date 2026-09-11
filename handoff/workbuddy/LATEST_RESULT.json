@@ -1,19 +1,48 @@
 {
-  "generated_at": "2026-09-11T10:00:00+08:00",
+  "generated_at": "2026-09-11T14:35:00+08:00",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
-  "production_code_sha": "da36acfdbd19c896f3fdc0dc1bc1e16ac2b42eb4",
-  "production_status": "FROZEN (P1.9 SYSTEM_FREEZE=true); canonical scheduler ACTIVE; no sends since 2026-09-03",
-  "current_phase": "PHASE_4A_COMPLETE / PERMANENT_HANDOFF_MODE_SETUP",
-  "current_blocker": "SAFE_FSP materialized=0; V2-eligible read-only proxy=12 leads/11 orgs not materialized (review gate fail-closed); 428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
+  "current_phase": "PHASE_4A_1C (Controlled Production Patch + Inventory Validation) — COMPLETE",
+  "production_status": "PATCHED (2 files from Codex 7013b33); FROZEN send chain intact; canonical scheduler ACTIVE; no sends since 2026-09-03",
+  "current_blocker": "SAFE_FSP materialized=0; authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS=1 (MX-enforced, live inventory 2026-09-11 14:28) not materialized (review gate fail-closed); 428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
+  "phase4a1c_patch": {
+    "codex_source_commit": "7013b335ad4b1eec33cd559825ece7d5aaead70c",
+    "ad1111b_note": "handoff/report-only commit on top of 7013b33; NOT a separate production version",
+    "deployment_executed": true,
+    "deployment_run_id": "p4a1c-20260911",
+    "inventory_run_id": "inventory:2026-09-11:f5895b2a",
+    "scope": "exactly two files",
+    "target_hash_match": "2/2",
+    "files": [
+      {
+        "path": "bd_orchestrator.py",
+        "target_sha256": "252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05",
+        "before_sha256": "49e38bb1d80832e65f33752d4f7b0e64f5df41753dc6056b4d1a5a2446acecdc",
+        "match": true
+      },
+      {
+        "path": "discovery/discovery_service.py",
+        "target_sha256": "45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356",
+        "before_sha256": "735d70fe9bd38698024b5587c5cb5e447024b4ae7236fbb6cc3e426c418ccf6f",
+        "match": true
+      }
+    ],
+    "rollback_ready": true,
+    "rollback_bundle": "C:/Users/15690/rollback_p4a1c_20260911_142132",
+    "baseline_drift_detected": false,
+    "frozen_files_changed": 0,
+    "database_schema_changed": false,
+    "env_changed": false,
+    "production_patch_validated": true
+  },
   "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) — sole authority; BDExecutionHost Stopped; no second scheduler",
   "workbuddy_automations": [
-    {"id": "1784775229336", "name": "BD Inventory", "schedule": "daily 15:00", "state": "ACTIVE"},
-    {"id": "1785804406748", "name": "BD Production Pre-Send", "schedule": "Mon-Fri 21:30", "state": "ACTIVE"},
-    {"id": "1785804413719", "name": "BD Production Preflight", "schedule": "Mon-Fri 21:50", "state": "ACTIVE"},
-    {"id": "1785804421539", "name": "BD Production Outreach", "schedule": "Mon-Fri 22:00", "state": "ACTIVE"},
-    {"id": "1786002601925", "name": "Result Recovery Sync", "schedule": "daily 08:45", "state": "ACTIVE", "note": "support job, not a stage trigger"}
+    {"id": "1784775229336", "name": "BD Inventory", "schedule": "daily 15:00", "state": "ACTIVE", "pre_deploy_state": "ACTIVE", "hold": "PAUSED-then-restored"},
+    {"id": "1785804406748", "name": "BD Production Pre-Send", "schedule": "Mon-Fri 21:30", "state": "ACTIVE", "pre_deploy_state": "ACTIVE", "hold": "PAUSED-then-restored"},
+    {"id": "1785804413719", "name": "BD Production Preflight", "schedule": "Mon-Fri 21:50", "state": "ACTIVE", "pre_deploy_state": "ACTIVE", "hold": "PAUSED-then-restored"},
+    {"id": "1785804421539", "name": "BD Production Outreach", "schedule": "Mon-Fri 22:00", "state": "ACTIVE", "pre_deploy_state": "ACTIVE", "hold": "PAUSED-then-restored"},
+    {"id": "1786002601925", "name": "Result Recovery Sync", "schedule": "daily 08:45", "state": "ACTIVE", "note": "support job, not a stage trigger; never held"}
   ],
   "windows_tasks": [
     {"name": "RoktRazo-BD-PreSend", "state": "Disabled", "classification": "DUPLICATE of canonical Pre-Send"},
@@ -21,19 +50,60 @@
     {"name": "RoktRazo-BD-PostSend", "state": "Ready/Enabled", "classification": "UNIQUE_REQUIRED (--stage post-send 00:10 daily)"}
   ],
   "duplicate_active_trigger_count": 0,
-  "database_schema_changed": false,
-  "frozen_files_changed": false,
+  "live_inventory_2026_09_11": {
+    "command": "bd_orchestrator.py --stage inventory --live",
+    "exit_code": 0,
+    "duration_s": 204,
+    "new_discovery_path_executed": true,
+    "provider_status": "ok (8 results seen, no error)",
+    "provider_error": "none",
+    "discovery_results_seen": 8,
+    "new_unique_places": 0,
+    "website_resolution_processed": 0,
+    "normal_staging_postprocess_processed": 0,
+    "linked_backlog_path_executed": true,
+    "linked_backlog_eligible": 18,
+    "linked_backlog_processed": 18,
+    "linked_backlog_website_processed": 11,
+    "linked_backlog_postprocess_processed": 7,
+    "linked_backlog_existing_leads_linked": 0,
+    "broad_ready_before": 34,
+    "broad_ready_after": 34,
+    "broad_ready_db_column_after": 95,
+    "read_only_v2_safe_before": 1,
+    "read_only_v2_safe_after": 1,
+    "materialized_fsp_planned_before": 0,
+    "materialized_fsp_planned_after": 0,
+    "broadready_false_completion_fixed_in_production": true,
+    "status": "partial",
+    "stop_reason": "safe_inventory_gap",
+    "actual": 1,
+    "gap": 29
+  },
+  "safety": {
+    "legacy_scanner_used_as_safe_authority": false,
+    "real_smtp_connections": 0,
+    "real_imap_connections": 0,
+    "final_send_plan_created": 0,
+    "authorization_created": 0,
+    "guessed_email_promoted": 0,
+    "third_party_email_promoted": 0,
+    "identity_mismatch_promoted": 0,
+    "invalid_http_tls_promoted": 0,
+    "utf8_encoding_error": false
+  },
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 12,
-    "V2_ELIGIBLE_UNSENT_AUTHORITY": "leads table read-only SQL proxy (canonical = campaign_eligible_v2.review_campaign_eligible_v2() requires live MX=ok, NOT enforced in proxy; true canonical <=12)",
-    "READ_ONLY_SAFE_UNIQUE_ORGS": 11,
-    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "distinct leads.organization_key among V2-eligible proxy set",
+    "V2_ELIGIBLE_UNSENT_AUTHORity": "leads read-only SQL proxy (MX NOT enforced); true canonical <=12",
+    "READ_ONLY_SAFE_UNIQUE_ORGS": 1,
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "live inventory 2026-09-11 14:28 (MX-enforced, canonical); earlier MX-less proxy of 11 was over-count",
     "MATERIALIZED_FSP_PLANNED": 0,
     "MATERIALIZED_FSP_PLANNED_AUTHORITY": "final_send_plan.status='planned'",
     "BROAD_READY": 95,
-    "BROAD_READY_AUTHORITY": "leads.send_eligibility='broad_outreach_ready'",
+    "BROAD_READY_EFFECTIVE_INVENTORY": 34,
+    "BROAD_READY_AUTHORITY": "leads.send_eligibility='broad_outreach_ready' (col=95); inventory effective=34",
     "VISIBLE_FIRST_PARTY_EMAILS": 338,
-    "VISIBLE_FIRST_PARTY_EMAILS_AUTHORITY": "leads.email NOT NULL AND email_verified_on_official_site=1 AND status NOT IN terminal (canonical); conflicting looser code defs D1~914/D2~983 exist",
+    "VISIBLE_FIRST_PARTY_EMAILS_AUTHORITY": "leads.email NOT NULL AND email_verified_on_official_site=1 AND status NOT IN terminal (canonical); looser code defs D1~914/D2~983 exist",
     "metric_definition_mismatch_found": true
   },
   "supporting_totals": {
@@ -42,20 +112,22 @@
     "full_evidence_records": 897,
     "manual_review_needed": 480,
     "last_send_log_ts": "2026-09-03T01:10:35+08:00",
-    "last_fsp_created_ts": "2026-09-02 14:32:08"
+    "last_fsp_created_ts": "2026-09-02 14:32:08",
+    "sys_utf8_mode": 1,
+    "stdout_encoding": "utf-8",
+    "python_executable": "C:/Users/15690/.workbuddy/binaries/python/versions/3.13.12/python.exe"
   },
   "last_runs": {
-    "inventory": "2026-09-10 11:27 (one-off) + daily 15:00 automation; no DB execution-log timestamp",
-    "presend": "Mon-Fri 21:30 automation ACTIVE; no DB execution-log timestamp",
-    "preflight": "Mon-Fri 21:50 automation ACTIVE; no DB execution-log timestamp",
+    "inventory": "2026-09-11 14:25:15-14:28:39 (one-off authorized live; status=partial, safe_inventory_gap) + daily 15:00 automation ACTIVE",
+    "presend": "Mon-Fri 21:30 automation ACTIVE",
+    "preflight": "Mon-Fri 21:50 automation ACTIVE",
     "outreach": "Mon-Fri 22:00 automation ACTIVE; last actual send 2026-09-03",
     "postsend": "2026-09-10 00:10:01 (Windows task, result 0)"
   },
   "next_action": [
-    "Resolve SAFE=0: authorize OFFICIAL_EMAIL_ENRICHMENT for 428 no-email leads OR relax review gate (user authorization required, not auto)",
+    "Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRICHMENT for 428 no-email leads OR relax review gate (user authorization required, not auto)",
     "Continue permanent handoff: sync every future production audit/result to workbuddy-task-window main",
-    "RECOMMENDED: purge already-tracked *.db files from repo history per safe-git rule E (separate destructive authorization)",
-    "Migrate PostSend Windows task to WorkBuddy automation when new-automation allowed"
+    "RECOMMENDED: purge already-tracked *.db files from repo history per safe-git rule E (separate destructive authorization)"
   ],
   "contains_credentials": false,
   "contains_pii": false
