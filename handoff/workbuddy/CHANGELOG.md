@@ -5,6 +5,27 @@ Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreac
 
 ---
 
+## 2026-09-14 — READ-ONLY PRODUCTION STATUS REFRESH (authorized, no changes)
+
+- **Type:** READ-ONLY refresh of production status since the 2026-09-11 Phase 4A.1C patch. No code, DB, scheduler, FSP, Authorization, or send changes. Live metrics recomputed from `data/bd_leads.db` (read-only) + scheduler state.
+- **PRODUCTION_CODE_DRIFT = false** — both patched files re-verified: `bd_orchestrator.py` = `252ed604…`, `discovery/discovery_service.py` = `45db60d9…` (match 2/2, unchanged from 2026-09-11).
+- **Live funnel (read-only, per authority):**
+  - TOTAL_LEADS = 1069
+  - VISIBLE_FIRST_PARTY_EMAILS = 332 (canonical status-agnostic; strict "status NOT IN terminal" variant = 16). 2026-09-11 baseline 338 → −6.
+  - BROAD_READY_DB = 95 (col) / BROAD_READY_EFFECTIVE = 34 (live-recomputed, unchanged).
+  - V2_ELIGIBLE_UNSENT = 16 (SQL proxy, MX NOT enforced) / 5 with evidence ≤90d.
+  - **READ_ONLY_V2_SAFE_UNIQUE_ORGS = 1** (Frozen V2+MX path replicated read-only via injected `system_config.mx_cache_*`, no live MX lookup, no DB write) — **unchanged from 2026-09-11**.
+  - MATERIALIZED_FSP_PLANNED = 0.
+  - MANUAL_REVIEW_NEEDED = 480 · EMPTY_EMAIL_ACTIONABLE = 428.
+- **SAFE_BLOCKED_FROM_FSP = 1** — the single safe lead (id 1085, `org:domain:ithacainstantreplaysports.com`) is `status=manual_review_needed` + `auto_sendable=0` + `manual_sendable=0` → review gate fail-closed (matches 2026-09-11 blocker).
+- **Job runs since 2026-09-11 (from job_runs):** 4 Inventory (all `partial`/`safe_inventory_gap`, actual=1) + 3 Post-Send (all `completed`, actual=0). PreSend/Preflight/Outreach/Recovery Sync have **no job_runs rows** (do not persist). Last inventory = 2026-09-13 15:01 +08.
+- **Inventory yield since patch = zero net progress:** every daily inventory stops at `safe_inventory_gap` (only 1 MX-enforced V2-safe org vs 30+ target). 0 new unique places; V2_SAFE_ORG_DELTA=0. Granular discovery metrics UNKNOWN for automated runs (job_runs lacks them); validation run had discovery_results_seen=8, new_unique_places=0.
+- **Email outcome since 2026-09-11:** SMTP_ACCEPTED=0, HARD_BOUNCES=0, POLICY_BOUNCES=0, REPLIES=0, UNSUBSCRIBES=0. LAST_ACTUAL_SEND_AT = 2026-09-03T01:10:35+08:00.
+- **Scheduler verified:** 5 canonical WorkBuddy automations ACTIVE (Inventory/Pre-Send/Preflight/Outreach/Recovery Sync). Windows tasks: PreSend=Disabled, Outreach=Disabled, PostSend=Ready/Enabled (UNIQUE_REQUIRED). **DUPLICATE_ACTIVE_TRIGGER_COUNT = 0**. MANUAL_NIGHTLY_CONFIRMATION_REQUIRED = false.
+- **Candidate blockers (V2-evaluated pool):** EVIDENCE_STALE=9, guessed_email=73, MX_NXDOMAIN=51, MX_NO_ROUTE=6, MX_NULL_MX=1, MX_DNS_ERROR=1, TIMEZONE_UNRESOLVED=75, ORG_DUPLICATE(non-terminal)=6, MANUAL_REVIEW_GATE(status)=480. History: PREVIOUSLY_SENT=415, SUPPRESSED=63, BOUNCED=49.
+- **Flag:** FULL_EVIDENCE_DELTA = 844 − 897 = −53 (unexpected given no Inventory writes; likely a 2026-09-11 baseline-definition difference — recommend reconfirming the 897 figure before treating as regression).
+- Updated handoff: CURRENT_STATUS.md, LATEST_RESULT.json (this entry), CHANGELOG.md. Safe-git precheck: only handoff docs staged; no .env/secrets/*.db/PII. Committed + pushed to `main` (handoff/report-only, NOT a production version bump).
+
 ## 2026-09-11 — PHASE 4A.1C Controlled Production Patch + Inventory Validation (authorized)
 - **Deployed exactly two production files from Codex `7013b335ad4b1eec33cd559825ece7d5aaead70c`** (verified SHA256 MATCH 2/2):
   - `bd_orchestrator.py` → `252ed604…`
