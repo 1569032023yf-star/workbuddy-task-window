@@ -368,7 +368,7 @@
       "PRODUCTION_DB_WRITES": 0,
       "REAL_SMTP_CONNECTIONS": 0,
       "NEXT_RECOMMENDED_ACTION": "To make PreSend effective: convert automation 1785804406748 from prompt-driven to a real command that runs `python bd_orchestrator.py --stage pre-send --live` (or fix the prompt so it does not depend on a non-existent 21:10 freeze step). Do NOT relax the V2/hygiene gate (1085 stays manual_review_needed). This is a scheduler/automation-config change requiring user authorization; not auto-applied (read-only mandate).",
-      "GITHUB_HANDOFF_PUSHED": false
+      "GITHUB_HANDOFF_PUSHED": true
     },
     "supersedes_prior_exact_fsp_blocker": true
   },
@@ -390,7 +390,7 @@
     "MINIMUM_FIX_FUNCTION": "select_candidates_for_plan_v2 / review_campaign_eligible_v2",
     "HANDOFF_TIMESTAMP_ERROR": true,
     "NEXT_RECOMMENDED_ACTION": "Reconcile deliberately: (a) KEEP 1085 held + exclude manual_review_needed from V2 selector [recommended, no gate relaxed], OR (b) if third-party free-mailboxes w/ official-page evidence are acceptable, relax lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation requiring explicit user authorization. No change made (read-only).",
-    "GITHUB_HANDOFF_PUSHED": false,
+    "GITHUB_HANDOFF_PUSHED": true,
     "ROOT_CAUSE_CLASSIFICATION": "F",
     "CANONICAL_PRESEND_EXECUTION_FAILURE": true,
     "CANONICAL_FSP_WOULD_CREATE_1085": true,
