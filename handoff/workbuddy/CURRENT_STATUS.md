@@ -272,5 +272,5 @@ NEXT_RECOMMENDED_ACTION       = (read-only, no change made) reconcile deliberate
                                   (b) if third-party free-mailboxes w/ official-page evidence are acceptable, relax
                                   lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation,
                                   contrary to stated goal, so requires explicit user authorization.
-GITHUB_HANDOFF_PUSHED          = (set by push step below)
+GITHUB_HANDOFF_PUSHED          = true (commit 5060ddb @ main; verified via ls-remote)
 ```

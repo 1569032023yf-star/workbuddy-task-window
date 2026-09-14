@@ -176,7 +176,7 @@
     "MINIMUM_FIX_FUNCTION": "select_candidates_for_plan_v2 / review_campaign_eligible_v2",
     "HANDOFF_TIMESTAMP_ERROR": true,
     "NEXT_RECOMMENDED_ACTION": "Reconcile deliberately: (a) KEEP 1085 held + exclude manual_review_needed from V2 selector [recommended, no gate relaxed], OR (b) if third-party free-mailboxes w/ official-page evidence are acceptable, relax lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation requiring explicit user authorization. No change made (read-only).",
-    "GITHUB_HANDOFF_PUSHED": "set by push step"
+    "GITHUB_HANDOFF_PUSHED": true
   },
   "contains_credentials": false,
   "contains_pii": false
