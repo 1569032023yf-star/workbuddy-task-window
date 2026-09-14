@@ -4,8 +4,9 @@
 > - `1569032023yf-star/workbuddy-task-window` (branch `main`) = **PRODUCTION SOURCE / PRODUCTION HANDOFF** ← this repo
 > - `1569032023yf-star/roktandrazo-outreach-codex` = **DEVELOPMENT SOURCE / CODEX HANDOFF** (do NOT write production handoff here)
 >
-> Generated: 2026-09-14T14:37:00+08:00 (Asia/Shanghai)
-> REFRESH TYPE: **READ-ONLY status refresh** — no code/DB/scheduler/FSP/Authorization/send changes. Live metrics authority = `data/bd_leads.db` (read-only query), WorkBuddy automations, Windows Task Scheduler.
+> Generated: 2026-09-14T15:46:00+08:00 (Asia/Shanghai)
+> REFRESH TYPE: **READ-ONLY status refresh + Inventory closeout + Lead 1085 state-transition audit** — no code/DB/scheduler/FSP/Authorization/send changes. Live metrics authority = `data/bd_leads.db` (read-only query), WorkBuddy automations, Windows Task Scheduler.
+> TIMESTAMP NOTE: previous handoff stamped `Generated: 2026-09-14T14:37:00+08:00` while also recording the 2026-09-14 inventory start as `15:01 +08` and calling it "still running as of 14:37". 14:37 < 15:01 is impossible → the 14:37 timestamp was wrong (see section I / FINAL HANDOFF_TIMESTAMP_ERROR). Correct inventory start = 15:01:10 +08 (= 07:01:10 UTC); correct audit time = 15:46 +08 (this refresh).
 > NOTE: the live production DB is `roktandrazo-outreach/data/bd_leads.db`; the root `roktandrazo-outreach/bd_leads.db` is a 0-byte stale file and is NOT authoritative.
 
 ---
@@ -36,8 +37,11 @@ FROZEN_FILES_CHANGED       = false  (V2 / MX / Preflight / Sender / final_send_p
 SAFE_METRIC_DEFINITION     = see section D (5 distinct metrics, each with authority)
 SAFE_CURRENT               = canonical SAFE_FSP (materialized final_send_plan.status='planned') = 0
                              (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 1 — MX-enforced, unchanged)
-LAST_INVENTORY_RUN         = 2026-09-13 15:01 +08 (automation-1784775229336; run_id inventory:2026-09-13:6031059e;
-                             status=partial, stop_reason=safe_inventory_gap; actual=1, gap=59). Validation run
+LAST_INVENTORY_RUN         = 2026-09-14 15:01 +08 (automation-1784775229336; run_id inventory:2026-09-14:eba7c883;
+                             status=partial, stop_reason=safe_inventory_gap; started 15:01:10 +08 / 07:01:10 UTC,
+                             finished 15:04:36 +08 / 07:04:36 UTC; actual=1, gap=29) — NOW COMPLETED (was "running"
+                             in prior handoff; prior timestamp 14:37 +08 predated the 15:01 start, see FINAL HANDOFF_TIMESTAMP_ERROR).
+                             Prior completed: 2026-09-13 15:01 +08 (6031059e; partial, actual=1, gap=59). Validation run
                              2026-09-11 14:25 +08 (f5895b2a) same stop_reason. Daily 15:00 automation ACTIVE.
 LAST_PRESEND_RUN           = automation-1785804406748 ACTIVE (Mon-Fri 21:30 +08); last actual run NOT persisted in DB (no job_run rows)
 LAST_PREFLIGHT_RUN         = automation-1785804413719 ACTIVE (Mon-Fri 21:50 +08); last actual run NOT persisted in DB
@@ -50,7 +54,7 @@ NEXT_ACTION                = (1) Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRI
                              (separate destructive authorization — history rewrite).
 ```
 
-### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — verified 2026-09-14 14:37 +08
+### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — verified 2026-09-14 15:46 +08
 | Automation ID | Name | Schedule | State |
 |---|---|---|---|
 | 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE |
@@ -59,7 +63,7 @@ NEXT_ACTION                = (1) Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRI
 | 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | ACTIVE (display name still carries stale suffix `[PAUSED: ExecutionHost未验证]`; actual status = ACTIVE) |
 | 1786002601925 | BD Result Recovery Sync | daily 08:45 +08 | ACTIVE (support job, not a stage trigger) |
 
-### WINDOWS_TASKS — verified 2026-09-14 14:37 +08 (via Get-ScheduledTask)
+### WINDOWS_TASKS — verified 2026-09-14 15:46 +08 (via Get-ScheduledTask)
 | Task Name | State | Classification |
 |---|---|---|
 | RoktRazo-BD-PreSend | Disabled | DUPLICATE of canonical Pre-Send (suppressed) |
@@ -109,11 +113,11 @@ Report all five. Never summarize production readiness with a single "SAFE = X".
 | 2026-09-12 00:10¹ | post-send:2026-09-12:1a6fe52d | post-send | 2026-09-12 16:10:02 | 2026-09-12 16:10:04 | completed | 0 | 40 | (none) | (empty) |
 | 2026-09-13 15:01 | inventory:2026-09-13:6031059e | inventory | 2026-09-13 07:01:06 | 2026-09-13 07:05:10 | partial | 1 | 59 | safe_inventory_gap | (empty) |
 | 2026-09-13 00:10¹ | post-send:2026-09-13:ad59b6a2 | post-send | 2026-09-13 16:10:02 | 2026-09-13 16:10:04 | completed | 0 | 40 | (none) | (empty) |
-| 2026-09-14 15:01 | inventory:2026-09-14:eba7c883 | inventory | 2026-09-14 07:01:10 | (running) | running | 0 | 0 | (none) | (empty) |
+| 2026-09-14 15:01 | inventory:2026-09-14:eba7c883 | inventory | 2026-09-14 07:01:10 | 2026-09-14 07:04:36 | partial | 1 | 29 | safe_inventory_gap | (empty) |
 
 ¹ post-send started_at is stored as previous-day UTC (00:10 +08 = previous day 16:10 UTC). PreSend / Preflight / Outreach / Recovery Sync stages have **NO job_runs rows** in this window — consistent with the 2026-09-11 note that they do not persist runs to `job_runs` (their last actual execution is not captured in the DB). Recovery Sync (automation-1786002601925, daily 08:45 +08) is confirmed active via scheduler but also does not write job_runs; its 2026-09-14 08:45 run accounts for the live DB file mtime of 2026-09-14 08:45.
 
-**Note (re-verified 2026-09-14 14:37 +08):** a 5th inventory run (`inventory:2026-09-14:eba7c883`) is **still RUNNING** as of report time (started 07:01:10 UTC, `actual=0`, `finished_at=NULL`). It has not yet materialized any new place. `LAST_SUCCESSFUL_INVENTORY` (last *completed*) remains **2026-09-13 15:01 +08** (6031059e).
+**Note (re-verified 2026-09-14 15:46 +08):** the 5th inventory run (`inventory:2026-09-14:eba7c883`) has **COMPLETED** (finished 2026-09-14 07:04:36 UTC = 15:04:36 +08; status=partial, actual=1, gap=29, stop_reason=safe_inventory_gap). `LAST_SUCCESSFUL_INVENTORY` (last *completed*) = **2026-09-14 15:01 +08** (eba7c883), which is now also the latest inventory. No new V2-safe orgs materialized; READ_ONLY_V2_SAFE_UNIQUE_ORGS unchanged at 1 (lead 1085; see section I for why it still cannot enter FSP).
 
 ¹ post-send started_at is stored as previous-day UTC (00:10 +08 = previous day 16:10 UTC). PreSend / Preflight / Outreach / Recovery Sync stages have **NO job_runs rows** in this window — consistent with the 2026-09-11 note that they do not persist runs to `job_runs` (their last actual execution is not captured in the DB). Recovery Sync (automation-1786002601925, daily 08:45 +08) is confirmed active via scheduler but also does not write job_runs; its 2026-09-14 08:45 run accounts for the live DB file mtime of 2026-09-14 08:45.
 
@@ -173,3 +177,100 @@ V2-safe orgs.
    V2-eligible `manual_review_needed` leads (user authorization required, NOT automatic).
 2. Continue permanent handoff: sync every future production audit/result to `workbuddy-task-window` main.
 3. RECOMMENDED: purge already-tracked `*.db` files from repo history per safe-git rule E (separate destructive authorization — history rewrite).
+
+---
+
+## I. INVENTORY CLOSEOUT + LEAD 1085 STATE TRANSITION AUDIT (2026-09-14 15:46 +08, READ-ONLY)
+
+> Audit mandate: read-only. No code/DB/scheduler/FSP/Authorization/send changes. Only handoff docs updated.
+
+### A. Inventory closeout — `inventory:2026-09-14:eba7c883` (NOW COMPLETED)
+| Field | Value |
+|---|---|
+| RUN_ID | inventory:2026-09-14:eba7c883 |
+| STARTED_AT | 2026-09-14 07:01:10 UTC (= 15:01:10 +08) |
+| FINISHED_AT | 2026-09-14 07:04:36 UTC (= 15:04:36 +08) |
+| STATUS | partial |
+| ACTUAL | 1 |
+| GAP | 29 |
+| STOP_REASON | safe_inventory_gap |
+| ERROR | (empty) |
+| READ_ONLY_V2_SAFE_BEFORE | 1 (prior completed run 6031059e, 2026-09-13) |
+| READ_ONLY_V2_SAFE_AFTER | 1 (unchanged; lead 1085 still the only V2-safe org) |
+
+Granular per-run metrics (DISCOVERY_RESULTS_SEEN / NEW_UNIQUE_PLACES / WEBSITE_RESOLUTION_PROCESSED / STAGING_POSTPROCESS_PROCESSED / LINKED_BACKLOG_PROCESSED) = **UNKNOWN** — `job_runs` persists only target/actual/gap/stop_reason/error, not discovery sub-metrics (consistent with prior audit; do not speculate).
+
+### B. Lead 1085 audit
+| Field | Value |
+|---|---|
+| LEAD_ID | 1085 |
+| email | ithacainstantreplaysports@yahoo.com |
+| email_source_type | official_page_visible |
+| email_verified_on_official_site | 1 |
+| evidence_url | https://ithacainstantreplaysports.com/ |
+| evidence_method | official_homepage |
+| evidence_checked_at | 2026-09-10T02:17:28.952484+00:00 (fresh, <90d) |
+| official_email_evidence | evidence_snippet (homepage shows `ithacainstantreplaysports@yahoo.com … IthacaInstantReplaySports@yahoo.com …`) |
+| organization_key | org:domain:ithacainstantreplaysports.com |
+| timezone | America/New_York (timezone_status=RESOLVED) |
+| MX_RESULT | ok (yahoo.com valid MX) |
+| V1_RESULT | CAMPAIGN_ELIGIBLE (v1_pool) |
+| V2_RESULT | CAMPAIGN_ELIGIBLE_V2 (eligible=True; tier=E1; mx_status=ok; evidence_stale=False; blockers=[]) |
+| linked discovery result id | 293 |
+| linked discovery validation_status | existing_lead_linked |
+| review_reason_code | hygiene_failed |
+| review_reason_detail | state_out_of_scope,third_party_email_domain |
+| status / auto_sendable / manual_sendable | manual_review_needed / 0 / 0 |
+
+### C. State path trace (function-level, read-only)
+1. **Discovery evidence found** — `lead_discovery_results.id=293` (provider=browser_maps, evidence_method=official_homepage, evidence_url=official site, snippet contains the yahoo email). `validation_status=existing_lead_linked` → `linked_lead_id=1085`.
+2. **Existing lead linkage** — linked to lead 1085 (lead.notes: `discovery_result_id=293`).
+3. **Evidence merge** — lead 1085 set: email=…@yahoo.com, email_source_type=official_page_visible, email_verified_on_official_site=1, evidence_url, evidence_method, evidence_snippet, evidence_checked_at=2026-09-10.
+4. **Hygiene result** — `lead_hygiene_gate.evaluate_a0(1085)` (pure, side-effect-free):
+   - `state='NY'` → `normalize_state('NY')='NY' ∉ {TN,AR,KY}` → reason **`state_out_of_scope`** (line 74-75)
+   - `domain='yahoo.com'`, `official_domain='ithacainstantreplaysports.com'` → `domain != official_domain` → reason **`third_party_email_domain`** (line 90-92)
+   - returns `HygieneDecision("B2_manual_review", False, (…,'state_out_of_scope','third_party_email_domain',…))`
+5. **Lead status** — consuming code maps `B2_manual_review` → `status='manual_review_needed'`, `auto_sendable=0`, `manual_sendable=0`, `review_reason_code='hygiene_failed'`, `review_reason_detail='state_out_of_scope,third_party_email_domain'`.
+6. **auto_sendable/manual_sendable** = 0/0 (set by the hygiene consumer, not by V2).
+7. **select_candidates_for_plan_v2(1085)** — `status='manual_review_needed'` is **NOT** in the terminal exclusion list (`sent,bounced,do_not_contact,rejected,failed,delivery_issue,bounce_review,contact_form_pool`), so it passes the status filter. Then `review_campaign_eligible_v2(1085)`:
+   - `email_source_tier`: `email_source_type='official_page_visible'` AND `verified=1` → returns **TIER_E1 immediately (line 188-189)**, does NOT check domain match.
+   - MX ok + evidence fresh → `eligible=True`, `pool=CAMPAIGN_ELIGIBLE_V2`, `blockers=[]`.
+   → **V2_SELECTOR_INCLUDES_1085 = True**.
+8. **create_plan eligibility** — `campaign_eligible_check_v2` (same `review_campaign_eligible_v2`) also returns True.
+9. **EXACT_FSP_BLOCKER (final gate)** — `outreach_control.build_final_plan_entries` required-field check:
+   `required = ("id","email","store_name","email_subject","email_body","evidence_url")`; lead 1085 has `email_subject=None` and `email_body=None` → `continue` → **NOT inserted** into `final_send_plan`. So 1085 never reaches a planned FSP row.
+
+### D. Do NOT fix (read-only) — minimum fix location
+- **MINIMUM_FIX_FILE** = `campaign_eligible_v2.py` (**NON-frozen**; the only Phase 4A.1C locked files are `bd_orchestrator.py` + `discovery/discovery_service.py`, untouched).
+- **MINIMUM_FIX_FUNCTION** = `select_candidates_for_plan_v2` (or `review_campaign_eligible_v2`): add the hygiene gate's domain-match rule so a lead flagged `third_party_email_domain` / `status='manual_review_needed'` is **NOT** counted as `CAMPAIGN_ELIGIBLE_V2`. This reconciles the V2 safe pool with the hygiene hold. **No gate is relaxed** (per "目标不是放宽门禁").
+- **EXPECTED_STATE_TRANSITION** = 1085 REMAINS `manual_review_needed` (gate not relaxed); V2 selector no longer returns it; `READ_ONLY_V2_SAFE_UNIQUE_ORGS` → 0; FSP build becomes internally consistent.
+- Note: the missing `email_subject`/`email_body` is a **secondary drafting gap** (drafter.py never produced content for `manual_review_needed` leads). It only matters once a lead is approved; it is NOT the root inconsistency.
+- No Frozen file needs modification → no STOP required. Per read-only mandate, **NOT applied here**.
+
+### E. Timestamp consistency (handoff correction only)
+- **HANDOFF_TIMESTAMP_ERROR = TRUE.** Prior handoff stamped `Generated: 2026-09-14T14:37:00+08:00` yet recorded the 2026-09-14 inventory start as `15:01 +08` and labeled it "still running as of 14:37". 14:37 < 15:01 is impossible. The inventory start (07:01:10 UTC = 15:01:10 +08) is correct; the **14:37 +08 handoff timestamp was the erroneous one** (predated the run).
+- **CORRECT_INVENTORY_START_LOCAL** = 2026-09-14 15:01:10 +08 (= 07:01:10 UTC). Finished 15:04:36 +08.
+- **CORRECT_AUDIT_TIME_LOCAL** = 2026-09-14 15:46 +08 (this refresh). Prior handoff's true as-of should have been ≥ 15:04:36 +08.
+- Business code NOT changed; only handoff doc time口径 corrected.
+
+### I. FINAL (audit answers)
+```
+INVENTORY_RUN_FINAL_STATUS      = completed (partial; actual=1, gap=29, safe_inventory_gap)
+READ_ONLY_V2_SAFE_AFTER        = 1 (lead 1085; unchanged) — but NOT materializable (see blocker)
+LEAD_1085_V2_PASS              = True (CAMPAIGN_ELIGIBLE_V2)
+V2_SELECTOR_INCLUDES_1085      = True
+EXACT_FSP_BLOCKER              = build_final_plan_entries required-field check: email_subject/email_body = NULL → skipped
+STATE_TRANSITION_CLASSIFICATION = C (inconsistent duplicate gate): hygiene requires email-domain==official-domain;
+                                  V2 email_source_tier treats official_page_visible+verified as E1 regardless of domain
+                                  (B-nuance: no re-evaluation transitions 1085 out of manual_review_needed despite V2 pass)
+STATE_TRANSITION_BUG           = True (V2 "safe=1" is misleading; sole safe lead is held by hygiene AND lacks draft content → effective sendable FSP pool = 0)
+MINIMUM_FIX_FILE               = campaign_eligible_v2.py
+MINIMUM_FIX_FUNCTION           = select_candidates_for_plan_v2 / review_campaign_eligible_v2 (add domain-match / manual_review_needed exclusion)
+HANDOFF_TIMESTAMP_ERROR        = True (14:37 +08 stamp invalid vs 15:01 +08 inventory start)
+NEXT_RECOMMENDED_ACTION       = (read-only, no change made) reconcile deliberately: (a) KEEP 1085 held + exclude
+                                  manual_review_needed from V2 selector [recommended, no gate relaxed], OR
+                                  (b) if third-party free-mailboxes w/ official-page evidence are acceptable, relax
+                                  lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation,
+                                  contrary to stated goal, so requires explicit user authorization.
+GITHUB_HANDOFF_PUSHED          = (set by push step below)
+```

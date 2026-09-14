@@ -5,6 +5,20 @@ Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreac
 
 ---
 
+## 2026-09-14 15:46 +08 — INVENTORY CLOSEOUT + LEAD 1085 STATE TRANSITION AUDIT (READ-ONLY, no changes)
+
+- **Type:** READ-ONLY closeout of inventory `inventory:2026-09-14:eba7c883` (which was mislabeled "running" in the 14:37 +08 handoff) + state-transition audit of lead 1085. No code/DB/scheduler/FSP/Authorization/send changes.
+- **Inventory `eba7c883` now COMPLETED:** started 2026-09-14 07:01:10 UTC (=15:01:10 +08), finished 07:04:36 UTC (=15:04:36 +08), status=partial, actual=1, gap=29, stop_reason=safe_inventory_gap. READ_ONLY_V2_SAFE_BEFORE=1 / AFTER=1 (unchanged; lead 1085 only). Per-run granular discovery metrics = UNKNOWN (not persisted in `job_runs`).
+- **Lead 1085 audit:** email=ithacainstantreplaysports@yahoo.com (official_page_visible, verified=1), evidence on official homepage (fresh), MX=ok, V1=CAMPAIGN_ELIGIBLE, **V2=CAMPAIGN_ELIGIBLE_V2** (eligible=True, tier=E1). hygiene reason = `state_out_of_scope` (NY∉{TN,AR,KY}) + `third_party_email_domain` (yahoo.com≠ithacainstantreplaysports.com) → status=manual_review_needed, auto_sendable=0, manual_sendable=0. Linked discovery id=293 (existing_lead_linked).
+- **V2_SELECTOR_INCLUDES_1085 = True** (`select_candidates_for_plan_v2` does NOT exclude `manual_review_needed`; `review_campaign_eligible_v2` returns E1 because `email_source_tier` short-circuits on official_page_visible+verified and does NOT check domain match).
+- **EXACT_FSP_BLOCKER:** `outreach_control.build_final_plan_entries` required-field check — lead 1085 has `email_subject=NULL` and `email_body=NULL` → `continue` → never inserted into `final_send_plan`.
+- **STATE_TRANSITION_CLASSIFICATION = C (inconsistent duplicate gate):** `lead_hygiene_gate.evaluate_a0` requires email-domain==official-domain (strict first-party); `campaign_eligible_v2.email_source_tier` treats official_page_visible+verified as E1 regardless of domain → the two gates disagree on whether 1085 is "first-party safe". (B-nuance: no re-evaluation transitions 1085 out of manual_review_needed despite V2 pass.)
+- **STATE_TRANSITION_BUG = True** — the V2 "safe=1" count is misleading: the sole safe lead is held by hygiene AND lacks draft content → effective sendable FSP pool = 0.
+- **MINIMUM_FIX (not applied):** `campaign_eligible_v2.py` → `select_candidates_for_plan_v2` / `review_campaign_eligible_v2` (add domain-match / manual_review_needed exclusion so held leads are not counted CAMPAIGN_ELIGIBLE_V2). NON-frozen file; no gate relaxed. EXPECTED: 1085 stays manual_review_needed, V2 selector stops returning it, READ_ONLY_V2_SAFE_UNIQUE_ORGS→0.
+- **TIMESTAMP CORRECTION (handoff only):** prior handoff stamped `Generated 2026-09-14T14:37:00+08:00` while recording the 2026-09-14 inventory start as 15:01 +08 and labeling it "still running as of 14:37" — 14:37 < 15:01 is impossible. Inventory start (07:01:10 UTC = 15:01:10 +08) is correct; the 14:37 +08 handoff timestamp was the erroneous one. Correct audit time = 15:46 +08. Business code unchanged.
+
+---
+
 ## 2026-09-14 — READ-ONLY PRODUCTION STATUS REFRESH (authorized, no changes)
 
 - **Type:** READ-ONLY refresh of production status since the 2026-09-11 Phase 4A.1C patch. No code, DB, scheduler, FSP, Authorization, or send changes. Live metrics recomputed from `data/bd_leads.db` (read-only) + scheduler state.

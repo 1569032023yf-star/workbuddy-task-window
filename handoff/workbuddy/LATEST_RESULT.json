@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-14T14:37:00+08:00",
-  "refresh_type": "READ-ONLY production status refresh (no code/DB/scheduler/FSP/Authorization/send changes)",
+  "generated_at": "2026-09-14T15:46:00+08:00",
+  "refresh_type": "READ-ONLY production status refresh + Inventory closeout + Lead 1085 state-transition audit (no code/DB/scheduler/FSP/Authorization/send changes)",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
@@ -36,9 +36,9 @@
     {"date_plus08": "2026-09-12 00:10", "run_id": "post-send:2026-09-12:1a6fe52d", "stage": "post-send", "status": "completed", "actual": 0, "gap": 40},
     {"date_plus08": "2026-09-13 15:01", "run_id": "inventory:2026-09-13:6031059e", "stage": "inventory", "status": "partial", "actual": 1, "gap": 59, "stop_reason": "safe_inventory_gap"},
     {"date_plus08": "2026-09-13 00:10", "run_id": "post-send:2026-09-13:ad59b6a2", "stage": "post-send", "status": "completed", "actual": 0, "gap": 40},
-    {"date_plus08": "2026-09-14 15:01", "run_id": "inventory:2026-09-14:eba7c883", "stage": "inventory", "status": "running", "actual": 0, "gap": 0, "note": "still RUNNING as of 2026-09-14 14:37 +08; finished_at=NULL; no new place materialized"}
+    {"date_plus08": "2026-09-14 15:01", "run_id": "inventory:2026-09-14:eba7c883", "stage": "inventory", "started_at_utc": "2026-09-14 07:01:10", "finished_at_utc": "2026-09-14 07:04:36", "status": "partial", "actual": 1, "gap": 29, "stop_reason": "safe_inventory_gap", "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."}
   ],
-  "last_inventory_run": "2026-09-13 15:01 +08 (inventory:2026-09-13:6031059e; partial; safe_inventory_gap; actual=1, gap=59). A 5th run inventory:2026-09-14:eba7c883 is RUNNING (not yet completed).",
+  "last_inventory_run": "2026-09-14 15:01 +08 (inventory:2026-09-14:eba7c883; COMPLETED partial; started 07:01:10 UTC / 15:01:10 +08, finished 07:04:36 UTC / 15:04:36 +08; safe_inventory_gap; actual=1, gap=29). Prior completed: 2026-09-13 15:01 +08 (6031059e).",
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 1,
     "V2_ELIGIBLE_UNSENT_AUTHORITY": "AUTHORITATIVE = Frozen V2+MX (CAMPAIGN_ELIGIBLE_V2 pool) recomputed read-only 2026-09-14 over 96 non-terminal email-present candidates via review_campaign_eligible_v2 with system_config.mx_cache_* injected as mx_lookup (no live MX, no DB write). Only 1 lead (id 1085, org ithacainstantreplaysports.com) is CAMPAIGN_ELIGIBLE_V2. Context (do NOT conflate): V1-eligible review_campaign_eligible (no MX) = 27 leads/27 orgs; VISIBLE_FIRST_PARTY_EMAILS strict (verified+email+not-terminal) = 16. The earlier '16' was the VISIBLE-strict count, NOT true V2+MX.",
@@ -124,7 +124,60 @@
     "428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
     "MX failures among candidates (nxdomain=51) prevent V2 pass"
   ],
-  "next_recommended_action": "Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRICHMENT for 428 no-email leads OR relax review gate for V2-eligible manual_review_needed leads (user authorization required, not auto). Continue permanent handoff sync.",
+  "next_recommended_action": "Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRICHMENT for 428 no-email leads OR reconcile the V2/hygiene inconsistency for V2-eligible manual_review_needed leads (user authorization required, not auto). Continue permanent handoff sync.",
+  "lead_1085_audit": {
+    "inventory_closeout_run": "inventory:2026-09-14:eba7c883",
+    "inventory_final_status": "completed (partial; actual=1, gap=29, safe_inventory_gap)",
+    "read_only_v2_safe_before": 1,
+    "read_only_v2_safe_after": 1,
+    "per_run_granular_metrics": "UNKNOWN (job_runs persists only target/actual/gap/stop_reason/error)",
+    "lead_id": 1085,
+    "email": "ithacainstantreplaysports@yahoo.com",
+    "email_source_type": "official_page_visible",
+    "email_verified_on_official_site": 1,
+    "evidence_url": "https://ithacainstantreplaysports.com/",
+    "evidence_method": "official_homepage",
+    "evidence_checked_at": "2026-09-10T02:17:28.952484+00:00",
+    "organization_key": "org:domain:ithacainstantreplaysports.com",
+    "timezone": "America/New_York (RESOLVED)",
+    "mx_result": "ok (yahoo.com valid MX)",
+    "v1_result": "CAMPAIGN_ELIGIBLE",
+    "v2_result": "CAMPAIGN_ELIGIBLE_V2 (eligible=True; tier=E1; mx_status=ok; evidence_stale=False; blockers=[])",
+    "linked_discovery_result_id": 293,
+    "linked_discovery_validation_status": "existing_lead_linked",
+    "review_reason_code": "hygiene_failed",
+    "review_reason_detail": "state_out_of_scope,third_party_email_domain",
+    "status": "manual_review_needed",
+    "auto_sendable": 0,
+    "manual_sendable": 0,
+    "v2_selector_includes_1085": true,
+    "exact_fsp_blocker": "outreach_control.build_final_plan_entries required-field check: email_subject=NULL and email_body=NULL -> skipped (continue), never inserted into final_send_plan",
+    "state_transition_classification": "C (inconsistent duplicate gate): lead_hygiene_gate.evaluate_a0 requires email-domain==official-domain (strict first-party); campaign_eligible_v2.email_source_tier returns E1 for official_page_visible+verified regardless of domain -> the two gates disagree. B-nuance: no re-evaluation transitions 1085 out of manual_review_needed despite V2 pass.",
+    "state_transition_bug": true,
+    "minimum_fix_file": "campaign_eligible_v2.py (NON-frozen; not in Phase 4A.1C locked SHA set)",
+    "minimum_fix_function": "select_candidates_for_plan_v2 / review_campaign_eligible_v2 (add domain-match / manual_review_needed exclusion so held leads are not counted CAMPAIGN_ELIGIBLE_V2)",
+    "minimum_fix_expected_transition": "1085 REMAINS manual_review_needed (gate not relaxed); V2 selector no longer returns it; READ_ONLY_V2_SAFE_UNIQUE_ORGS -> 0; FSP build consistent. NOT applied (read-only mandate)."
+  },
+  "handoff_timestamp_error": {
+    "error": true,
+    "description": "Prior handoff stamped generated_at=2026-09-14T14:37:00+08:00 while recording the 2026-09-14 inventory start as 15:01 +08 and labeling it 'still running as of 14:37'. 14:37 < 15:01 is impossible. Inventory start (07:01:10 UTC = 15:01:10 +08) is correct; the 14:37 +08 handoff timestamp was the erroneous one.",
+    "correct_inventory_start_local": "2026-09-14 15:01:10 +08 (= 07:01:10 UTC); finished 15:04:36 +08",
+    "correct_audit_time_local": "2026-09-14 15:46 +08 (this refresh)"
+  },
+  "final_audit_answers": {
+    "INVENTORY_RUN_FINAL_STATUS": "completed (partial; actual=1, gap=29, safe_inventory_gap)",
+    "READ_ONLY_V2_SAFE_AFTER": 1,
+    "LEAD_1085_V2_PASS": true,
+    "V2_SELECTOR_INCLUDES_1085": true,
+    "EXACT_FSP_BLOCKER": "build_final_plan_entries required-field check: email_subject/email_body=NULL -> skipped",
+    "STATE_TRANSITION_CLASSIFICATION": "C (inconsistent duplicate gate)",
+    "STATE_TRANSITION_BUG": true,
+    "MINIMUM_FIX_FILE": "campaign_eligible_v2.py",
+    "MINIMUM_FIX_FUNCTION": "select_candidates_for_plan_v2 / review_campaign_eligible_v2",
+    "HANDOFF_TIMESTAMP_ERROR": true,
+    "NEXT_RECOMMENDED_ACTION": "Reconcile deliberately: (a) KEEP 1085 held + exclude manual_review_needed from V2 selector [recommended, no gate relaxed], OR (b) if third-party free-mailboxes w/ official-page evidence are acceptable, relax lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation requiring explicit user authorization. No change made (read-only).",
+    "GITHUB_HANDOFF_PUSHED": "set by push step"
+  },
   "contains_credentials": false,
   "contains_pii": false
 }
