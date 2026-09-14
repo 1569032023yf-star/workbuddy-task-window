@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T15:46:00+08:00",
+  "generated_at": "2026-09-14T16:16:00+08:00",
   "refresh_type": "READ-ONLY production status refresh + Inventory closeout + Lead 1085 state-transition audit (no code/DB/scheduler/FSP/Authorization/send changes)",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
@@ -16,27 +16,122 @@
   },
   "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) — sole authority; BDExecutionHost Stopped; Windows PostSend UNIQUE_REQUIRED; no second scheduler",
   "workbuddy_automations": [
-    {"id": "1784775229336", "name": "RoktRazo BD Inventory", "schedule": "daily 15:00 +08", "state": "ACTIVE"},
-    {"id": "1785804406748", "name": "BD Production Pre-Send", "schedule": "Mon-Fri 21:30 +08", "state": "ACTIVE"},
-    {"id": "1785804413719", "name": "BD Production Preflight", "schedule": "Mon-Fri 21:50 +08", "state": "ACTIVE"},
-    {"id": "1785804421539", "name": "BD Production Outreach", "schedule": "Mon-Fri 22:00 +08", "state": "ACTIVE", "note": "display name carries stale '[PAUSED: ExecutionHost未验证]' suffix; actual status ACTIVE"},
-    {"id": "1786002601925", "name": "BD Result Recovery Sync", "schedule": "daily 08:45 +08", "state": "ACTIVE", "note": "support job, not a stage trigger; does not persist to job_runs"}
+    {
+      "id": "1784775229336",
+      "name": "RoktRazo BD Inventory",
+      "schedule": "daily 15:00 +08",
+      "state": "ACTIVE"
+    },
+    {
+      "id": "1785804406748",
+      "name": "BD Production Pre-Send",
+      "schedule": "Mon-Fri 21:30 +08",
+      "state": "ACTIVE"
+    },
+    {
+      "id": "1785804413719",
+      "name": "BD Production Preflight",
+      "schedule": "Mon-Fri 21:50 +08",
+      "state": "ACTIVE"
+    },
+    {
+      "id": "1785804421539",
+      "name": "BD Production Outreach",
+      "schedule": "Mon-Fri 22:00 +08",
+      "state": "ACTIVE",
+      "note": "display name carries stale '[PAUSED: ExecutionHost未验证]' suffix; actual status ACTIVE"
+    },
+    {
+      "id": "1786002601925",
+      "name": "BD Result Recovery Sync",
+      "schedule": "daily 08:45 +08",
+      "state": "ACTIVE",
+      "note": "support job, not a stage trigger; does not persist to job_runs"
+    }
   ],
   "windows_tasks": [
-    {"name": "RoktRazo-BD-PreSend", "state": "Disabled", "classification": "DUPLICATE of canonical Pre-Send"},
-    {"name": "RoktRazo-BD-Outreach", "state": "Disabled", "classification": "DUPLICATE of canonical Outreach"},
-    {"name": "RoktRazo-BD-PostSend", "state": "Ready/Enabled", "classification": "UNIQUE_REQUIRED (--stage post-send 00:10 daily)"}
+    {
+      "name": "RoktRazo-BD-PreSend",
+      "state": "Disabled",
+      "classification": "DUPLICATE of canonical Pre-Send"
+    },
+    {
+      "name": "RoktRazo-BD-Outreach",
+      "state": "Disabled",
+      "classification": "DUPLICATE of canonical Outreach"
+    },
+    {
+      "name": "RoktRazo-BD-PostSend",
+      "state": "Ready/Enabled",
+      "classification": "UNIQUE_REQUIRED (--stage post-send 00:10 daily)"
+    }
   ],
   "duplicate_active_trigger_count": 0,
   "manual_nightly_confirmation_required": false,
   "job_runs_since_patch": [
-    {"date_plus08": "2026-09-11 15:01", "run_id": "inventory:2026-09-11:e7e143b7", "stage": "inventory", "status": "partial", "actual": 1, "gap": 29, "stop_reason": "safe_inventory_gap"},
-    {"date_plus08": "2026-09-11 00:10", "run_id": "post-send:2026-09-11:a7e289e5", "stage": "post-send", "status": "completed", "actual": 0, "gap": 40},
-    {"date_plus08": "2026-09-12 15:03", "run_id": "inventory:2026-09-12:0d0bb0d5", "stage": "inventory", "status": "partial", "actual": 1, "gap": 59, "stop_reason": "safe_inventory_gap"},
-    {"date_plus08": "2026-09-12 00:10", "run_id": "post-send:2026-09-12:1a6fe52d", "stage": "post-send", "status": "completed", "actual": 0, "gap": 40},
-    {"date_plus08": "2026-09-13 15:01", "run_id": "inventory:2026-09-13:6031059e", "stage": "inventory", "status": "partial", "actual": 1, "gap": 59, "stop_reason": "safe_inventory_gap"},
-    {"date_plus08": "2026-09-13 00:10", "run_id": "post-send:2026-09-13:ad59b6a2", "stage": "post-send", "status": "completed", "actual": 0, "gap": 40},
-    {"date_plus08": "2026-09-14 15:01", "run_id": "inventory:2026-09-14:eba7c883", "stage": "inventory", "started_at_utc": "2026-09-14 07:01:10", "finished_at_utc": "2026-09-14 07:04:36", "status": "partial", "actual": 1, "gap": 29, "stop_reason": "safe_inventory_gap", "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."}
+    {
+      "date_plus08": "2026-09-11 15:01",
+      "run_id": "inventory:2026-09-11:e7e143b7",
+      "stage": "inventory",
+      "status": "partial",
+      "actual": 1,
+      "gap": 29,
+      "stop_reason": "safe_inventory_gap"
+    },
+    {
+      "date_plus08": "2026-09-11 00:10",
+      "run_id": "post-send:2026-09-11:a7e289e5",
+      "stage": "post-send",
+      "status": "completed",
+      "actual": 0,
+      "gap": 40
+    },
+    {
+      "date_plus08": "2026-09-12 15:03",
+      "run_id": "inventory:2026-09-12:0d0bb0d5",
+      "stage": "inventory",
+      "status": "partial",
+      "actual": 1,
+      "gap": 59,
+      "stop_reason": "safe_inventory_gap"
+    },
+    {
+      "date_plus08": "2026-09-12 00:10",
+      "run_id": "post-send:2026-09-12:1a6fe52d",
+      "stage": "post-send",
+      "status": "completed",
+      "actual": 0,
+      "gap": 40
+    },
+    {
+      "date_plus08": "2026-09-13 15:01",
+      "run_id": "inventory:2026-09-13:6031059e",
+      "stage": "inventory",
+      "status": "partial",
+      "actual": 1,
+      "gap": 59,
+      "stop_reason": "safe_inventory_gap"
+    },
+    {
+      "date_plus08": "2026-09-13 00:10",
+      "run_id": "post-send:2026-09-13:ad59b6a2",
+      "stage": "post-send",
+      "status": "completed",
+      "actual": 0,
+      "gap": 40
+    },
+    {
+      "date_plus08": "2026-09-14 15:01",
+      "run_id": "inventory:2026-09-14:eba7c883",
+      "stage": "inventory",
+      "started_at_utc": "2026-09-14 07:01:10",
+      "finished_at_utc": "2026-09-14 07:04:36",
+      "status": "partial",
+      "actual": 1,
+      "gap": 29,
+      "stop_reason": "safe_inventory_gap",
+      "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."
+    }
   ],
   "last_inventory_run": "2026-09-14 15:01 +08 (inventory:2026-09-14:eba7c883; COMPLETED partial; started 07:01:10 UTC / 15:01:10 +08, finished 07:04:36 UTC / 15:04:36 +08; safe_inventory_gap; actual=1, gap=29). Prior completed: 2026-09-13 15:01 +08 (6031059e).",
   "safe_metrics": {
@@ -151,12 +246,131 @@
     "auto_sendable": 0,
     "manual_sendable": 0,
     "v2_selector_includes_1085": true,
-    "exact_fsp_blocker": "outreach_control.build_final_plan_entries required-field check: email_subject=NULL and email_body=NULL -> skipped (continue), never inserted into final_send_plan",
+    "exact_fsp_blocker": "[SUPERSEDED by presend_canonical_execution_audit — raw-row shortcut artifact] outreach_control.build_final_plan_entries required-field check: email_subject=NULL and email_body=NULL -> skipped (continue), never inserted into final_send_plan",
     "state_transition_classification": "C (inconsistent duplicate gate): lead_hygiene_gate.evaluate_a0 requires email-domain==official-domain (strict first-party); campaign_eligible_v2.email_source_tier returns E1 for official_page_visible+verified regardless of domain -> the two gates disagree. B-nuance: no re-evaluation transitions 1085 out of manual_review_needed despite V2 pass.",
     "state_transition_bug": true,
     "minimum_fix_file": "campaign_eligible_v2.py (NON-frozen; not in Phase 4A.1C locked SHA set)",
     "minimum_fix_function": "select_candidates_for_plan_v2 / review_campaign_eligible_v2 (add domain-match / manual_review_needed exclusion so held leads are not counted CAMPAIGN_ELIGIBLE_V2)",
-    "minimum_fix_expected_transition": "1085 REMAINS manual_review_needed (gate not relaxed); V2 selector no longer returns it; READ_ONLY_V2_SAFE_UNIQUE_ORGS -> 0; FSP build consistent. NOT applied (read-only mandate)."
+    "minimum_fix_expected_transition": "1085 REMAINS manual_review_needed (gate not relaxed); V2 selector no longer returns it; READ_ONLY_V2_SAFE_UNIQUE_ORGS -> 0; FSP build consistent. NOT applied (read-only mandate).",
+    "canonical_audit_supersedes_blocker": true,
+    "canonical_fsp_would_create_1085": true
+  },
+  "presend_canonical_execution_audit": {
+    "A_presend_20260911_execution": {
+      "PRESEND_20260911_TRIGGERED": true,
+      "STARTED_AT": "2026-09-11T21:30:35+08:00",
+      "FINISHED_AT": "2026-09-11T21:35:37+08:00",
+      "EXIT_STATUS": "success=true (automation conversation completed, ~5 min)",
+      "ERROR": null,
+      "EXACT_COMMAND": null,
+      "PYTHON_EXECUTABLE": null,
+      "WORKING_DIRECTORY": "C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach",
+      "LIVE_FLAG_PRESENT": null,
+      "DB_PATH_USED": null,
+      "PRESEND_EXECUTION_FAILURE": true,
+      "PRESEND_EXECUTION_FAILURE_REASON": "Automation 1785804406748 is prompt-driven (config has a 'prompt' field, NO 'command' field). It fired on 2026-09-11 21:30 +08 and the conversation returned success=true, but the canonical bd_orchestrator.py --stage pre-send --live was never invoked. Its prompt precondition ('read frozen candidate snapshot from today's 21:10 freeze') references a 21:10 freeze step that does NOT exist among the 5 scheduled automations (Inventory 15:00, Pre-Send 21:30, Preflight 21:50, Outreach 22:00, Recovery 08:45) -> agent would log NO_BATCH_TODAY and exit. Corroborated: zero 'pre-send' job_runs rows after 2026-09-08; final_send_plan has 0 actionable rows. No Final Send Plan was ever created by this automation.",
+      "source_of_truth": "~/.workbuddy/logs/automation.log + automation-backups/automation-1785804406748.json"
+    },
+    "B_other_presend_opportunities_since_deploy": {
+      "deploy_plus08": "2026-09-11 14:25",
+      "opportunities": [
+        {
+          "scheduled_at_plus08": "2026-09-11 21:30 (Fri)",
+          "triggered_at_plus08": "2026-09-11 21:30:35",
+          "exit_status": "success=true (conversation)",
+          "result": "no FSP created (prompt-driven; canonical command never run)"
+        },
+        {
+          "scheduled_at_plus08": "2026-09-12 21:30 (Sat)",
+          "triggered_at_plus08": null,
+          "exit_status": "not scheduled (Mon-Fri only)",
+          "result": "not a failure"
+        },
+        {
+          "scheduled_at_plus08": "2026-09-13 21:30 (Sun)",
+          "triggered_at_plus08": null,
+          "exit_status": "not scheduled",
+          "result": "not a failure"
+        },
+        {
+          "scheduled_at_plus08": "2026-09-14 21:30 (Mon)",
+          "triggered_at_plus08": null,
+          "exit_status": "FUTURE (now 16:16 +08)",
+          "result": "not yet due, not a failure"
+        }
+      ],
+      "context_pre_deploy": "2026-09-10 21:30 pre-send DID run but FAILED (success=false, 'Conversation ended before automation request completed') - pre-deploy, before 2026-09-11 14:25."
+    },
+    "C_canonical_replay_on_copy": {
+      "method": "Fresh copy via sqlite3.backup() (prod mode=ro; copy integrity_check=ok); query_mx monkeypatched to read system_config.mx_cache_* (no network); ran select_candidates_for_plan_v2 -> apply_email_to_lead() per lead -> create_plan(eligible_check=campaign_eligible_check_v2). All writes confined to copy; temp copy deleted. Production untouched.",
+      "V2_SELECTOR_INCLUDES_1085": true,
+      "EMAIL_SUBJECT_PRESENT_AFTER_RENDER": true,
+      "EMAIL_BODY_PRESENT_AFTER_RENDER": true,
+      "TEMPLATE_KEY": "retail_distributor_v5_locked",
+      "TEMPLATE_SHA": "ccb51505",
+      "CREATE_PLAN_ELIGIBLE_CHECK_1085": true,
+      "FSP_ENTRY_WOULD_BE_CREATED_1085": true,
+      "PLAN_ID": "20260911_et1000:new_outreach:bb6994cc1b",
+      "FSP_ROWS_IN_COPY": [
+        1085
+      ],
+      "EXACT_CANONICAL_BLOCKER": null
+    },
+    "D_raw_row_shortcut": {
+      "forbidden_shortcut_used_in_prior_audit": "passed 1085's raw stored row straight to build_final_plan_entries without calling apply_email_to_lead first -> email_subject/body=NULL -> continue (skipped).",
+      "formal_order_reproduced": "stage_pre_send calls apply_email_to_lead() BEFORE create_plan (bd_orchestrator.py stage_pre_send: for row in select_candidates_for_plan_v2(...): lead=apply_email_to_lead(dict(row)); then create_plan(conn, eligible, ...)). Formal order renders email_subject/body, so the FSP entry IS created.",
+      "verdict": "The prior 'email_subject/body=NULL' blocker is a raw-row shortcut artifact, NOT the canonical blocker."
+    },
+    "E_hygiene_v2_policy_mismatch": {
+      "HYGIENE_V2_POLICY_MISMATCH": true,
+      "HYGIENE_POLICY": "lead_hygiene_gate.evaluate_a0(1085) -> state_out_of_scope (NY not in {TN,AR,KY}) + third_party_email_domain (yahoo.com != ithacainstantreplaysports.com) -> B2_manual_review -> status=manual_review_needed, auto/manual_sendable=0. Treats verified official-page Yahoo as NOT first-party.",
+      "V1_POLICY": "campaign_eligible.review_campaign_eligible(1085) -> eligible=True, pool=CAMPAIGN_ELIGIBLE. Treats verified official-site Yahoo as first-party evidence. V1_SELECTOR_INCLUDES_1085=True.",
+      "V2_POLICY": "campaign_eligible_v2.review_campaign_eligible_v2(1085) -> eligible=True, pool=CAMPAIGN_ELIGIBLE_V2 (official_page_visible+verified -> TIER_E1, no domain-match check). Treats it as first-party.",
+      "campaign_eligible_v2_modified": false,
+      "note": "campaign_eligible_v2.py is part of the Frozen send chain and was NOT modified (read-only mandate)."
+    },
+    "F_root_cause": {
+      "ROOT_CAUSE_CLASSIFICATION": "F",
+      "options_checked": {
+        "A_presend_did_not_execute": false,
+        "B_wrong_command_cwd_db": false,
+        "C_replay_excludes_1085_before_render": false,
+        "D_render_fails": false,
+        "E_eligible_check_rejects": false,
+        "F_replay_would_create_fsp_production_path_is_blocker": true,
+        "G_other": false
+      },
+      "ROOT_CAUSE_DETAIL": "Canonical replay WOULD create the FSP entry for 1085 (subject/body rendered, eligible_check passes). Therefore the production code path is sound; the production scheduler/execution path is the actual blocker: the prompt-driven automation never invoked the canonical command, and its 21:10-freeze precondition is unmet -> NO_BATCH_TODAY exit."
+    },
+    "G_production_safety": {
+      "PRODUCTION_DB_WRITES": 0,
+      "PRODUCTION_CODE_CHANGES": 0,
+      "REAL_SMTP_CONNECTIONS": 0,
+      "FINAL_SEND_PLAN_CREATED_PRODUCTION": 0,
+      "AUTHORIZATION_CREATED": 0,
+      "SCHEDULER_CHANGES": 0,
+      "note": "Replay confined to a throwaway DB copy; no production writes, no code changes, no SMTP, no FSP/Authorization/scheduler changes."
+    },
+    "final_audit_answers": {
+      "PRESEND_20260911_TRIGGERED": true,
+      "PRESEND_EXECUTION_FAILURE": true,
+      "EXACT_COMMAND": null,
+      "DB_PATH_USED": null,
+      "V2_SELECTOR_INCLUDES_1085": true,
+      "EMAIL_SUBJECT_PRESENT_AFTER_RENDER": true,
+      "EMAIL_BODY_PRESENT_AFTER_RENDER": true,
+      "FSP_ENTRY_WOULD_BE_CREATED_1085": true,
+      "EXACT_CANONICAL_BLOCKER": null,
+      "HYGIENE_V2_POLICY_MISMATCH": true,
+      "ROOT_CAUSE_CLASSIFICATION": "F",
+      "CAMPAIGN_ELIGIBLE_V2_CHANGED": false,
+      "PRODUCTION_CODE_CHANGES": 0,
+      "PRODUCTION_DB_WRITES": 0,
+      "REAL_SMTP_CONNECTIONS": 0,
+      "NEXT_RECOMMENDED_ACTION": "To make PreSend effective: convert automation 1785804406748 from prompt-driven to a real command that runs `python bd_orchestrator.py --stage pre-send --live` (or fix the prompt so it does not depend on a non-existent 21:10 freeze step). Do NOT relax the V2/hygiene gate (1085 stays manual_review_needed). This is a scheduler/automation-config change requiring user authorization; not auto-applied (read-only mandate).",
+      "GITHUB_HANDOFF_PUSHED": false
+    },
+    "supersedes_prior_exact_fsp_blocker": true
   },
   "handoff_timestamp_error": {
     "error": true,
@@ -169,14 +383,18 @@
     "READ_ONLY_V2_SAFE_AFTER": 1,
     "LEAD_1085_V2_PASS": true,
     "V2_SELECTOR_INCLUDES_1085": true,
-    "EXACT_FSP_BLOCKER": "build_final_plan_entries required-field check: email_subject/email_body=NULL -> skipped",
+    "EXACT_FSP_BLOCKER": "[SUPERSEDED by presend_canonical_execution_audit] build_final_plan_entries required-field check: email_subject/email_body=NULL -> skipped",
     "STATE_TRANSITION_CLASSIFICATION": "C (inconsistent duplicate gate)",
     "STATE_TRANSITION_BUG": true,
     "MINIMUM_FIX_FILE": "campaign_eligible_v2.py",
     "MINIMUM_FIX_FUNCTION": "select_candidates_for_plan_v2 / review_campaign_eligible_v2",
     "HANDOFF_TIMESTAMP_ERROR": true,
     "NEXT_RECOMMENDED_ACTION": "Reconcile deliberately: (a) KEEP 1085 held + exclude manual_review_needed from V2 selector [recommended, no gate relaxed], OR (b) if third-party free-mailboxes w/ official-page evidence are acceptable, relax lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation requiring explicit user authorization. No change made (read-only).",
-    "GITHUB_HANDOFF_PUSHED": true
+    "GITHUB_HANDOFF_PUSHED": false,
+    "ROOT_CAUSE_CLASSIFICATION": "F",
+    "CANONICAL_PRESEND_EXECUTION_FAILURE": true,
+    "CANONICAL_FSP_WOULD_CREATE_1085": true,
+    "CAMPAIGN_ELIGIBLE_V2_CHANGED": false
   },
   "contains_credentials": false,
   "contains_pii": false

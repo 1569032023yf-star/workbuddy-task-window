@@ -5,6 +5,18 @@ Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreac
 
 ---
 
+## 2026-09-14 16:16 +08 — PRESEND CANONICAL EXECUTION AUDIT (READ-ONLY, no changes)
+
+- **Type:** READ-ONLY audit of whether the canonical PreSend (`bd_orchestrator.py --stage pre-send --live`) actually executed after Phase 4A.1C, and a canonical replay of lead 1085 through the *real* `stage_pre_send` order (select → apply_email_to_lead → create_plan). No code/DB/scheduler/FSP/Authorization/send changes.
+- **A. 2026-09-11 PreSend DID trigger** (automation `1785804406748`, fired 21:30:35→21:35:37 +08, conversation success=true) — but it is a **prompt-driven** automation (no `command` field); the canonical `bd_orchestrator.py --stage pre-send --live` is **NOT configured** and was never invoked. Its prompt's "21:10 freeze snapshot" precondition has no corresponding scheduled step, so the agent would exit NO_BATCH_TODAY and create nothing. **PRESEND_EXECUTION_FAILURE=true.** Corroborated: zero `pre-send` job_runs rows after 2026-09-08; `final_send_plan` has 0 actionable rows.
+- **B. PreSend opportunities since deploy:** 09-11 fired (no FSP); 09-12/09-13 weekends (not scheduled); 09-14 21:30 future (now 16:16).
+- **C/D. Canonical replay on a DB COPY** (formal order, `query_mx` mocked from `mx_cache_*`): `V2_SELECTOR_INCLUDES_1085=True`; after `apply_email_to_lead`, `EMAIL_SUBJECT_PRESENT=True` / `EMAIL_BODY_PRESENT=True` (template `retail_distributor_v5_locked`, SHA ccb51505); `CREATE_PLAN_ELIGIBLE_CHECK_1085=True`; **`FSP_ENTRY_WOULD_BE_CREATED_1085=True`** (PLAN_ID=`20260911_et1000:new_outreach:bb6994cc1b`, FSP_ROWS=[1085]); **EXACT_CANONICAL_BLOCKER=none.**
+- **SUPERSEDES** the prior audit's EXACT_FSP_BLOCKER (email_subject/body=NULL): that conclusion used the *raw-row shortcut* (passed 1085's stored row straight to `build_final_plan_entries` without `apply_email_to_lead`). The real path renders the email first, so the FSP entry IS created. The true blocker is the production execution path.
+- **E. HYGIENE_V2_POLICY_MISMATCH=True:** hygiene treats verified official-page Yahoo as `third_party_email_domain` (→ manual_review_needed); V1 AND V2 both treat it as first-party eligible. `campaign_eligible_v2.py` (Frozen) NOT modified.
+- **F. ROOT_CAUSE_CLASSIFICATION=F:** canonical replay WOULD create FSP → production scheduler/execution path is the actual blocker. Production safety: DB writes=0, code changes=0, SMTP=0, FSP-in-prod=0, auth=0, scheduler=0.
+
+---
+
 ## 2026-09-14 15:46 +08 — INVENTORY CLOSEOUT + LEAD 1085 STATE TRANSITION AUDIT (READ-ONLY, no changes)
 
 - **Type:** READ-ONLY closeout of inventory `inventory:2026-09-14:eba7c883` (which was mislabeled "running" in the 14:37 +08 handoff) + state-transition audit of lead 1085. No code/DB/scheduler/FSP/Authorization/send changes.

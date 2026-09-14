@@ -237,8 +237,7 @@ Granular per-run metrics (DISCOVERY_RESULTS_SEEN / NEW_UNIQUE_PLACES / WEBSITE_R
    - MX ok + evidence fresh → `eligible=True`, `pool=CAMPAIGN_ELIGIBLE_V2`, `blockers=[]`.
    → **V2_SELECTOR_INCLUDES_1085 = True**.
 8. **create_plan eligibility** — `campaign_eligible_check_v2` (same `review_campaign_eligible_v2`) also returns True.
-9. **EXACT_FSP_BLOCKER (final gate)** — `outreach_control.build_final_plan_entries` required-field check:
-   `required = ("id","email","store_name","email_subject","email_body","evidence_url")`; lead 1085 has `email_subject=None` and `email_body=None` → `continue` → **NOT inserted** into `final_send_plan`. So 1085 never reaches a planned FSP row.
+9. **EXACT_FSP_BLOCKER (final gate) — SUPERSEDED by section J.** As originally traced, `build_final_plan_entries` requires `email_subject`/`email_body` non-null; lead 1085 *as stored* has them NULL → `continue`. **BUT this used the raw-row shortcut** (passing 1085's stored row straight to the builder). The real `stage_pre_send` calls `apply_email_to_lead()` **before** `create_plan`, which renders `email_subject`/`email_body` for 1085 (template `retail_distributor_v5_locked`, SHA ccb51505). The canonical replay in section J (on a DB copy, formal order) **does** create an FSP entry for 1085. So `email_subject/body=NULL` is **NOT** the canonical blocker; see section J (ROOT_CAUSE=F).
 
 ### D. Do NOT fix (read-only) — minimum fix location
 - **MINIMUM_FIX_FILE** = `campaign_eligible_v2.py` (**NON-frozen**; the only Phase 4A.1C locked files are `bd_orchestrator.py` + `discovery/discovery_service.py`, untouched).
@@ -259,7 +258,7 @@ INVENTORY_RUN_FINAL_STATUS      = completed (partial; actual=1, gap=29, safe_inv
 READ_ONLY_V2_SAFE_AFTER        = 1 (lead 1085; unchanged) — but NOT materializable (see blocker)
 LEAD_1085_V2_PASS              = True (CAMPAIGN_ELIGIBLE_V2)
 V2_SELECTOR_INCLUDES_1085      = True
-EXACT_FSP_BLOCKER              = build_final_plan_entries required-field check: email_subject/email_body = NULL → skipped
+EXACT_FSP_BLOCKER              = build_final_plan_entries required-field check: email_subject/email_body = NULL → skipped  ⚠️ SUPERSEDED (raw-row shortcut; section J canonical replay with apply_email_to_lead first DOES create FSP for 1085)
 STATE_TRANSITION_CLASSIFICATION = C (inconsistent duplicate gate): hygiene requires email-domain==official-domain;
                                   V2 email_source_tier treats official_page_visible+verified as E1 regardless of domain
                                   (B-nuance: no re-evaluation transitions 1085 out of manual_review_needed despite V2 pass)
@@ -273,4 +272,91 @@ NEXT_RECOMMENDED_ACTION       = (read-only, no change made) reconcile deliberate
                                   lead_hygiene_gate.evaluate_a0 third_party rule — but that IS a gate relaxation,
                                   contrary to stated goal, so requires explicit user authorization.
 GITHUB_HANDOFF_PUSHED          = true (commit 5060ddb @ main; verified via ls-remote)
+```
+
+---
+
+## J. PRESEND CANONICAL EXECUTION AUDIT (2026-09-14 16:16 +08, READ-ONLY)
+
+> Mandate: read-only. No code/DB/scheduler/FSP/Authorization/send changes. Only handoff docs updated.
+> Goal: confirm whether the canonical PreSend (`bd_orchestrator.py --stage pre-send --live`) actually executed after Phase 4A.1C, and trace lead 1085 through the *real* `stage_pre_send` order (select → apply_email_to_lead → create_plan). The prior section I "EXACT_FSP_BLOCKER" used the forbidden raw-row shortcut and is superseded below.
+
+### A. 2026-09-11 PreSend execution — automation `1785804406748`
+Verified from `~/.workbuddy/logs/automation.log` (LocalAutomationScheduler) + automation config (`automation_update view` + `automation-backups/...json`):
+
+| Field | Value |
+|---|---|
+| PRESEND_20260911_TRIGGERED | **true** — scheduler fired at 2026-09-11 21:30 +08 (log: `run start` → `dispatch` → `run finished`) |
+| STARTED_AT | 2026-09-11T21:30:35+08:00 (13:30:35 UTC) |
+| FINISHED_AT | 2026-09-11T21:35:37+08:00 (13:35:37 UTC) |
+| EXIT_STATUS | success=true (automation conversation completed, ~5 min) |
+| ERROR | (none) |
+| EXACT_COMMAND | **N/A** — automation is **prompt-driven** (its config has a `prompt` field, no `command` field). The canonical `bd_orchestrator.py --stage pre-send --live` is **NOT configured as its command**. |
+| PYTHON_EXECUTABLE | N/A (no command) |
+| WORKING_DIRECTORY | C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach (automation cwd) |
+| LIVE_FLAG_PRESENT | N/A (no command; prompt says "NO SMTP" and requires a "21:10 freeze snapshot" that has **no corresponding scheduled step** among the 5 automations → agent would log NO_BATCH_TODAY and exit) |
+| DB_PATH_USED | N/A (canonical command never invoked; had it run, it would use `data/bd_leads.db`) |
+| **PRESEND_EXECUTION_FAILURE** | **true** — reason: the automation is a prompt-driven agent, not a shell-command runner. It fired and the conversation returned success=true, but it never invoked `bd_orchestrator.py --stage pre-send --live`. Its prompt's precondition (read a frozen candidate snapshot from "today's 21:10 freeze") references a step that does not exist (scheduled automations: Inventory 15:00, Pre-Send 21:30, Preflight 21:50, Outreach 22:00[PAUSED], Recovery 08:45 — **no 21:10 freeze**). So the agent would exit NO_BATCH_TODAY and create nothing. **Corroborated:** zero `pre-send` job_runs rows after 2026-09-08; `final_send_plan` has 0 actionable rows. **No Final Send Plan was ever created by this automation.** |
+
+### B. All PreSend opportunities since Phase 4A.1C (2026-09-11 14:25 +08)
+| scheduled_at (+08) | triggered_at (+08) | exit_status | result |
+|---|---|---|---|
+| 2026-09-11 21:30 (Fri) | 2026-09-11 21:30:35 | success=true (conversation) | **no FSP created** (see A — prompt-driven, command never run) |
+| 2026-09-12 21:30 (Sat) | — | not scheduled (Mon–Fri only) | not a failure |
+| 2026-09-13 21:30 (Sun) | — | not scheduled | not a failure |
+| 2026-09-14 21:30 (Mon) | — | FUTURE (now 16:16 +08) | not yet due, not a failure |
+
+(Context only: 2026-09-10 21:30 pre-send DID run but FAILED — "Conversation ended before automation request completed: failed", success=false. That is **pre-deploy**, before 2026-09-11 14:25.)
+
+### C/D. Canonical PreSend replay on a DB COPY (formal order reproduced)
+Method: fresh copy via `sqlite3.backup()` (prod `mode=ro`; copy `integrity_check=ok`); `query_mx` monkeypatched to read `system_config.mx_cache_*` (no network); ran `select_candidates_for_plan_v2` → **`apply_email_to_lead()` per lead** → `create_plan(eligible_check=campaign_eligible_check_v2)`. All writes confined to the copy; temp copy deleted after. Production untouched.
+
+| Check | Result |
+|---|---|
+| V2_SELECTOR_INCLUDES_1085 | **True** (1085 is the sole CAMPAIGN_ELIGIBLE_V2 lead) |
+| AFTER_APPLY_EMAIL_TO_LEAD — EMAIL_SUBJECT_PRESENT | True |
+| AFTER_APPLY_EMAIL_TO_LEAD — EMAIL_BODY_PRESENT | True |
+| TEMPLATE_KEY | retail_distributor_v5_locked (SHA ccb51505) |
+| TEMPLATE_STATUS | None (apply_email_to_lead does not propagate `template_status`; `template_id` is set via `template_key` for preflight) |
+| CREATE_PLAN_ELIGIBLE_CHECK_1085 | True (campaign_eligible_check_v2(1085) → eligible=True) |
+| **FSP_ENTRY_WOULD_BE_CREATED_1085** | **True** — PLAN_ID=`20260911_et1000:new_outreach:bb6994cc1b`, FSP_ROWS_IN_COPY=[1085] |
+| EXACT_CANONICAL_BLOCKER | **none** — the canonical path creates the FSP entry for 1085. The earlier "email_subject/body=NULL" blocker (section I) was a **raw-row shortcut artifact** (did not call `apply_email_to_lead` first). |
+
+> ⚠️ This **supersedes** the section I EXACT_FSP_BLOCKER conclusion: with the real `stage_pre_send` order (`apply_email_to_lead` before `build_final_plan_entries`), 1085's email_subject/body are rendered and the FSP entry IS created.
+
+### E. Hygiene / V2 policy mismatch (audit only, no modification)
+| Policy | Verdict on 1085 |
+|---|---|
+| **HYGIENE_POLICY** | `lead_hygiene_gate.evaluate_a0(1085)` → `state_out_of_scope` (NY∉{TN,AR,KY}) + `third_party_email_domain` (yahoo.com≠ithacainstantreplaysports.com) → `B2_manual_review` → status=manual_review_needed, auto/manual_sendable=0. Treats the verified official-page Yahoo mailbox as **NOT first-party**. |
+| **V1_POLICY** | `campaign_eligible.review_campaign_eligible(1085)` → eligible=True, pool=CAMPAIGN_ELIGIBLE. **Treats the verified official-site Yahoo as first-party evidence.** V1_SELECTOR_INCLUDES_1085=True. |
+| **V2_POLICY** | `campaign_eligible_v2.review_campaign_eligible_v2(1085)` → eligible=True, pool=CAMPAIGN_ELIGIBLE_V2 (official_page_visible+verified → TIER_E1, no domain-match check). **Treats it as first-party.** |
+| **HYGIENE_V2_POLICY_MISMATCH** | **True** — hygiene says third-party; V1 **and** V2 say first-party. `campaign_eligible_v2.py` is part of the **Frozen send chain** and was **NOT modified**. |
+
+### F. Root cause classification
+- A = false (automation did fire) · B = false (cwd correct; no wrong-DB evidence; command simply never configured) · C = false (replay includes 1085 before render) · D = false (render succeeds) · E = false (eligible_check passes)
+- **F = TRUE** — the canonical replay WOULD create the FSP entry for 1085, so the production code path is sound; **the production scheduler/execution path is the actual blocker** (prompt-driven automation never invoked the canonical command; its 21:10-freeze precondition is unmet → NO_BATCH_TODAY exit).
+- **ROOT_CAUSE_CLASSIFICATION = F**
+
+### G. Production safety (this audit)
+PRODUCTION_DB_WRITES=0 · PRODUCTION_CODE_CHANGES=0 · REAL_SMTP_CONNECTIONS=0 · FINAL_SEND_PLAN_CREATED_PRODUCTION=0 · AUTHORIZATION_CREATED=0 · SCHEDULER_CHANGES=0.
+
+### J. FINAL (audit answers)
+```
+PRESEND_20260911_TRIGGERED      = true
+PRESEND_EXECUTION_FAILURE       = true (prompt-driven automation; canonical command never invoked; no FSP created)
+EXACT_COMMAND                  = (none — automation is prompt-driven; bd_orchestrator.py --stage pre-send --live NOT configured as its command)
+DB_PATH_USED                   = (N/A — canonical command never invoked; would be data/bd_leads.db)
+V2_SELECTOR_INCLUDES_1085      = True
+EMAIL_SUBJECT_PRESENT_AFTER_RENDER = True
+EMAIL_BODY_PRESENT_AFTER_RENDER   = True
+FSP_ENTRY_WOULD_BE_CREATED_1085   = True (canonical replay on copy creates PLAN_ID=20260911_et1000:new_outreach:bb6994cc1b, FSP_ROWS=[1085])
+EXACT_CANONICAL_BLOCKER        = none (the email_subject/body=NULL blocker was a raw-row shortcut artifact; formal order renders first)
+HYGIENE_V2_POLICY_MISMATCH     = True (hygiene=third-party; V1&V2=first-party)
+ROOT_CAUSE_CLASSIFICATION      = F (canonical replay WOULD create FSP → production execution/scheduler path is the blocker)
+CAMPAIGN_ELIGIBLE_V2_CHANGED   = false
+PRODUCTION_CODE_CHANGES        = 0
+PRODUCTION_DB_WRITES           = 0
+REAL_SMTP_CONNECTIONS          = 0
+NEXT_RECOMMENDED_ACTION       = (no change made) Fix the Pre-Send production path: either (a) convert automation 1785804406748 from prompt-driven to a real command `python bd_orchestrator.py --stage pre-send --live` (cwd=roktandrazo-outreach) so the canonical code path actually runs, or (b) add the missing 21:10 freeze-snapshot step the prompt depends on. Separately, reconcile the hygiene↔V1/V2 first-party definition for verified-official-page free-mailboxes — a gate-policy decision requiring explicit user authorization, NOT auto-applied.
+GITHUB_HANDOFF_PUSHED          = true (this refresh)
 ```
