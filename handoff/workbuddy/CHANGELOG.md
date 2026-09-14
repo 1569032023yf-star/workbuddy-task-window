@@ -4,6 +4,16 @@ All entries are production-handoff events. Live metrics authority = `bd_leads.db
 Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreach-codex` = DEVELOPMENT (never written here).
 
 ---
+## 2026-09-14 18:23 +08 — SAME-DAY PRODUCTION RECOVERY ATTEMPT (FAIL-CLOSED)
+
+- Controlled scheduler handover authorized. Safety precheck passed: bd_orchestrator.py SHA=252ed6042b04..., discovery_service.py SHA=45db60d94017..., DB integrity ok, PRODUCTION_CODE_DRIFT=false.
+- Paused 3 prompt-driven WorkBuddy automations (1785804406748 Pre-Send, 1785804413719 Preflight, 1785804421539 Outreach); kept Inventory (1784775229336) + Recovery Sync (1786002601925) ACTIVE. Windows PreSend/Outreach/PostSend configs confirmed canonical (managed python, cwd=roktandrazo-outreach, --stage args correct); Outreach trigger 23:00 AST correct.
+- PreSend live run `python bd_orchestrator.py --stage pre-send --live` HUNG (timed out 240s) after closing 3 orphaned hung pre-send job_runs (dead PIDs). FSP_PLANNED_COUNT=0.
+- Root cause: `select_candidates_for_plan_v2` does a blocking live `query_mx` sweep over all 476 unique email domains; DNS via Astrill proxy stalls/hangs on several domains (chicagolandgames.com, fpnyc.com, grahamcrackers.com, mckaybooks.com time out). Prior audit only passed because it mocked query_mx.
+- **Fail-closed per Section F:** Outreach NOT run tonight; Windows Outreach held Disabled; eligibility not relaxed; Frozen logic not modified. No send today.
+- **Recommended fix (requires user go-ahead):** pre-warm `mx_cache_<domain>` for all lead domains (operational, reversible, no gate relaxation) so query_mx reads cache and skips live DNS, OR fix the network DNS path. Then re-run PreSend -> Outreach.
+- GITHUB_HANDOFF_PUSHED=true.
+
 
 ## 2026-09-14 16:16 +08 — PRESEND CANONICAL EXECUTION AUDIT (READ-ONLY, no changes)
 

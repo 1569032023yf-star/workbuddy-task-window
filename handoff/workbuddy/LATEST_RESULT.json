@@ -397,5 +397,78 @@
     "CAMPAIGN_ELIGIBLE_V2_CHANGED": false
   },
   "contains_credentials": false,
-  "contains_pii": false
+  "contains_pii": false,
+  "same_day_production_recovery_20260914": {
+    "authorized": "controlled scheduler handover (user)",
+    "outcome": "FAIL_CLOSED",
+    "A_safety": {
+      "bd_orchestrator_sha256": "252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05",
+      "bd_orchestrator_sha256_match": true,
+      "discovery_service_sha256": "45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356",
+      "discovery_service_sha256_match": true,
+      "PRODUCTION_CODE_DRIFT": false,
+      "db_integrity_check": "ok",
+      "manual_pause": false,
+      "risk_gate_blocking": false
+    },
+    "D_handover": {
+      "workbuddy_paused": [
+        "1785804406748",
+        "1785804413719",
+        "1785804421539"
+      ],
+      "workbuddy_kept_active": [
+        "1784775229336",
+        "1786002601925"
+      ],
+      "windows_presend_state": "DISABLED (held, fail-closed)",
+      "windows_outreach_state": "DISABLED (held, fail-closed)",
+      "windows_postsend_state": "READY (ran 00:10 today)",
+      "windows_tasks_canonical": true,
+      "outreach_trigger_local": "23:00 Asia/Shanghai"
+    },
+    "E_presend_run": {
+      "command": "python bd_orchestrator.py --stage pre-send --live",
+      "result": "HUNG (timed out 240s)",
+      "orphaned_jobs_closed": [
+        "pre-send:2026-09-14:8017be77",
+        "pre-send:2026-09-14:d67321ce",
+        "pre-send:2026-09-14:d392b72a"
+      ],
+      "FSP_PLANNED_COUNT": 0,
+      "FSP_LEAD_IDS": [],
+      "SMTP_CONNECTIONS": 0,
+      "SEND_LOG_NEW_ROWS": 0,
+      "AUTHORIZATION_CREATED": 0
+    },
+    "E_root_cause": "select_candidates_for_plan_v2 does a blocking live query_mx sweep over all 476 unique email domains in leads; DNS via Astrill proxy stalls/hangs on several domains -> PreSend hangs for minutes. Prior audit only passed because it mocked query_mx.",
+    "F_fail_closed": true,
+    "outreach_executed": false,
+    "final": {
+      "PRODUCTION_CODE_DRIFT": false,
+      "WINDOWS_PRESEND_CANONICAL": true,
+      "WINDOWS_OUTREACH_CANONICAL": true,
+      "WINDOWS_OUTREACH_TRIGGER_LOCAL": "23:00 Asia/Shanghai",
+      "WORKBUDDY_PRESEND_STATE": "PAUSED",
+      "WORKBUDDY_PREFLIGHT_STATE": "PAUSED",
+      "WORKBUDDY_OUTREACH_STATE": "PAUSED",
+      "WINDOWS_PRESEND_STATE": "DISABLED (held, fail-closed)",
+      "WINDOWS_OUTREACH_STATE": "DISABLED (held, fail-closed)",
+      "WINDOWS_POSTSEND_STATE": "READY (ran 00:10 today)",
+      "SEND_STAGE_SCHEDULER_AUTHORITY": "Windows Task Scheduler (handover intended; send chain held fail-closed tonight)",
+      "DUPLICATE_ACTIVE_TRIGGER_COUNT": 0,
+      "PRESEND_JOB_RUN_CREATED": true,
+      "FSP_PLANNED_COUNT": 0,
+      "FSP_LEAD_IDS": [],
+      "OUTREACH_EXECUTED": false,
+      "SMTP_ACCEPTED_COUNT": 0,
+      "SEND_LOG_NEW_ROWS": 0,
+      "TODAY_NEW_OUTREACH_SENT": 0,
+      "REAL_DELIVERY_CLAIMED": false,
+      "PRODUCTION_CODE_CHANGES": 0,
+      "FROZEN_FILES_CHANGED": 0,
+      "TODAY_PRODUCTION_RECOVERED": false,
+      "NEXT_RECOMMENDED_ACTION": "Pre-warm mx_cache_<domain> for all 476 lead domains (operational cache; reversible; does NOT relax eligibility) OR fix Astrill/network DNS path so live MX resolves reliably, then re-run PreSend -> Outreach. Requires user go-ahead (Section F: do not repair eligibility automatically)."
+    }
+  }
 }

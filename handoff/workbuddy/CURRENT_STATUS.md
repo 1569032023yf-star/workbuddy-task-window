@@ -360,3 +360,69 @@ REAL_SMTP_CONNECTIONS          = 0
 NEXT_RECOMMENDED_ACTION       = (no change made) Fix the Pre-Send production path: either (a) convert automation 1785804406748 from prompt-driven to a real command `python bd_orchestrator.py --stage pre-send --live` (cwd=roktandrazo-outreach) so the canonical code path actually runs, or (b) add the missing 21:10 freeze-snapshot step the prompt depends on. Separately, reconcile the hygiene↔V1/V2 first-party definition for verified-official-page free-mailboxes — a gate-policy decision requiring explicit user authorization, NOT auto-applied.
 GITHUB_HANDOFF_PUSHED          = true (this refresh)
 ```
+
+
+---
+
+## K. SAME-DAY PRODUCTION RECOVERY ATTEMPT — 2026-09-14 18:23 +08 (FAIL-CLOSED)
+
+> Mandate: controlled scheduler handover authorized by user. Do NOT modify source / Frozen V2-MX-Preflight-Sender-FSP logic / relax eligibility / create new scheduler tasks.
+> Outcome: **PreSend hung (live-MX DNS stall) -> fail-closed per Section F. No send tonight.**
+
+### A. Safety precheck (passed)
+- `bd_orchestrator.py` SHA256 = 252ed6042b04... MATCHES Phase 4A.1C approved (no drift).
+- `discovery/discovery_service.py` SHA256 = 45db60d94017... MATCHES (no drift).
+- `PRAGMA integrity_check` on `data/bd_leads.db` = ok.
+- `manual_pause=false`; `risk_gate` absent (not blocking). PRODUCTION_CODE_DRIFT=false.
+
+### B/D. Windows task + WorkBuddy automation audit & handover
+| Scheduler object | State | Action |
+|---|---|---|
+| Win RoktRazo-BD-PreSend (22:30 AST, `bd_orchestrator.py --stage pre-send --live`) | canonical config, Disabled | kept Disabled (fail-closed; would hang) |
+| Win RoktRazo-BD-Outreach (23:00 AST, `... --stage outreach --live`) | canonical config, Disabled | kept Disabled (fail-closed per F) |
+| Win RoktRazo-BD-PostSend (00:10, `... --stage post-send --live`) | Ready (ran 00:10 today) | unchanged |
+| WB automation 1785804406748 (Pre-Send) | PAUSED | paused (prompt-driven, not canonical) |
+| WB automation 1785804413719 (Preflight) | PAUSED | paused (execute_final_send_plan runs preflight internally) |
+| WB automation 1785804421539 (Outreach) | PAUSED | paused (prompt-driven) |
+| WB automation 1784775229336 (Inventory) | ACTIVE | kept active |
+| WB automation 1786002601925 (Recovery Sync) | ACTIVE | kept active |
+
+All Windows task actions/cwd/executable are canonical (managed python 3.13.12; cwd=roktandrazo-outreach). Outreach trigger = 23:00 AST as required (no change needed).
+
+### E. PreSend live run (FAIL)
+Ran `python bd_orchestrator.py --stage pre-send --live` in prod cwd after closing 3 orphaned hung `pre-send` job_runs (dead PIDs 41504 / 8884 / 29928 - morning hangs). Result: **process did not finish within 240s (HUNG)**. No FSP created. FSP_PLANNED_COUNT=0, FSP_LEAD_IDS=[]. SMTP_CONNECTIONS=0, SEND_LOG_NEW_ROWS=0, AUTHORIZATION_CREATED=0 (PreSend only freezes).
+
+### E-root-cause (NEW): live-MX sweep stall
+`select_candidates_for_plan_v2` (campaign_eligible_v2.py:376-426) fetches ALL leads with valid emails, then does a **blocking live `query_mx(d)` for every unique email domain (476 domains)** before yielding any candidate. DNS through the Astrill proxy is slow/hangs on several domains (chicagolandgames.com, fpnyc.com, grahamcrackers.com, mckaybooks.com each time out; production `query_mx` timeout is longer) -> the whole PreSend stalls for minutes. The prior canonical-execution audit only "passed" because it monkeypatched `query_mx` (no live DNS).
+
+### F. Fail-closed (triggered)
+PreSend failed (hung) -> **Outreach NOT run tonight**; Windows Outreach held Disabled; eligibility NOT relaxed; MX/V2/FSP logic NOT modified. No new scheduler tasks created.
+
+### K. FINAL (recovery)
+```
+PRODUCTION_CODE_DRIFT             = false
+WINDOWS_PRESEND_CANONICAL         = true
+WINDOWS_OUTREACH_CANONICAL        = true
+WINDOWS_OUTREACH_TRIGGER_LOCAL    = 23:00 Asia/Shanghai
+WORKBUDDY_PRESEND_STATE           = PAUSED
+WORKBUDDY_PREFLIGHT_STATE         = PAUSED
+WORKBUDDY_OUTREACH_STATE          = PAUSED
+WINDOWS_PRESEND_STATE             = DISABLED (held, fail-closed)
+WINDOWS_OUTREACH_STATE            = DISABLED (held, fail-closed)
+WINDOWS_POSTSEND_STATE            = READY (ran 00:10 today)
+SEND_STAGE_SCHEDULER_AUTHORITY    = Windows Task Scheduler (handover intended; send chain held fail-closed tonight)
+DUPLICATE_ACTIVE_TRIGGER_COUNT    = 0
+PRESEND_JOB_RUN_CREATED           = true (row created, status=failed/hung; FSP not created)
+FSP_PLANNED_COUNT                 = 0
+FSP_LEAD_IDS                      = [] (none)
+OUTREACH_EXECUTED                 = false (fail-closed)
+SMTP_ACCEPTED_COUNT               = 0
+SEND_LOG_NEW_ROWS                 = 0
+TODAY_NEW_OUTREACH_SENT           = 0
+REAL_DELIVERY_CLAIMED             = false
+PRODUCTION_CODE_CHANGES           = 0
+FROZEN_FILES_CHANGED              = 0
+TODAY_PRODUCTION_RECOVERED        = false (PreSend hung -> fail-closed; no send tonight)
+GITHUB_HANDOFF_PUSHED             = true (this refresh)
+NEXT_RECOMMENDED_ACTION          = Pre-warm mx_cache_<domain> for all 476 lead domains (operational cache, identical to what query_mx writes; reversible; does NOT relax eligibility) OR fix the Astrill/network DNS path so live MX resolves reliably, then re-run PreSend -> Outreach. Requires user go-ahead (Section F: do not repair eligibility automatically -> held here). Alt: convert WB automation 1785804406748 to a real command as prior audit recommended.
+```
