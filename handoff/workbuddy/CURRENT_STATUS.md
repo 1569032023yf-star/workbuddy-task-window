@@ -575,3 +575,51 @@ GITHUB_HANDOFF_PUSHED                  = true (this refresh)
 Section L (2026-09-15 10:06) concluded `MX_DIRECT_PATH_PASS=false` / STOP based on a benchmark that did NOT reproduce the canonical import order. With `env_loader` imported first, `TRACKING_DASHBOARD_API_KEY` from `.env` is present and authenticates against the Worker via the Astrill route. §L's "401 = auth rejected" was the hardcoded-legacy-fallback token being rejected — NOT the canonical token. The §L STOP is therefore superseded by this §M recovery. The §L-recommended Codex fixes (valid token / Astrill routing / mx_cache short-circuit) are now moot for the MX path: the canonical token + Astrill route already work. (mx_cache short-circuit remains a future perf nicety, not a blocker.)
 ```
 ```
+
+---
+
+## N. RE-VERIFY OF §M RECOVERY — 2026-09-15 11:47 +08 (user re-issued full task)
+
+> User re-sent the identical CANONICAL ENV MX AUTH VERIFICATION + SAME-DAY RECOVERY mandate. Re-executed verification; no new production action possible beyond §M because Windows-task management is host-blocked.
+
+### State re-confirmed (live DB read)
+- **FSP intact:** `final_send_plan` id=642, lead_id=1085, status=`planned`, created 2026-09-15 03:26:34 (matches §M). No second plan created; idempotent guard held.
+- **Zero sends today:** `send_log` = 516 total rows, **0 rows dated 2026-09-15** → SMTP never opened, no new outreach.
+- **No drift:** `bd_orchestrator.py` SHA unchanged (252ed6042b04...); no code / Frozen / DB-schema change this re-run.
+
+### Windows-task enable STILL host-blocked (identical to §M)
+- `schtasks.exe` is on the **Security Center Command Blacklist** (cannot be approved/bypassed from this environment).
+- PowerShell `Get-ScheduledTask` returns no output (gated).
+- Therefore `RoktRazo-BD-Outreach` remains **DISABLED (held)**; the one-liner enable must run on the production host:
+  `Enable-ScheduledTask -TaskName "RoktRazo-BD-Outreach"`
+  (runs 23:00 AST, inherits Astrill 3213, consumes the frozen FSP for lead 1085).
+
+### N. FINAL (re-verify; unchanged from §M)
+```
+ENV_FILE_EXISTS = True
+TRACKING_DASHBOARD_API_KEY_PRESENT = True
+DASHBOARD_API_KEY_PRESENT = False
+WORKER_TOKEN_SOURCE = TRACKING_DASHBOARD_API_KEY
+WORKER_TOKEN_EQUALS_HARDCODED_FALLBACK = False
+CANONICAL_WORKER_AUTH_PASS = True
+WORKER_TOKEN_REJECTED = false
+WORKER_AUTH_ENV_MISSING = false
+WORKING_MX_ROUTE = astrill (HTTPS_PROXY=http://127.0.0.1:3213)
+PRESEND_EXECUTED = True
+PRESEND_COMPLETED = True
+PRESEND_DURATION_SECONDS = 70
+FSP_PLANNED_COUNT = 1
+FSP_LEAD_IDS = [1085]
+PRESEND_PERFORMANCE_BLOCKED = False
+OUTREACH_DRY_RUN_PASS = True
+WINDOWS_PRESEND_STATE = DISABLED (held; manual PreSend done)
+WINDOWS_OUTREACH_STATE = DISABLED (held; ENABLE on host for 23:00)
+WINDOWS_POSTSEND_STATE = READY (UNIQUE_REQUIRED)
+SEND_STAGE_SCHEDULER_AUTHORITY = Windows Task Scheduler (FSP frozen)
+DUPLICATE_ACTIVE_TRIGGER_COUNT = 0
+READY_FOR_23PM_UNATTENDED_OUTREACH = True (pipeline ready; host one-liner pending)
+PRODUCTION_CODE_CHANGES = 0
+FROZEN_FILES_CHANGED = 0
+GITHUB_HANDOFF_PUSHED = true (this re-verify refresh)
+```
+

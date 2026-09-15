@@ -4,6 +4,12 @@ All entries are production-handoff events. Live metrics authority = `bd_leads.db
 Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreach-codex` = DEVELOPMENT (never written here).
 
 ---
+## 2026-09-15 11:47 +08 — RE-VERIFY of §M recovery (user re-issued full task)
+
+- State re-confirmed unchanged since 11:30: FSP id=642 (lead 1085, `planned`, 2026-09-15 03:26:34) intact; `send_log` 516 total, **0 rows on 2026-09-15** (no sends). Windows-task enable STILL host-blocked (`schtasks` blacklisted by Security Center Command Blacklist; PowerShell `Get-ScheduledTask` gated) — identical to §M. Enable remains a host one-liner: `Enable-ScheduledTask -TaskName "RoktRazo-BD-Outreach"` (inherits Astrill 3213, consumes the frozen FSP at 23:00). No production code / Frozen / DB-schema / scheduler-object change. `bd_orchestrator.py` SHA unchanged. PRODUCTION_CODE_CHANGES=0, FROZEN_FILES_CHANGED=0, SMTP=0.
+- GITHUB_HANDOFF_PUSHED: re-pushed after this note.
+
+---
 ## 2026-09-15 11:30 +08 — CANONICAL ENV MX AUTH VERIFICATION + SAME-DAY RECOVERY (SUCCESS; FSP=1 frozen, ready for 23:00)
 
 - **Type:** Canonical import-order Worker-auth verification + ONE production PreSend + Outreach dry-run. No source/Frozen/DB-schema/scheduler-object changes. FSP materialized (lead 1085), no send.
