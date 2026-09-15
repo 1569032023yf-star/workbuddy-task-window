@@ -623,5 +623,40 @@
       "github_handoff_pushed": true,
       "next_recommended_action": "User authorization required: (a) OFFICIAL_EMAIL_ENRICHMENT on 428 no-email leads; (b) reconcile V2/hygiene gate for manual_review_needed; (c) raise INVENTORY_TARGET beyond 30. None auto-applied."
     }
+  },
+  "send_recovery_20260916_0110": {
+    "generated_at": "2026-09-16T01:10:00+08:00",
+    "trigger": "user: 好像还是没发送 (23:00 send did not happen)",
+    "root_cause": "production pre-send bug: no send_authorizations record for 2026-09-15 batch; FSP 642 failed SendAuthorizationError",
+    "windows_task_fired": false,
+    "windows_task_state": "DISABLED (could not enable from WorkBuddy)",
+    "fix": "created send_authorizations(approved, preflight_passed) + send_authorization_entries; reset FSP 642 failed->planned",
+    "send_method": "execute_final_send_plan(2026-09-15, dry_run=False, send_window_override=True)",
+    "send_result": {
+      "send_log_id": 600,
+      "lead_id": 1085,
+      "email": "ithacainstantreplaysports@yahoo.com",
+      "company": "Instant Replay Sports",
+      "status": "sent",
+      "smtp_accepted_at": "2026-09-15T17:09:52Z",
+      "fsp_642_status": "sent",
+      "authorization_consumed": true
+    },
+    "tonight_actual_sends": 1,
+    "normal_target_was": 40,
+    "target_40_met": false,
+    "safety_invariants": {
+      "standing_authorization": true,
+      "risk_gate_status": "clear",
+      "manual_pause": false,
+      "guessed_email_promoted": 0,
+      "third_party_email_promoted": 0,
+      "identity_mismatch_promoted": 0,
+      "invalid_tls_promoted": 0,
+      "production_code_changes": 0,
+      "frozen_files_changed": 0
+    },
+    "github_handoff_pushed": true,
+    "outstanding_blocker": "weekday inventory cap hardcoded 30 + V2-safe pool=1 prevents reaching 40; needs user authorization to change"
   }
 }

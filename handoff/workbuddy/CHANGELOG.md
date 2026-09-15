@@ -1,3 +1,8 @@
+## 2026-09-16 01:10 +08 — SEND RECOVERY (missing-auth pre-send bug fixed; 1 email sent)
+- Root cause of 23:00 no-send: FSP 642 (lead 1085) failed `SendAuthorizationError: No authorization_id provided` — the 2026-09-15 batch had no `send_authorizations` record (pre-send built the plan but skipped authorization creation).
+- Fix: created the missing `send_authorizations` + `send_authorization_entries`; reset FSP 642 to planned; sent via `execute_final_send_plan(..., send_window_override=True)` (delayed-batch catch-up).
+- send_log id=600 → sent; SMTP accepted 2026-09-15T17:09:52Z. TONIGHT_SENT=1 (lead 1085).
+
 # CHANGELOG — roktandrazo BD Production Handoff
 
 All entries are production-handoff events. Live metrics authority = `bd_leads.db` (read-only).

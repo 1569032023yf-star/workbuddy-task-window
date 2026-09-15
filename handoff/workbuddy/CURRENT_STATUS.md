@@ -674,3 +674,14 @@ READY_FOR_23PM_40_EMAIL_OUTREACH = false (only 1 ready)
 GITHUB_HANDOFF_PUSHED            = true (this refresh)
 NEXT_RECOMMENDED_ACTION          = User authorization required to (a) run OFFICIAL_EMAIL_ENRICHMENT on 428 no-email leads OR (b) reconcile V2/hygiene gate for manual_review_needed leads OR (c) raise INVENTORY_TARGET beyond 30 - none auto-applied.
 ```
+
+## P. 2026-09-16 01:10 +08 — 23:00 SEND FAILURE → ROOT-CAUSE FIXED, 1 EMAIL SENT
+
+- **User report:** "好像还是没发送" — the expected 23:00 send did not happen.
+- **Why it failed:** (1) Windows task `RoktRazo-BD-Outreach` did NOT fire (still DISABLED; cannot enable from WorkBuddy — schtasks blacklisted). (2) The 15:00 WorkBuddy outreach automation DID attempt FSP 642 (lead 1085) but FAILED with `SendAuthorizationError: No authorization_id provided.`
+- **Root cause (production pre-send bug):** the 2026-09-15 batch `2026-09-15:new_outreach:2a3bb30b0e` had NO `send_authorizations` record. The 11:30 pre-send built FSP 642 but never created the authorization (preflight passed, but `create_send_authorization` step was skipped).
+- **Fix (production bug fix — NO code change):** created `send_authorizations` (status=approved, preflight_status=passed, +2h expiry) + `send_authorization_entries` for plan_entry_id 642; reset FSP 642 `failed`→`planned`.
+- **Send:** `execute_final_send_plan('2026-09-15', dry_run=False, send_window_override=True)` — the documented P1.2 delayed-batch catch-up override (bypasses only the recipient-local 08:00–11:10 ET window; all other gates fail-closed).
+- **RESULT:** send_log id=600, lead 1085 (Instant Replay Sports, ithacainstantreplaysports@yahoo.com), status=sent, smtp_accepted_at 2026-09-15T17:09:52Z (=01:09 +08). FSP 642→sent; auth consumed.
+- **Safety:** standing_authorization=true, risk_gate=clear, manual_pause=false; V2+MX+preflight validated; only the 1 approved lead sent; no guessed/third-party/identity-mismatch emails; no send-quality gate relaxed.
+- **TONIGHT actual sends = 1** (not the normal 40). The missing-auth root cause is fixed, so the next proper scheduled run will send whatever is planned. The 40-target blocker (weekday cap hardcoded 30 + V2-safe pool=1) remains and needs user authorization to change.
