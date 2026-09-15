@@ -470,5 +470,62 @@
       "TODAY_PRODUCTION_RECOVERED": false,
       "NEXT_RECOMMENDED_ACTION": "Pre-warm mx_cache_<domain> for all 476 lead domains (operational cache; reversible; does NOT relax eligibility) OR fix Astrill/network DNS path so live MX resolves reliably, then re-run PreSend -> Outreach. Requires user go-ahead (Section F: do not repair eligibility automatically)."
     }
+  },
+  "mx_network_path_recovery_20260915": {
+    "authorized_goal": "Validate NO_PROXY=worker-hostname fix; if direct path passed, run ONE canonical PreSend + dry-run Outreach. READ-ONLY benchmark only.",
+    "benchmark_env": "host network (sandbox disabled); host default HTTPS_PROXY=127.0.0.1:62433 (NOT Astrill 3213)",
+    "probe_domains": ["yahoo.com", "chicagolandgames.com", "fpnyc.com", "grahamcrackers.com", "mckaybooks.com"],
+    "worker_endpoint": "https://roktandrazo-email-tracker.1569032023yf.workers.dev/internal/mx-check",
+    "probes": {
+      "default_proxy_62433_to_worker": "timeout_10s (UNREACHABLE)",
+      "astrill_3213_to_worker": "HTTP_401_Unauthorized (706ms) — Astrill reaches Worker, auth rejected",
+      "cleared_direct_to_worker": "HTTP_401_Unauthorized (714ms) — direct reaches Worker, auth rejected",
+      "astrill_3213_plus_no_proxy": "timeout_10s (bypass Astrill -> direct -> unreachable)",
+      "query_mx_TEST1_62433": "Worker timeout -> DNS fallback; yahoo ok ~10s; others dns_error ~16s",
+      "query_mx_TEST2_62433_no_proxy": "Worker timeout -> DNS fallback; yahoo ok ~10s; others dns_error ~10s (NO_PROXY unchanged failure mode)"
+    },
+    "auth_env": {
+      "TRACKING_DASHBOARD_API_KEY_set": false,
+      "DASHBOARD_API_KEY_set": false,
+      "token_used": "hardcoded default in preflight_gate.py (Worker rejects with 401)"
+    },
+    "corrected_root_cause": "Task hypothesis (Astrill stalls Worker; NO_PROXY fixes) is wrong on this host: default proxy 62433 cannot reach Worker; Astrill 3213 AND direct CAN reach Worker but return 401 (auth rejected); query_mx always falls back to slow DNS regardless of NO_PROXY. Real blocker = Worker auth (401) + default-proxy routing, not an Astrill stall. NO_PROXY does NOT restore a working MX path.",
+    "mx_direct_path_pass": false,
+    "mx_network_path_blocked": true,
+    "decision": "STOP per task §C: do NOT run PreSend; do NOT enable Outreach; escalate to Codex for narrow selector/cache + auth/proxy-routing fix.",
+    "production_safety": {
+      "production_code_changes": 0,
+      "frozen_files_changed": 0,
+      "real_smtp": 0,
+      "fsp_created": 0,
+      "scheduler_changes": 0
+    },
+    "scheduler_state_held": {
+      "workbuddy_presend_preflight_outreach": "PAUSED",
+      "windows_presend": "DISABLED (fail-closed)",
+      "windows_outreach": "DISABLED (fail-closed)",
+      "windows_postsend": "READY (UNIQUE_REQUIRED)",
+      "note": "Live Windows-task re-verify blocked by sandbox (schtasks blacklisted; Get-ScheduledTask returned no output); no scheduler object modified, held state unchanged from 2026-09-14."
+    },
+    "final": {
+      "MX_DIRECT_PATH_PASS": false,
+      "MX_NETWORK_PATH_BLOCKED": true,
+      "CURRENT_PROXY_MEDIAN_MS": 16200,
+      "NO_PROXY_MEDIAN_MS": 10000,
+      "PRESEND_EXECUTED": false,
+      "FSP_PLANNED_COUNT": 0,
+      "FSP_LEAD_IDS": [],
+      "OUTREACH_DRY_RUN_PASS": false,
+      "WINDOWS_PRESEND_STATE": "DISABLED",
+      "WINDOWS_OUTREACH_STATE": "DISABLED",
+      "WINDOWS_POSTSEND_STATE": "READY",
+      "SEND_STAGE_SCHEDULER_AUTHORITY": "Windows Task Scheduler (handover intended; chain held fail-closed)",
+      "WORKBUDDY_WAITING_FOR_23PM": false,
+      "PRODUCTION_CODE_CHANGES": 0,
+      "FROZEN_FILES_CHANGED": 0,
+      "READY_FOR_23PM_UNATTENDED_OUTREACH": false,
+      "GITHUB_HANDOFF_PUSHED": true
+    },
+    "next_recommended_action": "Codex narrow fix: (1) valid Worker auth token (env TRACKING_DASHBOARD_API_KEY/DASHBOARD_API_KEY, or update default in preflight_gate.py — Frozen per §H, needs separate auth); (2) route Worker call via Astrill 3213 (reaches Worker) instead of default 62433; (3) short-circuit select_candidates_for_plan_v2 to read pre-warmed mx_cache_<domain> (no 476-domain live sweep). Do NOT relax V2/MX."
   }
 }

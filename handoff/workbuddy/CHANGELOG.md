@@ -4,6 +4,23 @@ All entries are production-handoff events. Live metrics authority = `bd_leads.db
 Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreach-codex` = DEVELOPMENT (never written here).
 
 ---
+## 2026-09-15 10:06 +08 — MX NETWORK PATH RECOVERY (READ-ONLY benchmark; STOP per §C, escalate to Codex)
+
+- **Type:** READ-ONLY network benchmark of `preflight_gate.query_mx()` (no code/DB/scheduler/FSP/Authorization/send changes). Goal: validate the prescribed `NO_PROXY=worker-hostname` fix and, if the direct path passed, run ONE canonical PreSend + dry-run Outreach.
+- **Benchmark (host network, sandbox disabled):** 5 domains (yahoo.com, chicagolandgames.com, fpnyc.com, grahamcrackers.com, mckaybooks.com) via `query_mx()`.
+  - Host default proxy = `127.0.0.1:62433` (**NOT** Astrill 3213). Worker `roktandrazo-email-tracker.1569032023yf.workers.dev/internal/mx-check` is **UNREACHABLE** through 62433 (10s timeout).
+  - `Astrill 3213` → Worker reachable but **HTTP 401 Unauthorized (706ms)**. `Cleared/direct` → Worker reachable but **401 (714ms)**.
+  - `Astrill3213 + NO_PROXY` → 10s timeout (bypass Astrill → direct → unreachable from this network).
+  - `query_mx` TEST1 (62433) and TEST2 (62433+NO_PROXY) both fall back to slow DNS (yahoo ok ~10s; others dns_error ~10–16s). NO_PROXY did **NOT** change the failure mode.
+  - `TRACKING_DASHBOARD_API_KEY` / `DASHBOARD_API_KEY` both UNSET → `query_mx` uses the hardcoded default token (which the Worker rejects with 401).
+- **Corrected root cause (vs task hypothesis):** the task assumed "Astrill stalls the Worker call; NO_PROXY makes it direct/fast". On this host the reality is: (a) the default proxy 62433 cannot reach the Worker at all; (b) Astrill 3213 AND direct CAN reach the Worker but it returns **401 (auth rejected)**; (c) therefore `query_mx` always falls back to slow DNS regardless of NO_PROXY. The prescribed NO_PROXY fix does **NOT** restore a working MX path. The real blocker is **Worker authentication (401) + default-proxy routing**, not an Astrill stall.
+- **MX_DIRECT_PATH_PASS = false** → per task §C, **STOP**: do NOT run PreSend; do NOT enable Outreach; **MX_NETWORK_PATH_BLOCKED = true**; escalate to Codex for a narrow selector/cache + auth/proxy-routing fix.
+- **No production change:** PRODUCTION_CODE_CHANGES=0, FROZEN_FILES_CHANGED=0, SMTP=0, FSP=0, scheduler unchanged (WB PreSend/Preflight/Outreach PAUSED; Windows PreSend/Outreach DISABLED; Windows PostSend READY — held fail-closed from 2026-09-14). Live Windows-task re-verify was blocked by sandbox this session (schtasks blacklisted; Get-ScheduledTask no output) but no scheduler object was modified.
+- **Recommended Codex narrow fix (requires separate authorization):** (1) supply a valid Worker auth token (set `TRACKING_DASHBOARD_API_KEY`/`DASHBOARD_API_KEY` env, or update the default token in `preflight_gate.py` — the latter is a Frozen file per task §H); (2) route the Worker call through Astrill 3213 (which reaches the Worker) instead of the default 62433; (3) optionally short-circuit `select_candidates_for_plan_v2` to read a pre-warmed `mx_cache_<domain>` so it does not re-sweep 476 live domains. None applied here (read-only + no relax).
+- GITHUB_HANDOFF_PUSHED=true.
+
+---
+
 ## 2026-09-14 18:23 +08 — SAME-DAY PRODUCTION RECOVERY ATTEMPT (FAIL-CLOSED)
 
 - Controlled scheduler handover authorized. Safety precheck passed: bd_orchestrator.py SHA=252ed6042b04..., discovery_service.py SHA=45db60d94017..., DB integrity ok, PRODUCTION_CODE_DRIFT=false.
