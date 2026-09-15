@@ -4,6 +4,21 @@ All entries are production-handoff events. Live metrics authority = `bd_leads.db
 Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreach-codex` = DEVELOPMENT (never written here).
 
 ---
+## 2026-09-15 11:30 +08 — CANONICAL ENV MX AUTH VERIFICATION + SAME-DAY RECOVERY (SUCCESS; FSP=1 frozen, ready for 23:00)
+
+- **Type:** Canonical import-order Worker-auth verification + ONE production PreSend + Outreach dry-run. No source/Frozen/DB-schema/scheduler-object changes. FSP materialized (lead 1085), no send.
+- **§A key correction:** the 10:06 entry (§L) benchmark did NOT import `env_loader` first, so it falsely reported `TRACKING_DASHBOARD_API_KEY` as unset and used the hardcoded legacy fallback token (Worker 401). With the canonical order (`import env_loader` → `import preflight_gate`), `.env` provides `TRACKING_DASHBOARD_API_KEY` (`WORKER_TOKEN_EQUALS_HARDCODED_FALLBACK = False`). The canonical token authenticates.
+- **§B route probe (canonical token, host network):** `HTTPS_PROXY=http://127.0.0.1:3213` (Astrill) → **HTTP 200 / mx_pass for all 5 probe domains (~700ms)**. Default host proxy 62433 → Worker unreachable (502). Direct → unreachable. **WORKING_MX_ROUTE = astrill (127.0.0.1:3213)** — also the production host's system-default proxy.
+- **§C CASE 1:** `CANONICAL_WORKER_AUTH_PASS = True` → proceeded to §D.
+- **§D PreSend (live, run_id pre-send:2026-09-15:68fd3354):** COMPLETED in **70s**. **FSP_PLANNED_COUNT = 1, FSP_LEAD_IDS = [1085]** (Instant Replay Sports; template retail_distributor_v5_locked SHA ccb51505; plan_id 2026-09-15:new_outreach:2a3bb30b0e; status=planned). **SMTP=0 / send_log new rows=0 / authorization=0** (PreSend only freezes). 09-14 hang root cause resolved (valid token + Astrill → 476-domain sweep ~70s, no 16s DNS fallback).
+- **§E:** `PRESEND_PERFORMANCE_BLOCKED = False`.
+- **§F Outreach dry-run:** exit 0, "Final-plan preview: 1 entries". FSP_LOAD/LIVE_RECHECK/V2_RECHECK/PREFLIGHT/DRY_RUN all PASS; no hang; plan 1085 still `planned`; send_log 2026-09-15 = 0.
+- **§G/I Windows scheduler:** WorkBuddy PreSend/Preflight/Outreach remain PAUSED. Windows RoktRazo-BD-Outreach must be ENABLED on host for 23:00 (`Enable-ScheduledTask -TaskName "RoktRazo-BD-Outreach"`); it inherits Astrill 3213 → consumes the frozen FSP. Windows-task management is BLOCKED from this sandbox (schtasks blacklisted; Get-ScheduledTask no output), so the enable is a host-side one-liner. No new tasks/wrappers; global proxy unchanged.
+- **No production code change:** PRODUCTION_CODE_CHANGES=0, FROZEN_FILES_CHANGED=0. `bd_orchestrator.py` SHA unchanged (252ed6042b04...). SMTP never opened.
+- GITHUB_HANDOFF_PUSHED=true.
+
+---
+
 ## 2026-09-15 10:06 +08 — MX NETWORK PATH RECOVERY (READ-ONLY benchmark; STOP per §C, escalate to Codex)
 
 - **Type:** READ-ONLY network benchmark of `preflight_gate.query_mx()` (no code/DB/scheduler/FSP/Authorization/send changes). Goal: validate the prescribed `NO_PROXY=worker-hostname` fix and, if the direct path passed, run ONE canonical PreSend + dry-run Outreach.

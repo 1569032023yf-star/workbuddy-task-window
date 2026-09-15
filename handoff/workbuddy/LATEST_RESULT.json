@@ -474,7 +474,13 @@
   "mx_network_path_recovery_20260915": {
     "authorized_goal": "Validate NO_PROXY=worker-hostname fix; if direct path passed, run ONE canonical PreSend + dry-run Outreach. READ-ONLY benchmark only.",
     "benchmark_env": "host network (sandbox disabled); host default HTTPS_PROXY=127.0.0.1:62433 (NOT Astrill 3213)",
-    "probe_domains": ["yahoo.com", "chicagolandgames.com", "fpnyc.com", "grahamcrackers.com", "mckaybooks.com"],
+    "probe_domains": [
+      "yahoo.com",
+      "chicagolandgames.com",
+      "fpnyc.com",
+      "grahamcrackers.com",
+      "mckaybooks.com"
+    ],
     "worker_endpoint": "https://roktandrazo-email-tracker.1569032023yf.workers.dev/internal/mx-check",
     "probes": {
       "default_proxy_62433_to_worker": "timeout_10s (UNREACHABLE)",
@@ -527,5 +533,39 @@
       "GITHUB_HANDOFF_PUSHED": true
     },
     "next_recommended_action": "Codex narrow fix: (1) valid Worker auth token (env TRACKING_DASHBOARD_API_KEY/DASHBOARD_API_KEY, or update default in preflight_gate.py — Frozen per §H, needs separate auth); (2) route Worker call via Astrill 3213 (reaches Worker) instead of default 62433; (3) short-circuit select_candidates_for_plan_v2 to read pre-warmed mx_cache_<domain> (no 476-domain live sweep). Do NOT relax V2/MX."
+  },
+  "canonical_env_mx_auth_recovery_20260915": {
+    "generated_at": "2026-09-15T11:30:00+08:00",
+    "type": "CANONICAL ENV MX AUTH VERIFICATION + SAME-DAY RECOVERY",
+    "outcome": "SUCCESS — canonical .env token authenticates via Astrill 3213; ONE PreSend ran (FSP=1, lead 1085); Outreach dry-run passed; ready for 23:00 Windows Outreach.",
+    "env_file_exists": true,
+    "tracking_dashboard_api_key_present": true,
+    "dashboard_api_key_present": false,
+    "worker_token_source": "TRACKING_DASHBOARD_API_KEY",
+    "worker_token_equals_hardcoded_fallback": false,
+    "canonical_worker_auth_pass": true,
+    "worker_token_rejected": false,
+    "worker_auth_env_missing": false,
+    "working_mx_route": "astrill (HTTPS_PROXY=http://127.0.0.1:3213)",
+    "presend_executed": true,
+    "presend_completed": true,
+    "presend_duration_seconds": 70,
+    "fsp_planned_count": 1,
+    "fsp_lead_ids": [
+      1085
+    ],
+    "presend_performance_blocked": false,
+    "outreach_dry_run_pass": true,
+    "windows_presend_state": "DISABLED (held; manual PreSend done today)",
+    "windows_outreach_state": "DISABLED (held; ENABLE on host for 23:00)",
+    "windows_postsend_state": "READY",
+    "send_stage_scheduler_authority": "Windows Task Scheduler (handover; FSP frozen)",
+    "duplicate_active_trigger_count": 0,
+    "ready_for_23pm_unattended_outreach": true,
+    "production_code_changes": 0,
+    "frozen_files_changed": 0,
+    "github_handoff_pushed": true,
+    "correction_note": "Supersedes mx_network_path_recovery_20260915 (section L) STOP. That benchmark did NOT import env_loader first, so it used the hardcoded legacy fallback token (Worker 401) and falsely reported TRACKING_DASHBOARD_API_KEY as unset. Canonical order proves the .env token authenticates via Astrill. The Codex fixes recommended in section L are now moot for the MX path.",
+    "windows_task_enable_command": "Enable-ScheduledTask -TaskName \"RoktRazo-BD-Outreach\" (run on production host; inherits Astrill 3213 system-default proxy)"
   }
 }

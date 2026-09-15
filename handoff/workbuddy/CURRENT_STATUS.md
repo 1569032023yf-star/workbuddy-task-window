@@ -487,3 +487,91 @@ GITHUB_HANDOFF_PUSHED          = true (this refresh)
 NEXT_RECOMMENDED_ACTION       = Codex narrow fix: (1) valid Worker auth token (env TRACKING_DASHBOARD_API_KEY/DASHBOARD_API_KEY, or update default in preflight_gate.py — Frozen per §H, needs separate auth); (2) route Worker call via Astrill 3213 (reaches Worker) instead of default 62433; (3) short-circuit select_candidates_for_plan_v2 to read pre-warmed mx_cache_<domain> (no 476-domain live sweep). Do NOT relax V2/MX.
 ```
 ```
+
+---
+
+## M. CANONICAL ENV MX AUTH VERIFICATION + SAME-DAY RECOVERY — 2026-09-15 11:30 +08 (SUCCESS; FSP frozen; ready for 23:00)
+
+> Mandate: reproduce the EXACT canonical import order (`import env_loader` BEFORE `preflight_gate`/`query_mx`), verify the real Worker auth state, and if safe restore production today. Do NOT modify source / Frozen files / relax V2-MX / create new scheduler tasks / wait inside WorkBuddy for 23:00.
+> Outcome: **Canonical `.env` token authenticates via Astrill 3213 (HTTP 200 / mx_pass); ONE canonical PreSend ran (FSP=1, lead 1085); Outreach dry-run passed. Ready for unattended 23:00 Outreach on Windows Task Scheduler.**
+
+### A. Canonical import-order token inspection (FIXES the §L false-negative)
+Ran from prod cwd with managed Python: `import env_loader` → inspect env → `import preflight_gate` → read `preflight_gate.WORKER_AUTH_TOKEN`.
+- `ENV_FILE_EXISTS = True` (`.env` present in roktandrazo-outreach/).
+- `TRACKING_DASHBOARD_API_KEY_PRESENT = True` — set by `env_loader` from `.env`. **The §L benchmark missed this because it did NOT import env_loader first → falsely reported the key as "unset".**
+- `DASHBOARD_API_KEY_PRESENT = False`.
+- `WORKER_TOKEN_SOURCE = TRACKING_DASHBOARD_API_KEY`.
+- `WORKER_TOKEN_EQUALS_HARDCODED_FALLBACK = False` → the canonical token is the REAL key, NOT the legacy hardcoded fallback that the Worker rejects (401).
+- **§L correction:** the §L STOP was a false-negative caused by wrong init order. With canonical order the Worker auth is VALID.
+
+### B. Canonical-token Worker probe across 3 routes (host network, sandbox disabled)
+5 domains (yahoo.com, chicagolandgames.com, fpnyc.com, grahamcrackers.com, mckaybooks.com) via raw Worker POST + integrated `query_mx()`, using the canonical `.env` token.
+
+| Route | Result |
+|---|---|
+| current (host default 62433) | Worker UNREACHABLE (502 Bad Gateway) → DNS fallback timeout |
+| **astrill (HTTPS_PROXY=http://127.0.0.1:3213)** | **HTTP 200 / mx_pass for ALL 5 domains (~700ms each)** ✅ |
+| cleared (direct) | Worker UNREACHABLE (timed out) — workers.dev not directly reachable from this network |
+
+- **WORKING_MX_ROUTE = astrill (HTTPS_PROXY=http://127.0.0.1:3213).** This is also the production host's system-default proxy (Astrill VPN always-on, ProxyEnable=1), so the canonical Windows task inherits it automatically.
+
+### C. Auth decision — CASE 1
+`CANONICAL_WORKER_AUTH_PASS = True` (canonical env_loader provides a valid token AND Worker returns authorized responses via the Astrill route). Proceed to §D.
+
+### D. ONE canonical PreSend (executed, no hang)
+Ran `python bd_orchestrator.py --stage pre-send --live` from prod cwd with `HTTPS_PROXY=http://127.0.0.1:3213`, business_date 2026-09-15, run_id `pre-send:2026-09-15:68fd3354`.
+- **PRESEND_COMPLETED = True**; **PRESEND_DURATION_SECONDS = 70** (03:25:24 → 03:26:34 UTC / 11:25 → 11:26 +08).
+- **FSP_PLANNED_COUNT = 1**, **FSP_LEAD_IDS = [1085]** (Instant Replay Sports, ithacainstantreplaysports@yahoo.com; template `retail_distributor_v5_locked` SHA `ccb51505`; plan_id `2026-09-15:new_outreach:2a3bb30b0e`; status=`planned`).
+- **SMTP_CONNECTIONS = 0** · **SEND_LOG_NEW_ROWS = 0** · **AUTHORIZATION_CREATED = 0** (PreSend only freezes; no send).
+- Root cause of the 09-14 hang RESOLVED: with the valid token + Astrill route, the 476-domain MX sweep completes in ~70s instead of stalling on slow DNS fallback.
+
+### E. Performance — NOT blocked
+`PRESEND_PERFORMANCE_BLOCKED = False`. The selector is no longer slow because every `query_mx` now returns via the Worker (no 16s DNS fallback per domain).
+
+### F. Outreach dry-run (executed, passed)
+Ran `python bd_orchestrator.py --stage outreach --dry-run` (Astrill route). Exit 0; "Final-plan preview: 1 entries".
+- FSP_LOAD_PASS = True · LIVE_LEAD_RECHECK_PASS = True · V2_RECHECK_PASS = True · PREFLIGHT_PASS = True · OUTREACH_DRY_RUN_PASS = True · OUTREACH_DRY_RUN_HANG = False.
+- Plan 1085 still `planned` after dry-run (not consumed); send_log 2026-09-15 = 0. No SMTP.
+
+### G/I. Windows Scheduler — handover & enable (host-side action required)
+- Keep WorkBuddy automations PAUSED: PreSend 1785804406748 / Preflight 1785804413719 / Outreach 1785804421539 (unchanged this session).
+- Existing Windows tasks remain the send-stage authority: RoktRazo-BD-PreSend, RoktRazo-BD-Outreach (23:00 AST), RoktRazo-BD-PostSend.
+- **Windows-task management is BLOCKED from this sandbox** (schtasks blacklisted; PowerShell `Get-ScheduledTask` returns no output). Actions below must run on the production host:
+  - Enable tonight's Outreach: `Enable-ScheduledTask -TaskName "RoktRazo-BD-Outreach"` (runs 23:00 AST, consumes the frozen FSP for lead 1085).
+  - Windows PreSend may stay DISABLED — today's PreSend was already run manually (FSP frozen). If enabled, it would re-plan at 22:30 (idempotent; same result).
+  - Optional hardening: ensure the task action process inherits `HTTPS_PROXY=http://127.0.0.1:3213` (already the host system-default via Astrill; only needed if the host proxy is ever not Astrill).
+- Do NOT create new tasks / wrappers. Do NOT change the user's global proxy.
+
+### M. FINAL (recovery)
+```
+ENV_FILE_EXISTS                         = True
+TRACKING_DASHBOARD_API_KEY_PRESENT      = True
+DASHBOARD_API_KEY_PRESENT               = False
+WORKER_TOKEN_SOURCE                    = TRACKING_DASHBOARD_API_KEY
+WORKER_TOKEN_EQUALS_HARDCODED_FALLBACK = False
+CANONICAL_WORKER_AUTH_PASS             = True
+WORKER_TOKEN_REJECTED                  = false
+WORKER_AUTH_ENV_MISSING                = false
+WORKING_MX_ROUTE                       = astrill (HTTPS_PROXY=http://127.0.0.1:3213)
+PRESEND_EXECUTED                       = True
+PRESEND_COMPLETED                      = True
+PRESEND_DURATION_SECONDS               = 70
+FSP_PLANNED_COUNT                      = 1
+FSP_LEAD_IDS                           = [1085]
+PRESEND_PERFORMANCE_BLOCKED            = False
+OUTREACH_DRY_RUN_PASS                  = True
+WINDOWS_PRESEND_STATE                  = DISABLED (held; manual PreSend done today)
+WINDOWS_OUTREACH_STATE                 = DISABLED (held; ENABLE on host for 23:00 — see §G/I)
+WINDOWS_POSTSEND_STATE                 = READY (UNIQUE_REQUIRED)
+SEND_STAGE_SCHEDULER_AUTHORITY         = Windows Task Scheduler (handover; FSP frozen)
+DUPLICATE_ACTIVE_TRIGGER_COUNT         = 0
+READY_FOR_23PM_UNATTENDED_OUTREACH     = True (pipeline ready; enable is a one-liner on host)
+PRODUCTION_CODE_CHANGES                = 0
+FROZEN_FILES_CHANGED                   = 0
+GITHUB_HANDOFF_PUSHED                  = true (this refresh)
+```
+
+### Correction note on §L
+Section L (2026-09-15 10:06) concluded `MX_DIRECT_PATH_PASS=false` / STOP based on a benchmark that did NOT reproduce the canonical import order. With `env_loader` imported first, `TRACKING_DASHBOARD_API_KEY` from `.env` is present and authenticates against the Worker via the Astrill route. §L's "401 = auth rejected" was the hardcoded-legacy-fallback token being rejected — NOT the canonical token. The §L STOP is therefore superseded by this §M recovery. The §L-recommended Codex fixes (valid token / Astrill routing / mx_cache short-circuit) are now moot for the MX path: the canonical token + Astrill route already work. (mx_cache short-circuit remains a future perf nicety, not a blocker.)
+```
+```
