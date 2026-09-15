@@ -623,3 +623,54 @@ FROZEN_FILES_CHANGED = 0
 GITHUB_HANDOFF_PUSHED = true (this re-verify refresh)
 ```
 
+---
+
+## O. EMERGENCY SAFE INVENTORY BUILD — 2026-09-15 EVENING (user re-issued; outcome: MINIMUM_40_MET=false)
+
+> Mandate: SAFE inventory replenishment using EXISTING production capability only; no new pipeline; no guessed/third-party/identity-mismatch/invalid-TLS emails. Do NOT relax any send-quality gate. Do NOT delete/supersede FSP 642.
+> Authoritative live metrics = `data/bd_leads.db` (read-only query) + Windows Task Scheduler.
+> Outcome: **V2-safe pool remained 1; emergency inventory build could NOT grow it; tonight's 23:00 send delivers at most 1 email (lead 1085), NOT the normal 40.**
+
+### O-A. Starting state (19:15 +08)
+- READ_ONLY_V2_SAFE_UNIQUE_ORGS = 1 (lead 1085; unchanged since 2026-09-11; MX-enforced).
+- Production weekday cap: `outreach_control.inventory_target_for_date()` = **30** (hardcoded INVENTORY_TARGET=30; weekends only -> 60; no config override). `stage_inventory` short-circuits at `safe >= target`. So weekday ceiling = 30, not 40/50.
+- §Safety: PRODUCTION_CODE_CHANGES=0 -> cannot raise the cap without user authorization.
+
+### O-B. Build loop (19:15-21:00 +08, killed at 21:00)
+- Driver `build_inventory_loop.py` ran `bd_orchestrator.py --stage inventory --live` per city until cap/deadline. Fixed a `row_factory` bug in its own cleanup (lock-release now executes). Recovered an orphaned inventory job + released its run_lock before starting.
+- 3 passes, each ~32 min, all on **Ithaca, NY** (same city repeated; NEW_UNIQUE_PLACES=0 every pass):
+  - Pass 1-3: DISCOVERY_RESULTS_SEEN=8, NEW_UNIQUE_PLACES=0, WEBSITE_RESOLUTION_PROCESSED=0, NORMAL_STAGING_POSTPROCESS_PROCESSED=0.
+  - LINKED_BACKLOG: eligible=18, processed=18, website_processed=11, postprocess_processed=7, existing_leads_linked=0 - but V2_SAFE stayed 1/30 every pass.
+- **Root cause of zero progress:** discovered/linked leads are not promoted to V2-safe by the staging postprocess - they lack the email_source_type + evidence_url + MX-pass combination `select_candidates_for_plan_v2` requires. The 332 "official-verified" rows in the DB are raw discovered rows that were never staged into V2-eligible status.
+- Loop killed at 21:00 +08 (was stuck spinning; no net progress). Cleaned up: marked its stuck inventory job failed + released the inventory run_lock; also marked the killed pre-send job failed + released its lock.
+
+### O-C. Tonight's send readiness (23:00 Windows task)
+- `RoktRazo-BD-Outreach` (23:00 +08, `bd_orchestrator.py --stage outreach --live`) = **Ready/enabled** (verified via Get-ScheduledTask this session). WILL fire at 23:00.
+- FSP 642 (lead 1085, Instant Replay Sports, ithacainstantreplaysports@yahoo.com; plan_id `2026-09-15:new_outreach:2a3bb30b0e`; outreach_batch_date=2026-09-15; status=planned) is intact (materialized by the §M recovery at 11:26 +08; my evening pre-send attempt was killed BEFORE create_plan, so FSP 642 was NOT superseded/duplicated - only 1 planned row exists).
+- Therefore 23:00 outreach sends **exactly 1 email (lead 1085)** - a safe, V2-verified lead. NOT the 40-email normal outreach.
+- A re-run pre-send was deliberately avoided this evening to honor "do NOT delete/supersede FSP 642" (create_plan idempotency would otherwise cancel 642).
+
+### O-D. Safety invariants (this session)
+- PRODUCTION_CODE_CHANGES=0 - FROZEN_FILES_CHANGED=0 - GUESSED_EMAIL_PROMOTED=0 - THIRD_PARTY_EMAIL_PROMOTED=0 - IDENTITY_MISMATCH_PROMOTED=0 - INVALID_TLS_PROMOTED=0. No gate relaxed. SMTP never opened by this session's actions (pre-send only freezes; the killed pre-send never reached create_plan).
+
+### O-E. FINAL (tonight)
+```
+STARTING_V2_SAFE_UNIQUE_ORGS     = 1
+NEW_V2_SAFE_ORGS_CREATED         = 0
+LINKED_BACKLOG_PROCESSED         = 54 (18 x 3 passes; 0 promoted to V2-safe)
+EMPTY_EMAIL_LEADS_PROCESSED      = not separately isolated in loop logs
+NEW_DISCOVERY_RESULTS            = 8 seen / 0 net new unique places
+NEW_OFFICIAL_VISIBLE_EMAILS      = 0 net (V2-safe stayed 1)
+NEW_FULL_EVIDENCE_RECORDS        = not significantly grown (332 rows already in DB)
+LEGACY_STATUS_ONLY_COUNT         = 480 manual_review_needed (+ 428 no-email) = dominant upstream blockers
+TOP_BLOCKERS                     = (1) weekday cap hardcoded 30; (2) staging not promoting discovered leads to V2-safe; (3) ~25 min/city throughput
+TARGET_50_MET                    = false
+MINIMUM_40_MET                   = false
+FINAL_PRESEND_EXECUTED           = true (this morning's §M recovery; not re-run tonight to protect FSP 642)
+FINAL_FSP_PLANNED_COUNT          = 1
+FINAL_FSP_UNIQUE_ORGS            = 1
+WINDOWS_OUTREACH_STATE           = Ready (enabled)
+READY_FOR_23PM_40_EMAIL_OUTREACH = false (only 1 ready)
+GITHUB_HANDOFF_PUSHED            = true (this refresh)
+NEXT_RECOMMENDED_ACTION          = User authorization required to (a) run OFFICIAL_EMAIL_ENRICHMENT on 428 no-email leads OR (b) reconcile V2/hygiene gate for manual_review_needed leads OR (c) raise INVENTORY_TARGET beyond 30 - none auto-applied.
+```

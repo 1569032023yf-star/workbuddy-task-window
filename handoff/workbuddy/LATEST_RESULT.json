@@ -585,6 +585,43 @@
     "frozen_files_changed": 0,
     "ready_for_23pm_unattended_outreach": true,
     "github_handoff_pushed": "to be pushed",
-    "smtp_connections": 0
+    "smtp_connections": 0,
+    "emergency_inventory_build_20260915_evening": {
+      "generated_at": "2026-09-15T21:00:00+08:00",
+      "type": "EMERGENCY SAFE INVENTORY BUILD (user re-issued; outcome MINIMUM_40_MET=false)",
+      "starting_v2_safe_unique_orgs": 1,
+      "new_v2_safe_orgs_created": 0,
+      "linked_backlog_processed": 54,
+      "linked_backlog_promoted_to_v2_safe": 0,
+      "new_discovery_results_seen": 8,
+      "new_unique_places": 0,
+      "production_weekday_cap": 30,
+      "production_weekday_cap_source": "outreach_control.inventory_target_for_date() hardcoded INVENTORY_TARGET=30; no config override",
+      "target_50_met": false,
+      "minimum_40_met": false,
+      "final_presend_executed": true,
+      "final_fsp_planned_count": 1,
+      "final_fsp_unique_orgs": 1,
+      "fsp_642_intact": true,
+      "fsp_642_lead_id": 1085,
+      "windows_outreach_state": "Ready (enabled)",
+      "ready_for_23pm_40_email_outreach": false,
+      "root_cause_zero_progress": "discovered/linked leads not promoted to V2-safe by staging postprocess (missing email_source_type+evidence_url+MX-pass combination)",
+      "top_blockers": [
+        "weekday inventory cap hardcoded 30 (PRODUCTION_CODE_CHANGES=0 forbids raising it)",
+        "staging postprocess not promoting discovered leads to V2-safe",
+        "~25 min per city throughput"
+      ],
+      "safety_invariants": {
+        "production_code_changes": 0,
+        "frozen_files_changed": 0,
+        "guessed_email_promoted": 0,
+        "third_party_email_promoted": 0,
+        "identity_mismatch_promoted": 0,
+        "invalid_tls_promoted": 0
+      },
+      "github_handoff_pushed": true,
+      "next_recommended_action": "User authorization required: (a) OFFICIAL_EMAIL_ENRICHMENT on 428 no-email leads; (b) reconcile V2/hygiene gate for manual_review_needed; (c) raise INVENTORY_TARGET beyond 30. None auto-applied."
+    }
   }
 }

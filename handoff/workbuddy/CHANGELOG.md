@@ -4,6 +4,17 @@ All entries are production-handoff events. Live metrics authority = `bd_leads.db
 Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreach-codex` = DEVELOPMENT (never written here).
 
 ---
+## 2026-09-15 21:00 +08 — EMERGENCY SAFE INVENTORY BUILD (user re-issued; MINIMUM_40_MET=false)
+
+- 紧急库存补充循环 19:15-21:00 +08 跑了 3 轮（每轮~32 分钟，均卡在 Ithaca NY），`READ_ONLY_V2_SAFE_UNIQUE_ORGS` 始终 = 1，**零增长**。新发现 8 条 / 0 净增独立店铺；关联待办 18x3=54 条处理但 0 条提升为 V2-safe。根因：已发现线索未被暂存流水线提升为 V2-safe（缺 email_source_type+evidence_url+MX 通过的组合，见 §O-B）。
+- 生产工作日上限写死 30（`outreach_control.inventory_target_for_date` 仅周末=60，无配置开关）；§Safety 禁止改代码（PRODUCTION_CODE_CHANGES=0），故 40/50 目标结构上不可达。
+- 23:00 `RoktRazo-BD-Outreach` 经 PowerShell 确认 = **Ready（已启用）**，会触发。FSP 642（线索 1085，Instant Replay Sports，planned，批次 2026-09-15）完好（今早 §M 已生成；今晚未重跑 pre-send 以保住 FSP 642，未重复/未删除）。**今晚实际只发 1 封（线索 1085），非正常 40 封外联。**
+- 安全不变量：PRODUCTION_CODE_CHANGES=0，FROZEN_FILES_CHANGED=0，GUESSED/THIRD_PARTY/IDENTITY_MISMATCH/INVALID_TLS_PROMOTED=0。未放宽任何发送门禁。清理了本次被 kill 的 inventory / pre-send 卡死 job 并释放其 run_lock。
+- FINAL: STARTING_V2_SAFE=1; NEW_V2_SAFE_ORGS_CREATED=0; TARGET_50_MET=false; MINIMUM_40_MET=false; FINAL_FSP_PLANNED_COUNT=1; FINAL_FSP_UNIQUE_ORGS=1; WINDOWS_OUTREACH_STATE=Ready; READY_FOR_23PM_40_EMAIL_OUTREACH=false; GITHUB_HANDOFF_PUSHED=true.
+- 下一步需用户授权：(a) 对 428 条空邮箱线索做 OFFICIAL_EMAIL_ENRICHMENT；或 (b) 协调 V2/hygiene gate 让 manual_review_needed 合格线索入池；或 (c) 提高 INVENTORY_TARGET 超 30。均未自动执行。
+
+---
+
 ## 2026-09-15 11:47 +08 — RE-VERIFY of §M recovery (user re-issued full task)
 
 - State re-confirmed unchanged since 11:30: FSP id=642 (lead 1085, `planned`, 2026-09-15 03:26:34) intact; `send_log` 516 total, **0 rows on 2026-09-15** (no sends). Windows-task enable STILL host-blocked (`schtasks` blacklisted by Security Center Command Blacklist; PowerShell `Get-ScheduledTask` gated) — identical to §M. Enable remains a host one-liner: `Enable-ScheduledTask -TaskName "RoktRazo-BD-Outreach"` (inherits Astrill 3213, consumes the frozen FSP at 23:00). No production code / Frozen / DB-schema / scheduler-object change. `bd_orchestrator.py` SHA unchanged. PRODUCTION_CODE_CHANGES=0, FROZEN_FILES_CHANGED=0, SMTP=0.
