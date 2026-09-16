@@ -775,7 +775,7 @@
         "handoff/workbuddy/LATEST_RESULT.json",
         "handoff/workbuddy/CHANGELOG.md"
       ],
-      "pushed": "Pushed 2026-09-16T15:40:18+08:00 — succeeded as part of PHASE 4A.2 MX selective-proxy controlled patch handoff (same commit that carries mx_selective_proxy_patch_20260916 at root level). Earlier 14:10 +08 attempt had failed on all 3 routes; resolved on retry.",
+      "pushed": "Pushed 2026-09-16 ~15:45 +08 — succeeded as part of PHASE 4A.2 MX selective-proxy controlled patch handoff (commit b79514f3c1a3d0ab988c22e9e10cf2508c0ced55). Earlier 14:10 +08 attempt had failed on all 3 routes; resolved on retry.",
       "push_method": "git push origin main (intended: direct no-proxy HTTPS_PROXY= HTTP_PROXY= NO_PROXY=* git -c http.proxy= -c https.proxy=)"
     },
     "root_cause_answer": "Python/WorkBuddy does NOT see Astrill 3213 in the Bash/WorkBuddy process. The WorkBuddy Bash process inherits Process-scope HTTPS_PROXY=127.0.0.1:62433 (the WorkBuddy sandbox MITM proxy), NOT Astrill. The production Scheduled Task (runs as the real user) inherits User-scope HTTPS_PROXY=127.0.0.1:3213 (Astrill) + the WinInet registry (stale ProxyEnable=1, 3213). env_loader adds scraper=3213 but does NOT modify http/https proxy env. So: (1) in this Bash process Python getproxies()={http,https:62433}; (2) the 3213 the user expects gone (Set System Proxy=OFF) is still present via User-scope env + stale WinInet registry, but Astrill's UI toggle did not clear those. The dual-proxy appearance = Process-scope 62433 (sandbox) vs User-scope 3213 (Astrill) scope difference + a stale WinInet entry.",
@@ -938,7 +938,8 @@
         "mailbox content"
       ],
       "pushed": true,
-      "push_method": "HTTPS_PROXY= HTTP_PROXY= NO_PROXY=* git -c http.proxy= -c https.proxy= push origin main"
+      "push_method": "HTTPS_PROXY= HTTP_PROXY= NO_PROXY=* git -c http.proxy= -c https.proxy= push origin main",
+      "commit": "b79514f3c1a3d0ab988c22e9e10cf2508c0ced55"
     },
     "final": {
       "DEPLOYMENT_EXECUTED": true,
@@ -963,5 +964,7 @@
       "PRODUCTION_PATCH_VALIDATED": true,
       "WORKBUDDY_HANDOFF_PUSHED": true
     }
-  }
+  },
+  "workbuddy_handoff_pushed_commit": "b79514f3c1a3d0ab988c22e9e10cf2508c0ced55",
+  "workbuddy_handoff_pushed_at": "2026-09-16T15:45:00+08:00"
 }
