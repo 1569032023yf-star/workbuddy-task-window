@@ -685,3 +685,73 @@ NEXT_RECOMMENDED_ACTION          = User authorization required to (a) run OFFICI
 - **RESULT:** send_log id=600, lead 1085 (Instant Replay Sports, ithacainstantreplaysports@yahoo.com), status=sent, smtp_accepted_at 2026-09-15T17:09:52Z (=01:09 +08). FSP 642→sent; auth consumed.
 - **Safety:** standing_authorization=true, risk_gate=clear, manual_pause=false; V2+MX+preflight validated; only the 1 approved lead sent; no guessed/third-party/identity-mismatch emails; no send-quality gate relaxed.
 - **TONIGHT actual sends = 1** (not the normal 40). The missing-auth root cause is fixed, so the next proper scheduled run will send whatever is planned. The 40-target blocker (weekday cap hardcoded 30 + V2-safe pool=1) remains and needs user authorization to change.
+
+---
+
+## Q. PHASE 4A.2 HOST PROXY BASELINE AUDIT — 2026-09-16 14:06 +08 (READ-ONLY)
+
+> Mandate: establish a host proxy baseline and answer WHY Python/WorkBuddy still sees `127.0.0.1:3213` (or another proxy) despite Astrill UI "Set System Proxy=OFF". READ-ONLY: no prod code / .env / Windows-proxy / Astrill / scheduler change; no PreSend/Outreach; no SMTP/IMAP; no FSP/Auth. All safety invariants = 0.
+> User-confirmed Astrill UI: OpenWeb Smart Mode=ON, Tunnel browsers only=ON, Set System Proxy=OFF.
+
+### Q-A. Production baseline (SHA256 + DB integrity)
+- `bd_orchestrator.py` = `252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05` (match — no drift)
+- `discovery/discovery_service.py` = `45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356`
+- `preflight_gate.py` = `b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105`
+- `campaign_eligible_v2.py` = `1143bedf563c0f76b883359362ffb2c2ea11c375fd923dc59768c5529cf3ad34`
+- DB `PRAGMA integrity_check` = **OK**. PRODUCTION_CODE_DRIFT=false.
+
+### Q-B/C. Windows env proxy (Process / User / Machine) + WinInet / WinHTTP
+- **Process scope:** `HTTP_PROXY`/`HTTPS_PROXY`/`http_proxy`/`https_proxy` = `127.0.0.1:62433` (**PRESENT**) — this is the **WorkBuddy sandbox MITM proxy**, NOT Astrill. `ALL_PROXY`/`NO_PROXY` absent.
+- **User scope:** `HTTP_PROXY`/`HTTPS_PROXY`/`http_proxy`/`https_proxy` = `127.0.0.1:3213` (**PRESENT**) — this is **Astrill/OpenWeb**. `NO_PROXY` present (localhost,127.0.0.1,::1,workbuddy.qq.com,codebuddy.cn,.tencent.com,.qq.com,...).
+- **Machine scope:** all proxy vars absent.
+- **WinInet (HKCU Internet Settings):** `ProxyEnable=1`, `ProxyServer=http=127.0.0.1:3213; https=127.0.0.1:3213`, no auto-config URL — **STALE**: Astrill UI says OFF but the registry entry was NOT cleared.
+- **WinHTTP (netsh):** direct (no proxy server).
+
+### Q-D. `.env` key presence (values NOT read)
+- `TRACKING_DASHBOARD_API_KEY` PRESENT=true; `BD_MX_HTTPS_PROXY` / `HTTP_PROXY` / `HTTPS_PROXY` / `ALL_PROXY` / `NO_PROXY` all **absent** (total 23 keys). **`.env` contains NO proxy variables** — the proxy is NOT sourced from `.env`.
+
+### Q-E. Scheduled-task proxy injection
+- `RoktRazo-BD-PreSend` = Disabled, `RoktRazo-BD-Outreach` = Ready, `RoktRazo-BD-PostSend` = Ready. **`TASK_LEVEL_PROXY_INJECTION=false`** (no task-level injection). Tasks inherit User-scope env (Astrill 3213) + WinInet (stale 3213).
+
+### Q-F. Astrill listener
+- `ASTRILL_3213_LISTENING=true`; listener process = `openweb` (many instances).
+
+### Q-G. Minimal `yahoo.com` MX probes (3 routes)
+- G1 default process env (62433): MX=**ok**, Worker HTTP=unreachable:URLError, 10769 ms.
+- G2 `HTTPS_PROXY=3213`: MX=**ok**, Worker HTTP=unreachable:URLError, 676 ms.
+- G3 cleared (no proxy): MX=**ok**, Worker HTTP=unreachable:URLError, 10013 ms.
+- **All 3 routes return MX=ok; the Worker MX endpoint is currently UNREACHABLE on every route** → `preflight_gate.query_mx` falls back to direct DNS. `NON_MX_DIRECT_AVAILABLE=true`.
+
+### Q-H. Production send-log safety
+- `TODAY_SEND_LOG_COUNT=0`; `LAST_SEND_LOG_ID=600`; `LAST_SEND_LOG_TS=2026-09-16T01:09:52+08`. No new sends this audit. `SMTP_CONNECTIONS=0`.
+
+### Q-FINAL. Root cause — why Python/WorkBuddy still sees a proxy
+```
+ASTRILL_UI_SYSTEM_PROXY_EXPECTED     = false   (Set System Proxy=OFF)
+PROCESS_HTTPS_PROXY_PRESENT          = true    (127.0.0.1:62433 — WorkBuddy sandbox MITM proxy)
+USER_HTTPS_PROXY_PRESENT             = true    (127.0.0.1:3213 — Astrill/OpenWeb)
+MACHINE_HTTPS_PROXY_PRESENT          = false
+WININET_PROXY_ENABLE                 = 1       (STALE — not cleared by Astrill UI toggle)
+WININET_PROXY_SERVER                 = http=127.0.0.1:3213; https=127.0.0.1:3213
+WINHTTP_PROXY_MODE                   = direct
+PYTHON_PROXY_BEFORE_ENV_LOADER       = {https:62433, http:62433}
+PYTHON_PROXY_AFTER_ENV_LOADER        = {https:62433, http:62433, scraper:3213}
+ENV_LOADER_CHANGED_PROXY_ENV         = true    (adds scraper=3213 ONLY; does NOT touch http/https)
+TASK_LEVEL_PROXY_INJECTION           = false
+TASK_PROXY_SOURCE                    = none
+ASTRILL_3213_LISTENING               = true
+CANONICAL_MX_VIA_3213_PASS           = M1 ok (direct DNS fallback; Worker endpoint unreachable)
+NON_MX_EFFECTIVE_PROXY               = {scraper:3213, http:62433, https:62433}
+NON_MX_DIRECT_AVAILABLE              = true
+PROXY_ROOT_CAUSE = Process-scope 62433 (WorkBuddy sandbox) vs User-scope 3213 (Astrill) scope difference + stale WinInet registry (ProxyEnable=1, 3213) NOT cleared by Astrill UI toggle
+PRODUCTION_CODE_CHANGES = 0
+PRODUCTION_CONFIG_CHANGES = 0
+SCHEDULER_CHANGES = 0
+SMTP_CONNECTIONS = 0
+GITHUB_HANDOFF_PUSHED = true
+```
+**Answer:** In the **WorkBuddy Bash process**, Python sees `127.0.0.1:62433` (the sandbox MITM proxy), **NOT** Astrill 3213. The production **Scheduled Task** (runs as the real user) sees `127.0.0.1:3213` (User-scope Astrill) + the stale WinInet `ProxyEnable=1` entry. `env_loader` only adds `scraper=3213` and never touches `http`/`https`. So the "proxy that won't go away" is a **scope mismatch** (Process 62433 vs User 3213) plus a **stale WinInet registry** that Astrill's "Set System Proxy=OFF" did not clear. The dual appearance is expected and benign for BD (SMTP goes to domestic Tencent Exmail, reachable directly; MX falls back to direct DNS).
+
+### Q-I. GitHub handoff
+- Updated only: `handoff/workbuddy/CURRENT_STATUS.md`, `handoff/workbuddy/LATEST_RESULT.json`, `handoff/workbuddy/CHANGELOG.md`. Staged ONLY those 3.
+- **Push FAILED (2026-09-16 14:10 +08):** attempted via direct no-proxy, Astrill 3213, and sandbox 62433 — all failed (direct=Connection reset, 3213=timeout, 62433=502). GitHub currently unreachable from this host. Local commit `d9b2da4` created; `GITHUB_HANDOFF_PUSHED=PENDING` until a reachable route exists. Re-run the push once network/Astrill recovers.

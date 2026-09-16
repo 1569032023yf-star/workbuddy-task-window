@@ -658,5 +658,123 @@
     },
     "github_handoff_pushed": true,
     "outstanding_blocker": "weekday inventory cap hardcoded 30 + V2-safe pool=1 prevents reaching 40; needs user authorization to change"
+  },
+  "host_proxy_baseline_audit_20260916": {
+    "audit_name": "PHASE 4A.2 HOST PROXY BASELINE AUDIT",
+    "generated_at": "2026-09-16T14:06:00+08:00",
+    "mode": "READ-ONLY (no prod code/.env/Windows-proxy/Astrill/scheduler changes; no PreSend/Outreach; no SMTP/IMAP; no FSP/Auth created)",
+    "user_astrill_ui": {
+      "openweb_smart_mode": "ON",
+      "tunnel_browsers_only": "ON",
+      "set_system_proxy": "OFF",
+      "expected_wininet_proxy_enable": false
+    },
+    "A_production_baseline": {
+      "bd_orchestrator_sha256": "252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05",
+      "bd_orchestrator_sha256_match": true,
+      "discovery_service_sha256": "45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356",
+      "preflight_gate_sha256": "b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105",
+      "campaign_eligible_v2_sha256": "1143bedf563c0f76b883359362ffb2c2ea11c375fd923dc59768c5529cf3ad34",
+      "db_integrity_check": "OK",
+      "production_code_drift": false
+    },
+    "B_windows_env_proxy": {
+      "process": {
+        "HTTP_PROXY": "127.0.0.1:62433 PRESENT=true",
+        "HTTPS_PROXY": "127.0.0.1:62433 PRESENT=true",
+        "http_proxy": "127.0.0.1:62433 PRESENT=true",
+        "https_proxy": "127.0.0.1:62433 PRESENT=true",
+        "ALL_PROXY": "false",
+        "NO_PROXY": "false"
+      },
+      "user": {
+        "HTTP_PROXY": "127.0.0.1:3213 PRESENT=true",
+        "HTTPS_PROXY": "127.0.0.1:3213 PRESENT=true",
+        "http_proxy": "127.0.0.1:3213 PRESENT=true",
+        "https_proxy": "127.0.0.1:3213 PRESENT=true",
+        "ALL_PROXY": "false",
+        "NO_PROXY": "true (localhost,127.0.0.1,::1,workbuddy.qq.com,codebuddy.cn,...,.tencent.com,.qq.com,...)"
+      },
+      "machine": {
+        "HTTP_PROXY": "false",
+        "HTTPS_PROXY": "false",
+        "http_proxy": "false",
+        "https_proxy": "false",
+        "ALL_PROXY": "false",
+        "NO_PROXY": "false"
+      }
+    },
+    "C_wininet_winhttp": {
+      "wininet_proxy_enable": 1,
+      "wininet_proxy_server": "http=127.0.0.1:3213; https=127.0.0.1:3213",
+      "wininet_auto_config_url_present": false,
+      "winhttp_proxy_mode": "direct (no proxy server)"
+    },
+    "D_env_file_key_presence": {
+      "TRACKING_DASHBOARD_API_KEY": "PRESENT=true",
+      "BD_MX_HTTPS_PROXY": "false",
+      "HTTP_PROXY": "false",
+      "HTTPS_PROXY": "false",
+      "ALL_PROXY": "false",
+      "NO_PROXY": "false",
+      "total_keys_in_env": 23,
+      "note": ".env contains NO proxy variables at all — the proxy is NOT sourced from .env"
+    },
+    "E_scheduled_task_proxy_injection": {
+      "RoktRazo-BD-PreSend": {"STATE": "Disabled", "TASK_LEVEL_PROXY_INJECTION": false, "TASK_PROXY_SOURCE": ""},
+      "RoktRazo-BD-Outreach": {"STATE": "Ready", "TASK_LEVEL_PROXY_INJECTION": false, "TASK_PROXY_SOURCE": ""},
+      "RoktRazo-BD-PostSend": {"STATE": "Ready", "TASK_LEVEL_PROXY_INJECTION": false, "TASK_PROXY_SOURCE": ""},
+      "note": "No task-level proxy injection; scheduled tasks inherit User-scope env (Astrill 3213) + WinInet (stale 3213)"
+    },
+    "F_astrill_listener": {
+      "ASTRILL_3213_LISTENING": true,
+      "LISTENER_PROCESS_NAME": "openweb (many instances)"
+    },
+    "G_minimal_mx_probes_yahoo_com": {
+      "G1_default_process_env_62433": {"MX_RESULT": "ok", "WORKER_HTTP_REACHABLE": "unreachable:URLError", "ELAPSED_MS": 10769},
+      "G2_https_proxy_3213": {"MX_RESULT": "ok", "WORKER_HTTP_REACHABLE": "unreachable:URLError", "ELAPSED_MS": 676},
+      "G3_cleared": {"MX_RESULT": "ok", "WORKER_HTTP_REACHABLE": "unreachable:URLError", "ELAPSED_MS": 10013},
+      "note": "All 3 routes return MX=ok; Worker MX endpoint currently UNREACHABLE on all routes -> preflight falls back to direct DNS. Direct (non-proxy) is available.",
+      "NON_MX_EFFECTIVE_PROXY": {"scraper": "http://127.0.0.1:3213"},
+      "NON_MX_DIRECT_AVAILABLE": true
+    },
+    "H_production_send_log_safety": {
+      "TODAY_SEND_LOG_COUNT": 0,
+      "LAST_SEND_LOG_ID": 600,
+      "LAST_SEND_LOG_TS": "2026-09-16T01:09:52.031266+08:00"
+    },
+    "I_github_handoff": {
+      "files_updated": ["handoff/workbuddy/CURRENT_STATUS.md", "handoff/workbuddy/LATEST_RESULT.json", "handoff/workbuddy/CHANGELOG.md"],
+      "pushed": "PENDING — push attempted 2026-09-16 14:10 +08 via 3 routes, all failed: direct=Connection reset, Astrill 3213=Could not connect to server (timeout), sandbox 62433=502. Local commit d9b2da4 created; awaiting a reachable GitHub route.",
+      "push_method": "git push origin main (intended: direct no-proxy HTTPS_PROXY= HTTP_PROXY= NO_PROXY=* git -c http.proxy= -c https.proxy=)"
+    },
+    "root_cause_answer": "Python/WorkBuddy does NOT see Astrill 3213 in the Bash/WorkBuddy process. The WorkBuddy Bash process inherits Process-scope HTTPS_PROXY=127.0.0.1:62433 (the WorkBuddy sandbox MITM proxy), NOT Astrill. The production Scheduled Task (runs as the real user) inherits User-scope HTTPS_PROXY=127.0.0.1:3213 (Astrill) + the WinInet registry (stale ProxyEnable=1, 3213). env_loader adds scraper=3213 but does NOT modify http/https proxy env. So: (1) in this Bash process Python getproxies()={http,https:62433}; (2) the 3213 the user expects gone (Set System Proxy=OFF) is still present via User-scope env + stale WinInet registry, but Astrill's UI toggle did not clear those. The dual-proxy appearance = Process-scope 62433 (sandbox) vs User-scope 3213 (Astrill) scope difference + a stale WinInet entry.",
+    "final": {
+      "ASTRILL_UI_SYSTEM_PROXY_EXPECTED": false,
+      "PROCESS_HTTPS_PROXY_PRESENT": true,
+      "PROCESS_HTTPS_PROXY_VALUE": "127.0.0.1:62433",
+      "USER_HTTPS_PROXY_PRESENT": true,
+      "USER_HTTPS_PROXY_VALUE": "127.0.0.1:3213",
+      "MACHINE_HTTPS_PROXY_PRESENT": false,
+      "WININET_PROXY_ENABLE": 1,
+      "WININET_PROXY_SERVER": "http=127.0.0.1:3213; https=127.0.0.1:3213",
+      "WINHTTP_PROXY_MODE": "direct",
+      "PYTHON_PROXY_BEFORE_ENV_LOADER": {"https": "http://127.0.0.1:62433", "http": "http://127.0.0.1:62433"},
+      "PYTHON_PROXY_AFTER_ENV_LOADER": {"https": "http://127.0.0.1:62433", "http": "http://127.0.0.1:62433", "scraper": "http://127.0.0.1:3213"},
+      "ENV_LOADER_CHANGED_PROXY_ENV": true,
+      "ENV_LOADER_PROXY_DELTA": "adds scraper=127.0.0.1:3213 only; does NOT touch http/https",
+      "TASK_LEVEL_PROXY_INJECTION": false,
+      "TASK_PROXY_SOURCE": "none",
+      "ASTRILL_3213_LISTENING": true,
+      "CANONICAL_MX_VIA_3213_PASS": "M1 ok (direct DNS fallback; Worker endpoint unreachable)",
+      "NON_MX_EFFECTIVE_PROXY": {"scraper": "http://127.0.0.1:3213", "http": "http://127.0.0.1:62433", "https": "http://127.0.0.1:62433"},
+      "NON_MX_DIRECT_AVAILABLE": true,
+      "PROXY_ROOT_CAUSE": "Process-scope 62433 (WorkBuddy sandbox) vs User-scope 3213 (Astrill) scope difference + stale WinInet registry (ProxyEnable=1, 3213) not cleared by Astrill UI toggle",
+      "PRODUCTION_CODE_CHANGES": 0,
+      "PRODUCTION_CONFIG_CHANGES": 0,
+      "SCHEDULER_CHANGES": 0,
+      "SMTP_CONNECTIONS": 0,
+      "GITHUB_HANDOFF_PUSHED": "PENDING (local commit d9b2da4; push blocked — see I_github_handoff)"
+    }
   }
 }

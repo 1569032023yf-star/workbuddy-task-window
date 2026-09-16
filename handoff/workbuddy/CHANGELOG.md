@@ -1,3 +1,15 @@
+## 2026-09-16 14:06 +08 — PHASE 4A.2 HOST PROXY BASELINE AUDIT (READ-ONLY; proxy root-cause resolved)
+
+- READ-ONLY audit (no prod code/.env/Windows-proxy/Astrill/scheduler change; no PreSend/Outreach; no SMTP/IMAP). Answers WHY Python/WorkBuddy still sees a proxy despite Astrill "Set System Proxy=OFF".
+- A: production baseline SHA256 — bd_orchestrator.py=252ed604... (match), discovery_service.py=45db60..., preflight_gate.py=b1f440..., campaign_eligible_v2.py=1143bed...; DB integrity_check=OK; PRODUCTION_CODE_DRIFT=false.
+- B/C: Process HTTP(S)_PROXY=127.0.0.1:62433 (WorkBuddy sandbox MITM, PRESENT); User HTTP(S)_PROXY=127.0.0.1:3213 (Astrill, PRESENT); Machine=all false. WinInet ProxyEnable=1, ProxyServer=127.0.0.1:3213 (STALE — UI says OFF but registry not cleared). WinHTTP=direct.
+- D: `.env` has NO proxy vars (TRACKING_DASHBOARD_API_KEY present; HTTP(S)_PROXY/ALL_PROXY/NO_PROXY all absent) — proxy NOT sourced from .env.
+- E: Scheduled tasks RoktRazo-BD-PreSend=Disabled, Outreach=Ready, PostSend=Ready; TASK_LEVEL_PROXY_INJECTION=false (no task-level injection).
+- F: Astrill 3213 LISTENING=true (openweb). G: yahoo.com MX=ok on all 3 routes (62433/3213/cleared); Worker MX endpoint UNREACHABLE → DNS fallback; direct (non-proxy) available; NON_MX_DIRECT_AVAILABLE=true.
+- H: send-log safety TODAY_SEND_LOG_COUNT=0; LAST_SEND_LOG_ID=600 (2026-09-16T01:09:52+08); SMTP_CONNECTIONS=0.
+- ROOT CAUSE: WorkBuddy Bash process inherits Process-scope HTTPS_PROXY=127.0.0.1:62433 (sandbox), NOT 3213. Production Scheduled Task inherits User-scope 3213 + stale WinInet 3213. env_loader adds scraper=3213 only, does NOT touch http/https. Dual-proxy = Process(62433) vs User(3213) scope difference + stale WinInet. Astrill "Set System Proxy=OFF" did not clear User-scope env or WinInet registry.
+- PRODUCTION_CODE_CHANGES=0; PRODUCTION_CONFIG_CHANGES=0; SCHEDULER_CHANGES=0; SMTP_CONNECTIONS=0. GITHUB_HANDOFF_PUSHED=PENDING (push blocked: direct reset / 3213 timeout / 62433 502; local commit d9b2da4).
+
 ## 2026-09-16 01:10 +08 — SEND RECOVERY (missing-auth pre-send bug fixed; 1 email sent)
 - Root cause of 23:00 no-send: FSP 642 (lead 1085) failed `SendAuthorizationError: No authorization_id provided` — the 2026-09-15 batch had no `send_authorizations` record (pre-send built the plan but skipped authorization creation).
 - Fix: created the missing `send_authorizations` + `send_authorization_entries`; reset FSP 642 to planned; sent via `execute_final_send_plan(..., send_window_override=True)` (delayed-batch catch-up).
