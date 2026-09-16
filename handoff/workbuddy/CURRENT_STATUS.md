@@ -755,3 +755,60 @@ GITHUB_HANDOFF_PUSHED = true
 ### Q-I. GitHub handoff
 - Updated only: `handoff/workbuddy/CURRENT_STATUS.md`, `handoff/workbuddy/LATEST_RESULT.json`, `handoff/workbuddy/CHANGELOG.md`. Staged ONLY those 3.
 - **Push FAILED (2026-09-16 14:10 +08):** attempted via direct no-proxy, Astrill 3213, and sandbox 62433 — all failed (direct=Connection reset, 3213=timeout, 62433=502). GitHub currently unreachable from this host. Local commit `d9b2da4` created; `GITHUB_HANDOFF_PUSHED=PENDING` until a reachable route exists. Re-run the push once network/Astrill recovers.
+
+---
+
+## R. PHASE 4A.2 CONTROLLED PRODUCTION PATCH — MX-ONLY SELECTIVE PROXY (2026-09-16 15:05 +08)
+
+> Mandate: deploy the approved MX-routing-only hunk from Codex commit `d96b004997aa9903459c6afa424f8c265c1750b8` into production `preflight_gate.py`. Explicit user authorization given. Controlled: maintenance-hold + no-active-run + backup + baseline gate + apply-only-hunk + local .env + generic-proxy audit + MX/non-MX validation + V2 regression + hash/rollback + scheduler restore + GitHub handoff. PRODUCTION_FILES_CHANGED=1; PRODUCTION_DB_SCHEMA_CHANGED=false; SMTP_CONNECTIONS=0; IMAP_CONNECTIONS=0; FSP_CREATED=0; AUTHORIZATION_CREATED=0.
+
+### R-A. Maintenance hold + no-active-run
+- PRE_PATCH scheduler states recorded: WorkBuddy Inventory=ACTIVE (paused during patch, restored), RecoverySync=ACTIVE, PreSend=PAUSED, Preflight=PAUSED, Outreach=PAUSED; Windows PreSend=Disabled, Outreach=Ready, PostSend=Ready (UNIQUE_REQUIRED).
+- Windows Outreach could NOT be held: `schtasks.exe` is on the sandbox Program Blacklist and `Disable-ScheduledTask` returned access-denied → PRE_PATCH Ready state preserved; no run occurred during the brief patch window (next fire ≈09:00 next day).
+- **No active BD Python process** found (Get-CimInstance) → B gate satisfied. `DUPLICATE_ACTIVE_TRIGGER_COUNT=0`.
+
+### R-B/C/D. Backup + baseline gate
+- Rollback bundle outside production root: `C:/Users/15690/AppData/Local/Temp/rollback_20260916/` (`preflight_gate.py.before` + SQLite online `bd_leads.db.before`). `PRAGMA integrity_check=ok`. Pre-file SHA256 = `b1f44038…` (matches expected baseline). **BASELINE_DRIFT_DETECTED=false**.
+
+### R-E/F. Apply hunk + .env
+- `PRODUCTION_FILES_CHANGED=1` — only `preflight_gate.py`. Added `_mx_worker_opener(ctx)` (reads `BD_MX_HTTPS_PROXY`; `ProxyHandler({'https':proxy})` when set, `ProxyHandler({})` when absent). `query_mx` changed `urllib.request.urlopen(...)` → `_mx_worker_opener(ctx).open(...)`. Docstring updated. **No drift** into `_mx_via_dns`/DNS/V2/auth/sender/templates/scheduler.
+- `.env`: added `BD_MX_HTTPS_PROXY=http://127.0.0.1:3213`. No generic `HTTP_PROXY`/`HTTPS_PROXY`/`ALL_PROXY` added. Secrets never exposed/committed.
+
+### R-G. Generic proxy cleanup audit
+- `TASK_LEVEL_PROXY_INJECTION=false` (Windows tasks). `.env` has no blanket proxy. User-scope 3213 is Astrill (not an MX-specific workaround) → **nothing to remove**. `GENERIC_PROXY_INJECTION_FOR_MX=false`; `BD_MX_HTTPS_PROXY_PRESENT=true`.
+
+### R-H/I. Validation (no send; canonical import order `env_loader` → `preflight_gate`)
+- MX probes `yahoo.com`/`gmail.com`/`idahotaters.com` (merchant from DB) → all `ok`. `MX_OPENER_PROXIES={'https':'http://127.0.0.1:3213'}` → MX routes through the **dedicated** `BD_MX_HTTPS_PROXY`, NOT the process/sandbox `62433`. **Worker reachable + auth succeeds** (`mx_pass`). With `BD_MX_HTTPS_PROXY` unset → opener uses `{}` (direct, no generic proxy). **MX_SELECTIVE_PROXY_PASS=true**; `NON_MX_GENERIC_PROXY_REQUIRED=false`.
+- Non-MX ordinary HTTPS GET → 200; did **NOT** route through the MX proxy. **NON_MX_TRAFFIC_USES_MX_PROXY=false**.
+
+### R-J. V2 policy regression
+- `campaign_eligible_v2.py` SHA256 = `1143bedf…` (unchanged). Only MX routing changed. **V2_POLICY_CHANGED=false; V2_ELIGIBILITY_DIFF_COUNT=0**.
+
+### R-K/L. Hash + scheduler restore
+- `POST_PATCH_SHA256 = 2cd286f2…`. `ROLLBACK_READY=true`. WorkBuddy Inventory restored to ACTIVE (PRE_PATCH); Windows Outreach remains Ready (PRE_PATCH). `DUPLICATE_ACTIVE_TRIGGER_COUNT=0`.
+
+### R-FINAL
+```
+DEPLOYMENT_EXECUTED             = true
+CODEX_SOURCE_COMMIT            = d96b004997aa9903459c6afa424f8c265c1750b8
+BASELINE_SHA256                = b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105
+BASELINE_DRIFT_DETECTED        = false
+PRODUCTION_FILES_CHANGED       = 1
+POST_PATCH_SHA256              = 2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622
+BD_MX_HTTPS_PROXY_PRESENT      = true
+GENERIC_PROXY_INJECTION_FOR_MX = false
+MX_SELECTIVE_PROXY_PASS        = true
+NON_MX_TRAFFIC_USES_MX_PROXY   = false
+V2_POLICY_CHANGED              = false
+V2_ELIGIBILITY_DIFF_COUNT      = 0
+PRODUCTION_DB_SCHEMA_CHANGED   = false
+SMTP_CONNECTIONS               = 0
+IMAP_CONNECTIONS               = 0
+FSP_CREATED                    = 0
+AUTHORIZATION_CREATED          = 0
+ROLLBACK_READY                = true
+DUPLICATE_ACTIVE_TRIGGER_COUNT = 0
+PRODUCTION_PATCH_VALIDATED     = true
+WORKBUDDY_HANDOFF_PUSHED      = true
+```
+> Note: the Q-section `GITHUB_HANDOFF_PUSHED=PENDING` (14:10 +08) is resolved by this commit — GitHub became reachable again and both the audit commit `d9b2da4` and this patch commit were pushed.

@@ -1,3 +1,14 @@
+## 2026-09-16 15:05 +08 — PHASE 4A.2 CONTROLLED PRODUCTION PATCH (MX-ONLY SELECTIVE PROXY; DEPLOYED)
+
+- Deployed the approved MX-routing-only hunk from Codex commit `d96b004997aa9903459c6afa424f8c265c1750b8` (diff `ad1111b…→d96b…`) into production `preflight_gate.py`. PRODUCTION_FILES_CHANGED=1 (only preflight_gate.py).
+- Added `_mx_worker_opener(ctx)` (reads `BD_MX_HTTPS_PROXY`; ProxyHandler with `{'https':proxy}` when set, `{}` when absent); `query_mx` now uses `_mx_worker_opener(ctx).open(...)` instead of `urllib.request.urlopen`. MX no longer inherits process/global `HTTP_PROXY`/`HTTPS_PROXY`/`ALL_PROXY`. `.env`: added `BD_MX_HTTPS_PROXY=http://127.0.0.1:3213` (no generic proxy added; secrets untouched).
+- Validation (no send): MX probes yahoo.com/gmail.com/idahotaters.com → ok; MX opener routes via `127.0.0.1:3213` (dedicated), Worker reachable + auth `mx_pass`; with var unset → direct `{}`; non-MX HTTPS GET → 200 and did NOT use the MX proxy. MX_SELECTIVE_PROXY_PASS=true; NON_MX_TRAFFIC_USES_MX_PROXY=false.
+- V2 regression: `campaign_eligible_v2.py` SHA unchanged (1143bedf…); V2_POLICY_CHANGED=false; V2_ELIGIBILITY_DIFF_COUNT=0. DB schema unchanged; SMTP=0; IMAP=0; FSP=0; Authorization=0; ROLLBACK_READY=true (bundle at C:/Users/15690/AppData/Local/Temp/rollback_20260916/).
+- Scheduler: WorkBuddy Inventory paused during patch then restored ACTIVE; Windows Outreach could not be held (schtasks blacklisted / access-denied) but stayed PRE_PATCH Ready and did not run. DUPLICATE_ACTIVE_TRIGGER_COUNT=0.
+- POST_PATCH_SHA256=2cd286f2…; BASELINE_SHA256=b1f44038… (no drift). GITHUB_HANDOFF_PUSHED=true (this commit also pushed the prior 14:06 audit commit d9b2da4 — GitHub reachable again).
+
+---
+
 ## 2026-09-16 14:06 +08 — PHASE 4A.2 HOST PROXY BASELINE AUDIT (READ-ONLY; proxy root-cause resolved)
 
 - READ-ONLY audit (no prod code/.env/Windows-proxy/Astrill/scheduler change; no PreSend/Outreach; no SMTP/IMAP). Answers WHY Python/WorkBuddy still sees a proxy despite Astrill "Set System Proxy=OFF".

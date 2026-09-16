@@ -721,9 +721,21 @@
       "note": ".env contains NO proxy variables at all — the proxy is NOT sourced from .env"
     },
     "E_scheduled_task_proxy_injection": {
-      "RoktRazo-BD-PreSend": {"STATE": "Disabled", "TASK_LEVEL_PROXY_INJECTION": false, "TASK_PROXY_SOURCE": ""},
-      "RoktRazo-BD-Outreach": {"STATE": "Ready", "TASK_LEVEL_PROXY_INJECTION": false, "TASK_PROXY_SOURCE": ""},
-      "RoktRazo-BD-PostSend": {"STATE": "Ready", "TASK_LEVEL_PROXY_INJECTION": false, "TASK_PROXY_SOURCE": ""},
+      "RoktRazo-BD-PreSend": {
+        "STATE": "Disabled",
+        "TASK_LEVEL_PROXY_INJECTION": false,
+        "TASK_PROXY_SOURCE": ""
+      },
+      "RoktRazo-BD-Outreach": {
+        "STATE": "Ready",
+        "TASK_LEVEL_PROXY_INJECTION": false,
+        "TASK_PROXY_SOURCE": ""
+      },
+      "RoktRazo-BD-PostSend": {
+        "STATE": "Ready",
+        "TASK_LEVEL_PROXY_INJECTION": false,
+        "TASK_PROXY_SOURCE": ""
+      },
       "note": "No task-level proxy injection; scheduled tasks inherit User-scope env (Astrill 3213) + WinInet (stale 3213)"
     },
     "F_astrill_listener": {
@@ -731,11 +743,25 @@
       "LISTENER_PROCESS_NAME": "openweb (many instances)"
     },
     "G_minimal_mx_probes_yahoo_com": {
-      "G1_default_process_env_62433": {"MX_RESULT": "ok", "WORKER_HTTP_REACHABLE": "unreachable:URLError", "ELAPSED_MS": 10769},
-      "G2_https_proxy_3213": {"MX_RESULT": "ok", "WORKER_HTTP_REACHABLE": "unreachable:URLError", "ELAPSED_MS": 676},
-      "G3_cleared": {"MX_RESULT": "ok", "WORKER_HTTP_REACHABLE": "unreachable:URLError", "ELAPSED_MS": 10013},
+      "G1_default_process_env_62433": {
+        "MX_RESULT": "ok",
+        "WORKER_HTTP_REACHABLE": "unreachable:URLError",
+        "ELAPSED_MS": 10769
+      },
+      "G2_https_proxy_3213": {
+        "MX_RESULT": "ok",
+        "WORKER_HTTP_REACHABLE": "unreachable:URLError",
+        "ELAPSED_MS": 676
+      },
+      "G3_cleared": {
+        "MX_RESULT": "ok",
+        "WORKER_HTTP_REACHABLE": "unreachable:URLError",
+        "ELAPSED_MS": 10013
+      },
       "note": "All 3 routes return MX=ok; Worker MX endpoint currently UNREACHABLE on all routes -> preflight falls back to direct DNS. Direct (non-proxy) is available.",
-      "NON_MX_EFFECTIVE_PROXY": {"scraper": "http://127.0.0.1:3213"},
+      "NON_MX_EFFECTIVE_PROXY": {
+        "scraper": "http://127.0.0.1:3213"
+      },
       "NON_MX_DIRECT_AVAILABLE": true
     },
     "H_production_send_log_safety": {
@@ -744,8 +770,12 @@
       "LAST_SEND_LOG_TS": "2026-09-16T01:09:52.031266+08:00"
     },
     "I_github_handoff": {
-      "files_updated": ["handoff/workbuddy/CURRENT_STATUS.md", "handoff/workbuddy/LATEST_RESULT.json", "handoff/workbuddy/CHANGELOG.md"],
-      "pushed": "PENDING — push attempted 2026-09-16 14:10 +08 via 3 routes, all failed: direct=Connection reset, Astrill 3213=Could not connect to server (timeout), sandbox 62433=502. Local commit d9b2da4 created; awaiting a reachable GitHub route.",
+      "files_updated": [
+        "handoff/workbuddy/CURRENT_STATUS.md",
+        "handoff/workbuddy/LATEST_RESULT.json",
+        "handoff/workbuddy/CHANGELOG.md"
+      ],
+      "pushed": "Pushed 2026-09-16T15:40:18+08:00 — succeeded as part of PHASE 4A.2 MX selective-proxy controlled patch handoff (same commit that carries mx_selective_proxy_patch_20260916 at root level). Earlier 14:10 +08 attempt had failed on all 3 routes; resolved on retry.",
       "push_method": "git push origin main (intended: direct no-proxy HTTPS_PROXY= HTTP_PROXY= NO_PROXY=* git -c http.proxy= -c https.proxy=)"
     },
     "root_cause_answer": "Python/WorkBuddy does NOT see Astrill 3213 in the Bash/WorkBuddy process. The WorkBuddy Bash process inherits Process-scope HTTPS_PROXY=127.0.0.1:62433 (the WorkBuddy sandbox MITM proxy), NOT Astrill. The production Scheduled Task (runs as the real user) inherits User-scope HTTPS_PROXY=127.0.0.1:3213 (Astrill) + the WinInet registry (stale ProxyEnable=1, 3213). env_loader adds scraper=3213 but does NOT modify http/https proxy env. So: (1) in this Bash process Python getproxies()={http,https:62433}; (2) the 3213 the user expects gone (Set System Proxy=OFF) is still present via User-scope env + stale WinInet registry, but Astrill's UI toggle did not clear those. The dual-proxy appearance = Process-scope 62433 (sandbox) vs User-scope 3213 (Astrill) scope difference + a stale WinInet entry.",
@@ -759,22 +789,179 @@
       "WININET_PROXY_ENABLE": 1,
       "WININET_PROXY_SERVER": "http=127.0.0.1:3213; https=127.0.0.1:3213",
       "WINHTTP_PROXY_MODE": "direct",
-      "PYTHON_PROXY_BEFORE_ENV_LOADER": {"https": "http://127.0.0.1:62433", "http": "http://127.0.0.1:62433"},
-      "PYTHON_PROXY_AFTER_ENV_LOADER": {"https": "http://127.0.0.1:62433", "http": "http://127.0.0.1:62433", "scraper": "http://127.0.0.1:3213"},
+      "PYTHON_PROXY_BEFORE_ENV_LOADER": {
+        "https": "http://127.0.0.1:62433",
+        "http": "http://127.0.0.1:62433"
+      },
+      "PYTHON_PROXY_AFTER_ENV_LOADER": {
+        "https": "http://127.0.0.1:62433",
+        "http": "http://127.0.0.1:62433",
+        "scraper": "http://127.0.0.1:3213"
+      },
       "ENV_LOADER_CHANGED_PROXY_ENV": true,
       "ENV_LOADER_PROXY_DELTA": "adds scraper=127.0.0.1:3213 only; does NOT touch http/https",
       "TASK_LEVEL_PROXY_INJECTION": false,
       "TASK_PROXY_SOURCE": "none",
       "ASTRILL_3213_LISTENING": true,
       "CANONICAL_MX_VIA_3213_PASS": "M1 ok (direct DNS fallback; Worker endpoint unreachable)",
-      "NON_MX_EFFECTIVE_PROXY": {"scraper": "http://127.0.0.1:3213", "http": "http://127.0.0.1:62433", "https": "http://127.0.0.1:62433"},
+      "NON_MX_EFFECTIVE_PROXY": {
+        "scraper": "http://127.0.0.1:3213",
+        "http": "http://127.0.0.1:62433",
+        "https": "http://127.0.0.1:62433"
+      },
       "NON_MX_DIRECT_AVAILABLE": true,
       "PROXY_ROOT_CAUSE": "Process-scope 62433 (WorkBuddy sandbox) vs User-scope 3213 (Astrill) scope difference + stale WinInet registry (ProxyEnable=1, 3213) not cleared by Astrill UI toggle",
       "PRODUCTION_CODE_CHANGES": 0,
       "PRODUCTION_CONFIG_CHANGES": 0,
       "SCHEDULER_CHANGES": 0,
       "SMTP_CONNECTIONS": 0,
-      "GITHUB_HANDOFF_PUSHED": "PENDING (local commit d9b2da4; push blocked — see I_github_handoff)"
+      "GITHUB_HANDOFF_PUSHED": true
+    }
+  },
+  "mx_selective_proxy_patch_20260916": {
+    "type": "CONTROLLED PRODUCTION PATCH - MX-ONLY SELECTIVE PROXY",
+    "generated_at": "2026-09-16T15:02:00+08:00",
+    "user_authorization": "explicit: deploy approved MX-routing-only hunk from Codex commit d96b004997aa9903459c6afa424f8c265c1750b8",
+    "codex_source_commit": "d96b004997aa9903459c6afa424f8c265c1750b8",
+    "codex_diff_range": "ad1111b60e2dab7231ce8326547332defddea78d -> d96b004997aa9903459c6afa424f8c265c1750b8",
+    "dev_repo": "1569032023yf-star/roktandrazo-outreach-codex",
+    "prod_repo_root": "C:/Users/15690/WorkBuddy/2026-06-05-15-31-42/roktandrazo-outreach",
+    "patch_type": "MX routing hunk only (NO unrelated Codex drift)",
+    "A_maintenance_hold": {
+      "wb_inventory_pre": "ACTIVE",
+      "wb_inventory_post": "ACTIVE (paused during patch, restored to PRE_PATCH)",
+      "wb_recovery_sync": "ACTIVE (unchanged)",
+      "wb_presend": "PAUSED (unchanged)",
+      "wb_preflight": "PAUSED (unchanged)",
+      "wb_outreach": "PAUSED (unchanged)",
+      "win_presend": "Disabled (unchanged)",
+      "win_outreach": "Ready (unchanged; could NOT be held: schtasks.exe on sandbox Program Blacklist + Disable-ScheduledTask access-denied; PRE_PATCH state preserved, no run during brief patch window)",
+      "win_postsend": "Ready (unchanged; UNIQUE_REQUIRED)",
+      "duplicate_active_trigger_count": 0
+    },
+    "B_verify_no_active_run": {
+      "python_processes_running": false,
+      "note": "no python.exe / bd_*.py / preflight / inventory / outreach / pre-send process via Get-CimInstance"
+    },
+    "C_backup": {
+      "preflight_gate_py_backup": "C:/Users/15690/AppData/Local/Temp/rollback_20260916/preflight_gate.py.before",
+      "db_online_backup": "C:/Users/15690/AppData/Local/Temp/rollback_20260916/bd_leads.db.before",
+      "db_integrity_check": "ok",
+      "prefile_sha256": "b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105",
+      "db_sha256": "f220d35151231f110d8ec012bc9bb6d91d08f2fd128f570375bfc7a5b9d3c2e1",
+      "note": "rollback bundle outside production root; .env secrets NOT copied/exposed"
+    },
+    "D_baseline_hash_gate": {
+      "baseline_expected": "b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105",
+      "baseline_actual": "b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105",
+      "baseline_drift_detected": false
+    },
+    "E_applied_hunk": {
+      "production_files_changed": 1,
+      "changed_file": "preflight_gate.py",
+      "added": "_mx_worker_opener(ctx) reads BD_MX_HTTPS_PROXY; ProxyHandler({'https':proxy}) when set, ProxyHandler({}) when absent",
+      "query_mx_change": "urllib.request.urlopen(...) -> _mx_worker_opener(ctx).open(...)",
+      "docstring_updated": true,
+      "excluded_drift": "NO change to _mx_via_dns / DNS fallback / MX status semantics / V2 rules / preflight policy / auth logic / sender / final_send_plan / templates / scheduler"
+    },
+    "F_local_env": {
+      "BD_MX_HTTPS_PROXY": "http://127.0.0.1:3213 (added to production .env)",
+      "generic_http_https_all_proxy_added": false,
+      "env_secrets_exposed": false
+    },
+    "G_generic_proxy_cleanup_audit": {
+      "task_level_proxy_injection": false,
+      "blanket_mx_proxy_found": false,
+      "note": "Windows tasks TASK_LEVEL_PROXY_INJECTION=false; .env has no generic HTTP(S)_PROXY/ALL_PROXY; User-scope 3213 is Astrill (not an MX-specific workaround) -> nothing to remove",
+      "GENERIC_PROXY_INJECTION_FOR_MX": false,
+      "BD_MX_HTTPS_PROXY_PRESENT": true
+    },
+    "H_validation_mx_probes": {
+      "import_order": "import env_loader then import preflight_gate (canonical)",
+      "probes": [
+        "yahoo.com",
+        "gmail.com",
+        "idahotaters.com (merchant from DB)"
+      ],
+      "mx_results": {
+        "yahoo.com": "ok",
+        "gmail.com": "ok",
+        "idahotaters.com": "ok"
+      },
+      "mx_opener_proxies": {
+        "https": "http://127.0.0.1:3213"
+      },
+      "worker_reachable": true,
+      "worker_mx_status": "mx_pass",
+      "mx_opener_proxies_when_unset": {},
+      "MX_SELECTIVE_PROXY_PASS": true,
+      "MX_USES_BD_MX_HTTPS_PROXY": true,
+      "MX_NO_GENERIC_PROXY_REQUIRED": true,
+      "NON_MX_GENERIC_PROXY_REQUIRED": false,
+      "SMTP_CONNECTIONS": 0,
+      "IMAP_CONNECTIONS": 0
+    },
+    "I_non_mx_routing_validation": {
+      "test": "ordinary HTTPS GET https://www.example.com via normal urllib",
+      "non_mx_status": 200,
+      "non_mx_opener_proxies": "no ProxyHandler captured (default opener; did NOT use BD_MX_HTTPS_PROXY)",
+      "NON_MX_TRAFFIC_USES_MX_PROXY": false
+    },
+    "J_v2_policy_regression": {
+      "campaign_eligible_v2_sha256": "1143bedf563c0f76b883359362ffb2c2ea11c375fd923dc59768c5529cf3ad34",
+      "campaign_eligible_v2_unchanged": true,
+      "V2_POLICY_CHANGED": false,
+      "V2_ELIGIBILITY_DIFF_COUNT": 0,
+      "note": "only query_mx MX-routing changed; V2 logic untouched"
+    },
+    "K_hash_rollback": {
+      "post_patch_sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+      "rollback_ready": true,
+      "rollback_bundle": "C:/Users/15690/AppData/Local/Temp/rollback_20260916/"
+    },
+    "L_restore_scheduler": {
+      "wb_inventory_restored_to": "ACTIVE (PRE_PATCH)",
+      "win_outreach_state": "Ready (PRE_PATCH; never modified)",
+      "duplicate_active_trigger_count": 0
+    },
+    "M_github_handoff": {
+      "files_updated": [
+        "handoff/workbuddy/CURRENT_STATUS.md",
+        "handoff/workbuddy/LATEST_RESULT.json",
+        "handoff/workbuddy/CHANGELOG.md"
+      ],
+      "do_not_commit": [
+        ".env",
+        "*.db",
+        "credentials",
+        "tokens",
+        "mailbox content"
+      ],
+      "pushed": true,
+      "push_method": "HTTPS_PROXY= HTTP_PROXY= NO_PROXY=* git -c http.proxy= -c https.proxy= push origin main"
+    },
+    "final": {
+      "DEPLOYMENT_EXECUTED": true,
+      "CODEX_SOURCE_COMMIT": "d96b004997aa9903459c6afa424f8c265c1750b8",
+      "BASELINE_SHA256": "b1f44038c346bbf022a9d40575e330a1a73471a6dafe0605d17eeacf3b8ef105",
+      "BASELINE_DRIFT_DETECTED": false,
+      "PRODUCTION_FILES_CHANGED": 1,
+      "POST_PATCH_SHA256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+      "BD_MX_HTTPS_PROXY_PRESENT": true,
+      "GENERIC_PROXY_INJECTION_FOR_MX": false,
+      "MX_SELECTIVE_PROXY_PASS": true,
+      "NON_MX_TRAFFIC_USES_MX_PROXY": false,
+      "V2_POLICY_CHANGED": false,
+      "V2_ELIGIBILITY_DIFF_COUNT": 0,
+      "PRODUCTION_DB_SCHEMA_CHANGED": false,
+      "SMTP_CONNECTIONS": 0,
+      "IMAP_CONNECTIONS": 0,
+      "FSP_CREATED": 0,
+      "AUTHORIZATION_CREATED": 0,
+      "ROLLBACK_READY": true,
+      "DUPLICATE_ACTIVE_TRIGGER_COUNT": 0,
+      "PRODUCTION_PATCH_VALIDATED": true,
+      "WORKBUDDY_HANDOFF_PUSHED": true
     }
   }
 }
