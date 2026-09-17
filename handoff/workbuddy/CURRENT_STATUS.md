@@ -812,3 +812,62 @@ PRODUCTION_PATCH_VALIDATED     = true
 WORKBUDDY_HANDOFF_PUSHED      = true
 ```
 > Note: the Q-section `GITHUB_HANDOFF_PUSHED=PENDING` (14:10 +08) is resolved — GitHub became reachable again and all 16 local handoff commits (incl. this patch commit `b79514f3c1a3d0ab988c22e9e10cf2508c0ced55`) were pushed to `origin/main` on 2026-09-16 ~15:45 +08.
+
+---
+
+## S. PHASE 4A.3D — PRODUCTION DISCOVERY PROVIDER PARITY AUDIT (2026-09-17 10:13 +08)
+
+> READ-ONLY parity audit. Goal: determine the EXACT Discovery provider used by real production and whether Codex Phase 4A.3C rehearsal accidentally ran with a different/default provider. Mandate: do NOT change production code, .env, API keys, run Inventory, call Maps APIs, or run SMTP/IMAP/PreSend/Outreach. No secrets printed.
+
+### S-A. Canonical production env (import env_loader)
+- WORKBUDDY_DISCOVERY_PROVIDER_PRESENT = false
+- DISCOVERY_PROVIDER_PRESENT = true; DISCOVERY_PROVIDER_VALUE = `browser_maps`
+- GOOGLE_MAPS_API_KEY_PRESENT = false; SERPAPI_API_KEY_PRESENT = false; SERPAPI_KEY_PRESENT = false
+
+### S-B. Actual code resolution
+- `CONFIGURED_PROVIDER_NAME = browser_maps` (base.configured_provider_name: WORKBUDDY_DISCOVERY_PROVIDER → DISCOVERY_PROVIDER → default `google_places`; only DISCOVERY_PROVIDER is set, so resolves to browser_maps)
+- `load_provider()` → PROVIDER_CLASS = BrowserMapsProvider; PROVIDER_NAME = browser_maps; PROVIDER_CONFIGURED = true (no API key required)
+
+### S-C. Production data provenance (read-only, bd_leads.db)
+- lead_discovery_results total = 332; ALL provider distribution: web_directory=280, browser_maps=52
+- RECENT_100 distribution: browser_maps=52, web_directory=48
+- last_7d distribution: browser_maps=20 (web_directory produced **no** results in last 7d → recent discovery is browser_maps)
+- LATEST_DISCOVERY_PROVIDER (most recent row) = browser_maps (2026-09-15T09:25:44Z)
+- Ithaca: active_city_id=20; Ithaca results ALL browser_maps (32/32); Ithaca query_state rows all browser_maps — including a `running` row with last_success 2026-09-16T07:02:33Z
+- google_places in DB: **0** results; query_state status spread = configuration_blocked:4, pending:76 (never ran — key absent). browser_maps query_state: completed:2, pending:36, running:2
+- Latest real Inventory run (status=running, by last_success): active_city_id=20, browser_maps, last_success 2026-09-16T07:02:33Z (and active_city_id=8, browser_maps, 2026-09-15T09:25:44Z)
+- Emergency Inventory 8 results: no `emergency` tag in DB text or data/*.json; the recent 7d browser_maps batch (20 rows) is the emergency/Inventory-produced set, all browser_maps, zero google_places
+
+### S-D/E. Parity decision
+- REAL_PRODUCTION_PROVIDER = browser_maps
+- PHASE4A3C_PROVIDER = google_places (evidence: it reported "GOOGLE_MAPS_API_KEY is not configured" — that error string exists ONLY in `discovery/providers/google_places.py`; production has 0 google_places results)
+- PROVIDER_PARITY_MATCH = false
+- CLASSIFICATION = **CASE_C** — Production uses browser_maps; Codex rehearsal incorrectly defaulted to google_places (base default when neither env var set)
+- CONCLUSION: **PROVIDER PARITY BUG.** Do NOT introduce a GOOGLE_MAPS_API_KEY merely to satisfy the incorrect dev default. Fix the rehearsal to set `DISCOVERY_PROVIDER=browser_maps` to match production. No production change performed.
+
+### S-F. GitHub handoff + invariants
+- Updated only: CURRENT_STATUS.md, LATEST_RESULT.json, CHANGELOG.md (3 files, no secrets)
+- PRODUCTION_CHANGES=0; NETWORK_REQUESTS=0; SMTP=0; IMAP=0; API keys untouched; .env unchanged; Inventory not run; Maps APIs not called
+- GITHUB_HANDOFF_PUSHED = true
+
+### S-FINAL
+```
+CONFIGURED_PROVIDER_NAME        = browser_maps
+PROVIDER_CLASS                 = BrowserMapsProvider
+PROVIDER_CONFIGURED            = true
+WORKBUDDY_DISCOVERY_PROVIDER_VALUE = (empty / not set)
+DISCOVERY_PROVIDER_VALUE       = browser_maps
+GOOGLE_MAPS_API_KEY_PRESENT    = false
+SERPAPI_API_KEY_PRESENT        = false
+RECENT_PROVIDER_COUNTS         = browser_maps=52, web_directory=48
+ITHACA_ACTIVE_PROVIDER         = browser_maps
+LATEST_DISCOVERY_PROVIDER       = browser_maps
+PHASE4A3C_PROVIDER             = google_places
+PRODUCTION_PROVIDER            = browser_maps
+PROVIDER_PARITY_MATCH          = false
+CLASSIFICATION                 = CASE_C
+PRODUCTION_CHANGES             = 0
+NETWORK_REQUESTS               = 0
+SMTP                           = 0
+GITHUB_HANDOFF_PUSHED          = true
+```

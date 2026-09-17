@@ -1,3 +1,12 @@
+## 2026-09-17 10:13 +08 — PHASE 4A.3D PRODUCTION DISCOVERY PROVIDER PARITY AUDIT (READ-ONLY; CASE_C PROVIDER PARITY BUG)
+
+- READ-ONLY audit (no prod code/.env/API-key/Inventory/Maps-API/SMTP/IMAP change). Determined the EXACT Discovery provider real production uses and whether Codex Phase 4A.3C rehearsal ran with a different/default provider.
+- A/B: canonical env `DISCOVERY_PROVIDER=browser_maps` (WORKBUDDY_DISCOVERY_PROVIDER not set); GOOGLE_MAPS_API_KEY / SERPAPI_API_KEY / SERPAPI_KEY all absent. Code resolution `configured_provider_name()` = `browser_maps`; `load_provider()` → `BrowserMapsProvider` (configured=true, no key).
+- C: bd_leads.db read-only — lead_discovery_results total 332 (web_directory 280 / browser_maps 52); RECENT_100 = browser_maps 52 / web_directory 48; last_7d = browser_maps 20 only. LATEST_DISCOVERY_PROVIDER=browser_maps. Ithaca (active_city_id=20) results ALL browser_maps (32/32); Ithaca query_state all browser_maps incl. a running row last_success 2026-09-16T07:02:33Z. google_places = 0 results; query_state configuration_blocked:4 / pending:76.
+- D/E: REAL_PRODUCTION_PROVIDER = browser_maps; Codex 4A.3C rehearsal = google_places (error "GOOGLE_MAPS_API_KEY is not configured" exists only in google_places.py). PROVIDER_PARITY_MATCH=false → CLASSIFICATION = CASE_C (PROVIDER PARITY BUG). NO Google key should be added; fix the rehearsal to set DISCOVERY_PROVIDER=browser_maps.
+
+---
+
 ## 2026-09-16 15:05 +08 — PHASE 4A.2 CONTROLLED PRODUCTION PATCH (MX-ONLY SELECTIVE PROXY; DEPLOYED)
 
 - Deployed the approved MX-routing-only hunk from Codex commit `d96b004997aa9903459c6afa424f8c265c1750b8` (diff `ad1111b…→d96b…`) into production `preflight_gate.py`. PRODUCTION_FILES_CHANGED=1 (only preflight_gate.py).

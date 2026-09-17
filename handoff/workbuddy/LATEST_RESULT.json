@@ -966,5 +966,98 @@
     }
   },
   "workbuddy_handoff_pushed_commit": "b79514f3c1a3d0ab988c22e9e10cf2508c0ced55",
-  "workbuddy_handoff_pushed_at": "2026-09-16T15:45:00+08:00"
+  "workbuddy_handoff_pushed_at": "2026-09-16T15:45:00+08:00",
+  "discovery_provider_parity_audit_20260917": {
+    "audit_type": "READ_ONLY_PARITY_AUDIT",
+    "phase": "PHASE 4A.3D",
+    "production_changes": 0,
+    "network_requests": 0,
+    "smtp": 0,
+    "imap": 0,
+    "env": {
+      "WORKBUDDY_DISCOVERY_PROVIDER_PRESENT": false,
+      "DISCOVERY_PROVIDER_PRESENT": true,
+      "DISCOVERY_PROVIDER_VALUE": "browser_maps",
+      "GOOGLE_MAPS_API_KEY_PRESENT": false,
+      "SERPAPI_API_KEY_PRESENT": false,
+      "SERPAPI_KEY_PRESENT": false
+    },
+    "code_resolution": {
+      "CONFIGURED_PROVIDER_NAME": "browser_maps",
+      "PROVIDER_CLASS": "BrowserMapsProvider",
+      "PROVIDER_NAME": "browser_maps",
+      "PROVIDER_CONFIGURED": true
+    },
+    "db_provenance": {
+      "lead_discovery_results_total": 332,
+      "provider_distribution_all": {
+        "web_directory": 280,
+        "browser_maps": 52
+      },
+      "recent_100_distribution": {
+        "browser_maps": 52,
+        "web_directory": 48
+      },
+      "last_7d_distribution": {
+        "browser_maps": 20
+      },
+      "latest_discovery_provider": "browser_maps",
+      "ithaca_active_city_id": 20,
+      "ithaca_results_provider": {
+        "browser_maps": 32
+      },
+      "ithaca_active_provider": "browser_maps",
+      "google_places_results_in_db": 0,
+      "google_places_query_state_status": {
+        "configuration_blocked": 4,
+        "pending": 76
+      },
+      "browser_maps_query_state_status": {
+        "completed": 2,
+        "pending": 36,
+        "running": 2
+      },
+      "latest_inventory_run": {
+        "active_city_id": 20,
+        "provider": "browser_maps",
+        "last_success_at": "2026-09-16T07:02:33.653515+00:00"
+      },
+      "emergency_inventory_8_results_identifiable": false,
+      "emergency_inventory_note": "No 'emergency' tag in DB text or data/*.json; recent 7d browser_maps batch (20 rows) is the emergency/Inventory-produced set, all browser_maps, zero google_places."
+    },
+    "parity": {
+      "PRODUCTION_PROVIDER": "browser_maps",
+      "PHASE4A3C_PROVIDER": "google_places",
+      "PHASE4A3C_EVIDENCE": "Codex 4A.3C rehearsal reported 'GOOGLE_MAPS_API_KEY is not configured' — that error string exists ONLY in discovery/providers/google_places.py (status=provider_not_configured). Production has 0 google_places results.",
+      "PROVIDER_PARITY_MATCH": false,
+      "CLASSIFICATION": "CASE_C",
+      "CASE_C_DEFINITION": "Production uses browser_maps (another provider); Codex rehearsal incorrectly defaulted to google_places (base.configured_provider_name default = 'google_places' when neither WORKBUDDY_DISCOVERY_PROVIDER nor DISCOVERY_PROVIDER is set).",
+      "CONCLUSION": "PROVIDER PARITY BUG. Do NOT introduce a GOOGLE_MAPS_API_KEY merely to satisfy the incorrect dev default. The Codex 4A.3C rehearsal must set DISCOVERY_PROVIDER=browser_maps to match production."
+    },
+    "action_taken": "NONE - read-only audit. No production code, .env, API key, Inventory run, Maps API call, or SMTP/IMAP performed.",
+    "final": {
+      "CONFIGURED_PROVIDER_NAME": "browser_maps",
+      "PROVIDER_CLASS": "BrowserMapsProvider",
+      "PROVIDER_CONFIGURED": true,
+      "WORKBUDDY_DISCOVERY_PROVIDER_VALUE": "",
+      "DISCOVERY_PROVIDER_VALUE": "browser_maps",
+      "GOOGLE_MAPS_API_KEY_PRESENT": false,
+      "SERPAPI_API_KEY_PRESENT": false,
+      "RECENT_PROVIDER_COUNTS": {
+        "browser_maps": 52,
+        "web_directory": 48
+      },
+      "ITHACA_ACTIVE_PROVIDER": "browser_maps",
+      "LATEST_DISCOVERY_PROVIDER": "browser_maps",
+      "PHASE4A3C_PROVIDER": "google_places",
+      "PRODUCTION_PROVIDER": "browser_maps",
+      "PROVIDER_PARITY_MATCH": false,
+      "CLASSIFICATION": "CASE_C",
+      "PRODUCTION_CHANGES": 0,
+      "NETWORK_REQUESTS": 0,
+      "SMTP": 0
+    },
+    "GITHUB_HANDOFF_PUSHED": false,
+    "workbuddy_handoff_pushed_commit": null
+  }
 }
