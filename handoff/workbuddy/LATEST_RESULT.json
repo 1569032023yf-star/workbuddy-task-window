@@ -1112,7 +1112,7 @@
       "NETWORK_REQUESTS": 0,
       "SMTP": 0
     },
-    "GITHUB_HANDOFF_PUSHED": false,
-    "workbuddy_handoff_pushed_commit": ""
+    "GITHUB_HANDOFF_PUSHED": true,
+    "workbuddy_handoff_pushed_commit": "8148a7e2683333087d7913ca601b3f5ef1a01fed"
   }
 }
