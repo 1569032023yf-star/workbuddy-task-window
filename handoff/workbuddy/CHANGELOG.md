@@ -1,3 +1,5 @@
+- 2026-09-17 14:49 +08 — PHASE 4A.3E BROWSER_MAPS RUNTIME PARITY AUDIT (READ-ONLY). Production runs browser_maps in **DIRECT** mode (BROWSER_MAPS_MODE=direct, .env:41/46), Playwright+Chromium installed. Cache dir data/browser_maps_cache has 17 JSON (16 Ithaca). Website resolver (ProviderWebsiteResolver) reuses provider; in DIRECT mode it CAN live-scrape. CASE_C root cause confirmed: 4A.3C lacked browser_maps+direct+Playwright so base.py defaulted to google_places. PRODUCTION_CHANGES=0, NETWORK_REQUESTS=0, SMTP=0.
+
 ## 2026-09-17 10:13 +08 — PHASE 4A.3D PRODUCTION DISCOVERY PROVIDER PARITY AUDIT (READ-ONLY; CASE_C PROVIDER PARITY BUG)
 
 - READ-ONLY audit (no prod code/.env/API-key/Inventory/Maps-API/SMTP/IMAP change). Determined the EXACT Discovery provider real production uses and whether Codex Phase 4A.3C rehearsal ran with a different/default provider.

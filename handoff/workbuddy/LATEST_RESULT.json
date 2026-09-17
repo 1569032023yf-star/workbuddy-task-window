@@ -1059,5 +1059,60 @@
     },
     "GITHUB_HANDOFF_PUSHED": true,
     "workbuddy_handoff_pushed_commit": "4f66d87e69c3d734c293f4958ef4bd03186dd3ef"
+  },
+  "browser_maps_runtime_parity_audit_20260917": {
+    "title": "PHASE 4A.3E — BROWSER_MAPS RUNTIME PARITY AUDIT (read-only)",
+    "generated_at": "2026-09-17T14:49:00+08:00",
+    "scope": "READ-ONLY. No production change, no Inventory run, no browser/network scrape, no .env change, no secrets.",
+    "a_canonical_env": {
+      "DISCOVERY_PROVIDER": "browser_maps",
+      "BROWSER_MAPS_MODE": "direct",
+      "BROWSER_MAPS_CACHE_DIR_PRESENT": true,
+      "BROWSER_MAPS_CACHE_DIR_PATH": "C:\\Users\\15690\\WorkBuddy\\2026-06-05-15-31-42\\roktandrazo-outreach\\data\\browser_maps_cache",
+      "BROWSER_MAPS_JSON_FILE_PRESENT": false,
+      "note": "Production .env (lines 41/46): DISCOVERY_PROVIDER=browser_maps, BROWSER_MAPS_MODE=direct. No BROWSER_MAPS_CACHE_DIR / BROWSER_MAPS_JSON_FILE set -> cache dir = default data/browser_maps_cache."
+    },
+    "b_provider_state": {
+      "CONFIGURED_PROVIDER_NAME": "browser_maps",
+      "PROVIDER_CLASS": "BrowserMapsProvider",
+      "PROVIDER_NAME": "browser_maps",
+      "PROVIDER_CONFIGURED": true,
+      "MODE": "direct",
+      "CACHE_DIR": "C:\\Users\\15690\\WorkBuddy\\2026-06-05-15-31-42\\roktandrazo-outreach\\data\\browser_maps_cache"
+    },
+    "c_cache_inventory": {
+      "CACHE_DIR_EXISTS": true,
+      "CACHE_FILE_COUNT": 17,
+      "OLDEST_CACHE_FILE_TS": "2026-09-02T15:27:54Z",
+      "LATEST_CACHE_FILE_TS": "2026-09-15T09:25:44Z",
+      "ITHACA_CACHE_MATCH_COUNT": 16,
+      "note": "17 cache JSON files (16 Ithaca, 1 non-Ithaca). But DB shows 52 browser_maps results in last 100 -> most production results come from LIVE direct scraping, cache is fallback/replay only."
+    },
+    "d_direct_mode_capability": {
+      "PLAYWRIGHT_IMPORTABLE": true,
+      "PLAYWRIGHT_BROWSER_AVAILABLE": true,
+      "note": "Playwright + Chromium are installed in the production environment."
+    },
+    "e_website_resolver_parity": {
+      "resolver_uses": "ProviderWebsiteResolver reuses the same provider instance (service.provider); resolve() calls provider.search_places('business_name formatted_address phone', city, state, '', 10).",
+      "FILE_MODE_REQUIRES_QUERY_CACHE_MATCH": true,
+      "FILE_MODE_NOTE": "Hypothetical: IF BROWSER_MAPS_MODE=file, a matching pre-generated cache file keyed by the resolver's composed query is required, else search_places returns no_data_available (resolver -> network_retry).",
+      "WEBSITE_RESOLUTION_CAN_RUN_LIVE_IN_CURRENT_MODE": true,
+      "CURRENT_MODE_NOTE": "Production mode is DIRECT (not file). In direct mode with Playwright available, the resolver re-query will LIVE-scrape Google Maps, so website resolution CAN run live. No cache file needed."
+    },
+    "parity_conclusion": {
+      "PRODUCTION_PROVIDER": "browser_maps",
+      "PRODUCTION_MODE": "direct",
+      "REQUIRED_RUNTIME_TO_REPRODUCE": "DISCOVERY_PROVIDER=browser_maps; BROWSER_MAPS_MODE=direct; Playwright + Chromium installed (browser launch + live Google Maps scrape).",
+      "WHY_4A3C_USED_GOOGLE_PLACES": "Codex 4A.3C rehearsal lacked browser_maps+direct config and/or Playwright, so base.py defaulted to google_places (which then reported 'GOOGLE_MAPS_API_KEY is not configured'). This is the CASE_C provider-parity bug from 4A.3D.",
+      "FILE_MODE_ASSUMPTION_CORRECTED": "Audit framing assumed file mode, but production is DIRECT. The exact non-secret runtime mode to reproduce production is browser_maps in DIRECT mode with Playwright present."
+    },
+    "safety_invariants": {
+      "PRODUCTION_CHANGES": 0,
+      "NETWORK_REQUESTS": 0,
+      "SMTP": 0
+    },
+    "GITHUB_HANDOFF_PUSHED": false,
+    "workbuddy_handoff_pushed_commit": ""
   }
 }

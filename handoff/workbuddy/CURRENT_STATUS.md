@@ -871,3 +871,32 @@ NETWORK_REQUESTS               = 0
 SMTP                           = 0
 GITHUB_HANDOFF_PUSHED          = true
 ```
+
+---
+
+## T. PHASE 4A.3E — BROWSER_MAPS RUNTIME PARITY AUDIT (2026-09-17, READ-ONLY)
+
+**Goal:** determine the exact non-secret `browser_maps` runtime mode required to reproduce real production.
+
+**Canonical env (`.env` lines 41/46):**
+- `DISCOVERY_PROVIDER=browser_maps`
+- `BROWSER_MAPS_MODE=direct`  ← production is **DIRECT**, not the default FILE
+- cache dir (default) = `data/browser_maps_cache` (17 JSON files; 16 Ithaca; oldest 2026-09-02, latest 2026-09-15)
+- `BROWSER_MAPS_JSON_FILE` not set
+
+**Provider state (load_provider, no search_places):**
+- `BrowserMapsProvider`, configured=True, MODE=`direct`, CACHE_DIR=`data/browser_maps_cache`
+
+**Direct-mode capability:** `PLAYWRIGHT_IMPORTABLE=true`, `PLAYWRIGHT_BROWSER_AVAILABLE=true` — Playwright + Chromium are installed in production.
+
+**Website resolver parity (ProviderWebsiteResolver reuses service.provider):**
+- In FILE mode: resolver re-query needs a matching pre-generated cache file (else `no_data_available` → resolver `network_retry`).
+- IN CURRENT (DIRECT) MODE: website resolution **CAN run live** — resolver re-query triggers a live Google Maps scrape via Playwright. No cache file needed.
+- DB evidence: 52/100 recent results are `browser_maps` while only 17 cache files exist → production relies on **live direct scraping**, cache is fallback only.
+
+**Conclusion / required runtime to reproduce production:**
+`DISCOVERY_PROVIDER=browser_maps` + `BROWSER_MAPS_MODE=direct` + Playwright/Chromium installed.
+
+**Why 4A.3C used google_places:** the rehearsal lacked `browser_maps`+`direct` config and/or Playwright, so `base.py` defaulted to `google_places` (which then reported "GOOGLE_MAPS_API_KEY is not configured"). This is the CASE_C provider-parity bug from 4A.3D — corrected here: production is `browser_maps` in **DIRECT** mode.
+
+**Safety invariants:** PRODUCTION_CHANGES=0, NETWORK_REQUESTS=0, SMTP=0. GitHub handoff pushed = (see LATEST_RESULT block `GITHUB_HANDOFF_PUSHED`).
