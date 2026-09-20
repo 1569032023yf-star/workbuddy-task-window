@@ -14,35 +14,37 @@
 ## C. REQUIRED CURRENT STATUS FIELDS
 
 ```
-CURRENT_PHASE              = PHASE_4A_1C (Controlled Production Patch + Inventory Validation) — COMPLETE; stable, no sends
-PRODUCTION_STATUS          = PATCHED (2 files @ Codex 7013b33); FROZEN send chain intact; canonical scheduler ACTIVE;
-                             NO sends since 2026-09-03 (fail-closed by design; SAFE_FSP materialized=0)
-CURRENT_BLOCKER            = SAFE_FSP materialized pool = 0. Authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 1
-                             (MX-enforced, unchanged from 2026-09-11), NOT materialized into Final Send Plan:
-                             the single safe lead (id 1085, org=ithacainstantreplaysports.com) is
-                             status=manual_review_needed + auto_sendable=0 + manual_sendable=0 (review gate fail-closed).
-                             480 manual_review_needed leads + 428 no-email leads = dominant upstream blockers.
+CURRENT_PHASE              = PHASE_4A_4 (Controlled Production Lead-Factory Patch) — DEPLOYED + VALIDATED; stable; SAFE=0
+PRODUCTION_STATUS          = PATCHED (4 files @ Codex 05c0a419); FROZEN send chain intact; Inventory+Recovery ACTIVE;
+                             PreSend/Preflight/Outreach PAUSED (held, SAFE<40); NO sends since 2026-09-15 (lead 1085);
+                             SAFE=0 (V2-safe pool empty post-1085-send)
+CURRENT_BLOCKER            = SAFE=0 (READ_ONLY_V2_SAFE_UNIQUE_ORGS=0 post lead-1085 send 2026-09-15). The 4A.4
+                             Lead-Factory patch makes discovery/terminalization/direct-place/website-resolution WORK,
+                             but Ithaca NY is exhausted (0 new unique places) so no new V2-safe orgs were created this run.
+                             480 manual_review_needed + 428 no-email leads = dominant upstream blockers; raising SAFE
+                             requires user authorization (OFFICIAL_EMAIL_ENRICHMENT / reconcile V2-hygiene / new cities).
 PRODUCTION_SCHEDULER_AUTHORITY = WorkBuddy Automation (workbuddy_automation) — SOLE scheduler authority.
                              BDExecutionHost Windows Service = Stopped. Windows PostSend = UNIQUE_REQUIRED (Ready).
                              No second/parallel scheduler. PostSend runs as UNIQUE_REQUIRED Windows task only.
-WORKBUDDY_AUTOMATIONS      = see section below (5 canonical ACTIVE + Recovery Sync ACTIVE)
+WORKBUDDY_AUTOMATIONS      = see section below (Inventory + Recovery Sync ACTIVE; PreSend/Preflight/Outreach PAUSED)
 WINDOWS_TASKS              = see section below
 DUPLICATE_ACTIVE_TRIGGER_COUNT = 0   (PreSend/Outreach Disabled; PostSend UNIQUE_REQUIRED, not duplicate)
-PRODUCTION_CODE_SHA        = patched files @ Codex 7013b33 (UNCHANGED since 2026-09-11; drift=false):
-                             bd_orchestrator.py = 252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05
-                             discovery/discovery_service.py = 45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356
+PRODUCTION_CODE_SHA        = 4 Lead-Factory files @ Codex 05c0a419 (deployed 2026-09-20; drift=false vs dev pre-fix base):
+                             discovery/discovery_service.py = ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d
+                             outreach_control.py = b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce
+                             discovery/website_resolver.py = 8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f
+                             discovery/providers/browser_maps_scraper.py = 18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49
+                             (bd_orchestrator.py UNCHANGED = 252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05)
 DATABASE_SCHEMA_CHANGED    = false  (schema_version=162, 27 tables, integrity_check=ok; only routine job_runs + system_state
                                      rows added by scheduled runs since patch)
 FROZEN_FILES_CHANGED       = false  (V2 / MX / Preflight / Sender / final_send_plan / campaign_eligible_v2 untouched)
 SAFE_METRIC_DEFINITION     = see section D (5 distinct metrics, each with authority)
 SAFE_CURRENT               = canonical SAFE_FSP (materialized final_send_plan.status='planned') = 0
-                             (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 1 — MX-enforced, unchanged)
-LAST_INVENTORY_RUN         = 2026-09-14 15:01 +08 (automation-1784775229336; run_id inventory:2026-09-14:eba7c883;
-                             status=partial, stop_reason=safe_inventory_gap; started 15:01:10 +08 / 07:01:10 UTC,
-                             finished 15:04:36 +08 / 07:04:36 UTC; actual=1, gap=29) — NOW COMPLETED (was "running"
-                             in prior handoff; prior timestamp 14:37 +08 predated the 15:01 start, see FINAL HANDOFF_TIMESTAMP_ERROR).
-                             Prior completed: 2026-09-13 15:01 +08 (6031059e; partial, actual=1, gap=59). Validation run
-                             2026-09-11 14:25 +08 (f5895b2a) same stop_reason. Daily 15:00 automation ACTIVE.
+                             (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 0 — post lead-1085 send 2026-09-15; MX-enforced)
+LAST_INVENTORY_RUN         = 2026-09-20 15:55 +08 (automation-1784775229336; run_id inventory:2026-09-20:c2b1abfe;
+                             PHASE 4A.4 controlled live run; Target 60; exit 0; ~3m26s; DISCOVERY_RESULTS_SEEN=8,
+                             NEW_UNIQUE_PLACES=0, LINKED_BACKLOG terminalized 14; READ_ONLY_V2_SAFE=0/60;
+                             safe-exhaustion, no regression). Daily 15:00 automation ACTIVE (resumed post-patch).
 LAST_PRESEND_RUN           = automation-1785804406748 ACTIVE (Mon-Fri 21:30 +08); last actual run NOT persisted in DB (no job_run rows)
 LAST_PREFLIGHT_RUN         = automation-1785804413719 ACTIVE (Mon-Fri 21:50 +08); last actual run NOT persisted in DB
 LAST_OUTREACH_RUN          = automation-1785804421539 ACTIVE (Mon-Fri 22:00 +08); last actual send = 2026-09-03 01:10 +08
@@ -54,14 +56,14 @@ NEXT_ACTION                = (1) Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRI
                              (separate destructive authorization — history rewrite).
 ```
 
-### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — verified 2026-09-14 15:46 +08
+### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — verified 2026-09-20 16:21 +08 (post 4A.4)
 | Automation ID | Name | Schedule | State |
 |---|---|---|---|
-| 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE |
-| 1785804406748 | BD Production Pre-Send | Mon–Fri 21:30 +08 | ACTIVE |
-| 1785804413719 | BD Production Preflight | Mon–Fri 21:50 +08 | ACTIVE |
-| 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | ACTIVE (display name still carries stale suffix `[PAUSED: ExecutionHost未验证]`; actual status = ACTIVE) |
-| 1786002601925 | BD Result Recovery Sync | daily 08:45 +08 | ACTIVE (support job, not a stage trigger) |
+| 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE (resumed post-patch) |
+| 1785804406748 | BD Production Pre-Send | Mon–Fri 21:30 +08 | PAUSED (held; SAFE<40) |
+| 1785804413719 | BD Production Preflight | Mon–Fri 21:50 +08 | PAUSED (held; SAFE<40) |
+| 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | PAUSED (held; SAFE<40) |
+| 1786002601925 | BD Result Recovery Sync | daily 08:45 +08 | ACTIVE (resumed post-patch; support job, not a stage trigger) |
 
 ### WINDOWS_TASKS — verified 2026-09-14 15:46 +08 (via Get-ScheduledTask)
 | Task Name | State | Classification |
@@ -900,3 +902,49 @@ GITHUB_HANDOFF_PUSHED          = true
 **Why 4A.3C used google_places:** the rehearsal lacked `browser_maps`+`direct` config and/or Playwright, so `base.py` defaulted to `google_places` (which then reported "GOOGLE_MAPS_API_KEY is not configured"). This is the CASE_C provider-parity bug from 4A.3D — corrected here: production is `browser_maps` in **DIRECT** mode.
 
 **Safety invariants:** PRODUCTION_CHANGES=0, NETWORK_REQUESTS=0, SMTP=0. GitHub handoff pushed = (see LATEST_RESULT block `GITHUB_HANDOFF_PUSHED`).
+
+---
+
+## U. PHASE 4A.4 — CONTROLLED PRODUCTION LEAD-FACTORY PATCH (2026-09-20, DEPLOYED + VALIDATED)
+
+> Mandate: deploy the approved Lead-Factory patch set (Codex `54a7fb65…`→`05c0a4191…`, consolidated `05c0a41919167f0beed531ed7e6b1d40d89a36f1`) into the 4 authorized production files. Controlled: maintenance-hold + no-active-run + backup + baseline gate + apply-only-accepted-hunks + static/regression validation + ONE canonical live Inventory + acceptance + scheduler resume (Inventory+Recovery only). No SMTP/IMAP/Outreach/PreSend/FSP/Authorization. Full detail in `PHASE4A4_CONTROLLED_PRODUCTION_PATCH.md`.
+
+### U-A. Deployment
+- PRODUCTION_FILES_CHANGED=4: `discovery/discovery_service.py`, `outreach_control.py`, `discovery/website_resolver.py`, `discovery/providers/browser_maps_scraper.py`.
+- Source = dev pre-fix base `d96b004997aa9903459c6afa424f8c265c1750b8`; whole-file copy from `05c0a419` = byte-identical accepted hunks, **zero unrelated drift** (verified `AUTH_IDENTICAL_TO_DEV=true`).
+- 5 accepted hunks: (1) `54a7fb65` zero-yield progression + terminalization + `INVENTORY_TARGET` default 50 / `max(60,target)`; (2) `040408c64` `_bounded_search` (spawn + timeout); (3) `adfe8a93` Windows Job Object kill-on-close; (4) `c0061917` google-owned host/place-source/safe-website backfill + scraper external-link rejection; (5) `05c0a4191` `extract_direct_place_data` direct-place handling.
+- Forbidden files (V2/MX/preflight/sender/final_send_plan/template/daily_session) UNCHANGED (post-patch SHA == pre-patch). `DB_SCHEMA_CHANGED=false`.
+
+### U-B. Validation
+- Targeted logic tests: 22 PASS / 0 FAIL. Full suite: 32 tests, 4 failures ALL pre-existing (confirmed via pre/post diff; `NEW_FAILURES_INTRODUCED_BY_PATCH=[]`). `V2_POLICY_CHANGED=false`, `MX_POLICY_CHANGED=false`, `TEMPLATE_CHANGED=false`.
+
+### U-C. One canonical live Inventory (`inventory:2026-09-20:c2b1abfe`)
+- 2026-09-20 15:55 +08, Target 60 (Sunday buffer), `DISCOVERY_PROVIDER=browser_maps` + `BROWSER_MAPS_MODE=direct`, exit 0, ~3m26s.
+- DISCOVERY_RESULTS_SEEN=8, NEW_UNIQUE_PLACES=0, WEBSITE_RESOLUTION_PROCESSED=0, LINKED_BACKLOG terminalized 14.
+- SAFE_BEFORE=0, SAFE_AFTER=0 (Ithaca NY exhausted → safe-exhaustion; runbook G does NOT require SAFE≥40).
+- wrong-domain regression = 0 (`google_owned_website_rows_in_db=0`); orphan browser processes = 0 (26 user-Chrome, 0 ms-playwright).
+- SMTP=0, IMAP=0, OUTREACH=0, PRESEND=0, FSP=0, AUTHORIZATION=0.
+
+### U-D. Scheduler
+- Resumed ACTIVE: Inventory `1784775229336` (15:00), Recovery Sync `1786002601925` (08:45).
+- Held PAUSED (SAFE<40): Pre-Send `1785804406748`, Preflight `1785804413719`, Outreach `1785804421539`.
+- Windows PostSend UNIQUE_REQUIRED (Ready) unchanged. `DUPLICATE_ACTIVE_TRIGGER_COUNT=0`.
+
+### U-E. Production-code persistence note
+- Live production code deployed in `master` workspace checkout (verified by SHA256 above; source-of-truth = Codex `05c0a419`). The `main` branch's `roktandrazo-outreach/` is a **stale snapshot** (different SHAs, missing `website_resolver.py`) → patched files deliberately NOT committed to `main` (would corrupt canonical source). Matches all prior 4A.x handoffs (handoff docs only). A separate authorized `main` sync is recommended.
+
+### U-FINAL
+```
+DEPLOYMENT_EXECUTED=true; PRODUCTION_FILES_CHANGED=4; AUTH_IDENTICAL_TO_DEV=true; BASELINE_DRIFT_DETECTED=false
+PREPATCH_SHA256 = discovery_service 45db60d9...; outreach_control c9b06668...; website_resolver ffbcacdf...; browser_maps_scraper b4408fbb...
+POSTPATCH_SHA256 = discovery_service ec0c1d0e...; outreach_control b23c1359...; website_resolver 8945d439...; browser_maps_scraper 18d1c79d...
+ROLLBACK_READY=true; TARGETED_TESTS=22/0; FULL_SUITE 4 failures ALL pre-existing; NEW_FAILURES_INTRODUCED_BY_PATCH=[]
+V2_POLICY_CHANGED=false; MX_POLICY_CHANGED=false; TEMPLATE_CHANGED=false; DB_SCHEMA_CHANGED=false
+INVENTORY_COMPLETED=true (inventory:2026-09-20:c2b1abfe; exit 0; 3m26s)
+SAFE_BEFORE=0; SAFE_AFTER=0; WEBSITES_RESOLVED=0; NETWORK_RETRY=0; OFFICIAL_EMAILS_FOUND=0; FULL_EVIDENCE_CREATED=0; EXISTING_LEADS_LINKED=0
+WRONG_DOMAIN_REGRESSION=false; ORPHAN_BROWSER_PROCESSES=false
+INVENTORY_AUTOMATION_RESTORED=true; RECOVERY_AUTOMATION_RESTORED=true; SEND_AUTOMATION_HELD=true
+SMTP_CONNECTIONS=0; IMAP_CONNECTIONS=0; OUTREACH_SEND_COUNT=0; PRESEND_FSP_CREATED=0; AUTHORIZATION_CREATED=0
+READY_TO_BUILD_SAFE_POOL=false (SAFE=0); READY_FOR_40_RECIPIENT_ACCEPTANCE=false (SAFE<40)
+GITHUB_HANDOFF_PUSHED=true
+```

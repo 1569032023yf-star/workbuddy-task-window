@@ -1,52 +1,59 @@
 {
-  "generated_at": "2026-09-14T16:16:00+08:00",
-  "refresh_type": "READ-ONLY production status refresh + Inventory closeout + Lead 1085 state-transition audit (no code/DB/scheduler/FSP/Authorization/send changes)",
+  "generated_at": "2026-09-20T16:21:00+08:00",
+  "refresh_type": "PHASE 4A.4 CONTROLLED PRODUCTION LEAD-FACTORY PATCH deployment + validation + acceptance (handoff-only; production code deployed in master working tree, verified by SHA256)",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "PHASE_4A_1C (Controlled Production Patch + Inventory Validation) — COMPLETE; stable, no sends",
-  "production_status": "PATCHED (2 files from Codex 7013b33, UNCHANGED); FROZEN send chain intact; canonical scheduler ACTIVE; NO sends since 2026-09-03 (fail-closed)",
+  "current_phase": "PHASE_4A_4 (Controlled Production Lead-Factory Patch) - DEPLOYED + VALIDATED; stable; SAFE=0",
+  "production_status": "PATCHED (4 files from Codex 05c0a419, UNCHANGED since deploy 2026-09-20); FROZEN send chain intact; Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40); NO sends since 2026-09-15 (lead 1085); SAFE=0",
   "production_code_drift": false,
-  "current_blocker": "SAFE_FSP materialized=0; authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS=1 (MX-enforced, unchanged) NOT materialized (review gate fail-closed on lead 1085: manual_review_needed + auto_sendable=0 + manual_sendable=0); 480 manual_review_needed + 428 no-email leads = dominant upstream blockers",
+  "current_blocker": "SAFE=0 (READ_ONLY_V2_SAFE_UNIQUE_ORGS=0 post lead-1085 send 2026-09-15). 4A.4 patch makes discovery/terminalization/direct-place/website-resolution WORK, but Ithaca NY exhausted (0 new unique places) so no new V2-safe orgs this run. 480 manual_review_needed + 428 no-email leads = dominant upstream blockers.",
   "production_code_sha": {
     "bd_orchestrator.py": "252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05",
-    "discovery/discovery_service.py": "45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356",
+    "discovery/discovery_service.py": "ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d",
+    "outreach_control.py": "b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce",
+    "discovery/website_resolver.py": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
+    "discovery/providers/browser_maps_scraper.py": "18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49",
+    "note": "4 Lead-Factory files @ Codex 05c0a419 deployed 2026-09-20; AUTH_IDENTICAL_TO_DEV=true (zero unrelated drift vs dev pre-fix base d96b0049); forbidden files (preflight_gate/campaign_eligible_v2/bd_sender/daily_session/final_send_plan/bd_template) UNCHANGED",
     "match": true
   },
-  "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) — sole authority; BDExecutionHost Stopped; Windows PostSend UNIQUE_REQUIRED; no second scheduler",
+  "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) - sole authority; Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40); Windows PostSend UNIQUE_REQUIRED; no second scheduler",
   "workbuddy_automations": [
     {
       "id": "1784775229336",
       "name": "RoktRazo BD Inventory",
       "schedule": "daily 15:00 +08",
-      "state": "ACTIVE"
+      "state": "ACTIVE",
+      "note": "resumed post-patch"
     },
     {
       "id": "1785804406748",
       "name": "BD Production Pre-Send",
       "schedule": "Mon-Fri 21:30 +08",
-      "state": "ACTIVE"
+      "state": "PAUSED",
+      "note": "held; SAFE<40"
     },
     {
       "id": "1785804413719",
       "name": "BD Production Preflight",
       "schedule": "Mon-Fri 21:50 +08",
-      "state": "ACTIVE"
+      "state": "PAUSED",
+      "note": "held; SAFE<40"
     },
     {
       "id": "1785804421539",
       "name": "BD Production Outreach",
       "schedule": "Mon-Fri 22:00 +08",
-      "state": "ACTIVE",
-      "note": "display name carries stale '[PAUSED: ExecutionHost未验证]' suffix; actual status ACTIVE"
+      "state": "PAUSED",
+      "note": "held; SAFE<40"
     },
     {
       "id": "1786002601925",
       "name": "BD Result Recovery Sync",
       "schedule": "daily 08:45 +08",
       "state": "ACTIVE",
-      "note": "support job, not a stage trigger; does not persist to job_runs"
+      "note": "resumed post-patch; support job"
     }
   ],
   "windows_tasks": [
@@ -135,13 +142,13 @@
   ],
   "last_inventory_run": "2026-09-14 15:01 +08 (inventory:2026-09-14:eba7c883; COMPLETED partial; started 07:01:10 UTC / 15:01:10 +08, finished 07:04:36 UTC / 15:04:36 +08; safe_inventory_gap; actual=1, gap=29). Prior completed: 2026-09-13 15:01 +08 (6031059e).",
   "safe_metrics": {
-    "V2_ELIGIBLE_UNSENT": 1,
+    "V2_ELIGIBLE_UNSENT": 0,
     "V2_ELIGIBLE_UNSENT_AUTHORITY": "AUTHORITATIVE = Frozen V2+MX (CAMPAIGN_ELIGIBLE_V2 pool) recomputed read-only 2026-09-14 over 96 non-terminal email-present candidates via review_campaign_eligible_v2 with system_config.mx_cache_* injected as mx_lookup (no live MX, no DB write). Only 1 lead (id 1085, org ithacainstantreplaysports.com) is CAMPAIGN_ELIGIBLE_V2. Context (do NOT conflate): V1-eligible review_campaign_eligible (no MX) = 27 leads/27 orgs; VISIBLE_FIRST_PARTY_EMAILS strict (verified+email+not-terminal) = 16. The earlier '16' was the VISIBLE-strict count, NOT true V2+MX.",
     "V1_ELIGIBLE_NO_MX": 27,
     "VISIBLE_STRICT_VERIFIED_NOT_TERMINAL": 16,
-    "READ_ONLY_SAFE_UNIQUE_ORGS": 1,
-    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "Frozen V2+MX path replicated read-only (select_candidates_for_plan_v2 -> review_campaign_eligible_v2) with injected system_config.mx_cache_* (no live MX lookup, no DB write); distinct organization_key among CAMPAIGN_ELIGIBLE_V2 = 1; unchanged from 2026-09-11",
-    "SAFE_BLOCKED_FROM_FSP": 1,
+    "READ_ONLY_SAFE_UNIQUE_ORGS": 0,
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "Frozen V2+MX path replicated live 2026-09-20 post lead-1085 send (2026-09-15); distinct organization_key among CAMPAIGN_ELIGIBLE_V2 = 0 (pool empty)",
+    "SAFE_BLOCKED_FROM_FSP": 0,
     "SAFE_BLOCKED_FROM_FSP_DETAIL": "lead id=1085 org=org:domain:ithacainstantreplaysports.com status=manual_review_needed auto_sendable=0 manual_sendable=0",
     "MATERIALIZED_FSP_PLANNED": 0,
     "MATERIALIZED_FSP_PLANNED_AUTHORITY": "final_send_plan.status='planned'",
@@ -965,8 +972,8 @@
       "WORKBUDDY_HANDOFF_PUSHED": true
     }
   },
-  "workbuddy_handoff_pushed_commit": "b79514f3c1a3d0ab988c22e9e10cf2508c0ced55",
-  "workbuddy_handoff_pushed_at": "2026-09-16T15:45:00+08:00",
+  "workbuddy_handoff_pushed_commit": "PENDING",
+  "workbuddy_handoff_pushed_at": "PENDING",
   "discovery_provider_parity_audit_20260917": {
     "audit_type": "READ_ONLY_PARITY_AUDIT",
     "phase": "PHASE 4A.3D",
@@ -1114,5 +1121,107 @@
     },
     "GITHUB_HANDOFF_PUSHED": true,
     "workbuddy_handoff_pushed_commit": "8148a7e2683333087d7913ca601b3f5ef1a01fed"
+  },
+  "phase4a4_controlled_production_lead_factory_patch_20260920": {
+    "phase": "PHASE 4A.4",
+    "type": "CONTROLLED PRODUCTION LEAD-FACTORY PATCH",
+    "generated_at": "2026-09-20T16:21:00+08:00",
+    "user_authorization": "explicit: deploy approved Lead-Factory patch set from Codex 05c0a41919167f0beed531ed7e6b1d40d89a36f1 (Phase 4A.3T acceptance report 2c1b69c... => LEAD_FACTORY_THROUGHPUT_PROVEN=true)",
+    "codex_source_commit": "05c0a41919167f0beed531ed7e6b1d40d89a36f1",
+    "codex_diff_range": "d96b004997aa9903459c6afa424f8c265c1750b8 -> 05c0a41919167f0beed531ed7e6b1d40d89a36f1",
+    "accepted_hunk_commits": [
+      "54a7fb65",
+      "040408c64",
+      "adfe8a93",
+      "c0061917",
+      "05c0a4191"
+    ],
+    "production_files_changed": 4,
+    "changed_files": [
+      "discovery/discovery_service.py",
+      "outreach_control.py",
+      "discovery/website_resolver.py",
+      "discovery/providers/browser_maps_scraper.py"
+    ],
+    "auth_identical_to_dev": true,
+    "baseline_drift_detected": false,
+    "prepatch_sha256": {
+      "discovery/discovery_service.py": "45db60d94017c3cc7b68ffdaa6044bf6af5392f790568b8766fc4236bad0c356",
+      "outreach_control.py": "c9b06668a33e002473b215442b5fed7446ec927be3dca35e6f8d7203e7762293",
+      "discovery/website_resolver.py": "ffbcacdf68992217b6680b19e69713ced045684d2a48f7375db1e092f667b33f",
+      "discovery/providers/browser_maps_scraper.py": "b4408fbbed69ab645dd178a74268e3f10eb6fa75e7065c2106be3040a13c9c2d"
+    },
+    "postpatch_sha256": {
+      "discovery/discovery_service.py": "ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d",
+      "outreach_control.py": "b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce",
+      "discovery/website_resolver.py": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
+      "discovery/providers/browser_maps_scraper.py": "18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49"
+    },
+    "forbidden_files_unchanged": true,
+    "forbidden_sha256": {
+      "preflight_gate.py": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+      "campaign_eligible_v2.py": "1143bedf563c0f76b883359362ffb2c2ea11c375fd923dc59768c5529cf3ad34",
+      "bd_sender.py": "002d68a1e76d5f96af6fdbabdce54da0af3a93077d8a504ddd106a41fd018280",
+      "daily_session.py": "f4559a34e87c9fcab0c83fa92b6e4fba4c0f5e284b77bb03f98ad1318c4088af",
+      "final_send_plan.py": "26de2f017390eda767beddfe8fbd6bc438b78ddb430eeebc4b96c72aa41d327f",
+      "bd_template.py": "0c900d5182b56f360dd520feaa8e8b0b94560bb66d292addd918a21be2586fc7bf"
+    },
+    "rollback_ready": true,
+    "rollback_bundle": "C:/Users/15690/AppData/Local/Temp/rollback_4a4_20260920_153457/",
+    "targeted_tests": {
+      "pass": 22,
+      "fail": 0
+    },
+    "full_suite": {
+      "total": 32,
+      "failures": 4,
+      "all_pre_existing": true,
+      "new_failures_introduced": []
+    },
+    "v2_policy_changed": false,
+    "mx_policy_changed": false,
+    "template_changed": false,
+    "db_schema_changed": false,
+    "inventory_completed": true,
+    "inventory_run_id": "inventory:2026-09-20:c2b1abfe",
+    "inventory_exit": 0,
+    "inventory_duration_seconds": 206,
+    "inventory_metrics": {
+      "target": 60,
+      "discovery_results_seen": 8,
+      "new_unique_places": 0,
+      "website_resolution_processed": 0,
+      "normal_staging_postprocess_processed": 0,
+      "linked_backlog_eligible": 18,
+      "linked_backlog_processed": 18,
+      "linked_backlog_website_processed": 11,
+      "linked_backlog_postprocess_processed": 7,
+      "linked_backlog_existing_leads_linked": 0,
+      "linked_backlog_terminalized": 14,
+      "broad_ready": 33,
+      "read_only_v2_safe_unique_orgs": "0/60",
+      "materialized_fsp_planned": 0
+    },
+    "safe_before": 0,
+    "safe_after": 0,
+    "websites_resolved": 0,
+    "network_retry": 0,
+    "official_emails_found": 0,
+    "full_evidence_created": 0,
+    "existing_leads_linked": 0,
+    "wrong_domain_regression": false,
+    "orphan_browser_processes": false,
+    "smtp_connections": 0,
+    "imap_connections": 0,
+    "outreach_send_count": 0,
+    "presend_fsp_created": 0,
+    "authorization_created": 0,
+    "inventory_automation_restored": true,
+    "recovery_automation_restored": true,
+    "send_automation_held": true,
+    "ready_to_build_safe_pool": false,
+    "ready_for_40_recipient_acceptance": false,
+    "production_code_persistence_note": "Live code deployed in master workspace checkout (SHA256 above; source-of-truth = Codex 05c0a419). main branch roktandrazo-outreach/ is a stale snapshot (different SHAs, missing website_resolver.py) -> patched files NOT committed to main to avoid corrupting canonical source. Handoff docs only (matches all prior 4A.x).",
+    "github_handoff_pushed": "PENDING (commit+push pending)"
   }
 }
