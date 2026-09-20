@@ -1209,3 +1209,108 @@ READ_ONLY_V2_SAFE_UNIQUE_ORGS = 6, AUTHORITY = 4A.4A/4A.4B frozen + live recompu
 
 Reconcile to ONE operator (stop/acknowledge the second loop, currently PID 50320 → 21004), then re-run the
 single canonical Inventory. Two operators cannot both hold canonical authority over one SQLite production DB.
+
+
+---
+
+## Y. PHASE 4A.4C — RETRY AFTER THE SECOND OPERATOR STOPPED (2026-09-21 01:30 +08) — FINAL
+
+**Trigger:** user confirmed the concurrent session/task was stopped. This section supersedes the blocked
+attempt documented in section X (2026-09-21 01:05 +08).
+
+### Y.1 Pre-restart gate — all green, no cleanup needed
+
+```
+LIVE_INVENTORY_PROCESSES            = 0     (Win32_Process check; driver file present on disk but NOT running)
+SECOND_OPERATOR_ACTIVE              = NO    (0 new job_runs rows over 70s: 7110 -> 7110)
+STALE_RUNNING_INVENTORY_JOBS        = 0
+HELD_INVENTORY_LOCKS                = 0     (both :2026-09-20 and :2026-09-21 already released)
+lock_conflict rows (2026-09-21)     = 0
+DUPLICATE_ACTIVE_INVENTORY_TRIGGERS = 0     (unchanged from section X)
+CLEANUP_REQUIRED                    = NONE  — no stale-cleanup semantics had to be re-applied;
+                                             pathological state did not recur once the rogue driver stopped
+```
+
+### Y.2 The single canonical Inventory run — COMPLETED CLEANLY
+
+```
+run_id                = inventory:2026-09-21:8887953f
+business_date         = 2026-09-21
+PID                   = 55600
+started / finished    = 2026-09-21 01:16:49 +08 / 01:28:03 +08  (11m14s)
+process exit code     = 0        (clean self-termination — NOT externally killed this time)
+job_runs.status       = partial
+target / actual / gap = 50 / 10 / 40
+stop_reason           = safe_inventory_gap     (healthy terminal reason — NOT lock_conflict, NOT an error)
+lock acquired         = TRUE     (acquired -> executed -> released cleanly @ 17:28:04 UTC)
+env                   = DISCOVERY_PROVIDER=browser_maps, BROWSER_MAPS_MODE=direct, SAFE_INVENTORY_TARGET=50,
+                        SCRAPER_PROXY / HTTP_PROXY / HTTPS_PROXY = http://127.0.0.1:3213, NO_PROXY empty
+discovery evidence    = NEW_DISCOVERY_PATH_EXECUTED=true; DISCOVERY_RESULTS_SEEN=20; NEW_UNIQUE_PLACES=5
+                        (active city still Ithaca, NY)
+indicators            = READ_ONLY_V2_SAFE_UNIQUE_ORGS 8 -> 10; BROAD_READY 41 -> 43;
+                        MATERIALIZED_FSP_PLANNED = 0 throughout
+deltas                = LEADS 1092 -> 1096; EVIDENCE_URL_NONEMPTY 867 -> 871; DISCOVERY_RESULTS 380 -> 385
+```
+
+`partial` here means **target not yet reached**, not failure — the run finished its discovery iteration,
+re-measured the SAFE pool (10 < 50) and stopped on schedule with the normal `safe_inventory_gap` reason.
+
+### Y.3 Post-run verification
+
+```
+LIVE_INVENTORY_PROCESSES        = 0
+STALE_RUNNING_INVENTORY_JOBS    = 0
+HELD_INVENTORY_LOCKS            = 0   (run_lock:daily_outreach:inventory:2026-09-21 = released)
+NEW job_runs rows after run     = 0 over 60s  =>  no respawn, no concurrent driver returned
+SEND_LOG rows last 24h          = 0   (last row still 2026-09-16T01:09:52+08)
+MATERIALIZED_FSP_PLANNED        = 0   (unchanged before/after)
+```
+
+### Y.4 ACCEPTANCE — FINAL (all 8 PASS)
+
+```
+DUPLICATE_ACTIVE_INVENTORY_TRIGGERS        = 0      PASS
+STALE_RUNNING_INVENTORY_JOBS               = 0      PASS
+LIVE_INVENTORY_PROCESSES (before restart)  = 0      PASS
+LOCK_CONFLICT_STORM_RESOLVED               = TRUE   PASS  (0 new lock_conflict rows for the entire retry window;
+                                                           was ~1 launch/second before)
+INVENTORY_COMPLETED                        = TRUE   PASS  (exit 0; 11m14s; finished_at set; lock released.
+                                                           status=partial only because SAFE=10 < target=50)
+STOP_REASON != lock_conflict               = TRUE   PASS  (safe_inventory_gap)
+SMTP_CONNECTIONS                           = 0      PASS
+OUTREACH_SEND_COUNT                        = 0      PASS
+```
+
+### Y.5 Current metric snapshot (live database, read-only)
+
+```
+READ_ONLY_V2_SAFE_UNIQUE_ORGS   = 10    AUTHORITY = LIVE; printed by the canonical inventory run
+                                         inventory:2026-09-21:8887953f at 01:28:03 +08
+                                         (READ_ONLY_V2_SAFE_UNIQUE_ORGS=10/50 in the stage log).
+                                         Supersedes the 4A.4A/4A.4B frozen value of 6. Note this is the
+                                         READ-ONLY V2+MX pool count, NOT materialized FSP.
+MATERIALIZED_FSP_PLANNED        = 0     AUTHORITY = final_send_plan.status='planned' (live)
+BROAD_READY                     = 43    AUTHORITY = LIVE, same inventory log line
+LEADS                           = 1096  AUTHORITY = live count
+EVIDENCE_URL_NONEMPTY           = 871   AUTHORITY = live count
+DISCOVERY_RESULTS               = 385   AUTHORITY = live count
+PRODUCTION_CODE_SHA             = UNCHANGED in 4A.4C (bd_orchestrator 252ed604; discovery_service ec0c1d0e —
+                                  i.e. 4A.5 + 4A.6 still the deployed code; 4A.7 74f50852 NOT deployed)
+```
+
+### Y.6 Residual hygiene items — identified, NOT performed (out of scope; awaiting authorization)
+
+1. `bd_orchestrator.py:413` still **exits silently** — it should print a machine-readable marker such as
+   `[LOCK_CONFLICT]` so any future driver can back off. This single missing line is what made 6,851 rows possible.
+2. `job_runs` still holds **6,851 historical `lock_conflict` rows** for `business_date=2026-09-20`.
+3. The manual driver file remains on disk (19,818 bytes, **not running**). Deleting it would be a destructive
+   action on a file created by another session — deliberately left in place.
+
+### Y.7 Next action (NOT started — awaiting authorization)
+
+```
+NEXT_ACTION = (1) Start the accumulation loop toward SAFE >= 40-50  — NOT STARTED, awaiting authorization
+              (2) Optional hygiene Y.6 items (requires authorization)
+              (3) Deploy Codex 4A.7 (74f50852) fail-closed city-queue advancement — still NOT deployed
+              Unchanged hold: PreSend / Preflight / Outreach PAUSED; SMTP = 0; no sends since 2026-09-16
+```

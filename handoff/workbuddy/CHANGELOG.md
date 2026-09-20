@@ -1,3 +1,43 @@
+## 2026-09-21 01:30 +08 — PHASE 4A.4C RETRY: CANONICAL INVENTORY COMPLETED, ALL 8 ACCEPTANCE CRITERIA PASS
+
+The concurrent second operator reported in the previous 4A.4C entry was **stopped by the user**, and the single
+canonical Inventory was re-run.
+
+- **Pre-restart gate verified green (no cleanup needed):** `LIVE_INVENTORY_PROCESSES=0` (the manual driver file is
+  still on disk but NOT running); second-operator activity **NO** — 0 new `job_runs` rows over a 70s window
+  (7110 -> 7110); `STALE_RUNNING_INVENTORY_JOBS=0`; `HELD_INVENTORY_LOCKS=0` (both `run_lock:daily_outreach:inventory:2026-09-20`
+  and `:2026-09-21` already `released`); `lock_conflict` rows for 2026-09-21 = 0; `DUPLICATE_ACTIVE_INVENTORY_TRIGGERS=0`
+  unchanged. Because the pathological state did not recur, **none of the stale-cleanup semantics had to be re-applied**.
+- **The one canonical Inventory run — `inventory:2026-09-21:8887953f`, PID 55600:** 01:16:49 -> 01:28:03 +08
+  (11m14s), **process exit code 0** (clean self-termination, not externally killed this time). Same required env:
+  `DISCOVERY_PROVIDER=browser_maps`, `BROWSER_MAPS_MODE=direct`, `SAFE_INVENTORY_TARGET=50`, proxy `127.0.0.1:3213`.
+  It acquired the inventory lock normally, executed `NEW_DISCOVERY_PATH_EXECUTED=true; DISCOVERY_RESULTS_SEEN=20;
+  NEW_UNIQUE_PLACES=5` (active city Ithaca, NY), and released the lock cleanly at 17:28:04 UTC.
+- **Result:** `status=partial`, `target/actual/gap = 50/10/40`, `stop_reason=safe_inventory_gap` — **the healthy
+  terminal reason, not `lock_conflict` and not an error**. `partial` means the SAFE target was not yet reached.
+- **Yield of this run:** `LEADS 1092 -> 1096`, `EVIDENCE_URL_NONEMPTY 867 -> 871`, `DISCOVERY_RESULTS 380 -> 385`,
+  `READ_ONLY_V2_SAFE_UNIQUE_ORGS 8 -> 10`, `BROAD_READY 41 -> 43`, `MATERIALIZED_FSP_PLANNED = 0` throughout.
+  SAFE **10 (live)** supersedes the 4A.4A/4A.4B frozen value of 6.
+- **Post-run verification:** `LIVE_INVENTORY_PROCESSES=0`, `STALE_RUNNING_INVENTORY_JOBS=0`, `HELD_INVENTORY_LOCKS=0`,
+  **0 new rows over 60s** — no respawn, the second operator did not return (job_runs grew by exactly 1 row: this run).
+- **Acceptance — FINAL, all 8 PASS:** DUPLICATE_ACTIVE_INVENTORY_TRIGGERS=0; STALE_RUNNING_INVENTORY_JOBS=0;
+  LIVE_INVENTORY_PROCESSES=0; LOCK_CONFLICT_STORM_RESOLVED=TRUE (0 new lock_conflict rows for the whole retry window,
+  vs ~1 launch/second before); INVENTORY_COMPLETED=TRUE (exit 0, finished_at set, lock released);
+  STOP_REASON!=lock_conflict (`safe_inventory_gap`); SMTP_CONNECTIONS=0; OUTREACH_SEND_COUNT=0.
+- **Safety unchanged:** last `send_log` row still 2026-09-16T01:09:52+08, 0 sends in 24h, `final_send_plan` planned = 0.
+  **No production code changed in 4A.4C** — Lead Factory, V2, MX, templates, sender and city policy untouched.
+- **Residual hygiene items identified, NOT performed (awaiting authorization):** (1) `bd_orchestrator.py:413` still
+  exits silently and should emit a `[LOCK_CONFLICT]` marker — the missing line that made 6,851 rows possible;
+  (2) 6,851 historical `lock_conflict` rows still pollute `job_runs` for business_date 2026-09-20; (3) the manual
+  driver file remains on disk (19,818 bytes, not running) — deleting it is a destructive action on another
+  session's file, deliberately left in place.
+- **Next step NOT started** per freeze rules: accumulation loop toward SAFE >= 40-50; Codex 4A.7 (`74f50852`) is
+  still not deployed.
+- Docs: `phases/PHASE4A4C_INVENTORY_LOCK_STABILIZATION.md` sections I-K + CURRENT_STATUS.md section Y +
+  LATEST_RESULT.json `retry_final_20260921_0130`.
+
+---
+
 
 
 ## 2026-09-21 01:05 +08 — PHASE 4A.4C INVENTORY LOCK-CONFLICT STABILIZATION
