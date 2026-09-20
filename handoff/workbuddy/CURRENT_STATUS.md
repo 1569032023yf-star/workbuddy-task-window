@@ -1122,3 +1122,90 @@ PreSend 1785804406748 / Preflight 1785804413719 / Outreach 1785804421539 PAUSED 
 ### W-H Handoff
 PHASE4A4B_DEPLOY_VALIDATION_AND_LOOP_STATE.md (this phase)
 CURRENT_STATUS.md / LATEST_RESULT.json / CHANGELOG.md (updated)
+
+
+---
+
+## PHASE 4A.4C — INVENTORY LOCK-CONFLICT STABILIZATION (2026-09-21 01:05 +08)
+
+**Type:** read-only audit + existing-semantics cleanup + ONE canonical Inventory attempt.
+**Scope honored:** no change to Lead Factory, V2 eligibility, MX gating, templates, sender, or city policy.
+**Prior production commit:** `823d31a`. **Codex HEAD (unchanged):** `74f50852` (4A.7, NOT deployed).
+
+### Trigger audit — every launcher capable of starting Inventory
+
+| # | Launcher | State | Launches Inventory? |
+|---|---|---|---|
+| 1 | WorkBuddy automation `automation-1784775229336` "RoktRazo BD Inventory — 15:00 +08" | ACTIVE daily | **YES — CANONICAL (unique)** |
+| 2 | Task `RoktRazo-BD-Outreach` | Ready, daily 23:00 | No — `--stage outreach` |
+| 3 | Task `RoktRazo-BD-PostSend` | Ready, daily 00:10 | No — `--stage post-send` |
+| 4 | Task `RoktRazo-BD-PreSend` | **Disabled** | No — `--stage pre-send` |
+| 5 | Service `BDExecutionHost` | Stopped / Manual | No |
+| 6 | Automation `automation-1786002601925` recovery sync 08:45 | ACTIVE | No — `result_recovery_sync.py` |
+| 7 | Manual driver `%TEMP%\run_4a4b_accumulate.py` | ad-hoc loop | **YES — the reentrant loop (root cause)** |
+
+`DUPLICATE_ACTIVE_INVENTORY_TRIGGERS = 0` — there is exactly one canonical Inventory scheduler.
+**No duplicate scheduler exists.** The root cause is not duplicate triggering.
+
+### Storm measurement (business_date 2026-09-20)
+
+- **6,851 `lock_conflict` rows** (the earlier "30 rows in 33s" was a 30-row sample of this event).
+- Peak ~52-55/min (~1 launch/second); burst 136-140/min during 13:23-13:46 UTC ⇒ 2-3 concurrent driver instances.
+- Sustained 12:55→14:34 UTC; 22 genuinely productive `safe_inventory_gap` iterations.
+
+### Root cause (code-verified)
+
+Each invocation inserts a `job_runs` row (`bd_orchestrator.py:615`), fails the named lock
+(`bd_orchestrator.py:412`), then marks the row `stopped` / `lock_conflict` (`bd_orchestrator.py:413`)
+**without printing any marker**. The driver only backs off on the `[DUPLICATE]` text emitted by the
+other guard (`:616`), so it got **zero backoff** ⇒ ~1 subprocess launch/second. The wedge cleared only
+when `acquire_run_lock`'s **2h stale TTL** (`bd_db.py:796-828`) expired at ~14:34 UTC — exactly when real
+work resumed. ⇒ **Reentrant accumulation loop with no backoff on a silent early-exit path**, amplified by a stale run-lock.
+
+### Stabilization performed (existing semantics only)
+
+- Terminated driver PID 66044 + child; `python processes = 0`.
+- Verified **RESPAWN = NO** — 0 new `job_runs` rows over 100s, proving the driver was the sole launcher.
+- Cleared orphan `inventory:2026-09-20:e9fe55d7` using the same stale-cleanup UPDATE `start_job_run` uses
+  (`bd_db.py:982-985`); released the lock via `bd_db.release_run_lock()`; wrote an audit marker matching
+  the existing precedent key shape.
+- Result: `STALE_RUNNING_INVENTORY_JOBS` 1→0, `HELD_INVENTORY_LOCKS` 1→0, `LIVE_INVENTORY_PROCESSES = 0`.
+
+### Canonical Inventory run (executed exactly once)
+
+`DISCOVERY_PROVIDER=browser_maps`, `BROWSER_MAPS_MODE=direct`, `SAFE_INVENTORY_TARGET=50`,
+proxy `SCRAPER_PROXY`/`HTTP_PROXY`/`HTTPS_PROXY = http://127.0.0.1:3213`.
+
+- run_id `inventory:2026-09-20:caa09c3e`, PID 69236, 16:46:09→16:51:13 UTC (4m54s).
+- **Acquired the inventory lock legitimately** and performed discovery
+  (wrote `data/browser_maps_cache/hobby_store_ithaca_ny_*.json`).
+- Deltas: LEADS 1089→1092, EVIDENCE 864→867, DISCOVERY_RESULTS 374→380.
+- `stop_reason = stale_cleanup_orphan_killed` (**NOT lock_conflict**) but `status = failed` — killed externally.
+
+### BLOCKER — concurrent second operator
+
+After I stopped it, `%TEMP%\run_4a4b_accumulate.py` was rewritten (00:50:01, 00:55:06, 00:56:22) and
+**relaunched 00:56:37 as PID 50320 → inventory child PID 21004**, which now holds the inventory lock
+(`inventory:2026-09-20:15d27180`); new `lock_conflict` rows appeared 16:52:58-16:54:31 UTC. The rewritten
+driver's own docstring independently confirms the diagnosis. I did NOT launch another inventory into the
+contested lock, and did NOT kill the second operator's processes.
+
+### Acceptance
+
+| Criterion | Result | Status |
+|---|---|---|
+| `DUPLICATE_ACTIVE_INVENTORY_TRIGGERS` = 0 | 0 | **PASS** |
+| `STALE_RUNNING_INVENTORY_JOBS` = 0 | 0 | **PASS** |
+| `LIVE_INVENTORY_PROCESSES` = 0 before restart | 0 | **PASS** |
+| `LOCK_CONFLICT_STORM_RESOLVED` | fixed for my instance, resumed by second operator | **PARTIAL** |
+| `INVENTORY_COMPLETED` | run started, locked in, worked, then killed externally | **FAIL (blocked)** |
+| `STOP_REASON != lock_conflict` | `stale_cleanup_orphan_killed` | **PASS** |
+| `SMTP_CONNECTIONS` = 0 | 0 (last send 2026-09-16T01:09:52+08) | **PASS** |
+| `OUTREACH_SEND_COUNT` = 0 | 0 (FSP planned 0) | **PASS** |
+
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 6, AUTHORITY = 4A.4A/4A.4B frozen + live recompute (unchanged this phase).
+
+### Next step — requires authorization
+
+Reconcile to ONE operator (stop/acknowledge the second loop, currently PID 50320 → 21004), then re-run the
+single canonical Inventory. Two operators cannot both hold canonical authority over one SQLite production DB.

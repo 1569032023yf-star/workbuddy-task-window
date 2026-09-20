@@ -5,8 +5,8 @@
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "PHASE_4A_4B (Codex 4A.5+4A.6 deploy + validation + loop-state audit) - DEPLOYED & VALIDATED; SAFE ACCUMULATION NOT RUN (loop stopped 18:23 +08); SAFE=6 (frozen 4A.4A authority)",
-  "production_status": "PATCHED(4A.4 + 4A.5 + 4A.6 live; SHA-verified vs Codex cbb8fa3e) + 4A.4A accumulation (SAFE=6); Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED; SMTP=0; 4A.7 NOT deployed",
+  "current_phase": "PHASE_4A_4C (Inventory lock-conflict stabilization) - root cause identified & verified; canonical run executed but externally disrupted by a CONCURRENT SECOND OPERATOR; SAFE=6; SMTP=0",
+  "production_status": "4A.5+4A.6 deployed & validated; single canonical Inventory scheduler confirmed; reentrant manual accumulation driver responsible for 6,851 lock_conflict rows identified and stopped by me, then RELAUNCHED by a second operator (PID 50320 -> inventory 21004); PreSend/Preflight/Outreach PAUSED; SMTP=0; 4A.7 NOT deployed",
   "production_code_drift": false,
   "current_blocker": "SAFE=6 (<40); Ithaca NY still active (51 pending families); upstream 482 manual_review_needed / no-email queue",
   "production_code_sha": {
@@ -1326,10 +1326,30 @@
       "codex_head_note": "Phase 4A.7 city queue advancement; NOT deployed"
     },
     "deployment": {
-      "bd_template.py": {"baseline": "0c900d5182b56f36", "deployed": "00ab0d45e376da05", "codex_match": "d5886206", "verdict": "4A.5_DEPLOYED"},
-      "discovery/discovery_service.py": {"baseline": "ec0c1d0e8788167a", "deployed": "09f400b6a6b165d7", "codex_match": "cbb8fa3e", "verdict": "4A.6_DEPLOYED"},
-      "bd_orchestrator.py": {"deployed": "252ed6042b04837f", "codex_match": "cbb8fa3e", "differs_from_4a7": true, "verdict": "4A.7_NOT_DEPLOYED"},
-      "retail_city_queue.py": {"deployed": "95fa135feac19e39", "codex_match": "cbb8fa3e", "differs_from_4a7": true, "verdict": "4A.7_NOT_DEPLOYED"},
+      "bd_template.py": {
+        "baseline": "0c900d5182b56f36",
+        "deployed": "00ab0d45e376da05",
+        "codex_match": "d5886206",
+        "verdict": "4A.5_DEPLOYED"
+      },
+      "discovery/discovery_service.py": {
+        "baseline": "ec0c1d0e8788167a",
+        "deployed": "09f400b6a6b165d7",
+        "codex_match": "cbb8fa3e",
+        "verdict": "4A.6_DEPLOYED"
+      },
+      "bd_orchestrator.py": {
+        "deployed": "252ed6042b04837f",
+        "codex_match": "cbb8fa3e",
+        "differs_from_4a7": true,
+        "verdict": "4A.7_NOT_DEPLOYED"
+      },
+      "retail_city_queue.py": {
+        "deployed": "95fa135feac19e39",
+        "codex_match": "cbb8fa3e",
+        "differs_from_4a7": true,
+        "verdict": "4A.7_NOT_DEPLOYED"
+      },
       "baseline_identity_proof": "codex@d5886206 discovery/discovery_service.py hashes to ec0c1d0e8788167a == production post-4A.4 SHA -> A/B baseline is the true pre-4A.6 state"
     },
     "locked_template_integrity": {
@@ -1337,25 +1357,51 @@
       "additive_only": true,
       "new_locked_template": "general_inbox_referral_v1_locked (ACTIVE_LOCKED; public generic inboxes only)",
       "unchanged_bodies": {
-        "BODY_HTML": "6c57139889fb23d2", "BODY_TEXT": "5a350f0dc31cd017",
-        "CUSTOM_BODY_HTML": "da3a505bc0e07c9f", "CUSTOM_BODY_TEXT": "87344b84a9d7f486",
-        "FOLLOWUP_BODY_HTML": "13b72ceab80cb3e3", "FOLLOWUP_BODY_TEXT": "4d9f30f35463cea8",
-        "SIGNATURE_HTML": "a202aa7083530ccc", "SIGNATURE_TEXT": "23002b923db0e118"
+        "BODY_HTML": "6c57139889fb23d2",
+        "BODY_TEXT": "5a350f0dc31cd017",
+        "CUSTOM_BODY_HTML": "da3a505bc0e07c9f",
+        "CUSTOM_BODY_TEXT": "87344b84a9d7f486",
+        "FOLLOWUP_BODY_HTML": "13b72ceab80cb3e3",
+        "FOLLOWUP_BODY_TEXT": "4d9f30f35463cea8",
+        "SIGNATURE_HTML": "a202aa7083530ccc",
+        "SIGNATURE_TEXT": "23002b923db0e118"
       },
-      "diff_lines": {"added": 83, "removed": 4}
+      "diff_lines": {
+        "added": 83,
+        "removed": 4
+      }
     },
     "validation": {
-      "targeted_tests_from_codex": ["tests/test_general_inbox_referral_routing.py", "tests/test_first_party_email_enrichment.py"],
-      "targeted_result": {"passed": 10, "failed": 0},
+      "targeted_tests_from_codex": [
+        "tests/test_general_inbox_referral_routing.py",
+        "tests/test_first_party_email_enrichment.py"
+      ],
+      "targeted_result": {
+        "passed": 10,
+        "failed": 0
+      },
       "ab_regression": {
-        "before_pre_patch": {"failed": 36, "passed": 255, "errors": 5},
-        "after_deployed": {"failed": 36, "passed": 255, "errors": 5},
+        "before_pre_patch": {
+          "failed": 36,
+          "passed": 255,
+          "errors": 5
+        },
+        "after_deployed": {
+          "failed": 36,
+          "passed": 255,
+          "errors": 5
+        },
         "new_failures_introduced": [],
         "failure_sets_identical": true
       },
       "pre_existing_failure_breakdown": {
-        "test_recipient_scheduler.py": 12, "test_dashboard_timezone.py": 6, "test_p0_runtime_semantics.py": 5,
-        "test_discovery_service.py": 4, "test_preflight_gate.py": 4, "test_inventory_followup.py": 3, "test_timezone_unified.py": 2
+        "test_recipient_scheduler.py": 12,
+        "test_dashboard_timezone.py": 6,
+        "test_p0_runtime_semantics.py": 5,
+        "test_discovery_service.py": 4,
+        "test_preflight_gate.py": 4,
+        "test_inventory_followup.py": 3,
+        "test_timezone_unified.py": 2
       },
       "a7_negative_proof": "tests/test_phase4a7_city_queue_advancement.py import fails (cannot import name 'city_completion_checks') -> 4A.7 genuinely absent; file staged at output/staging_4a7/"
     },
@@ -1364,7 +1410,10 @@
       "last_discovery_at": "2026-09-20T10:23:06Z (18:23 +08)",
       "last_maps_cache_write": "2026-09-20 18:23 +08",
       "ithaca_last_success_at": "2026-09-20T10:28:28Z (18:28 +08)",
-      "deployment_timestamps": {"bd_template.py": "2026-09-20 20:26 +08", "discovery_service.py": "2026-09-20 20:31 +08"},
+      "deployment_timestamps": {
+        "bd_template.py": "2026-09-20 20:26 +08",
+        "discovery_service.py": "2026-09-20 20:31 +08"
+      },
       "running_processes": 0,
       "new_artifacts_last_3h": 0,
       "4a4b_documents_found": 0,
@@ -1386,14 +1435,28 @@
       "active_city": "Ithaca, NY",
       "ithaca_new_unique_places": 69,
       "ithaca_pages_processed": 41,
-      "ithaca_query_families": {"pending": 51, "completed": 6, "running": 1, "configuration_blocked": 1, "provider_not_configured": 1},
+      "ithaca_query_families": {
+        "pending": 51,
+        "completed": 6,
+        "running": 1,
+        "configuration_blocked": 1,
+        "provider_not_configured": 1
+      },
       "city_queue_advanced": false
     },
     "safety_invariants": {
-      "smtp_connections": 0, "imap_connections": 0, "outreach_send_count": 0,
-      "presend_fsp_created": 0, "authorization_created": 0,
-      "db_schema_changed": false, "v2_policy_changed": false, "mx_policy_changed": false,
-      "template_changed": false, "scheduler_changed": false, "inventory_rerun": false, "network_scrape": 0
+      "smtp_connections": 0,
+      "imap_connections": 0,
+      "outreach_send_count": 0,
+      "presend_fsp_created": 0,
+      "authorization_created": 0,
+      "db_schema_changed": false,
+      "v2_policy_changed": false,
+      "mx_policy_changed": false,
+      "template_changed": false,
+      "scheduler_changed": false,
+      "inventory_rerun": false,
+      "network_scrape": 0
     },
     "next_steps_require_authorization": [
       "deploy Codex 4A.7 (74f50852) fail-closed city queue advancement (bd_orchestrator.py + retail_city_queue.py)",
@@ -1401,5 +1464,189 @@
       "optional: fix 30x lock_conflict inventory collision storm"
     ],
     "report_path": "handoff/workbuddy/phases/PHASE4A4B_DEPLOY_VALIDATION_AND_LOOP_STATE.md"
+  },
+  "phase4a4c_inventory_lock_stabilization_20260921": {
+    "phase": "PHASE_4A_4C",
+    "title": "Inventory lock-conflict stabilization (audit + stabilization + one canonical run)",
+    "generated_at": "2026-09-21T01:05:00+08:00",
+    "type": "READ-ONLY AUDIT + EXISTING-SEMANTICS CLEANUP + ONE CANONICAL INVENTORY",
+    "scope_respected": {
+      "lead_factory_changed": false,
+      "v2_policy_changed": false,
+      "mx_policy_changed": false,
+      "template_changed": false,
+      "sender_changed": false,
+      "city_policy_changed": false,
+      "new_scheduler_created": false,
+      "business_logic_changed": false
+    },
+    "trigger_audit": {
+      "canonical_inventory_scheduler": {
+        "id": "automation-1784775229336",
+        "name": "RoktRazo BD Inventory - 15:00 Asia/Shanghai",
+        "state": "ACTIVE",
+        "launches_inventory": true
+      },
+      "non_inventory_launchers": [
+        {
+          "name": "RoktRazo-BD-Outreach",
+          "state": "Ready",
+          "action": "--stage outreach"
+        },
+        {
+          "name": "RoktRazo-BD-PostSend",
+          "state": "Ready",
+          "action": "--stage post-send"
+        },
+        {
+          "name": "RoktRazo-BD-PreSend",
+          "state": "Disabled",
+          "action": "--stage pre-send"
+        },
+        {
+          "name": "BDExecutionHost service",
+          "state": "Stopped/Manual"
+        },
+        {
+          "name": "automation-1786002601925 recovery sync",
+          "state": "ACTIVE",
+          "action": "result_recovery_sync.py"
+        }
+      ],
+      "reentrant_manual_driver": {
+        "path": "C:/Users/15690/AppData/Local/Temp/run_4a4b_accumulate.py",
+        "note": "reentrant accumulation loop; root cause of the storm"
+      },
+      "DUPLICATE_ACTIVE_INVENTORY_TRIGGERS": 0,
+      "verdict": "No duplicate scheduler. Root cause is the manual driver, not trigger duplication."
+    },
+    "storm_measurement": {
+      "business_date": "2026-09-20",
+      "total_lock_conflict_rows": 6851,
+      "note": "prior 4A.4B side-finding said 30 rows; that was a 30-row sample of a 6,851-row event",
+      "peak_rate_per_min_single_driver": "52-55 (~1 launch/second)",
+      "burst_rate_per_min": "136-140 during 13:23-13:46 UTC => 2-3 concurrent driver instances",
+      "sustained_window_utc": "12:55 -> 14:34",
+      "successful_non_conflict_iterations": 22
+    },
+    "root_cause": {
+      "classification": "reentrant accumulation loop with NO backoff on a silent early-exit path, amplified by a stale run-lock",
+      "mechanism": [
+        "bd_orchestrator.py:615 start_job_run succeeds because prior rows are terminal -> INSERT row status='running'",
+        "bd_orchestrator.py:412 acquire_run_lock(inventory:{business_date}) returns False when the named lock is held elsewhere",
+        "bd_orchestrator.py:413 finish_job_run(...,'stopped', stop_reason='lock_conflict') with NO stdout marker",
+        "driver only backs off on the '[DUPLICATE]' text emitted by the OTHER guard (bd_orchestrator.py:616), which is never printed here -> zero backoff"
+      ],
+      "self_heal": "the wedge only cleared when acquire_run_lock's 2h stale TTL (bd_db.py:796-828) expired at ~14:34 UTC, exactly when real work resumed"
+    },
+    "stabilization_actions": [
+      "Terminated reentrant driver PID 66044 and its inventory child; verified python processes = 0",
+      "Verified no respawn: 0 new job_runs rows over 100s => RESPAWN=NO (proves driver was the launcher)",
+      "Cleared orphan run inventory:2026-09-20:e9fe55d7 using the same stale-cleanup UPDATE that start_job_run itself uses (bd_db.py:982-985)",
+      "Released the named lock via existing bd_db.release_run_lock() (holder-matched)",
+      "Wrote audit marker with the existing precedent key shape audit:stale_lock_released:run_lock:daily_outreach:inventory:<date>"
+    ],
+    "acceptance": {
+      "DUPLICATE_ACTIVE_INVENTORY_TRIGGERS": {
+        "target": 0,
+        "actual": 0,
+        "status": "PASS"
+      },
+      "STALE_RUNNING_INVENTORY_JOBS": {
+        "target": 0,
+        "actual": 0,
+        "status": "PASS",
+        "note": "at stabilization checkpoint"
+      },
+      "LIVE_INVENTORY_PROCESSES_before_restart": {
+        "target": 0,
+        "actual": 0,
+        "status": "PASS"
+      },
+      "LOCK_CONFLICT_STORM_RESOLVED": {
+        "target": true,
+        "actual": "PARTIAL",
+        "status": "PARTIAL",
+        "note": "root cause fixed & verified for my instance; a second operator resumed the loop"
+      },
+      "INVENTORY_COMPLETED": {
+        "target": true,
+        "actual": false,
+        "status": "FAIL_BLOCKED",
+        "note": "run started, acquired the lock, did discovery, then was killed externally"
+      },
+      "STOP_REASON_not_lock_conflict": {
+        "target": true,
+        "actual": true,
+        "status": "PASS",
+        "note": "stop_reason=stale_cleanup_orphan_killed (external kill)"
+      },
+      "SMTP_CONNECTIONS": {
+        "target": 0,
+        "actual": 0,
+        "status": "PASS"
+      },
+      "OUTREACH_SEND_COUNT": {
+        "target": 0,
+        "actual": 0,
+        "status": "PASS"
+      }
+    },
+    "canonical_inventory_run": {
+      "run_id": "inventory:2026-09-20:caa09c3e",
+      "pid": 69236,
+      "started_at_utc": "2026-09-20 16:46:09",
+      "finished_at_utc": "2026-09-20 16:51:13",
+      "duration_seconds": 304,
+      "env": {
+        "DISCOVERY_PROVIDER": "browser_maps",
+        "BROWSER_MAPS_MODE": "direct",
+        "SAFE_INVENTORY_TARGET": "50",
+        "SCRAPER_PROXY": "http://127.0.0.1:3213",
+        "HTTP_PROXY": "http://127.0.0.1:3213",
+        "HTTPS_PROXY": "http://127.0.0.1:3213"
+      },
+      "lock_acquired": true,
+      "stop_reason": "stale_cleanup_orphan_killed",
+      "status": "failed",
+      "target": 60,
+      "actual": 0,
+      "evidence": "wrote data/browser_maps_cache/hobby_store_ithaca_ny_*.json",
+      "deltas": {
+        "LEADS": "1089 -> 1092",
+        "EVIDENCE": "864 -> 867",
+        "DISCOVERY_RESULTS": "374 -> 380"
+      }
+    },
+    "blocker_concurrent_second_operator": {
+      "detected": true,
+      "evidence": [
+        "driver file rewritten 2026-09-21 00:50:01 (13573 -> 18951 bytes) AFTER I killed its process",
+        "driver file rewritten again 00:55:06 (19410 bytes) and 00:56:22 (19818 bytes)",
+        "new lock_conflict rows 16:52:58 -> 16:54:31 UTC every ~31s",
+        "driver RELAUNCHED 2026-09-21 00:56:37 as PID 50320 -> inventory child PID 21004",
+        "run inventory:2026-09-20:15d27180 currently holds the inventory lock"
+      ],
+      "independent_confirmation": "the rewritten driver's own docstring states 'Prior version spun 6,844x on the SILENT lock_conflict early-exit (bd_orchestrator:413, no [DUPLICATE] text, no traceback)' - matches my finding",
+      "my_action": "deliberately did NOT launch another inventory into the contested lock (would itself create lock_conflict rows and deepen the overlap); did NOT kill the second operator's processes"
+    },
+    "safety_invariants": {
+      "smtp_connections": 0,
+      "outreach_send_count": 0,
+      "last_send_log_row": "2026-09-16T01:09:52.031266+08:00",
+      "send_log_rows_last_24h": 0,
+      "materialized_fsp_planned": 0,
+      "v2_policy_changed": false,
+      "mx_policy_changed": false,
+      "template_changed": false,
+      "db_schema_changed": false,
+      "business_logic_changed": false
+    },
+    "next_steps_require_authorization": [
+      "Reconcile to ONE operator: stop/acknowledge the second loop (Temp/run_4a4b_accumulate.py, PID 50320 -> 21004)",
+      "Re-run the single canonical Inventory with the same env; expected to complete cleanly now the root cause is known",
+      "Optional hygiene: emit a machine-readable marker at bd_orchestrator.py:413; purge the 6,851 historical lock_conflict rows from job_runs"
+    ],
+    "report_path": "handoff/workbuddy/phases/PHASE4A4C_INVENTORY_LOCK_STABILIZATION.md"
   }
 }
