@@ -1030,3 +1030,94 @@ CODE_CHANGED=false
 SCHEDULER_CHANGED=false
 COMMIT_SHA=9270f264e66154a19d81235b578bdd30535380f0
 PUSH_SUCCESS=true (e4099be..9270f26 -> origin/main; 2026-09-20T20:01:22+08:00)
+
+
+---
+
+## W. PHASE 4A.4B — CODEX 4A.5 + 4A.6 DEPLOYMENT, VALIDATION & LOOP-STATE AUDIT (2026-09-20 21:50 +08)
+
+REFRESH TYPE: **deployment verification + controlled A/B regression + READ-ONLY loop-state audit**.
+No Inventory run, no discovery/scrape, no scheduler change, no SMTP/IMAP, no FSP, no Authorization, no send.
+
+### W-A Repo state (queried live via GitHub API)
+```
+PRODUCTION_HEAD            = e61cbfbeafc2f3696f79bf74a2a4503e97798b72   (PHASE 4A.4A marker)
+                             -> 4A.4B NOT PUSHED at audit time
+CODEX_HEAD                 = 74f50852328f9d0e51dff2f0ea9a28e6d647ee9e   (Phase 4A.7; NOT deployed)
+LOCAL_CLONE_SYNC           = true (HEAD=e61cbfb, 0 behind origin/main)
+```
+
+### W-B Deployment (SHA256-verified against Codex)
+```
+bd_template.py                  0c900d51 -> 00ab0d45  == codex d5886206   4A.5 DEPLOYED
+discovery/discovery_service.py  ec0c1d0e -> 09f400b6  == codex cbb8fa3e   4A.6 DEPLOYED
+bd_orchestrator.py              252ed604             == codex cbb8fa3e   4A.7 NOT DEPLOYED
+retail_city_queue.py            95fa135f             == codex cbb8fa3e   4A.7 NOT DEPLOYED
+LOCKED_TEMPLATE_REGRESSION     = false (4A.5 additive: +general_inbox_referral_v1_locked;
+                                 all 8 pre-existing locked bodies byte-identical; diff +83/-4)
+```
+
+### W-C Validation
+```
+TARGETED_TESTS (from Codex)    = 10 passed / 0 failed
+AB_REGRESSION_BEFORE           = 36 failed / 255 passed / 5 errors   (pre-4A.5/4A.6 baseline restored)
+AB_REGRESSION_AFTER            = 36 failed / 255 passed / 5 errors   (deployed, excl. 10 new tests)
+NEW_FAILURES_INTRODUCED        = 0        FAILURE_SETS_IDENTICAL = true
+PRE_EXISTING_FAILURES          = recipient_scheduler 12, dashboard_timezone 6, p0_runtime_semantics 5,
+                                 discovery_service 4, preflight_gate 4 (live MX), inventory_followup 3,
+                                 timezone_unified 2  (clock/tz/env dependent, not code defects)
+A7_NEGATIVE_PROOF              = test_phase4a7_city_queue_advancement.py import error -> 4A.7 absent
+```
+
+### W-D LOOP STATE (KEY FINDING)
+```
+ACCUMULATION_LOOP_RUNNING      = false
+LAST_DISCOVERY_ROW             = 2026-09-20T10:23:06Z (18:23 +08)
+LAST_MAPS_CACHE_WRITE          = 2026-09-20 18:23 +08
+ITHACA_LAST_SUCCESS_AT         = 2026-09-20T10:28:28Z (18:28 +08)
+DEPLOY_TIMESTAMPS              = bd_template.py 20:26 +08 ; discovery_service.py 20:31 +08
+RUNNING_PROCESSES              = 0      NEW_ARTIFACTS_LAST_3H = 0      4A4B_DOCS_FOUND = 0
+CONCLUSION                     = 4A.4B deployed 4A.5+4A.6 then ended BEFORE any accumulation
+                                 iteration and BEFORE writing/pushing a report; today's only
+                                 discovery activity (18:00-18:23) belongs to the frozen 4A.4A run
+SIDE_FINDING                   = job_runs 2026-09-20 13:16:35->13:17:08: 30 inventory runs,
+                                 ALL stop_reason=lock_conflict (33s collision storm, none completed)
+```
+
+### W-E Live metrics (read-only DB)
+```
+LEADS_TOTAL                    = 1087
+EVIDENCE_URL_NON_EMPTY         = 862        (= 4A.4A evidence_after; no new evidence since freeze)
+DISCOVERY_RESULTS_TOTAL        = 369  (Ithaca 69)
+MATERIALIZED_FSP_PLANNED       = 0
+SEND_LOG_TODAY                 = 0   (last send 2026-09-16T01:09:52+08)
+SUPPRESSION_LIST               = 63
+BROAD_READY                    = 33  (4A.4 run authority)
+READ_ONLY_V2_SAFE_UNIQUE_ORGS  = 6   AUTHORITY = FROZEN (4A.4A 2026-09-20 20:00 +08);
+                                      live full-MX recompute exceeded time budget
+VISIBLE_FIRST_PARTY_EMAILS     = leads.email_source_type: official_page_visible 321,
+                                 official_mailto 8, manual_verified 2, website_extracted 1
+ACTIVE_CITY                    = Ithaca, NY (new_unique_places=69, pages_processed=41)
+ITHACA_QUERY_FAMILIES          = pending 51 / completed 6 / running 1 / configuration_blocked 1 /
+                                 provider_not_configured 1
+CITY_QUEUE_ADVANCED            = false (Saratoga Springs NOT activated)
+```
+
+### W-F Safety invariants
+```
+SMTP_CONNECTIONS=0  IMAP_CONNECTIONS=0  OUTREACH_SEND_COUNT=0  PRESEND_FSP_CREATED=0
+AUTHORIZATION_CREATED=0  DB_SCHEMA_CHANGED=false  V2_POLICY_CHANGED=false  MX_POLICY_CHANGED=false
+TEMPLATE_CHANGED=false  SCHEDULER_CHANGED=false  INVENTORY_RERUN=false  NETWORK_SCRAPE=0
+Inventory 1784775229336 ACTIVE ; Recovery 1786002601925 ACTIVE
+PreSend 1785804406748 / Preflight 1785804413719 / Outreach 1785804421539 PAUSED (held, SAFE<40)
+```
+
+### W-G Next steps (REQUIRE user authorization — NOT executed)
+1. Deploy Codex 4A.7 (`74f50852`) fail-closed city-queue advancement (`bd_orchestrator.py` + `retail_city_queue.py`).
+   Rationale: Ithaca still 51 pending families, CITY_QUEUE_ADVANCED=false.
+2. Restart SAFE accumulation loop with 4A.5+4A.6(+4A.7) live, target SAFE >= 40.
+3. Optional hygiene: fix the 30x `lock_conflict` inventory collision storm.
+
+### W-H Handoff
+PHASE4A4B_DEPLOY_VALIDATION_AND_LOOP_STATE.md (this phase)
+CURRENT_STATUS.md / LATEST_RESULT.json / CHANGELOG.md (updated)

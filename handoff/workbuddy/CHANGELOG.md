@@ -1,3 +1,18 @@
+## 2026-09-20 21:50 +08 — PHASE 4A.4B CODEX 4A.5 + 4A.6 DEPLOYMENT, VALIDATION & LOOP-STATE AUDIT
+
+- Repo state queried live (GitHub API, not memory): PRODUCTION HEAD = `e61cbfbe` (4A.4A marker) → **4A.4B NOT pushed**; CODEX HEAD = `74f50852` (Phase 4A.7, not deployed).
+- Deployment SHA-verified: `bd_template.py` `0c900d51`→`00ab0d45` == Codex `d5886206` (**4A.5 DEPLOYED**); `discovery/discovery_service.py` `ec0c1d0e`→`09f400b6` == Codex `cbb8fa3e` (**4A.6 DEPLOYED**). `bd_orchestrator.py` `252ed604` and `retail_city_queue.py` `95fa135f` == Codex `cbb8fa3e`, != `74f50852` → **4A.7 NOT deployed**.
+- Locked-template integrity: 4A.5 is additive only — new locked template `general_inbox_referral_v1_locked`; all 8 pre-existing locked bodies byte-identical (`BODY_HTML` `6c571398`, `BODY_TEXT` `5a350f0d`, `CUSTOM_*`, `FOLLOWUP_*`, `SIGNATURE_*`). diff +83/−4. TEMPLATE_REGRESSION=false.
+- Validation: Codex targeted tests `test_general_inbox_referral_routing.py` + `test_first_party_email_enrichment.py` copied to production `tests/` → **10 passed / 0 failed**. Controlled A/B (baseline restored then restored back, hashes re-verified): BEFORE 36 failed/255 passed/5 errors vs AFTER 36 failed/255 passed/5 errors → **NEW_FAILURES_INTRODUCED=0**, failure sets IDENTICAL. The 36 are clock/tz/env-dependent (recipient_scheduler 12, dashboard_timezone 6, p0_runtime_semantics 5, discovery_service 4, preflight_gate 4 live-MX, inventory_followup 3, timezone_unified 2).
+- **KEY FINDING — accumulation loop is STOPPED**: last discovery row `2026-09-20T10:23:06Z` (18:23 +08), last Maps cache write 18:23, Ithaca `last_success_at` 18:28 — all BEFORE the 20:26/20:31 deployment. No python/playwright process, no new artifacts, no 4A.4B doc anywhere. → 4A.4B deployed 4A.5+4A.6 but **never ran an accumulation iteration** and ended before writing/pushing a report.
+- Side finding (hygiene, unrelated to 4A.5/4A.6): `job_runs` 2026-09-20 13:16:35→13:17:08 = **30 inventory runs all `stop_reason=lock_conflict`** (33s collision storm, none completed). Not fixed (read-only audit).
+- Live metrics (read-only DB): LEADS_TOTAL=1087, EVIDENCE_URL_NON_EMPTY=862, DISCOVERY_RESULTS=369 (Ithaca 69), FSP_PLANNED=0, SEND_LOG_TODAY=0 (last send 2026-09-16T01:09:52+08), SUPPRESSION=63. Ithaca active, new_unique_places=69, pages_processed=41, query families pending 51/completed 6/running 1; CITY_QUEUE_ADVANCED=false. SAFE=6 (4A.4A frozen authority; live full-MX recompute exceeded time budget — use mx-cache-only next time).
+- Safety invariants: SMTP=0, IMAP=0, OUTREACH_SEND_COUNT=0, FSP=0, AUTHORIZATION=0, DB_SCHEMA_CHANGED=false, V2/MX policy unchanged, SCHEDULER_CHANGED=false. Inventory `1784775229336` + Recovery `1786002601925` ACTIVE; PreSend/Preflight/Outreach PAUSED.
+- NEXT (requires authorization, NOT executed): (1) deploy Codex 4A.7 fail-closed city-queue advancement; (2) restart SAFE accumulation loop targeting SAFE≥40; (3) optional fix for the 30× lock_conflict storm.
+- Docs: `phases/PHASE4A4B_DEPLOY_VALIDATION_AND_LOOP_STATE.md` + CURRENT_STATUS.md / LATEST_RESULT.json / CHANGELOG.md.
+
+---
+
 ## 2026-09-20 16:33 +08 — PHASE 4A.4 CONTROLLED PRODUCTION LEAD-FACTORY PATCH (DEPLOYED + VALIDATED)
 
 - Deployed the approved Lead-Factory patch set from Codex `05c0a41919167f0beed531ed7e6b1d40d89a36f1` (Phase 4A.3T acceptance `2c1b69c…` => LEAD_FACTORY_THROUGHPUT_PROVEN=true) into 4 production files: `discovery/discovery_service.py`, `outreach_control.py`, `discovery/website_resolver.py`, `discovery/providers/browser_maps_scraper.py`. PRODUCTION_FILES_CHANGED=4.

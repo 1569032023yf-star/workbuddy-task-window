@@ -5,8 +5,8 @@
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "PHASE_4A_4A (New-City SAFE Accumulation) - COMPLETED (frozen); SAFE=6",
-  "production_status": "PATCHED(4A.4 files live) + 4A.4A accumulation run (SAFE=6); Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED",
+  "current_phase": "PHASE_4A_4B (Codex 4A.5+4A.6 deploy + validation + loop-state audit) - DEPLOYED & VALIDATED; SAFE ACCUMULATION NOT RUN (loop stopped 18:23 +08); SAFE=6 (frozen 4A.4A authority)",
+  "production_status": "PATCHED(4A.4 + 4A.5 + 4A.6 live; SHA-verified vs Codex cbb8fa3e) + 4A.4A accumulation (SAFE=6); Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED; SMTP=0; 4A.7 NOT deployed",
   "production_code_drift": false,
   "current_blocker": "SAFE=6 (<40); Ithaca NY still active (51 pending families); upstream 482 manual_review_needed / no-email queue",
   "production_code_sha": {
@@ -1313,5 +1313,93 @@
     "github_handoff_pushed_commit": "9270f264e66154a19d81235b578bdd30535380f0",
     "github_handoff_pushed_at": "2026-09-20T20:01:22+08:00",
     "github_handoff_pushed_ref": "e4099be..9270f26 -> origin/main"
+  },
+  "phase4a4b_deploy_validation_and_loop_state_20260920": {
+    "phase": "PHASE_4A_4B",
+    "title": "Codex 4A.5 + 4A.6 controlled production deployment, validation and loop-state audit",
+    "generated_at": "2026-09-20T21:50:00+08:00",
+    "type": "DEPLOYMENT VERIFICATION + REGRESSION A/B + READ-ONLY LOOP-STATE AUDIT",
+    "repo_state_live": {
+      "production_head": "e61cbfbeafc2f3696f79bf74a2a4503e97798b72",
+      "production_head_note": "PHASE 4A.4A marker -> 4A.4B NOT PUSHED at audit time",
+      "codex_head": "74f50852328f9d0e51dff2f0ea9a28e6d647ee9e",
+      "codex_head_note": "Phase 4A.7 city queue advancement; NOT deployed"
+    },
+    "deployment": {
+      "bd_template.py": {"baseline": "0c900d5182b56f36", "deployed": "00ab0d45e376da05", "codex_match": "d5886206", "verdict": "4A.5_DEPLOYED"},
+      "discovery/discovery_service.py": {"baseline": "ec0c1d0e8788167a", "deployed": "09f400b6a6b165d7", "codex_match": "cbb8fa3e", "verdict": "4A.6_DEPLOYED"},
+      "bd_orchestrator.py": {"deployed": "252ed6042b04837f", "codex_match": "cbb8fa3e", "differs_from_4a7": true, "verdict": "4A.7_NOT_DEPLOYED"},
+      "retail_city_queue.py": {"deployed": "95fa135feac19e39", "codex_match": "cbb8fa3e", "differs_from_4a7": true, "verdict": "4A.7_NOT_DEPLOYED"},
+      "baseline_identity_proof": "codex@d5886206 discovery/discovery_service.py hashes to ec0c1d0e8788167a == production post-4A.4 SHA -> A/B baseline is the true pre-4A.6 state"
+    },
+    "locked_template_integrity": {
+      "template_regression": false,
+      "additive_only": true,
+      "new_locked_template": "general_inbox_referral_v1_locked (ACTIVE_LOCKED; public generic inboxes only)",
+      "unchanged_bodies": {
+        "BODY_HTML": "6c57139889fb23d2", "BODY_TEXT": "5a350f0dc31cd017",
+        "CUSTOM_BODY_HTML": "da3a505bc0e07c9f", "CUSTOM_BODY_TEXT": "87344b84a9d7f486",
+        "FOLLOWUP_BODY_HTML": "13b72ceab80cb3e3", "FOLLOWUP_BODY_TEXT": "4d9f30f35463cea8",
+        "SIGNATURE_HTML": "a202aa7083530ccc", "SIGNATURE_TEXT": "23002b923db0e118"
+      },
+      "diff_lines": {"added": 83, "removed": 4}
+    },
+    "validation": {
+      "targeted_tests_from_codex": ["tests/test_general_inbox_referral_routing.py", "tests/test_first_party_email_enrichment.py"],
+      "targeted_result": {"passed": 10, "failed": 0},
+      "ab_regression": {
+        "before_pre_patch": {"failed": 36, "passed": 255, "errors": 5},
+        "after_deployed": {"failed": 36, "passed": 255, "errors": 5},
+        "new_failures_introduced": [],
+        "failure_sets_identical": true
+      },
+      "pre_existing_failure_breakdown": {
+        "test_recipient_scheduler.py": 12, "test_dashboard_timezone.py": 6, "test_p0_runtime_semantics.py": 5,
+        "test_discovery_service.py": 4, "test_preflight_gate.py": 4, "test_inventory_followup.py": 3, "test_timezone_unified.py": 2
+      },
+      "a7_negative_proof": "tests/test_phase4a7_city_queue_advancement.py import fails (cannot import name 'city_completion_checks') -> 4A.7 genuinely absent; file staged at output/staging_4a7/"
+    },
+    "loop_state_audit": {
+      "accumulation_loop_running": false,
+      "last_discovery_at": "2026-09-20T10:23:06Z (18:23 +08)",
+      "last_maps_cache_write": "2026-09-20 18:23 +08",
+      "ithaca_last_success_at": "2026-09-20T10:28:28Z (18:28 +08)",
+      "deployment_timestamps": {"bd_template.py": "2026-09-20 20:26 +08", "discovery_service.py": "2026-09-20 20:31 +08"},
+      "running_processes": 0,
+      "new_artifacts_last_3h": 0,
+      "4a4b_documents_found": 0,
+      "conclusion": "4A.4B deployed 4A.5+4A.6 then ended BEFORE starting any accumulation iteration and before writing/pushing a report; the only discovery activity today (18:00-18:23) belongs to the frozen 4A.4A run",
+      "side_finding": "job_runs 2026-09-20 13:16:35->13:17:08 = 30 inventory runs, all stop_reason=lock_conflict (33s collision storm, none completed); not fixed (read-only audit)"
+    },
+    "live_metrics": {
+      "leads_total": 1087,
+      "evidence_url_non_empty": 862,
+      "discovery_results_total": 369,
+      "discovery_results_ithaca": 69,
+      "materialized_fsp_planned": 0,
+      "send_log_today": 0,
+      "last_send_at": "2026-09-16T01:09:52.031266+08:00",
+      "suppression_list": 63,
+      "broad_ready": 33,
+      "read_only_v2_safe_unique_orgs": 6,
+      "read_only_v2_safe_unique_orgs_authority": "FROZEN (4A.4A measurement 2026-09-20 20:00 +08); live full-MX recompute exceeded time budget",
+      "active_city": "Ithaca, NY",
+      "ithaca_new_unique_places": 69,
+      "ithaca_pages_processed": 41,
+      "ithaca_query_families": {"pending": 51, "completed": 6, "running": 1, "configuration_blocked": 1, "provider_not_configured": 1},
+      "city_queue_advanced": false
+    },
+    "safety_invariants": {
+      "smtp_connections": 0, "imap_connections": 0, "outreach_send_count": 0,
+      "presend_fsp_created": 0, "authorization_created": 0,
+      "db_schema_changed": false, "v2_policy_changed": false, "mx_policy_changed": false,
+      "template_changed": false, "scheduler_changed": false, "inventory_rerun": false, "network_scrape": 0
+    },
+    "next_steps_require_authorization": [
+      "deploy Codex 4A.7 (74f50852) fail-closed city queue advancement (bd_orchestrator.py + retail_city_queue.py)",
+      "restart SAFE accumulation loop with 4A.5+4A.6(+4A.7) live, target SAFE>=40",
+      "optional: fix 30x lock_conflict inventory collision storm"
+    ],
+    "report_path": "handoff/workbuddy/phases/PHASE4A4B_DEPLOY_VALIDATION_AND_LOOP_STATE.md"
   }
 }
