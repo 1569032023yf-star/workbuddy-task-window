@@ -1093,8 +1093,9 @@ MATERIALIZED_FSP_PLANNED       = 0
 SEND_LOG_TODAY                 = 0   (last send 2026-09-16T01:09:52+08)
 SUPPRESSION_LIST               = 63
 BROAD_READY                    = 33  (4A.4 run authority)
-READ_ONLY_V2_SAFE_UNIQUE_ORGS  = 6   AUTHORITY = FROZEN (4A.4A 2026-09-20 20:00 +08);
-                                      live full-MX recompute exceeded time budget
+READ_ONLY_V2_SAFE_UNIQUE_ORGS  = 6   AUTHORITY = **LIVE** (read-only recompute finished
+                                      2026-09-20 21:46 +08, 16m33s; V2_CANDIDATE_ROWS=6;
+                                      equals the 4A.4A frozen value 6)
 VISIBLE_FIRST_PARTY_EMAILS     = leads.email_source_type: official_page_visible 321,
                                  official_mailto 8, manual_verified 2, website_extracted 1
 ACTIVE_CITY                    = Ithaca, NY (new_unique_places=69, pages_processed=41)

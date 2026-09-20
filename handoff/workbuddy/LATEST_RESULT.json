@@ -1382,7 +1382,7 @@
       "suppression_list": 63,
       "broad_ready": 33,
       "read_only_v2_safe_unique_orgs": 6,
-      "read_only_v2_safe_unique_orgs_authority": "FROZEN (4A.4A measurement 2026-09-20 20:00 +08); live full-MX recompute exceeded time budget",
+      "read_only_v2_safe_unique_orgs_authority": "LIVE (read-only recompute finished 2026-09-20T21:46:00+08:00, duration 16m33s; V2_CANDIDATE_ROWS=6; equals the 4A.4A frozen value)",
       "active_city": "Ithaca, NY",
       "ithaca_new_unique_places": 69,
       "ithaca_pages_processed": 41,

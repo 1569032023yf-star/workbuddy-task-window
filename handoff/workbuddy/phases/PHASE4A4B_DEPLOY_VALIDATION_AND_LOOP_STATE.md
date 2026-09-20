@@ -102,7 +102,7 @@ inventory triggers racing the same `inventory:<business_date>` run lock. Not add
 | `SEND_LOG_TODAY` | 0 (last send 2026-09-16T01:09:52+08) | live DB |
 | `SUPPRESSION_LIST` | 63 | live DB |
 | `BROAD_READY` | 33 (4A.4 run authority) | last run record |
-| `V2_ELIGIBLE_UNSENT` / `READ_ONLY_V2_SAFE_UNIQUE_ORGS` | **6 (frozen 4A.4A authority)**; live V2+MX recompute requires ~hundreds of MX probes, execution in progress → see section H | frozen / pending |
+| `V2_ELIGIBLE_UNSENT` / `READ_ONLY_V2_SAFE_UNIQUE_ORGS` | **6 — LIVE** (recomputed read-only 2026-09-20 21:46 +08, 16m33s; `V2_CANDIDATE_ROWS=6`) | live DB |
 | Active city | Ithaca, NY — status `active`, `new_unique_places=69`, `pages_processed=41` | live DB |
 | Ithaca query families | pending 51 / completed 6 / running 1 / configuration_blocked 1 / provider_not_configured 1 | live DB |
 | `CITY_QUEUE_ADVANCED` | false (Saratoga Springs NOT activated) | live DB |
@@ -140,9 +140,18 @@ PreSend `1785804406748` / Preflight `1785804413719` / Outreach `1785804421539` P
 
 ---
 
-## H. OPEN ITEM
+## H. SAFE RECOMPUTE — COMPLETED (LIVE)
 
-`READ_ONLY_V2_SAFE_UNIQUE_ORGS` live recompute (frozen V2 + live MX over all email-present leads) exceeded the
-interactive time budget because it performs per-domain MX probes through the Astrill proxy.
-Authoritative value remains **SAFE = 6** (4A.4A frozen measurement, 2026-09-20 20:00 +08).
-A bounded recompute (mx-cache-only, no live MX) should be used next time instead of a full live-MX sweep.
+`READ_ONLY_V2_SAFE_UNIQUE_ORGS` was recomputed read-only (frozen V2 + live MX, all email-present leads) and finished at
+2026-09-20 21:46 +08 after 16m33s:
+
+```
+V2_CANDIDATE_ROWS               = 6
+READ_ONLY_V2_SAFE_UNIQUE_ORGS   = 6      AUTHORITY = LIVE (matches 4A.4A frozen value 6)
+MATERIALIZED_FSP_PLANNED        = 0
+```
+
+The live value equals the frozen 4A.4A measurement → no SAFE change was produced by the 4A.5/4A.6 deployment
+(expected: 4A.6 affects discovery-side first-party email enrichment, which had no run in this phase).
+Operational note: this recompute does per-domain MX probes through the Astrill proxy and is slow (~16 min);
+prefer reading the value from `bd_orchestrator --stage inventory` logs for routine checks.
