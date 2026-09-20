@@ -14,6 +14,7 @@
 
 ---
 
+- 2026-09-20 19:5x +08 — PHASE 4A.4A NEW-CITY SAFE ACCUMULATION (controlled; frozen per user, no Inventory rerun). Reused existing NY city-queue assets (retail_city_queue.NY_FIRST_ROUND_CITIES / activate_next_city). 8 canonical Inventory iterations via background loop (all Ithaca NY). SAFE 2->6 (+4); NEW_UNIQUE_PLACES=30; WEBSITES_RESOLVED=23; official_emails +4; evidence +15. Ithaca still active (51 pending families) — queue did NOT advance to Saratoga; STOP_REASON=manual freeze per user. SMTP=0, OUTREACH=0, send_log_today=0. TARGET_50 not met (SAFE<40). Docs: PHASE4A4A_NEW_CITY_SAFE_ACCUMULATION.md + state updates.
 - 2026-09-17 14:49 +08 — PHASE 4A.3E BROWSER_MAPS RUNTIME PARITY AUDIT (READ-ONLY). Production runs browser_maps in **DIRECT** mode (BROWSER_MAPS_MODE=direct, .env:41/46), Playwright+Chromium installed. Cache dir data/browser_maps_cache has 17 JSON (16 Ithaca). Website resolver (ProviderWebsiteResolver) reuses provider; in DIRECT mode it CAN live-scrape. CASE_C root cause confirmed: 4A.3C lacked browser_maps+direct+Playwright so base.py defaulted to google_places. PRODUCTION_CHANGES=0, NETWORK_REQUESTS=0, SMTP=0.
 
 ## 2026-09-17 10:13 +08 — PHASE 4A.3D PRODUCTION DISCOVERY PROVIDER PARITY AUDIT (READ-ONLY; CASE_C PROVIDER PARITY BUG)

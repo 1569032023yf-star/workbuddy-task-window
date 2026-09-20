@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-20T16:21:00+08:00",
+  "generated_at": "2026-09-20T20:00:23+08:00",
   "refresh_type": "PHASE 4A.4 CONTROLLED PRODUCTION LEAD-FACTORY PATCH deployment + validation + acceptance (handoff-only; production code deployed in master working tree, verified by SHA256)",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "PHASE_4A_4 (Controlled Production Lead-Factory Patch) - DEPLOYED + VALIDATED; stable; SAFE=0",
-  "production_status": "PATCHED (4 files from Codex 05c0a419, UNCHANGED since deploy 2026-09-20); FROZEN send chain intact; Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40); NO sends since 2026-09-15 (lead 1085); SAFE=0",
+  "current_phase": "PHASE_4A_4A (New-City SAFE Accumulation) - COMPLETED (frozen); SAFE=6",
+  "production_status": "PATCHED(4A.4 files live) + 4A.4A accumulation run (SAFE=6); Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED",
   "production_code_drift": false,
-  "current_blocker": "SAFE=0 (READ_ONLY_V2_SAFE_UNIQUE_ORGS=0 post lead-1085 send 2026-09-15). 4A.4 patch makes discovery/terminalization/direct-place/website-resolution WORK, but Ithaca NY exhausted (0 new unique places) so no new V2-safe orgs this run. 480 manual_review_needed + 428 no-email leads = dominant upstream blockers.",
+  "current_blocker": "SAFE=6 (<40); Ithaca NY still active (51 pending families); upstream 482 manual_review_needed / no-email queue",
   "production_code_sha": {
     "bd_orchestrator.py": "252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05",
     "discovery/discovery_service.py": "ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d",
@@ -972,8 +972,8 @@
       "WORKBUDDY_HANDOFF_PUSHED": true
     }
   },
-  "workbuddy_handoff_pushed_commit": "258b7f6f9dfa196a457efba475dd202f1f7ef869",
-  "workbuddy_handoff_pushed_at": "2026-09-20T16:43:46+08:00",
+  "workbuddy_handoff_pushed_commit": "PENDING",
+  "workbuddy_handoff_pushed_at": "PENDING",
   "discovery_provider_parity_audit_20260917": {
     "audit_type": "READ_ONLY_PARITY_AUDIT",
     "phase": "PHASE 4A.3D",
@@ -1226,5 +1226,92 @@
     "github_handoff_pushed_commit": "258b7f6f9dfa196a457efba475dd202f1f7ef869",
     "github_handoff_pushed_at": "2026-09-20T16:43:46+08:00",
     "github_handoff_pushed_ref": "d00d940..258b7f6 -> origin/main"
+  },
+  "phase4a4a_new_city_safe_accumulation_20260920": {
+    "phase": "PHASE_4A_4A",
+    "title": "New-City SAFE Accumulation (controlled, frozen)",
+    "generated_at": "2026-09-20T20:00:23+08:00",
+    "trigger": "user explicit authorization after Ithaca-exhaustion premise (4A.4)",
+    "constraints_respected": {
+      "inventory_rerun": false,
+      "code_changed": false,
+      "scheduler_changed": false,
+      "smtp_connections": 0,
+      "outreach_send_count": 0
+    },
+    "audit": {
+      "active_discovery_state": "NY",
+      "ny_cities_seeded": true,
+      "ithaca_queue_status": "active (NOT exhausted; 51 pending browser_maps families)",
+      "ithaca_completed": false
+    },
+    "reused_assets": [
+      "retail_city_queue.NY_FIRST_ROUND_CITIES",
+      "seed_state_cities()",
+      "activate_next_city()",
+      "discovery_service.run_places_batch"
+    ],
+    "accumulation": {
+      "iterations": 8,
+      "active_city": "Ithaca, NY",
+      "cities_processed": 1,
+      "city_queue_advanced": false,
+      "first_new_city": null
+    },
+    "metrics": {
+      "new_unique_places_total": 30,
+      "websites_resolved_total": 23,
+      "network_retry": 0,
+      "official_emails_found_total": 4,
+      "official_emails_after": 593,
+      "full_evidence_created_total": 15,
+      "evidence_after": 862,
+      "safe_before": 2,
+      "safe_after": 6
+    },
+    "safe_acceptance": {
+      "read_only_safe_unique_orgs_before": 2,
+      "read_only_safe_unique_orgs_after": 6,
+      "target_50_met": false,
+      "ready_for_40_recipient_acceptance": false,
+      "fsp_materialized": false,
+      "authorization_created": false,
+      "email_sent": false
+    },
+    "do_not_touch_unchanged": [
+      "campaign_eligible_v2",
+      "preflight_gate",
+      "bd_sender",
+      "daily_session",
+      "final_send_plan",
+      "bd_template"
+    ],
+    "source_persistence": "live code = master workspace checkout (data/bd_leads.db); GitHub main roktandrazo-outreach/ stale; separate reconciliation proposal prepared (not executed)",
+    "scheduler": {
+      "inventory_active": true,
+      "inventory_id": "1784775229336",
+      "recovery_active": true,
+      "recovery_id": "1786002601925",
+      "presend_paused": true,
+      "presend_id": "1785804406748",
+      "preflight_paused": true,
+      "preflight_id": "1785804413719",
+      "outreach_paused": true,
+      "outreach_id": "1785804421539"
+    },
+    "smts": {
+      "smtp_connections": 0,
+      "outreach_send_count": 0,
+      "send_log_today": 0
+    },
+    "stop_reason": "manual freeze per user 'do not rerun Inventory' (8 iters captured; Ithaca not exhausted)",
+    "report_already_existed": true,
+    "inventory_rerun": false,
+    "code_changed": false,
+    "scheduler_changed": false,
+    "github_handoff_pushed": "PENDING",
+    "github_handoff_pushed_commit": "PENDING",
+    "github_handoff_pushed_at": "PENDING",
+    "github_handoff_pushed_ref": "PENDING"
   }
 }

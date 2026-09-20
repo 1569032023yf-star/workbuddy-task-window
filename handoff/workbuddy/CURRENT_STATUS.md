@@ -950,3 +950,83 @@ GITHUB_HANDOFF_PUSHED=true
 COMMIT_SHA=258b7f6f9dfa196a457efba475dd202f1f7ef869
 PUSH_SUCCESS=true (d00d940..258b7f6 -> origin/main; 2026-09-20T16:43:46+08:00 via Astrill 127.0.0.1:3213)
 ```
+
+
+## SECTION V — PHASE 4A.4A NEW-CITY SAFE ACCUMULATION (2026-09-20)
+
+PRODUCTION_PHASE=PHASE_4A_4A (New-City SAFE Accumulation) — COMPLETED (frozen per user; no Inventory rerun)
+TRIGGER=User explicit authorization to accumulate SAFE via existing NY city queue after Ithaca-exhaustion premise.
+INVENTORY_RERUN=false (explicit user instruction)
+CODE_CHANGED=false
+SCHEDULER_CHANGED=false
+SMTP_CONNECTIONS=0; OUTREACH_SEND_COUNT=0; PRESEND_FSP_CREATED=0; AUTHORIZATION_CREATED=0
+
+### V-A Audit (read-only)
+ACTIVE_DISCOVERY_STATE=NY
+NY_CITIES_SEEDED=true (ids 20-36; no seeding needed)
+ITHACA_QUEUE_STATUS=active (NOT exhausted; 51 pending browser_maps families remain)
+ITHACA_COMPLETED=false (genuine; not faked)
+
+### V-B Reused assets
+retail_city_queue.NY_FIRST_ROUND_CITIES / seed_state_cities() / activate_next_city() — reused; no new table/pipeline/selector/scheduler.
+
+### V-C/D Result
+NY_CITIES_SEEDED=true
+CITY_QUEUE_ADVANCED=false
+FIRST_NEW_CITY=none (Saratoga not reached; Ithaca kept yielding new places each run: 16/5/9, never exhausted)
+CITIES_PROCESSED=1 (Ithaca)
+
+### V-E/F Accumulation (8 canonical Inventory iterations, all Ithaca NY)
+Totals: NEW_UNIQUE_PLACES=30; WEBSITES_RESOLVED=23; NETWORK_RETRY=0;
+OFFICIAL_EMAILS_FOUND=+4 (589->593); FULL_EVIDENCE_CREATED=+15 (847->862).
+
+### V-G SAFE Acceptance
+SAFE_BEFORE=2; SAFE_AFTER=6 (+4)
+READ_ONLY_SAFE_UNIQUE_ORGS=6 (<40, <50) -> TARGET_50 not met; READY_FOR_40_RECIPIENT_ACCEPTANCE=false
+No FSP materialized; no authorization; no email.
+
+### V-H Do-not-touch — unchanged
+campaign_eligible_v2 / preflight_gate / bd_sender / daily_session / final_send_plan / bd_template — UNCHANGED.
+V2/MX/evidence/identity/history/bounce/suppression/uniqueness — UNRELAXED.
+
+### V-I Source persistence
+Live prod code = master workspace checkout (data/bd_leads.db). GitHub main roktandrazo-outreach/ is stale snapshot.
+Separate source-persistence reconciliation proposal prepared (not executed this phase).
+
+### V-J Handoff
+PHASE4A4A_NEW_CITY_SAFE_ACCUMULATION.md (committed)
+CURRENT_STATUS.md / LATEST_RESULT.json / CHANGELOG.md (updated)
+COMMIT_SHA=PENDING
+PUSH_SUCCESS=PENDING
+
+### V-FINAL
+ACTIVE_DISCOVERY_STATE=NY
+ITHACA_QUEUE_STATUS=active (51 pending families)
+ITHACA_COMPLETED=false
+NY_CITIES_SEEDED=true
+CITY_QUEUE_ADVANCED=false
+FIRST_NEW_CITY=none
+CITIES_PROCESSED=1
+NEW_UNIQUE_PLACES_TOTAL=30
+WEBSITES_RESOLVED_TOTAL=23
+OFFICIAL_EMAILS_FOUND_TOTAL=+4 (593)
+FULL_EVIDENCE_CREATED_TOTAL=+15 (862)
+SAFE_BEFORE=2
+SAFE_AFTER=6
+CURRENT_ACTIVE_CITY=Ithaca, NY
+INVENTORY_AUTOMATION_ACTIVE=true (1784775229336)
+RECOVERY_AUTOMATION_ACTIVE=true (1786002601925)
+PRESEND_PAUSED=true (1785804406748)
+PREFLIGHT_PAUSED=true (1785804413719)
+OUTREACH_PAUSED=true (1785804421539)
+SMTP_CONNECTIONS=0
+OUTREACH_SEND_COUNT=0
+READY_FOR_40_RECIPIENT_ACCEPTANCE=false
+TARGET_50_MET=false
+STOP_REASON=manual freeze per user "do not rerun Inventory" (8 iters captured; Ithaca not exhausted)
+REPORT_ALREADY_EXISTED=true (per user instruction)
+INVENTORY_RERUN=false
+CODE_CHANGED=false
+SCHEDULER_CHANGED=false
+COMMIT_SHA=PENDING
+PUSH_SUCCESS=PENDING
