@@ -1314,3 +1314,83 @@ NEXT_ACTION = (1) Start the accumulation loop toward SAFE >= 40-50  — NOT STAR
               (3) Deploy Codex 4A.7 (74f50852) fail-closed city-queue advancement — still NOT deployed
               Unchanged hold: PreSend / Preflight / Outreach PAUSED; SMTP = 0; no sends since 2026-09-16
 ```
+
+
+---
+
+## Z. PHASE 4A.5A — DEPLOY CODEX 07784044 + SERIAL SAFE ACCUMULATION (2026-09-21 09:35 +08)
+
+### Z.1 Deployment (byte-identical, validated)
+
+```
+CODEX DEPLOYED       = 07784044  (3 commits ahead of what was live: 74f50852 + 4a63d1a4 + 07784044)
+bd_orchestrator.py   = 252ed6042b04837f -> 7afc4d7f6ac18e22   (+8/-2, 30139 -> 30645 bytes)
+retail_city_queue.py = 95fa135feac19e39 -> 46d6f4521892785e   (+157/-3, 7466 -> 15039 bytes)
+tests/               = test_phase4a7_city_queue_advancement.py added (9000 bytes)
+BACKUP               = output/backup_pre_07784044/
+VERIFY               = re-fetched and re-hashed after write: local == remote
+SEND PATH TOUCHED    = NO (changes are confined to stage_inventory + city completion semantics)
+TESTS                = 4A.7 targeted 10 passed / 0 failed;
+                       full suite 36 failed / 275 passed / 5 errors = FAILED set IDENTICAL to baseline
+                       => NEW REGRESSIONS = 0
+```
+
+### Z.2 Scheduler: paused → serial work → restored
+
+```
+INVENTORY automation-1784775229336 = PAUSED during the manual window, then RESTORED to ACTIVE (15:00 +08)
+PRE-SEND   automation-1785804406748 = PAUSED   (unchanged)
+PREFLIGHT  automation-1785804413719 = PAUSED   (unchanged)
+OUTREACH   automation-1785804421539 = PAUSED   (unchanged)
+RECOVERY   automation-1786002601925 = ACTIVE   (support job; does not launch inventory)
+```
+
+### Z.3 Six serial Inventory rounds
+
+| # | run_id | SAFE (target 50) | stop_reason | duration |
+|---|---|---|---|---|
+| 1 | inventory:2026-09-21:c3260be1 | 11 | safe_inventory_gap | 6m29s |
+| 2 | inventory:2026-09-21:5de10633 | 11 | safe_inventory_gap | 6m05s |
+| 3 | inventory:2026-09-21:64a414e8 | 11 | safe_inventory_gap | 7m33s |
+| 4 | inventory:2026-09-21:e8ae46db | 11 | safe_inventory_gap | 5m57s |
+| 5 | inventory:2026-09-21:57b95d10 | 11 | safe_inventory_gap | 5m53s |
+| 6 | inventory:2026-09-21:f76835e9 | 13 | safe_inventory_gap | 8m06s |
+
+```
+SAFE                 = 10 -> 13      (TARGET 40 NOT REACHED)
+LEADS                = 1096 -> 1104
+EVIDENCE_URL         = 871 -> 879
+DISCOVERY_RESULTS    = 385 -> 395
+MATERIALIZED_FSP     = 0 (unchanged)
+SENDS / SMTP         = 0  (last send_log row still 2026-09-16T01:09:52+08)
+```
+
+### Z.4 Why it stopped at 13
+
+Four consecutive zero-growth rounds (2-5) triggered a fail-closed halt. The halt was executed inside the
+inter-round sleep window, so no subprocess was killed mid-run; afterwards
+`RUNNING_INVENTORY_JOBS = 0` and `HELD_INVENTORY_LOCKS = 0`. Round 6 landed +2 just before the halt, so the
+final value is 13. Measured rate **~0.5 SAFE per round at ~6.5 min/round** means ~54 more rounds (~6h) to
+reach 40 — beyond the available window, so the canonical scheduler was restored to continue the work.
+
+### Z.5 Bottleneck (read-only diagnosis)
+
+```
+ACTIVE CITY          = Ithaca, NY (retail_city_queue.id=20, status=active)
+QUERY STATE          = 12 completed / 45 pending / 1 running / 1 configuration_blocked / 1 provider_not_configured
+4A.7 CHECKS          = city_completion_checks(20, browser_maps) -> ALL_MET=False (all 9 checks unmet)
+                       => the new fail-closed logic correctly refuses to advance the queue. NOT a regression.
+ACTIVE-CITY MIX      = manual_review_needed 15, rejected 20, no_public_email 12, website_not_found 11,
+                       review_recovery 7, history_blocked 5, website_lookup_pending 5, contact_form_pool 2,
+                       identity_review 2
+GLOBAL manual_review_needed = 263   |  leads with email 598  |  officially verified 356
+BINDING CONSTRAINT   = email discovery / review-gate throughput, not discovery volume
+```
+
+### Z.6 Next actions — ALL require authorization (nothing started)
+
+1. Continue serial accumulation ~6h to reach 40.
+2. Raise per-round throughput (Lead-Factory change).
+3. Work the upstream blocker: 263 `manual_review_needed` + no-email cohort (email enrichment / review-gate
+   reconciliation) — the only option that makes 40 reachable in hours.
+4. Lower the target to a reachable watermark (e.g. 20) and release the send stages against it.

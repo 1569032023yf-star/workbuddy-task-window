@@ -1,22 +1,23 @@
 {
-  "generated_at": "2026-09-21T01:30:00+08:00",
-  "refresh_type": "PHASE 4A.4C completion: read-only trigger audit + existing-semantics stabilization + ONE canonical Inventory run (retry after the concurrent second operator was stopped)",
+  "generated_at": "2026-09-21T09:35:00+08:00",
+  "refresh_type": "PHASE 4A.5A: deployment of Codex 07784044 (byte-identical + validated, 0 new regressions) and 6 serial Inventory rounds (SAFE 10 -> 13, target 40 not reached)",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "PHASE_4A_4C (Inventory lock-conflict stabilization) - COMPLETE, all 8 acceptance criteria PASS; canonical inventory inventory:2026-09-21:8887953f finished cleanly (exit 0, safe_inventory_gap); SAFE=10 (target 50); SMTP=0; 4A.7 NOT deployed",
-  "production_status": "4A.5+4A.6 deployed & validated; single canonical Inventory scheduler confirmed; reentrant manual driver stopped and NOT relaunched; one clean canonical Inventory completed after the second operator stopped; PreSend/Preflight/Outreach PAUSED; SMTP=0; 4A.7 NOT deployed; no production code changed in 4A.4C",
+  "current_phase": "PHASE_4A_5A (deploy Codex 07784044 + serial SAFE accumulation) - deployed and validated; SAFE 10 -> 13 after 6 serial rounds, target 40 NOT reached; Inventory automation restored ACTIVE; send stages PAUSED; SMTP=0",
+  "production_status": "Codex 07784044 deployed (bd_orchestrator 7afc4d7f, retail_city_queue 46d6f452); 0 new test regressions; Inventory automation PAUSED then restored ACTIVE; 6 serial Inventory rounds completed; PreSend/Preflight/Outreach PAUSED; SMTP=0",
   "production_code_drift": false,
-  "current_blocker": "SAFE=10 (<50); target not yet reached; accumulation loop NOT started - awaiting authorization",
+  "current_blocker": "SAFE=13 (target 40). Active city Ithaca NY has 45 pending query families and 4A.7 fail-closed checks correctly block queue advancement; 263 global manual_review_needed and the no-email cohort cap the conversion rate (~0.5 SAFE/round).",
   "production_code_sha": {
-    "bd_orchestrator.py": "252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05",
+    "bd_orchestrator.py": "7afc4d7f6ac18e22 (sha256 prefix-16; full hash not recorded)",
     "discovery/discovery_service.py": "ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d",
     "outreach_control.py": "b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce",
     "discovery/website_resolver.py": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
     "discovery/providers/browser_maps_scraper.py": "18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49",
-    "note": "4 Lead-Factory files @ Codex 05c0a419 deployed 2026-09-20; AUTH_IDENTICAL_TO_DEV=true (zero unrelated drift vs dev pre-fix base d96b0049); forbidden files (preflight_gate/campaign_eligible_v2/bd_sender/daily_session/final_send_plan/bd_template) UNCHANGED",
-    "match": true
+    "note": "Codex 07784044 deployed 2026-09-21 08:46 +08 (bd_orchestrator.py + retail_city_queue.py only); verified byte-identical to remote; 0 new test regressions; forbidden files untouched",
+    "match": true,
+    "retail_city_queue.py": "46d6f4521892785e (sha256 prefix-16; full hash not recorded)"
   },
   "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) - sole authority; Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40); Windows PostSend UNIQUE_REQUIRED; no second scheduler",
   "workbuddy_automations": [
@@ -140,7 +141,7 @@
       "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."
     }
   ],
-  "last_inventory_run": "2026-09-21 01:16 +08 (inventory:2026-09-21:8887953f; COMPLETED partial; started 17:16:49 UTC / 01:16:49 +08, finished 17:28:03 UTC / 01:28:03 +08; safe_inventory_gap; actual=10, gap=40; exit code 0)",
+  "last_inventory_run": "2026-09-21 09:30 +08 (inventory:2026-09-21:f76835e9; partial; started 01:22:14 UTC / 09:22:14 +08, finished 01:30:20 UTC / 09:30:20 +08; safe_inventory_gap; actual=13, gap=37; exit 0). 6 serial rounds this window: SAFE 10 -> 13.",
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 0,
     "V2_ELIGIBLE_UNSENT_AUTHORITY": "AUTHORITATIVE = Frozen V2+MX (CAMPAIGN_ELIGIBLE_V2 pool) recomputed read-only 2026-09-14 over 96 non-terminal email-present candidates via review_campaign_eligible_v2 with system_config.mx_cache_* injected as mx_lookup (no live MX, no DB write). Only 1 lead (id 1085, org ithacainstantreplaysports.com) is CAMPAIGN_ELIGIBLE_V2. Context (do NOT conflate): V1-eligible review_campaign_eligible (no MX) = 27 leads/27 orgs; VISIBLE_FIRST_PARTY_EMAILS strict (verified+email+not-terminal) = 16. The earlier '16' was the VISIBLE-strict count, NOT true V2+MX.",
@@ -1762,5 +1763,168 @@
     "status": "COMPLETE - all 8 acceptance criteria PASS after the second operator was stopped",
     "final_canonical_run_id": "inventory:2026-09-21:8887953f",
     "final_safe": 10
+  },
+  "phase4a5a_deploy_07784044_and_safe_accumulation_20260921": {
+    "phase": "PHASE_4A_5A",
+    "title": "Deploy Codex 07784044 (4A.7 city-queue advancement + exhaustion semantics) and serial manual SAFE accumulation",
+    "generated_at": "2026-09-21T09:35:00+08:00",
+    "codex_deployed": "07784044",
+    "codex_commits_included": [
+      "74f50852 (4A.7 fail-closed city queue advancement)",
+      "4a63d1a4 (completion-semantics audit on production copy)",
+      "07784044 (finalize city exhaustion semantics)"
+    ],
+    "deployment": {
+      "bd_orchestrator.py": {
+        "from": "252ed6042b04837f",
+        "to": "7afc4d7f6ac18e22",
+        "bytes": "30139 -> 30645",
+        "diff": "+8/-2",
+        "touches_send_path": false
+      },
+      "retail_city_queue.py": {
+        "from": "95fa135feac19e39",
+        "to": "46d6f4521892785e",
+        "bytes": "7466 -> 15039",
+        "diff": "+157/-3",
+        "touches_send_path": false
+      },
+      "tests/test_phase4a7_city_queue_advancement.py": {
+        "added_bytes": 9000
+      },
+      "backup_path": "output/backup_pre_07784044/",
+      "verification": "re-fetched after write; local SHA256 == remote SHA256 (byte-identical)"
+    },
+    "validation": {
+      "targeted_test": {
+        "file": "tests/test_phase4a7_city_queue_advancement.py",
+        "passed": 10,
+        "failed": 0
+      },
+      "full_suite_after": {
+        "failed": 36,
+        "passed": 275,
+        "errors": 5
+      },
+      "baseline_full_suite": {
+        "failed": 36,
+        "passed": 255,
+        "errors": 5
+      },
+      "new_regressions": 0,
+      "method": "FAILED-line set diff vs full_suite_after.txt; sets IDENTICAL"
+    },
+    "scheduler": {
+      "inventory_automation_paused": "automation-1784775229336 PAUSED for the manual window",
+      "inventory_automation_restored": "ACTIVE (daily 15:00 +08)",
+      "send_stages": {
+        "presend": "PAUSED",
+        "preflight": "PAUSED",
+        "outreach": "PAUSED"
+      },
+      "recovery_sync": "ACTIVE (support job; does not launch inventory)"
+    },
+    "serial_accumulation": {
+      "driver": "_4a5a_accumulate.py (strictly sequential; overlap guard; 20s inter-round gap; fail-closed)",
+      "rounds": [
+        {
+          "round": 1,
+          "run_id": "inventory:2026-09-21:c3260be1",
+          "safe": 11,
+          "stop_reason": "safe_inventory_gap"
+        },
+        {
+          "round": 2,
+          "run_id": "inventory:2026-09-21:5de10633",
+          "safe": 11,
+          "stop_reason": "safe_inventory_gap"
+        },
+        {
+          "round": 3,
+          "run_id": "inventory:2026-09-21:64a414e8",
+          "safe": 11,
+          "stop_reason": "safe_inventory_gap"
+        },
+        {
+          "round": 4,
+          "run_id": "inventory:2026-09-21:e8ae46db",
+          "safe": 11,
+          "stop_reason": "safe_inventory_gap"
+        },
+        {
+          "round": 5,
+          "run_id": "inventory:2026-09-21:57b95d10",
+          "safe": 11,
+          "stop_reason": "safe_inventory_gap"
+        },
+        {
+          "round": 6,
+          "run_id": "inventory:2026-09-21:f76835e9",
+          "safe": 13,
+          "stop_reason": "safe_inventory_gap"
+        }
+      ],
+      "safe_before": 10,
+      "safe_after": 13,
+      "target": 40,
+      "TARGET_REACHED": false,
+      "stop_reason": "4 consecutive zero-growth rounds; driver halted in the inter-round sleep window; round 6 landed +2 just before the halt",
+      "rate": "~0.5 SAFE per round, ~6.5 min per round => ~54 more rounds (~6h) to reach 40",
+      "yield": {
+        "LEADS": "1096 -> 1104",
+        "EVIDENCE_URL_NONEMPTY": "871 -> 879",
+        "DISCOVERY_RESULTS": "385 -> 395",
+        "BROAD_READY": "43 -> 44+"
+      }
+    },
+    "bottleneck_diagnosis": {
+      "active_city": "Ithaca, NY (retail_city_queue.id=20, status=active)",
+      "query_state": {
+        "completed": 12,
+        "pending": 45,
+        "running": 1,
+        "configuration_blocked": 1,
+        "provider_not_configured": 1
+      },
+      "city_completion_checks_ALL_MET": false,
+      "unmet_checks": 9,
+      "interpretation": "4A.7 fail-closed logic is working correctly: Ithaca still has un-run query families and open staged work, so the queue does NOT advance. Not a regression.",
+      "active_city_result_mix": {
+        "manual_review_needed": 15,
+        "rejected": 20,
+        "no_public_email": 12,
+        "website_not_found": 11,
+        "review_recovery": 7,
+        "history_blocked": 5,
+        "website_lookup_pending": 5,
+        "contact_form_pool": 2,
+        "identity_review": 2
+      },
+      "global_manual_review_needed": 263,
+      "leads_with_email": 598,
+      "email_verified_official": 356,
+      "binding_constraint": "email discovery / review-gate throughput, not discovery volume"
+    },
+    "safety_invariants": {
+      "smtp_connections": 0,
+      "sends_last_24h": 0,
+      "last_send_log_row": "2026-09-16T01:09:52.031266+08:00",
+      "materialized_fsp_planned": 0,
+      "running_inventory_jobs_after_stop": 0,
+      "held_inventory_locks_after_stop": 0,
+      "v2_policy_changed": false,
+      "mx_policy_changed": false,
+      "template_changed": false,
+      "sender_changed": false,
+      "city_policy_changed": false,
+      "business_logic_changed": false
+    },
+    "options_to_reach_40_require_authorization": [
+      "Continue serial accumulation ~6 more hours (~54 rounds)",
+      "Increase per-round throughput (Lead-Factory throughput change - out of scope)",
+      "Work the upstream blocker: 263 manual_review_needed + no-email cohort enrichment / review-gate reconciliation",
+      "Lower the target to a reachable watermark (e.g. 20) and release send stages against it"
+    ],
+    "report_path": "handoff/workbuddy/phases/PHASE4A5A_DEPLOY_07784044_AND_SAFE_ACCUMULATION.md"
   }
 }

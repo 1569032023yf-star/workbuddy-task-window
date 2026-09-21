@@ -1,3 +1,39 @@
+## 2026-09-21 09:35 +08 — PHASE 4A.5A: DEPLOY CODEX 07784044 + SERIAL SAFE ACCUMULATION (SAFE 10 -> 13, target 40 NOT reached)
+
+- **Deployed Codex `07784044`** (3 commits ahead of the live code: `74f50852` 4A.7 fail-closed city queue
+  advancement, `4a63d1a4` completion-semantics audit, `07784044` finalize city exhaustion semantics). Production
+  files: `bd_orchestrator.py` `252ed6042b04837f -> 7afc4d7f6ac18e22` (+8/-2) and `retail_city_queue.py`
+  `95fa135feac19e39 -> 46d6f4521892785e` (+157/-3); pre-deploy copies backed up to `output/backup_pre_07784044/`.
+  Verified by re-fetching and re-hashing: **local == remote, byte-identical**. Changes are confined to
+  `stage_inventory` and city completion semantics — **no send path, V2, MX, template or sender change**.
+- **Validation:** 4A.7 targeted test **10 passed / 0 failed**; full suite **36 failed / 275 passed / 5 errors**
+  with the FAILED set **IDENTICAL** to the pre-deploy baseline ⇒ **0 new regressions** (passed rose 255 -> 275
+  from the two new test files).
+- **Scheduler discipline:** paused `automation-1784775229336` (Inventory) for the whole manual window, ran
+  Inventory **serially** via `_4a5a_accumulate.py` (overlap guard, 20s gap, fail-closed on lock_conflict /
+  unexpected stop_reason / non-zero exit), then **restored the automation to ACTIVE** so 15:00 continues the work.
+  **Pre-Send / Preflight / Outreach stayed PAUSED** throughout.
+- **6 rounds:** SAFE `10 -> 11 -> 11 -> 11 -> 11 -> 11 -> 13` (round 6 `inventory:2026-09-21:f76835e9`), every
+  round `status=partial`, `stop_reason=safe_inventory_gap`, exit 0. Yield: `LEADS 1096 -> 1104`,
+  `EVIDENCE_URL 871 -> 879`, `DISCOVERY_RESULTS 385 -> 395`. **Target 40 NOT reached.**
+- **Why:** four consecutive zero-growth rounds triggered a fail-closed halt (executed inside the inter-round
+  sleep window; no subprocess killed mid-run; afterwards running jobs = 0, held locks = 0). Rate is
+  **~0.5 SAFE per round at ~6.5 min/round**, i.e. ~54 more rounds (~6h) to reach 40.
+- **Bottleneck (read-only):** active city Ithaca NY (`retail_city_queue.id=20`) still has **45 pending query
+  families** (12 completed), so the new 4A.7 `city_completion_checks` returns **ALL_MET=False** and correctly
+  refuses to advance the queue — the fail-closed semantics are working, this is not a regression. Its result mix
+  is mostly non-convertible (manual_review_needed 15, no_public_email 12, website_not_found 11), and globally
+  **263 `manual_review_needed`** records sit upstream. The binding constraint is **email discovery / review-gate
+  throughput, not discovery volume**.
+- **Safety:** 0 sends, 0 SMTP, `final_send_plan` planned = 0, last `send_log` row still 2026-09-16T01:09:52+08.
+- **Next (all require authorization, nothing started):** (1) continue serial accumulation ~6h; (2) raise per-round
+  throughput (Lead-Factory change); (3) work the 263 manual_review_needed + no-email cohort (only option that
+  makes 40 reachable in hours); (4) lower the target to a reachable watermark (e.g. 20).
+- Docs: `phases/PHASE4A5A_DEPLOY_07784044_AND_SAFE_ACCUMULATION.md` + CURRENT_STATUS section Z +
+  LATEST_RESULT `phase4a5a_deploy_07784044_and_safe_accumulation_20260921` + this CHANGELOG entry.
+
+---
+
 ## 2026-09-21 01:30 +08 — PHASE 4A.4C RETRY: CANONICAL INVENTORY COMPLETED, ALL 8 ACCEPTANCE CRITERIA PASS
 
 The concurrent second operator reported in the previous 4A.4C entry was **stopped by the user**, and the single
