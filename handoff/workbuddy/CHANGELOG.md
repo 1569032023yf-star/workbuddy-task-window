@@ -1,3 +1,41 @@
+## 2026-09-21 — PHASE 4A.5C Finish Ithaca + Advance City + Build SAFE40 (authorized; STOPPED on regression)
+- New report: `handoff/workbuddy/phases/PHASE4A5C_CITY_ADVANCE_SAFE40.md`.
+- **Ithaca BrowserMaps matrix FINISHED**: 20/20 families durably completed (pending 4 -> 0,
+  running 1 -> 0). Includes `puzzle store`, `card game store`, `tourist gift shop`,
+  `specialty retailer`, `visitor center gift shop`. No query row manually completed.
+- **City advancement BLOCKED — genuine software regression** (Section F condition 3):
+  `city_completion_checks(20,'browser_maps')` = 5/9, `ALL_MET=false`; `ITHACA_STATUS=active`
+  (not `search_matrix_exhausted`); `NEXT_CITY_ACTIVATED=none` (Saratoga Springs still pending);
+  `CITY_QUEUE_ADVANCEMENT_VERIFIED=false`.
+  - Defect 1 (liveness): `website_lookup_pending` has no terminal write.
+    `run_website_resolution` (discovery_service.py:412-416) writes only `rejection_reason`;
+    `_postprocess_staged_result` (discovery_service.py:768-770) returns without any write when
+    `website` is empty. Both selectors re-select the same 8 rows every run -> permanent no-op.
+    Proven live: rounds 4-8 each `WEBSITES_RESOLVED=8`/`STAGING_PROCESSED=8`, 0 transitions, even
+    after `DISCOVERY_RESULTS_SEEN=0`.
+  - Defect 2 (hygiene): row `lead_discovery_results.id=374` stores Material-Icons private-use
+    glyphs (`U+E0C8`, `U+E0B0`) and embedded newlines in `formatted_address`/`phone`; the resolver
+    builds a `browser_maps_cache` filename from them -> `OSError [Errno 22]` ->
+    `retryable_network` permanently true.
+  - Consequence: every queued city will deadlock identically; the 4A.7 fail-closed gate is correct
+    in intent but currently unsatisfiable.
+- **SAFE 15 -> 16** over 8 canonical rounds (all exit=0, partial, safe_inventory_gap, 4682 s).
+  `NEW_UNIQUE_PLACES=8`, `OFFICIAL_EMAILS_FOUND=0`, `FULL_EVIDENCE_CREATED=4` (all round 3).
+  Zero SAFE rounds did not abort the loop (per instruction).
+- Env (existing knobs only, 0 code changes): `DISCOVERY_PROVIDER=browser_maps`,
+  `BROWSER_MAPS_MODE=direct`, `SAFE_INVENTORY_TARGET=50`, `WORKBUDDY_DISCOVERY_MAX_PAGES=2`,
+  resolution/staging kept at 20, proxies 3213.
+- Single inventory authority enforced: `RUNNING_INVENTORY_JOBS=0`, lock released before launch
+  (one unrelated **read-only** SAFE-recount python process observed and left alone; no run-lock).
+- Scheduler: Inventory PAUSED for the window then **restored ACTIVE**; Pre-Send/Preflight/Outreach
+  PAUSED; Recovery ACTIVE; duplicate active inventory triggers 0.
+- Clean stop: abandoned 9th round closed with existing `stale_cleanup` semantics + `release_run_lock`;
+  `RUNNING_INVENTORY_JOBS=0`, `INVENTORY_LOCK=released`.
+- Safety: `SMTP_CONNECTIONS=0`, `OUTREACH_SEND_COUNT=0` (last send 2026-09-16),
+  `MATERIALIZED_FSP_PLANNED=0`, no FSP/authorization, no guessed or third-party emails, V2/MX not
+  relaxed, no manual recipients, production code changed = 0 files.
+- `READY_FOR_40_RECIPIENT_ACCEPTANCE=false`. Watermark not lowered; gate not removed.
+
 ## 2026-09-21 — PHASE 4A.5B Upstream SAFE Conversion Audit + Recovery (authorized)
 - New report: `handoff/workbuddy/phases/PHASE4A5B_UPSTREAM_SAFE_CONVERSION_AUDIT.md`.
 - **Two metric corrections**: prior "45 unrun Ithaca families" mixed `google_places`/`web_directory`

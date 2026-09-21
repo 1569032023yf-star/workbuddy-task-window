@@ -4,8 +4,8 @@
 > - `1569032023yf-star/workbuddy-task-window` (branch `main`) = **PRODUCTION SOURCE / PRODUCTION HANDOFF** ← this repo
 > - `1569032023yf-star/roktandrazo-outreach-codex` = **DEVELOPMENT SOURCE / CODEX HANDOFF** (do NOT write production handoff here)
 >
-> Generated: 2026-09-14T15:46:00+08:00 (Asia/Shanghai)
-> REFRESH TYPE: **READ-ONLY status refresh + Inventory closeout + Lead 1085 state-transition audit** — no code/DB/scheduler/FSP/Authorization/send changes. Live metrics authority = `data/bd_leads.db` (read-only query), WorkBuddy automations, Windows Task Scheduler.
+> Generated: 2026-09-21T16:55:00+08:00 (Asia/Shanghai)
+> REFRESH TYPE: **PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40**: STOPPED on genuine software regression (city-queue deadlock). No code / schema / V2 / MX / template / sender / city-policy change. No SMTP, no send, no FSP.
 > TIMESTAMP NOTE: previous handoff stamped `Generated: 2026-09-14T14:37:00+08:00` while also recording the 2026-09-14 inventory start as `15:01 +08` and calling it "still running as of 14:37". 14:37 < 15:01 is impossible → the 14:37 timestamp was wrong (see section I / FINAL HANDOFF_TIMESTAMP_ERROR). Correct inventory start = 15:01:10 +08 (= 07:01:10 UTC); correct audit time = 15:46 +08 (this refresh).
 > NOTE: the live production DB is `roktandrazo-outreach/data/bd_leads.db`; the root `roktandrazo-outreach/bd_leads.db` is a 0-byte stale file and is NOT authoritative.
 
@@ -1486,3 +1486,124 @@ A. Let the canonical 15:00 scheduler accumulate over several days (zero risk, sl
 B. Continue serial manual rounds this session (~7–9 h).
 C. Raise per-round throughput (Lead-Factory change) — out of scope, needs its own authorization.
 D. Lower the acceptance watermark from 40 to a reachable value (policy decision).
+
+---
+
+## AB. PHASE 4A.5C — FINISH ITHACA + ADVANCE CITY + BUILD SAFE40 (2026-09-21)
+
+Report: `handoff/workbuddy/phases/PHASE4A5C_CITY_ADVANCE_SAFE40.md`
+
+**Outcome: STOPPED on Section F condition 3 (genuine software regression). City-queue advancement
+is structurally blocked, not merely slow.** Ithaca's BrowserMaps query matrix was fully exhausted,
+but the completion contract cannot be satisfied by the deployed canonical lanes.
+
+### AB.1 Five authoritative metrics (each with its authority)
+
+```
+V2_ELIGIBLE_UNSENT        = 16      (authority: live  campaign_eligible_v2.select_candidates_for_plan_v2
+                                     + deployed V2+MX gate, read-only recount 2026-09-21; matches the
+                                     orchestrator's own live print exactly)
+READ_ONLY_SAFE_UNIQUE_ORGS= 16      (authority: live  same frozen V2+MX path, distinct organization_key)
+MATERIALIZED_FSP_PLANNED  = 0       (authority: live  final_send_plan.status='planned')
+BROAD_READY               = 50      (authority: live  bd_orchestrator._count_broad_ready_pool())
+VISIBLE_FIRST_PARTY_EMAILS= 348     (authority: live  leads.email NOT NULL AND
+                                     email_verified_on_official_site=1)
+```
+
+These are four distinct quantities. Read-only V2 eligibility ≠ materialized FSP ≠ BroadReady ≠
+visible first-party emails.
+
+### AB.2 Ithaca BrowserMaps matrix — FINISHED
+
+```
+ITHACA_BROWSERMAPS_TOTAL     = 20
+ITHACA_BROWSERMAPS_COMPLETED = 20
+ITHACA_BROWSERMAPS_PENDING   = 0
+ITHACA_BROWSERMAPS_RUNNING   = 0
+ITHACA_BROWSERMAPS_FAILED    = 0
+```
+
+`puzzle store`, `card game store`, `tourist gift shop`, `specialty retailer` and the resumed
+`visitor center gift shop` all completed durably. No query row was manually completed.
+
+### AB.3 City advancement — NOT verified (blocked)
+
+```
+ITHACA_STATUS                   = active      (NOT search_matrix_exhausted)
+city_completion_checks(20,'browser_maps') = 5/9 true, ALL_MET=false
+OPEN_STAGED_PENDING             = 8
+OPEN_RETRYABLE_NETWORK          = 1
+NEXT_CITY_ACTIVATED             = none        (Saratoga Springs NY, queue id 21, still pending)
+CITY_QUEUE_ADVANCEMENT_VERIFIED = false
+CITIES_PROCESSED                = 1 (Ithaca NY)
+```
+
+The four failing checks all collapse to `no_open_work` (`retail_city_queue.py:186-196`).
+
+**Root cause (proven, two defects):**
+
+1. **Liveness** — `website_lookup_pending` rows have no terminal write.
+   `discovery/discovery_service.py:412-416` (`run_website_resolution` failure branch) writes only
+   `rejection_reason` and never changes `validation_status`;
+   `discovery/discovery_service.py:768-770` (`_postprocess_staged_result`) returns
+   `"website_lookup_pending", None` **without any write** when `website` is empty. Both selectors
+   re-select the same 8 rows every run (`LIMIT 20` > 8 rows). Observed live: rounds 4-8 each
+   reported `WEBSITES_RESOLVED=8` / `STAGING_PROCESSED=8` with **zero** status transitions, even
+   after discovery returned nothing (`DISCOVERY_RESULTS_SEEN=0`).
+2. **Hygiene** — row `lead_discovery_results.id=374` ("Comics For Collectors") stores raw Google
+   Maps label glyphs: `formatted_address = "\ue0c8\n124 W State St, Ithaca, NY 14850, United States"`,
+   `phone = "\ue0b0\n+1 607-272-3007"`. `U+E0C8`/`U+E0B0` are Material-Icons private-use
+   codepoints. The resolver builds a `browser_maps_cache` filename from those fields →
+   illegal Windows path → `OSError [Errno 22]` → `rejection_reason` stays
+   `website_resolution:network_retry:…` forever (`retryable_network` permanently true).
+
+Consequence: **every** city in the queue will deadlock the same way. The 4A.7 fail-closed gate is
+correct in intent but currently unsatisfiable.
+
+### AB.4 Canonical rounds
+
+8 canonical `bd_orchestrator.py --stage inventory --live` rounds, strictly serial, all `exit=0`,
+`status=partial`, `stop_reason=safe_inventory_gap`, total 4682 s (~78 min).
+
+```
+SAFE_BEFORE = 15   ->   SAFE_AFTER = 16
+NEW_UNIQUE_PLACES      = 8     (all in round 3)
+OFFICIAL_EMAILS_FOUND  = 0
+FULL_EVIDENCE_CREATED  = 4     (round 3)
+DISCOVERY_MAX_PAGES    = 2
+```
+
+Round 3 produced 8 new unique places and 4 new full-evidence records but zero SAFE gain (no
+first-party email among them). Env used: `DISCOVERY_PROVIDER=browser_maps`,
+`BROWSER_MAPS_MODE=direct`, `SAFE_INVENTORY_TARGET=50`, `WORKBUDDY_DISCOVERY_MAX_PAGES=2`,
+`WORKBUDDY_WEBSITE_RESOLUTION_MAX=20`, `WORKBUDDY_STAGING_POSTPROCESS_MAX=20`,
+proxies `http://127.0.0.1:3213`. All four knobs verified present in production code; 0 code changes.
+
+### AB.5 Scheduler state
+
+Inventory `automation-1784775229336` PAUSED during the manual window, then **restored ACTIVE**.
+Recovery Sync ACTIVE. Pre-Send `1785804406748`, Preflight `1785804413719`, Outreach
+`1785804421539` all **PAUSED**. `DUPLICATE_ACTIVE_INVENTORY_TRIGGERS = 0`.
+
+### AB.6 Clean stop
+
+`RUNNING_INVENTORY_JOBS=0`, `INVENTORY_LOCK=released`. The abandoned 9th round
+(`inventory:2026-09-21:7e871faa`) was closed with the **existing** semantics
+(`status=failed`, `stop_reason=stale_cleanup`) plus `release_run_lock`.
+
+### AB.7 Safety invariants
+
+`SMTP_CONNECTIONS=0` · `OUTREACH_SEND_COUNT=0` (today 0; last send 2026-09-16T01:09:52+08:00) ·
+`MATERIALIZED_FSP_PLANNED=0` · no FSP created · no authorization created · no guessed emails ·
+no third-party evidence · V2 not relaxed · MX not relaxed · no manual recipients ·
+production code changed = 0 files · DB schema unchanged.
+
+### AB.8 Required next actions (Codex, then one canonical run)
+
+1. Fix the liveness defect (make `no_open_work` satisfiable) — nothing else can move the queue.
+2. Fix the scraper hygiene defect and clean poisoned row `id=374`.
+3. Run ONE canonical Inventory and require `ITHACA_STATUS=search_matrix_exhausted`,
+   `ACTIVE_CITY=Saratoga Springs, NY`, `CITY_QUEUE_ADVANCEMENT_VERIFIED=true`.
+4. Only then resume SAFE accumulation toward 40 in the NY queue.
+
+`READY_FOR_40_RECIPIENT_ACCEPTANCE = false`. Do not lower the 40 watermark; do not remove the gate.

@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-21T09:35:00+08:00",
-  "refresh_type": "PHASE 4A.5A: deployment of Codex 07784044 (byte-identical + validated, 0 new regressions) and 6 serial Inventory rounds (SAFE 10 -> 13, target 40 not reached)",
+  "generated_at": "2026-09-21T16:55:00+08:00",
+  "refresh_type": "PHASE 4A.5C — Finish Ithaca + verify city advancement + build SAFE40; STOPPED on genuine software regression (city-queue deadlock). No code/schema/V2/MX/template/sender/city-policy change.",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "PHASE_4A_5A (deploy Codex 07784044 + serial SAFE accumulation) - deployed and validated; SAFE 10 -> 13 after 6 serial rounds, target 40 NOT reached; Inventory automation restored ACTIVE; send stages PAUSED; SMTP=0",
-  "production_status": "Codex 07784044 deployed (bd_orchestrator 7afc4d7f, retail_city_queue 46d6f452); 0 new test regressions; Inventory automation PAUSED then restored ACTIVE; 6 serial Inventory rounds completed; PreSend/Preflight/Outreach PAUSED; SMTP=0",
+  "current_phase": "PHASE_4A_5C (Ithaca matrix finished 20/20; city advancement BLOCKED by software regression; SAFE 15->16)",
+  "production_status": "Codex 07784044 deployed; Ithaca BrowserMaps 20/20 complete; city_completion_checks 5/9 ALL_MET=false; ITHACA_STATUS=active; NEXT_CITY=none; PreSend/Preflight/Outreach PAUSED; Inventory ACTIVE; SMTP=0",
   "production_code_drift": false,
-  "current_blocker": "SAFE=13 (target 40). Active city Ithaca NY has 45 pending query families and 4A.7 fail-closed checks correctly block queue advancement; 263 global manual_review_needed and the no-email cohort cap the conversion rate (~0.5 SAFE/round).",
+  "current_blocker": "City-queue deadlock: website_lookup_pending has no terminal write (discovery_service.py:412-416 and 768-770) so no_open_work can never become true; plus row id=374 poisoned cache filename (OSError Errno 22). Blocks all city advancement and therefore all discovery growth.",
   "production_code_sha": {
     "bd_orchestrator.py": "7afc4d7f6ac18e22 (sha256 prefix-16; full hash not recorded)",
     "discovery/discovery_service.py": "ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d",
@@ -141,7 +141,7 @@
       "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."
     }
   ],
-  "last_inventory_run": "2026-09-21 09:30 +08 (inventory:2026-09-21:f76835e9; partial; started 01:22:14 UTC / 09:22:14 +08, finished 01:30:20 UTC / 09:30:20 +08; safe_inventory_gap; actual=13, gap=37; exit 0). 6 serial rounds this window: SAFE 10 -> 13.",
+  "last_inventory_run": "2026-09-22 00:52 +08 (inventory:2026-09-21:a70f1660; partial; actual=16; safe_inventory_gap) — 8 canonical rounds completed in this phase",
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 0,
     "V2_ELIGIBLE_UNSENT_AUTHORITY": "AUTHORITATIVE = Frozen V2+MX (CAMPAIGN_ELIGIBLE_V2 pool) recomputed read-only 2026-09-14 over 96 non-terminal email-present candidates via review_campaign_eligible_v2 with system_config.mx_cache_* injected as mx_lookup (no live MX, no DB write). Only 1 lead (id 1085, org ithacainstantreplaysports.com) is CAMPAIGN_ELIGIBLE_V2. Context (do NOT conflate): V1-eligible review_campaign_eligible (no MX) = 27 leads/27 orgs; VISIBLE_FIRST_PARTY_EMAILS strict (verified+email+not-terminal) = 16. The earlier '16' was the VISIBLE-strict count, NOT true V2+MX.",
@@ -2075,5 +2075,63 @@
       "Raise per-round throughput (Lead-Factory change - out of scope, separate authorization)",
       "Lower the acceptance watermark from 40 to a reachable value (policy decision)"
     ]
+  },
+  "current_blocker_phase4a5c": {
+    "STOP_REASON": "software_regression:city_queue_deadlock",
+    "SAFE_BEFORE": 15,
+    "SAFE_AFTER": 16,
+    "ITHACA_BROWSERMAPS_TOTAL": 20,
+    "ITHACA_BROWSERMAPS_COMPLETED": 20,
+    "ITHACA_BROWSERMAPS_PENDING": 0,
+    "ITHACA_STATUS": "active",
+    "CITY_COMPLETION_CHECKS_PASSED": "5/9",
+    "OPEN_STAGED_PENDING": 8,
+    "OPEN_RETRYABLE_NETWORK": 1,
+    "NEXT_CITY_ACTIVATED": null,
+    "CITY_QUEUE_ADVANCEMENT_VERIFIED": false,
+    "CITIES_PROCESSED": 1,
+    "NEW_UNIQUE_PLACES": 8,
+    "OFFICIAL_EMAILS_FOUND": 0,
+    "FULL_EVIDENCE_CREATED": 4,
+    "DISCOVERY_MAX_PAGES": 2,
+    "CANONICAL_ROUNDS": 8,
+    "TOTAL_WALL_TIME_SECONDS": 4682,
+    "DEFECT_1_LIVENESS": "discovery/discovery_service.py:412-416 run_website_resolution writes only rejection_reason (never validation_status); :768-770 _postprocess_staged_result returns without any write when website is empty",
+    "DEFECT_2_HYGIENE": "lead_discovery_results.id=374 stores U+E0C8/U+E0B0 private-use glyphs and embedded newlines in formatted_address/phone -> illegal browser_maps_cache filename -> OSError [Errno 22]",
+    "READY_FOR_40_RECIPIENT_ACCEPTANCE": false
+  },
+  "safe_metrics_phase4a5c": {
+    "V2_ELIGIBLE_UNSENT": 16,
+    "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recount via campaign_eligible_v2.select_candidates_for_plan_v2 + deployed V2+MX gate, 2026-09-21; agrees with the orchestrator's own live print",
+    "READ_ONLY_SAFE_UNIQUE_ORGS": 16,
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "same frozen V2+MX path, distinct organization_key",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MATERIALIZED_FSP_PLANNED_AUTHORITY": "final_send_plan.status='planned'",
+    "BROAD_READY": 50,
+    "BROAD_READY_AUTHORITY": "bd_orchestrator._count_broad_ready_pool() live",
+    "BROAD_READY_STORED_FLAG": 95,
+    "VISIBLE_FIRST_PARTY_EMAILS": 348,
+    "VISIBLE_FIRST_PARTY_EMAILS_AUTHORITY": "leads.email NOT NULL AND email_verified_on_official_site=1"
+  },
+  "supporting_totals_phase4a5c": {
+    "total_leads": 1114,
+    "email_present": 604,
+    "first_party_official_emails": 340,
+    "full_evidence_records": 461,
+    "discovery_rows": 412,
+    "send_log_total": 517,
+    "send_log_today": 0,
+    "last_send_at": "2026-09-16T01:09:52.031266+08:00",
+    "smtp_connections": 0,
+    "running_inventory_jobs": 0,
+    "inventory_lock": "released"
+  },
+  "workbuddy_automations_phase4a5c": {
+    "inventory_1784775229336": "ACTIVE (paused for the manual window, then restored)",
+    "presend_1785804406748": "PAUSED",
+    "preflight_1785804413719": "PAUSED",
+    "outreach_1785804421539": "PAUSED",
+    "recovery_sync_1786002601925": "ACTIVE",
+    "duplicate_active_inventory_triggers": 0
   }
 }
