@@ -351,8 +351,8 @@ READY_FOR_40_RECIPIENT_ACCEPTANCE = false
 STOP_REASON = software_regression:city_queue_deadlock
               (D.2 website_lookup_pending has no terminal write
              + D.3 unsanitised scraped cache filename)
-COMMIT_SHA  = <filled by commit>
-PUSH_SUCCESS = <filled by push>
+COMMIT_SHA  = bf8497ea113391601d57f75aeb09293041159fa6
+PUSH_SUCCESS = true   (2ebc05f..bf8497e main -> main; remote re-verified via GitHub API)
 ```
 
 ### I.3 What the next phase must do
