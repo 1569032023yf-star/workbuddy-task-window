@@ -1,3 +1,22 @@
+## 2026-09-21 — PHASE 4A.5B Upstream SAFE Conversion Audit + Recovery (authorized)
+- New report: `handoff/workbuddy/phases/PHASE4A5B_UPSTREAM_SAFE_CONVERSION_AUDIT.md`.
+- **Two metric corrections**: prior "45 unrun Ithaca families" mixed `google_places`/`web_directory`
+  into the `browser_maps` count — true value 7 (now 5). Prior "267 recoverable leads" ignored that
+  `run_linked_backlog`/`run_staging_postprocess`/`run_website_resolution` are active-city scoped —
+  reachable cohort is 25 (bucket 3 collapses 252 -> 10).
+- Upstream classification of 595 nonterminal leads into 9 buckets; MANUAL_REVIEW_TOTAL=519,
+  TERMINAL_MANUAL_COHORT=5. Read-only, no row mutated.
+- Existing email stock proven capped: EMAIL_POOL=109, 87/96 non-eligible hard-BLOCKED by
+  broad_ready history/hygiene, 73 guessed_email. Neither overridable under current rules.
+- Recovery via already-authorized lanes only: 3 batches, ROWS_PROCESSED=60, OFFICIAL_EMAILS_FOUND=0,
+  FULL_EVIDENCE_CREATED=0, NEW_SAFE_ORGS=0. STOP_REASON=three_consecutive_zero_safe_batches.
+- Canonical serial Inventory resumed (never overlapping recovery): round 1 +2 SAFE (13->15) via
+  NEW_UNIQUE_PLACES=6; rounds 2-3 zero new places. Rate ~2 SAFE / 3 rounds.
+- Manual loop stopped deliberately; orphan job `inventory:2026-09-21:48e446a0` cleared with the
+  EXISTING `stale_cleanup` UPDATE + `release_run_lock`. RUNNING_JOBS=0, HELD_LOCKS=0.
+- Inventory automation `1784775229336` restored ACTIVE; PreSend/Preflight/Outreach remain PAUSED.
+- SAFE 13 -> 15. READY_FOR_40_RECIPIENT_ACCEPTANCE=false. No production code or schema changed.
+
 ## 2026-09-21 09:35 +08 — PHASE 4A.5A: DEPLOY CODEX 07784044 + SERIAL SAFE ACCUMULATION (SAFE 10 -> 13, target 40 NOT reached)
 
 - **Deployed Codex `07784044`** (3 commits ahead of the live code: `74f50852` 4A.7 fail-closed city queue

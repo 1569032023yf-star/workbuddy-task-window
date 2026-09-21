@@ -1394,3 +1394,95 @@ BINDING CONSTRAINT   = email discovery / review-gate throughput, not discovery v
 3. Work the upstream blocker: 263 `manual_review_needed` + no-email cohort (email enrichment / review-gate
    reconciliation) — the only option that makes 40 reachable in hours.
 4. Lower the target to a reachable watermark (e.g. 20) and release the send stages against it.
+
+
+---
+
+## AA. PHASE 4A.5B — UPSTREAM SAFE CONVERSION AUDIT + RECOVERY (2026-09-21)
+
+Report: `handoff/workbuddy/phases/PHASE4A5B_UPSTREAM_SAFE_CONVERSION_AUDIT.md`
+
+### AA.1 Metric corrections (two figures in prior docs were wrong)
+
+1. **"45 unrun Ithaca query families" was a provider-mixing error.** Scoped strictly to
+   `active_city_id=20 AND provider='browser_maps'`: TOTAL 20 / COMPLETED 15 / PENDING 4 /
+   RUNNING 1 / FAILED_OR_BLOCKED 0. The 45 came from adding `google_places` (19 pending, not
+   configured) and `web_directory` (19 pending, no provider) into the same bucket. Neither is the
+   active provider.
+2. **"267 recoverable leads" was scope-inflated.** Production recovery lanes
+   (`run_linked_backlog` / `run_staging_postprocess` / `run_website_resolution`) are hard-scoped to
+   `active_city_id`. Re-scoped: bucket 2 = 14/14 in city 20, bucket 3 = **252 → 10**, bucket 4 = 1.
+   Reachable automatic cohort = **25**, not 267.
+
+### AA.2 Upstream blocker classification (595 nonterminal leads, read-only)
+
+| bucket | count |
+|---|---|
+| HAS_OFFICIAL_WEBSITE_NO_EMAIL | 90 |
+| HAS_OFFICIAL_WEBSITE_EMAIL_EXTRACTION_RETRYABLE | 14 |
+| LINKED_BACKLOG_RETRYABLE (only 10 inside active city) | 252 |
+| REVIEW_RECOVERY_RETRYABLE | 1 |
+| TERMINAL_IDENTITY_OR_HYGIENE | 4 |
+| WEBSITE_NOT_FOUND | 10 |
+| NO_OFFICIAL_WEBSITE | 129 |
+| HISTORY_OR_SUPPRESSION_BLOCKED | 1 |
+| OTHER | 94 |
+
+MANUAL_REVIEW_TOTAL = 519 · TERMINAL_MANUAL_COHORT = 5 · RECOVERABLE_REACHABLE = 25
+
+### AA.3 Existing email stock is structurally capped
+
+`EMAIL_POOL = 109` (leads with an email, nonterminal) → `SAFE = 13` at start. Non-eligible pool:
+BLOCKED 87 / NEEDS_EMAIL_VERIFICATION 8 / NEEDS_MANUAL_REVIEW 1. Blocker histogram:
+`broad_ready` 173 (previously_sent_email / previously_sent_org / shared_domain_org_history /
+suppression) · `guessed_email` 73 · `mx` 60 · `third_party_email` 10 · `evidence_stale` 9.
+87 of 96 non-eligible leads are hard-blocked by history/hygiene — not lawfully overridable.
+
+### AA.4 Recovery result (existing leads) — ZERO
+
+3 bounded batches through the already-authorized lanes only: ROWS_PROCESSED=60,
+OFFICIAL_EMAILS_FOUND=0, FULL_EVIDENCE_CREATED=0, NEW_SAFE_ORGS=0, SAFE 13 → 13.
+STOP_REASON = three_consecutive_zero_safe_batches. The lanes re-select the same
+5 `website_lookup_pending` + same 10 linked rows every pass. **Exhausted, not starved.**
+
+### AA.5 Discovery resumed (D) — the only working lever
+
+Sequential canonical `bd_orchestrator.py --stage inventory --live`, never concurrent with recovery.
+
+| round | new unique places | SAFE after |
+|---|---|---|
+| 1 | 6 | **15** (+2) |
+| 2 | 0 | 15 |
+| 3 | 0 | 15 |
+| 4 | terminated externally; orphan cleared via existing stale_cleanup semantics | 15 |
+
+Rate ≈ **+2 SAFE / 3 rounds (~35 min)** → ~35–40 more rounds (~7–9 h) to reach 40.
+Remaining Ithaca families: visitor center gift shop (resume checkpoint), tourist gift shop,
+specialty retailer, **puzzle store**, **card game store** (last two = highest product fit).
+
+### AA.6 Final state (authority tags)
+
+```
+SAFE_BEFORE=13 -> SAFE_AFTER=15          (authority: live recompute, production _count_safe_ready_pool)
+READ_ONLY_SAFE_UNIQUE_ORGS=15            (authority: live)
+MATERIALIZED_FSP_PLANNED=0               (authority: live final_send_plan)
+BROAD_READY=49                           (authority: live)
+VISIBLE_FIRST_PARTY_EMAILS — not changed, not claimed this phase
+BROWSERMAPS_QUERY_TOTAL=20 COMPLETED=15 PENDING=4 FAILED_OR_BLOCKED=0
+city_completion_checks(20,'browser_maps') ALL_MET=false  (correct fail-closed)
+RUNNING_INVENTORY_JOBS=0  HELD_INVENTORY_LOCKS=0
+READY_FOR_40_RECIPIENT_ACCEPTANCE = false
+```
+
+### AA.7 Safety invariants
+
+PreSend PAUSED · Preflight PAUSED · Outreach PAUSED · Recovery ACTIVE · **Inventory ACTIVE** (restored).
+SMTP_enabled=0 · sends today=0 · last send 2026-09-16 · FSP_PLANNED=0.
+V2 / MX / template / sender / city-policy / business logic: unchanged. Production code unchanged.
+
+### AA.8 Options to reach 40 — all require authorization, none started
+
+A. Let the canonical 15:00 scheduler accumulate over several days (zero risk, slowest).
+B. Continue serial manual rounds this session (~7–9 h).
+C. Raise per-round throughput (Lead-Factory change) — out of scope, needs its own authorization.
+D. Lower the acceptance watermark from 40 to a reachable value (policy decision).

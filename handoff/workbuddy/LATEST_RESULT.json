@@ -1926,5 +1926,154 @@
       "Lower the target to a reachable watermark (e.g. 20) and release send stages against it"
     ],
     "report_path": "handoff/workbuddy/phases/PHASE4A5A_DEPLOY_07784044_AND_SAFE_ACCUMULATION.md"
+  },
+  "phase4a5b_upstream_safe_conversion_audit": {
+    "date": "2026-09-21",
+    "report_path": "handoff/workbuddy/phases/PHASE4A5B_UPSTREAM_SAFE_CONVERSION_AUDIT.md",
+    "metric_corrections": {
+      "ithaca_unrun_families_previous_claim": 45,
+      "ithaca_unrun_families_corrected": 5,
+      "previous_claim_origin": "mixed google_places(19 pending, not configured) + web_directory(19 pending, no provider) into the browser_maps count",
+      "recoverable_cohort_previous_claim": 267,
+      "recoverable_cohort_reachable": 25,
+      "reachable_reason": "run_linked_backlog / run_staging_postprocess / run_website_resolution are scoped to active_city_id; bucket3 collapses 252 -> 10"
+    },
+    "section_A_browsermaps_query_metric": {
+      "scope": "active_city_id=20 AND provider='browser_maps'",
+      "total": 20,
+      "completed": 15,
+      "pending": 4,
+      "running": 1,
+      "failed_or_blocked": 0,
+      "pending_families": [
+        "tourist gift shop",
+        "specialty retailer",
+        "puzzle store",
+        "card game store"
+      ],
+      "resume_checkpoint": "visitor center gift shop",
+      "city_completion_checks_ALL_MET": false,
+      "interpretation": "fail-closed logic correct; not a regression"
+    },
+    "section_B_classification": {
+      "candidate_universe": 595,
+      "buckets": {
+        "1_HAS_OFFICIAL_WEBSITE_NO_EMAIL": 90,
+        "2_HAS_WEBSITE_EMAIL_EXTRACTION_RETRYABLE": 14,
+        "3_LINKED_BACKLOG_RETRYABLE": 252,
+        "4_REVIEW_RECOVERY_RETRYABLE": 1,
+        "5_TERMINAL_IDENTITY_OR_HYGIENE": 4,
+        "6_WEBSITE_NOT_FOUND": 10,
+        "7_NO_OFFICIAL_WEBSITE": 129,
+        "8_HISTORY_OR_SUPPRESSION_BLOCKED": 1,
+        "9_OTHER": 94
+      },
+      "manual_review_total": 519,
+      "recoverable_existing_cohort_raw": 267,
+      "recoverable_existing_cohort_reachable": 25,
+      "terminal_manual_cohort": 5
+    },
+    "nearmiss_email_pool": {
+      "email_pool": 109,
+      "safe_at_start": 13,
+      "pools": {
+        "BLOCKED": 87,
+        "NEEDS_EMAIL_VERIFICATION": 8,
+        "NEEDS_MANUAL_REVIEW": 1,
+        "CAMPAIGN_ELIGIBLE_V2": 13
+      },
+      "blocker_histogram": {
+        "broad_ready": 173,
+        "guessed_email": 73,
+        "mx": 60,
+        "third_party_email": 10,
+        "evidence_stale": 9,
+        "public_mailbox_no_official_evidence": 4,
+        "timezone": 1,
+        "hygiene": 1
+      },
+      "mx_distribution": {
+        "nxdomain": 50,
+        "ok": 44,
+        "no_mail_route": 8,
+        "dns_error": 1,
+        "null_mx": 1
+      },
+      "conclusion": "existing email stock cannot carry the 40 target"
+    },
+    "section_C_recovery": {
+      "lanes_used": [
+        "run_website_resolution(unlinked_only)",
+        "run_staging_postprocess(unlinked_only)",
+        "run_linked_backlog"
+      ],
+      "batches": 3,
+      "rows_processed": 60,
+      "official_emails_found": 0,
+      "full_evidence_created": 0,
+      "new_safe_orgs": 0,
+      "safe_before": 13,
+      "safe_after": 13,
+      "stop_reason": "three_consecutive_zero_safe_batches",
+      "verdict": "recoverable existing cohort exhausted, not throughput-starved"
+    },
+    "section_D_discovery": {
+      "rounds_run": 4,
+      "round1_new_unique_places": 6,
+      "round1_safe_gain": 2,
+      "safe_after": 15,
+      "broad_ready_after": 49,
+      "rate": "+2 SAFE per ~3 rounds (~35 min)",
+      "projected_rounds_to_40": "35-40 (~7-9h)",
+      "orphan_job_cleared": "inventory:2026-09-21:48e446a0 via existing stale_cleanup UPDATE + release_run_lock",
+      "stop_reason": "manual loop halted; canonical scheduler restored"
+    },
+    "final_metrics": {
+      "SAFE_BEFORE": 13,
+      "SAFE_AFTER": 15,
+      "BROWSERMAPS_QUERY_TOTAL": 20,
+      "BROWSERMAPS_COMPLETED": 15,
+      "BROWSERMAPS_PENDING": 4,
+      "MANUAL_REVIEW_TOTAL": 519,
+      "RECOVERABLE_EXISTING_COHORT": 267,
+      "TERMINAL_MANUAL_COHORT": 5,
+      "ROWS_PROCESSED": 60,
+      "OFFICIAL_EMAILS_FOUND": 0,
+      "FULL_EVIDENCE_CREATED": 0,
+      "NEW_SAFE_ORGS_RECOVERY": 0,
+      "NEW_SAFE_ORGS_DISCOVERY": 2,
+      "READY_FOR_40_RECIPIENT_ACCEPTANCE": false,
+      "STOP_REASON": "recovery_cohort_exhausted_zero_yield -> canonical serial Inventory resumed, scheduler restored ACTIVE"
+    },
+    "scheduler_state": {
+      "inventory_automation_1784775229336": "ACTIVE",
+      "presend_automation_1785804406748": "PAUSED",
+      "preflight_automation_1785804413719": "PAUSED",
+      "outreach_automation_1785804421539": "PAUSED",
+      "recovery_sync_1786002601925": "ACTIVE"
+    },
+    "safety_invariants": {
+      "smtp_enabled": 0,
+      "sends_today": 0,
+      "last_send_log_row": "2026-09-16T01:09:52.031266+08:00",
+      "materialized_fsp_planned": 0,
+      "running_inventory_jobs": 0,
+      "held_inventory_locks": 0,
+      "v2_policy_changed": false,
+      "mx_policy_changed": false,
+      "template_changed": false,
+      "sender_changed": false,
+      "city_policy_changed": false,
+      "business_logic_changed": false,
+      "terminal_manual_rows_promoted": 0,
+      "emails_invented": 0,
+      "third_party_email_evidence_used": false
+    },
+    "options_to_reach_40_require_authorization": [
+      "Let the canonical 15:00 scheduler accumulate over several days",
+      "Continue serial manual rounds this session (~7-9h)",
+      "Raise per-round throughput (Lead-Factory change - out of scope, separate authorization)",
+      "Lower the acceptance watermark from 40 to a reachable value (policy decision)"
+    ]
   }
 }
