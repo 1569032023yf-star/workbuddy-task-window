@@ -4,8 +4,10 @@
 > - `1569032023yf-star/workbuddy-task-window` (branch `main`) = **PRODUCTION SOURCE / PRODUCTION HANDOFF** ← this repo
 > - `1569032023yf-star/roktandrazo-outreach-codex` = **DEVELOPMENT SOURCE / CODEX HANDOFF** (do NOT write production handoff here)
 >
-> Generated: 2026-09-21T16:55:00+08:00 (Asia/Shanghai)
-> REFRESH TYPE: **PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40**: STOPPED on genuine software regression (city-queue deadlock). No code / schema / V2 / MX / template / sender / city-policy change. No SMTP, no send, no FSP.
+> Generated: 2026-09-23T01:00:00+08:00 (Asia/Shanghai)
+> REFRESH TYPE: **PHASE 4A.5E — HANDOFF SYNC ONLY (official-site network path diagnostic MIRRORED from Codex)**: the diagnostic was accidentally executed in the development/Codex repo (`bf32df09`), not here. It is mirrored into this handoff; `DIAGNOSTIC_RERUN=false`. This repo ran no probe, no Inventory, no code/schema change, no DB write, no send, no scheduler change.
+> PREVIOUS REFRESH: PHASE 4A.5D — deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt: deploy/validation PASSED, city advancement NOT proven, STOPPED at section D.
+> PREVIOUS REFRESH (2): PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40: STOPPED on genuine software regression (city-queue deadlock).
 > TIMESTAMP NOTE: previous handoff stamped `Generated: 2026-09-14T14:37:00+08:00` while also recording the 2026-09-14 inventory start as `15:01 +08` and calling it "still running as of 14:37". 14:37 < 15:01 is impossible → the 14:37 timestamp was wrong (see section I / FINAL HANDOFF_TIMESTAMP_ERROR). Correct inventory start = 15:01:10 +08 (= 07:01:10 UTC); correct audit time = 15:46 +08 (this refresh).
 > NOTE: the live production DB is `roktandrazo-outreach/data/bd_leads.db`; the root `roktandrazo-outreach/bd_leads.db` is a 0-byte stale file and is NOT authoritative.
 
@@ -1654,3 +1656,94 @@ Inventory `1784775229336` left **PAUSED** (fail-closed, acceptance gate not met)
 ### Next recommended action
 
 One Codex batch limited to `discovery/discovery_service.py`: give the `review_recovery` replay state a bounded, evidence-backed exit. Then re-run a single canonical Inventory.
+
+---
+
+## AC. PHASE 4A.5E — HANDOFF SYNC ONLY: OFFICIAL-SITE NETWORK PATH DIAGNOSTIC (MIRRORED)
+
+- **Generated:** 2026-09-23T01:00:00+08:00 (Asia/Shanghai)
+- **Type:** HANDOFF SYNC ONLY. **No production runtime action was performed in this repo** — no network
+  probe, no Chromium launch, no Inventory, no DB read or write, no send, no scheduler change, no code change.
+- **Report:** `handoff/workbuddy/phases/PHASE4A5E_NETWORK_PATH_DIAGNOSTIC.md` (mirror)
+
+### AC.1 Provenance — the diagnostic was run in the WRONG repo
+
+This is the reason this phase exists. A read-only network diagnostic that belonged to the **production**
+workflow was accidentally executed inside the **development/Codex** repository. The production handoff is
+therefore missing the phase record, so it is mirrored here.
+
+```
+SOURCE_EVIDENCE_REPO   = 1569032023yf-star/roktandrazo-outreach-codex   (DEVELOPMENT SOURCE / CODEX HANDOFF)
+SOURCE_EVIDENCE_COMMIT = bf32df09688763ab2e25e86fee914023a8d6f33a
+                         ("Diagnose official-site network path", 2026-09-22 23:04:17 +08)
+SOURCE_EVIDENCE_PATH   = handoff/workbuddy/phases/PHASE4A5E_NETWORK_PATH_DIAGNOSTIC.md  (in that repo)
+MIRROR_TARGET_REPO     = 1569032023yf-star/workbuddy-task-window        (PRODUCTION SOURCE / PRODUCTION HANDOFF)
+DIAGNOSTIC_RERUN       = false
+ADOPTED_NOT_RECOMPUTED = true
+```
+
+Repository separation (production handoff written only to `workbuddy-task-window`) was **violated in the
+source event** and is **restored** by this mirror. No production artefact was altered by the mistake.
+
+### AC.2 Verified result (adopted as-is from `bf32df09`)
+
+```
+ROOT_CAUSE = automation_client/network_fingerprint
+```
+
+Sciencenter (`discovery_id=362`) — apex and `www`, all four static routes:
+
+| Route | apex `https://sciencenter.org/` | www `https://www.sciencenter.org/` |
+|---|---|---|
+| `as_is` (current env) | HTTP **400** (226 bytes) | HTTP **400** (226 bytes) |
+| `direct` (process no-proxy) | HTTP **400** (226 bytes) | HTTP **400** (226 bytes) |
+| `explicit_proxy` (`127.0.0.1:3213`) | HTTP **400** (226 bytes) | HTTP **400** (226 bytes) |
+| `browser_chromium_direct_no_proxy` | TimeoutError `official_site_browser_page_timeout:12000ms` | TimeoutError `official_site_browser_page_timeout:12000ms` |
+
+Transport all succeeded: `DNS = 209.87.149.189`, `TCP_443 = OK`, `TLS = OK: TLSv1.3`. Visible
+`Sciencenter` text = false; visible `info@sciencenter.org` = false on every route.
+
+Controls (both selected by a production-DB **read-only** query from recent qualifying official evidence):
+
+| Control | proxy | direct |
+|---|---|---|
+| `https://cantripcards.com/` (`lead_discovery_results.id=306`) | HTTP **200** (124545 bytes) | HTTP **200** (126369 bytes) |
+| `https://ithacareuse.org/contact/` (`id=383`) | HTTP **200** (135065 bytes) | HTTP **200** (135065 bytes) |
+
+**Therefore:** not a general proxy-path failure; not a general local-egress failure. Also **not** a source-code
+defect — the diagnostic changed no code and establishes none. It is consistent with the site rejecting or not
+completing automated client traffic from this environment after transport/TLS succeed.
+
+### AC.3 Metrics — CARRIED FORWARD, not re-measured
+
+No production runtime action was permitted in this phase, so **no live DB read was performed**. The five
+metrics below are **carried forward unchanged from Section 4A.5D** and must be re-verified before any
+status decision.
+
+```
+SAFE_METRICS_SOURCE_PHASE            = 4A.5D
+SAFE_METRICS_RECONFIRMED_IN_THIS_PHASE = false
+V2_ELIGIBLE_UNSENT                   = 16
+READ_ONLY_SAFE_UNIQUE_ORGS           = 16
+MATERIALIZED_FSP_PLANNED             = 0
+BROAD_READY                          = 50
+VISIBLE_FIRST_PARTY_EMAILS           = 348
+```
+
+### AC.4 Safety / operational state
+
+```
+CODE_CHANGES = 0        DB_WRITES = 0        SMTP = 0        IMAP = 0        FSP = 0        INVENTORY_RUNS = 0
+PRODUCTION_FILES_CHANGED = 0   PRODUCTION_DB_WRITES = 0   SCHEDULER_CHANGES = 0
+```
+
+Scheduler state is **unchanged by this phase**: Inventory `1784775229336` remains **PAUSED** (as left by
+4A.5D, fail-closed); Pre-Send/Preflight/Outreach PAUSED; Recovery Sync ACTIVE. No system proxy, Astrill
+setting, WorkBuddy automation, Windows task or service was touched.
+
+### AC.5 Next action
+
+**STOP.** This phase authorizes no remediation, deployment, Inventory run, sending, or scheduler resume.
+The 11-row `review_recovery` liveness gap from 4A.5D is still the open blocker for city advancement; the
+site-specific Sciencenter automation-client block is a **separate** issue and needs its own authorization.
+

@@ -400,3 +400,44 @@ Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreac
   retry selector but absent from `_linked_backlog_terminal_outcome`, with `_defer_access_unreachable`
   never firing → monotonic reselection (attempts 7–65).
 - SAFE `16 → 16`. `SMTP = 0`, sends today = 0, `FSP planned = 0`. Inventory automation left **PAUSED** (fail-closed).
+
+## 2026-09-23T01:00:00+08:00 — PHASE 4A.5E: HANDOFF SYNC ONLY — official-site network path diagnostic (MIRRORED)
+
+- **New report:** `handoff/workbuddy/phases/PHASE4A5E_NETWORK_PATH_DIAGNOSTIC.md`.
+- **This phase performed NO production runtime action.** No network probe, no Chromium launch, no Inventory,
+  no DB read or write, no send, no scheduler change, no code change. (`CODE_CHANGES = 0`, `DB_WRITES = 0`,
+  `SMTP = 0`, `IMAP = 0`, `FSP = 0`, `INVENTORY_RUNS = 0`.)
+- **Why this phase exists:** a read-only network diagnostic that belonged to the **production** workflow was
+  accidentally executed inside the **development/Codex** repo. The production handoff was therefore missing
+  the phase record; it is mirrored here rather than re-executed.
+
+```
+SOURCE_EVIDENCE_REPO   = 1569032023yf-star/roktandrazo-outreach-codex
+SOURCE_EVIDENCE_COMMIT = bf32df09688763ab2e25e86fee914023a8d6f33a  ("Diagnose official-site network path")
+DIAGNOSTIC_RERUN       = false
+ADOPTED_NOT_RECOMPUTED = true
+```
+
+- **Verified result (adopted as-is):** `ROOT_CAUSE = automation_client/network_fingerprint` for the remaining
+  `discovery_id=362` (Sciencenter, Ithaca NY).
+  - apex `https://sciencenter.org/` — `as_is` HTTP **400**, `direct` HTTP **400**, `explicit_proxy` HTTP **400** (226 bytes each).
+  - www `https://www.sciencenter.org/` — `as_is` HTTP **400**, `direct` HTTP **400**, `explicit_proxy` HTTP **400** (226 bytes each).
+  - `browser_chromium_direct_no_proxy` — `TimeoutError official_site_browser_page_timeout:12000ms` on **both** host forms.
+  - Transport fine on every route: DNS `209.87.149.189`, `TCP_443 = OK`, `TLS = OK: TLSv1.3`. No visible site text, no visible first-party email.
+  - **Controls** (production-DB read-only selection): `https://cantripcards.com/` (`lead_discovery_results.id=306`)
+    and `https://ithacareuse.org/contact/` (`id=383`) both returned HTTP **200** through **proxy and direct**.
+- **Conclusion:** not a general proxy-path failure, not a general local-egress failure, and **not** a proven
+  source-code defect. Consistent with the site rejecting or not completing automated client traffic from this
+  environment after transport/TLS succeed.
+- **Metrics are CARRIED FORWARD, not re-measured:** because no production runtime action was permitted, no live
+  DB read was performed. `SAFE_METRICS_SOURCE_PHASE = 4A.5D`, `SAFE_METRICS_RECONFIRMED_IN_THIS_PHASE = false`
+  (V2_ELIGIBLE_UNSENT 16 / READ_ONLY_SAFE_UNIQUE_ORGS 16 / MATERIALIZED_FSP_PLANNED 0 / BROAD_READY 50 /
+  VISIBLE_FIRST_PARTY_EMAILS 348).
+- **Scheduler state unchanged:** Inventory `1784775229336` remains **PAUSED**; Pre-Send/Preflight/Outreach PAUSED;
+  Recovery Sync ACTIVE. No system proxy, Astrill setting, WorkBuddy automation, Windows task or service touched.
+- **Open blocker unchanged:** the 11-row `review_recovery` liveness gap (ids 291,292,294,356,362,369,392,393,395,404,407)
+  → `city_completion_checks(20,"browser_maps") = 5/9` → Ithaca stays active. The site-specific Sciencenter
+  automation-client block is a separate issue requiring its own authorization.
+- **Repository authority:** production handoff written to `workbuddy-task-window` only. The separation rule was
+  violated in the source event and is restored by this mirror.
+
