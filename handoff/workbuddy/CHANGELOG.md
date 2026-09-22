@@ -379,3 +379,24 @@ Repository authority: `workbuddy-task-window` = PRODUCTION; `roktandrazo-outreac
 - Removed 5 legacy automations; moved 57 files to `_retired/p3d_20260909/`.
 - BDExecutionHost kept Stopped (audited, not deleted). DUPLICATE_ACTIVE_TRIGGER_COUNT validated = 0.
 - Frozen send chain (V2/MX/Preflight/Sender/final_send_plan/Auth) untouched.
+
+## 2026-09-22T17:28:41+08:00 — PHASE 4A.5D: deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt
+
+- Deployed exactly **3** production files from `dc493825cdf8d57342ca90cc582807d5d9623f67`
+  (`discovery/discovery_service.py`, `discovery/providers/browser_maps.py`, `retail_city_queue.py`);
+  SHA256 byte-identical on write and after A/B restore. Backup: `output/backup_pre_dc493825/`.
+  Send-path files and the DB schema untouched.
+- Validation: 47 targeted passes; controlled A/B (base 4A.7 vs deployed, tests held constant) →
+  **`NEW_FAILURES_INTRODUCED = 0`**, `NEW_ERRORS_INTRODUCED = 0`, 1 pre-existing failure **fixed** by the deploy.
+  Residual failures trace to a stale shared test fixture (`DiscoveryDb` lacks `leads.organization_key`),
+  not production runtime code.
+- Run 1 (`inventory:2026-09-22:1f8a22c4`, `partial`/`safe_inventory_gap`, 610 s) closed the 4A.5C
+  regression class: `website_lookup_pending` 8 → 0, `OPEN_STAGED_PENDING` 8 → 0,
+  `OPEN_RETRYABLE_NETWORK` 1 → 0, `website_not_found` 11 → 19, `no_public_email` 19 → 20.
+- City advancement **NOT proven**: `city_completion_checks(20,"browser_maps")` = 5/9,
+  `ITHACA_STATUS = active`, `CITY_ADVANCED = false`. **Stopped at section D; Run 2 not started;
+  Saratoga not activated.** `STOP_REASON = city_advancement_not_proven:review_recovery_liveness_gap`.
+- New root cause identified: 11 rows stuck in `validation_status='review_recovery'` — admitted by the
+  retry selector but absent from `_linked_backlog_terminal_outcome`, with `_defer_access_unreachable`
+  never firing → monotonic reselection (attempts 7–65).
+- SAFE `16 → 16`. `SMTP = 0`, sends today = 0, `FSP planned = 0`. Inventory automation left **PAUSED** (fail-closed).

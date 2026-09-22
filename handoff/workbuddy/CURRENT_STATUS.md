@@ -1607,3 +1607,50 @@ production code changed = 0 files · DB schema unchanged.
 4. Only then resume SAFE accumulation toward 40 in the NY queue.
 
 `READY_FOR_40_RECIPIENT_ACCEPTANCE = false`. Do not lower the 40 watermark; do not remove the gate.
+
+
+---
+
+## PHASE 4A.5D — DEPLOY CODEX 4A.8–4A.8D + PROVE ITHACA → SARATOGA
+
+- **Generated:** 2026-09-22T17:28:41+08:00 (Asia/Shanghai)
+- **Status:** deployment + validation PASSED (`NEW_FAILURES_INTRODUCED=0`); **city advancement NOT achieved — STOPPED at section D; Run 2 NOT started.**
+- **Report:** `handoff/workbuddy/phases/PHASE4A5D_DEPLOY_4A8D_CITY_ADVANCEMENT.md`
+
+### Five metrics (each with its own authority)
+
+| Metric | Value | Authority |
+|---|---|---|
+| `V2_ELIGIBLE_UNSENT` | 16 | live read-only recount via `campaign_eligible_v2.select_candidates_for_plan_v2` + deployed V2+MX gate (2026-09-22) |
+| `READ_ONLY_SAFE_UNIQUE_ORGS` | 16 | same frozen V2+MX path, distinct `organization_key` (`bd_orchestrator._count_safe_ready_pool`) |
+| `MATERIALIZED_FSP_PLANNED` | 0 | `final_send_plan.status='planned'` |
+| `BROAD_READY` | 50 | `bd_orchestrator._count_broad_ready_pool()` live |
+| `VISIBLE_FIRST_PARTY_EMAILS` | 348 | `leads.email` non-empty AND `email_verified_on_official_site=1` |
+
+`BROAD_READY_STORED_FLAG` = 95 (stored flag; not the same measure as `BROAD_READY`).
+
+### What the deploy fixed (4A.5C regression class closed)
+
+- `WEBSITE_LOOKUP_PENDING` (active city) **8 → 0**; `OPEN_STAGED_PENDING_ACTIVE_CITY` **8 → 0**; `OPEN_RETRYABLE_NETWORK_ACTIVE_CITY` **1 → 0**.
+- 8 rows were processed once and terminalised as `website_not_found` (`WEBSITE_NOT_FOUND_STATUS` 11 → 19; `NO_PUBLIC_EMAIL` 19 → 20).
+- In 4A.5C the same 8 rows were reselected every round with zero migration (rounds 4–8). That deadlock is gone.
+- `NEW_FAILURES_INTRODUCED = 0` (two independent controlled A/B experiments); the deploy additionally **fixed** one pre-existing failure.
+
+### What still blocks (new root cause, not the 4A.5C defect)
+
+- `ACTIVE_CITY` is still **Ithaca, NY** (id 20); `city_completion_checks(20,"browser_maps")` = **5/9**; `ITHACA_STATUS` = `active` (not `search_matrix_exhausted`).
+- **11 blocking rows** (ids 291,292,294,356,362,369,392,393,395,404,407), all in `validation_status='review_recovery'` with empty `rejection_reason`, `attempts` 7–65 and `automation_terminal_outcome = null`.
+- Root cause: the retry selector admits `review_recovery` (`discovery_service.py:607,610,625`) but `_linked_backlog_terminal_outcome` (`:698-723`) has no branch for it, and `_defer_access_unreachable` (`:682-684`) never fires. The lane therefore re-selects them forever and the city can never complete.
+- The four failing checks (`all_candidates_classified`, `no_unprocessed_candidates`, `official_site_recheck`, `review_recovery`) all derive from the single `no_open_work` predicate and will flip together.
+
+### Scheduler
+
+Inventory `1784775229336` left **PAUSED** (fail-closed, acceptance gate not met) — operator decision point. Pre-Send/Preflight/Outreach PAUSED; Recovery Sync ACTIVE.
+
+### Safety
+
+`SMTP_enabled = 0`, sends today = 0, `MATERIALIZED_FSP_PLANNED = 0`, last send 2026-09-16T01:09:52.031266+08:00. No guessed/third-party emails, no manual recipients, no MX/V2 relaxation, no schema change, `ACCESS_UNREACHABLE_DEFERRED = 0`.
+
+### Next recommended action
+
+One Codex batch limited to `discovery/discovery_service.py`: give the `review_recovery` replay state a bounded, evidence-backed exit. Then re-run a single canonical Inventory.
