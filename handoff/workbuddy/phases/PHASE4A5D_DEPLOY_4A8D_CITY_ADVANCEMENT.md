@@ -259,6 +259,12 @@ STOP_REASON=city_advancement_not_proven:review_recovery_liveness_gap
 
 One Codex batch limited to `discovery/discovery_service.py`: give the `review_recovery` replay state a bounded, evidence-backed exit (terminaliser branch and/or attempt ceiling → `access_unreachable` deferral). Then re-run a single canonical Inventory; the four failing checks share the single `no_open_work` input and should flip together, unblocking `search_matrix_exhausted` and the Saratoga advance.
 
+## Handoff commit
+
+- `COMMIT_SHA = 8029142f0fa577c4ac6ddf6e669ac218fa253573`
+- `PUSH_SUCCESS = true` — verified authoritatively via `git ls-remote origin main` → `8029142f0fa577c4ac6ddf6e669ac218fa253573` (`refs/heads/main`).
+- Files in the commit: this report, `CHANGELOG.md`, `CURRENT_STATUS.md`, `LATEST_RESULT.json`. No production code, no DB, no credentials.
+
 ## Provenance
 
 Live reads only, all dated 2026-09-22 (Asia/Shanghai): `data/bd_leads.db` (`retail_city_queue`, `lead_discovery_results`, `leads`, `job_runs`, `system_config`), `job_runs.run_id=inventory:2026-09-22:1f8a22c4`, `output/4a5d_metrics_before_run1.json`, `output/4a5d_metrics_after_run1.json`, `output/4a5d_blockers.json`, `output/4a5d_ab_summary.json`, `output/4a5d_abnodes_summary.json`, `output/4a5d_run1_driver.log`, `output/backup_pre_dc493825/_deploy_manifest.txt`.
