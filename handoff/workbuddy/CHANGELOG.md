@@ -482,3 +482,46 @@ ADOPTED_NOT_RECOMPUTED = true
   remain PAUSED; Recovery Sync remains ACTIVE. No manual accumulation loop started.
 
 
+## 2026-09-23T14:40:00+08:00 — PHASE 4A.5G: unattended NY-queue SAFE40 accumulation — operating state CONFIRMED (OPERATIONS, READ-ONLY)
+
+- New report: `handoff/workbuddy/phases/PHASE4A5G_UNATTENDED_SAFE40_ACCUMULATION.md`.
+- **Nature:** operations phase. No development, no Codex work, no production code change, no DB write, no SMTP,
+  no send. Every number below is a **live read** on 2026-09-23 14:17–14:35 +08; nothing carried forward.
+- **Operating state confirmed:** `ACTIVE_CITY = Saratoga Springs, NY`, `Ithaca = search_matrix_exhausted`,
+  `CITY_QUEUE_ADVANCEMENT_VERIFIED = true`, 15 NY cities pending in the specified order
+  (Cooperstown → Lake Placid → … → Buffalo), `RUNNING_INVENTORY_JOBS = 0`, today's Inventory lock `released`,
+  `INVENTORY_RUNS_TODAY = 2` / `FAILED = 0` / `STALE_CLEANUP_24H = 0`.
+- **No duplicate Inventory authority:** a full process command-line scan (391 PIDs, via ctypes PEB read) found
+  **no** `bd_orchestrator.py` process and no manual accumulation driver; no Windows Inventory task exists; the
+  `BDExecutionHost` service is **Stopped** (DEMAND_START, exit 1077). The WorkBuddy Inventory automation
+  `1784775229336` remains the sole authority and was left **ACTIVE, untouched**.
+- **SAFE (fresh read-only V2+MX recompute, not carried forward):** `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16`
+  (`SAFE_GE_40 = false` → EXACT40 acceptance **not** triggered, Inventory **not** paused),
+  `MATERIALIZED_FSP_PLANNED = 0` reported separately. `BROAD_READY = 95` / `EMAIL_POOL = 604` are context only.
+  All 16 orgs are Ithaca-derived; a zero-SAFE-gain round is business yield, **not** a software failure.
+- **Send safety frozen:** `SMTP_enabled = 0`, `MATERIALIZED_FSP_PLANNED = 0`, `send_log` today = 0,
+  `OUTREACH_SEND_COUNT = 0`, `manual_send_queue = 0`, `SEND_LOG_TOTAL = 517`,
+  `LAST_SEND_AT = 2026-09-16T01:09:52+08:00`, `SMTP_CONNECTIONS = 0`.
+- **Runtime integrity (byte level):** exhaustive git-blob comparison against Codex `641b36b8` —
+  143/191 release `.py` files byte-identical; 38 dev-only files absent from production; 10 content differences are
+  dev-safety scaffolding (`bd_db.py`, `env_loader.py`), one migration copy and 7 test copies. Every file on the
+  discovery → V2 → MX → plan → send blast radius is identical → `V2_MX_POLICY_DRIFT = none`.
+  (A first pass using `git archive | tar -x` falsely reported 155/161 differences — `.gitattributes` EOL artefact.)
+- **DOCUMENTATION CORRECTION 1:** Windows `\RoktRazo-BD-Outreach` is **Enabled**, not Disabled as recorded on
+  2026-09-14. Live `schtasks`: Next Run `2026-09-23 23:00`, Last Run `2026-09-22 23:00:01`, result 0, action
+  `bd_orchestrator.py --stage outreach --live`; corroborated by `outreach` job_runs at 2026-09-21/22 15:00 UTC with
+  `stop_reason=final_send_plan_missing`. It is **structurally inert** (Pre-Send paused/disabled → no FSP can be
+  materialised; SMTP_enabled = 0; 0 sends since 2026-09-16) → bounded residual risk, **not** a send incident.
+  Recommendation only (NOT executed): disable it. `\RoktRazo-BD-PreSend` remains Disabled;
+  `\RoktRazo-BD-PostSend` remains Enabled (UNIQUE_REQUIRED).
+- **DOCUMENTATION CORRECTION 2:** `DUPLICATE_ACTIVE_TRIGGER_COUNT` corrected from `0` to `1` (that send-side
+  duplicate); `DUPLICATE_INVENTORY_AUTHORITY` remains `false`.
+- **Checkpoint mechanism installed (read-only, NOT a second scheduler):** `output/_4a5g_state.py` +
+  `output/_4a5g_checkpoint.py` + automation `75fbacd1-fa43-46ea-8388-1d47647c3f4d` (daily 15:40 +08). It measures
+  live state, diffs against the previous snapshot and escalates on **milestones** (city change / SAFE change /
+  new SAFE orgs / SAFE ≥ 40) and **real blockers** (SMTP≠0, send today>0, FSP>0, concurrent inventory jobs>1,
+  inventory job failed today, stale_cleanup within 24h, SAFE metric unavailable). Baseline checkpoint
+  2026-09-23 14:23:36 +08: `BLOCKERS = none`, `WARNINGS = none`, `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION`.
+- **FINAL:** `OPERATING_STATE_CONFIRMED = true`, `BLOCKERS = none`, `SAFE40_REACHED = false`,
+  canonical Inventory scheduler left running, `STOP = true` — no PreSend/Preflight/Outreach/send activity initiated.
+
