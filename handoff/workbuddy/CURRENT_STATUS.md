@@ -4,9 +4,10 @@
 > - `1569032023yf-star/workbuddy-task-window` (branch `main`) = **PRODUCTION SOURCE / PRODUCTION HANDOFF** ← this repo
 > - `1569032023yf-star/roktandrazo-outreach-codex` = **DEVELOPMENT SOURCE / CODEX HANDOFF** (do NOT write production handoff here)
 >
-> Generated: 2026-09-23T14:40:00+08:00 (Asia/Shanghai)
-> REFRESH TYPE: **PHASE 4A.5G — UNATTENDED NY-QUEUE SAFE40 ACCUMULATION: OPERATING STATE CONFIRMED (OPERATIONS PHASE, READ-ONLY).** No development, no Codex work, no code change, no DB write, no send. Live re-verified: ACTIVE_CITY = Saratoga Springs, Ithaca = `search_matrix_exhausted`, city queue advancing, Inventory = sole scheduler authority (no duplicate Inventory authority exists), PreSend/Preflight/Outreach PAUSED, SMTP=0, FSP=0. Fresh read-only V2+MX recompute gives `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16` (< 40 → accumulation continues, EXACT40 acceptance NOT run). Two documentation corrections: the Windows `\RoktRazo-BD-Outreach` task is **Enabled** (previously recorded Disabled) and a read-only 15:40 milestone checkpoint automation was added. Runtime core is byte-identical to Codex `641b36b8`.
-> PREVIOUS REFRESH: PHASE 4A.5F — FINAL DISCOVERY-LIVENESS RELEASE DEPLOYED + ITHACA → SARATOGA PROVEN. Deployed exactly one file (`discovery/discovery_service.py` @ Codex `641b36b8`, byte-identical). Run 1 drove Ithaca to `search_matrix_exhausted` (city checks 5/9 → 9/9, linked automatic retry 11 → 0); Run 2 activated **Saratoga Springs, NY**. Inventory automation restored **ACTIVE**. No SMTP, no send, no FSP, no V2/MX change, no schema migration.
+> Generated: 2026-09-23T17:10:00+08:00 (Asia/Shanghai)
+> REFRESH TYPE: **PHASE 4A.5H — SCHEDULER HYGIENE + CONTINUE UNATTENDED SAFE40.** Disabled exactly one legacy Windows send-side trigger, `\RoktRazo-BD-Outreach` (no delete, no action change; PreSend / PostSend untouched). WorkBuddy is now unambiguously the sole Outreach scheduling authority: `DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0`. Fresh read-only checkpoint after the change: `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16` (< 40 → accumulation continues, EXACT40 acceptance NOT run), `MATERIALIZED_FSP_PLANNED = 0`, `SMTP_ENABLED = 0`, `SEND_LOG_TODAY = 0`, `RUNNING_INVENTORY_JOBS = 0`, inventory lock `released`, BLOCKERS = none. The canonical 15:00 Inventory automation ran normally today as the third run of the day. Also corrected operating-policy wording so it no longer implies normal SAFE growth needs fresh user authorization. No code change, no DB write, no schema change, no Codex work, no send.
+> PREVIOUS REFRESH: PHASE 4A.5G — UNATTENDED NY-QUEUE SAFE40 ACCUMULATION: OPERATING STATE CONFIRMED (OPERATIONS PHASE, READ-ONLY). Live re-verified ACTIVE_CITY = Saratoga Springs, Ithaca = `search_matrix_exhausted`, city queue advancing, Inventory = sole scheduler authority, PreSend/Preflight/Outreach PAUSED, SMTP=0, FSP=0, SAFE = 16. Two documentation corrections: Windows `\RoktRazo-BD-Outreach` found **Enabled**; a read-only 15:40 milestone checkpoint automation (`75fbacd1`) was added.
+> PREVIOUS REFRESH (0): PHASE 4A.5F — FINAL DISCOVERY-LIVENESS RELEASE DEPLOYED + ITHACA → SARATOGA PROVEN. Deployed exactly one file (`discovery/discovery_service.py` @ Codex `641b36b8`, byte-identical). Run 1 drove Ithaca to `search_matrix_exhausted` (city checks 5/9 → 9/9, linked automatic retry 11 → 0); Run 2 activated **Saratoga Springs, NY**. Inventory automation restored **ACTIVE**. No SMTP, no send, no FSP, no V2/MX change, no schema migration.
 > PREVIOUS REFRESH (1): PHASE 4A.5E — HANDOFF SYNC ONLY (official-site network path diagnostic mirrored from Codex `bf32df09`; `DIAGNOSTIC_RERUN=false`).
 > PREVIOUS REFRESH (2): PHASE 4A.5D — deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt: deploy/validation PASSED, city advancement NOT proven, STOPPED at section D.
 > PREVIOUS REFRESH (3): PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40: STOPPED on genuine software regression (city-queue deadlock).
@@ -18,7 +19,24 @@
 ## C. REQUIRED CURRENT STATUS FIELDS
 
 ```
-CURRENT_PHASE              = PHASE 4A.5G (unattended NY-queue SAFE40 accumulation — operating state confirmed, OPERATIONS/READ-ONLY) — canonical scheduler left running
+CURRENT_PHASE              = PHASE 4A.5H (scheduler hygiene + continue unattended SAFE40 — OPERATIONS/READ-ONLY
+                             except one authorized Windows task-disable) — canonical scheduler left running
+PHASE_4A5H_VERIFIED        = 2026-09-23 16:52–17:05 +08, live reads/actions only.
+                             (a) Windows `\RoktRazo-BD-Outreach` DISABLED (was Enabled; this was the sole
+                                 duplicate send-side trigger). Not deleted; action/command unchanged; the task
+                                 definition file was not modified beyond the enable flag.
+                             (b) DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0. DUPLICATE_INVENTORY_AUTHORITY = false.
+                             (c) Post-change read-only checkpoint: ACTIVE_CITY = Saratoga Springs, NY;
+                                 LAST_COMPLETED_CITY = Ithaca, NY (search_matrix_exhausted);
+                                 NEXT_PENDING_CITY = Cooperstown, NY; READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16;
+                                 MATERIALIZED_FSP_PLANNED = 0; SMTP_ENABLED = 0; SEND_LOG_TODAY = 0;
+                                 RUNNING_INVENTORY_JOBS = 0; INVENTORY_LOCK = released (business_date
+                                 2026-09-23, updated 07:04:00 UTC); BLOCKERS = none; SAFE40_REACHED = false.
+                             (d) Inventory 1784775229336 = ACTIVE, Recovery = ACTIVE, PreSend/Preflight/Outreach
+                                 = PAUSED, checkpoint 75fbacd1 = ACTIVE, BDExecutionHost = STOPPED.
+                             (e) CODE_CHANGES = 0 · DB_WRITES = 0 · INVENTORY_RUNS_MANUAL = 0
+                                 · SMTP_CONNECTIONS = 0 · OUTREACH_SEND_COUNT = 0.
+                             CONTINUE_UNATTENDED_ACCUMULATION · STOP = true (no PreSend/send initiated).
 PHASE_4A5G_VERIFIED        = 2026-09-23 14:17–14:35 +08, live reads only. ACTIVE_CITY = Saratoga Springs, NY;
                              Ithaca = search_matrix_exhausted; 15 NY cities pending in the specified order
                              (Cooperstown → Lake Placid → … → Buffalo); SOLE Inventory authority = WorkBuddy
@@ -35,31 +53,44 @@ PRODUCTION_STATUS          = discovery/discovery_service.py at Codex 641b36b8 (b
                              ACTIVE_CITY = Saratoga Springs, NY; Ithaca = search_matrix_exhausted;
                              Inventory + Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40);
                              NO sends since 2026-09-16T01:09:52+08:00
-CURRENT_BLOCKER            = SAFE=16 (<40 target) — re-measured fresh in 4A.5G. This is NOT a software failure:
-                             the 4A.5F release unblocked city-queue advancement, but the V2-safe ceiling is
-                             unchanged — new eligible organizations still require normal first-party discovery
-                             plus authorized OFFICIAL_EMAIL_ENRICHMENT / V2-hygiene reconciliation. Upper NYC-tier
-                             metro names (Michaels, Barnes & Noble, TJX, Kohl's) remain operationally
-                             access_unreachable. ZERO engineering blocker in 4A.5G (no crash, no lock storm,
-                             no duplicate Inventory authority, no V2/MX regression, no DB integrity issue).
+CURRENT_BLOCKER            = SAFE=16 (<40 target) — re-measured fresh in 4A.5H. This is NOT a software failure
+                             and it is NOT gated on fresh user authorization: the canonical Inventory
+                             automation already owns and may continue the ALREADY-DEPLOYED automatic lanes
+                             (Places/BrowserMaps discovery, official-site resolution, existing first-party
+                             enrichment, visible official-email extraction, generic inbox routing, evidence
+                             creation, V2/MX SAFE recomputation, city completion/advancement). Those lanes
+                             remain authorized for unattended operation. The V2-safe ceiling is unchanged
+                             simply because discovery yield per city is low. Upper NYC-tier metro names
+                             (Michaels, Barnes & Noble, TJX, Kohl's) remain operationally access_unreachable.
+                             ZERO engineering blocker in 4A.5H (no crash, no lock storm, no duplicate Inventory
+                             authority, no V2/MX regression, no DB integrity issue).
+SAFE_GROWTH_AUTHORIZATION  = The EXISTING deployed automatic lanes above are AUTHORIZED for unattended
+                             operation and need NO further user authorization. Separate explicit user
+                             authorization is required ONLY for: (1) a genuinely new enrichment/recovery
+                             lane not already deployed; (2) changing V2 policy; (3) changing MX policy;
+                             (4) changing hygiene/send-eligibility rules; (5) manual recipient creation;
+                             (6) sending.
 PRODUCTION_SCHEDULER_AUTHORITY = WorkBuddy Automation (workbuddy_automation) — SOLE scheduler authority.
-                             BDExecutionHost Windows Service = Stopped, DEMAND_START (verified 2026-09-23 4A.5G).
-                             Windows PostSend = UNIQUE_REQUIRED (Enabled). Windows Outreach = Enabled but
-                             structurally inert (see DUPLICATE_ACTIVE_TRIGGER_COUNT).
+                             BDExecutionHost Windows Service = Stopped, DEMAND_START (verified 2026-09-23 4A.5H).
+                             Windows PostSend = UNIQUE_REQUIRED (Enabled, untouched).
+                             Windows Outreach = **DISABLED as of 2026-09-23 16:59 +08 (PHASE 4A.5H)** —
+                             it was the only duplicate send-side trigger; not deleted, action unchanged.
+                             Windows PreSend = Disabled (untouched).
                              No second/parallel scheduler and no second Inventory trigger.
-WORKBUDDY_AUTOMATIONS      = see section below (Inventory + Recovery Sync ACTIVE; PreSend/Preflight/Outreach PAUSED)
+WORKBUDDY_AUTOMATIONS      = see section below (Inventory + Recovery Sync + checkpoint ACTIVE; PreSend/Preflight/Outreach PAUSED)
 WINDOWS_TASKS              = see section below
-DUPLICATE_ACTIVE_TRIGGER_COUNT = CORRECTED 2026-09-23 (4A.5G live verification): 1 live duplicate —
-                             Windows `\RoktRazo-BD-Outreach` is ENABLED (fires `--stage outreach --live`
-                             daily 23:00 +08) while the canonical WorkBuddy Outreach automation is PAUSED.
-                             It is structurally inert today (outreach stops on `final_send_plan_missing`;
-                             Pre-Send is PAUSED/Disabled so no FSP can be materialised; SMTP_enabled=0;
-                             0 sends since 2026-09-16) → residual risk bounded, NOT a send incident.
-                             The earlier `0` was based on a stale 2026-09-14 reading that listed this task
-                             as Disabled. Windows `\RoktRazo-BD-PreSend` = Disabled (unchanged).
+DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0 (PHASE 4A.5H). Recorded 1 in 4A.5G — the Windows
+                             `\RoktRazo-BD-Outreach` task was ENABLED and fired `--stage outreach --live`
+                             daily 23:00 +08 while the canonical WorkBuddy Outreach automation was PAUSED.
+                             It was structurally inert (outreach stopped on `final_send_plan_missing`;
+                             Pre-Send PAUSED/Disabled so no FSP could be materialised; SMTP_enabled=0;
+                             0 sends since 2026-09-16) → bounded residual risk, NOT a send incident.
+                             It has now been DISABLED, satisfying the production authority contract that
+                             WorkBuddy remains the sole Outreach scheduling authority.
+                             DUPLICATE_ACTIVE_TRIGGER_COUNT (legacy alias) = 0.
                              DUPLICATE_INVENTORY_AUTHORITY = false (unchanged, re-verified).
-                             RECOMMENDED (operator decision, NOT executed): disable `\RoktRazo-BD-Outreach`.
-PRODUCTION_CODE_SHA        = re-verified THIS phase (4A.5G, byte level):
+PRODUCTION_CODE_SHA        = re-verified 4A.5G (byte level) and re-confirmed unchanged in 4A.5H
+                             (no production source file was written this phase):
                              discovery/discovery_service.py = d23c760aea14c995d859e709acf898ce8e691dd70b129df2f4b920d9e9617d07
                              (byte-identical to Codex 641b36b8; PRE_DEPLOY was 30b2487b...aaf3151af @ dc493825)
                              Exhaustive blob comparison vs Codex 641b36b8: 143/191 release .py files byte-identical;
@@ -69,69 +100,81 @@ PRODUCTION_CODE_SHA        = re-verified THIS phase (4A.5G, byte level):
                              (bd_orchestrator.py, discovery/discovery_service.py, discovery/providers/browser_maps.py,
                              retail_city_queue.py, campaign_eligible_v2.py, final_send_plan.py, drafter.py;
                              preflight_gate.py differs by line endings only) → V2_MX_POLICY_DRIFT = none.
-DATABASE_SCHEMA_CHANGED    = false  (no migration in 4A.5G; DB_MIGRATION_REQUIRED = false; DB opened read-only)
+DATABASE_SCHEMA_CHANGED    = false  (no migration in 4A.5G; no migration in 4A.5H; DB_MIGRATION_REQUIRED = false;
+                             in 4A.5H the DB was opened read-only mode=ro and never written)
 FROZEN_FILES_CHANGED       = false  (V2 / MX / Preflight / Sender / final_send_plan / campaign_eligible_v2 untouched;
-                             PRODUCTION_CODE_CHANGED_THIS_PHASE = false)
+                             PRODUCTION_CODE_CHANGED_THIS_PHASE = false · CODE_CHANGES = 0)
 SAFE_METRIC_DEFINITION     = see section D (5 distinct metrics, each with authority)
 SAFE_CURRENT               = canonical SAFE_FSP (materialized final_send_plan.status='planned') = 0
                              (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16 — FRESH read-only recompute
-                             2026-09-23 14:23 +08 in PHASE 4A.5G, V2+MX enforced, NOT carried forward.
+                             2026-09-23 17:00:43 +08 in PHASE 4A.5H (post-disable checkpoint), V2+MX enforced,
+                             NOT carried forward. Same value as the 4A.5G 14:23 recompute → no SAFE movement.
                              SAFE inventory and FSP are reported separately, never conflated.
                              BROAD_READY stored flag = 95 and EMAIL_POOL = 604 are context only, NOT SAFE.)
                              SAFE_GE_40 = false → EXACT40 acceptance NOT triggered, Inventory NOT paused.
-LAST_INVENTORY_RUN         = 2026-09-23 (two runs, both from the 4A.5F acceptance; no new run in 4A.5G):
+LAST_INVENTORY_RUN         = 2026-09-23 (three runs; the third is the canonical 15:00 automation's own run):
                              Run 1 = inventory:2026-09-23:3e75c913, partial/safe_inventory_gap, 541 s —
                                      Ithaca closed: city checks 5/9 -> 9/9, linked automatic retry 11 -> 0
                              Run 2 = inventory:2026-09-23:86d61cde, partial/safe_inventory_gap, 169 s —
                                      Saratoga Springs activated; DISCOVERY_RESULTS_SEEN=2, NEW_UNIQUE_PLACES=1
-                             Daily 15:00 automation ACTIVE. INVENTORY_RUNS_TODAY=2, FAILED=0,
-                             STALE_CLEANUP_24H=0, inventory lock = released.
-                             Next run = 2026-09-23 15:00 +08 (automatic, not to be driven manually).
+                             Run 3 = inventory:2026-09-23:f857bc6b, partial/safe_inventory_gap, 152 s,
+                                     2026-09-23 07:01:28 -> 07:04:00 UTC (= 15:01:28 -> 15:04:00 +08) —
+                                     the canonical 15:00 daily automation firing normally and unattended;
+                                     actual=16/50; Saratoga still active (not yet exhausted, expected).
+                             INVENTORY_RUNS_TODAY=3, FAILED=0, STALE_CLEANUP_24H=0, inventory lock = released.
+                             Next run = 2026-09-24 15:00 +08 (automatic, not to be driven manually).
 NEXT_ACTION                = (1) Leave the canonical Inventory scheduler running UNATTENDED through the NY
                              queue (Saratoga Springs → Cooperstown → Lake Placid → … → Buffalo) until
                              READ_ONLY_V2_SAFE_UNIQUE_ORGS >= 40. Do NOT start a manual loop.
-                             (2) Milestones are now checkpointed automatically by read-only automation
+                             (2) Milestones are checkpointed automatically by read-only automation
                              75fbacd1-fa43-46ea-8388-1d47647c3f4d (daily 15:40 +08): city change /
-                             SAFE change / real blocker / SAFE >= 40.
-                             (3) On SAFE >= 40: PAUSE scheduled Inventory, then run EXACT40 NO-SMTP ACCEPTANCE
+                             SAFE change / real blocker / SAFE >= 40. Verified firing on its own
+                             2026-09-23 15:40:52 +08.
+                             (3) The existing deployed automatic lanes (Places/BrowserMaps discovery,
+                             official-site resolution, existing first-party enrichment, visible official
+                             email extraction, generic inbox routing, evidence creation, V2/MX SAFE
+                             recomputation, city completion/advancement) are AUTHORIZED and need no further
+                             user authorization. Only a genuinely new enrichment/recovery lane, a V2/MX/
+                             hygiene policy change, manual recipient creation, or sending needs explicit
+                             user authorization.
+                             (4) On SAFE >= 40: PAUSE scheduled Inventory, then run EXACT40 NO-SMTP ACCEPTANCE
                              (exactly 40 recipients, 40 distinct orgs, frozen V2 + explicit MX, fresh
                              first-party evidence) with SMTP still 0. Never send before that.
-                             (4) OPERATOR DECISION PENDING: disable Windows `\RoktRazo-BD-Outreach`.
-                             (5) Raising SAFE above 16 still requires user authorization
-                             (OFFICIAL_EMAIL_ENRICHMENT / V2-hygiene reconciliation) — NOT auto.
+                             (5) DONE in 4A.5H: Windows `\RoktRazo-BD-Outreach` disabled (was OPERATOR
+                             DECISION PENDING in 4A.5G).
                              (6) RECOMMENDED: purge already-tracked *.db files from repo history per safe-git
                              rule E (separate destructive authorization — history rewrite).
 LAST_PRESEND_RUN           = automation-1785804406748 PAUSED (held, SAFE<40); no Presend execution in this phase
 LAST_PREFLIGHT_RUN         = automation-1785804413719 PAUSED (held, SAFE<40); no Preflight execution in this phase
 LAST_OUTREACH_RUN          = automation-1785804421539 PAUSED (held, SAFE<40); last actual send = 2026-09-16T01:09:52+08:00
 LAST_POSTSEND_RUN          = 2026-09-22 16:10 UTC (Windows task RoktRazo-BD-PostSend; completed, no sends)
-NEXT_ACTION                = (1) Let the canonical Inventory scheduler continue normal NY queue work
-                             (Saratoga Springs -> Cooperstown -> Lake Placid). Do NOT start a manual loop.
-                             (2) Raising SAFE above 16 still requires user authorization
-                             (OFFICIAL_EMAIL_ENRICHMENT / V2-hygiene reconciliation) — NOT auto.
-                             (3) Continue permanent handoff: every future production audit/result synced here.
-                             (4) RECOMMENDED: purge already-tracked *.db files from repo history per safe-git rule E
-                             (separate destructive authorization — history rewrite).
 ```
 
-### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — re-verified 2026-09-23 14:18 +08 (4A.5G, live `automation list`)
+### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — re-verified 2026-09-23 16:53 +08 (4A.5H, live `automation list`)
 | Automation ID | Name | Schedule | State |
 |---|---|---|---|
-| 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE — **SOLE Inventory authority**, untouched in 4A.5G |
+| 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE — **SOLE Inventory authority**, untouched in 4A.5H |
 | 1785804406748 | BD Production Pre-Send | Mon–Fri 21:30 +08 | PAUSED (held; SAFE<40) |
 | 1785804413719 | BD Production Preflight | Mon–Fri 21:50 +08 | PAUSED (held; SAFE<40) |
-| 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | PAUSED (held; SAFE<40) |
+| 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | PAUSED (held; SAFE<40) — sole Outreach authority now that the Windows duplicate is disabled |
 | 1786002601925 | BD Result Recovery Sync | daily 08:45 +08 | ACTIVE (support job; never starts Inventory) |
-| 75fbacd1-fa43-46ea-8388-1d47647c3f4d | 4A.5G SAFE40 Milestone Checkpoint | daily 15:40 +08 | **ACTIVE — created 2026-09-23 (4A.5G)**; READ-ONLY, never launches Inventory |
+| 75fbacd1-fa43-46ea-8388-1d47647c3f4d | 4A.5G SAFE40 Milestone Checkpoint | daily 15:40 +08 | **ACTIVE — kept in 4A.5H; proven firing on its own 2026-09-23 15:40:52 +08**; READ-ONLY, never launches Inventory, never writes the DB, never sends |
 
-### WINDOWS_TASKS — **re-verified live 2026-09-23 14:20 +08** (`schtasks /query /fo CSV /v`; supersedes the 2026-09-14 reading)
+### WINDOWS_TASKS — **re-verified live 2026-09-23 16:59 +08** (`schtasks /query /fo CSV /v`; supersedes the 2026-09-23 14:20 reading)
 | Task Name | State | Next Run | Last Run / Result | Classification |
 |---|---|---|---|---|
-| RoktRazo-BD-PreSend | **Disabled** | N/A | 2026-09-08 22:30 / 0 | DUPLICATE of canonical Pre-Send (suppressed) |
-| RoktRazo-BD-Outreach | **Enabled** ⚠️ (2026-09-14 record said Disabled — CORRECTED) | 2026-09-23 23:00 | 2026-09-22 23:00:01 / 0 | Legacy DUPLICATE of canonical Outreach. Fires `bd_orchestrator.py --stage outreach --live` daily 23:00 +08; currently stops on `final_send_plan_missing` (FSP cannot be materialised while Pre-Send is PAUSED/Disabled; SMTP_enabled=0) → structurally inert, NOT a send incident. RECOMMENDED: disable (operator decision). |
-| RoktRazo-BD-PostSend | **Enabled** | 2026-09-24 00:10 | 2026-09-23 00:10:01 / 0 | UNIQUE_REQUIRED — runs `bd_orchestrator.py --stage post-send` 00:10 daily; no WorkBuddy equivalent exists |
+| RoktRazo-BD-PreSend | **Disabled** (untouched in 4A.5H) | N/A | 2026-09-08 22:30 / 0 | DUPLICATE of canonical Pre-Send (suppressed) |
+| RoktRazo-BD-Outreach | **Disabled** ✅ *(changed in PHASE 4A.5H, 2026-09-23 16:59 +08; was Enabled)* | N/A | 2026-09-22 23:00:01 / 0 (preserved) | Legacy DUPLICATE of canonical Outreach — the sole duplicate send-side trigger. Disabled to satisfy the production authority contract (WorkBuddy = sole Outreach scheduling authority). **Not deleted**; command/action (`bd_orchestrator.py --stage outreach --live`) unchanged; only the enable flag was flipped. |
+| RoktRazo-BD-PostSend | **Enabled** (untouched) | 2026-09-24 00:10 | 2026-09-23 00:10:01 / 0 | UNIQUE_REQUIRED — runs `bd_orchestrator.py --stage post-send` 00:10 daily; no WorkBuddy equivalent exists |
 | (no Inventory task exists) | — | — | — | Confirms `DUPLICATE_INVENTORY_AUTHORITY = false` |
 | BDExecutionHost service | **Stopped** (DEMAND_START, exit 1077) | — | — | Not a live scheduler |
+
+> Enforcement note (why elevation was required): the task definition file
+> `C:\Windows\System32\Tasks\RoktRazo-BD-Outreach` grants `RAKTROZO\15690` only `(R)`, while
+> `BUILTIN\Administrators` holds the inherited write ACE. The agent runs at **Medium Mandatory Level**
+> (`IsUserAnAdmin = False`), so `schtasks /change /disable` returned `错误: 拒绝访问。` and the write-open was
+> denied. The disable was therefore executed once through an elevated `schtasks` call with explicit operator
+> UAC consent (`ELEVATED_EXITCODE=0`), then independently re-verified read-only.
 
 ---
 
@@ -2013,4 +2056,114 @@ BLOCKERS                  = none
 NEXT_ACTION               = CONTINUE_UNATTENDED_ACCUMULATION (canonical scheduler left running)
 SAFE40_REACHED            = false
 STOP                      = true (operations phase closed; no PreSend/send activity initiated)
+```
+
+---
+
+## AF. PHASE 4A.5H — SCHEDULER HYGIENE + CONTINUE UNATTENDED SAFE40 (2026-09-23 16:52-17:05 +08)
+
+**Nature:** operations phase. Exactly **one** production-state mutation (disable one legacy Windows scheduled
+task); everything else read-only. No Codex work, no production code change, no DB write, no schema change, no
+manual Inventory run, no send. Full detail: `handoff/workbuddy/phases/PHASE4A5H_SCHEDULER_HYGIENE.md`.
+
+### AF.1 The single change — `\RoktRazo-BD-Outreach` disabled
+
+| Evidence | Before | After |
+|---|---|---|
+| `ScheduledTaskState` | **已启用** (Enabled) | **已禁用** (Disabled) |
+| `NextRunTime` | 2026-09-23 23:00:00 | **N/A** |
+| `LastRunTime` | 2026-09-22 23:00:01 | preserved |
+| `TaskToRun` | `... bd_orchestrator.py --stage outreach --live` | **unchanged** |
+
+`TASK_DELETED = false` · `TASK_ACTION_MODIFIED = false` · `WINDOWS_TASK_MUTATED = 1 (authorized)` ·
+`OTHER_WINDOWS_TASKS_MUTATED = 0`. The disable landed before its 23:00 +08 firing time, so tonight's duplicate
+trigger cannot run. `\RoktRazo-BD-PreSend` stays Disabled; `\RoktRazo-BD-PostSend` stays Enabled
+(UNIQUE_REQUIRED).
+
+**Why elevation was required (diagnosed, not assumed):** `whoami /groups` shows
+`Medium Mandatory Level` with `BUILTIN\Administrators` deny-only (`IsUserAnAdmin = False`), and
+`icacls C:\Windows\System32\Tasks\RoktRazo-BD-Outreach` grants `RAKTROZO\15690:(R)` only while
+`BUILTIN\Administrators` holds the inherited write ACE — a `GENERIC_WRITE` open probe was DENIED. The first
+`schtasks /change /disable` therefore failed closed with `错误: 拒绝访问。`. The disable was executed **once**
+through an elevated `schtasks` call under explicit operator UAC consent (`ELEVATED_EXITCODE=0`), then
+re-verified by a separate non-elevated read-only query.
+
+### AF.2 Scheduler authority — all invariants PASS
+
+```
+Windows \RoktRazo-BD-Outreach = Disabled      WorkBuddy Outreach   = PAUSED
+WorkBuddy PreSend             = PAUSED        WorkBuddy Preflight  = PAUSED
+Inventory 1784775229336       = ACTIVE        Recovery 1786002601925 = ACTIVE
+Checkpoint 75fbacd1           = ACTIVE        BDExecutionHost      = STOPPED
+DUPLICATE_INVENTORY_AUTHORITY = false         DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0
+NEW_SCHEDULER_CREATED         = false
+```
+
+Process-level proof of single-operator discipline (ctypes PEB command-line scan, 435 PIDs):
+`PID_MATCHING_bd_orchestrator = 0`, `PID_MATCHING_playwright_bd_browser = 0`,
+`PID_MATCHING_manual_accumulation = 0` — only this session's own processes matched the workspace path.
+
+### AF.3 Checkpoint kept — and proven to fire unattended
+
+`75fbacd1-fa43-46ea-8388-1d47647c3f4d` retained unchanged (read-only; never launches Inventory, never writes the
+DB, never creates an FSP, never sends). It fired **on its own at 2026-09-23 15:40:52 +08** and appended a real
+history record — production proof it works. `NEW_CHECKPOINT_MECHANISM_CREATED = false`.
+
+| Checkpoint | SAFE | ACTIVE_CITY | BLOCKERS |
+|---|---|---|---|
+| 14:23:36 (4A.5G baseline) | 16 | Saratoga Springs, NY | none |
+| 15:40:52 (automation, unattended) | 16 | Saratoga Springs, NY | none |
+| 16:59:07 (this phase) | 16 | Saratoga Springs, NY | none |
+| 17:00:43 (post-disable) | 16 | Saratoga Springs, NY | none |
+
+### AF.4 Operating-policy wording corrected (documentation only)
+
+Earlier handoff text implied ordinary SAFE growth needs fresh user authorization. That was misleading and is
+corrected. The canonical Inventory automation already owns the **already-deployed** automatic lanes and those
+lanes remain authorized for unattended operation: Places/BrowserMaps discovery, official-site resolution,
+existing first-party enrichment, visible official email extraction, generic inbox routing, evidence creation,
+V2/MX SAFE recomputation, city completion/advancement.
+
+Separate explicit user authorization is required **only** for: (1) a genuinely new enrichment/recovery lane not
+already deployed; (2) changing V2 policy; (3) changing MX policy; (4) changing hygiene/send-eligibility rules;
+(5) manual recipient creation; (6) sending. **No policy was weakened.** See the new
+`SAFE_GROWTH_AUTHORIZATION` field in section C.
+
+### AF.5 Fresh read-only checkpoint, post-change (nothing carried forward)
+
+```
+ACTIVE_CITY = Saratoga Springs, NY   LAST_COMPLETED_CITY = Ithaca, NY   NEXT_PENDING_CITY = Cooperstown, NY
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16   SAFE_GE_40 = false   MATERIALIZED_FSP_PLANNED = 0
+SMTP_ENABLED = 0   SEND_LOG_TODAY = 0   SEND_LOG_TOTAL = 517   LAST_SEND_AT = 2026-09-16T01:09:52+08:00
+RUNNING_INVENTORY_JOBS = 0   INVENTORY_LOCK = released   DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0
+INVENTORY_RUNS_TODAY = 3   FAILED = 0   STALE_CLEANUP_24H = 0
+```
+
+Run 3 today = `inventory:2026-09-23:f857bc6b`, 2026-09-23 07:01:28 -> 07:04:00 UTC (= 15:01:28 -> 15:04:00 +08),
+`partial/safe_inventory_gap`, actual 16/50 — **the canonical 15:00 automation firing unattended with no manual
+intervention**, direct evidence the Operations Host is human-independent. Saratoga Springs did not advance in
+this round, which is expected: it was activated only at 04:31 UTC today and its own search matrix is not drained
+yet. City completion is decided by `retail_city_queue.city_completion_checks`, never by a round counter.
+
+### AF.6 Observations recorded but deliberately not acted on (no DB write allowed)
+
+1. Four pre-existing stale `job_runs` rows with `status='running'` from `stage='status'`, started
+   2026-07-21 -> 2026-07-24. Not Inventory runs, hold no lock, no live process. Not a runtime regression;
+   left untouched. Recommended follow-up needs its own authorization.
+2. `auto_send_enabled = true` while `SMTP_enabled = 0` — the effective send gate is `SMTP_enabled`, so the send
+   path stays closed. Recorded so the pair is not misread as an open channel.
+3. Repo hygiene unchanged (3 untracked scratch files; historical `*.db` tracking) — both need separate
+   authorization.
+
+### AF.7 FINAL
+
+```
+WINDOWS_OUTREACH_DISABLED           = true      DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0
+INVENTORY_ACTIVE = true   RECOVERY_ACTIVE = true
+PRESEND_PAUSED = true     PREFLIGHT_PAUSED = true     OUTREACH_PAUSED = true
+CHECKPOINT_AUTOMATION_ACTIVE        = true
+ACTIVE_CITY = Saratoga Springs, NY   LAST_COMPLETED_CITY = Ithaca, NY   NEXT_PENDING_CITY = Cooperstown, NY
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16   MATERIALIZED_FSP_PLANNED = 0   SAFE40_REACHED = false
+SMTP_CONNECTIONS = 0   OUTREACH_SEND_COUNT = 0   CODE_CHANGES = 0   DB_WRITES = 0   INVENTORY_RUNS_MANUAL = 0
+NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION (canonical scheduler left running)   STOP = true
 ```

@@ -525,3 +525,70 @@ ADOPTED_NOT_RECOMPUTED = true
 - **FINAL:** `OPERATING_STATE_CONFIRMED = true`, `BLOCKERS = none`, `SAFE40_REACHED = false`,
   canonical Inventory scheduler left running, `STOP = true` — no PreSend/Preflight/Outreach/send activity initiated.
 
+## 2026-09-23T17:10:00+08:00 — PHASE 4A.5H: scheduler hygiene + continue unattended SAFE40 (exactly one authorized state mutation)
+
+- New report: `handoff/workbuddy/phases/PHASE4A5H_SCHEDULER_HYGIENE.md`.
+- **Nature:** operations phase. Exactly **one** production-state mutation — disable one legacy Windows scheduled
+  task. No Codex work, no production code change, no DB write, no schema change, no manual Inventory run, no
+  SMTP, no FSP, no authorization, no send. Every figure below is a live read on 2026-09-23 16:52–17:05 +08.
+- **THE CHANGE:** Windows `\RoktRazo-BD-Outreach` **Disabled** (was Enabled). `NextRunTime` 2026-09-23 23:00 →
+  `N/A`; `LastRunTime` 2026-09-22 23:00:01 preserved; `TaskToRun`
+  (`... bd_orchestrator.py --stage outreach --live`) **unchanged**; **not deleted**. The disable landed before
+  its 23:00 +08 firing time, so tonight's duplicate trigger cannot run. `\RoktRazo-BD-PreSend` stays Disabled;
+  `\RoktRazo-BD-PostSend` stays Enabled (UNIQUE_REQUIRED). `OTHER_WINDOWS_TASKS_MUTATED = 0`.
+- **Why elevation was needed (diagnosed, not assumed):** the first non-elevated `schtasks /change /disable`
+  failed closed with `错误: 拒绝访问。`. Cause, established by two independent facts: `whoami /groups` shows
+  **Medium Mandatory Level** with `BUILTIN\Administrators` deny-only (`shell32.IsUserAnAdmin = False`), and
+  `icacls C:\Windows\System32\Tasks\RoktRazo-BD-Outreach` grants `RAKTROZO\15690` only `(R)` while
+  `BUILTIN\Administrators` holds the inherited write ACE (a `GENERIC_WRITE` open probe was **DENIED**). UAC is
+  secure-desktop consent mode (`EnableLUA=1`, `ConsentPromptBehaviorAdmin=0x5`, `PromptOnSecureDesktop=1`), so a
+  human click was unavoidable. The disable ran **once** via an elevated `schtasks` call under explicit operator
+  UAC consent → `ELEVATED_EXITCODE = 0`, then was re-verified by a **separate non-elevated read-only query**.
+- **Scheduler authority — all invariants PASS:** Windows Outreach = Disabled · WorkBuddy PreSend/Preflight/
+  Outreach = PAUSED · Inventory `1784775229336` = ACTIVE · Recovery `1786002601925` = ACTIVE · checkpoint
+  `75fbacd1` = ACTIVE · `BDExecutionHost` = STOPPED (DEMAND_START) · `DUPLICATE_INVENTORY_AUTHORITY = false` ·
+  **`DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0`** (was 1) · `NEW_SCHEDULER_CREATED = false`.
+- **Process-level proof of single-operator discipline:** full command-line scan of all live processes (ctypes PEB
+  read, 435 PIDs, 160 system/elevated unreadable) → `PID_MATCHING_bd_orchestrator = 0`,
+  `PID_MATCHING_playwright_bd_browser = 0`, `PID_MATCHING_manual_accumulation = 0`. Only this session's own
+  WorkBuddy/bash/python processes matched the workspace path. No manual driver, no stray orchestrator.
+- **Checkpoint kept and PROVEN:** `75fbacd1-fa43-46ea-8388-1d47647c3f4d` (daily 15:40 +08, read-only) was
+  retained unchanged and is now empirically proven — it **fired on its own at 2026-09-23 15:40:52 +08** and
+  appended a real history record with no human involvement. `NEW_CHECKPOINT_MECHANISM_CREATED = false`.
+  History: 14:23:36 SAFE=16 none · 15:40:52 SAFE=16 none · 16:59:07 SAFE=16 none · **17:00:43 (post-disable)
+  SAFE=16 BLOCKERS=none**.
+- **OPERATING-POLICY WORDING CORRECTED:** earlier text implied ordinary SAFE growth needs fresh user
+  authorization. The already-deployed automatic lanes (Places/BrowserMaps discovery, official-site resolution,
+  existing first-party enrichment, visible official email extraction, generic inbox routing, evidence creation,
+  V2/MX SAFE recomputation, city completion/advancement) are **authorized and continue unattended**. Separate
+  explicit authorization is required **only** for: a genuinely new enrichment/recovery lane not already
+  deployed; a V2 policy change; an MX policy change; a hygiene/send-eligibility change; manual recipient
+  creation; sending. **No policy was weakened.** Corrected in `CURRENT_STATUS.md` (new
+  `SAFE_GROWTH_AUTHORIZATION` field + `CURRENT_BLOCKER` + `NEXT_ACTION`) and in the **live** `LATEST_RESULT.json`
+  fields (`current_blocker`, `next_recommended_action`). Historical `phase4a5X_*` blocks were deliberately left
+  byte-for-byte intact as provenance (a first pass over-reached and rewrote them; it was reverted from backup
+  and re-applied narrowly).
+- **FRESH READ-ONLY CHECKPOINT (post-change, nothing carried forward):**
+  `ACTIVE_CITY = Saratoga Springs, NY` · `LAST_COMPLETED_CITY = Ithaca, NY` ·
+  `NEXT_PENDING_CITY = Cooperstown, NY` · `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16` (SAFE_GE_40 = false → EXACT40
+  acceptance NOT triggered, Inventory NOT paused) · `MATERIALIZED_FSP_PLANNED = 0` · `SMTP_ENABLED = 0` ·
+  `SEND_LOG_TODAY = 0` (total 517, `LAST_SEND_AT = 2026-09-16T01:09:52+08:00`) · `RUNNING_INVENTORY_JOBS = 0` ·
+  `INVENTORY_LOCK = released` (business_date 2026-09-23, updated 07:04:00 UTC) ·
+  `DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0` · `INVENTORY_RUNS_TODAY = 3 / FAILED = 0 / STALE_CLEANUP_24H = 0`.
+- **Canonical scheduler proven human-independent:** run 3 today = `inventory:2026-09-23:f857bc6b`,
+  07:01:28 → 07:04:00 UTC (= 15:01:28 → 15:04:00 +08), `partial/safe_inventory_gap`, actual 16/50 — the 15:00
+  automation executing **unattended with no manual intervention**. Saratoga Springs did not advance this round,
+  which is expected (activated only 04:31 UTC today; its own search matrix is not drained). City completion is
+  decided by `retail_city_queue.city_completion_checks`, never by a round counter.
+- **Non-blocking observations recorded, deliberately NOT acted on (no DB write permitted):** (1) four
+  pre-existing stale `job_runs` rows with `status='running'` from `stage='status'` (2026-07-21 → 2026-07-24) —
+  not Inventory runs, no lock held, no live process, so not a runtime regression; closing them needs its own
+  authorization. (2) `auto_send_enabled = true` in config while `SMTP_enabled = 0` — the effective send gate is
+  `SMTP_enabled`, so the send path stays closed; recorded so the pair is not misread as an open channel.
+  (3) Repo hygiene unchanged (3 untracked scratch files; historical `*.db` tracking) — both need separate
+  authorization.
+- **FINAL:** `WINDOWS_OUTREACH_DISABLED = true` · `DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0` ·
+  `SAFE40_REACHED = false` · `SMTP_CONNECTIONS = 0` · `OUTREACH_SEND_COUNT = 0` · `CODE_CHANGES = 0` ·
+  `DB_WRITES = 0` · `INVENTORY_RUNS_MANUAL = 0` · `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION` ·
+  canonical Inventory scheduler left running · `STOP = true`.
+
