@@ -4,10 +4,11 @@
 > - `1569032023yf-star/workbuddy-task-window` (branch `main`) = **PRODUCTION SOURCE / PRODUCTION HANDOFF** ← this repo
 > - `1569032023yf-star/roktandrazo-outreach-codex` = **DEVELOPMENT SOURCE / CODEX HANDOFF** (do NOT write production handoff here)
 >
-> Generated: 2026-09-23T01:00:00+08:00 (Asia/Shanghai)
-> REFRESH TYPE: **PHASE 4A.5E — HANDOFF SYNC ONLY (official-site network path diagnostic MIRRORED from Codex)**: the diagnostic was accidentally executed in the development/Codex repo (`bf32df09`), not here. It is mirrored into this handoff; `DIAGNOSTIC_RERUN=false`. This repo ran no probe, no Inventory, no code/schema change, no DB write, no send, no scheduler change.
-> PREVIOUS REFRESH: PHASE 4A.5D — deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt: deploy/validation PASSED, city advancement NOT proven, STOPPED at section D.
-> PREVIOUS REFRESH (2): PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40: STOPPED on genuine software regression (city-queue deadlock).
+> Generated: 2026-09-23T12:40:00+08:00 (Asia/Shanghai)
+> REFRESH TYPE: **PHASE 4A.5F — FINAL DISCOVERY-LIVENESS RELEASE DEPLOYED + ITHACA → SARATOGA PROVEN.** Deployed exactly one file (`discovery/discovery_service.py` @ Codex `641b36b8`, byte-identical). Run 1 drove Ithaca to `search_matrix_exhausted` (city checks 5/9 → 9/9, linked automatic retry 11 → 0); Run 2 activated **Saratoga Springs, NY** and proved real discovery work. Inventory automation restored **ACTIVE**. No SMTP, no send, no FSP, no V2/MX change, no schema migration.
+> PREVIOUS REFRESH: PHASE 4A.5E — HANDOFF SYNC ONLY (official-site network path diagnostic mirrored from Codex `bf32df09`; `DIAGNOSTIC_RERUN=false`).
+> PREVIOUS REFRESH (2): PHASE 4A.5D — deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt: deploy/validation PASSED, city advancement NOT proven, STOPPED at section D.
+> PREVIOUS REFRESH (3): PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40: STOPPED on genuine software regression (city-queue deadlock).
 > TIMESTAMP NOTE: previous handoff stamped `Generated: 2026-09-14T14:37:00+08:00` while also recording the 2026-09-14 inventory start as `15:01 +08` and calling it "still running as of 14:37". 14:37 < 15:01 is impossible → the 14:37 timestamp was wrong (see section I / FINAL HANDOFF_TIMESTAMP_ERROR). Correct inventory start = 15:01:10 +08 (= 07:01:10 UTC); correct audit time = 15:46 +08 (this refresh).
 > NOTE: the live production DB is `roktandrazo-outreach/data/bd_leads.db`; the root `roktandrazo-outreach/bd_leads.db` is a 0-byte stale file and is NOT authoritative.
 
@@ -16,52 +17,57 @@
 ## C. REQUIRED CURRENT STATUS FIELDS
 
 ```
-CURRENT_PHASE              = PHASE_4A_4 (Controlled Production Lead-Factory Patch) — DEPLOYED + VALIDATED; stable; SAFE=0
-PRODUCTION_STATUS          = PATCHED (4 files @ Codex 05c0a419); FROZEN send chain intact; Inventory+Recovery ACTIVE;
-                             PreSend/Preflight/Outreach PAUSED (held, SAFE<40); NO sends since 2026-09-15 (lead 1085);
-                             SAFE=0 (V2-safe pool empty post-1085-send)
-CURRENT_BLOCKER            = SAFE=0 (READ_ONLY_V2_SAFE_UNIQUE_ORGS=0 post lead-1085 send 2026-09-15). The 4A.4
-                             Lead-Factory patch makes discovery/terminalization/direct-place/website-resolution WORK,
-                             but Ithaca NY is exhausted (0 new unique places) so no new V2-safe orgs were created this run.
-                             480 manual_review_needed + 428 no-email leads = dominant upstream blockers; raising SAFE
-                             requires user authorization (OFFICIAL_EMAIL_ENRICHMENT / reconcile V2-hygiene / new cities).
+CURRENT_PHASE              = PHASE 4A.5F (Final discovery-liveness release deployed) — ACCEPTED; city queue advancing
+PRODUCTION_STATUS          = discovery/discovery_service.py at Codex 641b36b8 (byte-identical, verified);
+                             ACTIVE_CITY = Saratoga Springs, NY; Ithaca = search_matrix_exhausted;
+                             Inventory + Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40);
+                             NO sends since 2026-09-16T01:09:52+08:00
+CURRENT_BLOCKER            = SAFE=16 (<40 target). This is NOT a software failure: the 4A.5F release unblocked
+                             city-queue advancement, but the V2-safe ceiling is unchanged — new eligible
+                             organizations still require normal first-party discovery plus authorized
+                             OFFICIAL_EMAIL_ENRICHMENT / V2-hygiene reconciliation. Upper NYC-tier metro names
+                             (Michaels, Barnes & Noble, TJX, Kohl's) remain operationally access_unreachable.
 PRODUCTION_SCHEDULER_AUTHORITY = WorkBuddy Automation (workbuddy_automation) — SOLE scheduler authority.
                              BDExecutionHost Windows Service = Stopped. Windows PostSend = UNIQUE_REQUIRED (Ready).
                              No second/parallel scheduler. PostSend runs as UNIQUE_REQUIRED Windows task only.
 WORKBUDDY_AUTOMATIONS      = see section below (Inventory + Recovery Sync ACTIVE; PreSend/Preflight/Outreach PAUSED)
 WINDOWS_TASKS              = see section below
 DUPLICATE_ACTIVE_TRIGGER_COUNT = 0   (PreSend/Outreach Disabled; PostSend UNIQUE_REQUIRED, not duplicate)
-PRODUCTION_CODE_SHA        = 4 Lead-Factory files @ Codex 05c0a419 (deployed 2026-09-20; drift=false vs dev pre-fix base):
-                             discovery/discovery_service.py = ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d
-                             outreach_control.py = b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce
-                             discovery/website_resolver.py = 8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f
-                             discovery/providers/browser_maps_scraper.py = 18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49
-                             (bd_orchestrator.py UNCHANGED = 252ed6042b04837f6d429936771fa261889b5f556aa80140162b098894da4d05)
-DATABASE_SCHEMA_CHANGED    = false  (schema_version=162, 27 tables, integrity_check=ok; only routine job_runs + system_state
-                                     rows added by scheduled runs since patch)
+PRODUCTION_CODE_SHA        = verified THIS phase (4A.5F):
+                             discovery/discovery_service.py = d23c760aea14c995d859e709acf898ce8e691dd70b129df2f4b920d9e9617d07
+                             (byte-identical to Codex 641b36b8; PRE_DEPLOY was 30b2487b...aaf3151af @ dc493825)
+                             earlier deploys carried forward (NOT re-hashed in 4A.5F):
+                             discovery/providers/browser_maps.py @ dc493825 (4A.5D), retail_city_queue.py @ dc493825 (4A.5D),
+                             outreach_control.py / discovery/website_resolver.py / discovery/providers/browser_maps_scraper.py @ 05c0a419 (4A.4)
+DATABASE_SCHEMA_CHANGED    = false  (no migration in 4A.5F; DB_MIGRATION_REQUIRED = false)
 FROZEN_FILES_CHANGED       = false  (V2 / MX / Preflight / Sender / final_send_plan / campaign_eligible_v2 untouched)
 SAFE_METRIC_DEFINITION     = see section D (5 distinct metrics, each with authority)
 SAFE_CURRENT               = canonical SAFE_FSP (materialized final_send_plan.status='planned') = 0
-                             (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 0 — post lead-1085 send 2026-09-15; MX-enforced)
-LAST_INVENTORY_RUN         = 2026-09-20 15:55 +08 (automation-1784775229336; run_id inventory:2026-09-20:c2b1abfe;
-                             PHASE 4A.4 controlled live run; Target 60; exit 0; ~3m26s; DISCOVERY_RESULTS_SEEN=8,
-                             NEW_UNIQUE_PLACES=0, LINKED_BACKLOG terminalized 14; READ_ONLY_V2_SAFE=0/60;
-                             safe-exhaustion, no regression). Daily 15:00 automation ACTIVE (resumed post-patch).
-LAST_PRESEND_RUN           = automation-1785804406748 ACTIVE (Mon-Fri 21:30 +08); last actual run NOT persisted in DB (no job_run rows)
-LAST_PREFLIGHT_RUN         = automation-1785804413719 ACTIVE (Mon-Fri 21:50 +08); last actual run NOT persisted in DB
-LAST_OUTREACH_RUN          = automation-1785804421539 ACTIVE (Mon-Fri 22:00 +08); last actual send = 2026-09-03 01:10 +08
-LAST_POSTSEND_RUN          = 2026-09-14 00:10 +08 (Windows task RoktRazo-BD-PostSend, Ready; result=0, no sends)
-NEXT_ACTION                = (1) Resolve SAFE=0/1: authorize OFFICIAL_EMAIL_ENRICHMENT for 428 no-email leads OR
-                             relax review gate for V2-eligible manual_review_needed leads (user authorization required, NOT auto).
-                             (2) Continue permanent handoff: every future production audit/result synced here.
-                             (3) RECOMMENDED: purge already-tracked *.db files from repo history per safe-git rule E
+                             (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16 — FRESH read-only recompute 2026-09-23,
+                             V2+MX enforced. SAFE inventory and FSP are reported separately, never conflated.)
+LAST_INVENTORY_RUN         = 2026-09-23 (4A.5F acceptance):
+                             Run 1 = inventory:2026-09-23:3e75c913, partial/safe_inventory_gap, 541 s —
+                                     Ithaca closed: city checks 5/9 -> 9/9, linked automatic retry 11 -> 0
+                             Run 2 = inventory:2026-09-23:86d61cde, partial/safe_inventory_gap, 169 s —
+                                     Saratoga Springs activated; DISCOVERY_RESULTS_SEEN=2, NEW_UNIQUE_PLACES=1
+                             Daily 15:00 automation restored ACTIVE after both runs passed.
+LAST_PRESEND_RUN           = automation-1785804406748 PAUSED (held, SAFE<40); no Presend execution in this phase
+LAST_PREFLIGHT_RUN         = automation-1785804413719 PAUSED (held, SAFE<40); no Preflight execution in this phase
+LAST_OUTREACH_RUN          = automation-1785804421539 PAUSED (held, SAFE<40); last actual send = 2026-09-16T01:09:52+08:00
+LAST_POSTSEND_RUN          = 2026-09-22 16:10 UTC (Windows task RoktRazo-BD-PostSend; completed, no sends)
+NEXT_ACTION                = (1) Let the canonical Inventory scheduler continue normal NY queue work
+                             (Saratoga Springs -> Cooperstown -> Lake Placid). Do NOT start a manual loop.
+                             (2) Raising SAFE above 16 still requires user authorization
+                             (OFFICIAL_EMAIL_ENRICHMENT / V2-hygiene reconciliation) — NOT auto.
+                             (3) Continue permanent handoff: every future production audit/result synced here.
+                             (4) RECOMMENDED: purge already-tracked *.db files from repo history per safe-git rule E
                              (separate destructive authorization — history rewrite).
 ```
 
-### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — verified 2026-09-20 16:21 +08 (post 4A.4)
+### WORKBUDDY_AUTOMATIONS (canonical, sole scheduler) — verified 2026-09-23 12:34 +08 (post 4A.5F)
 | Automation ID | Name | Schedule | State |
 |---|---|---|---|
-| 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE (resumed post-patch) |
+| 1784775229336 | RoktRazo BD Inventory | daily 15:00 +08 | ACTIVE (restored after both 4A.5F acceptance runs passed) |
 | 1785804406748 | BD Production Pre-Send | Mon–Fri 21:30 +08 | PAUSED (held; SAFE<40) |
 | 1785804413719 | BD Production Preflight | Mon–Fri 21:50 +08 | PAUSED (held; SAFE<40) |
 | 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | PAUSED (held; SAFE<40) |
@@ -1746,4 +1752,120 @@ setting, WorkBuddy automation, Windows task or service was touched.
 **STOP.** This phase authorizes no remediation, deployment, Inventory run, sending, or scheduler resume.
 The 11-row `review_recovery` liveness gap from 4A.5D is still the open blocker for city advancement; the
 site-specific Sciencenter automation-client block is a **separate** issue and needs its own authorization.
+
+---
+
+## AD. PHASE 4A.5F — FINAL DISCOVERY-LIVENESS RELEASE DEPLOYED + ITHACA → SARATOGA PROVEN
+
+- **Generated:** 2026-09-23T12:40:00+08:00 (Asia/Shanghai)
+- **Status:** **BOTH ACCEPTANCE RUNS PASSED.** City-queue advancement unblocked; Inventory restored ACTIVE.
+- **Report:** `handoff/workbuddy/phases/PHASE4A5F_FINAL_LIVENESS_DEPLOY_CITY_ADVANCEMENT.md`
+- **Release:** Codex `641b36b87af596a503cdcb8fb518eab66d5ffbb9` ("Finalize Phase 4A.8H automation exhaustion")
+
+### AD.1 Deployment — exactly one file
+
+```
+DEPLOYED_FILE                    = discovery/discovery_service.py
+PRE_DEPLOY_SHA256                = 30b2487b10753e62f1ec35f68adea4fe1d8e4126c1c64b1c4d1e865aaf3151af  (98,283 bytes)
+POST_DEPLOY_SHA256               = d23c760aea14c995d859e709acf898ce8e691dd70b129df2f4b920d9e9617d07  (102,579 bytes)
+DISCOVERY_SERVICE_BYTE_IDENTICAL = true
+```
+
+The payload is the complete cumulative file at `641b36b8` (4A.8E + 4A.8F + 4A.8G + 4A.8H), not a phase-local
+fragment. `browser_maps.py`, `retail_city_queue.py`, `bd_orchestrator.py`, V2/MX files, the sender, templates and
+the DB schema were untouched. `py_compile` + `ast.parse` clean; no migration.
+
+The 4A.8H delta itself is 8 lines and changes only the **operational-exhaustion** predicate: a failed
+HTTPS-compatibility probe now contributes to `last_site_automation_recovery_exhausted` (which drives
+`automation_terminal_outcome='access_unreachable'`) once the bounded browser attempt has actually run and no
+qualifying same-party page was obtained. In-source comments state it *"never asserts that no public email
+exists"*. Generic — no merchant/domain/email special case.
+
+### AD.2 Regression — controlled A/B
+
+Release test files held constant; only the code file swapped. BASE = `30b2487b`, NEW = `d23c760a`.
+
+```
+NEW_FAILURES_INTRODUCED = 0
+NEW_ERRORS_INTRODUCED   = 0
+FIXED_BY_DEPLOY         = 8       (the 4A.8F/G/H HTTPS suite: 8 failed -> 13 passed)
+BASE_TIMEOUTS == NEW_TIMEOUTS == [test_phase4a8d..., test_phase4a1b...]   (identical, pre-existing real-network hang)
+```
+
+`test_phase4a1c_discovery_coexistence.py` could not be collected on either arm because the production tree lacked
+`tests/schema_fixture.py` (present in the release tree); that helper alone was restored, after which the file runs
+with the same 2 environment-dependent failures on both arms. No test logic was changed and the harness was not
+redesigned.
+
+### AD.3 Run 1 — Ithaca completed
+
+`inventory:2026-09-23:3e75c913`, `partial` / `safe_inventory_gap`, 541 s.
+
+| Metric | Before | After |
+|---|---|---|
+| `LINKED_AUTOMATIC_RETRY` | **11** | **0** |
+| `ACCESS_UNREACHABLE_DEFERRED_TOTAL` | 0 | **9** |
+| `WEBSITE_LOOKUP_PENDING` (active city) | 0 | 0 |
+| `OPEN_STAGED_PENDING` (active city) | 0 | 0 |
+| `OPEN_RETRYABLE_NETWORK` (active city) | 0 | 0 |
+| `READ_ONLY_V2_SAFE_UNIQUE_ORGS` | 16 | 16 |
+
+```
+AUTOMATION_DEFERRED_THIS_RUN   = 9
+TERMINALIZED_EXISTING_OUTCOMES = 1   (row 369 -> pre-existing no_public_email evidence path)
+ITHACA_STATUS                  = search_matrix_exhausted
+CITY_COMPLETION_ALL_MET        = true     (9/9; was 5/9)
+```
+
+Cohort resolution: 9 × `access_unreachable` (291, 292, 294, 356, **362**, 392, 393, 395, 404), 1 × terminal
+`no_public_email` (369), 1 × `identity_review` (407). Row 362 (Sciencenter) took the operational-exhaustion path —
+no email or evidence was inserted for it.
+
+### AD.4 Run 2 — Saratoga Springs activated
+
+`inventory:2026-09-23:86d61cde`, `partial` / `safe_inventory_gap`, 169 s. Started with no active city, so the
+orchestrator's own activation lane ran.
+
+```
+CITY_BEFORE                     = none
+ACTIVE_CITY_AFTER_RUN2          = Saratoga Springs, NY
+CITY_QUEUE_ADVANCEMENT_VERIFIED = true
+NEXT_CITY_AFTER                 = Cooperstown, NY
+SARATOGA_DISCOVERY_RESULTS_SEEN = 2
+SARATOGA_NEW_UNIQUE_PLACES      = 1
+SARATOGA_ACTIVE_QUERY_FAMILY    = toy store
+SARATOGA_QUERY_STATUS           = 20 families seeded (0 completed / 19 pending / 1 running)
+LINKED_BACKLOG_PROCESSED        = 0   (Ithaca cohort fully drained; no carry-over)
+```
+
+Saratoga's first new lead (id 1150, `org:domain:gwillikerstoys.com`) was created via the normal path with an
+**empty email**, `email_source_type='contact_form'`, evidence `https://www.gwillikerstoys.com/contact-us`.
+
+### AD.5 SAFE checkpoint — freshly recomputed
+
+```
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16    (fresh read-only recompute 2026-09-23 via the deployed V2+MX path)
+MATERIALIZED_FSP_PLANNED      = 0     (reported separately; never conflated with SAFE inventory)
+```
+
+SAFE remains 16 (<40). Per the phase spec this is **not** a software failure — the release unblocked queue
+advancement but did not manufacture new eligible organizations. Production should continue normal city discovery.
+
+### AD.6 Safety
+
+```
+SMTP_CONNECTIONS = 0   OUTREACH_SEND_COUNT = 0   MATERIALIZED_FSP_PLANNED = 0
+SEND_LOG_TOTAL = 517 (unchanged)   LAST_SEND_AT = 2026-09-16T01:09:52.031266+08:00
+V2_POLICY_CHANGED = false   MX_POLICY_CHANGED = false   SEND_ELIGIBILITY_POLICY_CHANGED = false
+DEFERRED_WITH_EMAIL = 0     DEFERRED_MISLABELED_AS_FACTUAL = 0
+```
+
+No authorization created, no FSP generated, no send, no guessed email, no third-party evidence, no manual
+recipient. EMAIL_POOL unchanged (604) — the run added one new lead and one new full-evidence record without
+inventing an email.
+
+### AD.7 Scheduler (post-acceptance)
+
+`INVENTORY_AUTOMATION_RESTORED = true` (automation-1784775229336 → ACTIVE). PreSend / Preflight / Outreach remain
+PAUSED; Recovery Sync remains ACTIVE. No manual accumulation loop was started and no extra Inventory round was run.
 

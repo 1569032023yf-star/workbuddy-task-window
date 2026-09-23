@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-09-23T01:00:00+08:00",
-  "refresh_type": "phase_4a5e_handoff_sync",
+  "generated_at": "2026-09-23T12:40:00+08:00",
+  "refresh_type": "phase_4a5f",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5E (HANDOFF SYNC ONLY; official-site network path diagnostic mirrored from Codex bf32df09; no production runtime action)",
-  "production_status": "Codex dc493825 (4A.8-4A.8D) deployed 2026-09-22; Ithaca BrowserMaps 20/20 complete; city_completion_checks(20,'browser_maps') 5/9 ALL_MET=false; ITHACA_STATUS=active; NEXT_CITY=none; Inventory PAUSED (fail-closed since 4A.5D); PreSend/Preflight/Outreach PAUSED; Recovery Sync ACTIVE; SMTP=0; FSP planned=0. Metrics below carried forward from 4A.5D - not re-measured in 4A.5E.",
+  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5F (final discovery-liveness release deployed; Ithaca -> Saratoga city advancement PROVEN)",
+  "production_status": "Codex 641b36b8 deployed (exactly one file: discovery/discovery_service.py, byte-identical). ACTIVE_CITY = Saratoga Springs, NY; Ithaca = search_matrix_exhausted; city_completion_checks(20,'browser_maps') = 9/9 ALL_MET=true; linked automatic retry 11 -> 0; Inventory + Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED; SMTP=0; FSP planned=0",
   "production_code_drift": false,
-  "current_blocker": "Open blocker is UNCHANGED from 4A.5D: 11 rows (ids 291,292,294,356,362,369,392,393,395,404,407) sit in validation_status='review_recovery' - admitted by the retry selector but absent from _linked_backlog_terminal_outcome, with _defer_access_unreachable never firing - so the city can never reach no_open_work (city_completion_checks 5/9) and Ithaca stays active. 4A.5E additionally ADOPTED a read-only network diagnosis of the remaining row discovery_id=362 (Sciencenter): ROOT_CAUSE = automation_client/network_fingerprint (apex and www return HTTP 400 through as_is, direct and explicit proxy; direct-no-proxy Chromium times out at 12s; DNS/TCP443/TLS all succeed; two control official sites return HTTP 200 through both proxy and direct). That is not a proxy-path or local-egress failure and not a proven source-code defect.",
+  "current_blocker": "SAFE = 16 (<40 target). NOT a software failure: the 4A.5F release unblocked city-queue advancement (Ithaca closed, Saratoga Springs active), but the V2-safe ceiling is unchanged. Raising SAFE still requires normal first-party discovery plus authorized OFFICIAL_EMAIL_ENRICHMENT / V2-hygiene reconciliation. Upper NYC-tier metro names (Michaels, Barnes & Noble, TJX, Kohl's) stay operationally access_unreachable.",
   "production_code_sha": {
     "bd_orchestrator.py": "7afc4d7f6ac18e22 (sha256 prefix-16; full hash not recorded)",
-    "discovery/discovery_service.py": "ec0c1d0e8788167ad8feeaa951c1be150fe77e5d70734a34d85e3ac5dba7054d",
+    "discovery/discovery_service.py": "d23c760aea14c995d859e709acf898ce8e691dd70b129df2f4b920d9e9617d07",
     "outreach_control.py": "b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce",
     "discovery/website_resolver.py": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
     "discovery/providers/browser_maps_scraper.py": "18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49",
-    "note": "Codex 07784044 deployed 2026-09-21 08:46 +08 (bd_orchestrator.py + retail_city_queue.py only); verified byte-identical to remote; 0 new test regressions; forbidden files untouched",
+    "note": "4A.5F deployed the complete cumulative discovery_service.py from Codex 641b36b8 (byte-identical); PRE_DEPLOY was 30b2487b10753e62f1ec35f68adea4fe1d8e4126c1c64b1c4d1e865aaf3151af @ dc493825. browser_maps.py and retail_city_queue.py remain at dc493825 (4A.5D). No other production file was written in 4A.5F.",
     "match": true,
     "retail_city_queue.py": "46d6f4521892785e (sha256 prefix-16; full hash not recorded)"
   },
@@ -26,7 +26,7 @@
       "name": "RoktRazo BD Inventory",
       "schedule": "daily 15:00 +08",
       "state": "ACTIVE",
-      "note": "resumed post-patch"
+      "note": "restored 2026-09-23 after both 4A.5F acceptance runs passed"
     },
     {
       "id": "1785804406748",
@@ -141,7 +141,7 @@
       "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."
     }
   ],
-  "last_inventory_run": "2026-09-22 00:52 +08 (inventory:2026-09-21:a70f1660; partial; actual=16; safe_inventory_gap) — 8 canonical rounds completed in this phase",
+  "last_inventory_run": "2026-09-23 (4A.5F acceptance). Run 1 = inventory:2026-09-23:3e75c913, partial/safe_inventory_gap, 541s - Ithaca closed (city checks 5/9 -> 9/9, linked automatic retry 11 -> 0, automation_deferred 9, terminalized 1). Run 2 = inventory:2026-09-23:86d61cde, partial/safe_inventory_gap, 169s - Saratoga Springs activated, DISCOVERY_RESULTS_SEEN=2, NEW_UNIQUE_PLACES=1. Daily 15:00 automation restored ACTIVE after both runs passed.",
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 16,
     "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recount via campaign_eligible_v2.select_candidates_for_plan_v2 + deployed V2+MX gate, 2026-09-22",
@@ -2424,6 +2424,190 @@
   "workbuddy_automations_phase4a5e": {
     "NOTE": "State UNCHANGED by this phase (no scheduler action was taken).",
     "inventory_1784775229336": "PAUSED (as left by 4A.5D; fail-closed, acceptance gate not met)",
+    "presend_1785804406748": "PAUSED",
+    "preflight_1785804413719": "PAUSED",
+    "outreach_1785804421539": "PAUSED",
+    "recovery_sync_1786002601925": "ACTIVE",
+    "duplicate_active_inventory_triggers": 0
+  },
+  "phase4a5f_final_liveness_deploy_city_advancement": {
+    "phase": "4A.5F",
+    "title": "Final discovery-liveness release deployed + Ithaca -> Saratoga proven / 最终发现活性发布部署 + 城市推进证实",
+    "generated_at": "2026-09-23T12:40:00+08:00",
+    "report_path": "handoff/workbuddy/phases/PHASE4A5F_FINAL_LIVENESS_DEPLOY_CITY_ADVANCEMENT.md",
+    "CODEX_RELEASE": "641b36b87af596a503cdcb8fb518eab66d5ffbb9",
+    "CODEX_RELEASE_SUBJECT": "Finalize Phase 4A.8H automation exhaustion",
+    "PREVIOUS_PRODUCTION_BASELINE": "dc493825cdf8d57342ca90cc582807d5d9623f67",
+    "DEPLOYED_FILE": "discovery/discovery_service.py",
+    "PRE_DEPLOY_SHA256": "30b2487b10753e62f1ec35f68adea4fe1d8e4126c1c64b1c4d1e865aaf3151af",
+    "POST_DEPLOY_SHA256": "d23c760aea14c995d859e709acf898ce8e691dd70b129df2f4b920d9e9617d07",
+    "DISCOVERY_SERVICE_BYTE_IDENTICAL": true,
+    "PAYLOAD_TYPE": "complete cumulative file at 641b36b8 (4A.8E + 4A.8F + 4A.8G + 4A.8H), not a phase-local fragment",
+    "FILES_NOT_DEPLOYED": [
+      "discovery/providers/browser_maps.py",
+      "retail_city_queue.py",
+      "bd_orchestrator.py",
+      "campaign_eligible_v2.py",
+      "preflight_gate.py",
+      "bd_sender.py",
+      "daily_session.py",
+      "final_send_plan.py",
+      "bd_template.py",
+      "DB schema"
+    ],
+    "DB_MIGRATION_REQUIRED": false,
+    "PRE_DEPLOY_GATES": {
+      "INVENTORY_AUTOMATION": "PAUSED",
+      "RUNNING_INVENTORY_JOBS": 0,
+      "INVENTORY_LOCK": "released",
+      "LIVE_INVENTORY_PROCESSES": 0,
+      "SMTP_ENABLED": 0,
+      "MATERIALIZED_FSP_PLANNED": 0,
+      "ZERO_CONCURRENCY_EVIDENCE": true,
+      "BACKUP_PATH": "output/backup_pre_4a5f/discovery_service.py"
+    },
+    "REGRESSION": {
+      "METHOD": "controlled A/B, release test files held constant, only discovery_service.py swapped",
+      "BASE_CODE": "30b2487b (pre-deploy)",
+      "NEW_CODE": "d23c760a (deployed)",
+      "NEW_FAILURES_INTRODUCED": 0,
+      "NEW_ERRORS_INTRODUCED": 0,
+      "FIXED_BY_DEPLOY": 8,
+      "BASE_TIMEOUTS": [
+        "test_phase4a8d_access_unreachable_city_liveness.py",
+        "test_phase4a1b_linked_backlog.py"
+      ],
+      "NEW_TIMEOUTS": [
+        "test_phase4a8d_access_unreachable_city_liveness.py",
+        "test_phase4a1b_linked_backlog.py"
+      ],
+      "TIMEOUT_SETS_IDENTICAL": true,
+      "HARNESS_NOTE": "test_phase4a1c_discovery_coexistence.py could not be collected on either arm because the production tree lacked tests/schema_fixture.py; that missing helper alone was restored from 641b36b8 (no test logic changed), after which it runs with the same 2 environment-dependent failures on both arms."
+    },
+    "RUN1": {
+      "RUN_ID": "inventory:2026-09-23:3e75c913",
+      "STATUS": "partial",
+      "STOP_REASON": "safe_inventory_gap",
+      "SECONDS": 541,
+      "LINKED_AUTOMATIC_RETRY_BEFORE": 11,
+      "LINKED_AUTOMATIC_RETRY_AFTER": 0,
+      "AUTOMATION_DEFERRED_THIS_RUN": 9,
+      "TERMINALIZED_EXISTING_OUTCOMES": 1,
+      "ACCESS_UNREACHABLE_DEFERRED_TOTAL": 9,
+      "WEBSITE_LOOKUP_PENDING_AFTER": 0,
+      "OPEN_STAGED_PENDING_AFTER": 0,
+      "OPEN_RETRYABLE_NETWORK_AFTER": 0,
+      "SAFE_BEFORE": 16,
+      "SAFE_AFTER": 16,
+      "ITHACA_STATUS": "search_matrix_exhausted",
+      "CITY_COMPLETION_ALL_MET": true,
+      "CITY_COMPLETION_CHECKS": "9/9",
+      "COHORT": {
+        "access_unreachable": [
+          291,
+          292,
+          294,
+          356,
+          362,
+          392,
+          393,
+          395,
+          404
+        ],
+        "terminal_no_public_email": [
+          369
+        ],
+        "identity_review": [
+          407
+        ]
+      }
+    },
+    "RUN2": {
+      "RUN_ID": "inventory:2026-09-23:86d61cde",
+      "STATUS": "partial",
+      "STOP_REASON": "safe_inventory_gap",
+      "SECONDS": 169,
+      "RUN2_EXECUTED": true,
+      "CITY_BEFORE": null,
+      "ACTIVE_CITY_AFTER_RUN2": "Saratoga Springs, NY",
+      "CITY_QUEUE_ADVANCEMENT_VERIFIED": true,
+      "NEXT_CITY_AFTER": "Cooperstown, NY",
+      "SARATOGA_DISCOVERY_RESULTS_SEEN": 2,
+      "SARATOGA_NEW_UNIQUE_PLACES": 1,
+      "SARATOGA_ACTIVE_QUERY_FAMILY": "toy store",
+      "SARATOGA_QUERY_STATUS": "20 families seeded (0 completed / 19 pending / 1 running)",
+      "LINKED_BACKLOG_PROCESSED": 0,
+      "FIRST_NEW_LEAD": {
+        "id": 1150,
+        "organization_key": "org:domain:gwillikerstoys.com",
+        "email_empty": true,
+        "email_source_type": "contact_form",
+        "evidence_url": "https://www.gwillikerstoys.com/contact-us"
+      }
+    },
+    "SAFETY": {
+      "SMTP_CONNECTIONS": 0,
+      "OUTREACH_SEND_COUNT": 0,
+      "MATERIALIZED_FSP_PLANNED": 0,
+      "SEND_LOG_TOTAL": 517,
+      "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
+      "V2_POLICY_CHANGED": false,
+      "MX_POLICY_CHANGED": false,
+      "SEND_ELIGIBILITY_POLICY_CHANGED": false,
+      "DEFERRED_WITH_EMAIL": 0,
+      "DEFERRED_MISLABELED_AS_FACTUAL": 0,
+      "NO_GUESSED_EMAIL": true,
+      "NO_THIRD_PARTY_EVIDENCE": true,
+      "NO_MANUAL_RECIPIENT": true
+    },
+    "INVENTORY_AUTOMATION_RESTORED": true,
+    "PRESEND_PAUSED": true,
+    "PREFLIGHT_PAUSED": true,
+    "OUTREACH_PAUSED": true,
+    "RECOVERY_ACTIVE": true,
+    "NEXT_ACTION": "Let the canonical Inventory scheduler continue normal NY queue work (Saratoga Springs -> Cooperstown -> Lake Placid). Do NOT start a manual accumulation loop. Raising SAFE above 16 still requires separate user authorization."
+  },
+  "current_blocker_phase4a5f": {
+    "SAFE_BEFORE": 16,
+    "SAFE_AFTER": 16,
+    "SAFE_BELOW_40_IS_NOT_A_SOFTWARE_FAILURE": true,
+    "REQUESTED_BLOCKER_RESOLVED": "city_queue_advancement_deadlock",
+    "REMAINING_BLOCKER": "V2-safe ceiling (16) - needs first-party discovery plus authorized enrichment/hygiene work",
+    "READ_ONLY_V2_SAFE_UNIQUE_ORGS": 16,
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "ACTIVE_CITY": "Saratoga Springs, NY",
+    "ITHACA_STATUS": "search_matrix_exhausted",
+    "CITY_COMPLETION_CHECKS": "9/9",
+    "NEXT_PENDING_CITY": "Cooperstown, NY"
+  },
+  "safe_metrics_phase4a5f": {
+    "NOTE": "FRESH read-only recompute 2026-09-23 after Run 2 (not carried forward).",
+    "V2_ELIGIBLE_UNSENT": 16,
+    "V2_ELIGIBLE_UNSENT_AUTHORITY": "live campaign_eligible_v2.select_candidates_for_plan_v2 + deployed V2+MX gate, 2026-09-23",
+    "READ_ONLY_SAFE_UNIQUE_ORGS": 16,
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "same frozen V2+MX path, distinct organization_key (bd_orchestrator._count_safe_ready_pool)",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MATERIALIZED_FSP_PLANNED_AUTHORITY": "final_send_plan.status='planned'",
+    "BROAD_READY_STORED_FLAG": 95,
+    "VISIBLE_FIRST_PARTY_EMAILS": 340,
+    "VISIBLE_FIRST_PARTY_EMAILS_AUTHORITY": "leads.email NOT NULL AND email_source_type IN official types"
+  },
+  "supporting_totals_phase4a5f": {
+    "total_leads": 1115,
+    "email_present": 604,
+    "first_party_official_emails": 340,
+    "full_evidence_records": 462,
+    "discovery_rows": 413,
+    "send_log_total": 517,
+    "send_log_today": 0,
+    "last_send_at": "2026-09-16T01:09:52.031266+08:00",
+    "smtp_connections": 0,
+    "smtp_enabled_config": "0",
+    "running_inventory_jobs": 0,
+    "inventory_lock": "released"
+  },
+  "workbuddy_automations_phase4a5f": {
+    "inventory_1784775229336": "ACTIVE (restored after both acceptance runs passed)",
     "presend_1785804406748": "PAUSED",
     "preflight_1785804413719": "PAUSED",
     "outreach_1785804421539": "PAUSED",

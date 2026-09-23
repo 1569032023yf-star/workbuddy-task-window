@@ -441,3 +441,44 @@ ADOPTED_NOT_RECOMPUTED = true
 - **Repository authority:** production handoff written to `workbuddy-task-window` only. The separation rule was
   violated in the source event and is restored by this mirror.
 
+## 2026-09-23T12:40:00+08:00 — PHASE 4A.5F: final discovery-liveness release deployed + Ithaca → Saratoga PROVEN
+
+- **New report:** `handoff/workbuddy/phases/PHASE4A5F_FINAL_LIVENESS_DEPLOY_CITY_ADVANCEMENT.md`.
+- **Deployed exactly one production file** — `discovery/discovery_service.py` from Codex
+  `641b36b87af596a503cdcb8fb518eab66d5ffbb9` ("Finalize Phase 4A.8H automation exhaustion").
+  `PRE_DEPLOY_SHA256 = 30b2487b…aaf3151af` (98,283 bytes) · `POST_DEPLOY_SHA256 = d23c760a…9617d07` (102,579 bytes) ·
+  **`DISCOVERY_SERVICE_BYTE_IDENTICAL = true`**. Complete cumulative payload (4A.8E + 4A.8F + 4A.8G + 4A.8H), not a
+  phase-local fragment. `browser_maps.py`, `retail_city_queue.py`, `bd_orchestrator.py`, V2/MX files, sender,
+  templates and the DB schema were **not** touched; no migration.
+- **Pre-deploy gates all held:** Inventory PAUSED, `RUNNING_INVENTORY_JOBS=0`, lock released, 0 live Inventory
+  processes, `SMTP_enabled=0`, `FSP planned=0`, zero-concurrency evidence (job_runs 7139 → 7139 over 70 s).
+  Backup: `output/backup_pre_4a5f/discovery_service.py`.
+- **Regression — controlled A/B** (release test files held constant, only the code file swapped):
+  **`NEW_FAILURES_INTRODUCED = 0`**, **`NEW_ERRORS_INTRODUCED = 0`**, and the deploy **fixed 8** pre-existing
+  failures (the 4A.8F/G/H HTTPS suite: 8 failed → 13 passed). The two 240 s timeouts reproduce **identically on
+  both arms** (own real-network hang) → pre-existing, not regressions.
+  `test_phase4a1c` needed the missing helper `tests/schema_fixture.py` (present in the release tree) restored to
+  collect at all; after that it shows the same 2 environment-dependent failures on both arms. No test logic changed.
+- **Run 1** (`inventory:2026-09-23:3e75c913`, partial/safe_inventory_gap, 541 s): the 11-row linked automatic-retry
+  cohort drained — **`LINKED_AUTOMATIC_RETRY` 11 → 0**, `ACCESS_UNREACHABLE_DEFERRED_TOTAL` 0 → 9,
+  `AUTOMATION_DEFERRED_THIS_RUN = 9`, `TERMINALIZED_EXISTING_OUTCOMES = 1`, `OPEN_STAGED_PENDING = 0`,
+  `OPEN_RETRYABLE_NETWORK = 0`. **Ithaca closed: `city_completion_checks` 5/9 → 9/9, `ITHACA_STATUS = search_matrix_exhausted`.**
+  Cohort: 9 × `access_unreachable` (291, 292, 294, 356, **362**, 392, 393, 395, 404), 1 × terminal `no_public_email`
+  (369), 1 × `identity_review` (407). Sciencenter (362) took the operational-exhaustion path with **no** email or
+  evidence inserted.
+- **Run 2** (`inventory:2026-09-23:86d61cde`, partial/safe_inventory_gap, 169 s): **`ACTIVE_CITY = Saratoga Springs, NY`**,
+  **`CITY_QUEUE_ADVANCEMENT_VERIFIED = true`**, next city Cooperstown NY. Saratoga performed real discovery work —
+  `DISCOVERY_RESULTS_SEEN = 2`, `NEW_UNIQUE_PLACES = 1` (G. Willikers Toys), active family `toy store`, 20 families
+  seeded. Ithaca's cohort fully drained before advancement (`LINKED_BACKLOG_PROCESSED = 0`).
+- **SAFE freshly recomputed (not carried forward):** `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 16`, reported separately from
+  `MATERIALIZED_FSP_PLANNED = 0`. SAFE < 40 is **not** a software failure — the release unblocked queue advancement
+  but did not manufacture new eligible organizations.
+- **Safety:** `SMTP = 0`, `OUTREACH_SEND_COUNT = 0`, `MATERIALIZED_FSP_PLANNED = 0`, `SEND_LOG_TOTAL = 517` unchanged,
+  `LAST_SEND_AT = 2026-09-16T01:09:52+08:00`. `DEFERRED_WITH_EMAIL = 0` and `DEFERRED_MISLABELED_AS_FACTUAL = 0`
+  (deferred `access_unreachable` rows keep an empty email and were **not** re-classified as `no_public_email` or
+  `website_not_found`). No guessed email, no third-party evidence, no manual recipient,
+  `V2/MX/SEND_ELIGIBILITY_POLICY_CHANGED = false`.
+- **Scheduler:** Inventory `1784775229336` restored **ACTIVE** after both runs passed; PreSend/Preflight/Outreach
+  remain PAUSED; Recovery Sync remains ACTIVE. No manual accumulation loop started.
+
+
