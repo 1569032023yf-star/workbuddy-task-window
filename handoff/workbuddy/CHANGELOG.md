@@ -592,3 +592,85 @@ ADOPTED_NOT_RECOMPUTED = true
   `DB_WRITES = 0` · `INVENTORY_RUNS_MANUAL = 0` · `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION` ·
   canonical Inventory scheduler left running · `STOP = true`.
 
+## 2026-09-28T01:30:00+08:00 — PHASE 4A.5I: catch-up audit + accelerated unattended SAFE40 (OPERATIONS)
+
+- New report: `handoff/workbuddy/phases/PHASE4A5I_CATCHUP_SAFE40.md`.
+- **Nature:** operations / catch-up audit after ~4.3 days with no pushed handoff (last = `60fe964eb75dca34
+  456471a173737a360ae46c07`, PHASE 4A.5H). **Every number is a live read** on 2026-09-28 00:49–01:20 +08;
+  nothing carried forward from a prior report or from memory. Exactly **one** production-state change was made:
+  the cadence of the **existing sole** Inventory automation. No new scheduler, no parallel run, no production
+  code change, no DB write, no schema change, no SMTP, no send, no Codex work.
+- **Catch-up period** `2026-09-23T17:06 +08 → 2026-09-28T01:20 +08`.
+  **`INVENTORY_RUNS_SINCE_LAST_REPORT = 4`**, `FAILED_INVENTORY_RUNS = 0`, `STALE_CLEANUP_24H = 0`:
+  `45057361` 09-24 (8 m 06 s, target 50, actual 17), `39e3b75d` 09-25 (4 m 06 s, 50, 17),
+  `df4e7755` 09-26 (4 m 22 s, 60, 17), `6e8574bd` 09-27 (12 m 36 s, 60, 18). All four fired 15:00–15:01 +08 from
+  the canonical automation, unattended, all `partial`/`safe_inventory_gap` — the **healthy** terminal state.
+- **NO CITY MOVEMENT:** Ithaca stays `search_matrix_exhausted` / LAST_COMPLETED; **Saratoga Springs still
+  ACTIVE** (2/20 query families completed, 17 pending, 1 running; city completion checks **0/9**);
+  NEXT_PENDING = Cooperstown.
+- **SAFE moved 16 → 18** (fresh read-only V2+MX recompute; `SAFE_GAIN_SINCE_4A5H = +2`):
+  `org:domain:saratogacasino.com` on 09-24, `org:domain:tech-monkeys.com` on 09-27. Only 2 of the 8 leads
+  created in the period carried a first-party visible email. `SAFE40_REACHED = false` → **EXACT40 NO-SMTP
+  ACCEPTANCE NOT RUN**, scheduled Inventory **NOT** paused.
+- **Authorized action — cadence acceleration (same automation, cadence only).** All six section-D gate
+  conditions PASS: no concurrent Inventory (`RUNNING_INVENTORY_JOBS = 0`; 467-PID command-line scan found no
+  orchestrator/driver), lock healthy, no stale_cleanup/lock storm, max runtime 12 m 36 s < 30 min, no HTTP
+  429/provider regression (every `browser_maps` request `status=ok`), DB integrity `ok`/`ok`/0.
+  `INVENTORY_CADENCE_BEFORE = 1×/day at 15:00 +08` → **`INVENTORY_CADENCE_AFTER = 4×/day every 6 h`
+  (`FREQ=HOURLY;INTERVAL=6`, anchor minute :58 +08; next run 2026-09-28 06:58:02 +08)**. Automation
+  `1784775229336` modified **in place** (same id, same prompt, same CWD) and renamed so the schedule label
+  cannot mislead. **No second Inventory scheduler; serial authority and the existing named lock
+  `run_lock:daily_outreach:inventory:<business_date>` unchanged; nothing parallelised.**
+- **DEVIATION NOTICE (recorded, not hidden):** the instruction specified 03:00 / 09:00 / 15:00 / 21:00 +08.
+  The automation scheduler **rejects multi-value `BYHOUR`** (`BYHOUR=3,9,15,21` → "BYHOUR must be an integer
+  between 0 and 23"), and its hourly form does not accept `BYHOUR`/`BYMINUTE`. `FREQ=HOURLY;INTERVAL=6` is the
+  faithful supported expression of "four runs per day, six hours apart". The **operational intent is met**
+  (4×/day, 6 h spacing, ≤1 concurrent, same lock); the **exact clock alignment is not** expressible through
+  this grammar and would require the UI scheduler.
+- **Root-cause finding — the real throughput limiter (RECORDED, NOT CHANGED).** `bd_orchestrator.py:442` calls
+  `run_places_batch(city, max_pages=WORKBUDDY_DISCOVERY_MAX_PAGES default 1)` → **exactly ONE provider page per
+  run** (confirmed: exactly one `provider_request_audit` row per run; `pages_processed = 7` for city 21).
+  Compounding it **by design**, `discovery_service.py:491-500` documents that browser-backed providers can
+  repeat a completed page while returning a non-empty cursor, so a query family closes only after two
+  consecutive no-new pages — observed `board game store` requested 3× before closing, and Ithaca's
+  `game store` at `pages_processed = 28`. Quantified: ~**60 provider requests per city** ≈ 15 days/city at the
+  new cadence; period yield ≈ **0.29 SAFE/request**, so +22 more SAFE ≈ **~19 days** before the remaining 15 NY
+  cities. **NOT a listed engineering blocker** (rows do transition, families close, cities advance) and
+  **explicitly NOT changed** — both levers are discovery-policy changes requiring explicit authorization.
+  Recorded as a **Codex review candidate**.
+- **Checkpoint cadence (existing mechanism reused, no second one created).** `75fbacd1-fa43-46ea-8388-
+  1d47647c3f4d` moved from 1×/day 15:40 to the **same 6-hourly interval, anchored after the Inventory run**.
+  Still **STRICTLY READ-ONLY** (never launches Inventory, never writes the DB, never creates FSP, never sends).
+  Escalation triggers unchanged: SAFE changed · active city changed · completed city changed · SAFE ≥ 40 ·
+  real blocker · send-freeze violation. Zero-yield runs remain non-reporting and produce no git commit.
+  Supporting edits: the duplicate-authority warning threshold in `output/_4a5g_checkpoint.py` raised 4 → 6
+  runs/UTC-day (4/day is now legitimate, so a normal day would otherwise have falsely warned), and
+  `output/_4a5g_state.py` gained active-city query-family / provider-request metrics so future checkpoints carry
+  the throughput evidence. Both read-only; no new report trigger. Checkpoint proven firing unattended 5
+  consecutive days (09-23 15:40:52 → 09-27 15:40:36).
+- **Send safety held.** `SMTP_ENABLED = 0`, `SEND_LOG_TODAY = 0`, `SEND_LOG_TOTAL = 517`,
+  `LAST_SEND_AT = 2026-09-16T01:09:52+08:00`, `MATERIALIZED_FSP_PLANNED = 0`, `MANUAL_SEND_QUEUE = 0`,
+  PreSend/Preflight/Outreach **PAUSED**, `SMTP_CONNECTIONS = 0`, `OUTREACH_SEND_COUNT = 0`. Windows
+  `\RoktRazo-BD-Outreach` still **Disabled** (4A.5H change **held** 5 days), `\RoktRazo-BD-PreSend` Disabled,
+  `\RoktRazo-BD-PostSend` Enabled (UNIQUE_REQUIRED; last run 2026-09-28 00:10:02, result 0), `BDExecutionHost`
+  Stopped. All three Windows tasks **untouched**.
+- **Authorization hygiene (informational).** `send_authorizations` = 23 rows: 9 consumed / 7 revoked /
+  7 superseded — **0 live pending**. The 7 non-consumed rows are all `superseded`, long past `expires_at`
+  (2026-07-24 … 2026-09-01, 15-minute windows), `consumed_at` set, and **0 of their plans has any `planned`
+  FSP** (verified per `plan_id`) → inert, cannot authorise a send.
+- **Documentation correction.** CURRENT_STATUS section D was frozen at 2026-09-14 and still showed
+  `READ_ONLY_SAFE_UNIQUE_ORGS = 1`; it is now explicitly banner-marked **HISTORICAL — SUPERSEDED** with
+  section C as the authoritative current source. The definitions themselves remain valid; only the numbers were
+  stale. Also refreshed the automations/Windows tables, `SAFE_CURRENT`, `LAST_INVENTORY_RUN`, `NEXT_ACTION`, and
+  added `INVENTORY_CADENCE` / `CHECKPOINT_CADENCE` fields. `LATEST_RESULT.json` 76 → 81 keys (CRLF, no trailing
+  newline) — **all 30 historical `phase4a5*` provenance blocks verified byte-identical**; only live fields and
+  the five new `phase4a5i_*` blocks changed.
+- **FINAL:** `LAST_REMOTE_HANDOFF = 60fe964e…` · `CATCHUP_PERIOD = 2026-09-23T17:06 +08 → 2026-09-28T01:20 +08` ·
+  `INVENTORY_RUNS_SINCE_LAST_REPORT = 4` · `FAILED_INVENTORY_RUNS = 0` · `REAL_ENGINEERING_BLOCKER = none` ·
+  `ACTIVE_CITY = Saratoga Springs, NY` · `LAST_COMPLETED_CITY = Ithaca, NY` · `NEXT_PENDING_CITY = Cooperstown,
+  NY` · `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 18` · `SAFE_GAIN_SINCE_4A5H = +2` · `MATERIALIZED_FSP_PLANNED = 0` ·
+  `SAFE40_REACHED = false` · `EXACT40_ACCEPTANCE_RUN = false` · `EXACT40_ACCEPTANCE_RESULT = NOT_RUN` ·
+  `SMTP_CONNECTIONS = 0` · `OUTREACH_SEND_COUNT = 0` · `CODE_CHANGES = 0` · `DB_WRITES = 0` ·
+  `INVENTORY_RUNS_MANUAL = 0` · `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION` · canonical Inventory
+  scheduler left running · `STOP = true`.
+

@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-23T12:40:00+08:00",
-  "refresh_type": "phase_4a5f",
+  "generated_at": "2026-09-28T01:30:00+08:00",
+  "refresh_type": "phase_4a5i",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5F (final discovery-liveness release deployed; Ithaca -> Saratoga city advancement PROVEN)",
-  "production_status": "Codex 641b36b8 deployed (exactly one file: discovery/discovery_service.py, byte-identical). ACTIVE_CITY = Saratoga Springs, NY; Ithaca = search_matrix_exhausted; city_completion_checks(20,'browser_maps') = 9/9 ALL_MET=true; linked automatic retry 11 -> 0; Inventory + Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED; SMTP=0; FSP planned=0",
+  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5I (catch-up audit after 4 days + accelerated unattended SAFE40; existing sole Inventory automation moved 1x/day -> 4x/day)",
+  "production_status": "Codex 641b36b8 still deployed unchanged (discovery/discovery_service.py, byte-identical; no production file written in 4A.5I). ACTIVE_CITY = Saratoga Springs, NY; LAST_COMPLETED_CITY = Ithaca, NY (search_matrix_exhausted); NEXT_PENDING_CITY = Cooperstown, NY. Catch-up period 2026-09-23T17:06 +08 -> 2026-09-28T01:20 +08: 4 canonical Inventory runs (09-24/25/26/27), all unattended, all partial/safe_inventory_gap, 0 failed, 0 stale_cleanup. NO city movement (Saratoga 2/20 query families completed, 17 pending, 1 running; completion checks 0/9). Inventory + Recovery + checkpoint ACTIVE; PreSend/Preflight/Outreach PAUSED; SMTP_enabled=0; send today=0; FSP planned=0; manual_send_queue=0. DB integrity ok.",
   "production_code_drift": false,
-  "current_blocker": "SAFE = 16 (<40 target). NOT a software failure, and NOT gated on fresh user authorization: the canonical Inventory automation already owns and may continue the ALREADY-DEPLOYED automatic lanes (Places/BrowserMaps discovery, official-site resolution, existing first-party enrichment, visible official email extraction, generic inbox routing, evidence creation, V2/MX SAFE recomputation, city completion/advancement) without further authorization. The V2-safe ceiling is unchanged simply because discovery yield per city is low. Upper NYC-tier metro names (Michaels, Barnes & Noble, TJX, Kohl's) stay operationally access_unreachable. Separate explicit user authorization is required ONLY for a genuinely new enrichment/recovery lane, a V2/MX/hygiene policy change, manual recipient creation, or sending.",
+  "current_blocker": "NO engineering blocker. SAFE = 18 (<40 target) - fresh read-only V2+MX recompute 2026-09-28 00:53 +08 (SAFE_GAIN_SINCE_4A.5H = +2: 16->17 on 09-24 via org:domain:saratogacasino.com, 17->18 on 09-27 via org:domain:tech-monkeys.com). This is NOT a software failure and NOT gated on fresh user authorization: the canonical Inventory automation already owns and may continue the ALREADY-DEPLOYED automatic lanes (Places/BrowserMaps discovery, official-site resolution, existing first-party enrichment, visible official email extraction, generic inbox routing, evidence creation, V2/MX SAFE recomputation, city completion/advancement) without further authorization. MEASURED LIMITER (recorded, NOT changed - it is a discovery-policy change and is not authorized): bd_orchestrator.py:442 calls run_places_batch with max_pages = WORKBUDDY_DISCOVERY_MAX_PAGES default 1, i.e. exactly ONE provider page per run (confirmed: one provider_request_audit row per run), and browser-backed page repetition (documented in discovery_service.py:491-500) means a query family costs ~3 provider requests -> ~60 requests per city = ~15 days/city at the new cadence, ~0.29 SAFE/request. Flagged for Codex review. Separate explicit user authorization is required ONLY for a genuinely new enrichment/recovery lane, a V2/MX/hygiene policy change, manual recipient creation, or sending.",
   "production_code_sha": {
     "bd_orchestrator.py": "7afc4d7f6ac18e22 (sha256 prefix-16; full hash not recorded)",
     "discovery/discovery_service.py": "d23c760aea14c995d859e709acf898ce8e691dd70b129df2f4b920d9e9617d07",
@@ -23,10 +23,10 @@
   "workbuddy_automations": [
     {
       "id": "1784775229336",
-      "name": "RoktRazo BD Inventory",
-      "schedule": "daily 15:00 +08",
+      "name": "RoktRazo BD Inventory - 4x/day (6h interval)",
+      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6; anchor minute :58 +08) - WAS daily 15:00 +08",
       "state": "ACTIVE",
-      "note": "restored 2026-09-23 after both 4A.5F acceptance runs passed"
+      "note": "SOLE Inventory authority. Cadence accelerated 2026-09-28 in PHASE 4A.5I (same automation id, same prompt, same CWD - no second scheduler, no parallel run, named lock unchanged). DEVATION: multi-value BYHOUR is rejected by the scheduler, so the requested 03:00/09:00/15:00/21:00 clock alignment is not expressible; 4x/day 6h apart is the supported form. Next run 2026-09-28 06:58:02 +08."
     },
     {
       "id": "1785804406748",
@@ -47,31 +47,38 @@
       "name": "BD Production Outreach",
       "schedule": "Mon-Fri 22:00 +08",
       "state": "PAUSED",
-      "note": "held; SAFE<40"
+      "note": "held; SAFE<40; sole Outreach authority (Windows duplicate disabled in 4A.5H)"
     },
     {
       "id": "1786002601925",
       "name": "BD Result Recovery Sync",
       "schedule": "daily 08:45 +08",
       "state": "ACTIVE",
-      "note": "resumed post-patch; support job"
+      "note": "support job; never starts Inventory"
+    },
+    {
+      "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
+      "name": "BD SAFE40 Milestone Checkpoint",
+      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6) anchored after the Inventory run - WAS daily 15:40 +08",
+      "state": "ACTIVE",
+      "note": "READ-ONLY. Kept (not re-created) and moved to the same 6-hourly cadence in PHASE 4A.5I. Never launches Inventory, never writes the DB, never creates FSP, never sends. Proven firing unattended 5 consecutive days (09-23 15:40:52 -> 09-27 15:40:36 +08)."
     }
   ],
   "windows_tasks": [
     {
       "name": "RoktRazo-BD-PreSend",
-      "state": "Disabled",
+      "state": "Disabled (re-verified 2026-09-28 00:56 +08; untouched)",
       "classification": "DUPLICATE of canonical Pre-Send"
     },
     {
       "name": "RoktRazo-BD-Outreach",
-      "state": "Disabled",
-      "classification": "DUPLICATE of canonical Outreach"
+      "state": "Disabled (4A.5H change HELD across 5 days; untouched in 4A.5I)",
+      "classification": "DUPLICATE of canonical Outreach (suppressed; not deleted, action unchanged)"
     },
     {
       "name": "RoktRazo-BD-PostSend",
-      "state": "Ready/Enabled",
-      "classification": "UNIQUE_REQUIRED (--stage post-send 00:10 daily)"
+      "state": "Enabled (UNIQUE_REQUIRED)",
+      "classification": "UNIQUE_REQUIRED (--stage post-send 00:10 daily; last run 2026-09-28 00:10:02, result 0)"
     }
   ],
   "duplicate_active_trigger_count": 0,
@@ -141,19 +148,28 @@
       "note": "COMPLETED (was 'running' in 14:37 +08 handoff; prior 14:37 timestamp predated the 15:01 +08 start — impossible). READ_ONLY_V2_SAFE unchanged at 1."
     }
   ],
-  "last_inventory_run": "2026-09-23 (4A.5F acceptance). Run 1 = inventory:2026-09-23:3e75c913, partial/safe_inventory_gap, 541s - Ithaca closed (city checks 5/9 -> 9/9, linked automatic retry 11 -> 0, automation_deferred 9, terminalized 1). Run 2 = inventory:2026-09-23:86d61cde, partial/safe_inventory_gap, 169s - Saratoga Springs activated, DISCOVERY_RESULTS_SEEN=2, NEW_UNIQUE_PLACES=1. Daily 15:00 automation restored ACTIVE after both runs passed.",
+  "last_inventory_run": "2026-09-27 07:01:07 -> 07:13:43 UTC (= 2026-09-27 15:01:07 -> 15:13:43 +08), inventory:2026-09-27:6e8574bd, partial/safe_inventory_gap, 12m36s, target 60, actual 18 (SAFE); query family 'game store', 20 results, 8 new unique places, 1 new official email (support@tech-monkeys.com). FOUR runs in the 4A.5I catch-up period: 09-24 45057361 (8m06s, actual 17), 09-25 39e3b75d (4m06s, actual 17), 09-26 df4e7755 (4m22s, actual 17), 09-27 6e8574bd (12m36s, actual 18) - INVENTORY_RUNS_SINCE_LAST_REPORT=4, FAILED=0, STALE_CLEANUP_24H=0, all locks released at run end. Next run 2026-09-28 06:58 +08 under the accelerated cadence.",
   "safe_metrics": {
-    "V2_ELIGIBLE_UNSENT": 16,
-    "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recount via campaign_eligible_v2.select_candidates_for_plan_v2 + deployed V2+MX gate, 2026-09-22",
-    "READ_ONLY_SAFE_UNIQUE_ORGS": 16,
+    "V2_ELIGIBLE_UNSENT": 18,
+    "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recount via campaign_eligible_v2.select_candidates_for_plan_v2 + deployed V2+MX gate, 2026-09-28 00:53 +08 (PHASE 4A.5I)",
+    "READ_ONLY_SAFE_UNIQUE_ORGS": 18,
     "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "same frozen V2+MX path, distinct organization_key (bd_orchestrator._count_safe_ready_pool)",
+    "READ_ONLY_SAFE_UNIQUE_ORGS_PREVIOUS": 16,
+    "SAFE_GAIN_SINCE_4A5H": 2,
+    "SAFE_GE_40": false,
+    "SAFE40_REACHED": false,
     "MATERIALIZED_FSP_PLANNED": 0,
     "MATERIALIZED_FSP_PLANNED_AUTHORITY": "final_send_plan.status='planned'",
-    "BROAD_READY": 50,
-    "BROAD_READY_AUTHORITY": "bd_orchestrator._count_broad_ready_pool() live",
+    "MATERIALIZED_FSP_ANY_PENDING": 0,
     "BROAD_READY_STORED_FLAG": 95,
-    "VISIBLE_FIRST_PARTY_EMAILS": 348,
-    "VISIBLE_FIRST_PARTY_EMAILS_AUTHORITY": "leads.email NOT NULL AND email_verified_on_official_site=1"
+    "BROAD_READY_STORED_FLAG_AUTHORITY": "leads.send_eligibility='broad_outreach_ready' (context only, NOT SAFE)",
+    "EMAIL_POOL": 606,
+    "LEADS_TOTAL": 1122,
+    "SEND_LOG_TOTAL": 517,
+    "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
+    "SMTP_ENABLED": "0",
+    "SEND_LOG_TODAY": 0,
+    "MANUAL_SEND_QUEUE": 0
   },
   "supporting_totals": {
     "total_leads": 1114,
@@ -220,7 +236,7 @@
     "428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
     "MX failures among candidates (nxdomain=51) prevent V2 pass"
   ],
-  "next_recommended_action": "Continue unattended NY-queue accumulation (Saratoga Springs -> Cooperstown -> ... -> Buffalo) via the sole canonical Inventory automation until READ_ONLY_V2_SAFE_UNIQUE_ORGS >= 40; the already-deployed automatic discovery/enrichment lanes need no further authorization. Milestones are checkpointed automatically by read-only automation 75fbacd1 (daily 15:40 +08). Windows \\RoktRazo-BD-Outreach is now DISABLED (4A.5H). On SAFE >= 40: PAUSE scheduled Inventory, then run EXACT40 NO-SMTP ACCEPTANCE (SMTP still 0) under separate authorization. Recommended: purge already-tracked *.db files from repo history per safe-git rule E (separate destructive authorization). Continue permanent handoff sync.",
+  "next_recommended_action": "Leave the canonical Inventory scheduler running UNATTENDED - it now runs 4x/day (accelerated in 4A.5I) - through the NY queue (Saratoga Springs -> Cooperstown -> Lake Placid -> ... -> Buffalo) until READ_ONLY_V2_SAFE_UNIQUE_ORGS >= 40. Do NOT start a manual loop and do NOT parallelise. Milestones are checkpointed automatically by the read-only automation 75fbacd1, now on the same 6-hourly cadence. The already-deployed automatic discovery/enrichment lanes need no further authorization. CODEX REVIEW CANDIDATE (evidence recorded, NOT executed): the accumulation limiter is WORKBUDDY_DISCOVERY_MAX_PAGES defaulting to 1 page per run plus by-design browser-backed page repetition (~3 provider requests per query family); changing either is a discovery-policy change requiring explicit authorization. On SAFE >= 40: PAUSE scheduled Inventory, then run EXACT40 NO-SMTP ACCEPTANCE (SMTP still 0) under separate authorization. Recommended: purge already-tracked *.db files from repo history per safe-git rule E (separate destructive authorization). Continue permanent handoff sync.",
   "lead_1085_audit": {
     "inventory_closeout_run": "inventory:2026-09-14:eba7c883",
     "inventory_final_status": "completed (partial; actual=1, gap=29, safe_inventory_gap)",
@@ -2959,5 +2975,343 @@
     },
     "SCHEDULER_CHANGES": "1 Windows task disabled (authorized); no WorkBuddy automation state changed"
   },
-  "current_blocker_phase4a5h": "SAFE = 16 (<40 target). NOT a software failure, and NOT gated on fresh user authorization: the canonical Inventory automation already owns and may continue the ALREADY-DEPLOYED automatic lanes (Places/BrowserMaps discovery, official-site resolution, existing first-party enrichment, visible official email extraction, generic inbox routing, evidence creation, V2/MX SAFE recomputation, city completion/advancement) without further authorization. The V2-safe ceiling is unchanged simply because discovery yield per city is low. Upper NYC-tier metro names (Michaels, Barnes & Noble, TJX, Kohl's) stay operationally access_unreachable. Separate explicit user authorization is required ONLY for a genuinely new enrichment/recovery lane, a V2/MX/hygiene policy change, manual recipient creation, or sending."
+  "current_blocker_phase4a5h": "SAFE = 16 (<40 target). NOT a software failure, and NOT gated on fresh user authorization: the canonical Inventory automation already owns and may continue the ALREADY-DEPLOYED automatic lanes (Places/BrowserMaps discovery, official-site resolution, existing first-party enrichment, visible official email extraction, generic inbox routing, evidence creation, V2/MX SAFE recomputation, city completion/advancement) without further authorization. The V2-safe ceiling is unchanged simply because discovery yield per city is low. Upper NYC-tier metro names (Michaels, Barnes & Noble, TJX, Kohl's) stay operationally access_unreachable. Separate explicit user authorization is required ONLY for a genuinely new enrichment/recovery lane, a V2/MX/hygiene policy change, manual recipient creation, or sending.",
+  "phase4a5i_catchup_accelerated_safe40": {
+    "phase": "4A.5I",
+    "date_plus08": "2026-09-28",
+    "nature": "operations / catch-up audit + authorized cadence acceleration (no development)",
+    "report": "handoff/workbuddy/phases/PHASE4A5I_CATCHUP_SAFE40.md",
+    "last_remote_handoff": "60fe964eb75dca34456471a173737a360ae46c07",
+    "catchup_period": "2026-09-23T17:06 +08 -> 2026-09-28T01:20 +08",
+    "codex_release": "641b36b87af596a503cdcb8fb518eab66d5ffbb9 (unchanged; no Codex work this phase)",
+    "INVENTORY_RUNS_SINCE_LAST_REPORT": 4,
+    "FAILED_INVENTORY_RUNS": 0,
+    "STALE_CLEANUP_24H": 0,
+    "REAL_ENGINEERING_BLOCKER": "none",
+    "inventory_runs": [
+      {
+        "run_id": "inventory:2026-09-24:45057361",
+        "started_utc": "2026-09-24 07:01:21",
+        "started_plus08": "2026-09-24 15:01:21",
+        "ended_utc": "2026-09-24 07:09:27",
+        "duration_s": 486,
+        "status": "partial",
+        "stop_reason": "safe_inventory_gap",
+        "target": 50,
+        "actual": 17,
+        "active_city": "Saratoga Springs, NY",
+        "query_family": "board game store",
+        "provider_page": 1,
+        "cursor_used": "",
+        "cursor_returned": "16",
+        "results_seen": 16,
+        "new_unique_places": 15,
+        "official_emails_found": 1,
+        "new_official_email": "info@saratogacasino.com",
+        "safe_after": 17
+      },
+      {
+        "run_id": "inventory:2026-09-25:39e3b75d",
+        "started_utc": "2026-09-25 07:01:11",
+        "started_plus08": "2026-09-25 15:01:11",
+        "ended_utc": "2026-09-25 07:05:17",
+        "duration_s": 246,
+        "status": "partial",
+        "stop_reason": "safe_inventory_gap",
+        "target": 50,
+        "actual": 17,
+        "active_city": "Saratoga Springs, NY",
+        "query_family": "board game store",
+        "provider_page": 1,
+        "cursor_used": "",
+        "cursor_returned": "16",
+        "results_seen": 16,
+        "new_unique_places": 0,
+        "official_emails_found": 0,
+        "note": "repeat page, all duplicates",
+        "safe_after": 17
+      },
+      {
+        "run_id": "inventory:2026-09-26:df4e7755",
+        "started_utc": "2026-09-26 07:00:56",
+        "started_plus08": "2026-09-26 15:00:56",
+        "ended_utc": "2026-09-26 07:05:18",
+        "duration_s": 262,
+        "status": "partial",
+        "stop_reason": "safe_inventory_gap",
+        "target": 60,
+        "actual": 17,
+        "active_city": "Saratoga Springs, NY",
+        "query_family": "board game store",
+        "provider_page": 1,
+        "cursor_used": "",
+        "cursor_returned": "16",
+        "results_seen": 16,
+        "new_unique_places": 0,
+        "official_emails_found": 0,
+        "note": "repeat page, all duplicates",
+        "safe_after": 17
+      },
+      {
+        "run_id": "inventory:2026-09-27:6e8574bd",
+        "started_utc": "2026-09-27 07:01:07",
+        "started_plus08": "2026-09-27 15:01:07",
+        "ended_utc": "2026-09-27 07:13:43",
+        "duration_s": 756,
+        "status": "partial",
+        "stop_reason": "safe_inventory_gap",
+        "target": 60,
+        "actual": 18,
+        "active_city": "Saratoga Springs, NY",
+        "query_family": "game store",
+        "provider_page": 1,
+        "cursor_used": "",
+        "cursor_returned": "20",
+        "results_seen": 20,
+        "new_unique_places": 8,
+        "official_emails_found": 1,
+        "new_official_email": "support@tech-monkeys.com",
+        "safe_after": 18
+      }
+    ],
+    "city_movement": "NONE. Ithaca stays last completed; Saratoga Springs still ACTIVE (2/20 query families completed, 17 pending, 1 running; completion checks 0/9)",
+    "city_queue": {
+      "active": "Saratoga Springs, NY",
+      "last_completed": "Ithaca, NY",
+      "next_pending": "Cooperstown, NY",
+      "ny_pending_count": 15
+    },
+    "provider_health": {
+      "browser_maps_requests_in_period": 7,
+      "status_ok": 7,
+      "non_ok": 0,
+      "zero_result": 0,
+      "with_error": 0,
+      "http_429": 0,
+      "active_city_provider_errors": 0
+    },
+    "authority_verification": {
+      "processes_scanned": 467,
+      "bd_orchestrator_processes": 0,
+      "manual_driver_processes": 0,
+      "bd_browser_processes": 0,
+      "windows_inventory_task_exists": false,
+      "BDExecutionHost_service": "Stopped",
+      "DUPLICATE_INVENTORY_AUTHORITY": false
+    },
+    "db_integrity": {
+      "integrity_check": "ok",
+      "quick_check": "ok",
+      "foreign_key_check": 0,
+      "journal_mode": "wal"
+    },
+    "gate_conditions": {
+      "no_concurrent_inventory": true,
+      "run_lock_healthy": true,
+      "no_stale_cleanup_or_lock_storm": true,
+      "max_runtime_under_30min": true,
+      "no_429_rate_limit_regression": true,
+      "no_browsermaps_regression": true,
+      "db_integrity_healthy": true
+    },
+    "cadence_change": {
+      "INVENTORY_CADENCE_BEFORE": "1x/day at 15:00 +08 (FREQ=DAILY;BYHOUR=15;BYMINUTE=0)",
+      "INVENTORY_CADENCE_AFTER": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6; anchor :58 +08)",
+      "CHECKPOINT_CADENCE_AFTER": "4x/day every 6h, anchored after the Inventory run",
+      "automation_id": "1784775229336",
+      "modified_in_place": true,
+      "second_scheduler_created": false,
+      "parallelised": false,
+      "named_lock_unchanged": "run_lock:daily_outreach:inventory:<business_date>",
+      "next_run_plus08": "2026-09-28 06:58:02",
+      "deviation": "requested 03:00/09:00/15:00/21:00 is not expressible - the scheduler rejects multi-value BYHOUR; 4x/day at 6h spacing is the supported form"
+    },
+    "root_cause_recorded_not_changed": {
+      "finding": "bd_orchestrator.py:442 run_places_batch(max_pages=WORKBUDDY_DISCOVERY_MAX_PAGES default 1) => exactly ONE provider page per run; browser-backed page repetition (discovery_service.py:491-500) closes a family only after 2 consecutive no-new pages",
+      "evidence": [
+        "exactly one provider_request_audit row per run for city 21 (7 requests / 7 runs)",
+        "retail_city_queue.pages_processed = 7 for city 21",
+        "board game store requested 3x (09-24/25/26, cursor reset to '') before closing",
+        "Ithaca 'game store' pages_processed=28, consecutive_pages_without_new_place=27"
+      ],
+      "quantified": {
+        "requests_per_city_estimate": 60,
+        "days_per_city_at_new_cadence": 15,
+        "safe_per_request": 0.29,
+        "requests_for_plus22_safe": 76,
+        "days_for_safe40_at_new_cadence": 19
+      },
+      "status": "RECORDED ONLY - NOT CHANGED (discovery-policy change, not authorized this phase)",
+      "recommended_next_step": "Codex review decision on WORKBUDDY_DISCOVERY_MAX_PAGES and provider repetition/pagination handling"
+    },
+    "send_safety": {
+      "SMTP_CONNECTIONS": 0,
+      "OUTREACH_SEND_COUNT": 0,
+      "MATERIALIZED_FSP_PLANNED": 0,
+      "SMTP_ENABLED": "0",
+      "SEND_LOG_TODAY": 0,
+      "MANUAL_SEND_QUEUE": 0,
+      "presend": "PAUSED",
+      "preflight": "PAUSED",
+      "outreach": "PAUSED"
+    },
+    "authorization_hygiene": {
+      "send_authorizations_total": 23,
+      "consumed": 9,
+      "revoked": 7,
+      "superseded": 7,
+      "live_pending": 0,
+      "note": "the 7 non-consumed rows are all 'superseded' - long past expires_at, consumed_at set, and 0 of their plans has any planned FSP -> inert"
+    },
+    "forbidden_actions_confirmed": {
+      "MANUAL_INVENTORY_LOOP_STARTED": false,
+      "INVENTORY_PARALLELISED": false,
+      "SECOND_SCHEDULER_CREATED": false,
+      "SECOND_CHECKPOINT_CREATED": false,
+      "PRODUCTION_CODE_MODIFIED": false,
+      "CODEX_WORK_PERFORMED": false,
+      "DATABASE_WRITTEN": false,
+      "SCHEMA_CHANGED": false,
+      "DISCOVERY_POLICY_REDESIGNED": false,
+      "PROVIDERS_OR_SCHEMAS_ADDED": false,
+      "WORKBUDDY_DISCOVERY_MAX_PAGES_CHANGED": false,
+      "SMTP_CONTACTED": false,
+      "EMAIL_SENT": false,
+      "CANARY_RUN": false,
+      "MANUAL_RECIPIENTS_ADDED": false,
+      "GUESSED_EMAILS_USED": false,
+      "V2_RELAXED": false,
+      "MX_RELAXED": false,
+      "FSP_MATERIALISED": false,
+      "WINDOWS_TASK_MUTATED": false,
+      "PRESEND_PREFLIGHT_OUTREACH_STATES_CHANGED": false
+    },
+    "code_changes": 0,
+    "db_writes": 0,
+    "inventory_runs_manual": 0,
+    "EXACT40_ACCEPTANCE_RUN": false,
+    "EXACT40_ACCEPTANCE_RESULT": "NOT_RUN",
+    "NEXT_ACTION": "CONTINUE_UNATTENDED_ACCUMULATION"
+  },
+  "safe_metrics_phase4a5i": {
+    "READ_ONLY_V2_SAFE_UNIQUE_ORGS": 18,
+    "READ_ONLY_V2_SAFE_UNIQUE_ORGS_PREVIOUS": 16,
+    "SAFE_GAIN_SINCE_4A5H": 2,
+    "V2_SAFE_CANDIDATE_ROWS": 18,
+    "SAFE_GE_40": false,
+    "SAFE40_REACHED": false,
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MATERIALIZED_FSP_ANY_PENDING": 0,
+    "NEW_SAFE_ORGS": [
+      "org:domain:saratogacasino.com",
+      "org:domain:tech-monkeys.com"
+    ],
+    "SAFE_ORG_KEYS": [
+      "org:domain:angry-mom-records.com",
+      "org:domain:booksale.org",
+      "org:domain:cornell.edu",
+      "org:domain:fingerlakestoylibrary.org",
+      "org:domain:gmes.com",
+      "org:domain:goretailgroup.com",
+      "org:domain:ithaca.edu",
+      "org:domain:ithacachildrensgarden.org",
+      "org:domain:jilliansdrawers.com",
+      "org:domain:mamagooseithaca.com",
+      "org:domain:mimisatticithaca.com",
+      "org:domain:museum.cornell.edu",
+      "org:domain:saratogacasino.com",
+      "org:domain:soagithaca.org",
+      "org:domain:tech-monkeys.com",
+      "org:domain:theframeshopithaca.com",
+      "org:domain:thehistorycenter.net",
+      "org:domain:unclemartysoffice.com"
+    ],
+    "authority": "fresh read-only recompute 2026-09-28 00:53 +08 via campaign_eligible_v2.select_candidates_for_plan_v2 (frozen V2+MX), in-process MX cache only, DB opened mode=ro",
+    "context_only_not_safe": {
+      "BROAD_READY_STORED_FLAG": 95,
+      "LEADS_TOTAL": 1122,
+      "EMAIL_POOL": 606,
+      "DISCOVERY_ROWS": 436
+    }
+  },
+  "supporting_totals_phase4a5i": {
+    "SEND_LOG_TOTAL": 517,
+    "SEND_LOG_TODAY": 0,
+    "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MATERIALIZED_FSP_SENT_TOTAL": 188,
+    "FINAL_SEND_PLAN_BY_STATUS": {
+      "cancelled": 229,
+      "failed": 104,
+      "sent": 188,
+      "skipped": 57,
+      "superseded": 10
+    },
+    "MANUAL_SEND_QUEUE": 0,
+    "SEND_AUTHORIZATIONS": {
+      "total": 23,
+      "consumed": 9,
+      "revoked": 7,
+      "superseded": 7,
+      "live_pending": 0
+    },
+    "BOUNCE_LOG_TOTAL": 63,
+    "LEADS_TOTAL": 1122,
+    "EMAIL_POOL": 606,
+    "DISCOVERY_ROWS": 436,
+    "LEADS_CREATED_SINCE_2026_09_23": 8,
+    "LEADS_WITH_EMAIL_SINCE_2026_09_23": 2,
+    "RUNNING_INVENTORY_JOBS": 0,
+    "STALE_RUNNING_JOBS_LEGACY_JULY": 4,
+    "INVENTORY_RUNS_LAST_7D": {
+      "2026-09-20": 6881,
+      "2026-09-21": 22,
+      "2026-09-22": 2,
+      "2026-09-23": 3,
+      "2026-09-24": 1,
+      "2026-09-25": 1,
+      "2026-09-26": 1,
+      "2026-09-27": 1
+    },
+    "DB_INTEGRITY": {
+      "integrity_check": "ok",
+      "quick_check": "ok",
+      "foreign_key_check": 0,
+      "journal_mode": "wal"
+    }
+  },
+  "workbuddy_automations_phase4a5i": {
+    "verified_at": "2026-09-28 01:00 +08 (live automation list)",
+    "inventory": {
+      "id": "1784775229336",
+      "state": "ACTIVE",
+      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6) - was daily 15:00 +08",
+      "role": "SOLE Inventory authority"
+    },
+    "checkpoint": {
+      "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
+      "state": "ACTIVE",
+      "schedule": "4x/day every 6h - was daily 15:40 +08",
+      "role": "READ-ONLY milestone checkpoint"
+    },
+    "recovery": {
+      "id": "1786002601925",
+      "state": "ACTIVE"
+    },
+    "presend": {
+      "id": "1785804406748",
+      "state": "PAUSED"
+    },
+    "preflight": {
+      "id": "1785804413719",
+      "state": "PAUSED"
+    },
+    "outreach": {
+      "id": "1785804421539",
+      "state": "PAUSED"
+    },
+    "duplicate_inventory_authority": false,
+    "duplicate_active_send_trigger_count": 0
+  },
+  "current_blocker_phase4a5i": "None (engineering). SAFE=18 (<40) is a throughput/business-yield condition, not a software failure. Nine blocker conditions checked individually against live evidence and all negative: no repeated rows without transition (families close; the running family's cursor persists), city can progress, no lock storm, no duplicate Inventory authority, no crash, no browser-process leak, no DB integrity failure, no V2/MX policy drift, no provider/network regression. The measured limiter (1 page per run + by-design provider page repetition) is recorded for Codex review and was NOT changed."
 }
