@@ -234,9 +234,9 @@ changes and are NOT authorized this phase**. Explicitly NOT changed.
 
 The **existing** read-only checkpoint automation `75fbacd1-fa43-46ea-8388-1d47647c3f4d` was reused — **no second
 checkpoint mechanism was created**. It was moved onto the same 6-hourly interval so it still lands **after** each
-inventory run (anchor minute offset after the Inventory anchor; see FINAL for the exact value).
+inventory run — **anchor minute :14 +08, i.e. 16 minutes after the Inventory anchor** (next checkpoint run 2026-09-28 07:14:16 +08; the offset exceeds the observed 4–13 min Inventory runtime, so the checkpoint measures post-run state).
 
-`CHECKPOINT_CADENCE_AFTER = 4×/day, FREQ=HOURLY;INTERVAL=6` (was 1×/day at 15:40 +08).
+`CHECKPOINT_CADENCE_AFTER = 4×/day, FREQ=HOURLY;INTERVAL=6` — **anchor :14 +08 (+16 min after the Inventory anchor; next run 2026-09-28 07:14:16 +08)** (was 1×/day at 15:40 +08).
 It remains **STRICTLY READ-ONLY**: never launches Inventory, never writes the DB, never creates FSP, never sends.
 
 - Escalation triggers are unchanged: **SAFE changed · active city changed · completed city changed · SAFE ≥ 40 ·
@@ -337,7 +337,8 @@ SAFE40_REACHED                   = false
 INVENTORY_CADENCE_BEFORE         = 1x/day at 15:00 +08
 INVENTORY_CADENCE_AFTER          = 4x/day, FREQ=HOURLY;INTERVAL=6  (anchor :58 +08; see DEVIATION NOTICE)
 
-CHECKPOINT_CADENCE_AFTER         = 4x/day, FREQ=HOURLY;INTERVAL=6  (offset after the Inventory anchor)
+CHECKPOINT_CADENCE_AFTER         = 4x/day, FREQ=HOURLY;INTERVAL=6  (anchor :14 +08 = +16 min after the
+                                   Inventory anchor; next run 2026-09-28 07:14:16 +08)
 
 EXACT40_ACCEPTANCE_RUN           = false
 EXACT40_ACCEPTANCE_RESULT        = NOT_RUN  (SAFE < 40)

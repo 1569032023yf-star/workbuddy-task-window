@@ -639,7 +639,7 @@ ADOPTED_NOT_RECOMPUTED = true
   **explicitly NOT changed** — both levers are discovery-policy changes requiring explicit authorization.
   Recorded as a **Codex review candidate**.
 - **Checkpoint cadence (existing mechanism reused, no second one created).** `75fbacd1-fa43-46ea-8388-
-  1d47647c3f4d` moved from 1×/day 15:40 to the **same 6-hourly interval, anchored after the Inventory run**.
+  1d47647c3f4d` moved from 1×/day 15:40 to the **same 6-hourly interval, anchored after the Inventory run** (anchor minute :14 +08 = 16 minutes after the Inventory anchor; next run 2026-09-28 07:14:16 +08).
   Still **STRICTLY READ-ONLY** (never launches Inventory, never writes the DB, never creates FSP, never sends).
   Escalation triggers unchanged: SAFE changed · active city changed · completed city changed · SAFE ≥ 40 ·
   real blocker · send-freeze violation. Zero-yield runs remain non-reporting and produce no git commit.

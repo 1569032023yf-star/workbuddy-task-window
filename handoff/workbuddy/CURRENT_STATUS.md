@@ -95,8 +95,9 @@ INVENTORY_CADENCE          = 4×/day, FREQ=HOURLY;INTERVAL=6 (anchor minute :58 
                              Next run = 2026-09-28 06:58:02 +08. Serial authority + named lock unchanged.
                              DEVIATION: requested 03:00/09:00/15:00/21:00 is not expressible (scheduler rejects
                              multi-value BYHOUR); 4×/day at 6-hour spacing is the faithful supported form.
-CHECKPOINT_CADENCE         = 4×/day, FREQ=HOURLY;INTERVAL=6, anchored after the Inventory anchor — was 1×/day
-                             15:40 +08. Same automation 75fbacd1; still STRICTLY READ-ONLY; no second mechanism.
+CHECKPOINT_CADENCE         = 4×/day, FREQ=HOURLY;INTERVAL=6 — anchor minute :14 +08 = 16 minutes after the Inventory anchor; next run 2026-09-28 07:14:16 +08.
+                             Was 1×/day 15:40 +08. Same automation 75fbacd1; still STRICTLY READ-ONLY;
+                             no second checkpoint mechanism.
 CURRENT_BLOCKER            = None (engineering). SAFE=18 (<40 target) — re-measured fresh in 4A.5I. This is NOT
                              a software failure and it is NOT gated on fresh user authorization: the canonical
                              Inventory automation already owns and may continue the ALREADY-DEPLOYED automatic
@@ -205,7 +206,7 @@ LAST_POSTSEND_RUN          = 2026-09-28 00:10:02 +08 (Windows task RoktRazo-BD-P
 | 1785804413719 | BD Production Preflight | Mon–Fri 21:50 +08 | PAUSED (held; SAFE<40) |
 | 1785804421539 | BD Production Outreach | Mon–Fri 22:00 +08 | PAUSED (held; SAFE<40) — sole Outreach authority now that the Windows duplicate is disabled |
 | 1786002601925 | BD Result Recovery Sync | daily 08:45 +08 | ACTIVE (support job; never starts Inventory) |
-| 75fbacd1-fa43-46ea-8388-1d47647c3f4d | BD SAFE40 Milestone Checkpoint | **4×/day, every 6 h (anchored after the Inventory run)** — was daily 15:40 +08 | **ACTIVE**; READ-ONLY, never launches Inventory, never writes the DB, never sends. Proven firing unattended 5 consecutive days (09-23 15:40:52 → 09-27 15:40:36). Cadence moved to 4×/day in 4A.5I |
+| 75fbacd1-fa43-46ea-8388-1d47647c3f4d | BD SAFE40 Milestone Checkpoint | **4×/day, every 6 h, anchor :14 +08 (+16 min after the Inventory run)** — was daily 15:40 +08 | **ACTIVE**; READ-ONLY, never launches Inventory, never writes the DB, never sends. Proven firing unattended 5 consecutive days (09-23 15:40:52 → 09-27 15:40:36). Cadence moved to 4×/day in 4A.5I |
 
 ### WINDOWS_TASKS — **re-verified live 2026-09-28 00:56 +08** (`schtasks /query /fo CSV /v`; supersedes the 2026-09-23 16:59 reading). All three tasks were **untouched** in 4A.5I.
 | Task Name | State | Next Run | Last Run / Result | Classification |
@@ -2378,7 +2379,8 @@ ACTIVE_CITY = Saratoga Springs, NY   LAST_COMPLETED_CITY = Ithaca, NY   NEXT_PEN
 READ_ONLY_V2_SAFE_UNIQUE_ORGS = 18   SAFE_GAIN_SINCE_4A5H = +2   MATERIALIZED_FSP_PLANNED = 0
 SAFE40_REACHED = false               EXACT40_ACCEPTANCE_RUN = false   EXACT40_ACCEPTANCE_RESULT = NOT_RUN
 INVENTORY_CADENCE_BEFORE = 1x/day 15:00 +08   INVENTORY_CADENCE_AFTER = 4x/day (6h interval)
-CHECKPOINT_CADENCE_AFTER = 4x/day (6h interval, after the Inventory anchor)
+CHECKPOINT_CADENCE_AFTER = 4x/day (6h interval) anchor :14 +08, +16 min after the Inventory anchor
+                           next checkpoint run 2026-09-28 07:14:16 +08
 SMTP_CONNECTIONS = 0   OUTREACH_SEND_COUNT = 0   CODE_CHANGES = 0   DB_WRITES = 0   INVENTORY_RUNS_MANUAL = 0
 NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION (canonical scheduler left running)   STOP = true
 ```

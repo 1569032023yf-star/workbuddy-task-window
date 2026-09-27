@@ -59,7 +59,7 @@
     {
       "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
       "name": "BD SAFE40 Milestone Checkpoint",
-      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6) anchored after the Inventory run - WAS daily 15:40 +08",
+      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6); anchor :14 +08 = 16 min after the Inventory anchor; next run 2026-09-28 07:14:16 +08 - WAS daily 15:40 +08",
       "state": "ACTIVE",
       "note": "READ-ONLY. Kept (not re-created) and moved to the same 6-hourly cadence in PHASE 4A.5I. Never launches Inventory, never writes the DB, never creates FSP, never sends. Proven firing unattended 5 consecutive days (09-23 15:40:52 -> 09-27 15:40:36 +08)."
     }
@@ -3117,7 +3117,7 @@
     "cadence_change": {
       "INVENTORY_CADENCE_BEFORE": "1x/day at 15:00 +08 (FREQ=DAILY;BYHOUR=15;BYMINUTE=0)",
       "INVENTORY_CADENCE_AFTER": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6; anchor :58 +08)",
-      "CHECKPOINT_CADENCE_AFTER": "4x/day every 6h, anchored after the Inventory run",
+      "CHECKPOINT_CADENCE_AFTER": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6); anchor :14 +08 = 16 min after the Inventory anchor; next run 2026-09-28 07:14:16 +08",
       "automation_id": "1784775229336",
       "modified_in_place": true,
       "second_scheduler_created": false,
