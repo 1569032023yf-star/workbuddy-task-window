@@ -4,21 +4,23 @@
 > - `1569032023yf-star/workbuddy-task-window` (branch `main`) = **PRODUCTION SOURCE / PRODUCTION HANDOFF** ← this repo
 > - `1569032023yf-star/roktandrazo-outreach-codex` = **DEVELOPMENT SOURCE / CODEX HANDOFF** (do NOT write production handoff here)
 >
-> Generated: 2026-09-28T02:45:03+08:00 (Asia/Shanghai)
-> REFRESH TYPE: **PHASE 4A.5J — SAFE40 THROUGHPUT TUNING VIA THE EXISTING `WORKBUDDY_DISCOVERY_MAX_PAGES` KNOB.** Operations/configuration phase. The previously recorded root-cause limiter (`WORKBUDDY_DISCOVERY_MAX_PAGES` defaulting to **1 provider page per run**) was confirmed in code at `bd_orchestrator.py:442` and then raised to **2** — on the **SAME** canonical Inventory automation `1784775229336`, scoped to its execution environment only, with its `rrule` and anchor unchanged (`nextRunAt` `1790549882001` = 2026-09-28 06:58:02 +08). No code change, no `.env` change, no new scheduler, no parallel run, no policy weakened. Pre-change baseline is **1.0 provider pages per run** (`[1,1,1,1]` across 09-24/25/26/27, 0 x 429 all-time); acceptance requires the average to exceed 1.0 over the **first four scheduled runs** (window opens 2026-09-28 06:58 +08, `FOUR_RUN_ACCEPTANCE_COMPLETE = false` at time of writing). The **existing** read-only checkpoint `75fbacd1` was moved to the requested anchor minute `:38` (was `:14`) keeping 6-hour spacing; because an HOURLY rule's anchor is derived from the `rrule`-write moment and HOURLY accepts no `BYMINUTE`, the first cycle lands 100 min after an Inventory run instead of 40 — later, therefore still safe — and one narrow one-off config task (`488f4c21`, fires 07:38) re-phases the same series to exactly +40 min. `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 18` (fresh V2+MX recompute), `SAFE40_REACHED = false`, `SMTP = 0`, `send today = 0`, `MATERIALIZED_FSP_PLANNED = 0`, `CODE_CHANGES = 0`, `DB_WRITES = 0`, `MANUAL_INVENTORY_RUNS = 0`. LIMITATION: `schtasks.exe` is now blocked by the local sandbox program blacklist, so the Windows tasks could NOT be re-verified this phase.
-> HANDOFF SYNC POLICY (PHASE 4A.5J): this refresh records an AUTHORIZED CONFIGURATION change at the
-> moment it was applied, so the live status did not silently lag production. Per the phase instruction,
-> `LATEST_RESULT.json` and `CHANGELOG.md` are deliberately **NOT** updated here — they are updated at the
-> first trigger event (first 4-run max_pages=2 acceptance completes / SAFE changes / city changes / a real
-> blocker appears / SAFE >= 40). Do not read the absence of a 4A.5J block in `LATEST_RESULT.json` as an
-> unreported phase; it is a deliberate deferral, and `FOUR_RUN_ACCEPTANCE_COMPLETE = false` in section C.
-> PREVIOUS REFRESH (0): PHASE 4A.5I — CATCH-UP AUDIT + ACCELERATED UNATTENDED SAFE40. Four days had passed since the last pushed handoff, so nothing was assumed: every metric below is a **live read** on 2026-09-28 00:49–01:20 +08. Catch-up found **4 canonical Inventory runs (09-24/25/26/27), 0 failed, 0 lock storm, 0 provider errors, no engineering blocker**, and **SAFE moved 16 → 18** (+2: `saratogacasino.com` on 09-24, `tech-monkeys.com` on 09-27). **No city movement** — Ithaca remains last completed, Saratoga Springs still active (2/20 query families done, checks 0/9). Because SAFE < 40 and all six section-D gate conditions passed, the **existing sole** Inventory automation `1784775229336` was accelerated from **1×/day to 4×/day at a 6-hour interval** (no new scheduler, no parallel run, same named lock) and the **existing** read-only checkpoint `75fbacd1` was moved to the same interval. Root cause of the slow SAFE climb recorded but **NOT changed** (unauthorized): `WORKBUDDY_DISCOVERY_MAX_PAGES` defaults to **1 page per run**, and browser-backed provider page repetition means a query family costs ~3 provider requests. SMTP=0, send=0, FSP=0, `CODE_CHANGES=0`, `DB_WRITES=0`, `INVENTORY_RUNS_MANUAL=0`.
-> PREVIOUS REFRESH (1): PHASE 4A.5H — SCHEDULER HYGIENE + CONTINUE UNATTENDED SAFE40. Disabled exactly one legacy Windows send-side trigger (`\RoktRazo-BD-Outreach`); `DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0`; SAFE = 16; corrected operating-policy wording so it no longer implies normal SAFE growth needs fresh user authorization. (Re-verified in 4A.5I: that disable has **held** for 5 days.)
-> PREVIOUS REFRESH (2): PHASE 4A.5G — UNATTENDED NY-QUEUE SAFE40 ACCUMULATION: OPERATING STATE CONFIRMED (READ-ONLY). Found Windows `\RoktRazo-BD-Outreach` **Enabled**; added read-only 15:40 milestone checkpoint automation `75fbacd1`.
-> PREVIOUS REFRESH (3): PHASE 4A.5F — FINAL DISCOVERY-LIVENESS RELEASE DEPLOYED + ITHACA → SARATOGA PROVEN. Deployed exactly one file (`discovery/discovery_service.py` @ Codex `641b36b8`, byte-identical). Run 1 drove Ithaca to `search_matrix_exhausted`; Run 2 activated **Saratoga Springs, NY**. No SMTP, no send, no FSP, no V2/MX change, no schema migration.
-> PREVIOUS REFRESH (4): PHASE 4A.5E — HANDOFF SYNC ONLY (official-site network path diagnostic mirrored from Codex `bf32df09`; `DIAGNOSTIC_RERUN=false`).
-> PREVIOUS REFRESH (5): PHASE 4A.5D — deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt: deploy/validation PASSED, city advancement NOT proven, STOPPED at section D.
-> PREVIOUS REFRESH (6): PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40: STOPPED on genuine software regression (city-queue deadlock).
+> Generated: 2026-09-29T04:07:14+08:00 (Asia/Shanghai)
+> REFRESH TYPE: **PHASE 4A.5J ACCEPTANCE — `WORKBUDDY_DISCOVERY_MAX_PAGES=2` FOUR-RUN ACCEPTANCE = PASS.** STRICTLY READ-ONLY trigger-event refresh (no DB write, no code change, no knob change, no scheduler change, no send). Four canonical Inventory runs completed after the 4A.5J change point (`2026-09-27 17:40 UTC` = `2026-09-28 01:40 +08`) — `6ab888b1` (2 pages, 6m35s), `02e28542` (2 pages, 9m03s), `ca070d84` (1 page, 5m38s), `1797b39c` (2 pages, 23m44s) — every one `partial`/`safe_inventory_gap`, **0 failed, 0 stale_cleanup, 0 lock conflicts, 0 concurrent runs, 0 HTTP 429 (all-time 429 total is still 0), 0 provider errors**, all run windows disjoint. Pages per run `[2,2,1,2]` → **AVG 1.75 vs the 1.0 baseline → THROUGHPUT IMPROVED**; the knob is therefore **KEPT** (not raised to 3/4, per the 4A.5J rule). Material result: `READ_ONLY_V2_SAFE_UNIQUE_ORGS` **18 → 19** (`org:domain:saratogateaandhoney.com`), fresh frozen V2+MX read-only recompute 2026-09-29 04:07 +08; `SAFE_GAIN_SINCE_4A5H = +3`. `SAFE40_REACHED = false` (19 < 40) → EXACT40 NOT run and the canonical Inventory scheduler `1784775229336` was **left running and untouched**. No city movement: ACTIVE_CITY = Saratoga Springs, NY (4/20 query families completed, 1 running), LAST_COMPLETED_CITY = Ithaca, NY, NEXT = Cooperstown, NY. `SMTP_ENABLED = 0`, `SEND_LOG_TODAY = 0`, `MATERIALIZED_FSP_PLANNED = 0`, `CODE_CHANGES = 0`, `DB_WRITES = 0`, `INVENTORY_RUNS_MANUAL = 0`. LIMITATION: no scheduler/Windows-task state was re-read in this read-only round — the automation and Windows tables below are **carried forward from 4A.5J**, not re-verified here. Detail: `handoff/workbuddy/phases/PHASE4A5J_MAXPAGES2_ACCEPTANCE_20260929.md`.
+> HANDOFF SYNC POLICY (PHASE 4A.5J): the CONFIGURATION refresh recorded an AUTHORIZED change at the moment
+> it was applied, so the live status did not silently lag production; per the phase instruction,
+> `LATEST_RESULT.json` and `CHANGELOG.md` were deliberately **NOT** updated at that time. **That deferral is
+> now discharged:** the FIRST TRIGGER EVENT has occurred (the 4-run max_pages=2 acceptance completed AND
+> SAFE moved 18 → 19), so this refresh performs the deferred update — `phase4a5j_max_pages2_acceptance` +
+> the `*_phase4a5j` blocks in `LATEST_RESULT.json`, the matching `CHANGELOG.md` section, and section AH below.
+> `FOUR_RUN_ACCEPTANCE_COMPLETE` is now **true**; read the 4A.5J configuration text above as history.
+> PREVIOUS REFRESH (0): **PHASE 4A.5J — SAFE40 THROUGHPUT TUNING VIA THE EXISTING `WORKBUDDY_DISCOVERY_MAX_PAGES` KNOB.** Operations/configuration phase. The previously recorded root-cause limiter (`WORKBUDDY_DISCOVERY_MAX_PAGES` defaulting to **1 provider page per run**) was confirmed in code at `bd_orchestrator.py:442` and then raised to **2** — on the **SAME** canonical Inventory automation `1784775229336`, scoped to its execution environment only, with its `rrule` and anchor unchanged (`nextRunAt` `1790549882001` = 2026-09-28 06:58:02 +08). No code change, no `.env` change, no new scheduler, no parallel run, no policy weakened. Pre-change baseline is **1.0 provider pages per run** (`[1,1,1,1]` across 09-24/25/26/27, 0 x 429 all-time); acceptance requires the average to exceed 1.0 over the **first four scheduled runs** (window opens 2026-09-28 06:58 +08, `FOUR_RUN_ACCEPTANCE_COMPLETE = false` at time of writing). The **existing** read-only checkpoint `75fbacd1` was moved to the requested anchor minute `:38` (was `:14`) keeping 6-hour spacing; because an HOURLY rule's anchor is derived from the `rrule`-write moment and HOURLY accepts no `BYMINUTE`, the first cycle lands 100 min after an Inventory run instead of 40 — later, therefore still safe — and one narrow one-off config task (`488f4c21`, fires 07:38) re-phases the same series to exactly +40 min. `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 18` (fresh V2+MX recompute), `SAFE40_REACHED = false`, `SMTP = 0`, `send today = 0`, `MATERIALIZED_FSP_PLANNED = 0`, `CODE_CHANGES = 0`, `DB_WRITES = 0`, `MANUAL_INVENTORY_RUNS = 0`. LIMITATION: `schtasks.exe` is now blocked by the local sandbox program blacklist, so the Windows tasks could NOT be re-verified this phase.
+> PREVIOUS REFRESH (1): PHASE 4A.5I — CATCH-UP AUDIT + ACCELERATED UNATTENDED SAFE40. Four days had passed since the last pushed handoff, so nothing was assumed: every metric below is a **live read** on 2026-09-28 00:49–01:20 +08. Catch-up found **4 canonical Inventory runs (09-24/25/26/27), 0 failed, 0 lock storm, 0 provider errors, no engineering blocker**, and **SAFE moved 16 → 18** (+2: `saratogacasino.com` on 09-24, `tech-monkeys.com` on 09-27). **No city movement** — Ithaca remains last completed, Saratoga Springs still active (2/20 query families done, checks 0/9). Because SAFE < 40 and all six section-D gate conditions passed, the **existing sole** Inventory automation `1784775229336` was accelerated from **1×/day to 4×/day at a 6-hour interval** (no new scheduler, no parallel run, same named lock) and the **existing** read-only checkpoint `75fbacd1` was moved to the same interval. Root cause of the slow SAFE climb recorded but **NOT changed** (unauthorized): `WORKBUDDY_DISCOVERY_MAX_PAGES` defaults to **1 page per run**, and browser-backed provider page repetition means a query family costs ~3 provider requests. SMTP=0, send=0, FSP=0, `CODE_CHANGES=0`, `DB_WRITES=0`, `INVENTORY_RUNS_MANUAL=0`.
+> PREVIOUS REFRESH (2): PHASE 4A.5H — SCHEDULER HYGIENE + CONTINUE UNATTENDED SAFE40. Disabled exactly one legacy Windows send-side trigger (`\RoktRazo-BD-Outreach`); `DUPLICATE_ACTIVE_SEND_TRIGGER_COUNT = 0`; SAFE = 16; corrected operating-policy wording so it no longer implies normal SAFE growth needs fresh user authorization. (Re-verified in 4A.5I: that disable has **held** for 5 days.)
+> PREVIOUS REFRESH (3): PHASE 4A.5G — UNATTENDED NY-QUEUE SAFE40 ACCUMULATION: OPERATING STATE CONFIRMED (READ-ONLY). Found Windows `\RoktRazo-BD-Outreach` **Enabled**; added read-only 15:40 milestone checkpoint automation `75fbacd1`.
+> PREVIOUS REFRESH (4): PHASE 4A.5F — FINAL DISCOVERY-LIVENESS RELEASE DEPLOYED + ITHACA → SARATOGA PROVEN. Deployed exactly one file (`discovery/discovery_service.py` @ Codex `641b36b8`, byte-identical). Run 1 drove Ithaca to `search_matrix_exhausted`; Run 2 activated **Saratoga Springs, NY**. No SMTP, no send, no FSP, no V2/MX change, no schema migration.
+> PREVIOUS REFRESH (5): PHASE 4A.5E — HANDOFF SYNC ONLY (official-site network path diagnostic mirrored from Codex `bf32df09`; `DIAGNOSTIC_RERUN=false`).
+> PREVIOUS REFRESH (6): PHASE 4A.5D — deploy Codex `dc493825` (4A.8–4A.8D) + Ithaca → Saratoga attempt: deploy/validation PASSED, city advancement NOT proven, STOPPED at section D.
+> PREVIOUS REFRESH (7): PHASE 4A.5C — finish Ithaca + verify city advancement + build SAFE40: STOPPED on genuine software regression (city-queue deadlock).
 > TIMESTAMP NOTE: previous handoff stamped `Generated: 2026-09-14T14:37:00+08:00` while also recording the 2026-09-14 inventory start as `15:01 +08` and calling it "still running as of 14:37". 14:37 < 15:01 is impossible → the 14:37 timestamp was wrong (see section I / FINAL HANDOFF_TIMESTAMP_ERROR). Correct inventory start = 15:01:10 +08 (= 07:01:10 UTC); correct audit time = 15:46 +08 (this refresh).
 > NOTE: the live production DB is `roktandrazo-outreach/data/bd_leads.db`; the root `roktandrazo-outreach/bd_leads.db` is a 0-byte stale file and is NOT authoritative.
 
@@ -31,6 +33,46 @@ CURRENT_PHASE              = PHASE 4A.5J (SAFE40 throughput tuning via the EXIST
                              knob — OPERATIONS; the only production-state changes are the Inventory
                              automation's execution environment and the checkpoint anchor) — canonical
                              scheduler left running
+PHASE_4A5J_ACCEPTANCE_VERIFIED = 2026-09-29 04:07–04:09 +08, STRICTLY READ-ONLY (one command:
+                             `output/_4a5g_checkpoint.py`; `bd_leads.db` opened `mode=ro`). Trigger-event
+                             refresh. Full detail: handoff/workbuddy/phases/PHASE4A5J_MAXPAGES2_ACCEPTANCE_20260929.md
+                             (a) FOUR-RUN ACCEPTANCE = **PASS**. Runs since the change point
+                                 (2026-09-27 17:40 UTC = 2026-09-28 01:40 +08):
+                                 `6ab888b1` 09-27 22:59:43→23:06:18 UTC (6m35s, 2 pages, family `game store`);
+                                 `02e28542` 09-28 05:09:27→05:18:30 UTC (9m03s, 2 pages, `tabletop game store`);
+                                 `ca070d84` 09-28 08:56:09→09:01:47 UTC (5m38s, 1 page, `tabletop game store`);
+                                 `1797b39c` 09-28 14:21:25→14:45:09 UTC (23m44s, 2 pages, `gift shop`).
+                                 All `partial` + `stop_reason=safe_inventory_gap` = healthy terminal state
+                                 (SAFE below the 50 target), NOT failures. Actual SAFE 18/18/18/19, target 50.
+                             (b) PAGES_PER_RUN = [2,2,1,2] -> AVG **1.75** vs BASELINE [1,1,1,1] -> 1.0
+                                 => MAX_PAGES2_THROUGHPUT_IMPROVED = true. The 1-page run is expected
+                                 structural behaviour of the browser provider (repeat page + the
+                                 "2 consecutive pages with no new results" family-close rule), not a regression.
+                             (c) GATED INVARIANTS: FAILED_INVENTORY_RUNS = 0 · STALE_CLEANUP = 0 ·
+                                 LOCK_CONFLICT_STORM = false (0 `lock_conflict` stop reasons) ·
+                                 CONCURRENT_INVENTORY = 0 (`RUNNING_INVENTORY_JOBS` = 0; the four windows are
+                                 disjoint) · HTTP 429 = 0 (PROVIDER_429_TOTAL_ALL_TIME = 0) ·
+                                 provider non-OK = 0 · DB integrity ok.
+                             (d) DECISION APPLIED: KEEP WORKBUDDY_DISCOVERY_MAX_PAGES = 2 and the 4x/day
+                                 cadence; do NOT raise it to 3 or 4. The remaining limiter (browser-backed page
+                                 repetition, ~3 provider requests per query family) is recorded and still NOT
+                                 changed — discovery-policy change, explicit authorization required.
+                             (e) MATERIAL RESULT: READ_ONLY_V2_SAFE_UNIQUE_ORGS 18 -> **19**
+                                 (new org `org:domain:saratogateaandhoney.com`); SAFE_GAIN_SINCE_4A5H = +3.
+                                 SAFE40_REACHED = false -> EXACT40 NOT run, Inventory NOT paused.
+                             (f) CITY: no movement. ACTIVE_CITY = Saratoga Springs, NY (4/20 families completed,
+                                 1 running, 15 pending; active family `gift shop`); LAST_COMPLETED_CITY = Ithaca, NY;
+                                 NEXT_PENDING_CITY = Cooperstown, NY; CITY_QUEUE_ADVANCEMENT_VERIFIED = true.
+                             (g) SEND FREEZE HELD: SMTP_ENABLED = 0 · SEND_LOG_TODAY = 0 · SEND_LOG_TOTAL = 517 ·
+                                 MATERIALIZED_FSP_PLANNED = 0 · MANUAL_SEND_QUEUE = 0 · SMTP_CONNECTIONS = 0 ·
+                                 OUTREACH_SEND_COUNT = 0 · last send 2026-09-16T01:09:52+08:00.
+                             (h) FORBIDDEN ACTIONS: none performed. No Inventory launch, no manual accumulation
+                                 loop, no SMTP contact, no DB write, no production-code edit, no Codex work,
+                                 no new scheduler, no second checkpoint, knob unchanged, no PreSend/Preflight/
+                                 Outreach activity. Canonical scheduler 1784775229336 left RUNNING.
+                             (i) LIMITATION: this read-only round did NOT re-read scheduler/Windows-task state,
+                                 so the automation and Windows-task tables below are carried forward from 4A.5J.
+                             STOP = true (no PreSend/send initiated).
 PHASE_4A5J_VERIFIED        = 2026-09-28 01:35–02:45 +08, live reads/config only. Full detail:
                              handoff/workbuddy/phases/PHASE4A5J_MAX_PAGES2_THROUGHPUT.md
                              (a) AUTHORISED CHANGE: the EXISTING Inventory automation 1784775229336 now exports
@@ -212,31 +254,36 @@ DATABASE_SCHEMA_CHANGED    = false  (no migration in 4A.5G; no migration in 4A.5
 FROZEN_FILES_CHANGED       = false  (V2 / MX / Preflight / Sender / final_send_plan / campaign_eligible_v2 untouched;
                              PRODUCTION_CODE_CHANGED_THIS_PHASE = false · CODE_CHANGES = 0)
 SAFE_METRIC_DEFINITION     = see section D (5 distinct metrics, each with authority)
+FOUR_RUN_ACCEPTANCE_COMPLETE = true  (4/4 post-change runs measured 2026-09-29 04:07 +08)
 SAFE_CURRENT               = canonical SAFE_FSP (materialized final_send_plan.status='planned') = 0
-                             (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 18 — FRESH read-only recompute
-                             2026-09-28 00:53 +08 in PHASE 4A.5I, V2+MX enforced, NOT carried forward.
-                             SAFE_GAIN_SINCE_4A5H = +2 (16 → 17 on 2026-09-24, 17 → 18 on 2026-09-27).
+                             (authoritative READ_ONLY_V2_SAFE_UNIQUE_ORGS = 19 — FRESH read-only recompute
+                             2026-09-29 04:07 +08 in PHASE 4A.5J-ACCEPTANCE, V2+MX enforced, NOT carried forward.
+                             SAFE_GAIN_SINCE_4A5H = +3 (16 → 17 on 2026-09-24 saratogacasino.com,
+                             17 → 18 on 2026-09-27 tech-monkeys.com, 18 → 19 on 2026-09-29 saratogateaandhoney.com).
                              SAFE inventory and FSP are reported separately, never conflated.
-                             BROAD_READY stored flag = 95 and EMAIL_POOL = 606 are context only, NOT SAFE.)
+                             BROAD_READY stored flag = 95 and EMAIL_POOL = 607 are context only, NOT SAFE.)
                              SAFE_GE_40 = false → EXACT40 acceptance NOT triggered, Inventory NOT paused.
-LAST_INVENTORY_RUN         = 2026-09-27 07:01:07 -> 07:13:43 UTC (= 2026-09-27 15:01:07 -> 15:13:43 +08),
-                             inventory:2026-09-27:6e8574bd, partial/safe_inventory_gap, 12m36s,
-                             target 60, actual 18 (SAFE). Query family `game store`, 20 results,
-                             8 new unique places, 1 new official email (`support@tech-monkeys.com`).
-                             Four runs in the catch-up period (09-24 `45057361`, 09-25 `39e3b75d`,
-                             09-26 `df4e7755`, 09-27 `6e8574bd`): INVENTORY_RUNS_SINCE_LAST_REPORT=4,
-                             FAILED=0, STALE_CLEANUP_24H=0, locks all released at run end.
-                             Next run = 2026-09-28 06:58 +08 (accelerated cadence; automatic, never manual).
+LAST_INVENTORY_RUN         = 2026-09-28 14:21:25 -> 14:45:09 UTC (= 2026-09-28 22:21:25 -> 22:45:09 +08),
+                             inventory:2026-09-28:1797b39c, partial/safe_inventory_gap, 23m44s,
+                             target 50, actual 19 (SAFE). Query family `gift shop`, 2 provider pages.
+                             FOUR runs completed since the 4A.5J change point (09-27 17:40 UTC /
+                             09-28 01:40 +08): 6ab888b1 (6m35s, 2 pages, actual 18), 02e28542
+                             (9m03s, 2 pages, actual 18), ca070d84 (5m38s, 1 page, actual 18),
+                             1797b39c (23m44s, 2 pages, actual 19) -> INVENTORY_RUNS_SINCE_CHANGE_POINT=4,
+                             FAILED=0, STALE_CLEANUP=0, LOCK_CONFLICTS=0, CONCURRENT=0, 429=0, provider
+                             errors=0, avg provider pages/run 1.75 vs 1.0 baseline = ACCEPTANCE PASS.
+                             Next run automatic under the unchanged 4x/day cadence; never manual.
+                             NOTE: 1797b39c at 23m44s is a new runtime outlier (others 5–9 min) but it
+                             finished cleanly with 0 errors — runtime variance only, NOT a blocker.
 NEXT_ACTION                = (1) Leave the canonical Inventory scheduler running UNATTENDED — 4×/day at a
                              6-hour interval, now with WORKBUDDY_DISCOVERY_MAX_PAGES=2 — through the NY queue
                              (Saratoga Springs → Cooperstown → Lake Placid → … → Buffalo) until
                              READ_ONLY_V2_SAFE_UNIQUE_ORGS >= 40. Do NOT start a manual loop. Do NOT parallelise.
-                             (2) FIRST ACTION OF THE NEXT PHASE: report the 4-run max_pages=2 acceptance
-                             (>= 4 post-change runs exist from 2026-09-29 01:38 +08 onward). Acceptance:
-                             FAILED_INVENTORY_RUNS = 0, STALE_CLEANUP = 0, LOCK_CONFLICT_STORM = false,
-                             CONCURRENT_INVENTORY = 0, no 429/provider regression, no browser leak, DB
-                             integrity ok, and average provider pages per run > the 1.0 baseline.
-                             The existing checkpoint 75fbacd1 (reporting rule 3) also emits this table once.
+                             (2) DONE in this refresh (PHASE 4A.5J ACCEPTANCE, 2026-09-29 04:07 +08): the 4-run max_pages=2
+                             acceptance WAS reported -> FAILED_INVENTORY_RUNS = 0, STALE_CLEANUP = 0,
+                             LOCK_CONFLICT_STORM = false, CONCURRENT_INVENTORY = 0, no 429/provider
+                             regression, DB integrity ok, AVG provider pages/run 1.75 > 1.0 baseline
+                             => PASS. Knob KEPT at 2 and cadence KEPT at 4x/day.
                              (3) If max_pages=2 is healthy: KEEP it and the 4×/day cadence; do NOT raise it to
                              3 or 4. If it regresses: revert ONLY WORKBUDDY_DISCOVERY_MAX_PAGES to 1 (one local
                              automation edit; no code/.env/schema consequence) and keep the cadence.
@@ -2453,4 +2500,104 @@ CHECKPOINT_CADENCE_AFTER = 4x/day (6h interval) anchor :14 +08, +16 min after th
                            next checkpoint run 2026-09-28 07:14:16 +08
 SMTP_CONNECTIONS = 0   OUTREACH_SEND_COUNT = 0   CODE_CHANGES = 0   DB_WRITES = 0   INVENTORY_RUNS_MANUAL = 0
 NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION (canonical scheduler left running)   STOP = true
+```
+
+
+---
+
+## AH. PHASE 4A.5J ACCEPTANCE — `WORKBUDDY_DISCOVERY_MAX_PAGES=2` FOUR-RUN ACCEPTANCE (2026-09-29 04:07 +08, READ-ONLY)
+
+- **Generated:** 2026-09-29T04:07:14+08:00 (Asia/Shanghai)
+- **Type:** STRICTLY READ-ONLY trigger-event refresh. One command only (`output/_4a5g_checkpoint.py`,
+  `bd_leads.db` opened `mode=ro`). No Inventory launch, no manual loop, no SMTP, no DB write, no production
+  code change, no knob change, no scheduler created or changed, no git history rewrite.
+- **Report:** `handoff/workbuddy/phases/PHASE4A5J_MAXPAGES2_ACCEPTANCE_20260929.md`
+- **Change point:** 2026-09-27 17:40 UTC = 2026-09-28 01:40 +08 (`WORKBUDDY_DISCOVERY_MAX_PAGES` 1 → 2).
+
+### AH.1 Acceptance result — PASS
+
+| # | run_id | started (UTC) | finished (UTC) | runtime | status | stop_reason | provider pages | requests | HTTP 429 | provider non-OK | family |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `inventory:2026-09-28:6ab888b1` | 2026-09-27 22:59:43 | 2026-09-27 23:06:18 | 6m35s | partial | safe_inventory_gap | **2** | 2 | 0 | 0 | game store |
+| 2 | `inventory:2026-09-28:02e28542` | 2026-09-28 05:09:27 | 2026-09-28 05:18:30 | 9m03s | partial | safe_inventory_gap | **2** | 2 | 0 | 0 | tabletop game store |
+| 3 | `inventory:2026-09-28:ca070d84` | 2026-09-28 08:56:09 | 2026-09-28 09:01:47 | 5m38s | partial | safe_inventory_gap | 1 | 1 | 0 | 0 | tabletop game store |
+| 4 | `inventory:2026-09-28:1797b39c` | 2026-09-28 14:21:25 | 2026-09-28 14:45:09 | 23m44s | partial | safe_inventory_gap | **2** | 2 | 0 | 0 | gift shop |
+
+`status=partial` + `stop_reason=safe_inventory_gap` = healthy terminal state (SAFE below the 50 target).
+
+### AH.2 Throughput
+
+```
+BASELINE_PAGES_PER_RUN        = [1,1,1,1]   BASELINE_AVG_PAGES_PER_RUN = 1.0
+MAX_PAGES2_PAGES_PER_RUN      = [2,2,1,2]   MAX_PAGES2_AVG_PAGES_PER_RUN = 1.75
+MAX_PAGES2_THROUGHPUT_IMPROVED = true       -> average provider pages per run EXCEEDED the 1-page baseline
+MAX_PAGES2_ACCEPTANCE_COMPLETE = true
+```
+
+The single 1-page run is expected structural behaviour of the browser provider (repeat page + the
+"2 consecutive pages with no new results" family-close rule), not a regression.
+
+### AH.3 Gated invariants (all zero / all pass)
+
+```
+FAILED_INVENTORY_RUNS = 0            STALE_CLEANUP = 0                LOCK_CONFLICT_STORM = false
+CONCURRENT_INVENTORY = 0             HTTP_429_TOTAL = 0               PROVIDER_429_TOTAL_ALL_TIME = 0
+PROVIDER_NON_OK = 0                  DB_INTEGRITY = ok                GUESSED_EMAILS = 0
+V2_RELAXED = false                   MX_RELAXED = false               BROAD_READY_USED_AS_SAFE = false
+```
+
+### AH.4 Five metrics (each with its own authority)
+
+| Metric | Value | Authority |
+|---|---|---|
+| `V2_ELIGIBLE_UNSENT` | **19** | frozen path `campaign_eligible_v2.select_candidates_for_plan_v2` + deployed V2+MX gate, read-only, 2026-09-29 04:07 +08 |
+| `READ_ONLY_SAFE_UNIQUE_ORGS` | **19** | same frozen V2+MX path, distinct `organization_key`, read-only, 2026-09-29 04:07 +08 (was 18) |
+| `MATERIALIZED_FSP_PLANNED` | **0** | `final_send_plan.status='planned'` |
+| `BROAD_READY` | **95** (stored flag) / **34** (inventory-effective, last live recompute 2026-09-14) | `leads.send_eligibility='broad_outreach_ready'` / `broad_ready.is_broad_outreach_ready`. Context only — **never** a SAFE substitute |
+| `VISIBLE_FIRST_PARTY_EMAILS` | **351** | `leads.email` non-empty AND `email_verified_on_official_site=1`, read-only, 2026-09-29 04:08 +08 |
+
+`SAFE_GE_40 = false` · `SAFE40_REACHED = false` · EXACT40 NOT RUN · Inventory NOT paused.
+
+### AH.5 Accumulation state
+
+```
+ACTIVE_CITY = Saratoga Springs, NY      LAST_COMPLETED_CITY = Ithaca, NY      NEXT_PENDING_CITY = Cooperstown, NY
+NY_QUEUE_COMPLETED = 1   PENDING = 15   ACTIVE_CITY_QUERY_FAMILIES = 4/20 completed, 1 running, 15 pending
+ACTIVE_CITY_ACTIVE_FAMILY = gift shop    CITY_QUEUE_ADVANCEMENT_VERIFIED = true
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 19 (was 18)   NEW_ORG = org:domain:saratogateaandhoney.com
+SAFE_GAIN_SINCE_4A5H = +3
+```
+
+### AH.6 Send freeze — held
+
+```
+SMTP_ENABLED = 0 · SEND_LOG_TODAY = 0 · SEND_LOG_TOTAL = 517 · LAST_SEND_AT = 2026-09-16T01:09:52+08:00
+MATERIALIZED_FSP_PLANNED = 0 · MATERIALIZED_FSP_ANY_PENDING = 0 · MANUAL_SEND_QUEUE = 0
+SMTP_CONNECTIONS = 0 · OUTREACH_SEND_COUNT = 0 · PreSend/Preflight/Outreach = PAUSED
+send_authorizations = 23 rows (9 consumed / 7 revoked / 7 superseded) -> 0 live pending
+```
+
+### AH.7 Forbidden actions — confirmed not performed
+
+```
+MANUAL_INVENTORY_LOOP_STARTED=false · INVENTORY_PARALLELISED=false · SECOND_SCHEDULER_CREATED=false
+SECOND_CHECKPOINT_CREATED=false · PRODUCTION_CODE_MODIFIED=false · CODEX_WORK_PERFORMED=false
+DATABASE_WRITTEN=false · SCHEMA_CHANGED=false · WORKBUDDY_DISCOVERY_MAX_PAGES_CHANGED=false
+SMTP_CONTACTED=false · EMAIL_SENT=false · CANARY_RUN=false · MANUAL_RECIPIENTS_ADDED=false
+GUESSED_EMAILS_USED=false · V2_RELAXED=false · MX_RELAXED=false · FSP_MATERIALISED=false
+INVENTORY_AUTOMATION_ACTIVE_UNCHANGED=true   (1784775229336 left RUNNING, untouched)
+```
+
+### AH.8 FINAL
+
+```
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 19     V2_ELIGIBLE_UNSENT = 19     MATERIALIZED_FSP_PLANNED = 0
+MAX_PAGES2_FOUR_RUN_ACCEPTANCE = PASS  AVG_PROVIDER_PAGES_PER_RUN = 1.75 (baseline 1.0)
+HTTP_429_TOTAL = 0   FAILED_INVENTORY_RUNS = 0   STALE_CLEANUP = 0   CONCURRENT_INVENTORY = 0
+SAFE40_REACHED = false   EXACT40_ACCEPTANCE_RESULT = NOT_RUN
+ACTIVE_CITY = Saratoga Springs, NY   LAST_COMPLETED_CITY = Ithaca, NY   NEXT_PENDING_CITY = Cooperstown, NY
+CODE_CHANGES = 0   DB_WRITES = 0   INVENTORY_RUNS_MANUAL = 0   SMTP_CONNECTIONS = 0   OUTREACH_SEND_COUNT = 0
+NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION (canonical Inventory scheduler left running)
+AUTOMATION_AND_WINDOWS_TASK_STATE = carried forward from 4A.5J (NOT re-read in this read-only round)
+STOP = true
 ```

@@ -674,3 +674,55 @@ ADOPTED_NOT_RECOMPUTED = true
   `INVENTORY_RUNS_MANUAL = 0` · `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION` · canonical Inventory
   scheduler left running · `STOP = true`.
 
+## 2026-09-29T04:07:00+08:00 — PHASE 4A.5J ACCEPTANCE
+
+## 2026-09-29T04:07:00+08:00 — PHASE 4A.5J ACCEPTANCE: `WORKBUDDY_DISCOVERY_MAX_PAGES=2` FOUR-RUN ACCEPTANCE = PASS (READ-ONLY)
+
+- New report: `handoff/workbuddy/phases/PHASE4A5J_MAXPAGES2_ACCEPTANCE_20260929.md`.
+- **Trigger event.** This is the first trigger event after the 4A.5J configuration change, so the deferred
+  `LATEST_RESULT.json` / `CHANGELOG.md` update is now performed as 4A.5J said it would be.
+- **Acceptance = PASS.** Four Inventory runs completed since the change point (`2026-09-27 17:40 UTC`
+  = `2026-09-28 01:40 +08`), all clean:
+
+  | # | run_id | runtime | status / stop_reason | provider pages | requests | 429 | provider non-OK |
+  |---|---|---|---|---|---|---|---|
+  | 1 | `inventory:2026-09-28:6ab888b1` | 6m35s | partial / safe_inventory_gap | 2 | 2 | 0 | 0 |
+  | 2 | `inventory:2026-09-28:02e28542` | 9m03s | partial / safe_inventory_gap | 2 | 2 | 0 | 0 |
+  | 3 | `inventory:2026-09-28:ca070d84` | 5m38s | partial / safe_inventory_gap | 1 | 1 | 0 | 0 |
+  | 4 | `inventory:2026-09-28:1797b39c` | 23m44s | partial / safe_inventory_gap | 2 | 2 | 0 | 0 |
+
+- **Throughput verdict: exceeded the baseline.** `[2,2,1,2]` → **avg 1.75 provider pages per run** vs the
+  pre-change baseline `[1,1,1,1]` → **avg 1.0**. `MAX_PAGES2_THROUGHPUT_IMPROVED = true`.
+- **All gated invariants zero / true:** `FAILED_INVENTORY_RUNS = 0`, `STALE_CLEANUP = 0`,
+  `LOCK_CONFLICT_STORM = false` (no `lock_conflict` stop reason), `CONCURRENT_INVENTORY = 0`
+  (`RUNNING_INVENTORY_JOBS = 0`, all four run windows disjoint), **HTTP 429 = 0**
+  (`PROVIDER_429_TOTAL_ALL_TIME = 0`), provider non-OK = 0, DB integrity ok.
+  `status=partial` + `stop_reason=safe_inventory_gap` is the healthy terminal state (SAFE < 50 target).
+- **Material result — SAFE moved for the first time since 09-27:** `READ_ONLY_V2_SAFE_UNIQUE_ORGS`
+  **18 → 19** (`org:domain:saratogateaandhoney.com`) from a fresh read-only frozen V2+MX recompute at
+  2026-09-29 04:07 +08. `SAFE_GAIN_SINCE_4A5H = +3`. `SAFE40_REACHED = false` (< 40) → EXACT40 NOT run,
+  Inventory NOT paused.
+- **No city movement:** ACTIVE_CITY = Saratoga Springs, NY (query families 4/20 completed, 1 running,
+  15 pending; active family `gift shop`); LAST_COMPLETED_CITY = Ithaca, NY; NEXT = Cooperstown, NY.
+- **The knob is KEPT** (`WORKBUDDY_DISCOVERY_MAX_PAGES = 2`), 4×/day cadence kept, **not** raised to 3/4,
+  per the 4A.5J decision rule. Remaining limiter (browser-backed page repetition ≈ 3 provider requests per
+  query family) is still recorded and still NOT changed — it is a discovery-policy change that requires
+  explicit authorization.
+- **Send safety held:** `SMTP_ENABLED = 0`, `SEND_LOG_TODAY = 0`, `SEND_LOG_TOTAL = 517`,
+  `LAST_SEND_AT = 2026-09-16T01:09:52+08:00`, `MATERIALIZED_FSP_PLANNED = 0`, `MANUAL_SEND_QUEUE = 0`,
+  PreSend/Preflight/Outreach PAUSED, `SMTP_CONNECTIONS = 0`, `OUTREACH_SEND_COUNT = 0`.
+- **Authorization hygiene:** `send_authorizations = 23` rows, 9 consumed / 7 revoked / 7 superseded —
+  **0 live pending**, unchanged.
+- **Forbidden actions — all confirmed not performed this round:** no Inventory launch, no manual
+  accumulation loop, no SMTP contact, no DB write, no production-code edit, no Codex work, no new scheduler,
+  no second checkpoint, `WORKBUDDY_DISCOVERY_MAX_PAGES` unchanged, no PreSend/Preflight/Outreach activity.
+- **Scope note:** the canonical Inventory automation `1784775229336` was **left running and untouched**; its
+  `rrule`/anchor were not re-read in this read-only round, so the automation/Windows task tables in
+  `CURRENT_STATUS.md` remain as recorded in 4A.5J (carried forward, not re-verified here).
+- **FINAL:** `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 19` · `V2_ELIGIBLE_UNSENT = 19` · `SAFE40_REACHED = false` ·
+  `EXACT40_ACCEPTANCE_RESULT = NOT_RUN` · `MAX_PAGES2_FOUR_RUN_ACCEPTANCE = PASS` ·
+  `AVG_PROVIDER_PAGES_PER_RUN = 1.75` (baseline 1.0) · `HTTP_429_TOTAL = 0` · `FAILED_INVENTORY_RUNS = 0` ·
+  `MATERIALIZED_FSP_PLANNED = 0` · `CODE_CHANGES = 0` · `DB_WRITES = 0` · `INVENTORY_RUNS_MANUAL = 0` ·
+  `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION` · canonical Inventory scheduler left running ·
+  `STOP = true`.
+
