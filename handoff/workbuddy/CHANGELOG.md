@@ -726,3 +726,52 @@ ADOPTED_NOT_RECOMPUTED = true
   `NEXT_ACTION = CONTINUE_UNATTENDED_ACCUMULATION` · canonical Inventory scheduler left running ·
   `STOP = true`.
 
+## 2026-09-29T10:29:47+08:00 — PHASE 4A.5K-BR: DEPLOY CODEX 4A.8I BOUNCE HEADER NORMALIZATION + RECOVERY VERIFICATION
+
+- New report: `handoff/workbuddy/phases/PHASE4A5KBR_BOUNCE_HEADER_NORMALIZATION_DEPLOY_20260929.md`.
+- **Deployed Codex `8dc85f040b5fa08ed376e4707c462182183427a7`** (`1569032023yf-star/roktandrazo-outreach-codex`).
+  **Production-code payload = `bounce_pipeline.py` ONLY** (34,894 -> 35,051 bytes). The commit's four
+  `handoff/*` files and `tests/test_bounce_pipeline.py` were **NOT** copied into production.
+- **Diff is exactly the approved change — 1 hunk, 2 lines replaced, 2 comments added.** Region-by-region
+  comparison confirms every other region is byte-identical: candidate regex patterns (`_FROM_PAT`,
+  `_SUBJECT_PAT`), all four classification pattern sets, `classify_bounce`, `parse_bounce_email`,
+  `record_bounce`, `record_unmatched_dsn`, `scan_bounces`, `run_scan_and_writeback`, `_write_poller_status`.
+  Only `_fetch_bounce_candidates` changed.
+  - `FROM_HEADER_NORMALIZED = true` · `SUBJECT_HEADER_NORMALIZED = true`
+  - Unchanged: `result_recovery_sync.py`, scheduling, SMTP/send execution, Final Send Plan, V2, MX,
+    Inventory/discovery, database schema.
+- **Hashes:** `PRODUCTION_BOUNCE_PIPELINE_HASH_BEFORE = dd52acf5...ea4e052b`;
+  `CODEX_BOUNCE_PIPELINE_HASH = PRODUCTION_BOUNCE_PIPELINE_HASH_AFTER = 6bd0fd52...21cded24`,
+  byte-exact match. Hash of the **raw committed blob** (`git cat-file blob`), not a checkout — the Codex
+  clone had `core.autocrlf=true`, which would have introduced a false CRLF drift; both files are LF-only.
+  Backup `output/_4a5kbr_backup_bounce_pipeline_20260929_102511.py` verified byte-identical to the pre-state.
+- **POST-DEPLOY STATIC VALIDATION = 6/6 PASS** before any production IMAP contact: `py_compile`,
+  `compileall`, import smoke, production `tests/test_bounce_pipeline.py` (21 tests OK), the Codex regression
+  test against the deployed module (22 tests OK), and — as the **causal control** — the same test against the
+  backed-up pre-fix module, which reproduces the production error verbatim at `bounce_pipeline.py:577`:
+  `TypeError: expected string or bytes-like object, got 'Header'`. Only the `str(...)` normalization
+  separates FAIL from PASS.
+- **RECOVERY VERIFICATION = PASS (real production IMAP).** DB backed up first (`bd_leads.db.bak_4a5kbr_20260929_102649`,
+  SHA-256 match, `integrity_check = ok`); pre-state evidence preserved to
+  `output/_4a5kbr_pre_state_20260929_102649.json` and `_4a5kbr_pre_poller_status_20260929_102649.json`.
+  - `python bounce_pipeline.py --once` -> `exit 0`, `errors = []`, no `Header` TypeError.
+  - `python result_recovery_sync.py` (the exact job that failed at 08:45:54 today) -> **`all_ok = true`**,
+    `bounce_scan ok=true errors=[]`.
+  - **`BOUNCE_CONSECUTIVE_FAILURES` 7 -> 0**; **`BOUNCE_LAST_ERROR` `Header` TypeError -> `None`**;
+    **`BOUNCE_LAST_SUCCESS_AT` 2026-09-24T08:46:08 -> 2026-09-29T10:27:16 +08**;
+    `last_bounce_scan_at` likewise advanced. A 5-day bounce-recovery outage is closed.
+  - Blast radius: `SEND_LOG_TOTAL` 517 -> 517, `SEND_LOG_TODAY` 0 -> 0, `bounce_log` 63 -> 63,
+    `unmatched_dsn` 48 -> 48. Second `--once` run identical -> `IDEMPOTENT = true`.
+    `DB_INTEGRITY_AFTER = ok`. **No email sent, no SMTP contact, no FSP row, no suppression/V2/MX change.**
+- **SAFE40 mainline preserved:** Inventory `1784775229336` left **RUNNING and untouched**; cadence 4x/day and
+  `WORKBUDDY_DISCOVERY_MAX_PAGES = 2` unchanged; Inventory not paused and never run manually; no new
+  scheduler or checkpoint. `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 19` (unchanged), `SAFE40_REACHED = false`,
+  ACTIVE_CITY = Saratoga Springs NY, LAST_COMPLETED = Ithaca, NEXT = Cooperstown.
+- **Non-blocking observations recorded:** (1) `result_recovery_sync.py` deliberately does not fail the sync
+  when one step fails, so a `bounce_scan` failure is only visible via `sync_0845_steps[*].ok` — monitoring
+  blind spot, unchanged; (2) `parse_bounce_email:164` has a latent sibling of the same bug class
+  (`original.get("Subject")` used without `str()`), outside the approved payload and deliberately untouched;
+  (3) `schtasks.exe`/`sc.exe` remain sandbox-blacklisted so Windows tasks were not re-verified (not bypassed).
+- **FINAL:** `PHASE_4A5K_BR_RESULT = PASS` · `PAYLOAD_FILES_DEPLOYED = 1` · `BOUNCE_SCAN_RECOVERED = true` ·
+  `STATIC_VALIDATION = 6/6` · `SMTP_ENABLED = 0` · `SEND_LOG_TOTAL = 517 (unchanged)` · canonical Inventory
+  scheduler left running · `STOP = true`.
