@@ -415,8 +415,11 @@ POST_DEPLOY_SCHEDULED_VALIDATION_PENDING = true
 RESULT = DEPLOYED_AWAITING_SCHEDULED_VALIDATION
 ```
 
-COMMIT_SHA / PUSH_SUCCESS are recorded in CURRENT_STATUS.md and LATEST_RESULT.json after the
-handoff push.
+COMMIT_SHA = ef46bd9f482e71937b7b2ba23dbd07ee0515d47c
+PUSH_SUCCESS = true   (origin main e1122ea..ef46bd9)
+Recorded in CURRENT_STATUS.md (AJ-M) and LATEST_RESULT.json. The follow-up commit that wrote
+this SHA back into the handoff artifacts is a metadata fixup; the content commit above is the
+authoritative phase commit.
 
 ---
 
