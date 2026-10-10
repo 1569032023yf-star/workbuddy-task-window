@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-10T09:51:53+08:00",
-  "refresh_type": "phase_4a5r_safe40_batch_hold_no_send",
+  "generated_at": "2026-10-10T10:16:42+08:00",
+  "refresh_type": "phase_4a5s_safe40_hold_continuous_discovery",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5R (SAFE40 客户库存封存与发送持续冻结 / SAFE40 BATCH HOLD): OPERATIONS + HANDOFF ONLY. The Codex 4A.8Q hotfix deployed in PHASE 4A.5Q has now been OBSERVED working in REAL production on the normal scheduled path. Row 433 terminalized to `identity_review` inside the scheduled run `inventory:2026-10-08:9f263936` (started 2026-10-08 20:42:25 +08); Saratoga Springs reached 9/9 completion checks and closed as `search_matrix_exhausted` at 2026-10-08 20:44:19 +08; Cooperstown NY auto-activated at 2026-10-09 02:50:05 +08 through the existing city-queue mechanism and issued real provider requests (9 pages / 9 requests, ids 226-234); SAFE rose 35 -> 40, and the PRE-EXISTING SAFE40 milestone rule paused the canonical Inventory at 2026-10-09 19:49:44 +08. OWNER DECISION RECORDED: CAMPAIGN_BUSINESS_DECISION = HOLD_NO_SEND and CURRENT_BATCH_DISPOSITION = PRESERVE_FOR_FUTURE_OUTREACH. The 40 eligible organisations are FULLY PRESERVED (CLIENTS_DELETED = 0), a verified consistent DB backup was taken locally, and the send freeze remains FULLY HELD. No production business code was changed, no direct production business-data write was made, no automation was created, and no email was sent. PRODUCTION_HOTFIX_HASH_MATCH = true (discovery/discovery_service.py = 96DCC751DFF7FF9174B556120BDF440211328CCF52B32559509164CB0169AE14).",
-  "production_status": "4A.8Q HOTFIX VERIFIED WORKING IN PRODUCTION + SAFE40 REACHED + BATCH SEALED (HOLD_NO_SEND). discovery/discovery_service.py = 96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14 (102,761 B, LF, CRLF 0), unchanged since the 4A.5Q deploy, not re-deployed and not rolled back. Row 433 = identity_review (terminal, unlinked, no website, no lead, no email, no SAFE credit). Saratoga Springs = search_matrix_exhausted (20/20 families, 9/9 checks, completed 2026-10-08 20:44:19 +08). Active city = Cooperstown, NY (id 22, activated 2026-10-09 02:50:05 +08; 9 provider pages / 9 requests, 0 errors). Canonical Inventory automation-1784775229336 is PAUSED by the pre-existing SAFE40 rule (2026-10-09 19:49:44 +08, nextRunAt None) and left paused; rrule / 4x-day cadence / max_pages=3 / cwds unchanged; single Inventory authority. READ_ONLY_V2_SAFE_UNIQUE_ORGS = 40. Send freeze held: SMTP_ENABLED 0, SEND_LOG_TODAY 0, SEND_LOG_TOTAL 517 (last send 2026-09-16T01:09:52+08:00), MATERIALIZED_FSP_PLANNED 0, MANUAL_SEND_QUEUE 0, no new live authorizations, PreSend/Preflight/Outreach all PAUSED. NOTE: an initial read-only pass produced a FALSE SAFE=0 caused by a broken local proxy/DNS measurement environment (dead HTTP_PROXY; .env not loaded so BD_MX_HTTPS_PROXY was unset; query_mx ignores process proxies). It was root-caused and REJECTED; the same authority returns 40 with the production env loaded. The false value was never written here and no production value was changed.",
+  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5S (SAFE40 批次保留 + 持续发现重启 / SAFE40 BATCH HELD + CONTINUOUS DISCOVERY RE-AUTHORISED): OPERATIONS + SCHEDULING-CONTROL ONLY. The owner re-classified SAFE40 from a stop condition to a HISTORICAL MILESTONE and required discovery to keep running while all sending stays frozen. Root cause of the 19 h discovery stall was located and it was NOT production code: the SAFE40 checkpoint automation 75fbacd1 carried a prompt rule instructing the agent to PAUSE the canonical Inventory on reaching SAFE40, and executed it at 2026-10-09 19:49:44 +08. Because that rule lived in the supported automation control plane it was removed there - the checkpoint prompt no longer pauses anything and now explicitly forbids pausing/editing any automation - and the SAME canonical Inventory automation-1784775229336 was re-activated (PAUSED -> ACTIVE; rrule FREQ=HOURLY;INTERVAL=6, cadence 4x/day, cwds and prompt all UNCHANGED; next_run_at = 2026-10-10 16:11:36 +08). DISCOVERY_CONTINUATION_REQUIRES_CODEX_FIX = false. BATCH 1 preserved (40 orgs, 0 deleted). SAFE live = 40. Yield since the milestone = 0 on every metric (discovery had been frozen). DISCOVERY_CONTINUATION_VERIFIED = PENDING. No production business code change, no direct DB write, no email sent.",
+  "production_status": "SAFE40 BATCH HELD + CONTINUOUS DISCOVERY RE-AUTHORISED (HOLD_ALL_OUTREACH, send frozen). discovery/discovery_service.py = 96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14 (102,761 B, LF, CRLF 0), unchanged since the 4A.5Q deploy; HOTFIX_HASH_MATCH = true. Row 433 = identity_review / website empty / linked_lead_id NULL / reselector match 0. City queue: LAST_COMPLETED = Saratoga Springs NY, ACTIVE = Cooperstown NY (3/20 query families), NEXT = Lake Placid NY; queue NOT reset. Canonical Inventory automation-1784775229336 = ACTIVE again (was PAUSED by the now-superseded SAFE40 stop rule), rrule FREQ=HOURLY;INTERVAL=6 unchanged, 4x/day cadence unchanged, first resumed run 2026-10-10 16:11:36 +08. SAFE40 auto-stop rule REMOVED from the checkpoint prompt. SAFE = 40 (READ_ONLY_V2_SAFE_UNIQUE_ORGS, fresh authoritative recompute). SMTP_ENABLED = 0, SEND_LOG_TODAY = 0, MATERIALIZED_FSP_PLANNED = 0, LIVE_SEND_AUTHORIZATIONS = 0. DB quick/integrity ok, FK 0.",
   "production_code_drift": false,
-  "current_blocker": "NONE BLOCKING - intentional HOLD. No recovery blocker remains: the 4A.8Q hotfix is proven working in production (row 433 terminal, Saratoga completed, Cooperstown discovering, SAFE 35 -> 40). The canonical Inventory currently sits PAUSED because the pre-existing SAFE40 milestone rule fired correctly at 2026-10-09 19:47:52 +08 and paused it at 19:49:44 +08; it is deliberately LEFT PAUSED. The only open items are OPERATIONAL BY CHOICE: (1) the owner has chosen HOLD_NO_SEND for this batch (CURRENT_BATCH_DISPOSITION = PRESERVE_FOR_FUTURE_OUTREACH) so no outreach will be sent now; (2) the EXACT40 no-SMTP acceptance was NOT run because there is no send-side acceptance to perform under HOLD_NO_SEND; (3) before any future outreach the batch must be fully re-validated (emails, websites, MX, send history/unsubscribe/bounce/suppression, org dedup, fresh copy, NEW explicit owner authorization) - the SAFE40 snapshot must NOT be reused as a shortcut. Carry-forward observation: lead 1221 (`Silver Fox Gift Shop`) holds info@mysite.com with email_verified_on_official_site=1, and mysite.com is a website-builder placeholder domain, so it very likely is not a genuine mailbox - review during re-validation.",
+  "current_blocker": "NONE BLOCKING. SAFE40 no longer stops discovery; the canonical Inventory is ACTIVE again on the same automation. The only outstanding item is observational, not a defect: DISCOVERY_CONTINUATION_VERIFIED = PENDING because no Inventory run has yet occurred after the 2026-10-10 10:11:36 +08 re-activation - the first is scheduled 2026-10-10 16:11:36 +08. Until that run is observed, the resumed discovery is a SCHEDULING fix, not proven recovery, and this record says so. Secondary note (pre-existing, NOT caused here, no action taken): the automated checkpoint reports a prompt-derived NEXT_ACTION string that still mentions EXACT40 acceptance; the milestone acceptance was already completed on 2026-10-09 and must not be re-run. Residual data-quality item for a FUTURE phase: lead 1221 (Silver Fox Gift Shop) records info@mysite.com while marked official-site-verified - mysite.com is a website-builder placeholder domain, so that address is almost certainly not the real business email. Left untouched in this read-only phase.",
   "production_code_sha": {
     "bd_orchestrator.py": "7afc4d7f6ac18e22 (sha256 prefix-16; full hash not recorded)",
     "discovery/discovery_service.py": "96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14",
@@ -27,8 +27,10 @@
       "id": "1784775229336",
       "name": "RoktRazo BD Inventory - 4x/day (6h interval)",
       "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6; anchor minute :58 +08) - WAS daily 15:00 +08",
-      "state": "ACTIVE",
-      "note": "SOLE Inventory authority. Cadence accelerated 2026-09-28 in PHASE 4A.5I (same automation id, same prompt, same CWD - no second scheduler, no parallel run, named lock unchanged). DEVATION: multi-value BYHOUR is rejected by the scheduler, so the requested 03:00/09:00/15:00/21:00 clock alignment is not expressible; 4x/day 6h apart is the supported form. Next run 2026-09-28 06:58:02 +08."
+      "state": "ACTIVE (re-activated by PHASE 4A.5S; was PAUSED by the now-superseded SAFE40 stop rule)",
+      "note": "SOLE Inventory authority. Cadence accelerated 2026-09-28 in PHASE 4A.5I (same automation id, same prompt, same CWD - no second scheduler, no parallel run, named lock unchanged). DEVATION: multi-value BYHOUR is rejected by the scheduler, so the requested 03:00/09:00/15:00/21:00 clock alignment is not expressible; 4x/day 6h apart is the supported form. Next run 2026-09-28 06:58:02 +08.",
+      "next_run_at_plus08": "2026-10-10 16:11:36 +08",
+      "rrule": "FREQ=HOURLY;INTERVAL=6"
     },
     {
       "id": "1785804406748",
@@ -62,8 +64,9 @@
       "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
       "name": "BD SAFE40 Milestone Checkpoint",
       "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6); anchor :14 +08 = 16 min after the Inventory anchor; next run 2026-09-28 07:14:16 +08 - WAS daily 15:40 +08",
-      "state": "ACTIVE",
-      "note": "READ-ONLY. Kept (not re-created) and moved to the same 6-hourly cadence in PHASE 4A.5I. Never launches Inventory, never writes the DB, never creates FSP, never sends. Proven firing unattended 5 consecutive days (09-23 15:40:52 -> 09-27 15:40:36 +08)."
+      "state": "ACTIVE (read-only checkpoint; PAUSE instruction REMOVED by PHASE 4A.5S)",
+      "note": "READ-ONLY. Kept (not re-created) and moved to the same 6-hourly cadence in PHASE 4A.5I. Never launches Inventory, never writes the DB, never creates FSP, never sends. Proven firing unattended 5 consecutive days (09-23 15:40:52 -> 09-27 15:40:36 +08).",
+      "rrule": "FREQ=HOURLY;INTERVAL=6"
     }
   ],
   "windows_tasks": [
@@ -161,15 +164,16 @@
     "finished_at_local": "2026-10-09 15:19:09 +08",
     "actual": 40,
     "gap": 10,
-    "note": "LAST canonical Inventory run before the SAFE40 rule paused the scheduler. partial + safe_inventory_gap = healthy terminal state (SAFE below the internal 50 target), NOT a failure."
+    "note": "LAST canonical Inventory run before the SAFE40 rule paused the scheduler. partial + safe_inventory_gap = healthy terminal state (SAFE below the internal 50 target), NOT a failure.",
+    "NO_RUN_SINCE_NOTE": "No Inventory run has occurred since this one - discovery was paused by the now-superseded SAFE40 stop rule at 2026-10-09 19:49:44 +08 and re-activated at 2026-10-10 10:11:36 +08; first resumed run 2026-10-10 16:11:36 +08."
   },
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 19,
     "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recount via campaign_eligible_v2.select_candidates_for_plan_v2 + deployed V2+MX gate, 2026-09-29 04:07 +08 (PHASE 4A.5J ACCEPTANCE; was 18)",
     "READ_ONLY_SAFE_UNIQUE_ORGS": 40,
-    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "campaign_eligible_v2.select_candidates_for_plan_v2 (V2 + current MX + history/suppression/org-dedup, read-only, distinct organization_key), measured 2026-10-09 18:37:14 +08 and reconfirmed 2026-10-10 09:47:08 +08 (PHASE 4A.5R); corroborated by output/4a5g_checkpoints.jsonl (safe=40 at 2026-10-09 19:47:52 +08) and by canonical run inventory:2026-10-09:d25355ad (actual=40)",
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "campaign_eligible_v2.select_candidates_for_plan_v2 (V2 + live MX + history/suppression/org-dedup, read-only, distinct organization_key); fresh recompute 2026-10-10 10:12:13 +08 with production .env loaded BEFORE importing business modules (control probe query_mx('gmail.com') = ok in 0.7 s), V2_ELIGIBLE_CANDIDATE_ROWS = 40",
     "READ_ONLY_SAFE_UNIQUE_ORGS_PREVIOUS": 35,
-    "READ_ONLY_SAFE_UNIQUE_ORGS_NEW_ORG": "org:domain:christenespringlemountainmagic.com, org:domain:wiabbatco.com (35 -> 37); org:domain:allstararcade.com, org:domain:baseballmotel.com, org:domain:cooperstowndreamspark.com (37 -> 40)",
+    "READ_ONLY_SAFE_UNIQUE_ORGS_NEW_ORG": "org:domain:christenespringlemountainmagic.com, org:domain:wiabbatco.com (35 -> 37 at 2026-10-09 13:44:46); org:domain:allstararcade.com, org:domain:baseballmotel.com, org:domain:cooperstowndreamspark.com (37 -> 40 at 2026-10-09 19:47:52)",
     "SAFE_GAIN_SINCE_4A5H": 8,
     "SAFE_GE_40": true,
     "SAFE40_REACHED": true,
@@ -178,17 +182,19 @@
     "MATERIALIZED_FSP_ANY_PENDING": 0,
     "BROAD_READY_STORED_FLAG": 95,
     "BROAD_READY_STORED_FLAG_AUTHORITY": "leads.send_eligibility='broad_outreach_ready' (context only, NOT SAFE)",
-    "EMAIL_POOL": 607,
-    "LEADS_TOTAL": 1130,
+    "EMAIL_POOL": 634,
+    "LEADS_TOTAL": 1190,
     "SEND_LOG_TOTAL": 517,
     "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
     "SMTP_ENABLED": "0",
     "SEND_LOG_TODAY": 0,
-    "MANUAL_SEND_QUEUE": 0
+    "MANUAL_SEND_QUEUE": 0,
+    "SAFE40_ROLE": "HISTORICAL_MILESTONE (no longer a stop condition)",
+    "SAFE40_AUTO_STOP_DISCOVERY_DISABLED": true
   },
   "supporting_totals": {
-    "total_leads": 1130,
-    "email_present": 607,
+    "total_leads": 1190,
+    "email_present": 634,
     "first_party_official_emails": 351,
     "first_party_official_emails_authority": "leads.email non-empty AND email_verified_on_official_site=1, read-only 2026-09-29 04:08 +08",
     "full_evidence_records": 461,
@@ -201,7 +207,19 @@
     "smtp_connections": 0,
     "smtp_enabled_config": "0",
     "running_inventory_jobs": 0,
-    "inventory_lock": "absent"
+    "inventory_lock": "absent",
+    "SEND_LOG_TOTAL": 517,
+    "SEND_LOG_TODAY": 0,
+    "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
+    "SMTP_ENABLED": "0",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MANUAL_SEND_QUEUE": 0,
+    "LIVE_SEND_AUTHORIZATIONS": 0,
+    "LEAD_DISCOVERY_RESULTS": 555,
+    "LEAD_DISCOVERY_RESULTS_WITH_WEBSITE": 231,
+    "ACTIVE_CITY": "Cooperstown, NY",
+    "LAST_COMPLETED_CITY": "Saratoga Springs, NY",
+    "NEXT_PENDING_CITY": "Lake Placid, NY"
   },
   "why_not_safe_candidate_blockers": {
     "PREVIOUSLY_SENT": 415,
@@ -254,7 +272,7 @@
     "428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
     "MX failures among candidates (nxdomain=51) prevent V2 pass"
   ],
-  "next_recommended_action": "NO ACTION REQUIRED NOW - this is an intentional business HOLD, not a blocked state. Do NOT unpause the canonical Inventory (1784775229336) and do NOT send anything to this batch; the SAFE40 rule already paused Inventory correctly and the owner has chosen HOLD_NO_SEND. Keep the send freeze (SMTP_ENABLED=0). Preserve the batch and its verified local backup (roktandrazo-outreach/output/backups/bd_leads_safe40_batch_hold_20261010_094548.db). When the owner later decides to outreach this batch, first run the mandatory re-validation: (1) re-verify every email + official website, (2) re-check MX, (3) re-check send history / unsubscribe / bounce / suppression, (4) re-check org dedup, (5) rewrite the copy for that moment, (6) obtain a NEW explicit owner send authorization - then and only then consider unpausing/sending. Do not reuse the SAFE40 snapshot as a shortcut. The read-only SAFE40 checkpoint (75fbacd1-fa43-46ea-8388-1d47647c3f4d) may continue running unchanged.",
+  "next_recommended_action": "READ-ONLY for now. DO NOT pause, disable or re-phase the canonical Inventory 1784775229336 again - continuous discovery is authorised and it must keep running. Observe the FIRST RESUMED canonical run at 2026-10-10 16:11:36 +08 and confirm PROVIDER_PAGES > 0, PROVIDER_REQUESTS > 0 and new leads > 0 (and that Cooperstown resumes from its own cursor at 3/20 query families); then set DISCOVERY_CONTINUATION_VERIFIED = true. Keep the send freeze fully intact (SMTP_ENABLED = 0, MATERIALIZED_FSP_PLANNED = 0, PreSend/Preflight/Outreach PAUSED) - reaching or exceeding 40 qualified organisations is a stock milestone, NEVER a send permit. Before any future campaign, re-verify emails / official sites / MX / history / suppression / dedup and obtain a NEW explicit owner authorisation; do not treat the SAFE40 snapshot as a shortcut. Do not raise max_pages above 3 and do not change the cadence without separate authorisation.",
   "lead_1085_audit": {
     "inventory_closeout_run": "inventory:2026-09-14:eba7c883",
     "inventory_final_status": "completed (partial; actual=1, gap=29, safe_inventory_gap)",
@@ -3928,5 +3946,267 @@
     "preflight": "PAUSED",
     "outreach": "PAUSED"
   },
-  "current_blocker_phase4a5r": "No technical blocker. The 4A.8Q hotfix is verified working in production and SAFE40 has been reached. The canonical Inventory is PAUSED by the pre-existing SAFE40 rule and is deliberately left paused. Everything remaining is an intentional business HOLD: CAMPAIGN_BUSINESS_DECISION = HOLD_NO_SEND / CURRENT_BATCH_DISPOSITION = PRESERVE_FOR_FUTURE_OUTREACH. Send freeze fully held. Before any future outreach the batch requires full re-validation plus a NEW explicit owner authorization."
+  "current_blocker_phase4a5r": "No technical blocker. The 4A.8Q hotfix is verified working in production and SAFE40 has been reached. The canonical Inventory is PAUSED by the pre-existing SAFE40 rule and is deliberately left paused. Everything remaining is an intentional business HOLD: CAMPAIGN_BUSINESS_DECISION = HOLD_NO_SEND / CURRENT_BATCH_DISPOSITION = PRESERVE_FOR_FUTURE_OUTREACH. Send freeze fully held. Before any future outreach the batch requires full re-validation plus a NEW explicit owner authorization.",
+  "phase4a5s_safe40_hold_continuous_discovery": {
+    "phase": "4A.5S",
+    "title": "SAFE40 批次保留 + 持续发现重启 / SAFE40 BATCH HELD + CONTINUOUS DISCOVERY RE-AUTHORISED",
+    "reported_at": "2026-10-10T10:16:42+08:00",
+    "phase_type": "OPERATIONS / SCHEDULING-CONTROL ONLY (authorised operational-rule change)",
+    "report_path": "handoff/workbuddy/phases/PHASE4A5S_SAFE40_HOLD_CONTINUOUS_DISCOVERY.md",
+    "owner_decision": {
+      "CAMPAIGN_BUSINESS_DECISION": "HOLD_ALL_OUTREACH",
+      "CURRENT_BATCH_DISPOSITION": "PRESERVE_FOR_FUTURE_OUTREACH",
+      "CONTINUOUS_DISCOVERY_AUTHORIZED": true,
+      "SAFE40_ROLE": "HISTORICAL_MILESTONE_NOT_A_CEILING",
+      "SAFE40_AUTO_STOP_DISCOVERY_DISABLED": true
+    },
+    "root_cause": {
+      "blocking_layer": "WorkBuddy automation PROMPT (supported control plane) - NOT production code",
+      "checkpoint_script_is_read_only": true,
+      "checkpoint_script": "output/_4a5g_checkpoint.py",
+      "offending_instruction": "automation 75fbacd1 prompt reporting rule 2: '... then PAUSE the automation \"RoktRazo BD Inventory - 4x/day (6h interval) Asia/Shanghai\" (id 1784775229336) ...'",
+      "executed_at_plus08": "2026-10-09 19:49:44",
+      "stall_duration_hours_approx": 19,
+      "scheduled_runs_missed": 3,
+      "DISCOVERY_CONTINUATION_REQUIRES_CODEX_FIX": false
+    },
+    "changes_made": [
+      {
+        "target": "automation 75fbacd1-fa43-46ea-8388-1d47647c3f4d",
+        "field": "prompt",
+        "only_field_changed": true,
+        "what": "reporting rule 2 rewritten (PAUSE -> treat SAFE40 as preserved milestone and CONTINUE); FORBIDDEN list extended to ban pausing/disabling/editing/creating any automation or Windows task; STANDING OPERATING RULE block added; stale 'max_pages=2' corrected to '=3'",
+        "next_run_at_unchanged": true,
+        "next_run_at_after_plus08": "2026-10-10 13:57:40 +08",
+        "pause_rule_present_after": false,
+        "never_pause_present_after": true,
+        "prompt_len_after": 4937
+      },
+      {
+        "target": "automation-1784775229336",
+        "field": "status",
+        "only_field_changed": true,
+        "before": "PAUSED",
+        "after": "ACTIVE",
+        "next_run_at_after_plus08": "2026-10-10 16:11:36 +08",
+        "rrule_after": "FREQ=HOURLY;INTERVAL=6",
+        "rrule_changed": false,
+        "cadence_changed": false,
+        "cwds_changed": false,
+        "valid_from_changed": false,
+        "prompt_changed": false,
+        "anchor_phase_shifted_by_framework_semantics": true,
+        "phase_before_plus08": "approx 20:4x / 02:4x / 08:4x / 15:1x",
+        "phase_after_plus08": "16:11 / 22:11 / 04:11 / 10:11"
+      }
+    ],
+    "not_touched": [
+      "bd_orchestrator.py",
+      "campaign_eligible.py",
+      "campaign_eligible_v2.py",
+      "broad_ready.py",
+      "history_crosscheck.py",
+      "bounce_pipeline.py",
+      "retail_city_queue.py",
+      "preflight_gate.py",
+      "discovery/discovery_service.py",
+      ".env",
+      "database schema",
+      "V1",
+      "V2",
+      "MX policy",
+      "city search matrix",
+      "WORKBUDDY_DISCOVERY_MAX_PAGES=3",
+      "4x/day cadence",
+      "run lock",
+      "city queue and cursors",
+      "PreSend",
+      "Preflight",
+      "Outreach",
+      "Windows scheduled tasks",
+      "run_inventory_canary3.py"
+    ],
+    "batch1_preservation": {
+      "BATCH_ID": "BATCH_1_HOLD_FOR_FUTURE_OUTREACH",
+      "QUALIFIED_ORGS": 40,
+      "CLIENTS_DELETED": 0,
+      "CLIENTS_MARKED_SENT": 0,
+      "DB_SCHEMA_MIGRATED": false,
+      "MILESTONE_FILE": "output/SAFE40_BATCH1_MILESTONE.json",
+      "MILESTONE_FILE_SIZE": 19783,
+      "MILESTONE_FILE_SHA256": "025403743c1e38c3c8f4093da570494afefa408acea66f901ed1fd25173a6898",
+      "MILESTONE_BACKUP": "output/backups/bd_leads_safe40_batch_hold_20261010_094548.db",
+      "MILESTONE_BACKUP_SIZE": 9322496,
+      "MILESTONE_BACKUP_SHA256": "d8b6eec82071df85e8295187c0ce7f7b061007b21b07f861540014f48b9a75dc",
+      "BACKUP_VERIFIED": {
+        "quick_check": "ok",
+        "integrity_check": "ok",
+        "fk_violations": 0,
+        "tables": 27
+      },
+      "CONTENT_DIFF_TABLES_LIVE_VS_BACKUP": 0,
+      "FULL_EMAIL_LIST_IN_GIT": false
+    },
+    "city_queue": {
+      "LAST_COMPLETED_CITY": "Saratoga Springs, NY",
+      "ACTIVE_CITY": "Cooperstown, NY",
+      "ACTIVE_CITY_QUERY_FAMILIES": "3/20",
+      "NEXT_PENDING_CITY": "Lake Placid, NY",
+      "CITY_QUEUE_RESET": false
+    },
+    "row_433": {
+      "validation_status": "identity_review",
+      "website_empty": true,
+      "linked_lead_id": null,
+      "rejection_reason": "website_resolution:identity_review:",
+      "official_match": 0,
+      "reselector_match": 0
+    },
+    "discovery_continuation": {
+      "DISCOVERY_CONTINUATION_VERIFIED": "PENDING",
+      "FIRST_RESUMED_RUN_AT_PLUS08": "2026-10-10 16:11:36",
+      "reason_not_verified": "no Inventory run has yet occurred after re-activation; a scheduling fix is not the same as observed production recovery"
+    },
+    "measurement_integrity": {
+      "FALSE_SAFE_0_REJECTED": true,
+      "env_loaded_before_import": true,
+      "mx_control_probe": "ok",
+      "timestamp_separator_trap_caught": "leads.collected_at uses a literal 'T'; a space-separated window string sorted below it and matched every row, faking 13 new orgs since the milestone; normalised to the true value 0",
+      "db_byte_hash_vs_content": "DB_SHA256 differs from the 09:45 backup's, but DB mtime predates this session, journal_mode=wal, and a content-level diff of all 26 data tables shows CONTENT_DIFF_TABLES=0 -> WAL/checkpoint artifact, not a write; DIRECT_PRODUCTION_DB_WRITES_BY_THIS_TASK = 0"
+    },
+    "residual_items_for_future_phases": [
+      "lead 1221 (Silver Fox Gift Shop) records info@mysite.com while marked official-site-verified; mysite.com is a website-builder placeholder -> re-validate before any future campaign",
+      "checkpoint NEXT_ACTION text still mentions EXACT40 acceptance from the 4A.5J rule set; acceptance was already completed 2026-10-09 and must not be re-run",
+      "9 rows remain staged_pending under retired active_city_id=8 (7 email_extraction_pending, 2 website_lookup_pending) - pre-existing, different city, no effect on Cooperstown"
+    ]
+  },
+  "safe_metrics_phase4a5s": {
+    "phase": "4A.5S",
+    "measured_at": "2026-10-10 10:12:13 +08",
+    "authority": "campaign_eligible_v2.select_candidates_for_plan_v2 (V2 + live MX via BD_MX_HTTPS_PROXY), distinct organization_key",
+    "MX_PROBE": "ok",
+    "V2_ELIGIBLE_CANDIDATE_ROWS": 40,
+    "READ_ONLY_V2_SAFE_UNIQUE_ORGS": 40,
+    "SAFE_GAIN_SINCE_35": 5,
+    "SAFE40_REACHED": true,
+    "SAFE_GE_40": true,
+    "YIELD_SINCE_MILESTONE": {
+      "RAW_DISCOVERED_LEADS": 0,
+      "NEW_UNIQUE_ORGS": 0,
+      "NEW_LEADS": 0,
+      "OFFICIAL_WEBSITES_VERIFIED": 0,
+      "FIRST_PARTY_EMAILS_FOUND": 0,
+      "NEW_HISTORY_CLEAN_ORGS_WITH_EMAIL": 0
+    },
+    "YIELD_SINCE_COOPERSTOWN_ACTIVATION": {
+      "RAW_DISCOVERED_LEADS": 28,
+      "NEW_UNIQUE_ORGS": 13,
+      "NEW_LEADS": 13,
+      "OFFICIAL_WEBSITES_VERIFIED": 6,
+      "FIRST_PARTY_EMAILS_FOUND": 6,
+      "NEW_HISTORY_CLEAN_ORGS_WITH_EMAIL": 6
+    },
+    "YIELD_SINCE_HOTFIX_DEPLOY": {
+      "RAW_DISCOVERED_LEADS": 28,
+      "NEW_UNIQUE_ORGS": 13,
+      "NEW_LEADS": 13,
+      "OFFICIAL_WEBSITES_VERIFIED": 6,
+      "FIRST_PARTY_EMAILS_FOUND": 6,
+      "NEW_HISTORY_CLEAN_ORGS_WITH_EMAIL": 6
+    },
+    "LEAD_LAST_COLLECTED_AT": "2026-10-09T15:16:27.469491"
+  },
+  "supporting_totals_phase4a5s": {
+    "phase": "4A.5S",
+    "snapshot_at": "2026-10-10T10:16:42+08:00",
+    "LEADS_TOTAL": 1190,
+    "LEADS_WITH_EMAIL": 634,
+    "LEAD_DISCOVERY_RESULTS": 555,
+    "LEAD_DISCOVERY_RESULTS_WITH_WEBSITE": 231,
+    "PROD_DISCOVERY_SHA256": "96DCC751DFF7FF9174B556120BDF440211328CCF52B32559509164CB0169AE14",
+    "HOTFIX_HASH_MATCH": true,
+    "PROD_DISCOVERY_BYTES": 102761,
+    "PROD_DISCOVERY_CRLF": 0,
+    "SMTP_ENABLED": "0",
+    "SMTP_CONNECTIONS": 0,
+    "SEND_LOG_TOTAL": 517,
+    "SEND_LOG_TODAY": 0,
+    "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MANUAL_SEND_QUEUE": 0,
+    "LIVE_SEND_AUTHORIZATIONS": 0,
+    "AUTH_BY_STATUS": {
+      "consumed": 9,
+      "revoked": 7,
+      "superseded": 7
+    },
+    "SUPPRESSION_LIST": 63,
+    "BOUNCE_LOG": 63,
+    "POST_DEPLOY_INVENTORY_RUNS": 4,
+    "FAILED_INVENTORY_RUNS_SINCE_DEPLOY": 0,
+    "INVENTORY_RUNS_TODAY_BUSINESS_DATE": 0,
+    "STALE_CLEANUPS_SINCE_DEPLOY": 0,
+    "LOCK_CONFLICTS_SINCE_DEPLOY": 0,
+    "LOCK_CONFLICTS_ALLTIME_CONTEXT_ONLY": 6890,
+    "HTTP_429": 0,
+    "PROVIDER_ERRORS_SINCE_DEPLOY": 0,
+    "CONCURRENT_INVENTORY": 0,
+    "RUNNING_INVENTORY_JOBS": 0,
+    "INVENTORY_LOCK_TODAY": "absent",
+    "CITY22_PROVIDER_PAGES": 9,
+    "CITY22_PROVIDER_REQUESTS": 9,
+    "CITY22_PROVIDER_RESULTS": 129,
+    "DB_QUICK_CHECK": "ok",
+    "DB_INTEGRITY_CHECK": "ok",
+    "FOREIGN_KEY_VIOLATIONS": 0,
+    "DB_TABLES": 27,
+    "DB_SHA256": "bce7bb0d5a1dc0ba6387dad53c17bbc354ad3cf2d515c781eeb0d5a22d1f47fe",
+    "DB_MTIME": "2026-10-10 08:45:41",
+    "DIRECT_PRODUCTION_DB_WRITES_BY_THIS_TASK": 0
+  },
+  "workbuddy_automations_phase4a5s": {
+    "phase": "4A.5S",
+    "verified_at": "2026-10-10T10:16:42+08:00",
+    "source": "read-only snapshot of ~/.workbuddy/workbuddy.db automations table",
+    "canonical_inventory_id": "automation-1784775229336",
+    "inventory": {
+      "name": "RoktRazo BD Inventory — 4x/day (6h interval) Asia/Shanghai",
+      "status": "ACTIVE",
+      "rrule": "FREQ=HOURLY;INTERVAL=6",
+      "next_run_at_plus08": "2026-10-10 16:11:36 +08",
+      "updated_at_plus08": "2026-10-10 10:11:36 +08",
+      "cwds": "[\"C:\\\\Users\\\\15690\\\\WorkBuddy\\\\2026-06-05-15-31-42\\\\roktandrazo-outreach\"]",
+      "prompt_len": 1986,
+      "prompt_mentions_max_pages_3": true,
+      "status_change": "PAUSED -> ACTIVE"
+    },
+    "checkpoint": {
+      "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
+      "name": "BD SAFE40 Milestone Checkpoint — 4x/day (6h interval) Asia/Shanghai",
+      "status": "ACTIVE",
+      "rrule": "FREQ=HOURLY;INTERVAL=6",
+      "next_run_at_plus08": "2026-10-10 13:57:40 +08",
+      "updated_at_plus08": "2026-10-10 10:11:31 +08",
+      "prompt_len": 4937,
+      "pause_rule_present": false,
+      "never_pause_present": true
+    },
+    "DUPLICATE_INVENTORY_AUTHORITY": false,
+    "SECOND_INVENTORY_SCHEDULER": false,
+    "MANUAL_INVENTORY_RUNS": 0,
+    "NEW_AUTOMATIONS_CREATED": false,
+    "WINDOWS_INVENTORY_TASK": "none (read-only schtasks scan; only PreSend/Outreach DISABLED and PostSend ENABLED at 00:10 = bounce/poll sync)"
+  },
+  "current_blocker_phase4a5s": {
+    "phase": "4A.5S",
+    "BLOCKERS": [],
+    "ENGINEERING_BLOCKER": "none",
+    "CURRENT_BLOCKER": "none blocking - discovery re-authorised and re-scheduled; awaiting the first resumed run",
+    "DISCOVERY_CONTINUATION_VERIFIED": "PENDING",
+    "FIRST_RESUMED_RUN_AT_PLUS08": "2026-10-10 16:11:36",
+    "DISCOVERY_CONTINUATION_REQUIRES_CODEX_FIX": false,
+    "SAFE_BELOW_OR_AT_40_IS_NOT_A_SOFTWARE_FAILURE": true,
+    "SEND_FREEZE_VIOLATION": false,
+    "NEXT_VERIFICATION_POINT": "observe the resumed canonical Inventory run and confirm provider pages > 0, provider requests > 0 and new leads > 0"
+  }
 }
