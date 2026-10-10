@@ -1000,8 +1000,8 @@
       "WORKBUDDY_HANDOFF_PUSHED": true
     }
   },
-  "workbuddy_handoff_pushed_commit": "ef46bd9f482e71937b7b2ba23dbd07ee0515d47c",
-  "workbuddy_handoff_pushed_at": "2026-10-08T15:39:35+08:00",
+  "workbuddy_handoff_pushed_commit": "400a50e5689e41091076b210fb32b5736828a2e9",
+  "workbuddy_handoff_pushed_at": "2026-10-10T09:54:01+08:00",
   "discovery_provider_parity_audit_20260917": {
     "audit_type": "READ_ONLY_PARITY_AUDIT",
     "phase": "PHASE 4A.3D",
@@ -3846,7 +3846,9 @@
       "obtain a NEW explicit owner send authorization"
     ],
     "carried_observation": "lead 1221 (Silver Fox Gift Shop) holds info@mysite.com with email_verified_on_official_site=1; mysite.com is a website-builder placeholder domain so the address is very likely not genuine - review during re-validation",
-    "forbidden_actions_performed": "none"
+    "forbidden_actions_performed": "none",
+    "handoff_commit_sha": "400a50e5689e41091076b210fb32b5736828a2e9",
+    "push_success": true
   },
   "safe_metrics_phase4a5r": {
     "phase": "4A.5R",
