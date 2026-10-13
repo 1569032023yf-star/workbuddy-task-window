@@ -1,3 +1,271 @@
+## 2026-10-13 09:59 +08 — PHASE 4A.5T: SAFE40 后持续发现的真实增长验收 / POST-RESUME DISCOVERY GROWTH ACCEPTANCE
+
+- New report: `handoff/workbuddy/phases/PHASE4A5T_POST_RESUME_DISCOVERY_GROWTH.md`.
+- **Scope**: STRICTLY READ-ONLY VERIFICATION. **No production business code change**, no direct
+  production business-data write, no automation edit, no new automation, no email sent. The only writes
+  in this phase were handoff text files.
+- **Baseline**: handoff HEAD matched the SHA given in the directive exactly —
+  `9a931545fd2f9a99105194ed646f09704f5d6bbc`. Resume baseline = **2026-10-10 10:11:36 +08**.
+- **What this closes**: 4A.5S removed the stop rule and re-activated the canonical Inventory, but
+  deliberately left `DISCOVERY_CONTINUATION_VERIFIED = PENDING` because no run had yet occurred.
+  4A.5T observed what actually happened afterwards, so that status is now upgraded — not rewritten.
+- **RESULT = `CONTINUOUS_DISCOVERY_CONFIRMED`.**
+
+### Scheduled runs since resume
+
+```text
+EXPECTED_SCHEDULED_WINDOWS (nominal, fixed 16:11:36 anchor) = 11
+OBSERVED_CANONICAL_RUNS                                     = 11
+MATCHED_WINDOWS (strict +/-45 min test)                     = 3
+MISSING_SCHEDULED_WINDOWS (strict test)                     = 8
+COMPLETED_RUNS  (status=completed, stop_reason=target_met)  = 2
+HEALTHY_PARTIAL_RUNS (partial / safe_inventory_gap)         = 9
+FAILED_RUNS                                                 = 0
+RUNS_FIRED_DURING_THIS_CHECK                                = 3
+LAST_SUCCESSFUL_RUN_AT                                      = 2026-10-13 06:55:45 +08
+NEXT_SCHEDULED_RUN_AT                                       = 2026-10-13 13:01:07
+```
+
+- **CORRECTION of the earlier 4A.5T draft: `COMPLETED_RUNS` is no longer 0.** The first measurement of
+  this phase (9 runs) saw only `partial` / `safe_inventory_gap`. Two more runs then landed **both** as
+  `completed` / `target_met` at 50/50, so the honest statement is: `partial` + `safe_inventory_gap` and
+  `completed` + `target_met` are **both** healthy terminal states here — they differ only in whether the
+  candidate pool could fill the target of 50. `FAILED_RUNS = 0` throughout.
+- **The scheduling point was reached, and it really ran — three times.** When this read-only check began
+  (`2026-10-12 18:09:00 +08`) run 9 had not yet fired. The scheduler then fired it **by itself**:
+  `2026-10-12 18:20:08 +08` (2m44s after the then-current `next_run_at`), finishing `18:27:53` as
+  `partial` / `safe_inventory_gap` (pid 47328) and adding 3 leads. While the session continued, run 10
+  (`2026-10-13 00:36:23` → `00:45:23`) and run 11 (`2026-10-13 06:53:53` → `06:55:45`) also fired
+  **unattended**; both selected **50/50 with `stop_reason=target_met`**. No human triggered any of them.
+  This is the most direct possible evidence that discovery continues on its own.
+- **Phase drift again, re-measured live.** The scheduler recomputes `next_run_at = <write-back moment> + 6h`,
+  and the write-back lands ~10 min after each slot, so every cycle slips ~15 min later. Current live anchor:
+  run `inventory:2026-10-13:891b3a43` finished `2026-10-13 06:55:45 +08`, the automation wrote back at
+  `2026-10-13 07:01:07`, and `next_run_at` = `2026-10-13 13:01:07` (+6h exactly).
+  Observed inter-run intervals: 6h12m51s / 6h15m34s / 6h22m05s / 6h17m27s / 6h14m09s / 6h14m10s / 6h15m19s / 6h14m04s / 6h16m15s / 6h17m30s →
+  **mean 6.27 h ≈ 3.83 runs/day** against a nominal 4×/day.
+  Note the actual run count now **equals** the expected run count (11 = 11), so nothing was missed — only the wall-clock phase moves. The 6-hour
+  INTERVAL and the 4×/day **intent are unchanged**. It was **deliberately not corrected**: re-phasing is a
+  scheduling change and was not authorized by this read-only phase.
+- **Single authority re-proven, including the process that actually ran.** `DUPLICATE_INVENTORY_AUTHORITY
+  = false`; only `automation-1784775229336` is an Inventory automation and it is ACTIVE; a read-only
+  `schtasks` query confirms **no Windows Inventory task exists** (`\RoktRazo-BD-Outreach` and
+  `\RoktRazo-BD-PreSend` are DISABLED; the only ENABLED BD task is `\RoktRazo-BD-PostSend`, 00:10 daily,
+  `--stage post-send` reconciliation only — it cannot originate a send and produced 0 `send_log` rows).
+  `INVENTORY_PAUSED_BY_SAFE40_AGAIN = false`. The writer of run 9 was pid 47328 running
+  `python.exe run_inventory_canary3.py` — **investigated rather than assumed**: that file is the
+  PHASE 4A.5L env-guard wrapper (30 lines, mtime 2026-10-03) which asserts
+  `WORKBUDDY_DISCOVERY_MAX_PAGES == '3'` and then `runpy`-executes `bd_orchestrator.py` with
+  `['bd_orchestrator.py','--stage','inventory','--live']`, exiting 9 otherwise. So the single production
+  entry point is what ran — not a manual script and not a second scheduler. A second suspected scheduler,
+  `_canary_post_check_firing19.py`, was likewise cleared: it is a read-only post-run verification script
+  that the automation session itself writes after every firing (`firing11`…`firing19`).
+- **Checkpoint still correct**: `75fbacd1` is ACTIVE and read-only; its prompt contains **no** pause
+  instruction — the only occurrences of the word are the *prohibitions* (`NEVER pause, disable, edit …
+  1784775229336`, `do NOT pause, disable or edit anything`). It kept producing snapshots (72 total,
+  including 3 more since the 4A.5S baseline).
+
+### Real growth, layered (provider hits never counted as real clients)
+
+```text
+RAW_PROVIDER_RESULTS                = 36   (rows actually served by the provider in the window)
+NEW_UNIQUE_PLACES                   = 36   (distinct place_id; 26 under a strict normalized_address test)
+NEW_UNIQUE_DOMAINS                  = 29
+NEW_LEADS_CREATED                   = 15   (= 15 distinct organisation_key)
+NEW_OFFICIAL_SITES_VERIFIED         = 15
+NEW_FIRST_PARTY_BUSINESS_EMAILS     = 10   (official_page_visible + email_verified_on_official_site=1)
+NEW_HISTORY_CLEAN_ORGS_WITH_EMAIL   = 10
+NEW_SAFE_UNIQUE_ORGS                = 10   (SAFE 40 -> 50)
+NEW_LEADS_GUESSED_EMAIL             = 0
+PROVIDER_REQUESTS                   = 28  (all status 'ok', 0 errors)
+
+per day (leads): 2026-10-10 = 2 | 2026-10-11 = 6 | 2026-10-12 = 3 | 2026-10-13 = 4
+per day (raw)  : 2026-10-10 = 10 | 2026-10-11 = 10 | 2026-10-12 = 16 | 2026-10-13 = 0
+per run (leads): [2, 0, 1, 5, 0, 0, 0, 0, 3, 4, 0]
+per run (raw)  : [3, 6, 1, 9, 0, 0, 1, 1, 6, 9, 0]
+SELF-CHECK     : sum(per run leads) = 15 = NEW_LEADS_CREATED; sum(per run raw) = 36 = RAW_PROVIDER_RESULTS
+funnel         : 36 raw -> 36 places -> 15 leads -> 15 sites -> 10 emails -> 10 SAFE orgs
+```
+
+- The 10 additional qualified organisations (domains only — see the privacy note below):
+  - `baseballhall.org (Museum Book Store) - post-resume`
+  - `baseballism.com (Baseballism Cooperstown) - lead 1215, PRE-resume`
+  - `churchandscott.com (Church & Scott Inc) - post-resume`
+  - `cooperstowncs.org (Cooperstown Elementary School) - post-resume`
+  - `cooperstownescaperooms.com (Cooperstown Escape Rooms) - post-resume`
+  - `cooperstownwaxmuseum.com (Heroes of Baseball Wax Museum) - post-resume`
+  - `fenimorefarm.org (Fenimore Farm and Country Village) - post-resume`
+  - `hydehall.org (Hyde Hall) - post-resume`
+  - `smithyarts.org (The Smithy) - post-resume`
+  - `thecopyshopplus.com (The Copy Shop Plus) - post-resume`
+  all with official sites and first-party business emails that are `official_page_visible` and
+  `email_verified_on_official_site = 1`. **`NEW_LEADS_GUESSED_EMAIL = 0`** — no guessed address was used.
+  Deliberately domain-only. Client email addresses are NOT written into the Git handoff; they stay in the controlled local DB and the local evidence file only.
+- **Provenance is stated precisely, because it matters for the +9 vs +10 question**: 9 of the
+  10 come from post-resume discovery (leads collected 10-10 → 10-13). The remaining one,
+  `baseballism.com`, is lead 1215 collected **2026-10-09 — before the resume baseline** — and simply was not
+  part of the 40-org snapshot taken at 10-10 10:12. So `SAFE_CHANGE_FROM_40 = +10` and
+  `NEW_SAFE_UNIQUE_ORGS = 10`, while the count of genuinely NEW qualified clients
+  discovered after the resume is **+9**.
+- Leads legitimately have no email and are therefore **not** counted (10 of 15 carry one): `Cooperstown Classics`、`ZINN BRILLIANT ORNAMENTS`、`Westlake Ace Hardware`、`Sybil's Yarn Shop`、`Best Teacher Supply`.
+  An official site was found for every one of the 15 new organisations; these simply do
+  not publish a business address on it, and the `guessed_email` path is forbidden, so they stop at the
+  site stage. That is the rule working, not a defect.
+- `CONSECUTIVE_ZERO_ADD_RUNS = 1` at measurement time (it was 4 mid-window). Runs 5–8 added no new
+  leads; the cause was provider yield, not a fault — the `bookstore` and `independent bookstore` families each
+  returned only 2 results, all already-seen places. **Runs 9 and 10 then added 3 and 4 new leads respectively**, which
+  settles the question empirically: the zero-add stretch was variance, not a stalled engine. Run 11 added 0
+  new leads but still selected 50/50 — the pool was already full.
+
+### SAFE — this phase's OWN recompute was FIRST blocked by the MX environment, then re-ran successfully after the proxy recovered
+
+```text
+SAFE_RECOMPUTATION_ATTEMPTED  = true   (twice: blocked, then re-run after recovery)
+FIRST_ATTEMPT                 = BLOCKED   (control probe query_mx('gmail.com') = dns_error); nothing published
+RETRY_ATTEMPT                 = OK        (control probe = ok at 2026-10-13 09:43:29 +08)
+SAFE_RECOMPUTATION_STATUS     = VALID
+MX_CONTROL_PROBE              = ok   (BD_MX_HTTPS_PROXY = http://127.0.0.1:3213)
+V2_ELIGIBLE_CANDIDATE_ROWS    = 50
+READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50   (THIS phase's OWN recompute, 2026-10-13 09:43:29 +08)
+SAFE_LAST_VALID_SOURCE        = PHASE 4A.5T's OWN read-only recompute via campaign_eligible_v2.select_candidates_for_plan_v2 (frozen V2 + live MX through BD_MX_HTTPS_PROXY), distinct organization_key; control probe query_mx('gmail.com') = ok; 157.6s
+SAFE_CURRENT_DEGRADED_READING = 43   (proxy-outage UNDER-COUNT, NOT business truth)
+SAFE_DEGRADED_UNDERCOUNT      = 7   (every one independently confirmed to have valid MX)
+SAFE_CHANGE_FROM_40           = +10
+BATCH_1_COUNT                 = 40   (frozen milestone)
+CURRENT_ADDITIONAL_SAFE_ORGS  = 10   (dynamic; identical under both readings)
+```
+
+- **The false-SAFE=0 guard fired, by design — on the FIRST attempt.** The Astrill local proxy `127.0.0.1:3213` was
+  **DOWN** (TCP actively refused); `preflight_gate.query_mx()` posts to the Worker MX endpoint through `BD_MX_HTTPS_PROXY`
+  and on any exception falls back to `_mx_via_dns()`, which needs **dnspython** — which is not installed in
+  this Python. So the fallback returns `dns_error` in 0.00 s for **every** domain, including the control
+  probe. Had there been no control probe, the script would have published `V2_ELIGIBLE_CANDIDATE_ROWS = 0`
+  and therefore "SAFE fell from 40 to 0". **No SAFE=0 was published.** (The system resolver itself is
+  healthy: `nslookup -type=MX gmail.com` returns 5 records.)
+- **The proxy then recovered ON ITS OWN and the SAME script was re-run, unchanged, and succeeded.**
+  Outage window = >= 2026-10-13 08:46 +08 (checkpoint snapshot 43) until 09:43 +08. Second attempt: control probe `ok` ->
+  `V2_ELIGIBLE_CANDIDATE_ROWS = 50` -> **`READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50`** (2026-10-13 09:43:29 +08, 157.6 s). Batch 1 is fully contained in it:
+  0 of the 40 milestone organisations are missing and `VANISHED_ORG_KEYS = []`.
+- **The checkpoint's current 43 is a validated UNDER-COUNT artifact, not a business regression.**
+  Four independent proofs: (1) all 7 orgs that fell out have **valid MX records**, verified
+  individually with the system resolver (Google / Outlook / Yahoo exchangers); (2) none of the 50 orgs has
+  an `mx_cache_*` row at all, so a cache cannot explain the 43 survivors — they were exempted from the
+  re-check while the 7 without a qualifying `last_checked_at` were re-validated, failed on the dead
+  proxy, and were dropped; (3) the drop coincides exactly with the proxy outage window; (4) production itself
+  filled 50/50 twice in the same period. All 7 orgs that fell out of the SAFE set between 02:41 and 08:46 have VALID MX records, proven independently with the system resolver (Google / Outlook / Yahoo mail exchangers). They are legitimate SAFE members. Their exclusion is an MX-environment artifact, so SAFE reads 43 under the current outage instead of 50.
+- **Three independent readings agree on 50.** Three mutually independent readings agree on 50: (1) this phase's own recompute at 2026-10-13 09:43:29 +08 = 50; (2) the read-only checkpoint's independent measurement = 50 at 2026-10-13 02:41:24 +08; (3) production's own inventory selection filling 50/50 twice with stop_reason=target_met. The 43 checkpoint snapshot taken at 2026-10-13 08:46:32 +08 is the one outlier, and it is a proven UNDER-COUNT caused by the proxy outage (all 7 excluded organisations have valid MX records).
+  Production's own inventory selected 50 of 50 candidates with stop_reason=target_met twice - run inventory:2026-10-12:a9943807 (local 2026-10-13 00:36:23 -> 00:45:23) and run inventory:2026-10-13:891b3a43 (local 2026-10-13 06:53:53 -> 06:55:45). A target of 50 can only be filled if at least 50 eligible organisations exist, so SAFE >= 50 was true in production at 06:55:45 +08 - independent of any measurement environment.
+- Authority when the environment is sound: `campaign_eligible_v2.select_candidates_for_plan_v2` (frozen V2 +
+  live MX), distinct `organization_key`; production `.env` parsed into `os.environ` **before** importing
+  business modules. The historical batch (40) and the dynamic SAFE (50) are
+  reported separately. **SAFE growth does not trigger sending** (`SAFE_GROWTH_TRIGGERS_SENDING = false`).
+
+### City queue
+
+```text
+LAST_COMPLETED_CITY        = Saratoga Springs, NY
+ACTIVE_CITY                = Cooperstown, NY
+NEXT_PENDING_CITY          = Lake Placid, NY
+QUERY_FAMILIES             = 13 / 20 completed   (was 3 / 20 at 4A.5S — 10 more families closed)
+ACTIVE_CITY_PAGES          = 37   | RESULTS_SEEN = 581 | NEW_UNIQUE = 64 | DUPES = 517
+ACTIVE_CITY_PROVIDER_ERRORS= 0
+CITY_QUEUE_RESET           = false   | CURSOR_CLEARED = false | COMPLETED_CITIES_RESCANNED = false
+CITY_QUEUE_ADVANCEMENT_VERIFIED = false   (correct: Cooperstown is not yet exhausted, so nothing is due)
+OPEN WORK ON CITY 22       = {"email_extraction_pending": 0, "existing_lead_linked": 1, "history_check_pending": 0, "identity_review": 0, "manual_review_needed": 16, "review_recovery": 4, "validation_pending": 0, "website_lookup_pending": 1}
+```
+
+- **Cooperstown is advancing normally, and no manual intervention was applied.** Query families moved from
+  3/20 to 13/20, paging reached 37 pages, 581 results were seen and 64 new unique places emerged, with
+  **0** provider errors. No city was switched by hand, no cursor cleared, no queue reset, no completed
+  city rescanned, and no duplicate merchants were manufactured.
+- **WATCH ITEM (not a blocker)**: city 22 still holds 1 `website_lookup_pending` + 4 `review_recovery` +
+  16 `manual_review_needed` rows. Per the 4A.5P defect class those rows drive 4 of the 9
+  city-completion checks via `no_open_work` and must reach terminal state before Cooperstown can close.
+  **7 of the 20 families are still pending**, so no engineering fix is warranted yet — if they persist
+  after 20/20, open a **Codex issue** rather than hot-fixing production inside a read-only audit.
+  (`CITY_QUEUE_ADVANCEMENT_VERIFIED = false` is the correct reading, not a fault: nothing is due to advance
+  while Cooperstown is unexhausted.)
+
+### Health
+
+```text
+FAILED_RUNS            = 0 since resume   | STALE_CLEANUPS = 0 since deploy
+LOCK_CONFLICTS         = 0 since resume   (all-time 6890 = retired-driver junk, NOT a signal)
+HTTP_429               = 0   | PROVIDER_ERRORS = 0
+CONCURRENT_RUNS        = 0   | RUNNING_BD_ORCHESTRATOR_PROCS = 0
+INVENTORY_LOCK_TODAY   = released
+DB_QUICK_CHECK         = ok   | DB_INTEGRITY_CHECK = ok   | FOREIGN_KEY_VIOLATIONS = 0   | DB_TABLES = 27
+```
+
+The "consecutive zero pages / zero new" signal was diagnosed **read-only** and is business-yield variance,
+not an abnormal stop: every one of the 11 runs has `ok` provider requests, the cursor keeps advancing
+(13/20 families, 37 pages), **three runs fired on their own mid-check and runs 9 and 10 produced new
+leads**, and there are 0 429s, 0 provider errors, 0 stale cleanups and 0 lock conflicts.
+**No production business code or database was modified**, and **no Codex issue was needed**.
+
+### BATCH 1 preservation
+
+```text
+BATCH_1_PRESENT            = 40 / 40   | DELETED = 0 | MARKED_SENT = 0
+BATCH_1_LEAD_IDS_PRESENT   = 40 / 40
+MISSING_FROM_CURRENT_SAFE  = []
+MILESTONE_FILE_SHA256      = 025403743c1e38c3c8f4093da570494a...   (UNCHANGED, 19783 bytes)
+BACKUP_SHA256              = d8b6eec82071df85e8295187c0ce7f7b...   (UNCHANGED, 9322496 bytes)
+BUSINESS_DECISION          = HOLD_ALL_OUTREACH   (batch id BATCH_1_HOLD_FOR_FUTURE_OUTREACH)
+FULL_EMAIL_LIST_IN_GIT     = false
+```
+
+### Send freeze
+
+```text
+SMTP_ENABLED             = 0   | SMTP_CONNECTIONS = 0
+SEND_LOG_TODAY           = 0   | SEND_LOG_TOTAL = 517
+LAST_SEND_AT             = 2026-09-16T01:09:52.031266+08:00
+MATERIALIZED_FSP_PLANNED = 0   | MANUAL_SEND_QUEUE = 0   | LIVE_SEND_AUTHORIZATIONS = 0
+PRESEND / PREFLIGHT / OUTREACH = PAUSED / PAUSED / PAUSED
+EMAILS_SENT_BY_THIS_TASK = 0
+```
+
+No development email was created, no send plan was created and no customer was contacted. The three V6
+email copies remain copy candidates only and were **not** deployed.
+
+### Blast radius
+
+```text
+PRODUCTION_CODE_CHANGED            = false
+MANUAL_INVENTORY_RUNS_BY_THIS_TASK = 0
+NEW_AUTOMATIONS_BY_THIS_TASK       = 0
+AUTOMATIONS_EDITED_BY_THIS_TASK    = 0
+WINDOWS_TASKS_EDITED_BY_THIS_TASK  = 0
+EMAILS_SENT_BY_THIS_TASK           = 0
+DB_SCHEMA_MIGRATED                 = false
+```
+
+- **`DIRECT_DB_WRITES_BY_THIS_TASK = 0`, stated with a caveat rather than a claim.** The DB file mtime
+  (`2026-10-13 06:55:45`) falls **after** this session began (`2026-10-12 18:09:00`), so "unchanged during the session" would
+  have been false. The write is instead attributed precisely: the mtime equals, to the second, the
+  `finished_at` of `job_runs` run `inventory:2026-10-13:891b3a43` — the scheduled run described above — whose
+  writer process was pid 36428 (`run_inventory_canary3.py` → `bd_orchestrator.py`). Every handle this task
+  opened used `file:...?mode=ro` / `uri=True`; no INSERT/UPDATE/DELETE was issued. A live POST-HANDOFF
+  re-count confirms it: `POST_HANDOFF_CONTENT_UNCHANGED = true` across leads /
+  lead_discovery_results / send_log / final_send_plan / bounce_log / suppression, with the newest
+  `job_runs` row still inventory:2026-10-13:891b3a43. Note the `-wal` file is **20632 bytes**, and that is NOT a
+  write signal — this DB runs in SQLite `wal` mode and merely reading it materialises `-wal`/`-shm`, so the
+  reader should rely on the content re-count above rather than on the sidecar file size.
+- **Two measurement defects were found in this phase's own code and fixed before publishing**, which is why
+  the per-run ledger is trustworthy: (1) `leads.collected_at` is naive **local (+08)** with a literal `T`,
+  while `lead_discovery_results.discovered_at` and `provider_request_audit.requested_at` are ISO **UTC** and
+  `job_runs.started_at` is naive **UTC** — each column must be compared in its own clock; stripping
+  `+00:00` silently skews the window by 8 hours, and a space-separated bound against a `T`-separated column
+  matches *every* row because `'T'` (0x54) > `' '` (0x20). After the fix the sums are exactly self-consistent:
+  per-run raw = 36 = `RAW_PROVIDER_RESULTS`; per-run leads = 15 = `NEW_LEADS_CREATED`.
+- **Operational fact worth recording**: this machine's Astrill proxy is currently **down**. It does not affect
+  already-collected data, but it depresses any MX-dependent reading (the checkpoint's 43 above).
+  **Restarting Astrill is a human action**; readings should return to 50 once it is back.
+- Files changed: `LATEST_RESULT.json` (5 new `*_phase4a5t` blocks appended),
+  `CURRENT_STATUS.md` (new section AM + refreshed live scalars), `CHANGELOG.md` (this entry), plus the
+  new phase report. Nothing else.
+
 ## 2026-10-10 10:17 +08 — PHASE 4A.5S: SAFE40 批次保留 + 持续发现重启 / SAFE40 BATCH HELD + CONTINUOUS DISCOVERY RE-AUTHORISED
 
 - New report: `handoff/workbuddy/phases/PHASE4A5S_SAFE40_HOLD_CONTINUOUS_DISCOVERY.md`.
