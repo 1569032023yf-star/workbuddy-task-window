@@ -1,3 +1,91 @@
+## 2026-10-13 18:00 +08 — PHASE 4A.5U: SAFE50 后持续发现阻塞诊断 / SAFE50 DISCOVERY SHORT-CIRCUIT AUDIT
+
+- New report: `handoff/workbuddy/phases/PHASE4A5U_SAFE50_DISCOVERY_SHORT_CIRCUIT_AUDIT.md`.
+- **Scope**: STRICTLY READ-ONLY DIAGNOSIS. **No production business code change**, no direct
+  production business-data write, no automation edit, no new automation, no manual Inventory run,
+  no email sent. The only writes in this phase were handoff text files.
+- **Baseline**: handoff HEAD matched the given SHA exactly —
+  `5bf9df9f9992eb51bb6ef73d04e4c5935287ad51` (PHASE 4A.5T). Remote `main` verified in sync via
+  `git ls-remote origin refs/heads/main`.
+- **RESULT = `SAFE50_EARLY_EXIT_CONFIRMED`.** Production `bd_orchestrator.py` `stage_inventory()`
+  contains `if safe >= target: finish_job_run(..., stop_reason='target_met'); return True` at
+  lines 429-431 — **before** `run_places_batch` (:442), website resolution (:445), staging
+  postprocess (:449) and linked backlog (:455). Once SAFE >= target, every scheduled Inventory run
+  ends before doing any discovery work.
+- **Target logic (read from code, not assumed)**: `outreach_control.inventory_target_for_date()` =
+  `INVENTORY_TARGET` = `NEW_OUTREACH_TARGET(40) + 10` = **50** on weekdays, `max(60, 50)` = 60 on
+  weekends; `SAFE_INVENTORY_TARGET` is unset in `.env` AND in the process env (canary3 env-confirm
+  print agrees: `SAFE_INVENTORY_TARGET=None`), so the default applies. 2026-10-13 is a Tuesday →
+  **target 50**, confirmed by `job_runs.target = 50` on both observed dates.
+- **Production code identity**: the code that actually runs is the workspace production tree —
+  `roktandrazo-outreach/bd_orchestrator.py`, SHA-256
+  `7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969` (the automation's cwd). The
+  same path inside the handoff repo snapshot is `fb2b18f1...` (blob last touched by `da36acf`, the
+  P2.3I era) — **pre-existing snapshot drift, recorded, not caused by this phase and not used as a
+  modification base**. The `run_inventory_canary3.py` wrapper (SHA `97183dee...`, 30 lines) is a
+  transparent env-guard: it asserts `WORKBUDDY_DISCOVERY_MAX_PAGES == '3'` and then `runpy`-executes
+  `bd_orchestrator.py --stage inventory --live` with identical argv — **it does not change the call
+  path**; `stage_inventory` is the single code path either way.
+- **SAFE50 moment**: run `inventory:2026-10-12:a9943807` (2026-10-13 00:36:23 → 00:45:23 +08)
+  entered with SAFE 47 and **did discover** (3 provider requests, family `teacher supply store`,
+  all ok) before finishing 50/50 `completed`/`target_met` — **case B, not an early exit**. SAFE50
+  moment = **2026-10-13 00:45:23 +08** (= 2026-10-12 16:45:23 UTC, single CHANGE_POINT_UTC).
+- **Post-SAFE50 runs — CASE A x2 (true early exit)**:
+
+```text
+RUN inventory:2026-10-13:891b3a43   06:53:53 -> 06:55:45 +08  completed/target_met  50/50  0 req  1m52s
+RUN inventory:2026-10-13:25df11b6  13:04:24 -> 13:06:05 +08  completed/target_met  50/50  0 req  1m41s
+  (25df11b6 is the scheduled 13:01:07 +08 slot named in the 4A.5T report)
+```
+
+  Both entered `stage_inventory` with SAFE_BEFORE = 50 >= TARGET = 50 and returned at :429-431.
+  SAFE_BEFORE is evidence-chained, not guessed: previous run's post-measurement (50) + no other
+  writer exists under the send freeze + the early-exit branch records the pre-discovery measurement
+  + the duration signature (discovery runs take 6-9 min; these took ~2 min, matching a bare SAFE
+  measurement of ~142 s) + the read-only checkpoint snapshot (14:50:27 +08) independently logging
+  `pages=0, requests=0, families=null` for both runs vs `pages=3, requests=3` for the discovery run.
+- **Window DB evidence (since 2026-10-12T16:45:23Z)**: `provider_request_audit` **COUNT=0**;
+  `lead_discovery_results` **COUNT=0**; `leads` **COUNT=0** (collected_at window normalised with
+  `replace(collected_at,' ','T')` — the literal-T separator trap avoided); new first-party
+  emails **0**; new SAFE orgs **0** (SAFE stayed 50). Cooperstown query families frozen at **13/20**
+  with the 7 pending families at `pages_processed=0` — cursor and query state untouched.
+- **SAFE environment (case D ruled out)**: `.env` hand-parsed into `os.environ` before importing
+  business modules (`BD_MX_HTTPS_PROXY = http://127.0.0.1:3213` effective); control probe
+  `query_mx('gmail.com')` = **ok**; this phase's own recompute
+  `READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50` (`V2_ELIGIBLE_CANDIDATE_ROWS = 50`, 142.3 s) →
+  `SAFE_RECOMPUTATION_STATUS = VALID`, agreeing with the 09:43 and 14:50 readings. **No false
+  SAFE=0 or distorted reading was published.**
+- **City verification**: `ACTIVE_CITY = Cooperstown, NY` (queue id 22, active); next pending
+  `Lake Placid, NY`. Non-terminal rows unchanged from 4A.5T: 1 `website_lookup_pending` (id 571) +
+  4 `review_recovery` (ids 556/565/578/588); `city_completion_checks(22, browser_maps)` computed
+  read-only = **9/9 false** — no new city deadlock, NOT escalated (only 13/20 families done),
+  nothing manually cleared or terminalised.
+- **Automation safety**: `automation-1784775229336` remains the **sole ACTIVE Inventory authority**
+  (`FREQ=HOURLY;INTERVAL=6`, cwd = production dir, `next_run_at = 2026-10-13 19:10:57 +08`,
+  `WORKBUDDY_DISCOVERY_MAX_PAGES=3` preserved); every other inventory-ish automation is PAUSED with
+  `deleted_at` set → `DUPLICATE_INVENTORY = false`; today's lock `released`; no concurrency; no
+  `lock_conflict`. Checkpoint `75fbacd1` is ACTIVE read-only and its 4A.5S prompt authorises
+  continuous discovery — **it did NOT pause anything; the stop is 100% the orchestrator code gate**.
+  Interval drift persists (~+11..17 min per cycle; scheduler re-anchors `next_run_at = write-back +
+  6h`) — reported, deliberately NOT corrected (cadence/anchor/page-budget changes are out of scope).
+- **Send freeze fully held**: `SMTP_enabled = 0`, `SEND_LOG_TODAY = 0`, `MATERIALIZED_FSP_PLANNED
+  = 0`, `LIVE_SEND_AUTHORIZATIONS = 0` (the 43 `pending` auth entries all sit under **revoked**
+  parents — historical residue, not live), PreSend `1785804406748` / Preflight `1785804413719` /
+  Outreach `1785804421539` all PAUSED; last real send 2026-09-16T01:09:52+08:00; SEND_LOG_TOTAL
+  517 unchanged. BATCH 1 (40 orgs) fully preserved.
+- **Handed to Codex (NOT hot-fixed here)**: file `roktandrazo-outreach/bd_orchestrator.py` (SHA
+  `7afc4d7f...`), location `stage_inventory()` lines 429-431, trigger `safe(50) >= target(50)`;
+  minimal fix = remove/neutralise the early exit so the discovery chain always runs (target stays
+  only for end-of-run gap/status reporting), or gate it behind an explicit operator hard-cap that is
+  unset by default. Preserve run lock, city queue/cursor semantics, V2/MX gates,
+  website/staging/backlog lanes and the send freeze. Requires owner authorization + Codex
+  implementation + deploy validation. Unlike 4A.5S (control-plane prompt rule), this rule lives in
+  production code and cannot be fixed from the automation control plane.
+- **FINAL**: `RESULT = SAFE50_EARLY_EXIT_CONFIRMED` · `PRODUCTION_CODE_CHANGED = false` ·
+  `DIRECT_DB_WRITES_BY_THIS_TASK = 0` · `MANUAL_INVENTORY_RUNS = 0` · `SMTP_CONNECTIONS = 0` ·
+  `EMAILS_SENT = 0` · `POST_SAFE50_SCHEDULED_RUNS = 2` · `POST_SAFE50_PROVIDER_REQUESTS = 0` ·
+  `DISCOVERY_CONTINUES_ABOVE_50 = false` · `STOP = true`.
+
 ## 2026-10-13 09:59 +08 — PHASE 4A.5T: SAFE40 后持续发现的真实增长验收 / POST-RESUME DISCOVERY GROWTH ACCEPTANCE
 
 - New report: `handoff/workbuddy/phases/PHASE4A5T_POST_RESUME_DISCOVERY_GROWTH.md`.

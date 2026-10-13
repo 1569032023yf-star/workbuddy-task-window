@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-13T09:59:27+08:00",
-  "refresh_type": "phase_4a5t_post_resume_discovery_growth",
+  "generated_at": "2026-10-13T18:00:20+08:00",
+  "refresh_type": "phase_4a5u_safe50_discovery_short_circuit_audit",
   "repo": "1569032023yf-star/workbuddy-task-window",
   "branch": "main",
   "origin": "https://github.com/1569032023yf-star/workbuddy-task-window.git",
   "live_db_path": "roktandrazo-outreach/data/bd_leads.db",
-  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5T (SAFE40 后持续发现的真实增长验收 / POST-RESUME DISCOVERY GROWTH ACCEPTANCE): STRICTLY READ-ONLY VERIFICATION. Closes the single item 4A.5S deliberately left open. 4A.5S removed the stop rule from the automation control plane and re-activated the SAME canonical Inventory, but honestly refused to claim recovery because no run had yet occurred. 4A.5T measured what actually happened after 2026-10-10 10:11:36 +08: the resumed scheduler IS running and IS adding real qualified clients. 11 canonical Inventory runs observed — 9 partial/safe_inventory_gap and 2 completed/target_met (both are healthy terminal states; they differ only in whether the pool could fill the target of 50), 0 failed, 0 lock conflicts, 0 concurrent runs, 0 HTTP 429, 0 provider errors -> 36 raw discovery rows -> 36 new unique places -> 15 new leads -> 15 official sites -> 10 first-party business emails -> 10 additional qualified organisations. READ_ONLY_V2_SAFE_UNIQUE_ORGS 40 -> 50 (+10); of those, 9 come from post-resume discovery and 1 (baseballism.com, lead 1215 collected 2026-10-09) is a pre-resume lead absent from the 40-org snapshot. THREE runs fired BY THEMSELVES during this check (18:20:08 +08, 2026-10-13 00:36:23 +08, 2026-10-13 06:53:53 +08); runs 9 and 10 added 3 and 4 of the 15 leads, and runs 10 and 11 each selected 50/50 with stop_reason=target_met. NOTE: this phase's OWN SAFE recompute was attempted TWICE — the first attempt was BLOCKED (control probe returned dns_error; nothing published, no false SAFE=0), and the retry after the Astrill proxy recovered on its own produced 50 at 2026-10-13 09:43:29 +08 (SAFE_RECOMPUTATION_STATUS = VALID). DISCOVERY_CONTINUATION_VERIFIED moves PENDING -> true. Cooperstown NY advanced 3/20 -> 13/20 query families; next pending city Lake Placid NY; queue NOT reset. BATCH 1 preserved 40/40 (0 deleted, 0 marked sent, milestone + backup SHA-256 unchanged). Send freeze fully held. No production code change, no direct DB write, no automation edit, no new automation, no email sent. RESULT = CONTINUOUS_DISCOVERY_CONFIRMED.",
-  "production_status": "SAFE40 BATCH PRESERVED + CONTINUOUS DISCOVERY CONFIRMED RUNNING (HOLD_ALL_OUTREACH, send frozen). discovery/discovery_service.py = 96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14 (102,761 B, LF, CRLF 0), unchanged in 4A.5T (PRODUCTION_CODE_CHANGED_THIS_PHASE = false). Canonical Inventory automation-1784775229336 = ACTIVE, FREQ=HOURLY;INTERVAL=6, WORKBUDDY_DISCOVERY_MAX_PAGES=3, next_run_at 2026-10-13 13:01:07; it fired 11 times since the resume baseline with 0 failures. ACTIVE_CITY = Cooperstown, NY (13/20 query families, 37 provider pages, 0 provider errors); LAST_COMPLETED_CITY = Saratoga Springs, NY; NEXT_PENDING_CITY = Lake Placid, NY. READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50 (THIS phase's own recompute at 2026-10-13 09:43:29 +08). The first attempt was blocked by a down Astrill proxy and published nothing; the retry after the proxy recovered on its own succeeded (SAFE_RECOMPUTATION_STATUS = VALID). The outage-window checkpoint reading is 43, an UNDER-COUNT: all 7 excluded organisations were individually verified to have valid MX records. PreSend/Preflight/Outreach PAUSED. No sends since 2026-09-16T01:09:52+08:00.",
+  "current_phase": "P1.9 SYSTEM_FREEZE - PHASE 4A.5U (SAFE50 后持续发现阻塞诊断 / SAFE50 DISCOVERY SHORT-CIRCUIT AUDIT): STRICTLY READ-ONLY DIAGNOSIS. The owner's standing decision is continuous discovery of new merchants with all mail held (SAFE40/SAFE50 are milestones, NOT stop conditions). This phase verified whether production Inventory still discovers after SAFE reached 50. ANSWER: NO - SAFE50 EARLY EXIT CONFIRMED. Production bd_orchestrator.py (runtime tree, SHA-256 7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969) stage_inventory() executes `if safe >= target: finish_job_run(..., stop_reason='target_met'); return True` at lines 429-431 BEFORE run_places_batch (:442) / website resolution (:445) / staging (:449) / linked backlog (:455). Target = inventory_target_for_date() = 50 weekday / 60 weekend (SAFE_INVENTORY_TARGET unset in .env and process env; job_runs.target=50 confirms). SAFE reached 50 inside run inventory:2026-10-12:a9943807 (2026-10-13 00:36:23 -> 00:45:23 +08; that run DID discover: 3 provider requests, teacher supply store - case B). The two subsequent scheduled runs - inventory:2026-10-13:891b3a43 (06:53:53 -> 06:55:45 +08, 1m52s) and inventory:2026-10-13:25df11b6 (13:04:24 -> 13:06:05 +08, the scheduled 13:01:07 slot, 1m41s) - both entered with SAFE_BEFORE=50 >= target=50 and ended completed/target_met 50/50 with 0 provider requests (provider_request_audit COUNT=0 in the whole post-SAFE50 window since 2026-10-12T16:45:23Z), 0 new discovery rows, 0 new leads, 0 new first-party emails, 0 new SAFE orgs; Cooperstown frozen at 13/20 query families with cursor untouched. SAFE environment VALID: .env hand-parsed before imports, control probe query_mx(\"gmail.com\") = ok, this phase's own recompute READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50 (~17:57 +08) agreeing with the 09:43 and 14:50 readings - case D ruled out, no false SAFE=0 published. Canonical Inventory automation-1784775229336 left ACTIVE and untouched (sole authority, next_run_at 2026-10-13 19:10:57 +08, WORKBUDDY_DISCOVERY_MAX_PAGES=3 preserved, no duplicates, no lock conflicts); the stop is the orchestrator CODE gate, NOT the checkpoint (75fbacd1 read-only, 4A.5S prompt authorises continuous discovery) and NOT the wrapper (run_inventory_canary3.py is a transparent env-guard delegate, SHA 97183dee...). Send freeze fully held. Minimal fix requirement handed to Codex (remove/neutralise the :429-431 early exit, or gate behind an explicit operator hard-cap unset by default); NOT hot-fixed in this phase. No production code change, no direct DB write, no automation edit, no new automation, no manual Inventory run, no email sent. RESULT = SAFE50_EARLY_EXIT_CONFIRMED.",
+  "production_status": "SAFE50 EARLY EXIT CONFIRMED - DISCOVERY ABOVE 50 BLOCKED BY PRODUCTION CODE (HOLD_ALL_OUTREACH, send frozen). bd_orchestrator.py (production runtime tree) = 7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969, unchanged in 4A.5U (PRODUCTION_CODE_CHANGED_THIS_PHASE = false); discovery/discovery_service.py = 96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14 unchanged. NOTE: the same paths inside the handoff-repo code snapshot are STALE (bd_orchestrator.py blob fb2b18f1... last touched by da36acf, the P2.3I era; discovery_service.py blob 2bba7955...) - pre-existing snapshot drift, recorded; the repo snapshot is NOT a modification base. Canonical Inventory automation-1784775229336 = ACTIVE, FREQ=HOURLY;INTERVAL=6, WORKBUDDY_DISCOVERY_MAX_PAGES=3, next_run_at 2026-10-13 19:10:57 +08; since SAFE hit 50 (2026-10-13 00:45:23 +08) it fired 2x and BOTH short-circuited at bd_orchestrator.py:429-431 with 0 provider requests. READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50 (THIS phase's own V2+MX recompute ~17:57 +08; control probe ok; SAFE_RECOMPUTATION_STATUS = VALID). ACTIVE_CITY = Cooperstown, NY (13/20 query families, frozen since SAFE50, 0 provider errors); LAST_COMPLETED_CITY = Saratoga Springs, NY; NEXT_PENDING_CITY = Lake Placid, NY. PreSend/Preflight/Outreach PAUSED. No sends since 2026-09-16T01:09:52+08:00. RESULT = SAFE50_EARLY_EXIT_CONFIRMED.",
   "production_code_drift": false,
-  "current_blocker": "NONE BLOCKING. The 4A.5S open item is CLOSED: the re-activated canonical Inventory is verified running in production and really adding new qualified clients (15 new leads -> 10 first-party emails -> SAFE 40 -> 50). Engineering blockers: 0 failed runs, no crash, no lock conflict, no concurrent Inventory, no duplicate Inventory authority, no HTTP 429, no provider errors, DB quick_check/integrity_check ok, foreign_key_check 0 rows, V2/MX policy unchanged. WATCH ITEM (not a blocker): Cooperstown (city 22) still holds 1 website_lookup_pending + 4 review_recovery rows; per the 4A.5P defect class those rows drive 4 of the 9 city-completion checks via no_open_work and must reach terminal state before the city can close. 7 query families remain, so no engineering fix is warranted yet; if they persist after 20/20, raise a Codex issue rather than hot-fixing in an audit phase.",
+  "current_blocker": "BLOCKING (production code, handed to Codex): SAFE50 early exit. bd_orchestrator.py stage_inventory() lines 429-431 return completed/target_met BEFORE any discovery once safe >= target (50 weekday / 60 weekend). Since SAFE hit 50 (2026-10-13 00:45:23 +08), both scheduled runs (06:53:53 +08, 13:04:24 +08) short-circuited: 0 provider requests, 0 new places, 0 new leads, 0 new first-party emails, 0 new SAFE orgs; Cooperstown frozen at 13/20 query families. This is NOT the checkpoint (75fbacd1 read-only, 4A.5S prompt authorises continuous discovery), NOT the scheduler (1784775229336 ACTIVE sole authority, no duplicates, no lock conflicts, interval drift is known behaviour) and NOT the wrapper (run_inventory_canary3.py is a transparent env-guard delegate). Minimal fix requirement (remove/neutralise the early exit so the discovery chain always runs, or gate it behind an explicit operator hard-cap unset by default) is documented in phases/PHASE4A5U_SAFE50_DISCOVERY_SHORT_CIRCUIT_AUDIT.md; requires owner authorization + Codex implementation + deploy validation - NOT hot-fixed in this audit phase. Until the fix lands, every scheduled Inventory run will keep ending completed/target_met with 0 provider requests: that is the KNOWN BLOCKER, not a scheduler failure. WATCH ITEM (not a blocker): Cooperstown still holds 1 website_lookup_pending + 4 review_recovery rows (unchanged since 4A.5T); they only matter at 20/20 - if they persist then, raise a Codex issue (4A.5P defect class).",
   "production_code_sha": {
-    "bd_orchestrator.py": "7afc4d7f6ac18e22 (sha256 prefix-16; full hash not recorded)",
+    "bd_orchestrator.py": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969",
     "discovery/discovery_service.py": "96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14",
     "outreach_control.py": "b23c135917c488e8b2f22dfcb8f03405ba92de74057b394a40f01cc0b144edce",
     "discovery/website_resolver.py": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
     "discovery/providers/browser_maps_scraper.py": "18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49",
-    "note": "4A.5F deployed the complete cumulative discovery_service.py from Codex 641b36b8 (byte-identical); PRE_DEPLOY was 30b2487b10753e62f1ec35f68adea4fe1d8e4126c1c64b1c4d1e865aaf3151af @ dc493825. browser_maps.py and retail_city_queue.py remain at dc493825 (4A.5D). No other production file was written in 4A.5F. | 4A.5K-BR deployed the reviewed Codex 4A.8I bounce-header normalization to bounce_pipeline.py ONLY (byte-exact, hash 6bd0fd52...21cded24); no other production file touched.",
+    "note": "4A.5U: production runtime = workspace tree roktandrazo-outreach/ (automation cwd); bd_orchestrator.py = 7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969 (full SHA-256, upgraded from the 4A.5T prefix-16 record, same value); discovery/discovery_service.py = 96dcc751dff7ff9174b556120bdf440211328ccf52b32559509164cb0169ae14 (unchanged). The SAME paths inside the handoff-repo code snapshot are stale and were NOT used as a base: bd_orchestrator.py blob fb2b18f1... (repo history: last touched by da36acf, P2.3I era), discovery_service.py blob 2bba7955... - pre-existing snapshot drift. run_inventory_canary3.py (env-guard wrapper, production tree only, not in repo snapshot) = 97183deefa6f18e6a5bf555153019dfd03fa683d0934b9ae4f7da4853d74c59d. Earlier notes: 4A.5F deployed the complete cumulative discovery_service.py from Codex 641b36b8 (byte-identical); 4A.5K-BR deployed the reviewed Codex 4A.8I bounce-header normalization to bounce_pipeline.py ONLY (byte-exact, hash 6bd0fd52...21cded24); no other production file was written in those phases. No production file was written in 4A.5U.",
     "match": true,
     "retail_city_queue.py": "46d6f4521892785e (sha256 prefix-16; full hash not recorded)",
     "bounce_pipeline.py": "6bd0fd52330af4efec8dc48ef99a9e91615c76030f08f97decd6c26421cded24",
     "bounce_pipeline.py_PREVIOUS": "dd52acf503c2ed70d72eb8fc80862f3bead7492b6b3f905879493159ea4e052b"
   },
-  "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) - sole authority; Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held, SAFE<40); Windows PostSend UNIQUE_REQUIRED; no second scheduler",
+  "production_scheduler_authority": "WorkBuddy Automation (workbuddy_automation) - sole authority; Inventory+Recovery ACTIVE; PreSend/Preflight/Outreach PAUSED (held); Windows PostSend UNIQUE_REQUIRED; no second scheduler. 4A.5U re-verified: automation-1784775229336 ACTIVE, FREQ=HOURLY;INTERVAL=6, next_run_at 2026-10-13 19:10:57 +08; no duplicate Inventory authority; no lock conflicts; no concurrency.",
   "workbuddy_automations": [
     {
       "id": "1784775229336",
       "name": "RoktRazo BD Inventory - 4x/day (6h interval)",
-      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6); MEASURED IN 4A.5T: the scheduler re-anchors next_run_at = <update moment> + 6h, so the wall-clock phase drifts ~+15 min per cycle (latest live anchor: run finished 2026-10-13 06:55:45 +08, automation wrote back 2026-10-13 07:01:07, next_run_at 2026-10-13 13:01:07 = write-back + 6h; observed intervals 6h12m51s / 6h15m34s / 6h22m05s / 6h17m27s / 6h14m09s / 6h14m10s / 6h15m19s / 6h14m04s / 6h16m15s / 6h17m30s, mean 6.27 h = ~3.83 runs/day). Interval/cadence intent unchanged; drift deliberately NOT corrected.",
-      "state": "ACTIVE (verified firing 11x since the 2026-10-10 10:11:36 +08 resume baseline; THREE of them fired BY THEMSELVES during the 4A.5T read-only check at 18:20:08 +08, 2026-10-13 00:36:23 +08 and 2026-10-13 06:53:53 +08; runs 10 and 11 each selected 50/50 with target_met; next_run_at 2026-10-13 13:01:07)",
+      "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6); the scheduler re-anchors next_run_at = <update moment> + 6h, so the wall-clock phase drifts ~+11..17 min per cycle (4A.5U re-measured intervals 6h17m30s / 6h10m31s); interval/cadence intent unchanged; drift deliberately NOT corrected.",
+      "state": "ACTIVE (verified firing 13x since the 2026-10-10 10:11:36 +08 resume baseline; next_run_at 2026-10-13 19:10:57 +08). Since SAFE reached 50 at 2026-10-13 00:45:23 +08, its 2 scheduled runs (06:53:53 +08 and 13:04:24 +08) both short-circuited at bd_orchestrator.py:429-431 (completed/target_met, 0 provider requests) - the 4A.5U finding, a PRODUCTION CODE gate, not a scheduler fault.",
       "note": "SOLE Inventory authority. Re-activated by 4A.5S; CONFIRMED RUNNING by 4A.5T with 0 failures and real yield (SAFE 40 -> 50). WORKBUDDY_DISCOVERY_MAX_PAGES=3. The observed process was the 4A.5L env-guard wrapper run_inventory_canary3.py delegating via runpy to bd_orchestrator.py --stage inventory --live; it is NOT a separate scheduler and NOT a manual run.",
-      "next_run_at_plus08": "2026-10-10 16:11:36 +08",
+      "next_run_at_plus08": "2026-10-13 19:10:57 +08",
       "rrule": "FREQ=HOURLY;INTERVAL=6"
     },
     {
@@ -64,8 +64,8 @@
       "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
       "name": "BD SAFE40 Milestone Checkpoint",
       "schedule": "4x/day every 6h (FREQ=HOURLY;INTERVAL=6); anchor :14 +08 = 16 min after the Inventory anchor; next run 2026-09-28 07:14:16 +08 - WAS daily 15:40 +08",
-      "state": "ACTIVE (read-only; next_run_at 2026-10-13 14:49:11; 72 snapshots produced)",
-      "note": "STRICTLY READ-ONLY checkpoint. Its 4A.5S pause-rule removal HELD and was re-verified in 4A.5T (prompt contains no pause instruction, only prohibitions). Its LAST VALID reading was READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50 at 2026-10-13 09:43:29 +08. Its LATEST snapshot reports 43 at 2026-10-13 08:46:32 +08, which is an UNDER-COUNT caused by the current proxy outage: all 7 organisations that fell out were individually MX-verified as valid, and production itself filled 50/50 twice with target_met.",
+      "state": "ACTIVE (read-only; next_run_at 2026-10-13 20:54:13 +08)",
+      "note": "STRICTLY READ-ONLY checkpoint. Its 4A.5S pause-rule removal HELD and was re-verified in 4A.5U: the checkpoint did NOT pause anything - the post-SAFE50 discovery stop is the orchestrator code gate at bd_orchestrator.py:429-431, not the control plane. Its LAST VALID reading was READ_ONLY_V2_SAFE_UNIQUE_ORGS = 50 (2026-10-13 ~17:57 +08, 4A.5U own recompute; checkpoint snapshot 14:50:27 +08 also 50).",
       "rrule": "FREQ=HOURLY;INTERVAL=6"
     }
   ],
@@ -154,60 +154,32 @@
     }
   ],
   "last_inventory_run": {
-    "run_id": "inventory:2026-10-13:891b3a43",
-    "business_date": "2026-10-12",
-    "status": "partial",
-    "stop_reason": "safe_inventory_gap",
-    "started_at_utc": "2026-10-12 22:53:53",
-    "finished_at_utc": "2026-10-12 22:55:45",
-    "started_at_local": "2026-10-13 06:53:53 +08",
-    "finished_at_local": "2026-10-13 06:55:45 +08",
+    "run_id": "inventory:2026-10-13:25df11b6",
+    "business_date": "2026-10-13",
+    "status": "completed",
+    "stop_reason": "target_met",
+    "started_at_utc": "2026-10-13 05:04:24",
+    "finished_at_utc": "2026-10-13 05:06:05",
+    "started_at_local": "2026-10-13 13:04:24 +08",
+    "finished_at_local": "2026-10-13 13:06:05 +08",
     "target": 50,
     "actual": 50,
-    "process_id": 36428,
-    "note": "partial + safe_inventory_gap = healthy terminal state (SAFE below the internal 50 target), NOT a failure. 4A.5T observed 11 canonical runs since the resume baseline 2026-10-10 10:11:36 +08; all partial/safe_inventory_gap; FAILED_RUNS = 0. THIS RUN FIRED BY ITSELF DURING THE READ-ONLY CHECK and added 3 new leads / 6 raw discovery rows; it re-anchored next_run_at to 2026-10-13 13:01:07.",
-    "POST_RESUME_RUNS": 11,
-    "PER_RUN_NEW_LEADS": [
-      2,
-      0,
-      1,
-      5,
-      0,
-      0,
-      0,
-      0,
-      3,
-      4,
-      0
-    ],
-    "PER_RUN_RAW_RESULTS": [
-      3,
-      6,
-      1,
-      9,
-      0,
-      0,
-      1,
-      1,
-      6,
-      9,
-      0
-    ],
-    "BY_BUSINESS_DATE": {
-      "2026-10-10": 2,
-      "2026-10-11": 4,
-      "2026-10-12": 4,
-      "2026-10-13": 1
-    },
-    "RESUME_BASELINE": "2026-10-10 10:11:36 +08",
-    "NEXT_SCHEDULED_RUN_AT": "2026-10-13 13:01:07"
+    "process_id": 48180,
+    "SAFE_BEFORE": 50,
+    "provider_requests": 0,
+    "provider_pages": 0,
+    "new_leads": 0,
+    "duration_seconds": 101,
+    "note": "SAFE50 EARLY EXIT (4A.5U finding): entered stage_inventory with SAFE=50 >= target=50 and returned at bd_orchestrator.py:429-431 BEFORE any discovery (0 provider requests, 1m41s vs 6-9 min for discovery runs). The prior run inventory:2026-10-13:891b3a43 (06:53:53 -> 06:55:45 +08, pid 36428, 1m52s) was the same early exit. The last run that actually discovered was inventory:2026-10-12:a9943807 (2026-10-13 00:36:23 -> 00:45:23 +08, 3 provider requests, SAFE 47 -> 50 - case B). While SAFE stays >= target, every scheduled run keeps taking this early exit until the Codex fix lands.",
+    "POST_SAFE50_RUNS": 2,
+    "NEXT_SCHEDULED_RUN_AT": "2026-10-13 19:10:57 +08"
   },
   "safe_metrics": {
     "V2_ELIGIBLE_UNSENT": 50,
-    "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recompute via campaign_eligible_v2.select_candidates_for_plan_v2 (frozen V2 + live MX), distinct organization_key, 2026-10-13 09:43:29 +08 (PHASE 4A.5T); production .env loaded before imports; MX control probe query_mx(\"gmail.com\") = ok",
+    "V2_ELIGIBLE_UNSENT_AUTHORITY": "live read-only recompute via campaign_eligible_v2.select_candidates_for_plan_v2 (frozen V2 + live MX), distinct organization_key, 2026-10-13 ~17:57 +08 (PHASE 4A.5U); production .env hand-parsed into os.environ before imports; MX control probe query_mx(\"gmail.com\") = ok; V2_ELIGIBLE_CANDIDATE_ROWS = 50",
     "READ_ONLY_SAFE_UNIQUE_ORGS": 50,
-    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "campaign_eligible_v2.select_candidates_for_plan_v2 (V2 + live MX + history/suppression/org-dedup, read-only, distinct organization_key); fresh recompute 2026-10-13 09:43:29 +08 in PHASE 4A.5T; V2_ELIGIBLE_CANDIDATE_ROWS = 50; cross-checked against the read-only checkpoint, which measured 50 at 2026-10-13 02:41:24 +08 - the +1 difference is fully explained by The Copy Shop Plus (thecopyshopplus.com, collected 2026-10-12 18:24:43) qualifying between the two measurements",
-    "READ_ONLY_SAFE_UNIQUE_ORGS_PREVIOUS": 40,
+    "READ_ONLY_SAFE_UNIQUE_ORGS_AUTHORITY": "campaign_eligible_v2.select_candidates_for_plan_v2 (V2 + live MX + history/suppression/org-dedup, read-only, distinct organization_key); FRESH recompute 2026-10-13 ~17:57 +08 in PHASE 4A.5U (SAFE_RECOMPUTATION_STATUS = VALID); agrees with the 4A.5T reading (50 @ 09:43:29 +08) and the read-only checkpoint snapshot (50 @ 14:50:27 +08); unchanged since SAFE first hit 50 at 2026-10-13 00:45:23 +08 because the post-SAFE50 runs all short-circuited before discovery",
+    "READ_ONLY_SAFE_UNIQUE_ORGS_PREVIOUS": 50,
     "READ_ONLY_SAFE_UNIQUE_ORGS_NEW_ORG": "org:domain:baseballhall.org, org:domain:baseballism.com, org:domain:churchandscott.com, org:domain:cooperstowncs.org, org:domain:cooperstownescaperooms.com, org:domain:cooperstownwaxmuseum.com, org:domain:fenimorefarm.org, org:domain:hydehall.org, org:domain:smithyarts.org, org:domain:thecopyshopplus.com (40 -> 50, 10 additional orgs; 9 of them from post-resume discovery and 1 (org:domain:baseballism.com, lead 1215 collected 2026-10-09) a pre-resume lead that was not in the 40-org snapshot; CURRENT_ADDITIONAL_SAFE_ORGS = 10)",
     "SAFE_GAIN_SINCE_4A5H": 30,
     "SAFE_GE_40": true,
@@ -228,17 +200,29 @@
     "SAFE40_AUTO_STOP_DISCOVERY_DISABLED": true,
     "SAFE_CHANGE_FROM_40": 10,
     "LIVE_SEND_AUTHORIZATIONS": 0,
-    "SAFE_GROWTH_TRIGGERS_SENDING": false
+    "SAFE_GROWTH_TRIGGERS_SENDING": false,
+    "READ_ONLY_V2_SAFE_UNIQUE_ORGS": 50,
+    "SAFE_LAST_VALID": 50,
+    "SAFE_LAST_VALID_AT": "2026-10-13 ~17:57 +08 (PHASE 4A.5U own recompute)",
+    "SAFE_RECOMPUTATION_STATUS": "VALID",
+    "MX_CONTROL_PROBE": "ok (query_mx(\"gmail.com\"), BD_MX_HTTPS_PROXY=http://127.0.0.1:3213)",
+    "TARGET_FOR_OBSERVED_RUNS": 50,
+    "TARGET_AUTHORITY": "outreach_control.inventory_target_for_date(): INVENTORY_TARGET = NEW_OUTREACH_TARGET(40)+10 = 50 weekday, max(60,50)=60 weekend; SAFE_INVENTORY_TARGET unset in .env and process env; job_runs.target=50 on both observed dates",
+    "SAFE50_REACHED": true,
+    "SAFE50_REACHED_AT": "2026-10-13 00:45:23 +08 (end of run inventory:2026-10-12:a9943807)",
+    "SAFE50_AUTO_STOP_DISCOVERY_IN_CODE": true,
+    "SAFE50_AUTO_STOP_LOCATION": "bd_orchestrator.py stage_inventory() lines 429-431 (production runtime tree): if safe >= target: finish_job_run(..., stop_reason='target_met'); return True — before run_places_batch (:442)",
+    "SAFE50_AUTO_STOP_EVIDENCE": "2/2 post-SAFE50 scheduled runs completed/target_met with 0 provider requests; provider_request_audit COUNT=0 since 2026-10-12T16:45:23Z; 0 new leads / 0 new first-party emails / 0 new SAFE orgs; Cooperstown frozen 13/20; duration signature ~2 min vs 6-9 min discovery runs"
   },
   "supporting_totals": {
     "total_leads": 1205,
     "email_present": 645,
     "first_party_official_emails": 403,
-    "first_party_official_emails_authority": "leads.email non-empty AND email_verified_on_official_site=1, read-only 2026-10-13 09:59:26 +08 (PHASE 4A.5T). Elsewhere 4A.5T also reports email_source_type='official_page_visible' count = 370; the two differ only in whether the verified flag is required.",
+    "first_party_official_emails_authority": "leads.email non-empty AND email_verified_on_official_site=1, read-only 2026-10-13 18:00:20 +08 (PHASE 4A.5U). Unchanged since 4A.5T (no new leads after SAFE50).",
     "full_evidence_records": 980,
-    "full_evidence_records_authority": "leads.evidence_url non-empty, read-only 2026-10-13 09:59:26 +08 (PHASE 4A.5T)",
+    "full_evidence_records_authority": "leads.evidence_url non-empty, read-only 2026-10-13 18:00:20 +08 (PHASE 4A.5U)",
     "discovery_rows": 591,
-    "discovery_rows_authority": "lead_discovery_results row count, read-only 2026-10-13 09:59:26 +08 (PHASE 4A.5T)",
+    "discovery_rows_authority": "lead_discovery_results row count, read-only 2026-10-13 18:00:20 +08 (PHASE 4A.5U); unchanged since 4A.5T (0 new rows after SAFE50)",
     "send_log_total": 517,
     "send_log_today": 0,
     "last_send_at": "2026-09-16T01:09:52.031266+08:00",
@@ -263,7 +247,7 @@
     "SUPPRESSION_LIST": 63,
     "BOUNCE_LOG": 63,
     "UNMATCHED_DSN": 48,
-    "ACTIVE_CITY_QUERY_FAMILIES": "13 / 20 completed (was 3 / 20 at 4A.5S); provider pages 37; provider errors 0"
+    "ACTIVE_CITY_QUERY_FAMILIES": "13 / 20 completed (unchanged since SAFE50 2026-10-13 00:45:23 +08; 7 pending families at pages_processed=0, cursor frozen); provider pages 37; provider errors 0"
   },
   "why_not_safe_candidate_blockers": {
     "PREVIOUSLY_SENT": 415,
@@ -316,7 +300,7 @@
     "428 no-email leads need OFFICIAL_EMAIL_ENRICHMENT",
     "MX failures among candidates (nxdomain=51) prevent V2 pass"
   ],
-  "next_recommended_action": "READ-ONLY / OBSERVATION. (1) Leave the canonical Inventory automation 1784775229336 running UNATTENDED - it is ACTIVE and its next run is 2026-10-13 13:01:07. Do NOT pause, disable, re-phase or replace it. Do NOT start a manual loop. Do NOT parallelise. (2) CONTINUE discovering new organisations with NO numeric cap - SAFE40 is a historical milestone, not a ceiling. (3) SAFE growth does NOT trigger sending and must never be used as a send trigger. (4) WATCH the Cooperstown wrap-up: when the city reaches 20/20 query families (now 13/20), check whether the remaining website_lookup_pending / review_recovery rows for city 22 have reached terminal state; if not, open a Codex issue (same defect class as 4A.5P). (5) SENDING REMAINS FROZEN - which batch, whether to send and what subject all require fresh explicit owner authorization; PreSend/Preflight/Outreach stay PAUSED and the three V6 copies are copy candidates only. (6) CARRIED, NOT DONE HERE: lead 1221 (info@mysite.com, placeholder domain) still needs re-validation; the checkpoint prompt's printed NEXT_ACTION still mentions the already-completed EXACT40 acceptance (cosmetic, harmless); the automation row's phase drift (~+15 min/cycle) is a known scheduler behaviour and was deliberately NOT corrected.",
+  "next_recommended_action": "HAND TO CODEX + OWNER DECISION. (1) Leave the canonical Inventory automation 1784775229336 running UNATTENDED - it is ACTIVE and its next run is 2026-10-13 19:10:57 +08. Do NOT pause, disable, re-phase or replace it; do NOT start a manual loop; do NOT parallelise. (2) PRIMARY ACTION: apply the minimal fix requirement in phases/PHASE4A5U_SAFE50_DISCOVERY_SHORT_CIRCUIT_AUDIT.md to bd_orchestrator.py:429-431 (production runtime tree, SHA 7afc4d7f...) so stage_inventory always executes the discovery chain and the target remains only an end-of-run gap/status measure - OR gate the early exit behind an explicit operator hard-cap that is unset by default. Production code change requires owner authorization + Codex implementation + deploy validation; do NOT hot-fix in an audit phase. (3) CONTINUE discovering new organisations with NO numeric cap - SAFE40/SAFE50 are historical milestones, not ceilings. (4) SAFE growth does NOT trigger sending and must never be used as a send trigger. (5) WATCH the Cooperstown wrap-up: when the city reaches 20/20 query families (still 13/20), check whether the remaining website_lookup_pending / review_recovery rows reached terminal state; if not, open a Codex issue (4A.5P defect class). (6) SENDING REMAINS FROZEN - which batch, whether to send and what subject all require fresh explicit owner authorization; PreSend/Preflight/Outreach stay PAUSED. (7) CARRIED, NOT DONE HERE: lead 1221 (info@mysite.com, placeholder domain) still needs re-validation; the checkpoint prompt's printed NEXT_ACTION still mentions the already-completed EXACT40 acceptance (cosmetic, harmless); the automation phase drift (~+11..17 min/cycle) is a known scheduler behaviour and was deliberately NOT corrected; the handoff-repo code snapshot for bd_orchestrator.py/discovery_service.py is stale (pre-existing drift, recorded).",
   "lead_1085_audit": {
     "inventory_closeout_run": "inventory:2026-09-14:eba7c883",
     "inventory_final_status": "completed (partial; actual=1, gap=29, safe_inventory_gap)",
@@ -4574,5 +4558,307 @@
     "OPERATIONAL_ITEM": "The local Astrill proxy is DOWN, so MX-dependent readings are depressed (43 instead of 50). Restarting Astrill is a USER action; it is NOT an engineering blocker and does not affect already-collected data.",
     "DISCOVERY_CONTINUATION_VERIFIED": true,
     "RESULT": "CONTINUOUS_DISCOVERY_CONFIRMED"
+  },
+  "phase4a5u_safe50_discovery_short_circuit_audit": {
+    "phase": "4A.5U",
+    "title": "SAFE50 后持续发现阻塞诊断 / SAFE50 DISCOVERY SHORT-CIRCUIT AUDIT",
+    "mode": "STRICTLY READ-ONLY. No production code change, no direct DB write, no automation edit, no new automation, no manual Inventory run, no email sent.",
+    "measured_at": "2026-10-13T18:00:20+08:00",
+    "baseline_head": "5bf9df9f9992eb51bb6ef73d04e4c5935287ad51",
+    "baseline_head_match": true,
+    "result": "SAFE50_EARLY_EXIT_CONFIRMED",
+    "production_inventory_code_sha256": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969",
+    "production_inventory_code_path": "roktandrazo-outreach/bd_orchestrator.py (production runtime tree = automation cwd)",
+    "repo_snapshot_sha256": "fb2b18f19c7cef8d56b3828bed554d199d6ce8de480a990ac97ee4b3b5f4c739 (stale, pre-existing drift; last touched by da36acf)",
+    "wrapper": {
+      "file": "run_inventory_canary3.py",
+      "sha256": "97183deefa6f18e6a5bf555153019dfd03fa683d0934b9ae4f7da4853d74c59d",
+      "in_production_path": false,
+      "note": "Automation prompt calls bd_orchestrator.py directly with export WORKBUDDY_DISCOVERY_MAX_PAGES=3; 4A.5T observed one run entering via this wrapper (pid 47328). The wrapper asserts the knob then runpy-executes bd_orchestrator.py with identical argv - transparent delegate, does NOT change the call path."
+    },
+    "target_logic": {
+      "function": "outreach_control.inventory_target_for_date()",
+      "weekday": 50,
+      "weekend": 60,
+      "SAFE_INVENTORY_TARGET": "unset in .env and process env -> default NEW_OUTREACH_TARGET(40)+10 = 50",
+      "confirmed_by": "job_runs.target = 50 on 2026-10-12 and 2026-10-13 (both weekdays)"
+    },
+    "code_location": {
+      "file": "roktandrazo-outreach/bd_orchestrator.py",
+      "function": "stage_inventory()",
+      "safe_measure_line": 425,
+      "early_exit_lines": "429-431",
+      "early_exit_code": "if safe >= target: finish_job_run(run_id, 'completed', actual=safe, gap=0, stop_reason='target_met'); return True",
+      "skipped_after_gate": [
+        "seed_default_queue (:433)",
+        "complete_active_city_if_exhausted (:435)",
+        "activate_next_city (:436)",
+        "run_places_batch (:442)",
+        "run_website_resolution (:445)",
+        "run_staging_postprocess (:449)",
+        "run_linked_backlog (:455)",
+        "complete_active_city_if_exhausted (:461)"
+      ]
+    },
+    "safe50_moment": {
+      "run_id": "inventory:2026-10-12:a9943807",
+      "window_local": "2026-10-13 00:36:23 -> 00:45:23 +08",
+      "safe_before": 47,
+      "safe_after": 50,
+      "discovery_executed": true,
+      "provider_requests": 3,
+      "provider_family": "teacher supply store",
+      "classification": "CASE B (discovered, then met target at end) - NOT an early exit",
+      "change_point_utc": "2026-10-12T16:45:23"
+    },
+    "post_safe50_runs": [
+      {
+        "run_id": "inventory:2026-10-13:891b3a43",
+        "started_at": "2026-10-13 06:53:53 +08",
+        "finished_at": "2026-10-13 06:55:45 +08",
+        "status": "completed",
+        "stop_reason": "target_met",
+        "target": 50,
+        "safe_before": 50,
+        "safe_after": 50,
+        "provider_pages": 0,
+        "provider_requests": 0,
+        "new_unique_places": 0,
+        "new_leads": 0,
+        "new_first_party_emails": 0,
+        "active_city": "Cooperstown, NY",
+        "query_family_progress": "13/20 (unchanged)",
+        "duration": "1m52s",
+        "classification": "CASE A - true SAFE50 early exit (before run_places_batch)"
+      },
+      {
+        "run_id": "inventory:2026-10-13:25df11b6",
+        "started_at": "2026-10-13 13:04:24 +08",
+        "finished_at": "2026-10-13 13:06:05 +08",
+        "status": "completed",
+        "stop_reason": "target_met",
+        "target": 50,
+        "safe_before": 50,
+        "safe_after": 50,
+        "provider_pages": 0,
+        "provider_requests": 0,
+        "new_unique_places": 0,
+        "new_leads": 0,
+        "new_first_party_emails": 0,
+        "active_city": "Cooperstown, NY",
+        "query_family_progress": "13/20 (unchanged)",
+        "duration": "1m41s",
+        "scheduled_slot": "2026-10-13 13:01:07 +08",
+        "classification": "CASE A - true SAFE50 early exit (before run_places_batch)"
+      }
+    ],
+    "safe_before_evidence": [
+      "previous run post-measurement actual = 50",
+      "no other writer exists under the send freeze (SEND_LOG 0 since 2026-09-16; MANUAL_INVENTORY_RUNS = 0)",
+      "the early-exit branch records the pre-discovery measurement at :425",
+      "duration signature: discovery runs 6-9 min vs ~2 min (bare SAFE measurement measured at 142.3 s)",
+      "read-only checkpoint snapshot 14:50:27 +08 independently logs pages=0/requests=0/families=null for both runs vs pages=3/requests=3 for the discovery run"
+    ],
+    "window_db_evidence": {
+      "window_start_utc": "2026-10-12T16:45:23",
+      "provider_request_audit_count": 0,
+      "lead_discovery_results_count": 0,
+      "new_leads_count": 0,
+      "new_first_party_emails": 0,
+      "new_safe_orgs": 0,
+      "last_lead_collected_at": "2026-10-13T00:41:36 (belongs to the discovery run)",
+      "timezone_handling": "job_runs.started_at = naive UTC; provider_request_audit.requested_at / lead_discovery_results.discovered_at = ISO +00:00; leads.collected_at normalised with replace(collected_at,' ','T') (literal-T separator trap avoided)"
+    },
+    "safe_environment": {
+      "env_loaded": true,
+      "BD_MX_HTTPS_PROXY": "http://127.0.0.1:3213",
+      "control_probe": "ok",
+      "READ_ONLY_V2_SAFE_UNIQUE_ORGS": 50,
+      "V2_ELIGIBLE_CANDIDATE_ROWS": 50,
+      "SAFE_RECOMPUTATION_STATUS": "VALID",
+      "case_D_ruled_out": true
+    },
+    "city_verification": {
+      "active_city": "Cooperstown, NY",
+      "next_pending_city": "Lake Placid, NY",
+      "query_families": "13/20 completed (unchanged since SAFE50; 7 pending at pages_processed=0)",
+      "new_provider_pages_in_window": 0,
+      "new_unique_places_in_window": 0,
+      "non_terminal_rows": "1 website_lookup_pending (id 571) + 4 review_recovery (ids 556/565/578/588) - unchanged from 4A.5T",
+      "city_completion_checks": "all 9 false (read-only computation) - no city deadlock; NOT escalated (only 13/20); nothing manually cleared"
+    },
+    "automation_safety": {
+      "canonical_inventory": "automation-1784775229336",
+      "state": "ACTIVE",
+      "sole_authority": true,
+      "duplicate_inventory": false,
+      "next_run_at": "2026-10-13 19:10:57 +08",
+      "max_pages": 3,
+      "lock_state": "released (2026-10-13 and 2026-10-12)",
+      "concurrency": false,
+      "lock_conflicts": 0,
+      "checkpoint": "75fbacd1 ACTIVE read-only; 4A.5S prompt authorises continuous discovery; did NOT pause anything",
+      "interval_drift": "~+11..17 min per cycle persists (re-anchor semantics); reported, NOT corrected"
+    },
+    "send_freeze": {
+      "SMTP_ENABLED": 0,
+      "SMTP_CONNECTIONS": 0,
+      "SEND_LOG_TODAY": 0,
+      "MATERIALIZED_FSP_PLANNED": 0,
+      "LIVE_SEND_AUTHORIZATIONS": 0,
+      "pending_auth_entries_note": "43 pending entries all under revoked parents - historical residue",
+      "PRESEND": "PAUSED",
+      "PREFLIGHT": "PAUSED",
+      "OUTREACH": "PAUSED",
+      "last_send_at": "2026-09-16T01:09:52.031266+08:00",
+      "batch_1_preserved": 40
+    },
+    "codex_handoff": {
+      "file": "roktandrazo-outreach/bd_orchestrator.py (production runtime tree, SHA 7afc4d7f...)",
+      "location": "stage_inventory() lines 429-431",
+      "trigger": "safe(50) >= target(50 weekday / 60 weekend)",
+      "minimal_fix_options": [
+        "Remove/neutralise the early-exit branch so stage_inventory always executes the discovery chain; target remains only for end-of-run gap/status reporting (:464-466)",
+        "Or gate the early exit behind an explicit operator hard-cap (e.g. SAFE_INVENTORY_TARGET as cap + explicit enable flag) that is unset by default"
+      ],
+      "must_preserve": [
+        "run lock",
+        "city queue/cursor semantics",
+        "V2/MX gates",
+        "website/staging/backlog lanes",
+        "send freeze",
+        "no second scheduler"
+      ],
+      "requires": "owner authorization + Codex implementation + deploy validation; NOT hot-fixed in this audit phase",
+      "distinction_from_4a5s": "The 4A.5S stop rule lived in the automation control plane (fixed via prompt); this rule is in production code and cannot be fixed from the control plane."
+    },
+    "counts": {
+      "POST_SAFE50_SCHEDULED_RUNS": 2,
+      "POST_SAFE50_PROVIDER_REQUESTS": 0,
+      "POST_SAFE50_NEW_LEADS": 0,
+      "POST_SAFE50_NEW_FIRST_PARTY_EMAILS": 0,
+      "POST_SAFE50_NEW_SAFE_ORGS": 0,
+      "TARGET_MET_EARLY_EXIT_OBSERVED": true,
+      "SAFE50_DISCOVERY_SHORT_CIRCUIT_CONFIRMED": true,
+      "DISCOVERY_CONTINUES_ABOVE_50": false,
+      "PRODUCTION_CODE_CHANGED": false,
+      "DIRECT_DB_WRITES_BY_THIS_TASK": 0,
+      "MANUAL_INVENTORY_RUNS": 0,
+      "SMTP_CONNECTIONS": 0,
+      "EMAILS_SENT": 0
+    }
+  },
+  "safe_metrics_phase4a5u": {
+    "phase": "4A.5U",
+    "measured_at": "2026-10-13 ~17:57 +08",
+    "authority": "campaign_eligible_v2.select_candidates_for_plan_v2 (V2 + live MX via BD_MX_HTTPS_PROXY), distinct organization_key; production .env hand-parsed into os.environ before imports",
+    "MX_CONTROL_PROBE": "ok",
+    "MX_PROBE_ENV": "BD_MX_HTTPS_PROXY = http://127.0.0.1:3213 (.env line 50)",
+    "V2_ELIGIBLE_CANDIDATE_ROWS": 50,
+    "READ_ONLY_V2_SAFE_UNIQUE_ORGS": 50,
+    "SAFE_BEFORE_WINDOW": 50,
+    "SAFE_AFTER_WINDOW": 50,
+    "SAFE_GAIN_IN_WINDOW": 0,
+    "SAFE_RECOMPUTATION_STATUS": "VALID",
+    "TARGET_FOR_OBSERVED_RUNS": 50,
+    "TARGET_WEEKEND": 60,
+    "SAFE_GE_TARGET": true,
+    "SAFE50_REACHED": true,
+    "SAFE50_REACHED_AT": "2026-10-13 00:45:23 +08",
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "SMTP_ENABLED": "0",
+    "SMTP_CONNECTIONS": 0,
+    "SEND_LOG_TOTAL": 517,
+    "SEND_LOG_TODAY": 0,
+    "LIVE_SEND_AUTHORIZATIONS": 0,
+    "cross_checks": [
+      "4A.5T own recompute 50 @ 2026-10-13 09:43:29 +08",
+      "read-only checkpoint snapshot 50 @ 2026-10-13 14:50:27 +08",
+      "production itself filled 50/50 twice with target_met"
+    ]
+  },
+  "supporting_totals_phase4a5u": {
+    "phase": "4A.5U",
+    "measured_at": "2026-10-13 18:00:20 +08",
+    "LEADS_TOTAL": 1205,
+    "EMAIL_POOL": 645,
+    "FIRST_PARTY_OFFICIAL_EMAILS": 403,
+    "DISCOVERY_ROWS": 591,
+    "SEND_LOG_TOTAL": 517,
+    "SEND_LOG_TODAY": 0,
+    "LAST_SEND_AT": "2026-09-16T01:09:52.031266+08:00",
+    "SMTP_ENABLED": 0,
+    "MATERIALIZED_FSP_PLANNED": 0,
+    "MANUAL_SEND_QUEUE": 0,
+    "LIVE_SEND_AUTHORIZATIONS": 0,
+    "SEND_AUTHORIZATIONS_TOTAL": 23,
+    "FINAL_SEND_PLAN_TOTAL": 588,
+    "SUPPRESSION_LIST": 63,
+    "BOUNCE_LOG": 63,
+    "UNMATCHED_DSN": 48,
+    "ACTIVE_CITY": "Cooperstown, NY",
+    "ACTIVE_CITY_QUERY_FAMILIES": "13 / 20 (unchanged since SAFE50)",
+    "ACTIVE_CITY_PROVIDER_PAGES": 37,
+    "ACTIVE_CITY_PROVIDER_ERRORS": 0,
+    "ACTIVE_CITY_NON_TERMINAL": "1 website_lookup_pending + 4 review_recovery",
+    "LAST_COMPLETED_CITY": "Saratoga Springs, NY",
+    "NEXT_PENDING_CITY": "Lake Placid, NY",
+    "POST_SAFE50_PROVIDER_REQUESTS": 0,
+    "POST_SAFE50_NEW_LEADS": 0,
+    "POST_SAFE50_NEW_FIRST_PARTY_EMAILS": 0,
+    "RUNNING_INVENTORY_JOBS": 0,
+    "INVENTORY_LOCK": "released"
+  },
+  "workbuddy_automations_phase4a5u": {
+    "phase": "4A.5U",
+    "verified_at": "2026-10-13 ~17:55 +08",
+    "method": "read-only query of ~/.workbuddy/workbuddy.db table automations (mode=ro)",
+    "canonical_inventory": {
+      "id": "automation-1784775229336",
+      "name": "RoktRazo BD Inventory — 4x/day (6h interval) Asia/Shanghai",
+      "status": "ACTIVE",
+      "rrule": "FREQ=HOURLY;INTERVAL=6",
+      "cwds": [
+        "C:\\Users\\15690\\WorkBuddy\\2026-06-05-15-31-42\\roktandrazo-outreach"
+      ],
+      "next_run_at": "2026-10-13 19:10:57 +08",
+      "WORKBUDDY_DISCOVERY_MAX_PAGES": 3,
+      "sole_inventory_authority": true
+    },
+    "duplicate_inventory": false,
+    "duplicate_scan": "all automations whose name or prompt mentions inventory/orchestrator: only 1784775229336 is ACTIVE and not deleted; every other inventory-ish automation is PAUSED with deleted_at set",
+    "send_side": {
+      "PRESEND": "PAUSED (1785804406748)",
+      "PREFLIGHT": "PAUSED (1785804413719)",
+      "OUTREACH": "PAUSED (1785804421539)"
+    },
+    "support": {
+      "recovery_sync": "ACTIVE (1786002601925, next 2026-10-14 08:45 +08)",
+      "checkpoint": "ACTIVE read-only (75fbacd1, next 2026-10-13 20:54:13 +08)"
+    },
+    "locks": {
+      "inventory:2026-10-13": "released",
+      "inventory:2026-10-12": "released"
+    },
+    "concurrency": false,
+    "interval_drift": "observed (+08) 00:36:23 -> 06:53:53 -> 13:04:24; intervals 6h17m30s / 6h10m31s; scheduler re-anchors next_run_at = write-back + 6h; drift reported, NOT corrected (out of scope)"
+  },
+  "current_blocker_phase4a5u": {
+    "phase": "4A.5U",
+    "BLOCKERS": [
+      "SAFE50 early exit in production code (bd_orchestrator.py:429-431) - discovery above 50 blocked"
+    ],
+    "ENGINEERING_BLOCKER": "bd_orchestrator.py stage_inventory() early-exit gate; minimal fix requirement documented for Codex; owner authorization required",
+    "CURRENT_BLOCKER": "SAFE50_EARLY_EXIT_CONFIRMED - every scheduled Inventory run ends completed/target_met with 0 provider requests while SAFE >= target (50 weekday / 60 weekend)",
+    "NOT_THE_CAUSE": [
+      "checkpoint 75fbacd1 (read-only; 4A.5S prompt authorises continuous discovery)",
+      "scheduler 1784775229336 (ACTIVE sole authority, no duplicates, no lock conflicts)",
+      "wrapper run_inventory_canary3.py (transparent env-guard delegate)",
+      "MX/proxy/DNS environment (control probe ok; SAFE_RECOMPUTATION_STATUS = VALID)"
+    ],
+    "WATCH_ITEM": "Cooperstown 1 website_lookup_pending + 4 review_recovery rows (unchanged); only relevant at 20/20 query families - then raise a Codex issue (4A.5P defect class)",
+    "DISCOVERY_CONTINUES_ABOVE_50": false,
+    "SEND_FREEZE_HELD": true,
+    "RESULT": "SAFE50_EARLY_EXIT_CONFIRMED"
   }
 }
