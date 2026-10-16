@@ -1,0 +1,214 @@
+{
+  "report": "PHASE4A8S_POST_DEPLOY_RUNTIME_ACCEPTANCE_20261016",
+  "generated_at": "2026-10-16T18:40:38+08:00",
+  "acceptance_request": "handoff/phases/WORKBUDDY_READONLY_ACCEPTANCE_REQUEST_20261016.md",
+  "acceptance_request_repo": "1569032023yf-star/roktandrazo-outreach-codex",
+  "acceptance_request_branch": "codex/engineering-deployment-charter",
+  "acceptance_window_start": "2026-10-15T15:41:00+08:00",
+  "sampling_time": "2026-10-16T18:29:47.589964+08:00",
+  "release_operation": {
+    "operation_id": "op-20261015-104202-5ecde6",
+    "release_id": "phase4a8s-safe50-continuous-discovery",
+    "state": "applied",
+    "verdict": "APPLIED",
+    "started_at": "2026-10-15T10:42:02+08:00",
+    "finished_at": "2026-10-15T10:42:04+08:00",
+    "gates_passed": 14,
+    "gates_count": 14,
+    "caller": "bridge",
+    "test_mode": false
+  },
+  "production_sha256": "e7e619d3e40f415c1894aa3e1087978875c6f26570755254ab535b68e5580903",
+  "inventory_automation": {
+    "id": "automation-1784775229336",
+    "status": "ACTIVE",
+    "rrule": "FREQ=HOURLY;INTERVAL=6",
+    "next_run_at": "2026-10-16 23:10:38 +08",
+    "duplicate_inventory_scheduler": false,
+    "windows_task_plane_inventory_task": false
+  },
+  "runs_in_window": [
+    {
+      "run_id": "inventory:2026-10-15:76940963",
+      "business_date": "2026-10-15",
+      "started_at_local": "2026-10-15 15:43:26 +08",
+      "started_at_original_utc": "2026-10-15 07:43:26",
+      "finished_at_local": "2026-10-15 15:52:56 +08",
+      "status": "completed",
+      "stop_reason": "target_met",
+      "target": 50,
+      "gap": 0,
+      "entry_safe_lower_bound": 50,
+      "exit_safe": 52,
+      "orgs_added_in_run": 2,
+      "duration_min": 9.5
+    },
+    {
+      "run_id": "inventory:2026-10-15:69235b78",
+      "business_date": "2026-10-15",
+      "started_at_local": "2026-10-15 21:59:50 +08",
+      "started_at_original_utc": "2026-10-15 13:59:50",
+      "finished_at_local": "2026-10-15 22:08:38 +08",
+      "status": "completed",
+      "stop_reason": "target_met",
+      "target": 50,
+      "gap": 0,
+      "entry_safe_lower_bound": 52,
+      "exit_safe": 52,
+      "orgs_added_in_run": 0,
+      "duration_min": 8.8
+    },
+    {
+      "run_id": "inventory:2026-10-16:fbcc7295",
+      "business_date": "2026-10-16",
+      "started_at_local": "2026-10-16 04:11:39 +08",
+      "started_at_original_utc": "2026-10-15 20:11:39",
+      "finished_at_local": "2026-10-16 04:21:05 +08",
+      "status": "completed",
+      "stop_reason": "target_met",
+      "target": 50,
+      "gap": 0,
+      "entry_safe_lower_bound": 50,
+      "exit_safe": 54,
+      "orgs_added_in_run": 4,
+      "duration_min": 9.4
+    },
+    {
+      "run_id": "inventory:2026-10-16:cdf0ebd2",
+      "business_date": "2026-10-16",
+      "started_at_local": "2026-10-16 10:36:42 +08",
+      "started_at_original_utc": "2026-10-16 02:36:42",
+      "finished_at_local": "2026-10-16 10:43:39 +08",
+      "status": "completed",
+      "stop_reason": "target_met",
+      "target": 50,
+      "gap": 0,
+      "entry_safe_lower_bound": 54,
+      "exit_safe": 54,
+      "orgs_added_in_run": 0,
+      "duration_min": 7.0
+    },
+    {
+      "run_id": "inventory:2026-10-16:b76e3cab",
+      "business_date": "2026-10-16",
+      "started_at_local": "2026-10-16 16:55:05 +08",
+      "started_at_original_utc": "2026-10-16 08:55:05",
+      "finished_at_local": "2026-10-16 17:03:43 +08",
+      "status": "completed",
+      "stop_reason": "target_met",
+      "target": 50,
+      "gap": 0,
+      "entry_safe_lower_bound": 54,
+      "exit_safe": 56,
+      "orgs_added_in_run": 2,
+      "duration_min": 8.6
+    }
+  ],
+  "provider_execution": {
+    "provider": "browser_maps",
+    "city_id": 22,
+    "requests_in_window": 13,
+    "audit_id_range": "264-275",
+    "all_ok": true,
+    "errors_in_window": 0,
+    "pages_per_family_max": 3,
+    "families_completed_after_release": 5,
+    "provider_requests_executed": true
+  },
+  "cooperstown": {
+    "city_id": 22,
+    "families_total": 20,
+    "families_before_release": 13,
+    "families_after_release": 18,
+    "families_pending": 2,
+    "pending_families": [
+      "puzzle store",
+      "card game store"
+    ],
+    "progression": "13/20 -> 17/20 (request reference) -> 18/20 (current)"
+  },
+  "new_since_deployment": {
+    "interval": "2026-10-15T10:42:04+08:00 -> sampling time",
+    "new_lead_rows": 8,
+    "new_independent_organizations": 8,
+    "duplicate_org_keys_within_new_rows": [],
+    "pre_existing_org_keys": [],
+    "first_party_official_site_emails": 7,
+    "first_party_emails_verified_flag": 6,
+    "leads_without_email": 1,
+    "all_manual_review_needed": true,
+    "dedup_definition": "distinct organization_key with first appearance inside interval; row counts never used as org counts"
+  },
+  "mx_control_probe": {
+    "probe": "preflight_gate.query_mx",
+    "module_sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+    "module_bytes": 41251,
+    "module_mtime": "2026-09-16 15:15:54",
+    "probe_time": "2026-10-16T18:29:47.589941+08:00",
+    "positive_control": "gmail.com -> ok",
+    "negative_control": "invalid domain -> nxdomain",
+    "probe_pass": true,
+    "resolver_environment": {
+      "BD_MX_HTTPS_PROXY": "configured (local forward proxy; value withheld)",
+      "proxy_inheritance": "none - explicit ProxyHandler for this HTTPS request only; HTTP_PROXY/HTTPS_PROXY/ALL_PROXY deliberately not inherited",
+      "fallback": "direct DNS on Worker error (preflight_gate._mx_via_dns)"
+    }
+  },
+  "current_safe": 56,
+  "safe_readings": [
+    {
+      "sampling_time": "2026-10-16T18:29:47.602614+08:00",
+      "candidate_rows": 56,
+      "unique_organizations": 56
+    },
+    {
+      "sampling_time": "2026-10-16T18:31:40.460697+08:00",
+      "candidate_rows": 56,
+      "unique_organizations": 56
+    }
+  ],
+  "exceptions": {
+    "run_overlaps": [],
+    "lock_conflicts": [],
+    "job_errors_in_window": [],
+    "provider_errors_in_window": 0,
+    "bounce_reply_dsn_new_in_window": [
+      0,
+      0,
+      0
+    ],
+    "pre_deployment_residue": "Saratoga Springs (city 21) browser_maps proxy failures, 2026-09-30 ~ 2026-10-02, 18 rows, before the release; listed separately",
+    "unknown_items": [
+      "exact per-run entry SAFE (automation stdout only)",
+      "attribution of the missing 10-15 morning cadence slot",
+      "direct SMTP connection telemetry (inferred 0 from send_log + authorizations)"
+    ]
+  },
+  "smtp_freeze": {
+    "sends_in_window": 0,
+    "sends_since_deployment": 0,
+    "last_send_at": "2026-09-16T01:09:52.031266+08:00",
+    "new_send_authorizations": 0,
+    "presend_preflight_outreach": "PAUSED + deleted (WorkBuddy automations); PreSend/Outreach Windows tasks Disabled",
+    "postsend_windows_task": "Ready (verification stage only, no send surface)"
+  },
+  "boundaries": {
+    "business_code_deployed_by_this_task": false,
+    "production_db_writes_by_this_task": 0,
+    "emails_sent_by_this_task": 0,
+    "inventory_manual_trigger": false,
+    "rollback_performed": false,
+    "safe_mx_history_gates_unchanged": true,
+    "no_second_inventory_scheduler": true
+  },
+  "production_integrity": {
+    "orchestrator_sha256_unchanged": true,
+    "db_mtime": "2026-10-16 17:03:43 (predates session reads at 18:15+)",
+    "wal_bytes": 0
+  },
+  "verdicts": {
+    "DEPLOYED": "CONFIRMED",
+    "PRODUCTION_EFFECTIVENESS_VERIFIED": "CONFIRMED"
+  },
+  "sanitization": "No emails, customer records, store names, evidence URLs, credentials or tokens in this report. Detailed evidence retained locally by the runtime operator."
+}
