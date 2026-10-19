@@ -1,0 +1,610 @@
+{
+  "report": "PHASE4A8S_POST_DEPLOY_RUNTIME_ACCEPTANCE_20261019",
+  "acceptance_request": "handoff/phases/WORKBUDDY_READONLY_ACCEPTANCE_REQUEST_20261016.md",
+  "acceptance_pass": "2_extended_window",
+  "sampling_time": "2026-10-19T10:23:03+08:00",
+  "sampling_timezone": "Asia/Shanghai (+08)",
+  "generated_at": "2026-10-19T10:35:00+08:00",
+  "window_start": "2026-10-15T15:41:00+08:00",
+  "release_operation": {
+    "operation_id": "op-20261015-104202-5ecde6",
+    "applied_at": "2026-10-15T10:42:04+08:00",
+    "production_sha256": "e7e619d3e40f415c1894aa3e1087978875c6f26570755254ab535b68e5580903",
+    "production_bytes": 31552,
+    "sha_matches_release_after": true,
+    "mtime_local": "2026-10-15 10:42:04"
+  },
+  "run_facts": {
+    "inventory_automation_id": "automation-1784775229336",
+    "rrule": "FREQ=HOURLY;INTERVAL=6",
+    "next_run_local": "2026-10-19T13:18:31+08:00",
+    "duplicate_inventory_scheduler": false,
+    "runs_in_window": 15,
+    "completed": 7,
+    "partial_safe_inventory_gap": 8,
+    "failed": 0,
+    "runs": [
+      {
+        "run_id": "76940963",
+        "business_date": "2026-10-15",
+        "start_local": "2026-10-15T15:43:26+08:00",
+        "end_local": "2026-10-15T15:52:56+08:00",
+        "duration_sec": 570,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 52,
+        "gap": 0,
+        "provider_pages": 3,
+        "provider_audit_ids": [
+          263,
+          264,
+          265
+        ],
+        "query_families": [
+          "children's store"
+        ],
+        "max_pages_per_family": 3,
+        "new_leads": 2,
+        "new_orgs": 2,
+        "new_first_party_email": 2,
+        "stop_reason": "target_met"
+      },
+      {
+        "run_id": "69235b78",
+        "business_date": "2026-10-15",
+        "start_local": "2026-10-15T21:59:50+08:00",
+        "end_local": "2026-10-15T22:08:38+08:00",
+        "duration_sec": 528,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 52,
+        "gap": 0,
+        "provider_pages": 2,
+        "provider_audit_ids": [
+          266,
+          267
+        ],
+        "query_families": [
+          "family game store"
+        ],
+        "max_pages_per_family": 2,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "target_met"
+      },
+      {
+        "run_id": "fbcc7295",
+        "business_date": "2026-10-16",
+        "start_local": "2026-10-16T04:11:39+08:00",
+        "end_local": "2026-10-16T04:21:05+08:00",
+        "duration_sec": 566,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 54,
+        "gap": 0,
+        "provider_pages": 3,
+        "provider_audit_ids": [
+          268,
+          269,
+          270
+        ],
+        "query_families": [
+          "visitor center gift shop"
+        ],
+        "max_pages_per_family": 3,
+        "new_leads": 4,
+        "new_orgs": 4,
+        "new_first_party_email": 3,
+        "stop_reason": "target_met"
+      },
+      {
+        "run_id": "cdf0ebd2",
+        "business_date": "2026-10-16",
+        "start_local": "2026-10-16T10:36:42+08:00",
+        "end_local": "2026-10-16T10:43:39+08:00",
+        "duration_sec": 417,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 54,
+        "gap": 0,
+        "provider_pages": 2,
+        "provider_audit_ids": [
+          271,
+          272
+        ],
+        "query_families": [
+          "tourist gift shop"
+        ],
+        "max_pages_per_family": 2,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "target_met"
+      },
+      {
+        "run_id": "b76e3cab",
+        "business_date": "2026-10-16",
+        "start_local": "2026-10-16T16:55:05+08:00",
+        "end_local": "2026-10-16T17:03:43+08:00",
+        "duration_sec": 518,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 56,
+        "gap": 0,
+        "provider_pages": 3,
+        "provider_audit_ids": [
+          273,
+          274,
+          275
+        ],
+        "query_families": [
+          "specialty retailer"
+        ],
+        "max_pages_per_family": 3,
+        "new_leads": 2,
+        "new_orgs": 2,
+        "new_first_party_email": 2,
+        "stop_reason": "target_met"
+      },
+      {
+        "run_id": "36ad0975",
+        "business_date": "2026-10-16",
+        "start_local": "2026-10-16T23:12:20+08:00",
+        "end_local": "2026-10-16T23:19:36+08:00",
+        "duration_sec": 436,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 56,
+        "gap": 0,
+        "provider_pages": 2,
+        "provider_audit_ids": [
+          276,
+          277
+        ],
+        "query_families": [
+          "puzzle store"
+        ],
+        "max_pages_per_family": 2,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "target_met"
+      },
+      {
+        "run_id": "889fc103",
+        "business_date": "2026-10-17",
+        "start_local": "2026-10-17T05:27:05+08:00",
+        "end_local": "2026-10-17T05:33:06+08:00",
+        "duration_sec": 361,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 2,
+        "provider_audit_ids": [
+          278,
+          279
+        ],
+        "query_families": [
+          "card game store"
+        ],
+        "max_pages_per_family": 2,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "faa6e08c",
+        "business_date": "2026-10-17",
+        "start_local": "2026-10-17T11:42:31+08:00",
+        "end_local": "2026-10-17T11:48:01+08:00",
+        "duration_sec": 330,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "ca6b9ae3",
+        "business_date": "2026-10-17",
+        "start_local": "2026-10-17T17:54:51+08:00",
+        "end_local": "2026-10-17T17:59:46+08:00",
+        "duration_sec": 295,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "71d2aaac",
+        "business_date": "2026-10-17",
+        "start_local": "2026-10-18T00:07:39+08:00",
+        "end_local": "2026-10-18T00:12:36+08:00",
+        "duration_sec": 297,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "28ac37fb",
+        "business_date": "2026-10-18",
+        "start_local": "2026-10-18T06:19:58+08:00",
+        "end_local": "2026-10-18T06:24:37+08:00",
+        "duration_sec": 279,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "d3c426b2",
+        "business_date": "2026-10-18",
+        "start_local": "2026-10-18T12:29:47+08:00",
+        "end_local": "2026-10-18T12:34:40+08:00",
+        "duration_sec": 293,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "ad0eb4ba",
+        "business_date": "2026-10-18",
+        "start_local": "2026-10-18T18:42:30+08:00",
+        "end_local": "2026-10-18T18:47:05+08:00",
+        "duration_sec": 275,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "5a37054b",
+        "business_date": "2026-10-18",
+        "start_local": "2026-10-19T00:54:23+08:00",
+        "end_local": "2026-10-19T00:59:06+08:00",
+        "duration_sec": 283,
+        "status": "partial",
+        "target": 60,
+        "exit_safe": 56,
+        "gap": 4,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "safe_inventory_gap"
+      },
+      {
+        "run_id": "00dcf741",
+        "business_date": "2026-10-19",
+        "start_local": "2026-10-19T07:09:23+08:00",
+        "end_local": "2026-10-19T07:13:54+08:00",
+        "duration_sec": 271,
+        "status": "completed",
+        "target": 50,
+        "exit_safe": 56,
+        "gap": 0,
+        "provider_pages": 0,
+        "provider_audit_ids": [],
+        "query_families": [],
+        "max_pages_per_family": 0,
+        "new_leads": 0,
+        "new_orgs": 0,
+        "new_first_party_email": 0,
+        "stop_reason": "target_met"
+      }
+    ]
+  },
+  "provider_execution": {
+    "executed": true,
+    "runs_with_requests": 7,
+    "runs_without_requests_family_exhaustion": 8,
+    "zero_request_run_ids": [
+      "faa6e08c",
+      "ca6b9ae3",
+      "71d2aaac",
+      "28ac37fb",
+      "d3c426b2",
+      "ad0eb4ba",
+      "5a37054b",
+      "00dcf741"
+    ],
+    "page_requests_total": 17,
+    "audit_id_range": [
+      263,
+      279
+    ],
+    "errors": 0,
+    "max_pages_per_family": 3,
+    "entry_safe_derived_lower_bounds": [
+      50,
+      52,
+      50,
+      54,
+      54,
+      56,
+      56
+    ],
+    "exit_safe_sequence": [
+      52,
+      52,
+      54,
+      54,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56,
+      56
+    ]
+  },
+  "cooperstown": {
+    "city_id": 22,
+    "provider": "browser_maps",
+    "families_before_release": 13,
+    "families_now": 20,
+    "families_total": 20,
+    "families_completed_after_release": [
+      {
+        "query_family": "children's store",
+        "completed_at_local": "2026-10-15 15:46:59 +08",
+        "run_id": "inventory:2026-10-15:76940963",
+        "pages": 3,
+        "new_unique_places": 5
+      },
+      {
+        "query_family": "family game store",
+        "completed_at_local": "2026-10-15 22:03:29 +08",
+        "run_id": "inventory:2026-10-15:69235b78",
+        "pages": 2,
+        "new_unique_places": 0
+      },
+      {
+        "query_family": "visitor center gift shop",
+        "completed_at_local": "2026-10-16 04:14:42 +08",
+        "run_id": "inventory:2026-10-16:fbcc7295",
+        "pages": 3,
+        "new_unique_places": 5
+      },
+      {
+        "query_family": "tourist gift shop",
+        "completed_at_local": "2026-10-16 10:39:55 +08",
+        "run_id": "inventory:2026-10-16:cdf0ebd2",
+        "pages": 2,
+        "new_unique_places": 0
+      },
+      {
+        "query_family": "specialty retailer",
+        "completed_at_local": "2026-10-16 16:58:44 +08",
+        "run_id": "inventory:2026-10-16:b76e3cab",
+        "pages": 3,
+        "new_unique_places": 3
+      },
+      {
+        "query_family": "puzzle store",
+        "completed_at_local": "2026-10-16 23:15:57 +08",
+        "run_id": "inventory:2026-10-16:36ad0975",
+        "pages": 2,
+        "new_unique_places": 0
+      },
+      {
+        "query_family": "card game store",
+        "completed_at_local": "2026-10-17 05:30:01 +08",
+        "run_id": "inventory:2026-10-17:889fc103",
+        "pages": 2,
+        "new_unique_places": 0
+      }
+    ],
+    "city_status": "active",
+    "completion_checks_failed": [
+      "all_candidates_classified",
+      "no_unprocessed_candidates",
+      "official_site_recheck",
+      "review_recovery"
+    ],
+    "completion_blocker": [
+      {
+        "validation_status": "website_lookup_pending",
+        "reason": "website_resolution:network_retry:provider_timeout:45028ms",
+        "n": 1
+      }
+    ]
+  },
+  "new_material": {
+    "interval": [
+      "2026-10-15T15:41:00+08:00",
+      "2026-10-19T10:23:03+08:00"
+    ],
+    "discovery_rows": 13,
+    "distinct_place_ids": 13,
+    "distinct_domains": 10,
+    "new_lead_rows": 8,
+    "new_independent_organizations": 8,
+    "first_party_official_site_emails": 7,
+    "first_party_verified_flag": 6,
+    "leads_without_email": 1,
+    "all_manual_review_needed": true,
+    "per_run_attribution": {
+      "76940963": 2,
+      "69235b78": 0,
+      "fbcc7295": 4,
+      "cdf0ebd2": 0,
+      "b76e3cab": 2,
+      "36ad0975": 0,
+      "889fc103": 0
+    },
+    "additions_after_exhaustion": 0,
+    "dedup_definition": "distinct leads.organization_key with first appearance inside the interval"
+  },
+  "mx_control_probe": {
+    "identity": "preflight_gate.query_mx (existing formal MX control probe)",
+    "module_sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+    "module_bytes": 41251,
+    "positive_control": {
+      "mx_status": "ok",
+      "checked_at": "2026-10-19T10:22:52.976755+08:00"
+    },
+    "negative_control": {
+      "mx_status": "nxdomain",
+      "checked_at": "2026-10-19T10:23:03.343501+08:00"
+    },
+    "pass_criteria": "positive control gmail.com -> ok AND negative control invalid domain -> not ok",
+    "verdict": "PASS",
+    "attempts": [
+      {
+        "attempt": 1,
+        "time": "2026-10-19T10:21:39+08:00",
+        "result": "FAILED_CLOSED",
+        "detail": "both controls dns_error; local forward proxy momentarily unreachable and dnspython absent in that interpreter; no SAFE read"
+      },
+      {
+        "attempt": 2,
+        "time": "2026-10-19T10:22:52+08:00",
+        "result": "PASS",
+        "detail": "production-like interpreter (dnspython present); proxy reachable"
+      }
+    ],
+    "resolver_environment": {
+      "BD_MX_HTTPS_PROXY": "configured (local forward proxy; value withheld)",
+      "proxy_inheritance": "none - explicit ProxyHandler for this HTTPS request only; HTTP_PROXY/HTTPS_PROXY/ALL_PROXY deliberately not inherited",
+      "fallback": "direct DNS on Worker error (preflight_gate._mx_via_dns)"
+    }
+  },
+  "safe": {
+    "current_safe": 56,
+    "readings": [
+      {
+        "reading": 1,
+        "sampling_time": "2026-10-19T10:23:03.458219+08:00",
+        "candidate_rows": 56,
+        "unique_organizations": 56,
+        "wall_seconds": 236.4
+      },
+      {
+        "reading": 2,
+        "sampling_time": "2026-10-19T10:27:19.837139+08:00",
+        "candidate_rows": 56,
+        "unique_organizations": 56,
+        "wall_seconds": 165.8
+      }
+    ],
+    "path": "campaign_eligible_v2.select_candidates_for_plan_v2 on mode=ro, distinct organization_key",
+    "total_leads_in_db": 1213
+  },
+  "anomalies": {
+    "run_overlaps": 0,
+    "job_errors": 0,
+    "provider_errors": 0,
+    "lock_conflicts": 0,
+    "duplicate_discovery_rows": 0,
+    "duplicate_organizations": 0,
+    "stale_unfinished_inventory_rows": {
+      "n": 6,
+      "oldest": "2026-07-23 02:54:03"
+    },
+    "unfinished_recent_2h": 0
+  },
+  "freeze": {
+    "sends_in_window": 0,
+    "last_send_local": "2026-09-16T01:09:52+08:00",
+    "new_send_authorizations": 0,
+    "pending_authorization_entries": 43,
+    "executable_authorization_entries": 0,
+    "smtp_enabled_config": "0",
+    "presend_preflight_outreach": "PAUSED_AND_DELETED",
+    "windows_tasks": {
+      "PreSend": "Disabled",
+      "Outreach": "Disabled",
+      "PostSend": "Ready(bounce/reply scan only)",
+      "Inventory": "none"
+    },
+    "bounce_reply_dsn_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "db_integrity": {
+    "quick_check": "ok",
+    "wal_bytes": 0,
+    "db_mtime_local": "2026-10-19 10:20:49",
+    "write_attribution": "10:20:49 write = pre-existing 08:45 Recovery Sync automation (sync_0845_*/last_*_scan* keys)"
+  },
+  "verdicts": {
+    "DEPLOYED": "CONFIRMED",
+    "PRODUCTION_EFFECTIVENESS_VERIFIED": "CONFIRMED"
+  },
+  "unknown_items": [
+    "exact per-run entry SAFE (log-only, derived bounds provided)",
+    "direct SMTP connection count (inferred 0 from send_log/authorizations)",
+    "attribution of the pre-window 10-15 morning cadence gap (unchanged from first pass)"
+  ],
+  "boundaries": {
+    "BUSINESS_CODE_DEPLOYED_BY_THIS_TASK": false,
+    "PRODUCTION_DB_WRITES_BY_THIS_ACCEPTANCE": 0,
+    "EMAILS_SENT_BY_THIS_TASK": 0,
+    "INVENTORY_MANUAL_TRIGGER": false,
+    "ROLLBACK_PERFORMED": false,
+    "SAFE_MX_HISTORY_GATES_UNCHANGED": true,
+    "NO_SECOND_INVENTORY_SCHEDULER": true
+  }
+}
