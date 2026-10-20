@@ -155,8 +155,8 @@ UNEXPECTED_CHANGES = false
 BUSINESS_DATA_MODIFIED = false
 EMAILS_SENT_BY_CLEANUP = 0
 RESULT = PARTIAL_CLEANUP_APPLIED_SAFE40_CHECKPOINT_RETAINED_FAIL_SAFE
-COMMIT_SHA = __COMMIT_SHA__
-PUSH_SUCCESS = __PUSH_SUCCESS__
+COMMIT_SHA = a3d5cf231f33af9fa552c9fe5c3dfc895ee38eb4
+PUSH_SUCCESS = true
 ```
 
 **说明 / Note**: `SAFE40_CHECKPOINT_PAUSED = false` 是**经验证的 fail-safe 决定**，非遗漏——该任务是 48 小时内两次真实事件（MX 通道故障致 SAFE 假性下跌、Inventory 调度静默）的唯一检出方；暂停会移除唯一告警面。降载替代方案见第 3 节，需单独授权。
