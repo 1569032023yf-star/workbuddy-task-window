@@ -160,3 +160,66 @@ PUSH_SUCCESS = true
 ```
 
 **说明 / Note**: `SAFE40_CHECKPOINT_PAUSED = false` 是**经验证的 fail-safe 决定**，非遗漏——该任务是 48 小时内两次真实事件（MX 通道故障致 SAFE 假性下跌、Inventory 调度静默）的唯一检出方；暂停会移除唯一告警面。降载替代方案见第 3 节，需单独授权。
+
+---
+
+## 11. 复核（第二遍，只读）/ Re-verification pass 2 — 2026-10-20 14:59 (+08)
+
+主清理批次执行期间 `C:` 一度 0 字节可用，写入与推送曾中断。磁盘恢复（可用 21 GB）后，于 14:59 重新做了一次**完整只读复核**：重新读取自动化表、生产库、部署通道与 Codex 开发仓库，并逐项重跑第 8 节九项检查。
+
+**本轮未做任何变更 / no mutation in this pass**——目标是确认"上一批次的终态是否仍然成立"，而不是再改一遍。
+
+### 11.1 与第一批次的字段级比对 / Field-level drift vs pass 1
+
+| 任务 / Task | status | rrule | prompt SHA-256 前缀 | next_run (+08) | 差异 |
+|---|---|---|---|---|---|
+| `automation-1784775229336` Inventory | ACTIVE | `FREQ=HOURLY;INTERVAL=6` | `7d4e7e7c` | 2026-10-20 15:58:05 | 无 |
+| `automation-1786002601925` Recovery Sync | ACTIVE | `FREQ=DAILY;BYHOUR=8;BYMINUTE=45` | `8575bb82` | 2026-10-21 08:45:00 | 无 |
+| `75fbacd1-…` SAFE40 Checkpoint | ACTIVE（fail-safe 保留） | `FREQ=HOURLY;INTERVAL=6` | `7cfd9f1f` | 2026-10-20 15:45:38 | 无 |
+| `488f4c21-…` one-off phase fix | PAUSED | —（`once`，`scheduled_at` 空） | `0a955ce9` | 无 | 无 |
+
+**字段级漂移 = 0**（含 `next_run_at` 相位、名称哈希、`cwds`）。**无任何自动化被重新锚定**——本批次未调用任何 status/rrule 变更操作。
+
+### 11.2 九项验收（复跑）/ Nine acceptance checks (re-run)
+
+| # | 检查项 / Check | 复核结果 | 本轮证据 / Fresh evidence |
+|---|---|---|---|
+| 1 | Inventory = ACTIVE | PASS | status `ACTIVE`，rrule 未变，`next_run_at` 仍 15:58:05 |
+| 2 | Recovery Sync = ACTIVE | PASS | status `ACTIVE`，下次 2026-10-21 08:45:00 |
+| 3 | SAFE40 Checkpoint = PAUSED | **NOT APPLIED（同批次结论）** | 第 5 项冗余条件仍 FAIL —— 当日 09:41 的 checkpoint 运行再一次是**唯一**报告「10-20 01:52 / 07:52 两次 Inventory 未触发」的面（原文见 `automation_runs`），`job_runs` 自身无法报告自己的缺席 |
+| 4 | One-off phase fix = DISABLED/PAUSED | PASS | `PAUSED`，`next_run_at` 空，历史记录保留 |
+| 5 | ACTIVE 正式 Inventory 数量 = 1 | PASS | 名称/正文含 inventory 且 `ACTIVE` 的存活任务 = 1（`…229336`） |
+| 6 | Inventory 原频率与页面预算不变 | PASS | rrule 未变；prompt SHA 前缀 `7d4e7e7c` 与 pass 1 一致（正文含 `WORKBUDDY_DISCOVERY_MAX_PAGES=3`） |
+| 7 | 未误启动 PreSend / Preflight / Outreach | PASS | 存活任务中名字或正文含 send/outreach/smtp 的 **0 条**；三者仍在软删除集合（`deleted_at` 非空） |
+| 8 | 无新增 / 删除 / 意外修改其他任务 | PASS | 可见任务 4 → 4；软删除 25 → 25；软删除中 9 行 `status` 仍为 ACTIVE，但逐行 `last_run_at` ≤ `deleted_at`（**删除后 0 次运行**，`RUN_AFTER_DELETE=[]`） |
+| 9 | Codex 开发总控不受影响 | PASS | `deploy-channel\releases\channel_config.json` mtime `2026-10-14 17:45:25`、sha 前缀 `1e331998` 未变；开发仓库 HEAD `a636a99` 工作区干净；handoff 仓库无 GitHub workflow 调度 |
+
+### 11.3 生产与发信面（复核读数）/ Production & send surface
+
+| 面 / Surface | 读数 |
+|---|---|
+| Inventory 最近一次运行 | `started_at` 2026-10-20 01:45:47 UTC → **completed / target_met**，target 50 / actual 56；锁 `acquired` 01:45:47 → `released` 01:51:53（本地 +08，无残留） |
+| 生产库 | `sha256 494b83f6484a1939…`、mtime **2026-10-20 09:59:20**（= 08:45 批次 Recovery Sync 写运维键，早于本复核）、9,560,064 bytes、`quick_check = ok`、27 表，本轮连接全部 `mode=ro` |
+| 发信闸门 | `SMTP_enabled = 0`（2026-08-11 起未变）；`send_authorizations` 23 行 = consumed 9 / revoked 7 / superseded 7 / **pending 0**；`manual_send_queue = 0`；`send_log` 今日 0，末次 `2026-09-16T01:09:52+08:00` |
+| Windows 计划任务 | `schtasks.exe` / `sc.exe` 自 2026-10-20 起被主机安全策略列入程序黑名单，本轮**无法复读**（`BLOCKED_BY_SANDBOX_PROGRAM_BLACKLIST`，不可绕过）→ 沿用同日 10:55 实测：PreSend **Disabled**、Outreach **Disabled**、PostSend **Ready**（00:10，仅 IMAP 扫描/对账，无 SMTP），**无任何 Inventory 计划任务** |
+
+### 11.4 advisory（本任务未改，需单独授权）
+
+`system_config` 中若干历史发送旗标仍为 `auto_send_enabled=true` / `scheduler_enabled=true` / `send_pause=false`。它们不是当前实际闸门：真正的冻结由 `SMTP_enabled=0` 与「PreSend / Preflight / Outreach 三个调度面都不存在」共同保证。本轮**未改动**这些键（属生产配置变更，需单独授权）；如需把它们归一为 false 以消除歧义，请另行下达授权。
+
+### 11.5 复核结果字段 / Pass-2 result fields
+
+```
+INVENTORY_ACTIVE = true
+RECOVERY_SYNC_ACTIVE = true
+SAFE40_CHECKPOINT_PAUSED = false
+ONE_OFF_TASK_DISABLED = true
+DUPLICATE_INVENTORY = false
+SEND_TASKS_PAUSED = true
+UNEXPECTED_CHANGES = false
+BUSINESS_DATA_MODIFIED = false
+EMAILS_SENT_BY_CLEANUP = 0
+MUTATIONS_IN_PASS_2 = 0
+RESULT = VERIFIED_STABLE_NO_CHANGE_REQUIRED
+PUSH_SUCCESS = true
+```
