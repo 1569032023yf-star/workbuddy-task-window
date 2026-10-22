@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-22T16:10:09+08:00",
+  "generated_at": "2026-10-22T22:50:44+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -184,7 +184,7 @@
    "website_lookup_pending": 1,
    "network_retry_pending": 1,
    "retry_exhausted": 0,
-   "next_retry_due_at": "2026-10-22T06:21:27.230625+08:00"
+   "next_retry_due_at": "2026-10-22T19:00:11.880448+08:00"
   },
   "pending_items": [
    {
@@ -192,14 +192,14 @@
     "validation_status": "website_lookup_pending",
     "error_class": "network_retry",
     "discovered_at": "2026-10-11T11:07:47.199649+08:00",
-    "age_hours": 269.04,
+    "age_hours": 275.72,
     "retry": {
      "kind": "website_resolution_retry",
-     "attempts": 1,
-     "failure_events": 1,
+     "attempts": 2,
+     "failure_events": 2,
      "status": null,
-     "next_retry_at": "2026-10-22T06:21:27.230625+08:00",
-     "last_failure_at": "2026-10-22T05:51:27.230625+08:00",
+     "next_retry_at": "2026-10-22T19:00:11.880448+08:00",
+     "last_failure_at": "2026-10-22T18:30:11.880448+08:00",
      "terminal_outcome": null
     }
    }
@@ -210,15 +210,14 @@
    ],
    "retryable_manual_review_refs": [],
    "linked_backlog_retry_refs": [
-    "ldr:556",
-    "ldr:565"
+    "ldr:556"
    ],
    "auto_recovery_deferred_refs": [],
    "candidate_rows_scanned": 77,
    "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
    "available": true,
    "retryable_manual_review_refs_count": 0,
-   "linked_backlog_retry_refs_count": 2,
+   "linked_backlog_retry_refs_count": 1,
    "auto_recovery_deferred_refs_count": 0,
    "staged_pending_refs_count": 1
   },
@@ -262,7 +261,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-22T16:10:09+08:00",
+  "generated_at": "2026-10-22T22:50:44+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -494,14 +493,14 @@
    "validation_status": "website_lookup_pending",
    "error_class": "network_retry",
    "discovered_at": "2026-10-11T11:07:47.199649+08:00",
-   "age_hours": 269.04,
+   "age_hours": 275.72,
    "retry": {
     "kind": "website_resolution_retry",
-    "attempts": 1,
-    "failure_events": 1,
+    "attempts": 2,
+    "failure_events": 2,
     "status": null,
-    "next_retry_at": "2026-10-22T06:21:27.230625+08:00",
-    "last_failure_at": "2026-10-22T05:51:27.230625+08:00",
+    "next_retry_at": "2026-10-22T19:00:11.880448+08:00",
+    "last_failure_at": "2026-10-22T18:30:11.880448+08:00",
     "terminal_outcome": null
    }
   }
@@ -512,21 +511,20 @@
   ],
   "retryable_manual_review_refs": [],
   "linked_backlog_retry_refs": [
-   "ldr:556",
-   "ldr:565"
+   "ldr:556"
   ],
   "auto_recovery_deferred_refs": [],
   "candidate_rows_scanned": 77,
   "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
   "available": true,
   "retryable_manual_review_refs_count": 0,
-  "linked_backlog_retry_refs_count": 2,
+  "linked_backlog_retry_refs_count": 1,
   "auto_recovery_deferred_refs_count": 0,
   "staged_pending_refs_count": 1
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-22T16:10:09+08:00",
+ "generated_at": "2026-10-22T22:50:45+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -534,12 +532,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-22:03b70e7a",
+ "run_id": "inventory:2026-10-22:bc1c588b",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "02d04313de82464f0f6933df9e7a72f8675ccb6e7ca63b14859751db3e80a6b2",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "0e1273073bdced38f8d227ced0f06bebde3651c5a42b0ab2316ddb29db2df4d3"
+ "payload_sha256": "9d8a38a93f1c4fd03f49259181d50cadd7d5a2c4559dacdad6f3a8537cd98a1d"
 }

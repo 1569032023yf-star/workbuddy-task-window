@@ -1,6 +1,6 @@
 {
  "schema": "rokt.scheduler.v1",
- "generated_at": "2026-10-22T16:10:09+08:00",
+ "generated_at": "2026-10-22T22:50:45+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "window_hours": 48,
  "source": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
@@ -8,8 +8,8 @@
   "id": "automation-1784775229336",
   "status": "ACTIVE",
   "rrule": "FREQ=HOURLY;INTERVAL=6",
-  "next_run_at": "2026-10-22T18:18:22.823000+08:00",
-  "runtime_last_run_at": "2026-10-22T12:18:22.823000+08:00",
+  "next_run_at": "2026-10-23T00:42:26.447000+08:00",
+  "runtime_last_run_at": "2026-10-22T18:42:26.447000+08:00",
   "runtime_last_error": null,
   "automations_last_run_at_note": "automations.last_run_at is stale/unreliable; automation_runtime_state.last_run_at is authoritative"
  },
@@ -18,14 +18,14 @@
   "tolerance_seconds": 600,
   "receipts_paired": 7,
   "drift_seconds": {
-   "min": 12.2,
+   "min": 18.6,
    "max": 446.4,
-   "avg": 90.8
+   "avg": 91.7
   },
   "skipped_slots_total": 0,
   "skipped_slot_detail": [],
-  "pending_slot": "2026-10-22T18:18:22.540000+08:00",
-  "next_run_at_vs_pending_slot_seconds": 0.3
+  "pending_slot": "2026-10-23T00:42:26.350000+08:00",
+  "next_run_at_vs_pending_slot_seconds": 0.1
  },
  "matched_slots": 7,
  "missed_inventory_runs_confirmed": 0,
@@ -33,6 +33,23 @@
  "firings_executed_production": 4,
  "firings_without_production_run": 3,
  "firings": [
+  {
+   "firing_id": "automation-1784775229336:1792664321158",
+   "triggered_at": "2026-10-22T18:18:41.176000+08:00",
+   "completed_at": "2026-10-22T18:42:26.350000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-10-22T18:18:22.540000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 18.6,
+   "cycle_gap_seconds": 21618.6,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-10-22:bc1c588b",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
   {
    "firing_id": "automation-1784775229336:1792641501956",
    "triggered_at": "2026-10-22T11:58:21.964000+08:00",
@@ -134,23 +151,6 @@
    "executed": true,
    "run_id": "inventory:2026-10-21:1a7f7233",
    "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1792505768479",
-   "triggered_at": "2026-10-20T22:16:08.485000+08:00",
-   "completed_at": "2026-10-20T22:35:56.180000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-10-20T22:15:56.328000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 12.2,
-   "cycle_gap_seconds": 21612.2,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-10-20:8b9f1d72",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
   }
  ],
  "uniqueness": {
@@ -226,10 +226,10 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": null,
+ "run_id": "inventory:2026-10-22:bc1c588b",
  "data_sources": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
  "unavailable": [
   "Windows scheduled task enumeration (schtasks blocked by host policy)"
  ],
- "payload_sha256": "9fbadc635143e02e75b71a1d51e1ad5e20b2ed3e6b66f180ea789a2e23f9812c"
+ "payload_sha256": "4dbb60a0b3d1ed28f267a25d1d3d3e7c7061f0f838b6a6d08b3f5a407d8b99b5"
 }

@@ -1,6 +1,6 @@
 {
  "operation": "releases",
- "count": 2,
+ "count": 3,
  "releases": [
   {
    "release_id": "phase4a8s-safe50-continuous-discovery",
@@ -24,18 +24,29 @@
    "registered_at": "2026-10-22T01:17:41+08:00",
    "registered_by": "bridge",
    "patch_sha256": "a050aa91ed1b73c39e30b9ae4692d626964d62eb0dfbcd7a6632b6b5d67113cb"
+  },
+  {
+   "release_id": "phase4a8v-inventory-stage-trace-20261022",
+   "file_count": 1,
+   "targets": [
+    "bd_orchestrator.py"
+   ],
+   "deployable": true,
+   "registered_at": "2026-10-22T19:14:35+08:00",
+   "registered_by": "bridge",
+   "patch_sha256": "2c4e1750fe7e39c996baa731bed740e8b2ef08546147b1f9976e25ae550c2081"
   }
  ],
  "seal": {
   "sealed": true,
   "tampered": false,
   "diffs": [],
-  "sealed_at": "2026-10-22T01:17:41+0800"
+  "sealed_at": "2026-10-22T19:14:35+0800"
  },
- "ts": "2026-10-22T16:10:09+0800",
+ "ts": "2026-10-22T22:50:45+0800",
  "schema_version": "1.0",
  "evidence_kind": "releases",
- "generated_at": "2026-10-22T16:10:09+08:00",
+ "generated_at": "2026-10-22T22:50:45+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -44,5 +55,5 @@
   "auth": "Bearer (Credential Manager)"
  },
  "data_sources": "deploy-channel releases/channel_config.json + registry seal",
- "payload_sha256": "38770cd5b34843f977cc90a9a3969d1292b83f4d0baf9e02580a9f64cf861e9d"
+ "payload_sha256": "ec51c3fae6b93bf91c0ea18e5abd34d1a047e3724f16230c412e31f689699508"
 }

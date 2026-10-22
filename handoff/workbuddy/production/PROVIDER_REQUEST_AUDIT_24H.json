@@ -1,17 +1,17 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-10-22T16:10:09+08:00",
+  "generated_at": "2026-10-22T22:50:44+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-10-21T08:10:09+00:00",
+  "window_start_utc": "2026-10-21T14:50:44+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
   "verdict_basis": "no audit row in window AND all query families for the city/provider are already completed, so discovery had no request to issue",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 2,
+  "inventory_runs_in_window": 3,
   "query_matrix": {
    "total": 20,
    "completed": 20,
@@ -25,25 +25,25 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-10-22T16:10:09+08:00",
+  "generated_at": "2026-10-22T22:50:45+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-10-15T08:10:09+00:00",
+  "window_start_utc": "2026-10-15T14:50:44+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "REAL_REQUESTS",
   "verdict_basis": "provider_request_audit rows present in window",
-  "audit_rows": 14,
+  "audit_rows": 12,
   "per_provider": [
    {
     "provider": "browser_maps",
-    "requests": 14,
-    "success": 14,
+    "requests": 12,
+    "success": 12,
     "failed": 0,
     "timeout": 0,
     "rate_limited": 0,
     "last_requested_at": "2026-10-17T05:30:01.316663+08:00",
-    "audit_rows": 14
+    "audit_rows": 12
    }
   ],
   "inventory_runs_in_window": 22,
@@ -60,7 +60,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-10-22T16:10:09+08:00",
+ "generated_at": "2026-10-22T22:50:45+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -68,7 +68,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-22:03b70e7a",
+ "run_id": "inventory:2026-10-22:bc1c588b",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "fda6e87f8b789da9263d7c022568487549cf7dd3df9663ee32c557be77eb049d"
+ "payload_sha256": "237dce7d1a0f16628b51f9a1de136dbcb6dd8d7f4c3fd5cb8338948d9603157b"
 }
