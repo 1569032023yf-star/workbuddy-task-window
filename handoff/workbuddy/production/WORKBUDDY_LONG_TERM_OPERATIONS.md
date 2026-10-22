@@ -276,7 +276,7 @@ DUPLICATE_INVENTORY_CREATED = false
 
 BLOCKERS_REQUIRING_ONE_TIME_AUTHORIZATION = 见 §9（仅 1 项：开机级常驻）
 NEXT_AUTOMATIC_ACTION = 2026-10-22 18:18:22 +08 的 Inventory firing；Cooperstown 不会自行关闭（详见 §7）
-COMMIT_SHA = 44a9592b0f42c0cad484f6d27c85e481512fa819
+COMMIT_SHA = 7c6538fc932673ecc69be59b065dc94409e2a6d0
 PUSH_SUCCESS = true
 OVERALL_RESULT = OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING
 ```
@@ -330,9 +330,23 @@ OVERALL_RESULT = OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING
 ## 12. 提交信息 / Commit information
 
 - 提交仓库：`1569032023yf-star/workbuddy-task-window`（`main`）
-- 本次提交只含 `handoff/workbuddy/production/` 下的证据包、合同与报告；**不含**数据库、凭据、客户数据
-- 首次交付提交 `c0652430da99981a12688f2261fb9cb52cd24833`（`894b642..c065243`）
-- 回填提交 `44a9592b0f42c0cad484f6d27c85e481512fa819`（回填 `COMMIT_SHA` / `PUSH_SUCCESS` 等结果字段）
+- 本次提交只含 `handoff/workbuddy/production/` 下的证据包、合同、报告与生成器；**不含**数据库、凭据、客户数据
+- 交付提交链：
+  - `c0652430da99981a12688f2261fb9cb52cd24833` 首次交付
+  - `44a9592b0f42c0cad484f6d27c85e481512fa819` 回填结果字段
+  - `7c6538fc932673ecc69be59b065dc94409e2a6d0` 修正 `CUSTOMER_SMTP_ENABLED` 极性反转 + 城市根因精确到行（本次内容提交）
 - `PUSH_SUCCESS = true`；校验方式为 `git ls-remote origin refs/heads/main` 与 `git rev-parse HEAD` 逐字相等（不读本地 origin 缓存）
 - 报告无法包含自身的 commit hash，故先交付、后以追加提交回填，与 `894b642` 的做法一致
 - **GitHub Issue #2 未留言**：本会话没有 GitHub API 客户端（`gh` 未安装、GitHub 连接器不可用）。证据包已发布在交接仓库，Codex 可直接读取 `handoff/workbuddy/production/`；如需 Issue 侧回执，请由具备 GitHub 通道的一侧补发。`CODEX_HANDOFF_ISSUE_COMMENT = NOT_POSTED`
+
+### 12.1 可复算 / Reproducibility
+
+证据包不是"请相信我"的产物，生成器已随包发布：
+
+- 路径：`handoff/workbuddy/production/tools/build_handoff.py`
+- 它产出了本目录下 `WORKBUDDY_LONG_TERM_OPERATIONS.json` 与 6 个证据文件
+- 只读性由结构保证：所有生产读取要么是回环桥接的 HTTP 调用，要么是 `sqlite3.connect("file:...?mode=ro", uri=True)`（引擎级拒写）
+- Bearer token 运行时从 Windows 凭据管理器读取，**不出现在脚本或任何输出中**（已做敏感串扫描）
+- `PRODUCTION_DB_UNAUTHORIZED_WRITES` 是**括号式测量**：整轮观测前后各取一次 `bd_leads.db` 的 SHA-256，相等才记 0
+
+Codex 可据此独立复跑并比对 `evidence_sha256`，无需反向信任本报告。

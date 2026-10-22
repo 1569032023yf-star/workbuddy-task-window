@@ -51,12 +51,12 @@
   "COOPERSTOWN_STRUCTURALLY_BLOCKED_REFS": "ldr:556,ldr:565",
   "COOPERSTOWN_SELF_HEALING_REFS": "ldr:571",
   "COOPERSTOWN_COMPLETION_CHECKS_FAILED": "all_candidates_classified,no_unprocessed_candidates,official_site_recheck,review_recovery",
-  "COMMIT_SHA": "44a9592b0f42c0cad484f6d27c85e481512fa819",
+  "COMMIT_SHA": "7c6538fc932673ecc69be59b065dc94409e2a6d0",
   "PUSH_SUCCESS": true,
   "OVERALL_RESULT": "OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING",
-  "EVIDENCE_COMMIT_SHA": "44a9592b0f42c0cad484f6d27c85e481512fa819",
+  "EVIDENCE_COMMIT_SHA": "7c6538fc932673ecc69be59b065dc94409e2a6d0",
   "CODEX_HANDOFF_ISSUE_COMMENT": "NOT_POSTED: no GitHub API client in this session (gh CLI absent, github connector unavailable); the evidence pack is published in the handoff repo instead",
-  "evidence_sha256": "31de3b1f9ba63e81615db3aa4b9818acc017c90ebd8fbdc33a21b3e9792617ef"
+  "evidence_sha256": "00dc9ad321cff27558e4f8fd4ec84472fd37908d5182d7bd73c361867649510f"
  },
  "evidence_files": [
   "CITY_STAGE_TRACE.json",
