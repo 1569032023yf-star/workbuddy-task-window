@@ -223,6 +223,7 @@ RELEASE_SECURITY_GATES_PRESERVED = true          # 14 门禁 + 封签；32/58/34
 CODEX_HANDOFF_PUBLISHED = true
 CODEX_HANDOFF_CONSUMED = false
 CODEX_RUNTIME_EVIDENCE_ACCEPTED = false
+CODEX_HANDOFF_ISSUE_COMMENT = NOT_POSTED   # 本会话无 GitHub API 客户端（gh 缺失、连接器不可用）
 
 COOPERSTOWN_CLOSED = false
 LAKE_PLACID_ACTIVE = false
@@ -235,8 +236,8 @@ CUSTOMER_SMTP_ENABLED = false                    # system_config.SMTP_enabled = 
 
 BLOCKERS_REQUIRING_ONE_TIME_AUTHORIZATION = 见 §9（仅 1 项：开机级常驻）
 NEXT_AUTOMATIC_ACTION = 2026-10-22 18:18:22 +08 的 Inventory firing（代理门通过则执行）
-COMMIT_SHA = 见 §11（写入后回填）
-PUSH_SUCCESS = 见 §11
+COMMIT_SHA = c0652430da99981a12688f2261fb9cb52cd24833
+PUSH_SUCCESS = true
 OVERALL_RESULT = OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING
 ```
 
@@ -273,4 +274,6 @@ OVERALL_RESULT = OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING
 
 - 提交仓库：`1569032023yf-star/workbuddy-task-window`（`main`）
 - 本次提交只含 `handoff/workbuddy/production/` 下的证据包、合同与报告；**不含**数据库、凭据、客户数据
-- `COMMIT_SHA` / `PUSH_SUCCESS`：见 `PRODUCTION_OPERATIONS_STATUS.md` 与本文件末尾回填字段（首个提交后用追加提交回填，与 894b642 的做法一致）
+- `COMMIT_SHA = c0652430da99981a12688f2261fb9cb52cd24833`，`PUSH_SUCCESS = true`（`894b642..c065243`，`ls-remote` 与本地 HEAD 一致）
+- 首个提交后以追加提交回填本字段（报告无法包含自身 commit hash），与 894b642 的做法一致
+- **GitHub Issue #2 未留言**：本会话没有 GitHub API 客户端（`gh` 未安装、GitHub 连接器不可用）。证据包已发布在交接仓库，Codex 可直接读取 `handoff/workbuddy/production/`；如需 Issue 侧回执，请由具备 GitHub 通道的一侧补发

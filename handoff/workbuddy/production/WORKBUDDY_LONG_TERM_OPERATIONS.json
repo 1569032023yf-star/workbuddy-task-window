@@ -38,10 +38,12 @@
   "CUSTOMER_SMTP_ENABLED": true,
   "BLOCKERS_REQUIRING_ONE_TIME_AUTHORIZATION": "install the deploy-channel supervisor as a Windows service (or a boot-time scheduled task running as the operator) so the bridge survives logoff/session end; schtasks/sc.exe are blocked for this process and CREATE_BREAKAWAY_FROM_JOB returns WinError 5, so boot-level persistence cannot be produced without one elevated action",
   "NEXT_AUTOMATIC_ACTION": "next Inventory firing at 2026-10-22T18:18:22.823000+08:00 (agent layer, fail-closed if the proxy gate fails); Cooperstown closes after row 571 reaches its 3rd bounded retry, then Lake Placid activates on the following firing",
-  "COMMIT_SHA": "BACKFILLED_IN_FOLLOWUP_COMMIT",
-  "PUSH_SUCCESS": null,
+  "COMMIT_SHA": "c0652430da99981a12688f2261fb9cb52cd24833",
+  "PUSH_SUCCESS": true,
   "OVERALL_RESULT": "OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING",
-  "evidence_sha256": "8b690175ddbc573245a0d7dc047eba4e7fc9603b835315a320d6c169b3b42325"
+  "evidence_sha256": "cab8866a31620a8a1f4623c88f0da65bf8158d9fb3d5781fb913fe3e4f8b5bfe",
+  "CODEX_HANDOFF_ISSUE_COMMENT": "NOT_POSTED: no GitHub API client in this session (gh CLI absent, github connector unavailable); the evidence pack is published in the handoff repo instead",
+  "EVIDENCE_COMMIT_SHA": "c0652430da99981a12688f2261fb9cb52cd24833"
  },
  "evidence_files": [
   "CITY_STAGE_TRACE.json",
@@ -90,5 +92,7 @@
   "http://127.0.0.1:8791/v1/safe",
   "http://127.0.0.1:8791/v1/telemetry",
   "http://127.0.0.1:8791/v1/releases"
- ]
+ ],
+ "backfilled_at": "2026-10-22T16:12:00+08:00",
+ "backfill_note": "COMMIT_SHA / PUSH_SUCCESS were backfilled after the first push, same convention as commit 894b642: a report cannot contain its own commit hash."
 }
