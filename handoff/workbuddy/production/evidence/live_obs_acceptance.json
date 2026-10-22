@@ -1,0 +1,417 @@
+{
+ "suite": "live_observability_acceptance",
+ "generated_at": "2026-10-22T15:58:33+08:00",
+ "bridge": {
+  "ok": true,
+  "channel_id": "rokt-deploy-channel",
+  "bridge_version": "2.1",
+  "operations": [
+   "preflight",
+   "apply",
+   "status",
+   "rollback",
+   "register",
+   "releases",
+   "telemetry",
+   "health",
+   "runtime",
+   "city",
+   "provider-audit",
+   "scheduler",
+   "safe"
+  ],
+  "test_mode": false,
+  "ts": "2026-10-22T15:58:17+08:00"
+ },
+ "total": 41,
+ "passed": 41,
+ "failed": 0,
+ "rounds": [
+  {
+   "round": 1,
+   "started_at": "2026-10-22T15:58:17+08:00",
+   "finished_at": "2026-10-22T15:58:18+08:00",
+   "endpoints": {
+    "/v1/runtime": {
+     "code": 200,
+     "schema": "rokt.runtime.v1",
+     "verdict": "ok",
+     "sha256": "3ea9add60c2e7dad309f9db7ef8b5b7e8781f9da9bf571a7c7c2f0d94b428888"
+    },
+    "/v1/city": {
+     "code": 200,
+     "schema": "rokt.city.v1",
+     "verdict": "ok",
+     "sha256": "33cefec79723ebe54fd385438c4ce19907599fb69eac05ef70d101490b267dd4"
+    },
+    "/v1/provider-audit": {
+     "code": 200,
+     "schema": "rokt.provider_audit.v1",
+     "verdict": "ZERO_REQUESTS_CONFIRMED",
+     "sha256": "b1b7a4c0143befad21221823819b01a957cfc15475fb78698f4151a8d7dad0c9"
+    },
+    "/v1/scheduler": {
+     "code": 200,
+     "schema": "rokt.scheduler.v1",
+     "verdict": null,
+     "sha256": "6ec14322bac0b382fc83e8610f53d55491901b11305a0e4fc1e00884d79c792b"
+    }
+   }
+  },
+  {
+   "round": 2,
+   "started_at": "2026-10-22T15:58:18+08:00",
+   "finished_at": "2026-10-22T15:58:18+08:00",
+   "endpoints": {
+    "/v1/runtime": {
+     "code": 200,
+     "schema": "rokt.runtime.v1",
+     "verdict": "ok",
+     "sha256": "3ea9add60c2e7dad309f9db7ef8b5b7e8781f9da9bf571a7c7c2f0d94b428888"
+    },
+    "/v1/city": {
+     "code": 200,
+     "schema": "rokt.city.v1",
+     "verdict": "ok",
+     "sha256": "33cefec79723ebe54fd385438c4ce19907599fb69eac05ef70d101490b267dd4"
+    },
+    "/v1/provider-audit": {
+     "code": 200,
+     "schema": "rokt.provider_audit.v1",
+     "verdict": "ZERO_REQUESTS_CONFIRMED",
+     "sha256": "b1b7a4c0143befad21221823819b01a957cfc15475fb78698f4151a8d7dad0c9"
+    },
+    "/v1/scheduler": {
+     "code": 200,
+     "schema": "rokt.scheduler.v1",
+     "verdict": null,
+     "sha256": "6ec14322bac0b382fc83e8610f53d55491901b11305a0e4fc1e00884d79c792b"
+    }
+   }
+  }
+ ],
+ "safe_snapshot": {
+  "schema": "rokt.safe_authority.v1",
+  "measured_at": "2026-10-22T15:49:52+08:00",
+  "business_timezone": "Asia/Shanghai (+08)",
+  "rule_version": {
+   "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
+   "entrypoint": "campaign_eligible_v2.select_candidates_for_plan_v2",
+   "mx_probe": "preflight_gate.query_mx",
+   "code": {
+    "campaign_eligible_v2.py": {
+     "sha256": "1143bedf563c0f76b883359362ffb2c2ea11c375fd923dc59768c5529cf3ad34",
+     "bytes": 18023,
+     "mtime": "2026-09-07T18:35:46.020715+08:00"
+    },
+    "preflight_gate.py": {
+     "sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+     "bytes": 41251,
+     "mtime": "2026-09-16T15:15:54.279029+08:00"
+    }
+   }
+  },
+  "method": "select_candidates_for_plan_v2 on a mode=ro connection; SAFE = distinct organization_key over the returned candidate rows; two consecutive readings reported because MX resolution is live and could be jittery",
+  "source": "bd_leads.db (read-only)",
+  "mx_positive_control": {
+   "domain": "gmail.com",
+   "mx_status": "ok",
+   "checked_at": "2026-10-22T07:49:54.384Z"
+  },
+  "mx_negative_control": {
+   "domain": "nonexistent-domain-xyz-abc123456.invalid",
+   "mx_status": "nxdomain",
+   "checked_at": "2026-10-22T07:49:55.696Z"
+  },
+  "measurement_complete": true,
+  "failure_reason": null,
+  "safe_unique_orgs": 56,
+  "db_identity": {
+   "path_basename": "bd_leads.db",
+   "size_bytes": 9560064,
+   "sha256": "66509daab31eebe2bd39b27aa5be416179e7e96f40bddb1a5fa26f509a9b6f36",
+   "quick_check": "ok"
+  },
+  "mx_probe_seconds": 3.03,
+  "mx_probe_ok": true,
+  "mx_proxy_configured": true,
+  "leads_total": 1213,
+  "filters": {
+   "suppression_list_rows": 63,
+   "bounce_log_rows": 63,
+   "unmatched_dsn_rows": 48,
+   "note": "per-candidate history/suppression/business-fit decisions are made inside select_candidates_for_plan_v2 and are not separately re-exposed here"
+  },
+  "readings": [
+   {
+    "reading": 1,
+    "sampling_time": "2026-10-22T15:52:56+08:00",
+    "candidate_rows": 56,
+    "unique_organizations": 56,
+    "wall_seconds": 180.9
+   },
+   {
+    "reading": 2,
+    "sampling_time": "2026-10-22T15:56:45+08:00",
+    "candidate_rows": 56,
+    "unique_organizations": 56,
+    "wall_seconds": 214.2
+   }
+  ],
+  "reading_agreement": true,
+  "new_customer_funnel": {
+   "dedup_rule": "discovery window: distinct COALESCE(normalized_domain, normalized_business_name|city); lead window: distinct organization_key",
+   "timezones": "discovery window compares UTC ISO; lead window compares leads.collected_at (+08 local, literal 'T' separator)",
+   "h24": {
+    "window_hours": 24,
+    "merchant_records_discovered": 0,
+    "unique_organizations_discovered": 0,
+    "verified_official_sites": 0,
+    "new_leads": 0,
+    "new_leads_with_email": 0,
+    "new_first_party_official_emails": 0,
+    "new_distinct_organization_keys": 0,
+    "provider_contribution": []
+   },
+   "d7": {
+    "window_hours": 168,
+    "merchant_records_discovered": 8,
+    "unique_organizations_discovered": 8,
+    "verified_official_sites": 4,
+    "new_leads": 6,
+    "new_leads_with_email": 5,
+    "new_first_party_official_emails": 4,
+    "new_distinct_organization_keys": 6,
+    "provider_contribution": [
+     {
+      "provider": "browser_maps",
+      "records": 8
+     }
+    ]
+   },
+   "note": "merchant discovery != confirmed business identity != has email != SAFE customer"
+  },
+  "safe_net_growth": {
+   "h24": "UNKNOWN",
+   "d7": "UNKNOWN",
+   "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set"
+  },
+  "finished_at": "2026-10-22T15:56:46+08:00",
+  "available": true,
+  "generated_at": "2026-10-22T15:58:33+08:00",
+  "refresh_requested": false,
+  "refresh_result": null,
+  "age_hours": 0.14,
+  "fresh": true,
+  "authoritative_route": "/v1/safe",
+  "operation": "safe",
+  "verdict": "ok"
+ },
+ "results": [
+  {
+   "id": "bridge_version_2_1",
+   "ok": true,
+   "detail": "2.1"
+  },
+  {
+   "id": "bridge_13_operations",
+   "ok": true,
+   "detail": "13"
+  },
+  {
+   "id": "bridge_real_mode",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "auth_required",
+   "ok": true,
+   "detail": "401"
+  },
+  {
+   "id": "unknown_route_404",
+   "ok": true,
+   "detail": "404"
+  },
+  {
+   "id": "bad_run_id_400",
+   "ok": true,
+   "detail": "400"
+  },
+  {
+   "id": "bad_hours_400",
+   "ok": true,
+   "detail": "400"
+  },
+  {
+   "id": "round1 /v1/runtime 200+schema",
+   "ok": true,
+   "detail": "200/rokt.runtime.v1"
+  },
+  {
+   "id": "round1 /v1/city 200+schema",
+   "ok": true,
+   "detail": "200/rokt.city.v1"
+  },
+  {
+   "id": "round1 /v1/provider-audit 200+schema",
+   "ok": true,
+   "detail": "200/rokt.provider_audit.v1"
+  },
+  {
+   "id": "round1 /v1/scheduler 200+schema",
+   "ok": true,
+   "detail": "200/rokt.scheduler.v1"
+  },
+  {
+   "id": "round2 /v1/runtime 200+schema",
+   "ok": true,
+   "detail": "200/rokt.runtime.v1"
+  },
+  {
+   "id": "round2 /v1/city 200+schema",
+   "ok": true,
+   "detail": "200/rokt.city.v1"
+  },
+  {
+   "id": "round2 /v1/provider-audit 200+schema",
+   "ok": true,
+   "detail": "200/rokt.provider_audit.v1"
+  },
+  {
+   "id": "round2 /v1/scheduler 200+schema",
+   "ok": true,
+   "detail": "200/rokt.scheduler.v1"
+  },
+  {
+   "id": "runtime_real_run",
+   "ok": true,
+   "detail": "inventory:2026-10-22:03b70e7a"
+  },
+  {
+   "id": "runtime_business_date",
+   "ok": true,
+   "detail": "2026-10-22"
+  },
+  {
+   "id": "runtime_lock_released",
+   "ok": true,
+   "detail": "RELEASED"
+  },
+  {
+   "id": "runtime_trigger_not_recorded_field",
+   "ok": true,
+   "detail": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL"
+  },
+  {
+   "id": "city_nine_checks",
+   "ok": true,
+   "detail": "9"
+  },
+  {
+   "id": "city_active_discovery_state",
+   "ok": true,
+   "detail": "NY"
+  },
+  {
+   "id": "city_stage_trace_honest",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "city_retry_state_present",
+   "ok": true,
+   "detail": "[{\"ref\": \"ldr:571\", \"validation_status\": \"website_lookup_pending\", \"error_class\": \"network_retry\", \"discovered_at\": \"2026-10-11T11:07:47.199649+08:00\", \"age_hours\": 268.84, \"retry\": {\"kind\": \"website_"
+  },
+  {
+   "id": "city_no_customer_identifiers",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "city_next_city_lake_placid",
+   "ok": true,
+   "detail": "{\"city_id\": 23, \"city\": \"Lake Placid\", \"status\": \"pending\", \"priority\": 4, \"activatable\": true}"
+  },
+  {
+   "id": "provider_verdict_tristate",
+   "ok": true,
+   "detail": "ZERO_REQUESTS_CONFIRMED"
+  },
+  {
+   "id": "scheduler_uniqueness",
+   "ok": true,
+   "detail": "UNIQUE"
+  },
+  {
+   "id": "scheduler_service_read",
+   "ok": true,
+   "detail": "{\"name\": \"BDExecutionHost\", \"status\": \"STOPPED\", \"start_type\": \"MANUAL\", \"method\": \"Read-only SCM QueryServiceStatusEx + registry Start value; no start/stop/delete, no schtasks/sc.exe shell-out\", \"sta"
+  },
+  {
+   "id": "scheduler_48h_reconciled",
+   "ok": true,
+   "detail": "8"
+  },
+  {
+   "id": "telemetry_contract_2h_renamed",
+   "ok": true,
+   "detail": "['inventory_runs_24h', 'lock_acquired_at', 'lock_key', 'lock_value', 'recent_runs', 'running_inventory_24h', 'running_inventory_2h', 'window_note']"
+  },
+  {
+   "id": "telemetry_24h_present",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "telemetry_safe_route_hint",
+   "ok": true,
+   "detail": "{\"available\": true, \"safe_unique_orgs\": 56, \"measured_at\": \"2026-10-22T15:49:52+08:00\", \"age_hours\": 0.1, \"mx_probe_ok\": true, \"source\": \"C:\\\\Users\\\\15690\\\\WorkBuddy\\\\deploy-channel\\\\state\\\\safe_latest.json\", \"authoritative_route\": \"/v1/safe\"}"
+  },
+  {
+   "id": "safe_refresh_accepted",
+   "ok": true,
+   "detail": "MEASUREMENT_STARTED"
+  },
+  {
+   "id": "safe_available",
+   "ok": true,
+   "detail": "{\"schema\": \"rokt.safe_authority.v1\", \"measured_at\": \"2026-10-22T15:49:52+08:00\", \"business_timezone\": \"Asia/Shanghai (+08)\", \"rule_version\": {\"name\": \"V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT\", \"entrypoint\": \"campaign_eligible_v2.select_candidates_for_plan_v2\", \"mx_probe\": \"preflight_gate.query_mx\""
+  },
+  {
+   "id": "safe_mx_positive",
+   "ok": true,
+   "detail": "{\"domain\": \"gmail.com\", \"mx_status\": \"ok\", \"checked_at\": \"2026-10-22T07:49:54.384Z\"}"
+  },
+  {
+   "id": "safe_mx_negative",
+   "ok": true,
+   "detail": "{\"domain\": \"nonexistent-domain-xyz-abc123456.invalid\", \"mx_status\": \"nxdomain\", \"checked_at\": \"2026-10-22T07:49:55.696Z\"}"
+  },
+  {
+   "id": "safe_number",
+   "ok": true,
+   "detail": "56"
+  },
+  {
+   "id": "safe_rule_version",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "safe_growth_explicit",
+   "ok": true,
+   "detail": "{\"h24\": \"UNKNOWN\", \"d7\": \"UNKNOWN\", \"reason\": \"no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set\"}"
+  },
+  {
+   "id": "safe_funnel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "two_safe_reconciliations",
+   "ok": true,
+   "detail": "56 vs 56"
+  }
+ ]
+}

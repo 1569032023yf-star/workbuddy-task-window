@@ -1,0 +1,48 @@
+{
+ "operation": "releases",
+ "count": 2,
+ "releases": [
+  {
+   "release_id": "phase4a8s-safe50-continuous-discovery",
+   "file_count": 1,
+   "targets": [
+    "bd_orchestrator.py"
+   ],
+   "deployable": true,
+   "registered_at": null,
+   "registered_by": null,
+   "patch_sha256": "3c7ba8d9baf9c6c4e35ecd5cfa5ef91e87b949ef10abad560fe191f768714bda"
+  },
+  {
+   "release_id": "phase4a8u-city-recovery-production-rebase-20261022",
+   "file_count": 2,
+   "targets": [
+    "discovery/discovery_service.py",
+    "retail_city_queue.py"
+   ],
+   "deployable": true,
+   "registered_at": "2026-10-22T01:17:41+08:00",
+   "registered_by": "bridge",
+   "patch_sha256": "a050aa91ed1b73c39e30b9ae4692d626964d62eb0dfbcd7a6632b6b5d67113cb"
+  }
+ ],
+ "seal": {
+  "sealed": true,
+  "tampered": false,
+  "diffs": [],
+  "sealed_at": "2026-10-22T01:17:41+0800"
+ },
+ "ts": "2026-10-22T16:00:48+0800",
+ "schema_version": "1.0",
+ "evidence_kind": "releases",
+ "generated_at": "2026-10-22T16:00:48+08:00",
+ "business_timezone": "Asia/Shanghai (+08)",
+ "producer": "workbuddy-production-operator",
+ "channel": {
+  "endpoint": "http://127.0.0.1:8791",
+  "bridge_version": "2.1",
+  "auth": "Bearer (Credential Manager)"
+ },
+ "data_sources": "deploy-channel releases/channel_config.json + registry seal",
+ "payload_sha256": "001ea3293cfc064e3862cf4aca043c4b4e2a3a12cb49ee37609efb08341e8ff3"
+}

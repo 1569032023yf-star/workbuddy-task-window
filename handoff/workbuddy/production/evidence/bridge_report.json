@@ -1,0 +1,141 @@
+{
+  "suite": "bridge-codex-call-chain",
+  "total": 26,
+  "passed": 26,
+  "failed": [],
+  "audit_lines_new": 15,
+  "bridge_lines": 14,
+  "results": [
+    {
+      "id": "B00_bridge_listening_on_loopback",
+      "pass": true,
+      "detail": "127.0.0.1:8791"
+    },
+    {
+      "id": "B00_credential_readable_by_local_client",
+      "pass": true,
+      "detail": "len=64"
+    },
+    {
+      "id": "B01_healthz_no_auth_200",
+      "pass": true,
+      "detail": "(200, 'rokt-deploy-channel')"
+    },
+    {
+      "id": "B01_healthz_lists_fixed_ops",
+      "pass": true,
+      "detail": "['preflight', 'apply', 'status', 'rollback', 'register', 'releases', 'telemetry', 'health', 'runtime', 'city', 'provider-audit', 'scheduler', 'safe']"
+    },
+    {
+      "id": "B01_healthz_test_mode_false",
+      "pass": true,
+      "detail": "False"
+    },
+    {
+      "id": "B02_preflight_no_token_401",
+      "pass": true,
+      "detail": "(401, {'error': 'UNAUTHORIZED', 'note': 'bearer token required; token is stored in Windows Credential Manager, never in chat or Git'})"
+    },
+    {
+      "id": "B03_preflight_wrong_token_401",
+      "pass": true,
+      "detail": "(401, {'error': 'UNAUTHORIZED', 'note': 'bearer token required; token is stored in Windows Credential Manager, never in chat or Git'})"
+    },
+    {
+      "id": "B04_consumed_release_blocked_409",
+      "pass": true,
+      "detail": "(409, 'PREFLIGHT_BLOCKED')"
+    },
+    {
+      "id": "B04_blocked_by_dependency_gates_only",
+      "pass": true,
+      "detail": "{'all_pass': False, 'failed': ['source_sha_matches', 'version_compatible', 'targeted_tests_pass', 'no_new_critical_regressions', 'rollback_verified'], 'count': 14, 'passed': 9}"
+    },
+    {
+      "id": "B04_real_production_state_verified",
+      "pass": true,
+      "detail": "e7e619d3e40f415c1894aa3e1087978875c6f26570755254ab535b68e5580903"
+    },
+    {
+      "id": "B04_caller_recorded_bridge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B05_arbitrary_command_endpoint_404",
+      "pass": true,
+      "detail": "(404, {'error': 'NOT_FOUND', 'note': 'unknown endpoint; the channel exposes only the pinned deploy, registration and telemetry operations'})"
+    },
+    {
+      "id": "B06_get_on_post_endpoint_404",
+      "pass": true,
+      "detail": "(404, {'error': 'NOT_FOUND', 'note': 'authenticated operations are POST /v1/{preflight,apply,status,rollback,register,releases,telemetry,health,runtime,city,provider-audit,scheduler,safe}; no arbitrary command or file surface'})"
+    },
+    {
+      "id": "B06b_unknown_v1_endpoint_404",
+      "pass": true,
+      "detail": "(404, {'error': 'NOT_FOUND', 'note': 'unknown endpoint; the channel exposes only the pinned deploy, registration and telemetry operations'})"
+    },
+    {
+      "id": "B07_traversal_release_id_400",
+      "pass": true,
+      "detail": "(400, {'error': 'INVALID_RELEASE_ID', 'detail': 'release_id failed strict pattern'})"
+    },
+    {
+      "id": "B08_unknown_release_400",
+      "pass": true,
+      "detail": "(400, {'error': 'UNKNOWN_RELEASE_ID', 'detail': 'not in pinned registry'})"
+    },
+    {
+      "id": "B09_apply_without_confirm_400",
+      "pass": true,
+      "detail": "(400, {'error': 'CONFIRM_REQUIRED', 'detail': 'apply requires explicit confirm=true'})"
+    },
+    {
+      "id": "B10_status_unknown_op_400",
+      "pass": true,
+      "detail": "(400, {'error': 'UNKNOWN_OPERATION_ID', 'detail': 'op-does-not-exist'})"
+    },
+    {
+      "id": "B11_rollback_unknown_op_400",
+      "pass": true,
+      "detail": "(400, {'error': 'UNKNOWN_OPERATION_ID', 'detail': 'op-does-not-exist'})"
+    },
+    {
+      "id": "B12_malformed_json_400",
+      "pass": true,
+      "detail": "(400, {'error': 'INVALID_JSON', 'detail': ''})"
+    },
+    {
+      "id": "B13_every_request_audited",
+      "pass": true,
+      "detail": "{'audited': 14, 'requests': 13}"
+    },
+    {
+      "id": "B13_denials_audited",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "id": "B13_noauth_endpoints_labeled",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "id": "B13_all_lines_have_ts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B13_token_never_logged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "B13_no_token_derivative_logged",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "ts": "2026-10-22T15:59:04+08:00"
+}

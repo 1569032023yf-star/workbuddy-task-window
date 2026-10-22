@@ -1,0 +1,302 @@
+{
+  "suite": "sandbox-cli",
+  "total": 58,
+  "passed": 58,
+  "failed": [],
+  "invocations": 24,
+  "audit_lines": 24,
+  "results": [
+    {
+      "id": "S01_target_is_pinned_before_sha",
+      "pass": true,
+      "detail": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969"
+    },
+    {
+      "id": "S01_after_bin_pinned",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S01_sandbox_lock_released",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S02_preflight_rc0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "id": "S02_preflight_pass",
+      "pass": true,
+      "detail": "PREFLIGHT_PASS"
+    },
+    {
+      "id": "S02_preflight_14_gates",
+      "pass": true,
+      "detail": "{'all_pass': True, 'failed': [], 'count': 14, 'passed': 14}"
+    },
+    {
+      "id": "S02_test_mode_true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S02_stale_rows_evidence",
+      "pass": true,
+      "detail": "{'pass': True, 'running': [], 'stale_unfinished_rows': 1, 'oldest_stale': '2026-10-22 04:59:57', 'note': 'stale_unfinished_rows are crashed-run residue older than the 2h lock TTL; they are evidence only, not live executions'}"
+    },
+    {
+      "id": "S02_pending_entries_evidence",
+      "pass": true,
+      "detail": "{'pass': True, 'pending_entries': 1, 'executable': 0}"
+    },
+    {
+      "id": "S02_safe_window_pass",
+      "pass": true,
+      "detail": "{'pass': True, 'inventory_status': 'ACTIVE', 'inventory_next_run': '2026-10-22 21:59:57 +08', 'minutes_to_next_run': 360.0, 'min_required_minutes': 20}"
+    },
+    {
+      "id": "S02_sending_paused",
+      "pass": true,
+      "detail": "{'pass': True, 'tasks': {'presend': {'id': 'automation-1785804406748', 'status': 'PAUSED', 'deleted': True, 'pass': True}, 'preflight': {'id': 'automation-1785804413719', 'status': 'PAUSED', 'deleted': True, 'pass': True}, 'outreach': {'id': 'automation-1785804421539', 'status': 'PAUSED', 'deleted': True, 'pass': True}}}"
+    },
+    {
+      "id": "S03_apply_without_confirm_rejected",
+      "pass": true,
+      "detail": "(2, 'CONFIRM_REQUIRED')"
+    },
+    {
+      "id": "S03_target_untouched",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S04_apply_rc0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "id": "S04_apply_applied",
+      "pass": true,
+      "detail": "APPLIED"
+    },
+    {
+      "id": "S04_target_at_after_sha",
+      "pass": true,
+      "detail": "e7e619d3e40f415c1894aa3e1087978875c6f26570755254ab535b68e5580903"
+    },
+    {
+      "id": "S04_backup_byte_exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S04_lock_released",
+      "pass": true,
+      "detail": "released"
+    },
+    {
+      "id": "S04_operation_recorded",
+      "pass": true,
+      "detail": "op-20261022-155958-93b5d1"
+    },
+    {
+      "id": "S04b_double_apply_blocked",
+      "pass": true,
+      "detail": "(1, 'APPLY_ABORTED_GATES')"
+    },
+    {
+      "id": "S04b_failed_lists_source_sha",
+      "pass": true,
+      "detail": "['source_sha_matches', 'version_compatible', 'targeted_tests_pass', 'no_new_critical_regressions', 'rollback_verified']"
+    },
+    {
+      "id": "S04b_target_still_after",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S05_status_ok",
+      "pass": true,
+      "detail": "applied"
+    },
+    {
+      "id": "S06_rollback_rc0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "id": "S06_rollback_rolled_back",
+      "pass": true,
+      "detail": "ROLLED_BACK"
+    },
+    {
+      "id": "S06_target_restored_before",
+      "pass": true,
+      "detail": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969"
+    },
+    {
+      "id": "S06_record_rolled_back",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S07_rollback_twice_refused",
+      "pass": true,
+      "detail": "(2, 'ROLLBACK_NOT_APPLICABLE')"
+    },
+    {
+      "id": "S08_reapply_applied",
+      "pass": true,
+      "detail": "APPLIED"
+    },
+    {
+      "id": "S08_target_at_after",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S09_corrupt_backup_refused",
+      "pass": true,
+      "detail": "(2, 'ROLLBACK_BACKUP_NOT_BEFORE')"
+    },
+    {
+      "id": "S09_target_still_after",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S10_tampered_current_refused",
+      "pass": true,
+      "detail": "(2, 'ROLLBACK_CURRENT_NOT_AFTER')"
+    },
+    {
+      "id": "S10_retry_after_restore",
+      "pass": true,
+      "detail": "ROLLED_BACK"
+    },
+    {
+      "id": "S10_target_before",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S11_preflight_blocked",
+      "pass": true,
+      "detail": "(1, 'PREFLIGHT_BLOCKED')"
+    },
+    {
+      "id": "S11_smtp_gate_failed",
+      "pass": true,
+      "detail": "['smtp_disabled']"
+    },
+    {
+      "id": "S11_apply_aborted_gates",
+      "pass": true,
+      "detail": "(1, 'APPLY_ABORTED_GATES')"
+    },
+    {
+      "id": "S11_target_untouched",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S11_preflight_recovers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S12_preflight_blocked_by_lock",
+      "pass": true,
+      "detail": "['run_locks_healthy', 'inventory_exclusion_held']"
+    },
+    {
+      "id": "S12_apply_aborted_by_lock",
+      "pass": true,
+      "detail": "(1, 'APPLY_ABORTED_GATES')"
+    },
+    {
+      "id": "S12_target_untouched",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S13_unknown_release",
+      "pass": true,
+      "detail": "(2, 'UNKNOWN_RELEASE_ID')"
+    },
+    {
+      "id": "S13_traversal_release_id",
+      "pass": true,
+      "detail": "(2, 'INVALID_RELEASE_ID')"
+    },
+    {
+      "id": "S13_traversal_apply",
+      "pass": true,
+      "detail": "(2, 'INVALID_RELEASE_ID')"
+    },
+    {
+      "id": "S13_target_untouched",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S14_unknown_operation",
+      "pass": true,
+      "detail": "(2, 'UNKNOWN_OPERATION_ID')"
+    },
+    {
+      "id": "S14_invalid_operation_id",
+      "pass": true,
+      "detail": "(2, 'INVALID_OPERATION_ID')"
+    },
+    {
+      "id": "S14_unknown_rollback_target",
+      "pass": true,
+      "detail": "(2, 'UNKNOWN_OPERATION_ID')"
+    },
+    {
+      "id": "S15_missing_arg_usage",
+      "pass": true,
+      "detail": "(2, '{\"error\": \"usage: executor.py <preflight|apply|status|rollback|register|releases')"
+    },
+    {
+      "id": "S15_unknown_operation_cli",
+      "pass": true,
+      "detail": "(2, '{\"error\": \"UNKNOWN_OPERATION:bogus-op\", \"note\": \"no arbitrary command surface ex')"
+    },
+    {
+      "id": "S16_all_lines_valid_json",
+      "pass": true,
+      "detail": "24"
+    },
+    {
+      "id": "S16_audit_count_matches_invocations",
+      "pass": true,
+      "detail": "audit=24 invocations=24"
+    },
+    {
+      "id": "S16_rejections_audited",
+      "pass": true,
+      "detail": "12"
+    },
+    {
+      "id": "S16_op_events_present",
+      "pass": true,
+      "detail": "23"
+    },
+    {
+      "id": "S16_no_test_mode_leak",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "S16_final_state_before",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "final_target_sha256": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969",
+  "ts": "2026-10-22T16:00:04+08:00"
+}

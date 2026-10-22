@@ -1,0 +1,179 @@
+{
+  "suite": "multi_file_registration",
+  "total": 34,
+  "passed": 34,
+  "failed": 0,
+  "invocations": 17,
+  "cases": [
+    {
+      "id": "M01_register_new_release_rc0",
+      "pass": true,
+      "detail": "(0, None)"
+    },
+    {
+      "id": "M02_register_deployable",
+      "pass": true,
+      "detail": "('REGISTERED_DEPLOYABLE', {'discovery/discovery_service.py': {'exists': True, 'actual_sha256': '01b3a89a083e43ef66fa0c5878de6e5ec95da71f8f855c338968fb970fb7c323', 'actual_bytes': 478, 'matches_before': True}, 'retail_city_queue.py': {'exists': True, 'actual_sha256': '8a2d5d389402b9a7160ca565d33190ca9f9261ef5cb5c8603162153ba0e9b828', 'actual_bytes': 296, 'matches_before': True}})"
+    },
+    {
+      "id": "M03_byte_verification_both_files_reversible",
+      "pass": true,
+      "detail": "{'discovery/discovery_service.py': {'feasible': True, 'after_sha256': '5b9a9cece2e71cfef4dff0fc623a444ce1fd58a90b45c890699d97a9757a02be', 'reversible': True}, 'retail_city_queue.py': {'feasible': True, 'after_sha256': 'f3498e8ca868eb5de5661647c3b1cc332156cef2169d881c62a56ec6121b7669', 'reversible': True}}"
+    },
+    {
+      "id": "M03b_register_production_untouched",
+      "pass": true,
+      "detail": "{'discovery/discovery_service.py': '01b3a89a083e', 'retail_city_queue.py': '8a2d5d389402'}"
+    },
+    {
+      "id": "M04_register_idempotent",
+      "pass": true,
+      "detail": "(0, 'REGISTER_IDEMPOTENT')"
+    },
+    {
+      "id": "M05_single_registry_entry",
+      "pass": true,
+      "detail": "['sandbox-multifile-ok']"
+    },
+    {
+      "id": "M05b_entry_file_count_2",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "id": "M05c_channel_config_backup_written",
+      "pass": true,
+      "detail": "C:\\Users\\15690\\WorkBuddy\\deploy-channel\\test\\multi_sandbox\\releases\\channel_config.json.bak-20261022-160005"
+    },
+    {
+      "id": "M06_preflight_pass_14_gates",
+      "pass": true,
+      "detail": "(0, 'PREFLIGHT_PASS', {'all_pass': True, 'failed': [], 'count': 14, 'passed': 14})"
+    },
+    {
+      "id": "M07_preflight_checks_both_targets",
+      "pass": true,
+      "detail": "{'discovery/discovery_service.py': {'pass': True, 'actual': '01b3a89a083e43ef66fa0c5878de6e5ec95da71f8f855c338968fb970fb7c323', 'expected': '01b3a89a083e43ef66fa0c5878de6e5ec95da71f8f855c338968fb970fb7c323', 'actual_bytes': 478, 'expected_bytes': 478}, 'retail_city_queue.py': {'pass': True, 'actual': '8a2d5d389402b9a7160ca565d33190ca9f9261ef5cb5c8603162153ba0e9b828', 'expected': '8a2d5d389402b9a71"
+    },
+    {
+      "id": "M08_preflight_no_write",
+      "pass": true,
+      "detail": "{'discovery/discovery_service.py': '01b3a89a083e', 'retail_city_queue.py': '8a2d5d389402'}"
+    },
+    {
+      "id": "M09_apply_applied",
+      "pass": true,
+      "detail": "(0, None, 'APPLIED')"
+    },
+    {
+      "id": "M10_file_a_after_sha",
+      "pass": true,
+      "detail": "('5b9a9cece2e71cfe', '5b9a9cece2e71cfe')"
+    },
+    {
+      "id": "M11_file_b_after_sha",
+      "pass": true,
+      "detail": "('f3498e8ca868eb5d', 'f3498e8ca868eb5d')"
+    },
+    {
+      "id": "M12_backups_byte_exact",
+      "pass": true,
+      "detail": "['01b3a89a083e', '8a2d5d389402']"
+    },
+    {
+      "id": "M13_apply_second_call_blocked",
+      "pass": true,
+      "detail": "no double apply"
+    },
+    {
+      "id": "M14_status_applied",
+      "pass": true,
+      "detail": "(0, 'applied', 'OK')"
+    },
+    {
+      "id": "M15_status_has_files_and_tests",
+      "pass": true,
+      "detail": "('sandbox-multifile-ok', 2)"
+    },
+    {
+      "id": "M16_rollback_ok",
+      "pass": true,
+      "detail": "(0, None, 'ROLLED_BACK')"
+    },
+    {
+      "id": "M17_both_files_restored_byte_exact",
+      "pass": true,
+      "detail": "{'discovery/discovery_service.py': '01b3a89a083e', 'retail_city_queue.py': '8a2d5d389402'}"
+    },
+    {
+      "id": "M18_status_rolled_back",
+      "pass": true,
+      "detail": "rolled_back"
+    },
+    {
+      "id": "M19_bad_tests_rejected",
+      "pass": true,
+      "detail": "(2, 'TESTS_NOT_ACCEPTABLE', None)"
+    },
+    {
+      "id": "M20_author_self_review_rejected",
+      "pass": true,
+      "detail": "(2, 'REVIEW_NOT_ACCEPTABLE', None)"
+    },
+    {
+      "id": "M21_out_of_scope_rejected",
+      "pass": true,
+      "detail": "(2, 'SCOPE_NOT_ALLOWED', None)"
+    },
+    {
+      "id": "M22_wrong_after_sha_rejected",
+      "pass": true,
+      "detail": "(0, '', 'REGISTERED_PENDING_SOURCE_ATTESTATION')"
+    },
+    {
+      "id": "M22b_rejected_not_deployable",
+      "pass": true,
+      "detail": "['sandbox-multifile-ok', 'sandbox-bad-after-sha']"
+    },
+    {
+      "id": "M23_registry_tamper_blocks_preflight",
+      "pass": true,
+      "detail": "(2, 'REGISTRY_TAMPERED')"
+    },
+    {
+      "id": "M23b_seal_revalidates_after_restore",
+      "pass": true,
+      "detail": "{'sealed': True, 'tampered': False, 'diffs': [], 'sealed_at': '2026-10-22T16:00:08+0800'}"
+    },
+    {
+      "id": "M24_telemetry_ok",
+      "pass": true,
+      "detail": "(0, None, 'OK')"
+    },
+    {
+      "id": "M25_telemetry_redacted",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "id": "M26_telemetry_has_core_sections",
+      "pass": true,
+      "detail": "['schema', 'generated_at', 'channel_id', 'test_mode', 'code', 'db', 'discovery', 'sends', 'guardrails', 'inventory', 'city', 'safe']"
+    },
+    {
+      "id": "M26b_telemetry_no_absolute_paths",
+      "pass": true,
+      "detail": "no absolute paths outside the db block"
+    },
+    {
+      "id": "M27_releases_lists_entries",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "id": "M28_seal_intact",
+      "pass": true,
+      "detail": "{'sealed': True, 'tampered': False, 'diffs': [], 'sealed_at': '2026-10-22T16:00:08+0800'}"
+    }
+  ]
+}

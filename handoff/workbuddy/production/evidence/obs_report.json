@@ -1,0 +1,208 @@
+{
+ "suite": "observability_sandbox",
+ "total": 40,
+ "passed": 40,
+ "failed": 0,
+ "results": [
+  {
+   "id": "schema:runtime",
+   "ok": true,
+   "detail": "rokt.runtime.v1"
+  },
+  {
+   "id": "schema:city",
+   "ok": true,
+   "detail": "rokt.city.v1"
+  },
+  {
+   "id": "schema:provider_audit",
+   "ok": true,
+   "detail": "rokt.provider_audit.v1"
+  },
+  {
+   "id": "schema:scheduler",
+   "ok": true,
+   "detail": "rokt.scheduler.v1"
+  },
+  {
+   "id": "reject_param:{\"run_id\": \"x'; DROP TABLE leads;--\"}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "reject_param:{\"hours\": 999}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "reject_param:{\"hours\": \"abc\"}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "reject_param:{\"city\": \"../../etc/passwd\"}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "reject_param:{\"limit\": 0}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "reject_unknown_op",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "redaction_assert",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "redaction_city_has_no_email",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "redaction_pending_uses_refs",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "provider_zero_confirmed",
+   "ok": true,
+   "detail": "ZERO_REQUESTS_CONFIRMED"
+  },
+  {
+   "id": "provider_real_requests",
+   "ok": true,
+   "detail": "REAL_REQUESTS"
+  },
+  {
+   "id": "provider_counts",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "provider_unknown_no_record",
+   "ok": true,
+   "detail": "UNKNOWN_NO_RECORD"
+  },
+  {
+   "id": "runtime_utc_to_cst",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "runtime_entrypoint_sha",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "runtime_lock_state",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "firing_planned_derived",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "firing_unpaired_is_not_recorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "firing_drift_computed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "scheduler_detects_skipped_slot",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "id": "scheduler_flags_missed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "scheduler_unclassified_fails_closed",
+   "ok": true,
+   "detail": "NOT_PROVEN"
+  },
+  {
+   "id": "scheduler_verified_false",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "scheduler_tasks_unknown",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "city_ruleset_loaded",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "id": "city_checks_nine_keys",
+   "ok": true,
+   "detail": "9"
+  },
+  {
+   "id": "city_checks_blocked_by_open_work",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "city_blocking_attribution",
+   "ok": true,
+   "detail": "[\"ldr:901\"]"
+  },
+  {
+   "id": "city_retry_parsed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "city_stage_trace_not_recorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "city_next_city",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "safe_absent_reports_route",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "safe_snapshot_served",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "safe_freshness",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "id": "read_only_db_untouched",
+   "ok": true,
+   "detail": "9a247fa85a8d -> 9a247fa85a8d"
+  },
+  {
+   "id": "no_write_sql_in_module",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

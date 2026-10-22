@@ -1,0 +1,170 @@
+{
+  "suite": "unit-in-process",
+  "total": 32,
+  "passed": 32,
+  "failed": [],
+  "results": [
+    {
+      "id": "U00_test_mode_active",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U01_first_holder_acquires",
+      "pass": true,
+      "detail": "{'lock_key': 'run_lock:daily_outreach:inventory:2026-10-22', 'holder': 'deploy:unit-a', 'overrode_stale': False}"
+    },
+    {
+      "id": "U01_second_holder_refused",
+      "pass": true,
+      "detail": "{'lock_key': 'run_lock:daily_outreach:inventory:2026-10-22', 'held_by': 'deploy:unit-a'}"
+    },
+    {
+      "id": "U01_foreign_release_refused",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U01_holder_release_ok",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U01_reacquire_after_release",
+      "pass": true,
+      "detail": "{'lock_key': 'run_lock:daily_outreach:inventory:2026-10-22', 'holder': 'deploy:unit-c', 'overrode_stale': False}"
+    },
+    {
+      "id": "U01_lock_free_after",
+      "pass": true,
+      "detail": "released"
+    },
+    {
+      "id": "U02_target_before",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U02_apply_io_error_clean",
+      "pass": true,
+      "detail": "APPLY_FAILED:IO_ERROR"
+    },
+    {
+      "id": "U02_target_untouched",
+      "pass": true,
+      "detail": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969"
+    },
+    {
+      "id": "U02_lock_released",
+      "pass": true,
+      "detail": "released"
+    },
+    {
+      "id": "U02_backup_retained",
+      "pass": true,
+      "detail": "C:\\Users\\15690\\WorkBuddy\\deploy-channel\\test\\sandbox\\backups\\op-20261022-155955-13ef9b\\bd_orchestrator.py.before.bak"
+    },
+    {
+      "id": "U02_no_auto_rollback_needed",
+      "pass": true,
+      "detail": "None"
+    },
+    {
+      "id": "U03_apply_io_error_clean",
+      "pass": true,
+      "detail": "APPLY_FAILED:IO_ERROR"
+    },
+    {
+      "id": "U03_target_untouched",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U03_lock_released",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U04_apply_ok",
+      "pass": true,
+      "detail": "APPLIED"
+    },
+    {
+      "id": "U04_rollback_io_error_clean",
+      "pass": true,
+      "detail": "ROLLBACK_FAILED:IO_ERROR"
+    },
+    {
+      "id": "U04_target_still_after",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U04_state_stays_applied",
+      "pass": true,
+      "detail": "applied"
+    },
+    {
+      "id": "U04_lock_released",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U04_retry_rollback_ok",
+      "pass": true,
+      "detail": "ROLLED_BACK"
+    },
+    {
+      "id": "U05_applied_for_direction_test",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U05_rollback_direction_all_pass",
+      "pass": true,
+      "detail": "{'all_pass': True, 'failed': [], 'count': 8, 'passed': 8}"
+    },
+    {
+      "id": "U05_rollback_direction_excludes_patch_gates",
+      "pass": true,
+      "detail": "['runtime_path_verified', 'smtp_disabled', 'run_locks_healthy', 'inventory_exclusion_held', 'inventory_not_running', 'no_executable_send_authorization', 'safe_window_verified', 'sending_tasks_paused']"
+    },
+    {
+      "id": "U05_apply_direction_blocks_double_apply",
+      "pass": true,
+      "detail": "{'pass': False, 'actual': 'e7e619d3e40f415c1894aa3e1087978875c6f26570755254ab535b68e5580903', 'expected': '7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969', 'actual_bytes': 31552, 'expected_bytes': 30645}"
+    },
+    {
+      "id": "U05_invalid_direction_rejected",
+      "pass": true,
+      "detail": "INVALID_DIRECTION"
+    },
+    {
+      "id": "U05_rollback_after_direction_checks",
+      "pass": true,
+      "detail": "ROLLED_BACK"
+    },
+    {
+      "id": "U06_no_arbitrary_exec_surface",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "id": "U06_bridge_endpoints_fixed",
+      "pass": true,
+      "detail": "['/healthz', '/v1/apply', '/v1/city', '/v1/health', '/v1/preflight', '/v1/provider-audit', '/v1/register', '/v1/releases', '/v1/rollback', '/v1/runtime', '/v1/safe', '/v1/scheduler', '/v1/status', '/v1/telemetry']"
+    },
+    {
+      "id": "U06_final_state_before",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "U06_lock_free",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "final_target_sha256": "7afc4d7f6ac18e22bba7cc6a9ea2250dc6d6bafe92128c00c08252731bb2e969",
+  "ts": "2026-10-22T15:59:56+08:00"
+}
