@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-22T16:00:47+08:00",
+  "generated_at": "2026-10-22T16:10:09+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -192,7 +192,7 @@
     "validation_status": "website_lookup_pending",
     "error_class": "network_retry",
     "discovered_at": "2026-10-11T11:07:47.199649+08:00",
-    "age_hours": 268.88,
+    "age_hours": 269.04,
     "retry": {
      "kind": "website_resolution_retry",
      "attempts": 1,
@@ -262,7 +262,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-22T16:00:47+08:00",
+  "generated_at": "2026-10-22T16:10:09+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -494,7 +494,7 @@
    "validation_status": "website_lookup_pending",
    "error_class": "network_retry",
    "discovered_at": "2026-10-11T11:07:47.199649+08:00",
-   "age_hours": 268.88,
+   "age_hours": 269.04,
    "retry": {
     "kind": "website_resolution_retry",
     "attempts": 1,
@@ -526,7 +526,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-22T16:00:48+08:00",
+ "generated_at": "2026-10-22T16:10:09+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -541,5 +541,5 @@
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "7b0adf42c75c1d2842f33c8755896a269b97c8e998398a9a5e74c1b5af520ed2"
+ "payload_sha256": "0e1273073bdced38f8d227ced0f06bebde3651c5a42b0ab2316ddb29db2df4d3"
 }

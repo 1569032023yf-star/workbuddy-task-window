@@ -106,10 +106,10 @@
  },
  "finished_at": "2026-10-22T15:56:46+08:00",
  "available": true,
- "generated_at": "2026-10-22T16:00:48+08:00",
+ "generated_at": "2026-10-22T16:10:09+08:00",
  "refresh_requested": false,
  "refresh_result": null,
- "age_hours": 0.18,
+ "age_hours": 0.34,
  "fresh": true,
  "authoritative_route": "/v1/safe",
  "operation": "safe",
@@ -131,5 +131,5 @@
  "unavailable": [
   "24h/7d SAFE net growth (no prior snapshot under an identical rule version)"
  ],
- "payload_sha256": "37f93463dfff152a7581c5010f23719c97be1f71e63704d6aef889fe48ae3247"
+ "payload_sha256": "9b3c8e0ed6471a4e48bb25a0839f9894f2b1ab33bde167fc73b700d6087dc031"
 }

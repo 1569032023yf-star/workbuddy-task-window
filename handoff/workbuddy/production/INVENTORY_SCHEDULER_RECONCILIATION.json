@@ -1,6 +1,6 @@
 {
  "schema": "rokt.scheduler.v1",
- "generated_at": "2026-10-22T16:00:48+08:00",
+ "generated_at": "2026-10-22T16:10:09+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "window_hours": 48,
  "source": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
@@ -188,6 +188,14 @@
     "role": "UNCLASSIFIED",
     "references_orchestrator": true,
     "canonical": false
+   },
+   {
+    "id": "c6bf1717-a7a6-40c7-a1de-074fab9b6128",
+    "name": "BD Production Evidence Refresh — 22:40 (read-only, no inventory)",
+    "status": "ACTIVE",
+    "role": "READ_ONLY_EVIDENCE_REFRESH",
+    "references_orchestrator": true,
+    "canonical": false
    }
   ],
   "windows_service": {
@@ -223,5 +231,5 @@
  "unavailable": [
   "Windows scheduled task enumeration (schtasks blocked by host policy)"
  ],
- "payload_sha256": "aafd2344706035cc781f95c86f25c6548e9e9943bf9621856761762bb8d5b4ca"
+ "payload_sha256": "9fbadc635143e02e75b71a1d51e1ad5e20b2ed3e6b66f180ea789a2e23f9812c"
 }
