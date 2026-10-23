@@ -1,21 +1,21 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-22T22:50:44+08:00",
+  "generated_at": "2026-10-23T22:53:28+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
    "provider": "browser_maps",
    "module": "retail_city_queue.py",
    "module_fingerprint": {
-    "sha256": "02d04313de82464f0f6933df9e7a72f8675ccb6e7ca63b14859751db3e80a6b2",
-    "bytes": 18373,
-    "mtime": "2026-10-22T01:18:11.577886+08:00"
+    "sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
+    "bytes": 20548,
+    "mtime": "2026-10-22T23:18:34.830170+08:00"
    },
    "discovery_fingerprint": {
-    "sha256": "415fbe0cc3323bf45b389f84719c2ee6b52b9ca3d481da6d2f7f70b1c396bd8c",
-    "bytes": 109153,
-    "mtime": "2026-10-22T01:18:11.558798+08:00"
+    "sha256": "abc2f682cbff4a8b6781997bc2a08ac00f5e41289d67ce02b1c7afa519ad6770",
+    "bytes": 113803,
+    "mtime": "2026-10-22T23:18:34.806701+08:00"
    },
    "import_error": null,
    "evaluation_error": null
@@ -24,11 +24,11 @@
    "city_id": 22,
    "city": "Cooperstown",
    "state": "NY",
-   "city_status": "active",
+   "city_status": "search_matrix_exhausted",
    "priority": 3,
    "started_at": "2026-10-08T18:50:05.751144+00:00",
-   "completed_at": null,
-   "completion_reason": null,
+   "completed_at": "2026-10-22T16:49:35.010203+00:00",
+   "completion_reason": "search_matrix_exhausted",
    "pages_processed": 54,
    "results_seen": 913,
    "consecutive_pages_without_new_place": 6,
@@ -168,7 +168,7 @@
   },
   "records": {
    "by_validation_status": {
-    "manual_review_needed": 21,
+    "manual_review_needed": 22,
     "rejected": 15,
     "outside_active_city": 14,
     "website_not_found": 8,
@@ -176,68 +176,49 @@
     "review_recovery": 5,
     "history_blocked": 3,
     "existing_lead_linked": 2,
-    "identity_review": 1,
-    "website_lookup_pending": 1
+    "identity_review": 1
    },
    "total": 77,
-   "pending_states_total": 1,
-   "website_lookup_pending": 1,
-   "network_retry_pending": 1,
+   "pending_states_total": 0,
+   "website_lookup_pending": 0,
+   "network_retry_pending": 0,
    "retry_exhausted": 0,
-   "next_retry_due_at": "2026-10-22T19:00:11.880448+08:00"
+   "next_retry_due_at": null
   },
-  "pending_items": [
-   {
-    "ref": "ldr:571",
-    "validation_status": "website_lookup_pending",
-    "error_class": "network_retry",
-    "discovered_at": "2026-10-11T11:07:47.199649+08:00",
-    "age_hours": 275.72,
-    "retry": {
-     "kind": "website_resolution_retry",
-     "attempts": 2,
-     "failure_events": 2,
-     "status": null,
-     "next_retry_at": "2026-10-22T19:00:11.880448+08:00",
-     "last_failure_at": "2026-10-22T18:30:11.880448+08:00",
-     "terminal_outcome": null
-    }
-   }
-  ],
+  "pending_items": [],
   "blocking_attribution": {
-   "staged_pending_refs": [
-    "ldr:571"
-   ],
+   "staged_pending_refs": [],
    "retryable_manual_review_refs": [],
-   "linked_backlog_retry_refs": [
+   "linked_backlog_retry_refs": [],
+   "auto_recovery_deferred_refs": [
+    "ldr:571",
     "ldr:556"
    ],
-   "auto_recovery_deferred_refs": [],
    "candidate_rows_scanned": 77,
    "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
    "available": true,
    "retryable_manual_review_refs_count": 0,
-   "linked_backlog_retry_refs_count": 1,
-   "auto_recovery_deferred_refs_count": 0,
-   "staged_pending_refs_count": 1
+   "linked_backlog_retry_refs_count": 0,
+   "auto_recovery_deferred_refs_count": 2,
+   "staged_pending_refs_count": 0
   },
   "completion_checks": {
-   "all_candidates_classified": false,
+   "all_candidates_classified": true,
    "all_query_families": true,
    "all_sources_or_reasons": true,
    "last_three_batches_empty": true,
-   "no_unprocessed_candidates": false,
-   "official_site_recheck": false,
+   "no_unprocessed_candidates": true,
+   "official_site_recheck": true,
    "pagination_complete": true,
-   "review_recovery": false,
+   "review_recovery": true,
    "two_empty_pages": true
   },
-  "completion_checks_all_met": false,
+  "completion_checks_all_met": true,
   "next_city": {
-   "city_id": 23,
-   "city": "Lake Placid",
+   "city_id": 24,
+   "city": "Oneonta",
    "status": "pending",
-   "priority": 4,
+   "priority": 5,
    "activatable": true
   },
   "provider_audit": {
@@ -261,21 +242,21 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-22T22:50:44+08:00",
+  "generated_at": "2026-10-23T22:53:28+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
    "provider": "browser_maps",
    "module": "retail_city_queue.py",
    "module_fingerprint": {
-    "sha256": "02d04313de82464f0f6933df9e7a72f8675ccb6e7ca63b14859751db3e80a6b2",
-    "bytes": 18373,
-    "mtime": "2026-10-22T01:18:11.577886+08:00"
+    "sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
+    "bytes": 20548,
+    "mtime": "2026-10-22T23:18:34.830170+08:00"
    },
    "discovery_fingerprint": {
-    "sha256": "415fbe0cc3323bf45b389f84719c2ee6b52b9ca3d481da6d2f7f70b1c396bd8c",
-    "bytes": 109153,
-    "mtime": "2026-10-22T01:18:11.558798+08:00"
+    "sha256": "abc2f682cbff4a8b6781997bc2a08ac00f5e41289d67ce02b1c7afa519ad6770",
+    "bytes": 113803,
+    "mtime": "2026-10-22T23:18:34.806701+08:00"
    },
    "import_error": null,
    "evaluation_error": null
@@ -284,151 +265,154 @@
    "city_id": 23,
    "city": "Lake Placid",
    "state": "NY",
-   "city_status": "pending",
+   "city_status": "active",
    "priority": 4,
-   "started_at": null,
+   "started_at": "2026-10-22T23:02:55.404569+00:00",
    "completed_at": null,
    "completion_reason": null,
-   "pages_processed": 0,
-   "results_seen": 0,
-   "consecutive_pages_without_new_place": 0,
-   "resume_state": null,
+   "pages_processed": 6,
+   "results_seen": 12,
+   "consecutive_pages_without_new_place": 2,
+   "resume_state": "query_completed",
    "web_directory_status": null,
-   "last_success_at": null,
-   "last_error_class": "none"
+   "last_success_at": "2026-10-23T05:29:00.526845+00:00",
+   "last_error_class": "other"
   },
   "active_discovery_state": "NY",
   "active_city_state_config": "TN",
   "query_families": {
    "total": 20,
-   "completed": 0,
-   "remaining": 20,
+   "completed": 2,
+   "remaining": 18,
    "detail": [
     {
      "query_family": "toy store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-23T07:07:40.171826+08:00"
     },
     {
      "query_family": "board game store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-23T13:29:00.526888+08:00"
     },
     {
      "query_family": "game store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "tabletop game store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "gift shop",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "independent gift store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "museum gift shop",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "bookstore",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "independent bookstore",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "comic book store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "hobby store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "educational supply store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "teacher supply store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "children's store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "family game store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "visitor center gift shop",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "tourist gift shop",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "specialty retailer",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "puzzle store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     },
     {
      "query_family": "card game store",
-     "status": "NOT_STARTED",
-     "pages_processed": null,
+     "status": "pending",
+     "pages_processed": 0,
      "completed_at": null
     }
    ]
   },
   "records": {
-   "by_validation_status": {},
-   "total": 0,
+   "by_validation_status": {
+    "rejected": 3,
+    "website_not_found": 1
+   },
+   "total": 4,
    "pending_states_total": 0,
    "website_lookup_pending": 0,
    "network_retry_pending": 0,
@@ -441,7 +425,7 @@
    "retryable_manual_review_refs": [],
    "linked_backlog_retry_refs": [],
    "auto_recovery_deferred_refs": [],
-   "candidate_rows_scanned": 0,
+   "candidate_rows_scanned": 4,
    "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
    "available": true,
    "retryable_manual_review_refs_count": 0,
@@ -469,8 +453,8 @@
    "activatable": true
   },
   "provider_audit": {
-   "requests": 0,
-   "last_requested_at": null
+   "requests": 8,
+   "last_requested_at": "2026-10-23T13:29:00.526646+08:00"
   },
   "stage_events": {
    "available": false,
@@ -487,44 +471,26 @@
   "operation": "city",
   "verdict": "ok"
  },
- "pending_refs": [
-  {
-   "ref": "ldr:571",
-   "validation_status": "website_lookup_pending",
-   "error_class": "network_retry",
-   "discovered_at": "2026-10-11T11:07:47.199649+08:00",
-   "age_hours": 275.72,
-   "retry": {
-    "kind": "website_resolution_retry",
-    "attempts": 2,
-    "failure_events": 2,
-    "status": null,
-    "next_retry_at": "2026-10-22T19:00:11.880448+08:00",
-    "last_failure_at": "2026-10-22T18:30:11.880448+08:00",
-    "terminal_outcome": null
-   }
-  }
- ],
+ "pending_refs": [],
  "blocking_attribution": {
-  "staged_pending_refs": [
-   "ldr:571"
-  ],
+  "staged_pending_refs": [],
   "retryable_manual_review_refs": [],
-  "linked_backlog_retry_refs": [
+  "linked_backlog_retry_refs": [],
+  "auto_recovery_deferred_refs": [
+   "ldr:571",
    "ldr:556"
   ],
-  "auto_recovery_deferred_refs": [],
   "candidate_rows_scanned": 77,
   "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
   "available": true,
   "retryable_manual_review_refs_count": 0,
-  "linked_backlog_retry_refs_count": 1,
-  "auto_recovery_deferred_refs_count": 0,
-  "staged_pending_refs_count": 1
+  "linked_backlog_retry_refs_count": 0,
+  "auto_recovery_deferred_refs_count": 2,
+  "staged_pending_refs_count": 0
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-22T22:50:45+08:00",
+ "generated_at": "2026-10-23T22:53:29+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -532,12 +498,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-22:bc1c588b",
+ "run_id": "inventory:2026-10-23:267cfcbc",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
- "ruleset_sha256": "02d04313de82464f0f6933df9e7a72f8675ccb6e7ca63b14859751db3e80a6b2",
+ "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "9d8a38a93f1c4fd03f49259181d50cadd7d5a2c4559dacdad6f3a8537cd98a1d"
+ "payload_sha256": "448e9916834b66b17e190f821760af4b84fc23a9e0d4dbdf3b642082403bb729"
 }
