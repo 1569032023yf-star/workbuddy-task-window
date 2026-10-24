@@ -1,0 +1,131 @@
+{
+  "schema_version": "rokt.network.v1",
+  "generated_at": "2026-10-25T03:34:48+08:00",
+  "producer": "WorkBuddy",
+  "test_mode": false,
+  "checks": [
+    {
+      "id": "proxy_listening",
+      "pass": true,
+      "evidence": "127.0.0.1:7877 LISTEN owned by MyClashCore.exe PID 45856, loopback only"
+    },
+    {
+      "id": "proxy_owner_verified",
+      "pass": true,
+      "evidence": "MyClash.exe PID 52260 + MyClashCore.exe PID 45856 confirm Clash/Mihomo stack"
+    },
+    {
+      "id": "proxy_protocol_identified",
+      "pass": true,
+      "evidence": "mixed: HTTP CONNECT 200, forward GET 204, SOCKS5 greeting 0500 + CONNECT rep=0"
+    },
+    {
+      "id": "proxy_external_request",
+      "pass": true,
+      "evidence": "forward-proxy GET to gstatic 204 endpoint returned HTTP/1.1 204 No Content"
+    },
+    {
+      "id": "google_maps_access",
+      "pass": true,
+      "evidence": "Playwright chromium via 127.0.0.1:7877 -> https://www.google.com/maps/search/... HTTP 200, title Google Maps, no captcha, 2989ms"
+    },
+    {
+      "id": "scraper_can_use_proxy",
+      "pass": true,
+      "evidence": "_resolve_scraper_proxy() returns http://127.0.0.1:7877 in a fresh process after .env migration"
+    },
+    {
+      "id": "config_migrated",
+      "pass": true,
+      "evidence": ".env SCRAPER_PROXY 3213 -> 7877, sha256 ab350e09, exactly 1 key changed of 24"
+    },
+    {
+      "id": "old_port_not_used",
+      "pass": true,
+      "evidence": "127.0.0.1:3213 has no listener; fresh process resolves 7877 only"
+    },
+    {
+      "id": "backup_restorable",
+      "pass": true,
+      "evidence": "backups/.env.bak_20261025_032700 is byte-identical to pre-change .env (sha 054f3b3c)"
+    },
+    {
+      "id": "isolation_no_db_pollution",
+      "pass": true,
+      "evidence": "probe wrote only output/_p0_network_probe_20261025.json; zero rows written to data/bd_leads.db"
+    },
+    {
+      "id": "customer_tables_untouched",
+      "pass": true,
+      "evidence": "no INSERT/UPDATE/DELETE issued against leads/final_send_plan/send_authorizations/send_log"
+    },
+    {
+      "id": "smtp_not_used",
+      "pass": true,
+      "evidence": "send_log rows for 2026-10-25 = 0; last sent_at remains 2026-09-16T01:09:52+08:00"
+    },
+    {
+      "id": "bridge_steady_state",
+      "pass": false,
+      "evidence": "8791 not listening after agent turn ends; job breakaway denied (WinError 5)"
+    },
+    {
+      "id": "handoff_published",
+      "pass": false,
+      "evidence": "pending git commit/push at generation time"
+    }
+  ],
+  "failure_classification_matrix": {
+    "LOCAL_PROXY_UNAVAILABLE": {
+      "proven": true,
+      "how": "control case with dead port 7999 produced ERR_PROXY_CONNECTION_FAILED"
+    },
+    "PROXY_PROTOCOL_MISMATCH": {
+      "proven": true,
+      "how": "raw socket probes distinguish HTTP vs SOCKS5 handshake success"
+    },
+    "PROXY_CONNECT_FAILED": {
+      "proven": true,
+      "how": "CONNECT refusal surfaces before any remote contact"
+    },
+    "REMOTE_NETWORK_FAILURE": {
+      "proven": false,
+      "how": "no remote outage observed this cycle"
+    },
+    "SOURCE_RESTRICTED": {
+      "proven": false,
+      "how": "no captcha or HTTP 429 encountered; Maps returned 200"
+    },
+    "PARSER_FAILURE": {
+      "proven": false,
+      "how": "not exercised this cycle"
+    }
+  },
+  "isolation_test_cases": {
+    "executed": [
+      "valid proxy + external endpoint",
+      "dead proxy port (connection refused)",
+      "google maps page load via proxy"
+    ],
+    "not_executed": [
+      "SOCKS5 negotiation failure",
+      "HTTP CONNECT failure",
+      "proxy timeout",
+      "clash main process exit",
+      "DNS failure",
+      "empty result set from healthy remote",
+      "malformed maps page",
+      "source rate limit / captcha page",
+      "playwright browser launch failure",
+      "browser abnormal exit",
+      "partial collection recovery",
+      "config rollback drill",
+      "resource and subprocess teardown"
+    ],
+    "note": "remaining fixtures require the network-operations harness; not fabricated"
+  },
+  "grading": {
+    "proxy_7877_migration_accepted": true,
+    "bridge_8791_recovered": false
+  }
+}

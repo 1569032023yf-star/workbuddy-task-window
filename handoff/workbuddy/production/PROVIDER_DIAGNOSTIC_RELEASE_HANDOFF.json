@@ -1,0 +1,103 @@
+{
+  "schema_version": "rokt.release.handoff.v1",
+  "generated_at": "2026-10-25T03:34:48+08:00",
+  "producer": "WorkBuddy",
+  "test_mode": false,
+  "consumer": "Codex autonomous BD supervisor",
+  "codex_repo": "1569032023yf-star/roktandrazo-outreach-codex",
+  "codex_branch": "codex/autonomous-bd-supervisor",
+  "codex_commits": {
+    "pinned": "8d63d2d45393509589261a1ddd0bbcf650a0d1b2",
+    "branch_tip_verified": "30fccc9574074df07280fe89d2f88f4cbf2589af"
+  },
+  "candidate_patch_dir": "patches/production/provider_diagnostics_20261024/",
+  "production_snapshots": [
+    {
+      "path": "discovery/models.py",
+      "exists": true,
+      "bytes": 1425,
+      "sha256": "aa916b75df3b71c7c21c574d60a071f6e838991ef490558eed67df548c5f0638",
+      "eol": "LF",
+      "in_release_whitelist": false
+    },
+    {
+      "path": "discovery/providers/browser_maps.py",
+      "exists": true,
+      "bytes": 15195,
+      "sha256": "88e53fa9afb3142186f1708f140cc0588810e34fd0c1a6ebc48d9dbef2e061c4",
+      "eol": "LF",
+      "in_release_whitelist": false
+    },
+    {
+      "path": "discovery/providers/browser_maps_scraper.py",
+      "exists": true,
+      "bytes": 25357,
+      "sha256": "18d1c79da73ef5e8c8673f538b83af0d493cc433d732a04c32a54c6277eecd49",
+      "eol": "LF",
+      "in_release_whitelist": false
+    }
+  ],
+  "approved_production_baseline": {
+    "source": "deploy-channel state/telemetry_latest.json and state/safe_latest.json",
+    "files": {
+      "bd_orchestrator.py": {
+        "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+        "bytes": 36070,
+        "mtime": "2026-10-22T19:15:01+08:00"
+      },
+      "bd_db.py": {
+        "sha256": "c06fe7ebb3d6330bfccf078634c5ab6dc16563423e8e975e44da859aaa7ce0c7",
+        "bytes": 46262
+      },
+      "preflight_gate.py": {
+        "sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f526"
+      }
+    }
+  },
+  "release_registry": {
+    "channel_config_sha256": "d88740521378cdda12e676566b4a641f0b2e532d472c6c70fa781e5e6c9da073",
+    "registry_seal_verified": true,
+    "registered_releases": [
+      "phase4a8s-safe50-continuous-discovery",
+      "phase4a8u-city-recovery-production-rebase-20261022",
+      "phase4a8v-inventory-stage-trace-20261022",
+      "phase4a8w-city-legacy-ledger-20261022"
+    ],
+    "manifest_rules": {
+      "mode": "fixed whitelist in releases/channel_config.json",
+      "before_sha_must_equal_current_production": true,
+      "rollback_required": true,
+      "independent_review_required": true
+    }
+  },
+  "gap_assessment": {
+    "production_sha_snapshot_approved": false,
+    "scraper_path_authorized": false,
+    "equivalent_regression": false,
+    "controlled_release_reviewed": false,
+    "summary": "The three target paths are absent from the release whitelist. Deploying them requires an explicit owner-approved scope extension plus a new release entry whose before_sha256 equals the current production SHA."
+  },
+  "required_before_release": [
+    "Owner approves adding discovery/models.py, discovery/providers/browser_maps.py and discovery/providers/browser_maps_scraper.py to releases/channel_config.json",
+    "Register a new release entry with before_sha256 = current production SHA listed above",
+    "Run production-equivalent regression for the diagnostic change",
+    "Obtain independent review, then preflight/apply inside a safe window with rollback verified"
+  ],
+  "backup_and_rollback": {
+    "multi_file_backup_required": true,
+    "backup_root": "deploy-channel/backups/op-<op_id>/",
+    "rollback_verified_before_apply": true,
+    "atomic_replace_same_volume": true
+  },
+  "safe_window": {
+    "inventory_cadence": "6h via automation-1784775229336",
+    "avoid_during": "active inventory run and city activation transitions",
+    "observed_last_inventory": "inventory:2026-10-23:267cfcbc completed 2026-10-23T05:32:25+08:00"
+  },
+  "constraints": {
+    "do_not_expand_whitelist_autonomously": true,
+    "do_not_deploy_candidate_as_production": true,
+    "do_not_reapply_4a8v_or_4a8w": true,
+    "candidate_is_not_an_approved_release": true
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "rokt.network.v1",
+  "generated_at": "2026-10-25T03:34:48+08:00",
+  "producer": "WorkBuddy",
+  "test_mode": false,
+  "host": {
+    "os": "Windows",
+    "user": "15690"
+  },
+  "proxy_software": "Clash/Mihomo",
+  "listener": {
+    "endpoint": "127.0.0.1:7877",
+    "loopback_only": true,
+    "owner_process": "MyClashCore.exe",
+    "owner_pid": 45856,
+    "ui_process": "MyClash.exe",
+    "ui_pid": 52260,
+    "owner_verified": true,
+    "address_conflict": false,
+    "listen_then_exit": false
+  },
+  "protocol": {
+    "detected": "mixed",
+    "http": true,
+    "socks5": true,
+    "http_connect_probe": "HTTP/1.1 200 Connection established",
+    "http_forward_probe": "HTTP/1.1 204 No Content",
+    "socks5_greeting": "0500 - no-auth method accepted",
+    "socks5_connect_reply": "rep=0 - succeeded",
+    "chosen_for_production": "http://127.0.0.1:7877"
+  },
+  "connectivity": {
+    "direct_baseline_ok": true,
+    "via_proxy_google_maps": {
+      "http_status": 200,
+      "title": "Google Maps",
+      "captcha": false,
+      "elapsed_ms": 2989
+    },
+    "dead_proxy_control": {
+      "port": 7999,
+      "error": "ERR_PROXY_CONNECTION_FAILED",
+      "classification": "LOCAL_PROXY_UNAVAILABLE"
+    }
+  },
+  "config_change": {
+    "file": "roktandrazo-outreach/.env",
+    "key": "SCRAPER_PROXY",
+    "before": "http://127.0.0.1:3213",
+    "after": "http://127.0.0.1:7877",
+    "sha256_before": "054f3b3c26e5898c2dc77b747ea2f982face94acf2366d3cac00155160b30011",
+    "sha256_after": "ab350e099200ba28437790c542d6d2ad870eeaf9a448c719f24b7f47ca690f9e",
+    "bytes_before": 1780,
+    "bytes_after": 1780,
+    "eol": "LF",
+    "keys_total": 24,
+    "changed_keys": 1,
+    "credential_in_url": false,
+    "backup": {
+      "path": "roktandrazo-outreach/backups/.env.bak_20261025_032700",
+      "sha256": "054f3b3c26e5898c2dc77b747ea2f982face94acf2366d3cac00155160b30011",
+      "byte_identical": true,
+      "restore_procedure": "copy backup file over .env"
+    }
+  },
+  "process_effective": {
+    "resolution_rule": "env_loader loads .env via os.environ.setdefault - .env wins when the process env has no value",
+    "verified_value": "http://127.0.0.1:7877",
+    "verified_via": "discovery.providers.browser_maps_scraper._resolve_scraper_proxy()",
+    "user_scope_env_var": "http://127.0.0.1:7877",
+    "matches_file": true
+  },
+  "unmigrated_dependencies": [
+    {
+      "key": "BD_MX_HTTPS_PROXY",
+      "value": "http://127.0.0.1:3213",
+      "action": "NOT migrated - outside authorized scope for this task",
+      "risk": "MX probe path may degrade while 3213 stays dead"
+    }
+  ],
+  "old_proxy_3213": {
+    "listening": false,
+    "used_by_new_processes": false
+  },
+  "security": {
+    "secrets_uploaded": false,
+    "full_env_uploaded": false,
+    "credentials_logged": false,
+    "global_proxy_changed": false
+  }
+}
