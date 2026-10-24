@@ -178,7 +178,9 @@ supervisor 是本会话的子进程，随工具调用结束被**进程树回收*
 
 ### 4.3 为什么近 2 天没跑
 
-最近几轮均 `target_met`（56 ≥ 50）→ 编排器短路，provider 请求为 0；此后无新 job_runs 行。结合 10-25 03:02 supervisor 的 `STALE_LOCK_RECLAIMED`（陈旧 pid 36032）判断：**WorkBuddy 宿主会话在此期间未持续在线**，属调度未触发，而非采集器崩溃。
+最近几轮均 `target_met`（56 ≥ 50）→ 编排器短路，provider 请求为 0；此后无新 job_runs 行。
+
+根因已定位（2026-10-25 03:01–03:25 只读证据刷新）：48h 内 6 次 Inventory 触发中只有 2 次真跑，2 次确认漏跑；2026-10-25 02:57 那次的失败码为 **`automation-auth-unavailable`**（runtime_last_error：automation owner changed / 当前用户未登录）。即**调度权鉴权失效**，既非查询族耗尽，也非采集器崩溃。`INVENTORY_SCHEDULER_VERIFIED = false`。
 
 因此本轮**不额外创建任务、不手工起 Python 绕过官方调度**，等待 `automation-1784775229336` 下一次自然触发。
 
