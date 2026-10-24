@@ -1,17 +1,17 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-10-23T22:53:29+08:00",
+  "generated_at": "2026-10-25T03:14:41+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-10-22T14:53:29+00:00",
+  "window_start_utc": "2026-10-23T19:14:41+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
   "verdict_basis": "no audit row in window AND all query families for the city/provider are already completed, so discovery had no request to issue",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 4,
+  "inventory_runs_in_window": 0,
   "query_matrix": {
    "total": 20,
    "completed": 20,
@@ -25,10 +25,10 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-10-23T22:53:29+08:00",
+  "generated_at": "2026-10-25T03:14:41+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-10-16T14:53:29+00:00",
+  "window_start_utc": "2026-10-17T19:14:41+00:00",
   "city_id": 23,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "REAL_REQUESTS",
@@ -46,7 +46,7 @@
     "audit_rows": 8
    }
   ],
-  "inventory_runs_in_window": 23,
+  "inventory_runs_in_window": 18,
   "query_matrix": {
    "total": 20,
    "completed": 2,
@@ -60,7 +60,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-10-23T22:53:29+08:00",
+ "generated_at": "2026-10-25T03:14:41+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -68,7 +68,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-23:267cfcbc",
+ "run_id": "post-send:2026-10-24:3ec5e89c",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "d5b48ae2c2441f952d2acd04812ead3cdfb3d9d7b540d4754c57cd6a070bc7e8"
+ "payload_sha256": "1d93146c92077f5beb09cd6a939267e2b51c859a7e5d6b718117f67d7e52c222"
 }
