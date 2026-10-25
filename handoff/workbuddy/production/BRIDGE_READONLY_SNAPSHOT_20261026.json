@@ -1,0 +1,1684 @@
+{
+  "health": {
+    "ok": true,
+    "channel_id": "rokt-deploy-channel",
+    "bridge_version": "2.1",
+    "python": "3.13.14",
+    "pid": 54400,
+    "endpoint": "http://127.0.0.1:8791",
+    "test_mode": false,
+    "operations": [
+      "preflight",
+      "apply",
+      "status",
+      "rollback",
+      "register",
+      "releases",
+      "telemetry",
+      "health",
+      "runtime",
+      "city",
+      "provider-audit",
+      "scheduler",
+      "safe"
+    ],
+    "release_count": 4,
+    "registry_seal": {
+      "sealed": true,
+      "tampered": false,
+      "diffs": [],
+      "sealed_at": "2026-10-22T23:18:00+0800"
+    },
+    "supervisor": {
+      "ts": "2026-10-26T00:47:44+08:00",
+      "pid": 41100,
+      "child_pid": 54400,
+      "adopting": false,
+      "health_ok": false,
+      "health_fails": 1,
+      "restart_streak": 0,
+      "backoff_cap_s": 60.0,
+      "alert_present": false
+    },
+    "inflight": {
+      "count": 0,
+      "operations": [],
+      "since": null
+    },
+    "production_code_sha256": {
+      "bd_orchestrator.py": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+      "bd_db.py": "c06fe7ebb3d6330bfccf078634c5ab6dc16563423e8e975e44da859aaa7ce0c7",
+      "preflight_gate.py": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+      "drafter.py": "f1c4356d23d59286d79bf5105a89d6241cab71d06dfe1d5296d9fe770254650d",
+      "retail_city_queue.py": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
+      "history_crosscheck.py": "0ba0d0cc25fe3baa2404b31b8a01070ab02cb6d8cf8588cf3f68f527efd60631",
+      "bounce_pipeline.py": "6bd0fd52330af4efec8dc48ef99a9e91615c76030f08f97decd6c26421cded24",
+      "result_recovery_sync.py": "a607e345647b5e76e8ebac83a7a58ff57c5c26251fcebca3af213e35242b9f56",
+      "discovery/discovery_service.py": "abc2f682cbff4a8b6781997bc2a08ac00f5e41289d67ce02b1c7afa519ad6770",
+      "discovery/website_resolver.py": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
+      "discovery/models.py": "aa916b75df3b71c7c21c574d60a071f6e838991ef490558eed67df548c5f0638",
+      "discovery/normalizer.py": "8439b56a484a2a277a7d33aeca29f105f10c385e5fd9a099b8ef377a10e0260b",
+      "discovery/providers/browser_maps.py": "88e53fa9afb3142186f1708f140cc0588810e34fd0c1a6ebc48d9dbef2e061c4"
+    },
+    "token_fingerprint": "08f41aa2da0f",
+    "ts": "2026-10-26T00:47:45+08:00"
+  },
+  "status": {
+    "_http": 400,
+    "_body": "{\"error\": \"INVALID_OPERATION_ID\", \"detail\": \"operation_id failed strict pattern\"}"
+  },
+  "telemetry": {
+    "schema": "rokt.telemetry.v1",
+    "generated_at": "2026-10-26T00:47:45+08:00",
+    "channel_id": "rokt-deploy-channel",
+    "test_mode": false,
+    "code": {
+      "bd_orchestrator.py": {
+        "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+        "bytes": 36070,
+        "mtime": "2026-10-22T19:15:01+08:00"
+      },
+      "bd_db.py": {
+        "sha256": "c06fe7ebb3d6330bfccf078634c5ab6dc16563423e8e975e44da859aaa7ce0c7",
+        "bytes": 46262,
+        "mtime": "2026-09-10T10:06:08+08:00"
+      },
+      "preflight_gate.py": {
+        "sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+        "bytes": 41251,
+        "mtime": "2026-09-16T15:15:54+08:00"
+      },
+      "drafter.py": {
+        "sha256": "f1c4356d23d59286d79bf5105a89d6241cab71d06dfe1d5296d9fe770254650d",
+        "bytes": 10701,
+        "mtime": "2026-06-08T09:04:49+08:00"
+      },
+      "retail_city_queue.py": {
+        "sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
+        "bytes": 20548,
+        "mtime": "2026-10-22T23:18:34+08:00"
+      },
+      "history_crosscheck.py": {
+        "sha256": "0ba0d0cc25fe3baa2404b31b8a01070ab02cb6d8cf8588cf3f68f527efd60631",
+        "bytes": 10363,
+        "mtime": "2026-09-10T10:06:08+08:00"
+      },
+      "bounce_pipeline.py": {
+        "sha256": "6bd0fd52330af4efec8dc48ef99a9e91615c76030f08f97decd6c26421cded24",
+        "bytes": 35051,
+        "mtime": "2026-09-29T10:25:11+08:00"
+      },
+      "result_recovery_sync.py": {
+        "sha256": "a607e345647b5e76e8ebac83a7a58ff57c5c26251fcebca3af213e35242b9f56",
+        "bytes": 12286,
+        "mtime": "2026-08-06T15:46:36+08:00"
+      },
+      "discovery/discovery_service.py": {
+        "sha256": "abc2f682cbff4a8b6781997bc2a08ac00f5e41289d67ce02b1c7afa519ad6770",
+        "bytes": 113803,
+        "mtime": "2026-10-22T23:18:34+08:00"
+      },
+      "discovery/website_resolver.py": {
+        "sha256": "8945d43975e4f5750baa956adae0c8f3de5b6b9374741be4217b1b5289844f8f",
+        "bytes": 9164,
+        "mtime": "2026-09-20T15:35:52+08:00"
+      },
+      "discovery/models.py": {
+        "sha256": "aa916b75df3b71c7c21c574d60a071f6e838991ef490558eed67df548c5f0638",
+        "bytes": 1425,
+        "mtime": "2026-07-23T17:11:47+08:00"
+      },
+      "discovery/normalizer.py": {
+        "sha256": "8439b56a484a2a277a7d33aeca29f105f10c385e5fd9a099b8ef377a10e0260b",
+        "bytes": 2783,
+        "mtime": "2026-07-23T16:30:26+08:00"
+      },
+      "discovery/providers/browser_maps.py": {
+        "sha256": "88e53fa9afb3142186f1708f140cc0588810e34fd0c1a6ebc48d9dbef2e061c4",
+        "bytes": 15195,
+        "mtime": "2026-09-22T16:21:39+08:00"
+      }
+    },
+    "db": {
+      "size_bytes": 9588736,
+      "quick_check": "ok"
+    },
+    "discovery": {
+      "leads_total": 1213,
+      "leads_with_email": 652,
+      "last_discovery_at": "2026-10-23T05:29:00.515527+00:00",
+      "last_provider_request_at": "2026-10-25T14:29:44.719751+00:00",
+      "provider_requests_24h": 6
+    },
+    "sends": {
+      "total_sent": 517,
+      "sent_today": 0,
+      "last_send_at": "2026-09-16T01:09:52.031266+08:00",
+      "per_day_last7": [
+        {
+          "date": "2026-09-16",
+          "sends": 1
+        },
+        {
+          "date": "2026-09-03",
+          "sends": 5
+        },
+        {
+          "date": "2026-09-01",
+          "sends": 14
+        },
+        {
+          "date": "2026-08-28",
+          "sends": 1
+        },
+        {
+          "date": "2026-08-21",
+          "sends": 5
+        },
+        {
+          "date": "2026-08-20",
+          "sends": 9
+        },
+        {
+          "date": "2026-08-19",
+          "sends": 10
+        }
+      ],
+      "bounce_log": 63,
+      "suppression_list": 63,
+      "unmatched_dsn": 48
+    },
+    "guardrails": {
+      "smtp_enabled": "0",
+      "send_pause": "false",
+      "manual_pause": "false",
+      "daily_send_target": "40",
+      "pending_send_authorizations": 0,
+      "manual_send_queue": 0,
+      "planned_fsp_unconsumed": null
+    },
+    "inventory": {
+      "lock_key": "run_lock:daily_outreach:inventory:2026-10-26",
+      "lock_value": null,
+      "lock_acquired_at": null,
+      "running_inventory_2h": 0,
+      "running_inventory_24h": 0,
+      "inventory_runs_24h": 3,
+      "window_note": "running_inventory_2h is a 2-hour window; inventory_runs_24h is the count of inventory runs started in the last 24h",
+      "recent_runs": [
+        {
+          "started_at": "2026-10-25 16:10:03",
+          "business_date": "2026-10-25",
+          "status": "completed",
+          "target": 0,
+          "actual": 0,
+          "stop_reason": "",
+          "stage": "post-send",
+          "run_id": "post-send:2026-10-25:abc87e65"
+        },
+        {
+          "started_at": "2026-10-25 14:24:02",
+          "business_date": "2026-10-25",
+          "status": "partial",
+          "target": 60,
+          "actual": 56,
+          "stop_reason": "safe_inventory_gap",
+          "stage": "inventory",
+          "run_id": "inventory:2026-10-25:9453e5ae"
+        },
+        {
+          "started_at": "2026-10-25 07:47:12",
+          "business_date": "2026-10-25",
+          "status": "partial",
+          "target": 60,
+          "actual": 56,
+          "stop_reason": "safe_inventory_gap",
+          "stage": "inventory",
+          "run_id": "inventory:2026-10-25:e06b14b2"
+        },
+        {
+          "started_at": "2026-10-25 01:11:13",
+          "business_date": "2026-10-25",
+          "status": "stopped",
+          "target": 60,
+          "actual": 56,
+          "stop_reason": "discovery_provider_error:partial",
+          "stage": "inventory",
+          "run_id": "inventory:2026-10-25:c671e444"
+        },
+        {
+          "started_at": "2026-10-24 16:10:02",
+          "business_date": "2026-10-24",
+          "status": "completed",
+          "target": 0,
+          "actual": 0,
+          "stop_reason": "",
+          "stage": "post-send",
+          "run_id": "post-send:2026-10-24:3ec5e89c"
+        },
+        {
+          "started_at": "2026-10-23 16:10:02",
+          "business_date": "2026-10-23",
+          "status": "completed",
+          "target": 0,
+          "actual": 0,
+          "stop_reason": "",
+          "stage": "post-send",
+          "run_id": "post-send:2026-10-23:0315d54c"
+        },
+        {
+          "started_at": "2026-10-23 05:25:32",
+          "business_date": "2026-10-23",
+          "status": "completed",
+          "target": 50,
+          "actual": 56,
+          "stop_reason": "target_met",
+          "stage": "inventory",
+          "run_id": "inventory:2026-10-23:267cfcbc"
+        },
+        {
+          "started_at": "2026-10-22 23:04:42",
+          "business_date": "2026-10-23",
+          "status": "completed",
+          "target": 50,
+          "actual": 56,
+          "stop_reason": "target_met",
+          "stage": "inventory",
+          "run_id": "inventory:2026-10-23:b628c7c8"
+        }
+      ]
+    },
+    "city": {
+      "active": [
+        {
+          "city": "Lake Placid",
+          "status": "active",
+          "started_at": "2026-10-22T23:02:55.404569+00:00",
+          "completed_at": null
+        },
+        {
+          "city": "Little Rock",
+          "status": "QUEUED",
+          "started_at": "2026-08-03 07:30:15",
+          "completed_at": null
+        },
+        {
+          "city": "Louisville",
+          "status": "QUEUED",
+          "started_at": "2026-08-01T06:56:33.844950+00:00",
+          "completed_at": null
+        }
+      ],
+      "last_completed": {
+        "city": "Cooperstown",
+        "completed_at": "2026-10-22T16:49:35.010203+00:00",
+        "completion_reason": "search_matrix_exhausted"
+      },
+      "queue_rows": 36
+    },
+    "safe": {
+      "available": true,
+      "safe_unique_orgs": 56,
+      "measured_at": "2026-10-25T22:41:38+08:00",
+      "age_hours": 2.1,
+      "mx_probe_ok": true,
+      "source": "C:\\Users\\15690\\WorkBuddy\\deploy-channel\\state\\safe_latest.json",
+      "authoritative_route": "/v1/safe"
+    },
+    "automations": {
+      "live_count": 5,
+      "active_inventory_count": 1,
+      "live": [
+        {
+          "id": "488f4c21-a70b-4611-a388-9a3f61c02db9",
+          "status": "PAUSED",
+          "rrule": "",
+          "next_run_at": null
+        },
+        {
+          "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
+          "status": "ACTIVE",
+          "rrule": "FREQ=HOURLY;INTERVAL=6",
+          "next_run_at": "2026-10-26T03:34:42+08:00"
+        },
+        {
+          "id": "automation-1784775229336",
+          "status": "ACTIVE",
+          "rrule": "FREQ=HOURLY;INTERVAL=6",
+          "next_run_at": "2026-10-26T04:46:56+08:00"
+        },
+        {
+          "id": "automation-1786002601925",
+          "status": "ACTIVE",
+          "rrule": "FREQ=DAILY;BYHOUR=8;BYMINUTE=45",
+          "next_run_at": "2026-10-26T08:45:00+08:00"
+        },
+        {
+          "id": "c6bf1717-a7a6-40c7-a1de-074fab9b6128",
+          "status": "ACTIVE",
+          "rrule": "FREQ=DAILY;BYHOUR=22;BYMINUTE=40",
+          "next_run_at": "2026-10-26T22:40:00+08:00"
+        }
+      ],
+      "sending_tasks": {
+        "presend": {
+          "status": "PAUSED",
+          "deleted": true
+        },
+        "preflight": {
+          "status": "PAUSED",
+          "deleted": true
+        },
+        "outreach": {
+          "status": "PAUSED",
+          "deleted": true
+        }
+      }
+    },
+    "telemetry_sha256": "7d8eeb1217b089ed950f864de864466d2fd1b1af7759bc25be33b6d149a82360",
+    "operation": "telemetry",
+    "verdict": "OK",
+    "snapshot_path": "C:\\Users\\15690\\WorkBuddy\\deploy-channel\\state\\telemetry_latest.json"
+  },
+  "runtime": {
+    "schema": "rokt.runtime.v1",
+    "generated_at": "2026-10-26T00:47:46+08:00",
+    "business_timezone": "Asia/Shanghai (+08)",
+    "source": "bd_leads.db:job_runs + system_config(run_lock) + workbuddy.db:automation_runs",
+    "code": {
+      "bd_orchestrator.py": {
+        "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+        "bytes": 36070,
+        "mtime": "2026-10-22T19:15:01.867681+08:00"
+      }
+    },
+    "db": {
+      "path_basename": "bd_leads.db",
+      "quick_check": "ok"
+    },
+    "lock": {
+      "key": "run_lock:daily_outreach:inventory:2026-10-26",
+      "value": null,
+      "acquired_at": null,
+      "state": "NO_LOCK_KEY_TODAY"
+    },
+    "runs": [
+      {
+        "run_id": "post-send:2026-10-25:abc87e65",
+        "stage": "post-send",
+        "business_date": "2026-10-25",
+        "status": "completed",
+        "stop_reason": "NOT_RECORDED",
+        "current_step": "post_send",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 0,
+        "actual": 0,
+        "gap": 40,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 16244,
+        "process_started_at": "2026-10-26T00:10:03+08:00",
+        "process_finished_at": "2026-10-26T00:10:04+08:00",
+        "process_duration_seconds": 1.0,
+        "trigger_id": "NOT_RECORDED",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-25:9453e5ae",
+        "stage": "inventory",
+        "business_date": "2026-10-25",
+        "status": "partial",
+        "stop_reason": "safe_inventory_gap",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:24:02.625908+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:24:02.736763+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:24:02.759938+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:28:58.871486+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:28:58.897331+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:28:58.905735+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:29:44.723661+00:00\",\"city_id\":23,\"count\":4},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:29:44.732501+00:00\",\"city_id\":23},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:29:44.740784+00:00\",\"city_id\":23,\"count\":0},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:29:44.749027+00:00\",\"city_id\":23},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:29:44.756386+00:00\",\"city_id\":23,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:29:44.764583+00:00\",\"city_id\":23},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:29:44.773282+00:00\",\"city_id\":23,\"count\":0},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-10-25T14:29:44.781359+00:00\",\"city_id\":23},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:29:44.790020+00:00\",\"city_id\":23},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-10-25T14:34:37.613757+00:00\",\"count\":56}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 60,
+        "actual": 56,
+        "gap": 4,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 24276,
+        "process_started_at": "2026-10-25T22:24:02+08:00",
+        "process_finished_at": "2026-10-25T22:34:37+08:00",
+        "process_duration_seconds": 635.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-25:e06b14b2",
+        "stage": "inventory",
+        "business_date": "2026-10-25",
+        "status": "partial",
+        "stop_reason": "safe_inventory_gap",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:47:12.935981+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:47:13.026680+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:47:13.047597+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:52:12.771220+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:52:12.800322+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:52:12.808021+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:52:57.900894+00:00\",\"city_id\":23,\"count\":4},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:52:57.909997+00:00\",\"city_id\":23},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:52:57.918192+00:00\",\"city_id\":23,\"count\":0},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:52:57.928447+00:00\",\"city_id\":23},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:52:57.937324+00:00\",\"city_id\":23,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:52:57.945116+00:00\",\"city_id\":23},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:52:57.952905+00:00\",\"city_id\":23,\"count\":0},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-10-25T07:52:57.960693+00:00\",\"city_id\":23},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:52:57.969004+00:00\",\"city_id\":23},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-10-25T07:57:50.663789+00:00\",\"count\":56}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 60,
+        "actual": 56,
+        "gap": 4,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 28416,
+        "process_started_at": "2026-10-25T15:47:12+08:00",
+        "process_finished_at": "2026-10-25T15:57:50+08:00",
+        "process_duration_seconds": 638.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-25:c671e444",
+        "stage": "inventory",
+        "business_date": "2026-10-25",
+        "status": "stopped",
+        "stop_reason": "discovery_provider_error:partial",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-25T01:11:13.486967+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-25T01:11:13.616096+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-25T01:11:13.640370+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-25T01:16:14.444137+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-25T01:16:14.493116+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-25T01:16:14.509962+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-25T01:16:54.807550+00:00\",\"city_id\":23,\"count\":0},{\"seq\":8,\"phase\":\"inventory\",\"outcome\":\"failed\",\"at\":\"2026-10-25T01:16:54.820545+00:00\"}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 60,
+        "actual": 56,
+        "gap": 4,
+        "error_class": "other",
+        "error_present": true,
+        "dry_run": false,
+        "process_id": 33980,
+        "process_started_at": "2026-10-25T09:11:13+08:00",
+        "process_finished_at": "2026-10-25T09:16:54+08:00",
+        "process_duration_seconds": 341.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "post-send:2026-10-24:3ec5e89c",
+        "stage": "post-send",
+        "business_date": "2026-10-24",
+        "status": "completed",
+        "stop_reason": "NOT_RECORDED",
+        "current_step": "post_send",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 0,
+        "actual": 0,
+        "gap": 40,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 49344,
+        "process_started_at": "2026-10-25T00:10:02+08:00",
+        "process_finished_at": "2026-10-25T00:10:03+08:00",
+        "process_duration_seconds": 1.0,
+        "trigger_id": "NOT_RECORDED",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "post-send:2026-10-23:0315d54c",
+        "stage": "post-send",
+        "business_date": "2026-10-23",
+        "status": "completed",
+        "stop_reason": "NOT_RECORDED",
+        "current_step": "post_send",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 0,
+        "actual": 0,
+        "gap": 40,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 40132,
+        "process_started_at": "2026-10-24T00:10:02+08:00",
+        "process_finished_at": "2026-10-24T00:10:03+08:00",
+        "process_duration_seconds": 1.0,
+        "trigger_id": "NOT_RECORDED",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-23:267cfcbc",
+        "stage": "inventory",
+        "business_date": "2026-10-23",
+        "status": "completed",
+        "stop_reason": "target_met",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:25:32.627295+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:25:32.696158+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:25:32.716680+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:28:46.970898+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:28:46.984229+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:28:46.993197+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:29:00.529960+00:00\",\"city_id\":23,\"count\":3},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:29:00.537456+00:00\",\"city_id\":23},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:29:00.545479+00:00\",\"city_id\":23,\"count\":0},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:29:00.552609+00:00\",\"city_id\":23},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:29:00.562463+00:00\",\"city_id\":23,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:29:00.569784+00:00\",\"city_id\":23},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:29:00.577385+00:00\",\"city_id\":23,\"count\":0},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-10-23T05:29:00.584242+00:00\",\"city_id\":23},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:29:00.592404+00:00\",\"city_id\":23},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-10-23T05:32:25.463983+00:00\",\"count\":56}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 50,
+        "actual": 56,
+        "gap": 0,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 14868,
+        "process_started_at": "2026-10-23T13:25:32+08:00",
+        "process_finished_at": "2026-10-23T13:32:25+08:00",
+        "process_duration_seconds": 413.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-23:b628c7c8",
+        "stage": "inventory",
+        "business_date": "2026-10-23",
+        "status": "completed",
+        "stop_reason": "target_met",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:04:43.032674+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:04:43.125320+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:04:43.145796+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:06:53.183062+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:06:53.196941+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:06:53.207428+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:07:40.175198+00:00\",\"city_id\":23,\"count\":9},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:07:40.185261+00:00\",\"city_id\":23},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:07:48.707985+00:00\",\"city_id\":23,\"count\":1},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:07:48.717015+00:00\",\"city_id\":23},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:07:48.726269+00:00\",\"city_id\":23,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:07:48.734390+00:00\",\"city_id\":23},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:07:48.744909+00:00\",\"city_id\":23,\"count\":0},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:07:48.754735+00:00\",\"city_id\":23},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:07:48.766129+00:00\",\"city_id\":23},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:10:04.681565+00:00\",\"count\":56}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 50,
+        "actual": 56,
+        "gap": 0,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 29020,
+        "process_started_at": "2026-10-23T07:04:42+08:00",
+        "process_finished_at": "2026-10-23T07:10:04+08:00",
+        "process_duration_seconds": 322.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-23:3eca4eae",
+        "stage": "inventory",
+        "business_date": "2026-10-23",
+        "status": "stopped",
+        "stop_reason": "discovery_provider_error:scrape_error",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:00:43.928320+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:00:44.004261+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:00:44.027324+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:02:55.373001+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:02:55.407459+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-22T23:02:55.416700+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-22T23:02:58.603040+00:00\",\"city_id\":23,\"count\":0},{\"seq\":8,\"phase\":\"inventory\",\"outcome\":\"failed\",\"at\":\"2026-10-22T23:02:58.618366+00:00\"}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 50,
+        "actual": 56,
+        "gap": 0,
+        "error_class": "other",
+        "error_present": true,
+        "dry_run": false,
+        "process_id": 32408,
+        "process_started_at": "2026-10-23T07:00:43+08:00",
+        "process_finished_at": "2026-10-23T07:02:58+08:00",
+        "process_duration_seconds": 135.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      },
+      {
+        "run_id": "inventory:2026-10-22:27b410bf",
+        "stage": "inventory",
+        "business_date": "2026-10-22",
+        "status": "completed",
+        "stop_reason": "target_met",
+        "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:45:34.271439+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:45:34.342078+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:45:34.356008+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:48:24.126138+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:48:24.162902+00:00\",\"city_id\":22},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:48:24.174756+00:00\",\"city_id\":22},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:48:24.182423+00:00\",\"city_id\":22,\"count\":0},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:48:24.190117+00:00\",\"city_id\":22},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:49:09.228976+00:00\",\"city_id\":22,\"count\":1},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:49:09.237427+00:00\",\"city_id\":22},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:49:09.245859+00:00\",\"city_id\":22,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:49:09.253051+00:00\",\"city_id\":22},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:49:34.984100+00:00\",\"city_id\":22,\"count\":1},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-10-22T16:49:34.995347+00:00\",\"city_id\":22},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:49:35.013103+00:00\",\"city_id\":22},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-10-22T16:52:24.841628+00:00\",\"count\":56}]}",
+        "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+        "target": 50,
+        "actual": 56,
+        "gap": 0,
+        "error_class": "none",
+        "error_present": false,
+        "dry_run": false,
+        "process_id": 45496,
+        "process_started_at": "2026-10-23T00:45:34+08:00",
+        "process_finished_at": "2026-10-23T00:52:24+08:00",
+        "process_duration_seconds": 410.0,
+        "trigger_id": "automation-1784775229336",
+        "entrypoint": "bd_orchestrator.py",
+        "entrypoint_fingerprint": {
+          "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+          "bytes": 36070,
+          "mtime": "2026-10-22T19:15:01.867681+08:00"
+        }
+      }
+    ],
+    "running_inventory_now": 6,
+    "inventory_runs_last_2h": 0,
+    "inventory_runs_last_24h": 3,
+    "trigger_receipts": {
+      "automation_id": "automation-1784775229336",
+      "interval_seconds": 21600,
+      "next_run_at": "2026-10-26T04:46:56.068000+08:00",
+      "runtime_last_run_at": "2026-10-25T22:46:56.068000+08:00",
+      "firings": [
+        {
+          "firing_id": "automation-1784775229336:1792937490049",
+          "triggered_at": "2026-10-25T22:11:30.057000+08:00",
+          "completed_at": "2026-10-25T22:46:55.948000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-25T22:11:26.967000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 3.1,
+          "cycle_gap_seconds": 21603.1,
+          "skipped_slots_between": 0,
+          "executed": true,
+          "run_id": "inventory:2026-10-25:9453e5ae",
+          "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792913549195",
+          "triggered_at": "2026-10-25T15:32:29.207000+08:00",
+          "completed_at": "2026-10-25T16:11:26.967000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-25T15:32:05.822000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 23.4,
+          "cycle_gap_seconds": 21623.4,
+          "skipped_slots_between": 0,
+          "executed": true,
+          "run_id": "inventory:2026-10-25:e06b14b2",
+          "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792889840164",
+          "triggered_at": "2026-10-25T08:57:20.174000+08:00",
+          "completed_at": "2026-10-25T09:32:05.822000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-25T08:57:17.878000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 2.3,
+          "cycle_gap_seconds": 21602.3,
+          "skipped_slots_between": 0,
+          "executed": true,
+          "run_id": "inventory:2026-10-25:c671e444",
+          "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792868230368",
+          "triggered_at": "2026-10-25T02:57:10.370000+08:00",
+          "completed_at": "2026-10-25T02:57:17.878000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": false,
+          "automation_failure_code": "automation-auth-unavailable",
+          "automation_reason_code": null,
+          "planned_at": "2026-10-24T14:43:48.671000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 44001.7,
+          "cycle_gap_seconds": 65601.7,
+          "skipped_slots_between": 2,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792802364962",
+          "triggered_at": "2026-10-24T08:39:24.974000+08:00",
+          "completed_at": "2026-10-24T08:43:48.671000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-24T08:38:42.299000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 42.7,
+          "cycle_gap_seconds": 21642.7,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792780516459",
+          "triggered_at": "2026-10-24T02:35:16.471000+08:00",
+          "completed_at": "2026-10-24T02:38:42.299000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-24T02:34:58.958000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 17.5,
+          "cycle_gap_seconds": 21617.5,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792758245983",
+          "triggered_at": "2026-10-23T20:24:05.994000+08:00",
+          "completed_at": "2026-10-23T20:34:58.958000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-23T20:23:24.818000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 41.2,
+          "cycle_gap_seconds": 21641.2,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792732610467",
+          "triggered_at": "2026-10-23T13:16:50.473000+08:00",
+          "completed_at": "2026-10-23T14:23:24.818000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-23T13:16:07.331000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 43.1,
+          "cycle_gap_seconds": 21643.1,
+          "skipped_slots_between": 0,
+          "executed": true,
+          "run_id": "inventory:2026-10-23:267cfcbc",
+          "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792709707954",
+          "triggered_at": "2026-10-23T06:55:07.962000+08:00",
+          "completed_at": "2026-10-23T07:16:07.331000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-23T06:54:25.071000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 42.9,
+          "cycle_gap_seconds": 21642.9,
+          "skipped_slots_between": 0,
+          "executed": true,
+          "run_id": "inventory:2026-10-23:b628c7c8",
+          "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792687381734",
+          "triggered_at": "2026-10-23T00:43:01.744000+08:00",
+          "completed_at": "2026-10-23T00:54:25.071000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-23T00:42:26.350000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 35.4,
+          "cycle_gap_seconds": 21635.4,
+          "skipped_slots_between": 0,
+          "executed": true,
+          "run_id": "inventory:2026-10-22:27b410bf",
+          "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792664321158",
+          "triggered_at": "2026-10-22T18:18:41.176000+08:00",
+          "completed_at": "2026-10-22T18:42:26.350000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-22T18:18:22.540000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 18.6,
+          "cycle_gap_seconds": 21618.6,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792641501956",
+          "triggered_at": "2026-10-22T11:58:21.964000+08:00",
+          "completed_at": "2026-10-22T12:18:22.540000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-22T11:58:01.774000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 20.2,
+          "cycle_gap_seconds": 21620.2,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792619057342",
+          "triggered_at": "2026-10-22T05:44:17.353000+08:00",
+          "completed_at": "2026-10-22T05:58:01.774000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-22T05:43:24.855000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 52.5,
+          "cycle_gap_seconds": 21652.5,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792596292643",
+          "triggered_at": "2026-10-21T23:24:52.650000+08:00",
+          "completed_at": "2026-10-21T23:43:24.855000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-21T23:24:23.231000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 29.4,
+          "cycle_gap_seconds": 21629.4,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792574486636",
+          "triggered_at": "2026-10-21T17:21:26.646000+08:00",
+          "completed_at": "2026-10-21T17:24:23.231000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-21T17:20:53.542000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 33.1,
+          "cycle_gap_seconds": 21633.1,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792551700788",
+          "triggered_at": "2026-10-21T11:01:40.796000+08:00",
+          "completed_at": "2026-10-21T11:20:53.542000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-21T10:54:14.409000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 446.4,
+          "cycle_gap_seconds": 22046.4,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792528597914",
+          "triggered_at": "2026-10-21T04:36:37.923000+08:00",
+          "completed_at": "2026-10-21T04:54:14.409000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-21T04:35:56.180000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 41.7,
+          "cycle_gap_seconds": 21641.7,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792505768479",
+          "triggered_at": "2026-10-20T22:16:08.485000+08:00",
+          "completed_at": "2026-10-20T22:35:56.180000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-20T22:15:56.328000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 12.2,
+          "cycle_gap_seconds": 21612.2,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792483112286",
+          "triggered_at": "2026-10-20T15:58:32.296000+08:00",
+          "completed_at": "2026-10-20T16:15:56.328000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": "2026-10-20T15:58:04.967000+08:00",
+          "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+          "trigger_drift_seconds": 27.3,
+          "cycle_gap_seconds": 21627.3,
+          "skipped_slots_between": 0,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        },
+        {
+          "firing_id": "automation-1784775229336:1792460344503",
+          "triggered_at": "2026-10-20T09:39:04.805000+08:00",
+          "completed_at": "2026-10-20T09:58:04.967000+08:00",
+          "automation_status": "ACCEPTED",
+          "automation_result_success": true,
+          "automation_failure_code": null,
+          "automation_reason_code": null,
+          "planned_at": null,
+          "planned_basis": "NOT_RECORDED",
+          "trigger_drift_seconds": null,
+          "cycle_gap_seconds": null,
+          "skipped_slots_between": null,
+          "executed": false,
+          "run_id": null,
+          "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+        }
+      ],
+      "source": "workbuddy.db:automation_runs",
+      "note": "planned_at is DERIVED from the previous firing's completion + rrule interval (the scheduler anchors hourly rules to the completion moment); the raw historical next_run_at is overwritten on every run and is NOT_RECORDED.",
+      "automation_status": "ACTIVE",
+      "runtime_last_error": null,
+      "runtime_running": false
+    },
+    "field_notes": {
+      "planned_vs_triggered_vs_started": "planned_at (derived) != triggered_at (scheduler receipt) != process_started_at (job_runs, UTC->+08)",
+      "unrecorded": "stage-level events (activate_next_city / run_places_batch / staging postprocess / completion checks) are NOT persisted per run; current_step only holds the first step. Reported as NOT_RECORDED rather than reconstructed from source."
+    },
+    "operation": "runtime",
+    "verdict": "ok"
+  },
+  "city": {
+    "schema": "rokt.city.v1",
+    "generated_at": "2026-10-26T00:47:46+08:00",
+    "business_timezone": "Asia/Shanghai (+08)",
+    "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
+    "ruleset": {
+      "provider": "browser_maps",
+      "module": "retail_city_queue.py",
+      "module_fingerprint": {
+        "sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
+        "bytes": 20548,
+        "mtime": "2026-10-22T23:18:34.830170+08:00"
+      },
+      "discovery_fingerprint": {
+        "sha256": "abc2f682cbff4a8b6781997bc2a08ac00f5e41289d67ce02b1c7afa519ad6770",
+        "bytes": 113803,
+        "mtime": "2026-10-22T23:18:34.806701+08:00"
+      },
+      "import_error": null,
+      "evaluation_error": null
+    },
+    "city": {
+      "city_id": 23,
+      "city": "Lake Placid",
+      "state": "NY",
+      "city_status": "active",
+      "priority": 4,
+      "started_at": "2026-10-22T23:02:55.404569+00:00",
+      "completed_at": null,
+      "completion_reason": null,
+      "pages_processed": 10,
+      "results_seen": 20,
+      "consecutive_pages_without_new_place": 6,
+      "resume_state": "query_completed",
+      "web_directory_status": null,
+      "last_success_at": "2026-10-25T14:29:44.720197+00:00",
+      "last_error_class": "other"
+    },
+    "active_discovery_state": "NY",
+    "active_city_state_config": "TN",
+    "query_families": {
+      "total": 20,
+      "completed": 4,
+      "remaining": 16,
+      "detail": [
+        {
+          "query_family": "toy store",
+          "status": "completed",
+          "pages_processed": 3,
+          "completed_at": "2026-10-23T07:07:40.171826+08:00"
+        },
+        {
+          "query_family": "board game store",
+          "status": "completed",
+          "pages_processed": 3,
+          "completed_at": "2026-10-23T13:29:00.526888+08:00"
+        },
+        {
+          "query_family": "game store",
+          "status": "completed",
+          "pages_processed": 2,
+          "completed_at": "2026-10-25T15:52:57.898097+08:00"
+        },
+        {
+          "query_family": "tabletop game store",
+          "status": "completed",
+          "pages_processed": 2,
+          "completed_at": "2026-10-25T22:29:44.720231+08:00"
+        },
+        {
+          "query_family": "gift shop",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "independent gift store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "museum gift shop",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "bookstore",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "independent bookstore",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "comic book store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "hobby store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "educational supply store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "teacher supply store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "children's store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "family game store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "visitor center gift shop",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "tourist gift shop",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "specialty retailer",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "puzzle store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        },
+        {
+          "query_family": "card game store",
+          "status": "pending",
+          "pages_processed": 0,
+          "completed_at": null
+        }
+      ]
+    },
+    "records": {
+      "by_validation_status": {
+        "rejected": 3,
+        "website_not_found": 1
+      },
+      "total": 4,
+      "pending_states_total": 0,
+      "website_lookup_pending": 0,
+      "network_retry_pending": 0,
+      "retry_exhausted": 0,
+      "next_retry_due_at": null
+    },
+    "pending_items": [],
+    "blocking_attribution": {
+      "staged_pending_refs": [],
+      "retryable_manual_review_refs": [],
+      "linked_backlog_retry_refs": [],
+      "auto_recovery_deferred_refs": [],
+      "candidate_rows_scanned": 4,
+      "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
+      "available": true,
+      "retryable_manual_review_refs_count": 0,
+      "linked_backlog_retry_refs_count": 0,
+      "auto_recovery_deferred_refs_count": 0,
+      "staged_pending_refs_count": 0
+    },
+    "completion_checks": {
+      "all_candidates_classified": true,
+      "all_query_families": false,
+      "all_sources_or_reasons": false,
+      "last_three_batches_empty": false,
+      "no_unprocessed_candidates": true,
+      "official_site_recheck": true,
+      "pagination_complete": false,
+      "review_recovery": true,
+      "two_empty_pages": false
+    },
+    "completion_checks_all_met": false,
+    "next_city": {
+      "city_id": 24,
+      "city": "Oneonta",
+      "status": "pending",
+      "priority": 5,
+      "activatable": true
+    },
+    "provider_audit": {
+      "requests": 14,
+      "last_requested_at": "2026-10-25T22:29:44.719751+08:00"
+    },
+    "stage_events": {
+      "available": false,
+      "reason": "NOT_RECORDED: the orchestrator persists no per-run stage event log. Durable proxies only: lead_discovery_query_state (discovery), provider_request_audit (provider calls), retail_city_queue counters. No stage trace is reconstructed from source code.",
+      "observable_proxies": {
+        "entered_stage_inventory": "job_runs.stage='inventory'",
+        "resolved_active_discovery_state": "NY",
+        "activate_next_city": "retail_city_queue.started_at of the active row",
+        "run_places_batch": "provider_request_audit rows dated inside the run window",
+        "run_staging_postprocess": "lead_discovery_results.validation_status transitions (not timestamped per run)",
+        "city_completion_check": "completion_checks (current truth, not historical)"
+      }
+    },
+    "operation": "city",
+    "verdict": "ok"
+  },
+  "provider-audit": {
+    "schema": "rokt.provider_audit.v1",
+    "generated_at": "2026-10-26T00:47:46+08:00",
+    "business_timezone": "Asia/Shanghai (+08)",
+    "window_hours": 24,
+    "window_start_utc": "2026-10-24T16:47:46+00:00",
+    "city_id": 23,
+    "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
+    "verdict": "REAL_REQUESTS",
+    "verdict_basis": "provider_request_audit rows present in window",
+    "audit_rows": 6,
+    "per_provider": [
+      {
+        "provider": "browser_maps",
+        "requests": 5,
+        "success": 4,
+        "failed": 2,
+        "timeout": 2,
+        "rate_limited": 0,
+        "last_requested_at": "2026-10-25T22:29:44.719751+08:00",
+        "audit_rows": 6
+      }
+    ],
+    "inventory_runs_in_window": 3,
+    "query_matrix": {
+      "total": 20,
+      "completed": 4,
+      "exhausted": false
+    },
+    "distinction": {
+      "zero_real_requests": "ZERO_REQUESTS_CONFIRMED",
+      "no_evidence": "UNKNOWN_NO_RECORD"
+    },
+    "operation": "provider_audit"
+  },
+  "scheduler": {
+    "schema": "rokt.scheduler.v1",
+    "generated_at": "2026-10-26T00:47:46+08:00",
+    "business_timezone": "Asia/Shanghai (+08)",
+    "window_hours": 48,
+    "source": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
+    "canonical_automation": {
+      "id": "automation-1784775229336",
+      "status": "ACTIVE",
+      "rrule": "FREQ=HOURLY;INTERVAL=6",
+      "next_run_at": "2026-10-26T04:46:56.068000+08:00",
+      "runtime_last_run_at": "2026-10-25T22:46:56.068000+08:00",
+      "runtime_last_error": null,
+      "automations_last_run_at_note": "automations.last_run_at is stale/unreliable; automation_runtime_state.last_run_at is authoritative"
+    },
+    "reconciliation_model": {
+      "method": "PAIRWISE: planned(next) = completed(previous) + rrule interval, because the scheduler re-anchors HOURLY rules on run completion, so an absolute grid cannot match and would report false misses",
+      "tolerance_seconds": 600,
+      "receipts_paired": 6,
+      "drift_seconds": {
+        "min": 2.3,
+        "max": 44001.7,
+        "avg": 7348.4
+      },
+      "skipped_slots_total": 2,
+      "skipped_slot_detail": [
+        {
+          "before_trigger": "2026-10-25T02:57:10.370000+08:00",
+          "planned_at": "2026-10-24T14:43:48.671000+08:00",
+          "gap_seconds": 65601.7,
+          "skipped_slots": 2
+        }
+      ],
+      "pending_slot": "2026-10-26T04:46:55.948000+08:00",
+      "next_run_at_vs_pending_slot_seconds": 0.1
+    },
+    "matched_slots": 6,
+    "missed_inventory_runs_confirmed": 2,
+    "firings_in_window": 6,
+    "firings_executed_production": 3,
+    "firings_without_production_run": 3,
+    "firings": [
+      {
+        "firing_id": "automation-1784775229336:1792937490049",
+        "triggered_at": "2026-10-25T22:11:30.057000+08:00",
+        "completed_at": "2026-10-25T22:46:55.948000+08:00",
+        "automation_status": "ACCEPTED",
+        "automation_result_success": true,
+        "automation_failure_code": null,
+        "automation_reason_code": null,
+        "planned_at": "2026-10-25T22:11:26.967000+08:00",
+        "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+        "trigger_drift_seconds": 3.1,
+        "cycle_gap_seconds": 21603.1,
+        "skipped_slots_between": 0,
+        "executed": true,
+        "run_id": "inventory:2026-10-25:9453e5ae",
+        "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+      },
+      {
+        "firing_id": "automation-1784775229336:1792913549195",
+        "triggered_at": "2026-10-25T15:32:29.207000+08:00",
+        "completed_at": "2026-10-25T16:11:26.967000+08:00",
+        "automation_status": "ACCEPTED",
+        "automation_result_success": true,
+        "automation_failure_code": null,
+        "automation_reason_code": null,
+        "planned_at": "2026-10-25T15:32:05.822000+08:00",
+        "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+        "trigger_drift_seconds": 23.4,
+        "cycle_gap_seconds": 21623.4,
+        "skipped_slots_between": 0,
+        "executed": true,
+        "run_id": "inventory:2026-10-25:e06b14b2",
+        "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+      },
+      {
+        "firing_id": "automation-1784775229336:1792889840164",
+        "triggered_at": "2026-10-25T08:57:20.174000+08:00",
+        "completed_at": "2026-10-25T09:32:05.822000+08:00",
+        "automation_status": "ACCEPTED",
+        "automation_result_success": true,
+        "automation_failure_code": null,
+        "automation_reason_code": null,
+        "planned_at": "2026-10-25T08:57:17.878000+08:00",
+        "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+        "trigger_drift_seconds": 2.3,
+        "cycle_gap_seconds": 21602.3,
+        "skipped_slots_between": 0,
+        "executed": true,
+        "run_id": "inventory:2026-10-25:c671e444",
+        "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+      },
+      {
+        "firing_id": "automation-1784775229336:1792868230368",
+        "triggered_at": "2026-10-25T02:57:10.370000+08:00",
+        "completed_at": "2026-10-25T02:57:17.878000+08:00",
+        "automation_status": "ACCEPTED",
+        "automation_result_success": false,
+        "automation_failure_code": "automation-auth-unavailable",
+        "automation_reason_code": null,
+        "planned_at": "2026-10-24T14:43:48.671000+08:00",
+        "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+        "trigger_drift_seconds": 44001.7,
+        "cycle_gap_seconds": 65601.7,
+        "skipped_slots_between": 2,
+        "executed": false,
+        "run_id": null,
+        "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+      },
+      {
+        "firing_id": "automation-1784775229336:1792802364962",
+        "triggered_at": "2026-10-24T08:39:24.974000+08:00",
+        "completed_at": "2026-10-24T08:43:48.671000+08:00",
+        "automation_status": "ACCEPTED",
+        "automation_result_success": true,
+        "automation_failure_code": null,
+        "automation_reason_code": null,
+        "planned_at": "2026-10-24T08:38:42.299000+08:00",
+        "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+        "trigger_drift_seconds": 42.7,
+        "cycle_gap_seconds": 21642.7,
+        "skipped_slots_between": 0,
+        "executed": false,
+        "run_id": null,
+        "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+      },
+      {
+        "firing_id": "automation-1784775229336:1792780516459",
+        "triggered_at": "2026-10-24T02:35:16.471000+08:00",
+        "completed_at": "2026-10-24T02:38:42.299000+08:00",
+        "automation_status": "ACCEPTED",
+        "automation_result_success": true,
+        "automation_failure_code": null,
+        "automation_reason_code": null,
+        "planned_at": "2026-10-24T02:34:58.958000+08:00",
+        "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+        "trigger_drift_seconds": 17.5,
+        "cycle_gap_seconds": 21617.5,
+        "skipped_slots_between": 0,
+        "executed": false,
+        "run_id": null,
+        "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
+      }
+    ],
+    "uniqueness": {
+      "workbuddy_active_inventory_drivers": 1,
+      "workbuddy_active_unclassified_drivers": 0,
+      "workbuddy_drivers": [
+        {
+          "id": "automation-1784775229336",
+          "name": "RoktRazo BD Inventory — 4x/day (6h interval) Asia/Shanghai",
+          "status": "ACTIVE",
+          "role": "INVENTORY",
+          "references_orchestrator": true,
+          "canonical": true
+        },
+        {
+          "id": "automation-1786002601925",
+          "name": "BD Result Recovery Sync — 08:45 Asia/Shanghai",
+          "status": "ACTIVE",
+          "role": "RESULT_RECOVERY_SYNC",
+          "references_orchestrator": false,
+          "canonical": false
+        },
+        {
+          "id": "75fbacd1-fa43-46ea-8388-1d47647c3f4d",
+          "name": "BD SAFE40 Milestone Checkpoint — 4x/day (6h interval) Asia/Shanghai",
+          "status": "ACTIVE",
+          "role": "READ_ONLY_SAFE_CHECKPOINT",
+          "references_orchestrator": true,
+          "canonical": false
+        },
+        {
+          "id": "488f4c21-a70b-4611-a388-9a3f61c02db9",
+          "name": "BD checkpoint phase fix (one-off, 07:38) — restore +40 min offset",
+          "status": "PAUSED",
+          "role": "UNCLASSIFIED",
+          "references_orchestrator": true,
+          "canonical": false
+        },
+        {
+          "id": "c6bf1717-a7a6-40c7-a1de-074fab9b6128",
+          "name": "BD Production Evidence Refresh — 22:40 (read-only, no inventory)",
+          "status": "ACTIVE",
+          "role": "READ_ONLY_EVIDENCE_REFRESH",
+          "references_orchestrator": true,
+          "canonical": false
+        }
+      ],
+      "windows_service": {
+        "name": "BDExecutionHost",
+        "status": "STOPPED",
+        "start_type": "MANUAL",
+        "method": "Read-only SCM QueryServiceStatusEx + registry Start value; no start/stop/delete, no schtasks/sc.exe shell-out",
+        "status_raw": 1
+      },
+      "scheduled_tasks": {
+        "status": "UNKNOWN",
+        "reason": "schtasks.exe / sc.exe are blocked by host policy; no equivalent read-only enumeration is available from this process, so task-level uniqueness stays UNKNOWN"
+      },
+      "verdict": "UNIQUE",
+      "basis": "exactly one ACTIVE non-deleted WorkBuddy automation is classified role=INVENTORY, no ACTIVE orchestrator-referencing automation is UNCLASSIFIED, and the BDExecutionHost service is not RUNNING; Windows scheduled tasks remain UNKNOWN by policy"
+    },
+    "verdict": {
+      "inventory_scheduler_verified": false,
+      "expected_vs_actual_reconciled": false,
+      "note": "a firing that produced no job_runs row is classified firings_without_production_run, NOT automatically a missed firing: the agent layer can refuse to execute fail-closed (e.g. network gate)."
+    },
+    "operation": "scheduler"
+  },
+  "safe": {
+    "schema": "rokt.safe_authority.v1",
+    "measured_at": "2026-10-25T22:41:38+08:00",
+    "business_timezone": "Asia/Shanghai (+08)",
+    "rule_version": {
+      "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
+      "entrypoint": "campaign_eligible_v2.select_candidates_for_plan_v2",
+      "mx_probe": "preflight_gate.query_mx",
+      "code": {
+        "campaign_eligible_v2.py": {
+          "sha256": "1143bedf563c0f76b883359362ffb2c2ea11c375fd923dc59768c5529cf3ad34",
+          "bytes": 18023,
+          "mtime": "2026-09-07T18:35:46.020715+08:00"
+        },
+        "preflight_gate.py": {
+          "sha256": "2cd286f201430fb9a48c68ead512671f398732e50e768c2fd69031f127f52622",
+          "bytes": 41251,
+          "mtime": "2026-09-16T15:15:54.279029+08:00"
+        }
+      }
+    },
+    "method": "select_candidates_for_plan_v2 on a mode=ro connection; SAFE = distinct organization_key over the returned candidate rows; two consecutive readings reported because MX resolution is live and could be jittery",
+    "source": "bd_leads.db (read-only)",
+    "mx_positive_control": {
+      "domain": "gmail.com",
+      "mx_status": "ok",
+      "checked_at": "2026-10-25T22:41:41.156534+08:00"
+    },
+    "mx_negative_control": {
+      "domain": "nonexistent-domain-xyz-abc123456.invalid",
+      "mx_status": "nxdomain",
+      "checked_at": "2026-10-25T22:41:43.309109+08:00"
+    },
+    "measurement_complete": true,
+    "failure_reason": null,
+    "safe_unique_orgs": 56,
+    "db_identity": {
+      "path_basename": "bd_leads.db",
+      "size_bytes": 9588736,
+      "sha256": "cac66eb62dbbb0bdc13cefc172aa0f4d1e839d3180cd3f2b2f9852e0b3bede97",
+      "quick_check": "ok"
+    },
+    "mx_probe_seconds": 4.4,
+    "mx_probe_ok": true,
+    "mx_proxy_configured": true,
+    "leads_total": 1213,
+    "filters": {
+      "suppression_list_rows": 63,
+      "bounce_log_rows": 63,
+      "unmatched_dsn_rows": 48,
+      "note": "per-candidate history/suppression/business-fit decisions are made inside select_candidates_for_plan_v2 and are not separately re-exposed here"
+    },
+    "readings": [
+      {
+        "reading": 1,
+        "sampling_time": "2026-10-25T22:46:38+08:00",
+        "candidate_rows": 56,
+        "unique_organizations": 56,
+        "wall_seconds": 295.0
+      },
+      {
+        "reading": 2,
+        "sampling_time": "2026-10-25T22:51:46+08:00",
+        "candidate_rows": 56,
+        "unique_organizations": 56,
+        "wall_seconds": 292.9
+      }
+    ],
+    "reading_agreement": true,
+    "new_customer_funnel": {
+      "dedup_rule": "discovery window: distinct COALESCE(normalized_domain, normalized_business_name|city); lead window: distinct organization_key",
+      "timezones": "discovery window compares UTC ISO; lead window compares leads.collected_at (+08 local, literal 'T' separator)",
+      "h24": {
+        "window_hours": 24,
+        "merchant_records_discovered": 0,
+        "unique_organizations_discovered": 0,
+        "verified_official_sites": 0,
+        "new_leads": 0,
+        "new_leads_with_email": 0,
+        "new_first_party_official_emails": 0,
+        "new_distinct_organization_keys": 0,
+        "provider_contribution": []
+      },
+      "d7": {
+        "window_hours": 168,
+        "merchant_records_discovered": 4,
+        "unique_organizations_discovered": 3,
+        "verified_official_sites": 0,
+        "new_leads": 0,
+        "new_leads_with_email": 0,
+        "new_first_party_official_emails": 0,
+        "new_distinct_organization_keys": 0,
+        "provider_contribution": [
+          {
+            "provider": "browser_maps",
+            "records": 4
+          }
+        ]
+      },
+      "note": "merchant discovery != confirmed business identity != has email != SAFE customer"
+    },
+    "safe_net_growth": {
+      "h24": 0,
+      "d7": "UNKNOWN",
+      "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set",
+      "h24_baseline_at": "2026-10-25T03:03:35+08:00"
+    },
+    "finished_at": "2026-10-25T22:51:46+08:00",
+    "available": true,
+    "generated_at": "2026-10-26T00:47:46+08:00",
+    "refresh_requested": false,
+    "refresh_result": null,
+    "age_hours": 2.1,
+    "fresh": true,
+    "authoritative_route": "/v1/safe",
+    "operation": "safe",
+    "verdict": "ok"
+  },
+  "releases": {
+    "operation": "releases",
+    "count": 4,
+    "releases": [
+      {
+        "release_id": "phase4a8s-safe50-continuous-discovery",
+        "file_count": 1,
+        "targets": [
+          "bd_orchestrator.py"
+        ],
+        "deployable": true,
+        "registered_at": null,
+        "registered_by": null,
+        "patch_sha256": "3c7ba8d9baf9c6c4e35ecd5cfa5ef91e87b949ef10abad560fe191f768714bda"
+      },
+      {
+        "release_id": "phase4a8u-city-recovery-production-rebase-20261022",
+        "file_count": 2,
+        "targets": [
+          "discovery/discovery_service.py",
+          "retail_city_queue.py"
+        ],
+        "deployable": true,
+        "registered_at": "2026-10-22T01:17:41+08:00",
+        "registered_by": "bridge",
+        "patch_sha256": "a050aa91ed1b73c39e30b9ae4692d626964d62eb0dfbcd7a6632b6b5d67113cb"
+      },
+      {
+        "release_id": "phase4a8v-inventory-stage-trace-20261022",
+        "file_count": 1,
+        "targets": [
+          "bd_orchestrator.py"
+        ],
+        "deployable": true,
+        "registered_at": "2026-10-22T19:14:35+08:00",
+        "registered_by": "bridge",
+        "patch_sha256": "2c4e1750fe7e39c996baa731bed740e8b2ef08546147b1f9976e25ae550c2081"
+      },
+      {
+        "release_id": "phase4a8w-city-legacy-ledger-20261022",
+        "file_count": 2,
+        "targets": [
+          "discovery/discovery_service.py",
+          "retail_city_queue.py"
+        ],
+        "deployable": true,
+        "registered_at": "2026-10-22T23:18:00+08:00",
+        "registered_by": "bridge",
+        "patch_sha256": "f15887a0356b0f7e3617e939ae2efbaee5f99cceebd327eef6da2d29e0ffa55a"
+      }
+    ],
+    "seal": {
+      "sealed": true,
+      "tampered": false,
+      "diffs": [],
+      "sealed_at": "2026-10-22T23:18:00+0800"
+    },
+    "ts": "2026-10-26T00:47:46+0800"
+  }
+}

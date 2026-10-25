@@ -1,0 +1,214 @@
+{
+  "schema_version": "rokt.run_state.v1",
+  "generated_at": "2026-10-26T00:49:24+08:00",
+  "business_timezone": "Asia/Shanghai (+08)",
+  "host": {
+    "os": "Windows",
+    "user": "15690",
+    "test_mode": false
+  },
+  "producer": "WorkBuddy",
+  "scope": "READ_ONLY_DIAGNOSIS_PLUS_BRIDGE_SNAPSHOT",
+
+  "block_a_inventory_auth": {
+    "automation_id": "automation-1784775229336",
+    "name": "RoktRazo BD Inventory — 4x/day (6h interval) Asia/Shanghai",
+    "status": "ACTIVE",
+    "rrule": "FREQ=HOURLY;INTERVAL=6",
+    "classification": "ACTIVE_AND_HEALTHY",
+    "owner_user_id": "1db01fd8-0be7-4400-948e-1a5a7cb6ff9a",
+    "owner_status": "confirmed",
+    "owner_matches_current_session_user": true,
+    "current_os_user": "15690",
+    "auth_failure_events": [
+      {
+        "firing_id": "automation-1784775229336:1792868230368",
+        "triggered_at": "2026-10-25T02:57:10.370000+08:00",
+        "completed_at": "2026-10-25T02:57:17.878000+08:00",
+        "duration_seconds": 7.508,
+        "failure_code": "automation-auth-unavailable",
+        "result_success": false
+      }
+    ],
+    "auth_failure_count_in_window": 1,
+    "consecutive_successes_after_failure": 3,
+    "successful_firings_after_failure": [
+      {"triggered_at": "2026-10-25T08:57:20.174000+08:00", "result_success": true, "duration_seconds": 2085.6},
+      {"triggered_at": "2026-10-25T15:32:29.207000+08:00", "result_success": true, "duration_seconds": 2337.8},
+      {"triggered_at": "2026-10-25T22:11:30.057000+08:00", "result_success": true, "duration_seconds": 2125.9}
+    ],
+    "root_cause": "HOST_OFFLINE_THEN_CATCH_UP_REFUSAL",
+    "root_cause_detail": "Before the failed firing there was an 18.2h scheduling gap (planned_at 2026-10-24T14:43:48, actual trigger 2026-10-25T02:57:10, gap 65601.7s, skipped_slots 2). No boot, shutdown, or sleep/wake events exist in that window and AC standby timeout is 0 (never sleep), so the gap is attributable to the WorkBuddy desktop app not running, not to power management. The catch-up firing then failed fail-closed with automation-auth-unavailable before any session context existed.",
+    "not_a_persistent_credential_problem": true,
+    "reauth_action_required": false,
+    "reauth_rationale": "owner_status is confirmed and the owner id equals the active user profile; three consecutive production firings succeeded after the transient without any reauthorization.",
+    "next_run_at": "2026-10-26T04:46:56.068000+08:00",
+    "runtime_last_run_at": "2026-10-25T22:46:56.068000+08:00",
+    "runtime_last_error": null,
+    "note_automations_last_run_at": "automations.last_run_at (2026-08-23) is stale and must not be used; automation_runtime_state.last_run_at is authoritative."
+  },
+
+  "block_b_bridge_8791": {
+    "endpoint": "http://127.0.0.1:8791",
+    "implementation": "C:/Users/15690/WorkBuddy/deploy-channel",
+    "bridge_version": "2.1",
+    "channel_id": "rokt-deploy-channel",
+    "test_mode": false,
+    "integrity": {
+      "channel_config_sha256": "d88740521378cdda12e676566b4a641f0b2e532d472c6c70fa781e5e6c9da073",
+      "scope_sha256": "eea98b18a7ec3501b95f5d48e615cae8e71f8063b7ff694ebe833b9930fdabb5",
+      "seal_verified": true
+    },
+    "start_capable": true,
+    "start_latency_seconds": 3,
+    "healthz_http": 200,
+    "auth": {"mechanism": "Bearer", "credential_target": "rokt-deploy-channel:bridge-token", "fingerprint": "08f41aa2da0f"},
+    "endpoint_semantics": {
+      "method": "POST",
+      "note": "Read operations are POST /v1/{...}, not GET. GET returns HTTP 404 with an explicit contract note. An earlier handoff read them as GET and reported spurious 404s."
+    },
+    "readonly_ops_ok": ["health", "telemetry", "runtime", "city", "provider-audit", "scheduler", "safe", "releases"],
+    "readonly_ops_failed": [{"op": "status", "http": 400, "note": "requires an explicit operation id; not a health signal"}],
+    "survives_separate_agent_calls": false,
+    "survival_evidence": "supervisor.jsonl shows STALE_LOCK_RECLAIMED + SUPERVISOR_START + SPAWN and then no HEALTH_TRANSITION; afterwards the port shows only TIME_WAIT client entries and no LISTENING row.",
+    "breakaway_from_job": "DENIED WinError 5 (CREATE_BREAKAWAY_FROM_JOB)",
+    "blocked_launch_paths": [
+      "subprocess CREATE_BREAKAWAY_FROM_JOB -> PermissionError WinError 5",
+      "explorer.exe dispatch of start_supervisor.cmd -> rc=1, no SUPERVISOR_START emitted",
+      "WMI Win32_Process.Create -> blocked",
+      "schtasks.exe -> Program Blacklist",
+      "reg.exe -> Program Blacklist",
+      "Start-Process(wscript) -> host validator"
+    ],
+    "logon_persistence": {
+      "mechanism": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\RoktDeployChannelSupervisor",
+      "present": true,
+      "command": "\"C:/Users/15690/.workbuddy/binaries/python/versions/3.13.12/pythonw.exe\" \"C:/Users/15690/WorkBuddy/deploy-channel/bin/supervisor.py\"",
+      "binary_exists": true,
+      "supervisor_py_exists": true,
+      "fires_at": "user logon only"
+    },
+    "boot_persistence_verified": false
+  },
+
+  "block_c_production_collection": {
+    "canonical_inventory_count": 1,
+    "duplicate_inventory_created": false,
+    "latest_production_run_id": "inventory:2026-10-25:9453e5ae",
+    "latest_production_run": {
+      "started_at_utc": "2026-10-25T14:24:02",
+      "finished_at_utc": "2026-10-25T14:34:37",
+      "status": "partial",
+      "stop_reason": "safe_inventory_gap",
+      "target": 60,
+      "actual": 56,
+      "gap": 4
+    },
+    "partial_is_expected": true,
+    "partial_rationale": "status=partial with stop_reason=safe_inventory_gap and no SAFE gain is the documented normal outcome when the pool already exceeds target minus the bounded discovery budget.",
+    "run_lock_state": "released (run_lock:daily_outreach:inventory:2026-10-25 = released)",
+    "stale_lock_present": false,
+    "provider_results": {
+      "verdict": "REAL_REQUESTS",
+      "audit_rows": 6,
+      "provider": "browser_maps",
+      "requests": 5,
+      "success": 4,
+      "failed": 2,
+      "timeout": 2,
+      "rate_limited": 0,
+      "last_requested_at": "2026-10-25T22:29:44.719751+08:00",
+      "inventory_runs_in_window": 3,
+      "proxy_note": "These requests are timestamped after the SCRAPER_PROXY migration to 127.0.0.1:7877, so they are positive evidence that the migrated proxy carried real production traffic."
+    },
+    "lake_placid": {
+      "city_id": 23,
+      "city": "Lake Placid",
+      "state": "NY",
+      "city_status": "active",
+      "query_families_total": 20,
+      "query_families_completed": 4,
+      "query_families_remaining": 16,
+      "pages_processed": 10,
+      "results_seen": 20,
+      "new_unique_places": 4,
+      "completion_checks_all_met": false,
+      "next_city_available": true
+    },
+    "safe": {
+      "value": 56,
+      "measured_at": "2026-10-25T22:41:38+08:00",
+      "measurement_complete": true,
+      "reading_agreement": true,
+      "mx_probe_ok": true,
+      "fresh": true,
+      "age_hours": 2.1,
+      "leads_total": 1213
+    },
+    "target_projection": {
+      "2026-10-24": 60,
+      "2026-10-25": 60,
+      "2026-10-26": 50,
+      "note": "2026-10-26 is a Monday (weekday) so target drops to 50. SAFE=56 already exceeds 50, therefore the next firing is expected to short-circuit as target_met with zero provider requests. That is designed behavior, not a collection failure, and must not be reported as SAFE regression."
+    },
+    "scheduler_reconciliation": {
+      "window_hours": 48,
+      "firings_in_window": 6,
+      "firings_executed_production": 3,
+      "firings_without_production_run": 3,
+      "skipped_slots_total": 2,
+      "receipts_paired": 6,
+      "inventory_scheduler_verified": false,
+      "expected_vs_actual_reconciled": false,
+      "classification_note": "A firing with no job_runs row is classified firings_without_production_run, not automatically a missed firing; the agent layer may refuse fail-closed by design."
+    }
+  },
+
+  "scope_b_exclude_mx_proxy": {
+    "key": "BD_MX_HTTPS_PROXY",
+    "location": ".env line 50",
+    "current_value": "http://127.0.0.1:3213",
+    "port_3213_listening": false,
+    "modified": false,
+    "reason_not_modified": "Out of this task's authorized scope; MX resolution currently survives via the documented DNS fallback.",
+    "recommended_followup": "Migrate to 127.0.0.1:7877 under explicit owner approval, then verify query_mx() positive and negative controls."
+  },
+
+  "proxy_state": {
+    "scraper_proxy_env_value": "http://127.0.0.1:7877",
+    "env_sha256": "ab350e099200ba28437790c542d6d2ad870eeaf9a448c719f24b7f47ca690f9e",
+    "process_effective": "http://127.0.0.1:7877",
+    "listening_port_7877": true,
+    "owner_process": "MyClashCore.exe",
+    "owner_pid": 45856,
+    "changed_this_cycle": false
+  },
+
+  "safety": {
+    "customer_smtp_enabled": false,
+    "emails_sent_this_cycle": 0,
+    "send_log_total": 517,
+    "max_sent_at": "2026-09-16T01:09:52.031266+08:00",
+    "unauthorized_db_writes": 0,
+    "production_db_modified": false,
+    "automation_records_modified": false,
+    "frozen_source_modified": false,
+    "duplicate_inventory_created": false,
+    "secrets_in_payload": false
+  },
+
+  "open_blockers": [
+    {
+      "id": "unattended_execution",
+      "severity": "structural",
+      "detail": "The only working scheduler is the WorkBuddy automation layer, which requires the desktop app to be running with a logged-in user. The intended login-free scheduler (Windows service BDExecutionHost) is a zombie registration: pythonservice.exe is missing at the configured path and bd_execution_host_service.py is retired under _retired/p3d_20260909/.",
+      "requires_admin": true
+    },
+    {
+      "id": "bridge_durability",
+      "severity": "operational",
+      "detail": "Bridge starts and passes health in-turn but cannot outlive an agent call because the host job object forbids breakaway. HKCU Run already holds the correct launch command, so a single logoff/logon makes it persistent without admin.",
+      "requires_admin": false
+    }
+  ]
+}
