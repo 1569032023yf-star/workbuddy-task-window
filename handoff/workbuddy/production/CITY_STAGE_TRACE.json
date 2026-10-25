@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-25T03:14:41+08:00",
+  "generated_at": "2026-10-25T22:52:19+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -242,7 +242,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-25T03:14:41+08:00",
+  "generated_at": "2026-10-25T22:52:19+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -270,20 +270,20 @@
    "started_at": "2026-10-22T23:02:55.404569+00:00",
    "completed_at": null,
    "completion_reason": null,
-   "pages_processed": 6,
-   "results_seen": 12,
-   "consecutive_pages_without_new_place": 2,
+   "pages_processed": 10,
+   "results_seen": 20,
+   "consecutive_pages_without_new_place": 6,
    "resume_state": "query_completed",
    "web_directory_status": null,
-   "last_success_at": "2026-10-23T05:29:00.526845+00:00",
+   "last_success_at": "2026-10-25T14:29:44.720197+00:00",
    "last_error_class": "other"
   },
   "active_discovery_state": "NY",
   "active_city_state_config": "TN",
   "query_families": {
    "total": 20,
-   "completed": 2,
-   "remaining": 18,
+   "completed": 4,
+   "remaining": 16,
    "detail": [
     {
      "query_family": "toy store",
@@ -299,15 +299,15 @@
     },
     {
      "query_family": "game store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-25T15:52:57.898097+08:00"
     },
     {
      "query_family": "tabletop game store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-25T22:29:44.720231+08:00"
     },
     {
      "query_family": "gift shop",
@@ -453,8 +453,8 @@
    "activatable": true
   },
   "provider_audit": {
-   "requests": 8,
-   "last_requested_at": "2026-10-23T13:29:00.526646+08:00"
+   "requests": 14,
+   "last_requested_at": "2026-10-25T22:29:44.719751+08:00"
   },
   "stage_events": {
    "available": false,
@@ -490,7 +490,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-25T03:14:41+08:00",
+ "generated_at": "2026-10-25T22:52:19+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -498,12 +498,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "post-send:2026-10-24:3ec5e89c",
+ "run_id": "inventory:2026-10-25:9453e5ae",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "afd115fcbe13a2f8bc86b01b565171dbcdfec5b94e0df4b7fe703593e28496ff"
+ "payload_sha256": "9f385063f3465b1123a477b69bd5489ee87d2a66f4f5334ca03457b99c89254a"
 }
