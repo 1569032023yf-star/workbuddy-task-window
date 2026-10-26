@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-25T22:52:19+08:00",
+  "generated_at": "2026-10-26T22:55:42+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -242,7 +242,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-25T22:52:19+08:00",
+  "generated_at": "2026-10-26T22:55:42+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -270,20 +270,20 @@
    "started_at": "2026-10-22T23:02:55.404569+00:00",
    "completed_at": null,
    "completion_reason": null,
-   "pages_processed": 10,
-   "results_seen": 20,
-   "consecutive_pages_without_new_place": 6,
+   "pages_processed": 13,
+   "results_seen": 80,
+   "consecutive_pages_without_new_place": 2,
    "resume_state": "query_completed",
    "web_directory_status": null,
-   "last_success_at": "2026-10-25T14:29:44.720197+00:00",
+   "last_success_at": "2026-10-26T14:28:58.525922+00:00",
    "last_error_class": "other"
   },
   "active_discovery_state": "NY",
   "active_city_state_config": "TN",
   "query_families": {
    "total": 20,
-   "completed": 4,
-   "remaining": 16,
+   "completed": 5,
+   "remaining": 15,
    "detail": [
     {
      "query_family": "toy store",
@@ -311,9 +311,9 @@
     },
     {
      "query_family": "gift shop",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-26T22:28:58.525949+08:00"
     },
     {
      "query_family": "independent gift store",
@@ -409,10 +409,14 @@
   },
   "records": {
    "by_validation_status": {
-    "rejected": 3,
-    "website_not_found": 1
+    "rejected": 10,
+    "manual_review_needed": 3,
+    "no_public_email": 3,
+    "review_recovery": 3,
+    "website_not_found": 2,
+    "existing_lead_linked": 1
    },
-   "total": 4,
+   "total": 22,
    "pending_states_total": 0,
    "website_lookup_pending": 0,
    "network_retry_pending": 0,
@@ -423,25 +427,28 @@
   "blocking_attribution": {
    "staged_pending_refs": [],
    "retryable_manual_review_refs": [],
-   "linked_backlog_retry_refs": [],
+   "linked_backlog_retry_refs": [
+    "ldr:618",
+    "ldr:626"
+   ],
    "auto_recovery_deferred_refs": [],
-   "candidate_rows_scanned": 4,
+   "candidate_rows_scanned": 22,
    "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
    "available": true,
    "retryable_manual_review_refs_count": 0,
-   "linked_backlog_retry_refs_count": 0,
+   "linked_backlog_retry_refs_count": 2,
    "auto_recovery_deferred_refs_count": 0,
    "staged_pending_refs_count": 0
   },
   "completion_checks": {
-   "all_candidates_classified": true,
+   "all_candidates_classified": false,
    "all_query_families": false,
    "all_sources_or_reasons": false,
    "last_three_batches_empty": false,
-   "no_unprocessed_candidates": true,
-   "official_site_recheck": true,
+   "no_unprocessed_candidates": false,
+   "official_site_recheck": false,
    "pagination_complete": false,
-   "review_recovery": true,
+   "review_recovery": false,
    "two_empty_pages": false
   },
   "completion_checks_all_met": false,
@@ -453,8 +460,8 @@
    "activatable": true
   },
   "provider_audit": {
-   "requests": 14,
-   "last_requested_at": "2026-10-25T22:29:44.719751+08:00"
+   "requests": 17,
+   "last_requested_at": "2026-10-26T22:28:58.523926+08:00"
   },
   "stage_events": {
    "available": false,
@@ -490,7 +497,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-25T22:52:19+08:00",
+ "generated_at": "2026-10-26T22:55:42+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -498,12 +505,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-25:9453e5ae",
+ "run_id": "inventory:2026-10-26:df364d11",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "9f385063f3465b1123a477b69bd5489ee87d2a66f4f5334ca03457b99c89254a"
+ "payload_sha256": "5bc998287fa44afd1da792cad91dff123eb7dd78ebba3b1522d40428611bfa15"
 }
