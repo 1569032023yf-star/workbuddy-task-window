@@ -1,6 +1,6 @@
 {
  "schema": "rokt.safe_authority.v1",
- "measured_at": "2026-10-26T22:44:47+08:00",
+ "measured_at": "2026-10-27T22:41:09+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "rule_version": {
   "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
@@ -24,26 +24,26 @@
  "mx_positive_control": {
   "domain": "gmail.com",
   "mx_status": "ok",
-  "checked_at": "2026-10-26T22:44:49.684753+08:00"
+  "checked_at": "2026-10-27T22:41:11.966383+08:00"
  },
  "mx_negative_control": {
   "domain": "nonexistent-domain-xyz-abc123456.invalid",
   "mx_status": "nxdomain",
-  "checked_at": "2026-10-26T22:44:51.788910+08:00"
+  "checked_at": "2026-10-27T22:41:14.158536+08:00"
  },
  "measurement_complete": true,
  "failure_reason": null,
- "safe_unique_orgs": 60,
+ "safe_unique_orgs": 61,
  "db_identity": {
   "path_basename": "bd_leads.db",
-  "size_bytes": 9588736,
-  "sha256": "b8a4382ee07ce906d1cfeed142c87d359c1bc62239353a0ef0e717cdfbf32c8e",
+  "size_bytes": 9707520,
+  "sha256": "aa9c1eb3d53e32432b739760dcf4d7d0ce78eec8fc150089e3b81d0f4f8f8d81",
   "quick_check": "ok"
  },
- "mx_probe_seconds": 4.32,
+ "mx_probe_seconds": 4.28,
  "mx_probe_ok": true,
  "mx_proxy_configured": true,
- "leads_total": 1223,
+ "leads_total": 1229,
  "filters": {
   "suppression_list_rows": 63,
   "bounce_log_rows": 63,
@@ -53,17 +53,17 @@
  "readings": [
   {
    "reading": 1,
-   "sampling_time": "2026-10-26T22:49:48+08:00",
-   "candidate_rows": 60,
-   "unique_organizations": 60,
-   "wall_seconds": 296.9
+   "sampling_time": "2026-10-27T22:47:15+08:00",
+   "candidate_rows": 61,
+   "unique_organizations": 61,
+   "wall_seconds": 361.0
   },
   {
    "reading": 2,
-   "sampling_time": "2026-10-26T22:54:57+08:00",
-   "candidate_rows": 60,
-   "unique_organizations": 60,
-   "wall_seconds": 293.7
+   "sampling_time": "2026-10-27T22:52:29+08:00",
+   "candidate_rows": 61,
+   "unique_organizations": 61,
+   "wall_seconds": 299.3
   }
  ],
  "reading_agreement": true,
@@ -72,50 +72,51 @@
   "timezones": "discovery window compares UTC ISO; lead window compares leads.collected_at (+08 local, literal 'T' separator)",
   "h24": {
    "window_hours": 24,
-   "merchant_records_discovered": 18,
-   "unique_organizations_discovered": 18,
-   "verified_official_sites": 7,
-   "new_leads": 10,
-   "new_leads_with_email": 4,
-   "new_first_party_official_emails": 4,
-   "new_distinct_organization_keys": 10,
+   "merchant_records_discovered": 9,
+   "unique_organizations_discovered": 9,
+   "verified_official_sites": 3,
+   "new_leads": 6,
+   "new_leads_with_email": 2,
+   "new_first_party_official_emails": 2,
+   "new_distinct_organization_keys": 6,
    "provider_contribution": [
     {
      "provider": "browser_maps",
-     "records": 18
+     "records": 9
     }
    ]
   },
   "d7": {
    "window_hours": 168,
-   "merchant_records_discovered": 22,
-   "unique_organizations_discovered": 21,
-   "verified_official_sites": 7,
-   "new_leads": 10,
-   "new_leads_with_email": 4,
-   "new_first_party_official_emails": 4,
-   "new_distinct_organization_keys": 10,
+   "merchant_records_discovered": 31,
+   "unique_organizations_discovered": 28,
+   "verified_official_sites": 10,
+   "new_leads": 16,
+   "new_leads_with_email": 6,
+   "new_first_party_official_emails": 6,
+   "new_distinct_organization_keys": 16,
    "provider_contribution": [
     {
      "provider": "browser_maps",
-     "records": 22
+     "records": 31
     }
    ]
   },
   "note": "merchant discovery != confirmed business identity != has email != SAFE customer"
  },
  "safe_net_growth": {
-  "h24": 4,
-  "d7": "UNKNOWN",
+  "h24": 1,
+  "d7": 5,
   "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set",
-  "h24_baseline_at": "2026-10-25T22:41:38+08:00"
+  "h24_baseline_at": "2026-10-26T22:44:47+08:00",
+  "d7_baseline_at": "2026-10-22T15:49:52+08:00"
  },
- "finished_at": "2026-10-26T22:54:57+08:00",
+ "finished_at": "2026-10-27T22:52:29+08:00",
  "available": true,
- "generated_at": "2026-10-26T22:55:42+08:00",
+ "generated_at": "2026-10-27T22:52:38+08:00",
  "refresh_requested": false,
  "refresh_result": null,
- "age_hours": 0.18,
+ "age_hours": 0.19,
  "fresh": true,
  "authoritative_route": "/v1/safe",
  "operation": "safe",
@@ -137,5 +138,5 @@
  "unavailable": [
   "24h/7d SAFE net growth (no prior snapshot under an identical rule version)"
  ],
- "payload_sha256": "0d2cd95436c66de9fa9a5fe1f740ff127463e7fca759fde1e2c091c2f7bc1468"
+ "payload_sha256": "193478e8cbc50e9125a650d4798372631144090897167dda3f923a9f215297fb"
 }

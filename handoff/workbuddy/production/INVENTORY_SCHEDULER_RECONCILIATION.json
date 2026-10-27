@@ -1,6 +1,6 @@
 {
  "schema": "rokt.scheduler.v1",
- "generated_at": "2026-10-26T22:55:42+08:00",
+ "generated_at": "2026-10-27T22:52:38+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "window_hours": 48,
  "source": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
@@ -8,38 +8,82 @@
   "id": "automation-1784775229336",
   "status": "ACTIVE",
   "rrule": "FREQ=HOURLY;INTERVAL=6",
-  "next_run_at": "2026-10-27T04:51:34.637000+08:00",
-  "runtime_last_run_at": "2026-10-26T22:51:34.637000+08:00",
+  "next_run_at": "2026-10-28T00:53:57.229000+08:00",
+  "runtime_last_run_at": "2026-10-27T18:53:57.229000+08:00",
   "runtime_last_error": null,
   "automations_last_run_at_note": "automations.last_run_at is stale/unreliable; automation_runtime_state.last_run_at is authoritative"
  },
  "reconciliation_model": {
   "method": "PAIRWISE: planned(next) = completed(previous) + rrule interval, because the scheduler re-anchors HOURLY rules on run completion, so an absolute grid cannot match and would report false misses",
   "tolerance_seconds": 600,
-  "receipts_paired": 6,
+  "receipts_paired": 5,
   "drift_seconds": {
-   "min": 2.3,
-   "max": 44001.7,
-   "avg": 7346.5
+   "min": 15.5,
+   "max": 44.4,
+   "avg": 25.1
   },
-  "skipped_slots_total": 2,
-  "skipped_slot_detail": [
-   {
-    "before_trigger": "2026-10-25T02:57:10.370000+08:00",
-    "planned_at": "2026-10-24T14:43:48.671000+08:00",
-    "gap_seconds": 65601.7,
-    "skipped_slots": 2
-   }
-  ],
-  "pending_slot": "2026-10-27T04:51:34.570000+08:00",
+  "skipped_slots_total": 0,
+  "skipped_slot_detail": [],
+  "pending_slot": "2026-10-28T00:53:57.165000+08:00",
   "next_run_at_vs_pending_slot_seconds": 0.1
  },
- "matched_slots": 6,
- "missed_inventory_runs_confirmed": 2,
- "firings_in_window": 6,
+ "matched_slots": 5,
+ "missed_inventory_runs_confirmed": 0,
+ "firings_in_window": 5,
  "firings_executed_production": 5,
- "firings_without_production_run": 1,
+ "firings_without_production_run": 0,
  "firings": [
+  {
+   "firing_id": "automation-1784775229336:1793096364330",
+   "triggered_at": "2026-10-27T18:19:24.339000+08:00",
+   "completed_at": "2026-10-27T18:53:57.165000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-10-27T18:18:39.972000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 44.4,
+   "cycle_gap_seconds": 21644.4,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-10-27:7be7c846",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
+  {
+   "firing_id": "automation-1784775229336:1793072285667",
+   "triggered_at": "2026-10-27T11:38:05.672000+08:00",
+   "completed_at": "2026-10-27T12:18:39.972000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-10-27T11:37:50.125000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 15.5,
+   "cycle_gap_seconds": 21615.5,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-10-27:dbbdab2e",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
+  {
+   "firing_id": "automation-1784775229336:1793047911963",
+   "triggered_at": "2026-10-27T04:51:51.980000+08:00",
+   "completed_at": "2026-10-27T05:37:50.125000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-10-27T04:51:34.570000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 17.4,
+   "cycle_gap_seconds": 21617.4,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-10-27:1d5969d0",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
   {
    "firing_id": "automation-1784775229336:1793023691071",
    "triggered_at": "2026-10-26T22:08:11.083000+08:00",
@@ -73,74 +117,6 @@
    "executed": true,
    "run_id": "inventory:2026-10-26:7cf3fb58",
    "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1792937490049",
-   "triggered_at": "2026-10-25T22:11:30.057000+08:00",
-   "completed_at": "2026-10-25T22:46:55.948000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-10-25T22:11:26.967000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 3.1,
-   "cycle_gap_seconds": 21603.1,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-10-25:9453e5ae",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1792913549195",
-   "triggered_at": "2026-10-25T15:32:29.207000+08:00",
-   "completed_at": "2026-10-25T16:11:26.967000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-10-25T15:32:05.822000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 23.4,
-   "cycle_gap_seconds": 21623.4,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-10-25:e06b14b2",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1792889840164",
-   "triggered_at": "2026-10-25T08:57:20.174000+08:00",
-   "completed_at": "2026-10-25T09:32:05.822000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-10-25T08:57:17.878000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 2.3,
-   "cycle_gap_seconds": 21602.3,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-10-25:c671e444",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1792868230368",
-   "triggered_at": "2026-10-25T02:57:10.370000+08:00",
-   "completed_at": "2026-10-25T02:57:17.878000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": false,
-   "automation_failure_code": "automation-auth-unavailable",
-   "automation_reason_code": null,
-   "planned_at": "2026-10-24T14:43:48.671000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 44001.7,
-   "cycle_gap_seconds": 65601.7,
-   "skipped_slots_between": 2,
-   "executed": false,
-   "run_id": null,
-   "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
   }
  ],
  "uniqueness": {
@@ -203,8 +179,8 @@
   "basis": "exactly one ACTIVE non-deleted WorkBuddy automation is classified role=INVENTORY, no ACTIVE orchestrator-referencing automation is UNCLASSIFIED, and the BDExecutionHost service is not RUNNING; Windows scheduled tasks remain UNKNOWN by policy"
  },
  "verdict": {
-  "inventory_scheduler_verified": false,
-  "expected_vs_actual_reconciled": false,
+  "inventory_scheduler_verified": true,
+  "expected_vs_actual_reconciled": true,
   "note": "a firing that produced no job_runs row is classified firings_without_production_run, NOT automatically a missed firing: the agent layer can refuse to execute fail-closed (e.g. network gate)."
  },
  "operation": "scheduler",
@@ -216,10 +192,10 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-26:df364d11",
+ "run_id": "inventory:2026-10-27:7be7c846",
  "data_sources": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
  "unavailable": [
   "Windows scheduled task enumeration (schtasks blocked by host policy)"
  ],
- "payload_sha256": "b6aa175a259842fb46a71ebf72402df3882b4d6d7693d19fc3572b372288fdbf"
+ "payload_sha256": "c2253b30c49ffddaf885a377be3d63a239c3191ac2caab82d5bda3e9482a14d3"
 }
