@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-27T22:52:38+08:00",
+  "generated_at": "2026-10-28T22:52:26+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -242,7 +242,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-27T22:52:38+08:00",
+  "generated_at": "2026-10-28T22:52:26+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -270,20 +270,20 @@
    "started_at": "2026-10-22T23:02:55.404569+00:00",
    "completed_at": null,
    "completion_reason": null,
-   "pages_processed": 21,
-   "results_seen": 187,
-   "consecutive_pages_without_new_place": 4,
+   "pages_processed": 30,
+   "results_seen": 265,
+   "consecutive_pages_without_new_place": 2,
    "resume_state": "query_completed",
    "web_directory_status": null,
-   "last_success_at": "2026-10-27T10:37:19.461559+00:00",
+   "last_success_at": "2026-10-28T13:00:29.093593+00:00",
    "last_error_class": "other"
   },
   "active_discovery_state": "NY",
   "active_city_state_config": "TN",
   "query_families": {
    "total": 20,
-   "completed": 8,
-   "remaining": 12,
+   "completed": 12,
+   "remaining": 8,
    "detail": [
     {
      "query_family": "toy store",
@@ -335,27 +335,27 @@
     },
     {
      "query_family": "independent bookstore",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-28T01:11:45.398272+08:00"
     },
     {
      "query_family": "comic book store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-28T07:46:25.318476+08:00"
     },
     {
      "query_family": "hobby store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-28T14:23:51.640677+08:00"
     },
     {
      "query_family": "educational supply store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-28T21:00:29.093623+08:00"
     },
     {
      "query_family": "teacher supply store",
@@ -409,16 +409,16 @@
   },
   "records": {
    "by_validation_status": {
-    "rejected": 11,
-    "manual_review_needed": 5,
-    "review_recovery": 5,
-    "no_public_email": 4,
+    "rejected": 13,
+    "review_recovery": 11,
+    "manual_review_needed": 6,
+    "no_public_email": 5,
     "website_not_found": 3,
     "existing_lead_linked": 1,
     "history_blocked": 1,
     "identity_review": 1
    },
-   "total": 31,
+   "total": 41,
    "pending_states_total": 0,
    "website_lookup_pending": 0,
    "network_retry_pending": 0,
@@ -429,27 +429,32 @@
   "blocking_attribution": {
    "staged_pending_refs": [],
    "retryable_manual_review_refs": [],
-   "linked_backlog_retry_refs": [],
+   "linked_backlog_retry_refs": [
+    "ldr:636",
+    "ldr:641",
+    "ldr:644",
+    "ldr:645"
+   ],
    "auto_recovery_deferred_refs": [
     "ldr:626"
    ],
-   "candidate_rows_scanned": 31,
+   "candidate_rows_scanned": 41,
    "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
    "available": true,
    "retryable_manual_review_refs_count": 0,
-   "linked_backlog_retry_refs_count": 0,
+   "linked_backlog_retry_refs_count": 4,
    "auto_recovery_deferred_refs_count": 1,
    "staged_pending_refs_count": 0
   },
   "completion_checks": {
-   "all_candidates_classified": true,
+   "all_candidates_classified": false,
    "all_query_families": false,
    "all_sources_or_reasons": false,
    "last_three_batches_empty": false,
-   "no_unprocessed_candidates": true,
-   "official_site_recheck": true,
+   "no_unprocessed_candidates": false,
+   "official_site_recheck": false,
    "pagination_complete": false,
-   "review_recovery": true,
+   "review_recovery": false,
    "two_empty_pages": false
   },
   "completion_checks_all_met": false,
@@ -461,8 +466,8 @@
    "activatable": true
   },
   "provider_audit": {
-   "requests": 25,
-   "last_requested_at": "2026-10-27T18:37:19.461245+08:00"
+   "requests": 34,
+   "last_requested_at": "2026-10-28T21:00:29.091161+08:00"
   },
   "stage_events": {
    "available": false,
@@ -498,7 +503,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-27T22:52:38+08:00",
+ "generated_at": "2026-10-28T22:52:26+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -506,12 +511,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-27:7be7c846",
+ "run_id": "inventory:2026-10-28:f3323da5",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "c0ce23b699b4218a6941f3c1e9e196ef464a784e626e2ea8e86f5b3882c48ba7"
+ "payload_sha256": "1811d3abe70433c91ff8d0869b1918fede22e36767ee6e9aefeaab7159da3b4f"
 }

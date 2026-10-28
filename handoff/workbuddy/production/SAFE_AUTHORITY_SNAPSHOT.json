@@ -1,6 +1,6 @@
 {
  "schema": "rokt.safe_authority.v1",
- "measured_at": "2026-10-27T22:41:09+08:00",
+ "measured_at": "2026-10-28T22:40:58+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "rule_version": {
   "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
@@ -24,26 +24,26 @@
  "mx_positive_control": {
   "domain": "gmail.com",
   "mx_status": "ok",
-  "checked_at": "2026-10-27T22:41:11.966383+08:00"
+  "checked_at": "2026-10-28T22:41:00.350575+08:00"
  },
  "mx_negative_control": {
   "domain": "nonexistent-domain-xyz-abc123456.invalid",
   "mx_status": "nxdomain",
-  "checked_at": "2026-10-27T22:41:14.158536+08:00"
+  "checked_at": "2026-10-28T22:41:02.511701+08:00"
  },
  "measurement_complete": true,
  "failure_reason": null,
- "safe_unique_orgs": 61,
+ "safe_unique_orgs": 62,
  "db_identity": {
   "path_basename": "bd_leads.db",
-  "size_bytes": 9707520,
-  "sha256": "aa9c1eb3d53e32432b739760dcf4d7d0ce78eec8fc150089e3b81d0f4f8f8d81",
+  "size_bytes": 9756672,
+  "sha256": "b4bf392905a79557cd7d14d3171c1a0c194fed4811291d1da2dcb78925bb97be",
   "quick_check": "ok"
  },
  "mx_probe_seconds": 4.28,
  "mx_probe_ok": true,
  "mx_proxy_configured": true,
- "leads_total": 1229,
+ "leads_total": 1237,
  "filters": {
   "suppression_list_rows": 63,
   "bounce_log_rows": 63,
@@ -53,17 +53,17 @@
  "readings": [
   {
    "reading": 1,
-   "sampling_time": "2026-10-27T22:47:15+08:00",
-   "candidate_rows": 61,
-   "unique_organizations": 61,
-   "wall_seconds": 361.0
+   "sampling_time": "2026-10-28T22:46:59+08:00",
+   "candidate_rows": 62,
+   "unique_organizations": 62,
+   "wall_seconds": 356.5
   },
   {
    "reading": 2,
-   "sampling_time": "2026-10-27T22:52:29+08:00",
-   "candidate_rows": 61,
-   "unique_organizations": 61,
-   "wall_seconds": 299.3
+   "sampling_time": "2026-10-28T22:52:13+08:00",
+   "candidate_rows": 62,
+   "unique_organizations": 62,
+   "wall_seconds": 299.7
   }
  ],
  "reading_agreement": true,
@@ -72,33 +72,33 @@
   "timezones": "discovery window compares UTC ISO; lead window compares leads.collected_at (+08 local, literal 'T' separator)",
   "h24": {
    "window_hours": 24,
-   "merchant_records_discovered": 9,
+   "merchant_records_discovered": 10,
    "unique_organizations_discovered": 9,
-   "verified_official_sites": 3,
-   "new_leads": 6,
-   "new_leads_with_email": 2,
-   "new_first_party_official_emails": 2,
-   "new_distinct_organization_keys": 6,
+   "verified_official_sites": 2,
+   "new_leads": 8,
+   "new_leads_with_email": 1,
+   "new_first_party_official_emails": 1,
+   "new_distinct_organization_keys": 7,
    "provider_contribution": [
     {
      "provider": "browser_maps",
-     "records": 9
+     "records": 10
     }
    ]
   },
   "d7": {
    "window_hours": 168,
-   "merchant_records_discovered": 31,
-   "unique_organizations_discovered": 28,
-   "verified_official_sites": 10,
-   "new_leads": 16,
-   "new_leads_with_email": 6,
-   "new_first_party_official_emails": 6,
-   "new_distinct_organization_keys": 16,
+   "merchant_records_discovered": 41,
+   "unique_organizations_discovered": 37,
+   "verified_official_sites": 12,
+   "new_leads": 24,
+   "new_leads_with_email": 7,
+   "new_first_party_official_emails": 7,
+   "new_distinct_organization_keys": 23,
    "provider_contribution": [
     {
      "provider": "browser_maps",
-     "records": 31
+     "records": 41
     }
    ]
   },
@@ -106,14 +106,14 @@
  },
  "safe_net_growth": {
   "h24": 1,
-  "d7": 5,
+  "d7": 6,
   "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set",
-  "h24_baseline_at": "2026-10-26T22:44:47+08:00",
+  "h24_baseline_at": "2026-10-27T22:41:09+08:00",
   "d7_baseline_at": "2026-10-22T15:49:52+08:00"
  },
- "finished_at": "2026-10-27T22:52:29+08:00",
+ "finished_at": "2026-10-28T22:52:13+08:00",
  "available": true,
- "generated_at": "2026-10-27T22:52:38+08:00",
+ "generated_at": "2026-10-28T22:52:26+08:00",
  "refresh_requested": false,
  "refresh_result": null,
  "age_hours": 0.19,
@@ -138,5 +138,5 @@
  "unavailable": [
   "24h/7d SAFE net growth (no prior snapshot under an identical rule version)"
  ],
- "payload_sha256": "193478e8cbc50e9125a650d4798372631144090897167dda3f923a9f215297fb"
+ "payload_sha256": "7438585b3108c05845a2173c7b1a74f0d78bbde4f1f26fb1450f2d62466abc18"
 }
