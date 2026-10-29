@@ -61,7 +61,10 @@
   "POST_SEND_TASK_SEND_RISK": "NONE (inbox scan + reconcile + dashboard only)",
   "BLOCKERS_REQUIRING_ONE_TIME_AUTHORIZATION": "install the deploy-channel supervisor as a Windows service or boot-time task under the operator identity; CREATE_BREAKAWAY_FROM_JOB returns WinError 5 and schtasks/reg are blocked for this process, so boot-level persistence needs one elevated action",
   "NEXT_AUTOMATIC_ACTION": "2026-10-29T16:58:50+08:00 (Inventory, agent layer)",
-  "OVERALL_RESULT": "PHASE0_REFRESH_DELIVERED_AUTONOMY_STILL_SESSION_BOUND"
+  "OVERALL_RESULT": "PHASE0_REFRESH_DELIVERED_AUTONOMY_STILL_SESSION_BOUND",
+  "SAFE_INTRADAY_PEAK_TODAY": 64,
+  "SAFE_DELTA_VS_INTRADAY_PEAK": -1,
+  "SAFE_TRAJECTORY_WARNING": "SAFE is not monotonic today: 62 (10-28 22:52) -> 63 (00:14) -> 64 (06:41) -> 63 (11:48). Do not present 63 as continuous growth."
  },
  "sources": [
   "bd_leads.db (mode=ro)",
@@ -79,5 +82,5 @@
   "bridge_state": "DOWN_THIS_CYCLE",
   "note": "endpoint not consulted this cycle; values derived directly from bd_leads.db (mode=ro) and file evidence"
  },
- "payload_sha256": "999e0b1a964a4a46faa5f7746649de25eec5a24470e4255873e0e3fcebaa1293"
+ "payload_sha256": "657bc4589fa24b62f5ed2ec093d7f59bfc6f76a92bf32608e0d80874b92c652e"
 }

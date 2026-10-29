@@ -137,5 +137,30 @@
   "bridge_state": "DOWN_THIS_CYCLE",
   "note": "endpoint not consulted this cycle; values derived directly from bd_leads.db (mode=ro) and file evidence"
  },
- "payload_sha256": "6144a828ec578d200fd408a92b81af7c7be3c8938aeb787194a38e878f4b9246"
+ "intraday_trajectory": [
+  {
+   "at": "2026-10-28T22:52:13+08:00",
+   "safe": 62,
+   "source": "SAFE_AUTHORITY_SNAPSHOT (10-28 build)"
+  },
+  {
+   "at": "2026-10-29T00:14:00+08:00",
+   "safe": 63,
+   "source": "workspace memory 2026-10-29 00:14 checkpoint (two reads 63/63)"
+  },
+  {
+   "at": "2026-10-29T06:41:00+08:00",
+   "safe": 64,
+   "source": "workspace memory 2026-10-29 06:41 checkpoint (two reads 64/64)"
+  },
+  {
+   "at": "2026-10-29T11:48:26+08:00",
+   "safe": 63,
+   "source": "this build (two reads 63/63)"
+  }
+ ],
+ "intraday_note": "SAFE is not monotonic today: it read 63 at 00:14, 64 at 06:41, and 63 at 11:48. The in-run authoritative count also moved 62 (10-28 20:52 run) -> 63 (10-29 03:37 run) -> 62 (10-29 10:30 run). Each observation was internally consistent (both reads agreed), so this is either a genuine eligibility loss or live-MX variance; _count_safe_ready_pool is documented as +/-1 unstable across reads, but not within a read pair.",
+ "intraday_peak_today": 64,
+ "delta_vs_intraday_peak": -1,
+ "payload_sha256": "df367effa2b76b7f0f90105afd7ab135f8a43d0eed004ed59ab8715c9d6eedf1"
 }

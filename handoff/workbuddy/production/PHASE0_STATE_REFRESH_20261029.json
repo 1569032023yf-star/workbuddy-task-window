@@ -59,15 +59,65 @@
   "value": 63,
   "reading_agreement": true,
   "readings": [
-   {"unique_organizations": 63, "wall_seconds": 346.4, "sampling_time": "2026-10-29T11:43:26+08:00"},
-   {"unique_organizations": 63, "wall_seconds": 300.6, "sampling_time": "2026-10-29T11:48:26+08:00"}
+   {
+    "unique_organizations": 63,
+    "wall_seconds": 346.4,
+    "sampling_time": "2026-10-29T11:43:26+08:00"
+   },
+   {
+    "unique_organizations": 63,
+    "wall_seconds": 300.6,
+    "sampling_time": "2026-10-29T11:48:26+08:00"
+   }
   ],
-  "previous": {"value": 62, "at": "2026-10-28T22:52:13+08:00"},
+  "previous": {
+   "value": 62,
+   "at": "2026-10-28T22:52:13+08:00"
+  },
   "delta_since_previous": 1,
   "delta_7d": 7,
   "strict_24h_delta": "UNKNOWN",
   "why_24h_unknown": "no snapshot exists at 2026-10-28T11:48+08:00; subtracting against a 12.9h-older point and calling it 24h would be fabrication",
-  "method_unchanged": "bd_orchestrator._count_safe_ready_pool -> campaign_eligible_v2.select_candidates_for_plan_v2, distinct organization_key"
+  "method_unchanged": "bd_orchestrator._count_safe_ready_pool -> campaign_eligible_v2.select_candidates_for_plan_v2, distinct organization_key",
+  "intraday_trajectory": [
+   {
+    "at": "2026-10-28T22:52:13+08:00",
+    "safe": 62,
+    "source": "SAFE_AUTHORITY_SNAPSHOT (10-28 build)"
+   },
+   {
+    "at": "2026-10-29T00:14:00+08:00",
+    "safe": 63,
+    "source": "workspace memory 2026-10-29 00:14 checkpoint (two reads 63/63)"
+   },
+   {
+    "at": "2026-10-29T06:41:00+08:00",
+    "safe": 64,
+    "source": "workspace memory 2026-10-29 06:41 checkpoint (two reads 64/64)"
+   },
+   {
+    "at": "2026-10-29T11:48:26+08:00",
+    "safe": 63,
+    "source": "this build (two reads 63/63)"
+   }
+  ],
+  "intraday_peak_today": 64,
+  "delta_vs_intraday_peak": -1,
+  "trajectory_warning": "do not read SAFE 63 as monotonic growth: it peaked at 64 this morning and fell back by 1. Either one candidate lost eligibility or live-MX resolution varied; both readings inside each pair agreed, so it is not single-read noise.",
+  "in_run_counts": [
+   {
+    "run": "inventory:2026-10-28:f3323da5",
+    "actual": 62
+   },
+   {
+    "run": "inventory:2026-10-29:2af7d25d",
+    "actual": 63
+   },
+   {
+    "run": "inventory:2026-10-29:8f789080",
+    "actual": 62
+   }
+  ]
  },
  "cities": {
   "Cooperstown": {
@@ -80,9 +130,22 @@
   "Lake_Placid": {
    "city_id": 23,
    "query_families": "14/20 completed",
-   "pending_families": ["family game store", "visitor center gift shop", "tourist gift shop", "specialty retailer", "puzzle store", "card game store"],
+   "pending_families": [
+    "family game store",
+    "visitor center gift shop",
+    "tourist gift shop",
+    "specialty retailer",
+    "puzzle store",
+    "card game store"
+   ],
    "formal_checks": "4/9 pass",
-   "failing_checks": ["all_query_families", "all_sources_or_reasons", "pagination_complete", "two_empty_pages", "last_three_batches_empty"],
+   "failing_checks": [
+    "all_query_families",
+    "all_sources_or_reasons",
+    "pagination_complete",
+    "two_empty_pages",
+    "last_three_batches_empty"
+   ],
    "pages_processed": 36,
    "results_seen": 349,
    "new_unique_places": 48,
@@ -94,11 +157,20 @@
    "city_id": 20,
    "queue_status": "search_matrix_exhausted since 2026-09-23",
    "formal_checks": "5/9 pass",
-   "failing_checks": ["all_candidates_classified", "no_unprocessed_candidates", "official_site_recheck", "review_recovery"],
+   "failing_checks": [
+    "all_candidates_classified",
+    "no_unprocessed_candidates",
+    "official_site_recheck",
+    "review_recovery"
+   ],
    "verdict": "QUEUE_STATUS_CONTRADICTS_COMPLETION_CONTRACT",
    "action_taken": "reported only; changing a city row is a production mutation outside this task"
   },
-  "Saratoga_Springs": {"city_id": 21, "formal_checks": "9/9 pass", "status": "search_matrix_exhausted"}
+  "Saratoga_Springs": {
+   "city_id": 21,
+   "formal_checks": "9/9 pass",
+   "status": "search_matrix_exhausted"
+  }
  },
  "new_customer_funnel": {
   "h24": {
@@ -121,7 +193,11 @@
    "new_first_party_official_emails": 8,
    "provider_requests": 37
   },
-  "prior_h24_for_comparison": {"merchant_records_discovered": 10, "new_leads": 8, "new_first_party_official_emails": 1},
+  "prior_h24_for_comparison": {
+   "merchant_records_discovered": 10,
+   "new_leads": 8,
+   "new_first_party_official_emails": 1
+  },
   "caveat": "merchant discovery != confirmed identity != has email != SAFE customer"
  },
  "proxy": {
@@ -132,7 +208,13 @@
   "egress_check": "connectivitycheck.gstatic.com/generate_204 -> 204 in 0.687s through 127.0.0.1:7877",
   "non_interactive_egress": "UNVERIFIED",
   "note": "the .env value is unchanged since the 2026-10-25 migration; the proxy works from sessions that inherit the operator environment, but no non-interactive/logged-off egress test exists yet",
-  "stale_dependency": {"key": "BD_MX_HTTPS_PROXY", "value": "http://127.0.0.1:3213", "state": "still points at the retired Astrill port", "impact": "query_mx falls back to direct DNS; both MX controls still resolve", "action": "not migrated, still outside the authorised scope"}
+  "stale_dependency": {
+   "key": "BD_MX_HTTPS_PROXY",
+   "value": "http://127.0.0.1:3213",
+   "state": "still points at the retired Astrill port",
+   "impact": "query_mx falls back to direct DNS; both MX controls still resolve",
+   "action": "not migrated, still outside the authorised scope"
+  }
  },
  "bridge_8791": {
   "listening": false,
@@ -163,8 +245,14 @@
   "roadmap_recorded_head": "201b5a722455926b00e2de8f710aebd130cd65db",
   "advanced_by": 2,
   "advanced_commits": [
-   {"sha": "642eaf6d0090e54d489eeaa587c5da89c07ff9dd", "subject": "test: verify cancellation journal concurrency and process exit recovery"},
-   {"sha": "9421c4f1e054e8981d2d4d59cf1c8bb9e40164af", "subject": "docs: seal cancellation journal process recovery evidence"}
+   {
+    "sha": "642eaf6d0090e54d489eeaa587c5da89c07ff9dd",
+    "subject": "test: verify cancellation journal concurrency and process exit recovery"
+   },
+   {
+    "sha": "9421c4f1e054e8981d2d4d59cf1c8bb9e40164af",
+    "subject": "docs: seal cancellation journal process recovery evidence"
+   }
   ],
   "observation": "the newest work moved forward on the cancellation journal, which is the Phase 1 subject; no evidence of a production dispatch being enabled",
   "consumed_by_codex": false,
