@@ -1,6 +1,23 @@
 # ROKT&RAZO — WORKBUDDY 长期生产运维交付
 # Long-Term Production Operations Delivery
 
+> ## ⚠️ 历史归档 / SUPERSEDED — do not treat as current state
+>
+> 本文件是 **2026-10-22** 的快照，含下列已失效结论。当前状态请读
+> `PHASE0_STATE_REFRESH_20261029.json`（差异摘要）、`PRODUCTION_OPERATIONS_STATUS.md`（人工摘要）
+> 以及 `WORKBUDDY_LONG_TERM_OPERATIONS.json`（机器字段）。
+>
+> | 本文件旧结论 | 2026-10-29 实测 |
+> |---|---|
+> | SAFE = 56 | **63**（双读一致） |
+> | Cooperstown 结构性锁死、时间不会自愈 | **已于 2026-10-23 00:49 +08 正式关闭，完成判据 9/9 通过** |
+> | 24h 新增 0 家 / 0 邮箱 | 17 家商户 / 16 组织 / 13 lead / **2 个第一方邮箱** |
+> | 活动城市 = Cooperstown | **Lake Placid（14/20 查询族）** |
+> | 3 次未产生生产运行 = 代理门 fail-closed | 48h 内 **7/7 成功、0 漏跑** |
+> | 计划任务层 = UNKNOWN | BD-Outreach/PreSend = DISABLED、BD-PostSend = READY（经核实不发信） |
+>
+> 保留本文件是为了留下当时的推理链与 §9 的一次性管理员授权清单，**不是**当前水位。
+
 - **生成时间 / generated_at**: 2026-10-22 16:05 +08
 - **业务时区 / business timezone**: Asia/Shanghai (+08)；`business_date` 按 America/New_York 16:00 切换
 - **执行者**: WorkBuddy（生产运维方）

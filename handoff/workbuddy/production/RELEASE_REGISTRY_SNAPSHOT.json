@@ -1,71 +1,39 @@
 {
+ "schema": "rokt.release_registry.v1",
  "operation": "releases",
  "count": 4,
  "releases": [
-  {
-   "release_id": "phase4a8s-safe50-continuous-discovery",
-   "file_count": 1,
-   "targets": [
-    "bd_orchestrator.py"
-   ],
-   "deployable": true,
-   "registered_at": null,
-   "registered_by": null,
-   "patch_sha256": "3c7ba8d9baf9c6c4e35ecd5cfa5ef91e87b949ef10abad560fe191f768714bda"
-  },
-  {
-   "release_id": "phase4a8u-city-recovery-production-rebase-20261022",
-   "file_count": 2,
-   "targets": [
-    "discovery/discovery_service.py",
-    "retail_city_queue.py"
-   ],
-   "deployable": true,
-   "registered_at": "2026-10-22T01:17:41+08:00",
-   "registered_by": "bridge",
-   "patch_sha256": "a050aa91ed1b73c39e30b9ae4692d626964d62eb0dfbcd7a6632b6b5d67113cb"
-  },
-  {
-   "release_id": "phase4a8v-inventory-stage-trace-20261022",
-   "file_count": 1,
-   "targets": [
-    "bd_orchestrator.py"
-   ],
-   "deployable": true,
-   "registered_at": "2026-10-22T19:14:35+08:00",
-   "registered_by": "bridge",
-   "patch_sha256": "2c4e1750fe7e39c996baa731bed740e8b2ef08546147b1f9976e25ae550c2081"
-  },
-  {
-   "release_id": "phase4a8w-city-legacy-ledger-20261022",
-   "file_count": 2,
-   "targets": [
-    "discovery/discovery_service.py",
-    "retail_city_queue.py"
-   ],
-   "deployable": true,
-   "registered_at": "2026-10-22T23:18:00+08:00",
-   "registered_by": "bridge",
-   "patch_sha256": "f15887a0356b0f7e3617e939ae2efbaee5f99cceebd327eef6da2d29e0ffa55a"
-  }
+  "phase4a8s-safe50-continuous-discovery",
+  "phase4a8u-city-recovery-production-rebase-20261022",
+  "phase4a8v-inventory-stage-trace-20261022",
+  "phase4a8w-city-legacy-ledger-20261022"
  ],
  "seal": {
-  "sealed": true,
-  "tampered": false,
-  "diffs": [],
-  "sealed_at": "2026-10-22T23:18:00+0800"
+  "channel_config.json": {
+   "actual": "d88740521378cdda12e676566b4a641f0b2e532d472c6c70fa781e5e6c9da073",
+   "sealed": "d88740521378cdda12e676566b4a641f0b2e532d472c6c70fa781e5e6c9da073",
+   "match": true
+  },
+  "allowed_scope.json": {
+   "actual": "eea98b18a7ec3501b95f5d48e615cae8e71f8063b7ff694ebe833b9930fdabb5",
+   "sealed": "eea98b18a7ec3501b95f5d48e615cae8e71f8063b7ff694ebe833b9930fdabb5",
+   "match": true
+  }
  },
- "ts": "2026-10-28T22:52:26+0800",
+ "seal_verdict": "BOTH_MATCH",
+ "new_release_this_cycle": false,
+ "note": "registry read from disk because the 8791 bridge is down this cycle; the seal still verifies both channel_config.json and allowed_scope.json, so no unregistered release was installed",
+ "data_sources": "deploy-channel/releases + state/registry_seal.json",
+ "available": true,
  "schema_version": "1.0",
- "evidence_kind": "releases",
- "generated_at": "2026-10-28T22:52:26+08:00",
+ "generated_at": "2026-10-29T11:50:11+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
+ "evidence_kind": "production_state",
  "channel": {
   "endpoint": "http://127.0.0.1:8791",
-  "bridge_version": "2.1",
-  "auth": "Bearer (Credential Manager)"
+  "bridge_state": "DOWN_THIS_CYCLE",
+  "note": "endpoint not consulted this cycle; values derived directly from bd_leads.db (mode=ro) and file evidence"
  },
- "data_sources": "deploy-channel releases/channel_config.json + registry seal",
- "payload_sha256": "74f4bbbbe7650605879b9abde124538abe5a818b73fb0adb582dc1c42512b9af"
+ "payload_sha256": "7fdc99ad0e7182c54622ea42cf9816e562bcfbbbc6f946fff956940f58971159"
 }
