@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-29T22:53:47+08:00",
+  "generated_at": "2026-10-30T22:52:51+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -242,7 +242,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-29T22:53:47+08:00",
+  "generated_at": "2026-10-30T22:52:51+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -270,20 +270,20 @@
    "started_at": "2026-10-22T23:02:55.404569+00:00",
    "completed_at": null,
    "completion_reason": null,
-   "pages_processed": 39,
-   "results_seen": 382,
-   "consecutive_pages_without_new_place": 2,
+   "pages_processed": 50,
+   "results_seen": 557,
+   "consecutive_pages_without_new_place": 4,
    "resume_state": "query_completed",
    "web_directory_status": null,
-   "last_success_at": "2026-10-29T09:18:20.344923+00:00",
+   "last_success_at": "2026-10-30T12:00:23.043363+00:00",
    "last_error_class": "other"
   },
   "active_discovery_state": "NY",
   "active_city_state_config": "TN",
   "query_families": {
    "total": 20,
-   "completed": 15,
-   "remaining": 5,
+   "completed": 19,
+   "remaining": 1,
    "detail": [
     {
      "query_family": "toy store",
@@ -377,27 +377,27 @@
     },
     {
      "query_family": "visitor center gift shop",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-29T23:59:59.050143+08:00"
     },
     {
      "query_family": "tourist gift shop",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-30T06:38:54.956709+08:00"
     },
     {
      "query_family": "specialty retailer",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 3,
+     "completed_at": "2026-10-30T13:16:36.484455+08:00"
     },
     {
      "query_family": "puzzle store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-30T20:00:23.043401+08:00"
     },
     {
      "query_family": "card game store",
@@ -409,18 +409,18 @@
   },
   "records": {
    "by_validation_status": {
-    "review_recovery": 15,
+    "review_recovery": 17,
+    "manual_review_needed": 13,
     "rejected": 13,
-    "manual_review_needed": 9,
-    "no_public_email": 7,
-    "website_not_found": 4,
+    "no_public_email": 8,
+    "website_not_found": 6,
     "contact_form_pool": 1,
     "existing_lead_linked": 1,
     "history_blocked": 1,
     "identity_review": 1,
     "outside_active_city": 1
    },
-   "total": 53,
+   "total": 62,
    "pending_states_total": 0,
    "website_lookup_pending": 0,
    "network_retry_pending": 0,
@@ -432,22 +432,22 @@
    "staged_pending_refs": [],
    "retryable_manual_review_refs": [],
    "linked_backlog_retry_refs": [
-    "ldr:653",
-    "ldr:655"
+    "ldr:653"
    ],
    "auto_recovery_deferred_refs": [
     "ldr:626",
     "ldr:636",
     "ldr:641",
     "ldr:644",
-    "ldr:645"
+    "ldr:645",
+    "ldr:655"
    ],
-   "candidate_rows_scanned": 53,
+   "candidate_rows_scanned": 62,
    "evaluator": "production retail_city_queue helpers (_manual_review_retryable / _linked_backlog_retryable / automatic_recovery_deferred)",
    "available": true,
    "retryable_manual_review_refs_count": 0,
-   "linked_backlog_retry_refs_count": 2,
-   "auto_recovery_deferred_refs_count": 5,
+   "linked_backlog_retry_refs_count": 1,
+   "auto_recovery_deferred_refs_count": 6,
    "staged_pending_refs_count": 0
   },
   "completion_checks": {
@@ -470,8 +470,8 @@
    "activatable": true
   },
   "provider_audit": {
-   "requests": 43,
-   "last_requested_at": "2026-10-29T17:18:20.343616+08:00"
+   "requests": 54,
+   "last_requested_at": "2026-10-30T20:00:23.041173+08:00"
   },
   "stage_events": {
    "available": false,
@@ -507,7 +507,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-29T22:53:47+08:00",
+ "generated_at": "2026-10-30T22:52:51+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -515,12 +515,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-29:70803bcf",
+ "run_id": "inventory:2026-10-30:1047e9be",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "5d6903a4764943a8849d1f86124e69abbc58e381cdea85aaa64fe4e68dd91db0"
+ "payload_sha256": "b7c996bae1cac1e3b52cbfe71d68db617cfb8f3226308afeda0f35778ca474ca"
 }
