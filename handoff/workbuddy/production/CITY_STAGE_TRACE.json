@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-30T22:52:51+08:00",
+  "generated_at": "2026-10-31T23:55:16+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -242,7 +242,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-10-30T22:52:51+08:00",
+  "generated_at": "2026-10-31T23:55:16+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -265,25 +265,25 @@
    "city_id": 23,
    "city": "Lake Placid",
    "state": "NY",
-   "city_status": "active",
+   "city_status": "places_matrix_completed_web_pending",
    "priority": 4,
    "started_at": "2026-10-22T23:02:55.404569+00:00",
    "completed_at": null,
-   "completion_reason": null,
-   "pages_processed": 50,
-   "results_seen": 557,
-   "consecutive_pages_without_new_place": 4,
+   "completion_reason": "web_directory_provider_not_configured",
+   "pages_processed": 52,
+   "results_seen": 561,
+   "consecutive_pages_without_new_place": 6,
    "resume_state": "query_completed",
-   "web_directory_status": null,
-   "last_success_at": "2026-10-30T12:00:23.043363+00:00",
+   "web_directory_status": "web_directory_provider_not_configured",
+   "last_success_at": "2026-10-31T01:07:51.481531+00:00",
    "last_error_class": "other"
   },
   "active_discovery_state": "NY",
   "active_city_state_config": "TN",
   "query_families": {
    "total": 20,
-   "completed": 19,
-   "remaining": 1,
+   "completed": 20,
+   "remaining": 0,
    "detail": [
     {
      "query_family": "toy store",
@@ -401,9 +401,9 @@
     },
     {
      "query_family": "card game store",
-     "status": "pending",
-     "pages_processed": 0,
-     "completed_at": null
+     "status": "completed",
+     "pages_processed": 2,
+     "completed_at": "2026-10-31T09:07:51.481596+08:00"
     }
    ]
   },
@@ -452,14 +452,14 @@
   },
   "completion_checks": {
    "all_candidates_classified": false,
-   "all_query_families": false,
-   "all_sources_or_reasons": false,
-   "last_three_batches_empty": false,
+   "all_query_families": true,
+   "all_sources_or_reasons": true,
+   "last_three_batches_empty": true,
    "no_unprocessed_candidates": false,
    "official_site_recheck": false,
-   "pagination_complete": false,
+   "pagination_complete": true,
    "review_recovery": false,
-   "two_empty_pages": false
+   "two_empty_pages": true
   },
   "completion_checks_all_met": false,
   "next_city": {
@@ -470,8 +470,8 @@
    "activatable": true
   },
   "provider_audit": {
-   "requests": 54,
-   "last_requested_at": "2026-10-30T20:00:23.041173+08:00"
+   "requests": 56,
+   "last_requested_at": "2026-10-31T09:07:51.480659+08:00"
   },
   "stage_events": {
    "available": false,
@@ -507,7 +507,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-10-30T22:52:51+08:00",
+ "generated_at": "2026-10-31T23:55:16+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -515,12 +515,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-10-30:1047e9be",
+ "run_id": "inventory:2026-10-31:d52e84fd",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "b7c996bae1cac1e3b52cbfe71d68db617cfb8f3226308afeda0f35778ca474ca"
+ "payload_sha256": "e4cc78beabbacf3f44b793ad3aa16fd061cdf0c0959f7ace2a84626c94883023"
 }
