@@ -1,6 +1,6 @@
 {
  "schema": "rokt.safe_authority.v1",
- "measured_at": "2026-11-01T22:41:14+08:00",
+ "measured_at": "2026-11-02T22:41:27+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "rule_version": {
   "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
@@ -24,23 +24,23 @@
  "mx_positive_control": {
   "domain": "gmail.com",
   "mx_status": "ok",
-  "checked_at": "2026-11-01T22:41:17.314561+08:00"
+  "checked_at": "2026-11-02T22:41:29.544570+08:00"
  },
  "mx_negative_control": {
   "domain": "nonexistent-domain-xyz-abc123456.invalid",
   "mx_status": "nxdomain",
-  "checked_at": "2026-11-01T22:41:19.653605+08:00"
+  "checked_at": "2026-11-02T22:41:31.780568+08:00"
  },
  "measurement_complete": true,
  "failure_reason": null,
- "safe_unique_orgs": 68,
+ "safe_unique_orgs": 69,
  "db_identity": {
   "path_basename": "bd_leads.db",
-  "size_bytes": 9879552,
-  "sha256": "98670357c520cff6462f43afd53a456677eb3a9ae73dea86273b4d575b74eeea",
+  "size_bytes": 9887744,
+  "sha256": "4b3109057504a9616d25405f33bf63ce5ec5d96a433b0aadba3e3b20408c8620",
   "quick_check": "ok"
  },
- "mx_probe_seconds": 4.49,
+ "mx_probe_seconds": 4.35,
  "mx_probe_ok": true,
  "mx_proxy_configured": true,
  "leads_total": 1254,
@@ -53,17 +53,17 @@
  "readings": [
   {
    "reading": 1,
-   "sampling_time": "2026-11-01T22:47:40+08:00",
-   "candidate_rows": 68,
-   "unique_organizations": 68,
-   "wall_seconds": 380.9
+   "sampling_time": "2026-11-02T22:47:34+08:00",
+   "candidate_rows": 69,
+   "unique_organizations": 69,
+   "wall_seconds": 363.0
   },
   {
    "reading": 2,
-   "sampling_time": "2026-11-01T22:53:05+08:00",
-   "candidate_rows": 68,
-   "unique_organizations": 68,
-   "wall_seconds": 309.6
+   "sampling_time": "2026-11-02T22:52:59+08:00",
+   "candidate_rows": 69,
+   "unique_organizations": 69,
+   "wall_seconds": 309.7
   }
  ],
  "reading_agreement": true,
@@ -83,32 +83,32 @@
   },
   "d7": {
    "window_hours": 168,
-   "merchant_records_discovered": 58,
-   "unique_organizations_discovered": 55,
-   "verified_official_sites": 23,
-   "new_leads": 41,
-   "new_leads_with_email": 14,
-   "new_first_party_official_emails": 14,
-   "new_distinct_organization_keys": 39,
+   "merchant_records_discovered": 40,
+   "unique_organizations_discovered": 38,
+   "verified_official_sites": 16,
+   "new_leads": 31,
+   "new_leads_with_email": 10,
+   "new_first_party_official_emails": 10,
+   "new_distinct_organization_keys": 29,
    "provider_contribution": [
     {
      "provider": "browser_maps",
-     "records": 58
+     "records": 40
     }
    ]
   },
   "note": "merchant discovery != confirmed business identity != has email != SAFE customer"
  },
  "safe_net_growth": {
-  "h24": -1,
-  "d7": 12,
+  "h24": 1,
+  "d7": 9,
   "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set",
-  "h24_baseline_at": "2026-10-31T23:43:28+08:00",
-  "d7_baseline_at": "2026-10-25T22:41:38+08:00"
+  "h24_baseline_at": "2026-11-01T22:41:14+08:00",
+  "d7_baseline_at": "2026-10-26T22:44:47+08:00"
  },
- "finished_at": "2026-11-01T22:53:05+08:00",
+ "finished_at": "2026-11-02T22:52:59+08:00",
  "available": true,
- "generated_at": "2026-11-01T22:53:22+08:00",
+ "generated_at": "2026-11-02T22:53:12+08:00",
  "refresh_requested": false,
  "refresh_result": null,
  "age_hours": 0.2,
@@ -133,5 +133,5 @@
  "unavailable": [
   "24h/7d SAFE net growth (no prior snapshot under an identical rule version)"
  ],
- "payload_sha256": "44b46ed8bef242bb7079d0174b7d6e1251e81fcfe8d5ac88431a68670268366d"
+ "payload_sha256": "4dfddcb1a1bd8694d852f88bc321f6c1de562bd9627201275add1b2a11f1352d"
 }

@@ -55,10 +55,10 @@
   "diffs": [],
   "sealed_at": "2026-10-22T23:18:00+0800"
  },
- "ts": "2026-11-01T22:53:22+0800",
+ "ts": "2026-11-02T22:53:12+0800",
  "schema_version": "1.0",
  "evidence_kind": "releases",
- "generated_at": "2026-11-01T22:53:22+08:00",
+ "generated_at": "2026-11-02T22:53:12+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -67,5 +67,5 @@
   "auth": "Bearer (Credential Manager)"
  },
  "data_sources": "deploy-channel releases/channel_config.json + registry seal",
- "payload_sha256": "2bfccd68e37b318e1086ab92eff3d13a1e8e4d8d79b0786bb4d5ee053c9dca89"
+ "payload_sha256": "12ed5902dfc52460c8b59fcc7fccfcdd42eec62f4926ec872252225a6d691f18"
 }
