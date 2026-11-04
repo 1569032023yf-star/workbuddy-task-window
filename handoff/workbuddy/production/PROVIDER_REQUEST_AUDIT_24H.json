@@ -1,17 +1,17 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-03T22:52:35+08:00",
+  "generated_at": "2026-11-04T22:53:34+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-11-02T14:52:35+00:00",
+  "window_start_utc": "2026-11-03T14:53:34+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
   "verdict_basis": "no audit row in window AND all query families for the city/provider are already completed, so discovery had no request to issue",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 4,
+  "inventory_runs_in_window": 3,
   "query_matrix": {
    "total": 20,
    "completed": 20,
@@ -25,28 +25,28 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-03T22:52:35+08:00",
+  "generated_at": "2026-11-04T22:53:34+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-10-27T14:52:35+00:00",
+  "window_start_utc": "2026-10-28T14:53:34+00:00",
   "city_id": null,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "REAL_REQUESTS",
   "verdict_basis": "provider_request_audit rows present in window",
-  "audit_rows": 31,
+  "audit_rows": 22,
   "per_provider": [
    {
     "provider": "browser_maps",
-    "requests": 31,
-    "success": 31,
+    "requests": 22,
+    "success": 22,
     "failed": 0,
     "timeout": 0,
     "rate_limited": 0,
     "last_requested_at": "2026-10-31T09:07:51.480659+08:00",
-    "audit_rows": 31
+    "audit_rows": 22
    }
   ],
-  "inventory_runs_in_window": 24,
+  "inventory_runs_in_window": 23,
   "query_matrix": {
    "total": null,
    "completed": null,
@@ -60,7 +60,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-11-03T22:52:35+08:00",
+ "generated_at": "2026-11-04T22:53:34+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -68,7 +68,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-03:4b25f049",
+ "run_id": "inventory:2026-11-04:e12a575c",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "dd076e861cd4bb3cdb04956081901c3d4be63107b6f2298e23c965ab7cd6c470"
+ "payload_sha256": "28501d7bfde8240e44d3e2b7ca51dcfccc500fe4a4a198ce09a13290e7e17c81"
 }
