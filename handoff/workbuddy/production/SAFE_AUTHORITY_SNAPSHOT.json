@@ -1,6 +1,6 @@
 {
  "schema": "rokt.safe_authority.v1",
- "measured_at": "2026-11-04T22:41:26+08:00",
+ "measured_at": "2026-11-05T22:41:01+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "rule_version": {
   "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
@@ -24,20 +24,20 @@
  "mx_positive_control": {
   "domain": "gmail.com",
   "mx_status": "ok",
-  "checked_at": "2026-11-04T22:41:28.973670+08:00"
+  "checked_at": "2026-11-05T22:41:03.433130+08:00"
  },
  "mx_negative_control": {
   "domain": "nonexistent-domain-xyz-abc123456.invalid",
   "mx_status": "nxdomain",
-  "checked_at": "2026-11-04T22:41:31.274694+08:00"
+  "checked_at": "2026-11-05T22:41:05.739361+08:00"
  },
  "measurement_complete": true,
  "failure_reason": null,
  "safe_unique_orgs": 69,
  "db_identity": {
   "path_basename": "bd_leads.db",
-  "size_bytes": 9904128,
-  "sha256": "a29044a89f7886f3117fac51354fea62806dd39449cc1084c8a449df3c6e6c04",
+  "size_bytes": 9912320,
+  "sha256": "f72580c154b221a2541bdbc3cf0088d26722ec0ed9fb63dcee8fc841c2077c5d",
   "quick_check": "ok"
  },
  "mx_probe_seconds": 4.43,
@@ -53,17 +53,17 @@
  "readings": [
   {
    "reading": 1,
-   "sampling_time": "2026-11-04T22:47:46+08:00",
+   "sampling_time": "2026-11-05T22:47:22+08:00",
    "candidate_rows": 69,
    "unique_organizations": 69,
-   "wall_seconds": 375.3
+   "wall_seconds": 376.4
   },
   {
    "reading": 2,
-   "sampling_time": "2026-11-04T22:53:10+08:00",
+   "sampling_time": "2026-11-05T22:52:46+08:00",
    "candidate_rows": 69,
    "unique_organizations": 69,
-   "wall_seconds": 309.3
+   "wall_seconds": 308.9
   }
  ],
  "reading_agreement": true,
@@ -83,17 +83,17 @@
   },
   "d7": {
    "window_hours": 168,
-   "merchant_records_discovered": 21,
-   "unique_organizations_discovered": 21,
-   "verified_official_sites": 11,
-   "new_leads": 17,
-   "new_leads_with_email": 7,
-   "new_first_party_official_emails": 7,
-   "new_distinct_organization_keys": 17,
+   "merchant_records_discovered": 9,
+   "unique_organizations_discovered": 9,
+   "verified_official_sites": 5,
+   "new_leads": 7,
+   "new_leads_with_email": 4,
+   "new_first_party_official_emails": 4,
+   "new_distinct_organization_keys": 7,
    "provider_contribution": [
     {
      "provider": "browser_maps",
-     "records": 21
+     "records": 9
     }
    ]
   },
@@ -101,14 +101,14 @@
  },
  "safe_net_growth": {
   "h24": 0,
-  "d7": 7,
+  "d7": 4,
   "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set",
-  "h24_baseline_at": "2026-11-03T22:40:48+08:00",
-  "d7_baseline_at": "2026-10-28T22:40:58+08:00"
+  "h24_baseline_at": "2026-11-04T22:41:26+08:00",
+  "d7_baseline_at": "2026-10-29T22:41:07+08:00"
  },
- "finished_at": "2026-11-04T22:53:11+08:00",
+ "finished_at": "2026-11-05T22:52:46+08:00",
  "available": true,
- "generated_at": "2026-11-04T22:53:34+08:00",
+ "generated_at": "2026-11-05T22:53:10+08:00",
  "refresh_requested": false,
  "refresh_result": null,
  "age_hours": 0.2,
@@ -133,5 +133,5 @@
  "unavailable": [
   "24h/7d SAFE net growth (no prior snapshot under an identical rule version)"
  ],
- "payload_sha256": "a9d00e526bb92499280c9e3cbe33c67bccd3089275049810456691ad78ccd7ae"
+ "payload_sha256": "21f3ce003ce9a60fd3c821d2d3086662154bf999027312b431809af737d29e04"
 }
