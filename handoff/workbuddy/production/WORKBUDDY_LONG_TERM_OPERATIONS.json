@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-09T11:27:15+08:00",
+ "generated_at": "2026-11-09T22:53:42+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "fields": {
   "PRODUCTION_OBSERVABILITY_ACCEPTED": false,
@@ -16,8 +16,8 @@
   "MX_POSITIVE_CONTROL": "ok",
   "MX_NEGATIVE_CONTROL": "nxdomain",
   "TWO_SAFE_RECONCILIATIONS_VERIFIED": true,
-  "INVENTORY_SCHEDULER_VERIFIED": false,
-  "EXPECTED_VS_ACTUAL_TRIGGERS_RECONCILED": false,
+  "INVENTORY_SCHEDULER_VERIFIED": true,
+  "EXPECTED_VS_ACTUAL_TRIGGERS_RECONCILED": true,
   "MISSED_INVENTORY_RUNS_CONFIRMED": 0,
   "GLOBAL_INVENTORY_UNIQUENESS_VERIFIED": true,
   "SAFE40_CHECKPOINT_ACTIVE": true,
@@ -34,7 +34,7 @@
   "LAKE_PLACID_ACTIVE": false,
   "LAKE_PLACID_PROVIDER_REQUESTS": 56,
   "PRODUCTION_DB_UNAUTHORIZED_WRITES": 0,
-  "PRODUCTION_DB_SHA_AFTER": "53563a8a6305aea119c54dae7a1f195db112625fd91a819fe7db2b0cb8416fdc",
+  "PRODUCTION_DB_SHA_AFTER": "00fe13ad9f0ac6b3a5c054ee079ed2d6c56ded9749d13308c604c4df42dec58f",
   "UNAUTHORIZED_EMAILS_SENT": 0,
   "DUPLICATE_INVENTORY_CREATED": false,
   "CUSTOMER_SMTP_ENABLED": false,
@@ -43,18 +43,18 @@
   "CUSTOMER_SMTP_SOURCES_AGREE": true,
   "PRODUCTION_SEND_LOG_TOTAL": 517,
   "PRODUCTION_SEND_LOG_TODAY": 0,
-  "PRODUCTION_DB_SHA256": "53563a8a6305aea119c54dae7a1f195db112625fd91a819fe7db2b0cb8416fdc",
-  "PRODUCTION_DB_MTIME": "2026-11-09T11:27:02+08:00",
+  "PRODUCTION_DB_SHA256": "00fe13ad9f0ac6b3a5c054ee079ed2d6c56ded9749d13308c604c4df42dec58f",
+  "PRODUCTION_DB_MTIME": "2026-11-09T17:46:53+08:00",
   "PRODUCTION_DB_QUICK_CHECK": "ok",
   "BLOCKERS_REQUIRING_ONE_TIME_AUTHORIZATION": "install the deploy-channel supervisor as a Windows service (or a boot-time scheduled task running as the operator) so the bridge survives logoff/session end; schtasks/sc.exe are blocked for this process and CREATE_BREAKAWAY_FROM_JOB returns WinError 5, so boot-level persistence cannot be produced without one elevated action",
-  "NEXT_AUTOMATIC_ACTION": "next Inventory firing at 2026-11-09T08:58:47.649000+08:00 (agent layer, fail-closed if the proxy gate fails). Cooperstown will NOT close on its own: ldr:556 and ldr:565 are re-queued every firing (network_recovery_due=True) but retail_city_queue.automatic_recovery_deferred requires unavailable_attempts == 3 exactly, and that counter is stuck at 1 / absent while attempts climbs to 20 / 31. A Codex patch is required; time alone cannot clear it.",
+  "NEXT_AUTOMATIC_ACTION": "next Inventory firing at 2026-11-09T23:57:01.511000+08:00 (agent layer, fail-closed if the proxy gate fails). Cooperstown will NOT close on its own: ldr:556 and ldr:565 are re-queued every firing (network_recovery_due=True) but retail_city_queue.automatic_recovery_deferred requires unavailable_attempts == 3 exactly, and that counter is stuck at 1 / absent while attempts climbs to 20 / 31. A Codex patch is required; time alone cannot clear it.",
   "COOPERSTOWN_STRUCTURALLY_BLOCKED_REFS": "",
   "COOPERSTOWN_SELF_HEALING_REFS": "",
   "COOPERSTOWN_COMPLETION_CHECKS_FAILED": "",
   "COMMIT_SHA": "BACKFILLED_IN_FOLLOWUP_COMMIT",
   "PUSH_SUCCESS": null,
   "OVERALL_RESULT": "OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING",
-  "evidence_sha256": "2c6907e6b83fb19bcfd8532f4de45cc2e79e0d969f370b0324d240815f44284e"
+  "evidence_sha256": "14e649ebb22396b523836c250dbfbd0a6743912ba7091e4bae985b956d5805a3"
  },
  "evidence_files": [
   "CITY_STAGE_TRACE.json",
@@ -85,7 +85,7 @@
    "safe"
   ],
   "test_mode": false,
-  "ts": "2026-11-09T11:27:14+08:00"
+  "ts": "2026-11-09T22:53:41+08:00"
  },
  "acceptance": {
   "observability_sandbox": "40/40",

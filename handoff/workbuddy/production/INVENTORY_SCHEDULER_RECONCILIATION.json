@@ -1,6 +1,6 @@
 {
  "schema": "rokt.scheduler.v1",
- "generated_at": "2026-11-09T11:27:15+08:00",
+ "generated_at": "2026-11-09T22:53:42+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "window_hours": 48,
  "source": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
@@ -8,37 +8,54 @@
   "id": "automation-1784775229336",
   "status": "ACTIVE",
   "rrule": "FREQ=HOURLY;INTERVAL=6",
-  "next_run_at": "2026-11-09T08:58:47.649000+08:00",
-  "runtime_last_run_at": "2026-11-06T14:58:47.649000+08:00",
+  "next_run_at": "2026-11-09T23:57:01.511000+08:00",
+  "runtime_last_run_at": "2026-11-09T17:57:01.511000+08:00",
   "runtime_last_error": null,
   "automations_last_run_at_note": "automations.last_run_at is stale/unreliable; automation_runtime_state.last_run_at is authoritative"
  },
  "reconciliation_model": {
   "method": "PAIRWISE: planned(next) = completed(previous) + rrule interval, because the scheduler re-anchors HOURLY rules on run completion, so an absolute grid cannot match and would report false misses",
   "tolerance_seconds": 600,
-  "receipts_paired": 1,
+  "receipts_paired": 2,
   "drift_seconds": {
    "min": -21519.9,
-   "max": -21519.9,
-   "avg": -21519.9
+   "max": 26.1,
+   "avg": -10746.9
   },
   "skipped_slots_total": 0,
   "skipped_slot_detail": [],
-  "pending_slot": "2026-11-09T17:14:57.906000+08:00",
-  "next_run_at_vs_pending_slot_seconds": -29770.3
+  "pending_slot": "2026-11-09T23:57:01.413000+08:00",
+  "next_run_at_vs_pending_slot_seconds": 0.1
  },
- "matched_slots": 1,
+ "matched_slots": 2,
  "missed_inventory_runs_confirmed": 0,
- "firings_in_window": 1,
- "firings_executed_production": 1,
+ "firings_in_window": 2,
+ "firings_executed_production": 2,
  "firings_without_production_run": 0,
  "firings": [
   {
+   "firing_id": "automation-1784775229336:1794216892275",
+   "triggered_at": "2026-11-09T17:34:52.286000+08:00",
+   "completed_at": "2026-11-09T17:57:01.413000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-11-09T17:34:26.225000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 26.1,
+   "cycle_gap_seconds": 21626.1,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-11-09:b3e92f89",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
+  {
    "firing_id": "automation-1784775229336:1794194097897",
-   "triggered_at": "2026-11-09T11:14:57.898000+08:00",
-   "completed_at": "2026-11-09T11:14:57.906000+08:00",
-   "automation_status": "IN_PROGRESS",
-   "automation_result_success": false,
+   "triggered_at": "2026-11-09T11:14:57.899000+08:00",
+   "completed_at": "2026-11-09T11:34:26.225000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
    "automation_failure_code": null,
    "automation_reason_code": null,
    "planned_at": "2026-11-09T17:13:37.791000+08:00",
@@ -111,8 +128,8 @@
   "basis": "exactly one ACTIVE non-deleted WorkBuddy automation is classified role=INVENTORY, no ACTIVE orchestrator-referencing automation is UNCLASSIFIED, and the BDExecutionHost service is not RUNNING; Windows scheduled tasks remain UNKNOWN by policy"
  },
  "verdict": {
-  "inventory_scheduler_verified": false,
-  "expected_vs_actual_reconciled": false,
+  "inventory_scheduler_verified": true,
+  "expected_vs_actual_reconciled": true,
   "note": "a firing that produced no job_runs row is classified firings_without_production_run, NOT automatically a missed firing: the agent layer can refuse to execute fail-closed (e.g. network gate)."
  },
  "operation": "scheduler",
@@ -124,10 +141,10 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-09:1ce0df31",
+ "run_id": "inventory:2026-11-09:b3e92f89",
  "data_sources": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
  "unavailable": [
   "Windows scheduled task enumeration (schtasks blocked by host policy)"
  ],
- "payload_sha256": "697609a76f626171e3a673f7e31682a1cbaaf81bf6d02327193712e3e7e25338"
+ "payload_sha256": "e51089347f6431ec56ec4dc71e0814b2205ceec24132ac6a4fa1e8f1e02286f7"
 }

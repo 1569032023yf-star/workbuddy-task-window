@@ -1,17 +1,17 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-09T11:27:15+08:00",
+  "generated_at": "2026-11-09T22:53:41+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-11-08T03:27:15+00:00",
+  "window_start_utc": "2026-11-08T14:53:41+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
   "verdict_basis": "no audit row in window AND all query families for the city/provider are already completed, so discovery had no request to issue",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 1,
+  "inventory_runs_in_window": 2,
   "query_matrix": {
    "total": 20,
    "completed": 20,
@@ -25,17 +25,17 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-09T11:27:15+08:00",
+  "generated_at": "2026-11-09T22:53:41+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-11-02T03:27:15+00:00",
+  "window_start_utc": "2026-11-02T14:53:41+00:00",
   "city_id": null,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "UNKNOWN_NO_RECORD",
   "verdict_basis": "no audit row in window but the query matrix is not exhausted, so absence of an audit row does not prove zero provider calls",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 17,
+  "inventory_runs_in_window": 16,
   "query_matrix": {
    "total": null,
    "completed": null,
@@ -49,7 +49,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-11-09T11:27:15+08:00",
+ "generated_at": "2026-11-09T22:53:42+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -57,7 +57,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-09:1ce0df31",
+ "run_id": "inventory:2026-11-09:b3e92f89",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "748dfaab57c320b02101998d5c0cba580abe2f8c170dd4d1d464db8d83fe8d16"
+ "payload_sha256": "0c2c19d75230e21b2ece9017b260a475f6dd1d511c75802aeb0ed6245a78ca20"
 }

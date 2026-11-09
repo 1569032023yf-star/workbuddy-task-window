@@ -1,6 +1,6 @@
 {
  "schema": "rokt.runtime.v1",
- "generated_at": "2026-11-09T11:27:15+08:00",
+ "generated_at": "2026-11-09T22:53:42+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "source": "bd_leads.db:job_runs + system_config(run_lock) + workbuddy.db:automation_runs",
  "code": {
@@ -17,10 +17,36 @@
  "lock": {
   "key": "run_lock:daily_outreach:inventory:2026-11-09",
   "value": "released",
-  "acquired_at": "2026-11-09 03:15:50",
+  "acquired_at": "2026-11-09 09:35:32",
   "state": "RELEASED"
  },
  "runs": [
+  {
+   "run_id": "inventory:2026-11-09:b3e92f89",
+   "stage": "inventory",
+   "business_date": "2026-11-09",
+   "status": "completed",
+   "stop_reason": "target_met",
+   "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:35:32.218059+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:35:32.310893+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:35:32.330198+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:41:44.123381+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:41:44.157005+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:41:44.166486+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:41:44.186220+00:00\",\"city_id\":23,\"count\":0},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:41:44.194789+00:00\",\"city_id\":23},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:41:44.203929+00:00\",\"city_id\":23,\"count\":0},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:41:44.211008+00:00\",\"city_id\":23},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:41:44.219194+00:00\",\"city_id\":23,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:41:44.226690+00:00\",\"city_id\":23},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:41:44.245128+00:00\",\"city_id\":23,\"count\":0},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-11-09T09:41:44.254272+00:00\",\"city_id\":23},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:41:44.265467+00:00\",\"city_id\":23},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-11-09T09:46:53.356511+00:00\",\"count\":69}]}",
+   "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
+   "target": 50,
+   "actual": 69,
+   "gap": 0,
+   "error_class": "none",
+   "error_present": false,
+   "dry_run": false,
+   "process_id": 42924,
+   "process_started_at": "2026-11-09T17:35:32+08:00",
+   "process_finished_at": "2026-11-09T17:46:53+08:00",
+   "process_duration_seconds": 681.0,
+   "trigger_id": "automation-1784775229336",
+   "entrypoint": "bd_orchestrator.py",
+   "entrypoint_fingerprint": {
+    "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
+    "bytes": 36070,
+    "mtime": "2026-10-22T19:15:01.867681+08:00"
+   }
+  },
   {
    "run_id": "inventory:2026-11-09:1ce0df31",
    "stage": "inventory",
@@ -254,49 +280,40 @@
     "bytes": 36070,
     "mtime": "2026-10-22T19:15:01.867681+08:00"
    }
-  },
-  {
-   "run_id": "inventory:2026-11-05:65d3727c",
-   "stage": "inventory",
-   "business_date": "2026-11-05",
-   "status": "completed",
-   "stop_reason": "target_met",
-   "current_step": "{\"schema\":\"rokt.inventory_stage_trace.v1\",\"events\":[{\"seq\":1,\"phase\":\"inventory\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:42:37.820371+00:00\"},{\"seq\":2,\"phase\":\"state\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:42:37.894283+00:00\"},{\"seq\":3,\"phase\":\"state\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:42:37.908197+00:00\"},{\"seq\":4,\"phase\":\"city\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:49:56.541297+00:00\"},{\"seq\":5,\"phase\":\"city\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:49:56.577144+00:00\",\"city_id\":23},{\"seq\":6,\"phase\":\"places\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:49:56.587366+00:00\",\"city_id\":23},{\"seq\":7,\"phase\":\"places\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:49:56.598032+00:00\",\"city_id\":23,\"count\":0},{\"seq\":8,\"phase\":\"website\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:49:56.606563+00:00\",\"city_id\":23},{\"seq\":9,\"phase\":\"website\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:49:56.614792+00:00\",\"city_id\":23,\"count\":0},{\"seq\":10,\"phase\":\"postprocess\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:49:56.624457+00:00\",\"city_id\":23},{\"seq\":11,\"phase\":\"postprocess\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:49:56.631931+00:00\",\"city_id\":23,\"count\":0},{\"seq\":12,\"phase\":\"linked\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:49:56.640053+00:00\",\"city_id\":23},{\"seq\":13,\"phase\":\"linked\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:49:56.651772+00:00\",\"city_id\":23,\"count\":0},{\"seq\":14,\"phase\":\"completion\",\"outcome\":\"enter\",\"at\":\"2026-11-05T04:49:56.659168+00:00\",\"city_id\":23},{\"seq\":15,\"phase\":\"completion\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:49:56.670133+00:00\",\"city_id\":23},{\"seq\":16,\"phase\":\"inventory\",\"outcome\":\"complete\",\"at\":\"2026-11-05T04:55:03.643613+00:00\",\"count\":65}]}",
-   "current_step_note": "written once at run start; the orchestrator does not checkpoint intermediate stages in this column",
-   "target": 50,
-   "actual": 65,
-   "gap": 0,
-   "error_class": "none",
-   "error_present": false,
-   "dry_run": false,
-   "process_id": 29196,
-   "process_started_at": "2026-11-05T12:42:37+08:00",
-   "process_finished_at": "2026-11-05T12:55:03+08:00",
-   "process_duration_seconds": 746.0,
-   "trigger_id": "automation-1784775229336",
-   "entrypoint": "bd_orchestrator.py",
-   "entrypoint_fingerprint": {
-    "sha256": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8",
-    "bytes": 36070,
-    "mtime": "2026-10-22T19:15:01.867681+08:00"
-   }
   }
  ],
  "running_inventory_now": 6,
- "inventory_runs_last_2h": 1,
- "inventory_runs_last_24h": 1,
+ "inventory_runs_last_2h": 0,
+ "inventory_runs_last_24h": 2,
  "trigger_receipts": {
   "automation_id": "automation-1784775229336",
   "interval_seconds": 21600,
-  "next_run_at": "2026-11-09T08:58:47.649000+08:00",
-  "runtime_last_run_at": "2026-11-06T14:58:47.649000+08:00",
+  "next_run_at": "2026-11-09T23:57:01.511000+08:00",
+  "runtime_last_run_at": "2026-11-09T17:57:01.511000+08:00",
   "firings": [
    {
+    "firing_id": "automation-1784775229336:1794216892275",
+    "triggered_at": "2026-11-09T17:34:52.286000+08:00",
+    "completed_at": "2026-11-09T17:57:01.413000+08:00",
+    "automation_status": "ACCEPTED",
+    "automation_result_success": true,
+    "automation_failure_code": null,
+    "automation_reason_code": null,
+    "planned_at": "2026-11-09T17:34:26.225000+08:00",
+    "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+    "trigger_drift_seconds": 26.1,
+    "cycle_gap_seconds": 21626.1,
+    "skipped_slots_between": 0,
+    "executed": true,
+    "run_id": "inventory:2026-11-09:b3e92f89",
+    "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+   },
+   {
     "firing_id": "automation-1784775229336:1794194097897",
-    "triggered_at": "2026-11-09T11:14:57.898000+08:00",
-    "completed_at": "2026-11-09T11:14:57.906000+08:00",
-    "automation_status": "IN_PROGRESS",
-    "automation_result_success": false,
+    "triggered_at": "2026-11-09T11:14:57.899000+08:00",
+    "completed_at": "2026-11-09T11:34:26.225000+08:00",
+    "automation_status": "ACCEPTED",
+    "automation_result_success": true,
     "automation_failure_code": null,
     "automation_reason_code": null,
     "planned_at": "2026-11-09T17:13:37.791000+08:00",
@@ -406,9 +423,9 @@
     "trigger_drift_seconds": 22.5,
     "cycle_gap_seconds": 21622.5,
     "skipped_slots_between": 0,
-    "executed": true,
-    "run_id": "inventory:2026-11-05:65d3727c",
-    "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+    "executed": false,
+    "run_id": null,
+    "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
    },
    {
     "firing_id": "automation-1784775229336:1793830630749",
@@ -605,23 +622,6 @@
     "automation_result_success": true,
     "automation_failure_code": null,
     "automation_reason_code": null,
-    "planned_at": "2026-11-02T06:22:12.864000+08:00",
-    "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-    "trigger_drift_seconds": 31.4,
-    "cycle_gap_seconds": 21631.3,
-    "skipped_slots_between": 0,
-    "executed": false,
-    "run_id": null,
-    "execution_evidence": "NO_RUN_ROW_IN_TRIGGER_WINDOW"
-   },
-   {
-    "firing_id": "automation-1784775229336:1793548629232",
-    "triggered_at": "2026-11-01T23:57:09.245000+08:00",
-    "completed_at": "2026-11-02T00:22:12.864000+08:00",
-    "automation_status": "ACCEPTED",
-    "automation_result_success": true,
-    "automation_failure_code": null,
-    "automation_reason_code": null,
     "planned_at": null,
     "planned_basis": "NOT_RECORDED",
     "trigger_drift_seconds": null,
@@ -636,7 +636,7 @@
   "note": "planned_at is DERIVED from the previous firing's completion + rrule interval (the scheduler anchors hourly rules to the completion moment); the raw historical next_run_at is overwritten on every run and is NOT_RECORDED.",
   "automation_status": "ACTIVE",
   "runtime_last_error": null,
-  "runtime_running": true
+  "runtime_running": false
  },
  "field_notes": {
   "planned_vs_triggered_vs_started": "planned_at (derived) != triggered_at (scheduler receipt) != process_started_at (job_runs, UTC->+08)",
@@ -652,7 +652,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-09:1ce0df31",
+ "run_id": "inventory:2026-11-09:b3e92f89",
  "data_sources": "bd_leads.db:job_runs + system_config(run_lock) + workbuddy.db:automation_runs",
  "production_code_sha256": {
   "bd_orchestrator.py": "0ddb12feea430a30166a2d1b8acbb1650205d608c52e2e2d808db183665454c8"
@@ -661,5 +661,5 @@
   "per-stage event log (NOT_RECORDED by the orchestrator)",
   "raw scheduler next_run_at history (overwritten each run)"
  ],
- "payload_sha256": "afa9a101af76fa42bd81ef9db379939f79a1d4650891c9025bb757fc8b1eb584"
+ "payload_sha256": "b9ce2aa8a56f92a517b6efa04130b239e04a696f95affdf71708d53d3f0452cc"
 }
