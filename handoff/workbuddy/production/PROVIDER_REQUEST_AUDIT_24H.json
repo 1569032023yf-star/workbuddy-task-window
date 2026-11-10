@@ -1,17 +1,17 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-09T22:53:41+08:00",
+  "generated_at": "2026-11-10T22:54:11+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-11-08T14:53:41+00:00",
+  "window_start_utc": "2026-11-09T14:54:11+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
   "verdict_basis": "no audit row in window AND all query families for the city/provider are already completed, so discovery had no request to issue",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 2,
+  "inventory_runs_in_window": 4,
   "query_matrix": {
    "total": 20,
    "completed": 20,
@@ -25,10 +25,10 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-09T22:53:41+08:00",
+  "generated_at": "2026-11-10T22:54:11+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-11-02T14:53:41+00:00",
+  "window_start_utc": "2026-11-03T14:54:11+00:00",
   "city_id": null,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "UNKNOWN_NO_RECORD",
@@ -49,7 +49,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-11-09T22:53:42+08:00",
+ "generated_at": "2026-11-10T22:54:12+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -57,7 +57,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-09:b3e92f89",
+ "run_id": "inventory:2026-11-10:23bd6d8a",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "0c2c19d75230e21b2ece9017b260a475f6dd1d511c75802aeb0ed6245a78ca20"
+ "payload_sha256": "a315fe9b1f0ac680aeca0aa91a5d1c35c67fa336796d6b9f31aa7afcad6b9628"
 }
