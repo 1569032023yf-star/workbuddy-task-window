@@ -1,6 +1,6 @@
 {
  "schema": "rokt.safe_authority.v1",
- "measured_at": "2026-11-10T22:42:28+08:00",
+ "measured_at": "2026-11-11T22:43:51+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "rule_version": {
   "name": "V1_V2_MX_HISTORY_SUPPRESSION_BUSINESS_FIT",
@@ -24,23 +24,23 @@
  "mx_positive_control": {
   "domain": "gmail.com",
   "mx_status": "ok",
-  "checked_at": "2026-11-10T22:42:30.656466+08:00"
+  "checked_at": "2026-11-11T22:43:53.891507+08:00"
  },
  "mx_negative_control": {
   "domain": "nonexistent-domain-xyz-abc123456.invalid",
   "mx_status": "nxdomain",
-  "checked_at": "2026-11-10T22:42:32.989708+08:00"
+  "checked_at": "2026-11-11T22:43:56.184754+08:00"
  },
  "measurement_complete": true,
  "failure_reason": null,
  "safe_unique_orgs": 70,
  "db_identity": {
   "path_basename": "bd_leads.db",
-  "size_bytes": 9936896,
-  "sha256": "c14319ac635484b234b5dd9385cc5f65e2a5ba4c13170aff196ca33239e40ce3",
+  "size_bytes": 9945088,
+  "sha256": "e40001ef8897de6cb6c46c616ae857424cbfd4b6b351953ab0ca71e93c2c88fb",
   "quick_check": "ok"
  },
- "mx_probe_seconds": 4.61,
+ "mx_probe_seconds": 4.5,
  "mx_probe_ok": true,
  "mx_proxy_configured": true,
  "leads_total": 1254,
@@ -53,17 +53,17 @@
  "readings": [
   {
    "reading": 1,
-   "sampling_time": "2026-11-10T22:48:23+08:00",
+   "sampling_time": "2026-11-11T22:49:33+08:00",
    "candidate_rows": 70,
    "unique_organizations": 70,
-   "wall_seconds": 350.0
+   "wall_seconds": 337.0
   },
   {
    "reading": 2,
-   "sampling_time": "2026-11-10T22:53:46+08:00",
+   "sampling_time": "2026-11-11T22:54:53+08:00",
    "candidate_rows": 70,
    "unique_organizations": 70,
-   "wall_seconds": 308.4
+   "wall_seconds": 305.3
   }
  ],
  "reading_agreement": true,
@@ -95,15 +95,15 @@
   "note": "merchant discovery != confirmed business identity != has email != SAFE customer"
  },
  "safe_net_growth": {
-  "h24": 1,
+  "h24": 0,
   "d7": 1,
   "reason": "no prior snapshot recorded under an identical rule_version + dedup definition; the ledger started with this measurement, so growth cannot be subtracted from readings produced by an older rule set",
-  "h24_baseline_at": "2026-11-09T22:41:31+08:00",
-  "d7_baseline_at": "2026-11-03T22:40:48+08:00"
+  "h24_baseline_at": "2026-11-10T22:42:28+08:00",
+  "d7_baseline_at": "2026-11-04T22:41:26+08:00"
  },
- "finished_at": "2026-11-10T22:53:46+08:00",
+ "finished_at": "2026-11-11T22:54:53+08:00",
  "available": true,
- "generated_at": "2026-11-10T22:54:12+08:00",
+ "generated_at": "2026-11-11T22:56:06+08:00",
  "refresh_requested": false,
  "refresh_result": null,
  "age_hours": 0.2,
@@ -128,5 +128,5 @@
  "unavailable": [
   "24h/7d SAFE net growth (no prior snapshot under an identical rule version)"
  ],
- "payload_sha256": "c695c9f7138ea6cd01c8bbbd6a45408b8991b6d63a286090ccd4b9a44f3a2f78"
+ "payload_sha256": "b14b5ea25b52867a5835414283fd1c354ea77524d4dc138f663ab6a7aa2a83f2"
 }
