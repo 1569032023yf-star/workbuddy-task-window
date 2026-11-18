@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-17T22:54:51+08:00",
+ "generated_at": "2026-11-18T22:53:33+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "fields": {
   "PRODUCTION_OBSERVABILITY_ACCEPTED": false,
@@ -34,7 +34,7 @@
   "LAKE_PLACID_ACTIVE": false,
   "LAKE_PLACID_PROVIDER_REQUESTS": 56,
   "PRODUCTION_DB_UNAUTHORIZED_WRITES": 0,
-  "PRODUCTION_DB_SHA_AFTER": "a25a1fc8dd68223b6e05c16a0a5cf3fb6f4bdcf01678c41d6708559206f924ee",
+  "PRODUCTION_DB_SHA_AFTER": "2d6f2760a196098489447dab67c855b46ea72a76721764989b7d813c663540f0",
   "UNAUTHORIZED_EMAILS_SENT": 0,
   "DUPLICATE_INVENTORY_CREATED": false,
   "CUSTOMER_SMTP_ENABLED": false,
@@ -43,18 +43,18 @@
   "CUSTOMER_SMTP_SOURCES_AGREE": true,
   "PRODUCTION_SEND_LOG_TOTAL": 517,
   "PRODUCTION_SEND_LOG_TODAY": 0,
-  "PRODUCTION_DB_SHA256": "a25a1fc8dd68223b6e05c16a0a5cf3fb6f4bdcf01678c41d6708559206f924ee",
-  "PRODUCTION_DB_MTIME": "2026-11-17T16:29:28+08:00",
+  "PRODUCTION_DB_SHA256": "2d6f2760a196098489447dab67c855b46ea72a76721764989b7d813c663540f0",
+  "PRODUCTION_DB_MTIME": "2026-11-18T18:58:34+08:00",
   "PRODUCTION_DB_QUICK_CHECK": "ok",
   "BLOCKERS_REQUIRING_ONE_TIME_AUTHORIZATION": "install the deploy-channel supervisor as a Windows service (or a boot-time scheduled task running as the operator) so the bridge survives logoff/session end; schtasks/sc.exe are blocked for this process and CREATE_BREAKAWAY_FROM_JOB returns WinError 5, so boot-level persistence cannot be produced without one elevated action",
-  "NEXT_AUTOMATIC_ACTION": "next Inventory firing at 2026-11-17T22:42:34.059000+08:00 (agent layer, fail-closed if the proxy gate fails). Cooperstown will NOT close on its own: ldr:556 and ldr:565 are re-queued every firing (network_recovery_due=True) but retail_city_queue.automatic_recovery_deferred requires unavailable_attempts == 3 exactly, and that counter is stuck at 1 / absent while attempts climbs to 20 / 31. A Codex patch is required; time alone cannot clear it.",
+  "NEXT_AUTOMATIC_ACTION": "next Inventory firing at 2026-11-19T01:11:51.250000+08:00 (agent layer, fail-closed if the proxy gate fails). Cooperstown will NOT close on its own: ldr:556 and ldr:565 are re-queued every firing (network_recovery_due=True) but retail_city_queue.automatic_recovery_deferred requires unavailable_attempts == 3 exactly, and that counter is stuck at 1 / absent while attempts climbs to 20 / 31. A Codex patch is required; time alone cannot clear it.",
   "COOPERSTOWN_STRUCTURALLY_BLOCKED_REFS": "",
   "COOPERSTOWN_SELF_HEALING_REFS": "",
   "COOPERSTOWN_COMPLETION_CHECKS_FAILED": "",
   "COMMIT_SHA": "BACKFILLED_IN_FOLLOWUP_COMMIT",
   "PUSH_SUCCESS": null,
   "OVERALL_RESULT": "OBSERVABILITY_DELIVERED_CODEX_CONSUMPTION_PENDING",
-  "evidence_sha256": "204df0da406f1379dd494b76444d8fea3c03e664c12928a06214c8fcd7e9036c"
+  "evidence_sha256": "e76768acb33462d10bfded1710c563ad9cefd5955739bb1616c278565cc057a0"
  },
  "evidence_files": [
   "CITY_STAGE_TRACE.json",
@@ -85,7 +85,7 @@
    "safe"
   ],
   "test_mode": false,
-  "ts": "2026-11-17T22:54:51+08:00"
+  "ts": "2026-11-18T22:53:33+08:00"
  },
  "acceptance": {
   "observability_sandbox": "40/40",
