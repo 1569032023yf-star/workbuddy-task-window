@@ -1,7 +1,7 @@
 {
  "active": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-11-19T22:53:54+08:00",
+  "generated_at": "2026-11-20T22:53:15+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -242,7 +242,7 @@
  },
  "next": {
   "schema": "rokt.city.v1",
-  "generated_at": "2026-11-19T22:53:54+08:00",
+  "generated_at": "2026-11-20T22:53:15+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "source": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
   "ruleset": {
@@ -507,7 +507,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "city",
- "generated_at": "2026-11-19T22:53:54+08:00",
+ "generated_at": "2026-11-20T22:53:15+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -515,12 +515,12 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-19:5f3bc675",
+ "run_id": "inventory:2026-11-20:8f3896bf",
  "data_sources": "bd_leads.db:retail_city_queue + lead_discovery_query_state + lead_discovery_results + provider_request_audit + system_config; completion rules from production retail_city_queue.city_completion_checks",
  "ruleset_sha256": "27d60fa77644f15b786bfc61390d3671d4a3ee50cc8ae6e9e0fa42b19e820146",
  "unavailable": [
   "historical per-run stage traversal (no event log exists)",
   "per-record timestamps of staging postprocess"
  ],
- "payload_sha256": "0fb1fc2dbead384066de3c204714fd90df3ab0d90b45526984aa624d13ca905c"
+ "payload_sha256": "4fe8d12da19ba30c07b7a56a75f164b33a4157839fb0ac6b55c73dfad93ada43"
 }
