@@ -1,10 +1,10 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-20T22:53:15+08:00",
+  "generated_at": "2026-11-21T22:56:47+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-11-19T14:53:15+00:00",
+  "window_start_utc": "2026-11-20T14:56:47+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
@@ -25,17 +25,17 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-20T22:53:15+08:00",
+  "generated_at": "2026-11-21T22:56:47+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-11-13T14:53:15+00:00",
+  "window_start_utc": "2026-11-14T14:56:47+00:00",
   "city_id": null,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "UNKNOWN_NO_RECORD",
   "verdict_basis": "no audit row in window but the query matrix is not exhausted, so absence of an audit row does not prove zero provider calls",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 25,
+  "inventory_runs_in_window": 24,
   "query_matrix": {
    "total": null,
    "completed": null,
@@ -49,7 +49,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-11-20T22:53:15+08:00",
+ "generated_at": "2026-11-21T22:56:47+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -57,7 +57,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-20:8f3896bf",
+ "run_id": "inventory:2026-11-21:c7cf01f1",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "e0927fd4f360f43b9e56c2d3d34ddc3c164ba896a4b7cd5ddd8d44f4e93a4c35"
+ "payload_sha256": "aa848b1134a66edcafeabd290423bdf652c6026a481ec84701537ed7de9c493a"
 }
