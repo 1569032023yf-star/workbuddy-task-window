@@ -1,10 +1,10 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-22T22:53:58+08:00",
+  "generated_at": "2026-11-23T22:54:08+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-11-21T14:53:58+00:00",
+  "window_start_utc": "2026-11-22T14:54:08+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
@@ -25,10 +25,10 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-22T22:53:58+08:00",
+  "generated_at": "2026-11-23T22:54:08+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-11-15T14:53:58+00:00",
+  "window_start_utc": "2026-11-16T14:54:08+00:00",
   "city_id": null,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "UNKNOWN_NO_RECORD",
@@ -49,7 +49,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-11-22T22:53:58+08:00",
+ "generated_at": "2026-11-23T22:54:08+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -57,7 +57,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-22:21a013cc",
+ "run_id": "inventory:2026-11-23:6f1fc6f1",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "ee909c40d537b2de65890ab9c61337c59674be2caf30b65ff4d9d14949fe5203"
+ "payload_sha256": "258b8b9f15488ec443c8cd8f7ac74609a553b7925258c051e08917f32d413ab2"
 }
