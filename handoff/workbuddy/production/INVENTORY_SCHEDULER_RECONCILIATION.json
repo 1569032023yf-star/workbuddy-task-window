@@ -1,6 +1,6 @@
 {
  "schema": "rokt.scheduler.v1",
- "generated_at": "2026-11-23T22:54:08+08:00",
+ "generated_at": "2026-11-24T22:53:52+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "window_hours": 48,
  "source": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
@@ -8,9 +8,9 @@
   "id": "automation-1784775229336",
   "status": "ACTIVE",
   "rrule": "FREQ=HOURLY;INTERVAL=6",
-  "next_run_at": "2026-11-23T23:32:06.791000+08:00",
-  "runtime_last_run_at": "2026-11-23T17:32:06.791000+08:00",
-  "runtime_last_error": "[CANCELLED] Automation prompt stopped before completion: refusal: {\"stopReason\":\"refusal\",\"code\":0,\"message\":\"aborted\",\"details\":\"aborted\",\"requestId\":\"01a20799e4387a64ba5b4be37913aeb4\",\"traceId\":\"440a606f434eb76bc99b259de4efc0dc\",\"raw\":\"{\\\"code\\\":0,\\\"message\\\":\\\"aborted\\\",\\\"data\\\":{\\\"details\\\":\\\"aborted\\\"}}\"}",
+  "next_run_at": "2026-11-25T01:58:29.655000+08:00",
+  "runtime_last_run_at": "2026-11-24T19:58:29.655000+08:00",
+  "runtime_last_error": null,
   "automations_last_run_at_note": "automations.last_run_at is stale/unreliable; automation_runtime_state.last_run_at is authoritative"
  },
  "reconciliation_model": {
@@ -20,12 +20,12 @@
   "drift_seconds": {
    "min": -20999.8,
    "max": 304.0,
-   "avg": -2570.6
+   "avg": -2575.8
   },
   "skipped_slots_total": 0,
   "skipped_slot_detail": [],
-  "pending_slot": "2026-11-23T23:32:06.553000+08:00",
-  "next_run_at_vs_pending_slot_seconds": 0.2
+  "pending_slot": "2026-11-25T01:58:29.401000+08:00",
+  "next_run_at_vs_pending_slot_seconds": 0.3
  },
  "matched_slots": 8,
  "missed_inventory_runs_confirmed": 0,
@@ -33,6 +33,74 @@
  "firings_executed_production": 8,
  "firings_without_production_run": 0,
  "firings": [
+  {
+   "firing_id": "automation-1784775229336:1795519309939",
+   "triggered_at": "2026-11-24T19:21:49.948000+08:00",
+   "completed_at": "2026-11-24T19:58:29.401000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-11-24T19:21:31.416000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 18.5,
+   "cycle_gap_seconds": 21618.5,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-11-24:9805c85b",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
+  {
+   "firing_id": "automation-1784775229336:1795495420677",
+   "triggered_at": "2026-11-24T12:43:40.688000+08:00",
+   "completed_at": "2026-11-24T13:21:31.416000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-11-24T12:43:32.889000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 7.8,
+   "cycle_gap_seconds": 21607.8,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-11-24:f826bb0f",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
+  {
+   "firing_id": "automation-1784775229336:1795471787902",
+   "triggered_at": "2026-11-24T06:09:47.909000+08:00",
+   "completed_at": "2026-11-24T06:43:32.889000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-11-24T06:09:15.636000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 32.3,
+   "cycle_gap_seconds": 21632.3,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "inventory:2026-11-24:56fa7f69",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
+  {
+   "firing_id": "automation-1784775229336:1795447933997",
+   "triggered_at": "2026-11-23T23:32:14.004000+08:00",
+   "completed_at": "2026-11-24T00:09:15.636000+08:00",
+   "automation_status": "ACCEPTED",
+   "automation_result_success": true,
+   "automation_failure_code": null,
+   "automation_reason_code": null,
+   "planned_at": "2026-11-23T23:32:06.553000+08:00",
+   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
+   "trigger_drift_seconds": 7.5,
+   "cycle_gap_seconds": 21607.5,
+   "skipped_slots_between": 0,
+   "executed": true,
+   "run_id": "post-send:2026-11-23:392c22d6",
+   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
+  },
   {
    "firing_id": "automation-1784775229336:1795423855610",
    "triggered_at": "2026-11-23T16:50:55.623000+08:00",
@@ -99,74 +167,6 @@
    "skipped_slots_between": 0,
    "executed": true,
    "run_id": "inventory:2026-11-23:b8dab6a2",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1795350130221",
-   "triggered_at": "2026-11-22T20:22:10.230000+08:00",
-   "completed_at": "2026-11-22T21:01:06.457000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-11-22T20:21:57.860000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 12.4,
-   "cycle_gap_seconds": 21612.4,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-11-22:21a013cc",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1795326374150",
-   "triggered_at": "2026-11-22T13:46:14.161000+08:00",
-   "completed_at": "2026-11-22T14:21:57.860000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-11-22T13:45:59.584000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 14.6,
-   "cycle_gap_seconds": 21614.6,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-11-22:381596ae",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1795302464503",
-   "triggered_at": "2026-11-22T07:07:44.515000+08:00",
-   "completed_at": "2026-11-22T07:45:59.584000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-11-22T07:07:07.998000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 36.5,
-   "cycle_gap_seconds": 21636.5,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-11-22:03cd683b",
-   "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
-  },
-  {
-   "firing_id": "automation-1784775229336:1795278364543",
-   "triggered_at": "2026-11-22T00:26:04.551000+08:00",
-   "completed_at": "2026-11-22T01:07:07.998000+08:00",
-   "automation_status": "ACCEPTED",
-   "automation_result_success": true,
-   "automation_failure_code": null,
-   "automation_reason_code": null,
-   "planned_at": "2026-11-22T00:25:20.726000+08:00",
-   "planned_basis": "DERIVED_PREVIOUS_COMPLETION_PLUS_INTERVAL",
-   "trigger_drift_seconds": 43.8,
-   "cycle_gap_seconds": 21643.8,
-   "skipped_slots_between": 0,
-   "executed": true,
-   "run_id": "inventory:2026-11-21:2f824146",
    "execution_evidence": "JOB_RUNS_ROW_IN_TRIGGER_WINDOW"
   }
  ],
@@ -243,10 +243,10 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-23:6f1fc6f1",
+ "run_id": "inventory:2026-11-24:9805c85b",
  "data_sources": "workbuddy.db:automations/automation_runs/automation_runtime_state + bd_leads.db:job_runs/system_config + Windows SCM (read-only)",
  "unavailable": [
   "Windows scheduled task enumeration (schtasks blocked by host policy)"
  ],
- "payload_sha256": "2d6895b1552919b5349b23d27067f4cda419eb558b7a379315910550592a9208"
+ "payload_sha256": "2b0af215b565273853ad31f7e92d7f15672479e06debf4e6c1d26415c280efce"
 }

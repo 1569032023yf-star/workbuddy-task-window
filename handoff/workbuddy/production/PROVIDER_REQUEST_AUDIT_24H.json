@@ -1,10 +1,10 @@
 {
  "city22_24h": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-23T22:54:08+08:00",
+  "generated_at": "2026-11-24T22:53:52+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 24,
-  "window_start_utc": "2026-11-22T14:54:08+00:00",
+  "window_start_utc": "2026-11-23T14:53:52+00:00",
   "city_id": 22,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "ZERO_REQUESTS_CONFIRMED",
@@ -25,17 +25,17 @@
  },
  "all_cities_7d": {
   "schema": "rokt.provider_audit.v1",
-  "generated_at": "2026-11-23T22:54:08+08:00",
+  "generated_at": "2026-11-24T22:53:52+08:00",
   "business_timezone": "Asia/Shanghai (+08)",
   "window_hours": 168,
-  "window_start_utc": "2026-11-16T14:54:08+00:00",
+  "window_start_utc": "2026-11-17T14:53:52+00:00",
   "city_id": null,
   "source": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
   "verdict": "UNKNOWN_NO_RECORD",
   "verdict_basis": "no audit row in window but the query matrix is not exhausted, so absence of an audit row does not prove zero provider calls",
   "audit_rows": 0,
   "per_provider": [],
-  "inventory_runs_in_window": 25,
+  "inventory_runs_in_window": 26,
   "query_matrix": {
    "total": null,
    "completed": null,
@@ -49,7 +49,7 @@
  },
  "schema_version": "1.0",
  "evidence_kind": "provider_audit",
- "generated_at": "2026-11-23T22:54:08+08:00",
+ "generated_at": "2026-11-24T22:53:52+08:00",
  "business_timezone": "Asia/Shanghai (+08)",
  "producer": "workbuddy-production-operator",
  "channel": {
@@ -57,7 +57,7 @@
   "bridge_version": "2.1",
   "auth": "Bearer (Credential Manager)"
  },
- "run_id": "inventory:2026-11-23:6f1fc6f1",
+ "run_id": "inventory:2026-11-24:9805c85b",
  "data_sources": "bd_leads.db:provider_request_audit + job_runs + lead_discovery_query_state",
- "payload_sha256": "258b8b9f15488ec443c8cd8f7ac74609a553b7925258c051e08917f32d413ab2"
+ "payload_sha256": "29a4a4147092da26a707f39dd1fa42ca801b8b01b45f7350313eaedb1b3242b4"
 }
